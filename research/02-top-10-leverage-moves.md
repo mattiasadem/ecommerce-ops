@@ -35,7 +35,7 @@ When the cron picks an improvement, it should:
 
 | Move | Status | Owner | Last touched |
 |---|---|---|---|
-| 1. Abandoned cart flow | pending | cron | – |
+| 1. Abandoned cart flow | shipped (playbook + ROI script + tests, 2026-06-23) | cron | 2026-06-23 |
 | 2. Post-purchase upsell | pending | cron | – |
 | 3. Checkout audit | pending | cron | – |
 | 4. Welcome series | pending | cron | – |
