@@ -39,7 +39,7 @@ When the cron picks an improvement, it should:
 | 2. Post-purchase upsell | shipped (playbook + ROI script + 26 tests, 2026-06-24) | cron | 2026-06-24 |
 | 3. Checkout audit | shipped (playbook + scoring script + 46 tests, 2026-06-24) | cron | 2026-06-24 |
 | 4. Welcome series | shipped (playbook + ROI script + 44 tests, 2026-06-24) | cron | 2026-06-24 |
-| 5. Migrate to Klaviyo+Postscript | pending | cron | – |
+| 5. Migrate to Klaviyo+Postscript | shipped (playbook — 4-path decision matrix + 6 phases + 7-gate verification + cost table, 2026-06-24) | cron | 2026-06-24 |
 | 6. Install Triple Whale | pending | cron | – |
 | 7. SMS welcome + cart | pending | cron | – |
 | 8. Loyalty program | pending | cron | – |
