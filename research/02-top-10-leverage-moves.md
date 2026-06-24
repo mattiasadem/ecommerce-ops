@@ -37,7 +37,7 @@ When the cron picks an improvement, it should:
 |---|---|---|---|
 | 1. Abandoned cart flow | shipped (playbook + ROI script + tests, 2026-06-23) | cron | 2026-06-23 |
 | 2. Post-purchase upsell | shipped (playbook + ROI script + 26 tests, 2026-06-24) | cron | 2026-06-24 |
-| 3. Checkout audit | pending | cron | – |
+| 3. Checkout audit | shipped (playbook + scoring script + 46 tests, 2026-06-24) | cron | 2026-06-24 |
 | 4. Welcome series | pending | cron | – |
 | 5. Migrate to Klaviyo+Postscript | pending | cron | – |
 | 6. Install Triple Whale | pending | cron | – |
