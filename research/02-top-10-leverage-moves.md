@@ -41,7 +41,7 @@ When the cron picks an improvement, it should:
 | 4. Welcome series | shipped (playbook + ROI script + 44 tests, 2026-06-24) | cron | 2026-06-24 |
 | 5. Migrate to Klaviyo+Postscript | shipped (playbook — 4-path decision matrix + 6 phases + 7-gate verification + cost table, 2026-06-24) | cron | 2026-06-24 |
 | 6. Install Triple Whale | pending | cron | – |
-| 7. SMS welcome + cart | pending | cron | – |
+| 7. SMS welcome + cart | shipped (playbook — 4 flows [SMS-1 Welcome, SMS-2 Cart-Abandon 1, SMS-3 Cart-Abandon 2 escalation, SMS-4 Review Request], 10-prereq gate, 7-step verification [A-G], 13-metric monitoring, 13-pitfall list, 5.7:1 ROI table, 2026-06-25) | cron | 2026-06-25 |
 | 8. Loyalty program | pending | cron | – |
 | 9. Mobile PDP redesign | pending | cron | – |
 | 10. AI ad creative | pending | cron | – |
