@@ -826,3 +826,34 @@ def test_ai_tools_count_scales_cost():
     fc2 = forecast(two_tools)
     # second tool = $149/mo, so total_cost_2 - total_cost_1 = 149
     assert abs((fc2.total_cost_monthly - fc1.total_cost_monthly) - 149.0) < 1e-9
+
+
+# ----- Runner ---------------------------------------------------------------
+
+def main_test() -> int:
+    """Manual test runner — invoked when running this file directly.
+
+    Matches the convention used by all 9 other test files in the workspace
+    (manual main_test() instead of pytest). Returns exit code 0 on all-pass,
+    1 on any-fail. Summary line format `N passed, M failed (of K)` matches
+    the workspace's multi-format parser (see test-driven-development
+    `references/python-suite-summary-format-heterogeneity.md`).
+    """
+    tests = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
+    passed = 0
+    failed = 0
+    for fn in tests:
+        try:
+            fn()
+        except Exception as e:  # noqa: BLE001
+            print(f"  FAIL  {fn.__name__}: {e}")
+            failed += 1
+        else:
+            print(f"  PASS  {fn.__name__}")
+            passed += 1
+    print(f"\n{passed} passed, {failed} failed (of {len(tests)})")
+    return 0 if failed == 0 else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main_test())
