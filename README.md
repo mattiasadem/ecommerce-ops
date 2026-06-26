@@ -14,8 +14,8 @@ ecommerce-ops/
 │   └── 03-30-day-rollout-plan.md          (synthesis: 4-week plan sequencing 16 shipped moves)
 ├── playbooks/                             ← step-by-step runbooks ("how do we actually do X")
 │                                          (15 shipped: abandoned-cart / upsell / checkout /
-│                                          welcome / Klaviyo+Postscript / Triple Whale / SMS /
-│                                          loyalty / mobile PDP / PDP A/B / AI ad creative /
+│                                          welcome / Klaviyo+Postscript migration / Triple Whale /
+│                                          SMS / loyalty / mobile PDP / PDP A/B / AI ad creative /
 │                                          attribution-quality + TikTok + Snap+Pinterest +
 │                                          cross-platform drift + unification)
 ├── scripts/                               ← executable code (cron + operator use)
@@ -25,11 +25,12 @@ ecommerce-ops/
 │   └── unified-attribution-health.html    ← self-contained static dashboard (0 build step,
 │                                          59 tests, loads 4 attribution-audit JSONs)
 ├── dashboard/                             ← Next.js 15 dashboard (operator-facing SPA)
-│   ├── app/                               ← 12 routes: /, /top-10, /playbooks, /journal,
+│   ├── app/                               ← 11 routes: /, /top-10, /playbooks, /journal,
 │   │                                       /30-day-plan, /ai, /channels, /cro, /inventory,
 │   │                                       /retention, /unit-economics
 │   └── src/lib/content.json               ← auto-generated index of research/ + playbooks/
-├── assets/                                ← (planned) brand assets, copy templates, briefs
+├── assets/                                ← 2 shipped: copy templates (8 Klaviyo+Postscript
+│                                          templates) + brand voice (5 profiles × 5 dimensions)
 └── docs/                                  ← journal + decision log
     └── journal.md                         ← every cron tick logs here (newest at top)
 ```
@@ -55,7 +56,7 @@ ecommerce-ops/
 | **Tests** | 499/499 green | 440 Python (11 test files) + 59 JS (1 test file); `for t in scripts/tests/test_*.py; do python3 "$t"; done` + `node dashboards/tests/test_unified_attribution_health.js` |
 | **Journal** | Live | Every cron tick logs to `docs/journal.md` with what shipped, why, files touched, verification, next action |
 | **A/B testing** | 1 follow-up shipped | Move #9.5 PDP A/B testing program (companion to Move #9) |
-| **Assets** | Empty (planned) | Copy templates, brand-voice docs, UGC briefs — bounded follow-up for a future tick |
+| **Assets** | 2 shipped | `assets/01-copy-templates.md` (8 paste-ready Klaviyo email + Postscript SMS templates with compliance + decision matrix) + `assets/02-brand-voice.md` (5 voice profiles × 5-dimension framework + adaptation recipe for non-default brands) |
 
 **Where to start (new operator):** Open `research/03-30-day-rollout-plan.md` for the 4-week day-by-day plan, then jump to `dashboard/` (live operator dashboard, served at `http://127.0.0.1:8767/` after `cd dashboard && npx next dev`), then drill into any `playbooks/NN-*.md` for a specific move's runbook.
 
