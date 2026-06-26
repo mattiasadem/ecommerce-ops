@@ -42,6 +42,68 @@ export default function Home() {
   // Latest journal entry.
   const latest = journal[0];
 
+  // "What to do this cycle" CTA — derive from journal entries + top10 status.
+  // The dashboard is `force-static`, so we can't fetch live audit JSONs at
+  // request time. We derive the CTA text from the latest attribution-related
+  // journal entry (every audit + dashboard ship leaves a journal heading) and
+  // the synthesis doc's Day-of-month mapping. This gives a stable, build-time
+  // CTA that always reflects the actual workspace state without needing a
+  // fetch. (Per the cron-driven-bounded-improver skill: build-time env check,
+  // not runtime window check.)
+  const ATTRIBUTION_MOVE_RE =
+    /Move\s*#(?:6(?:\.\d+)?|6\.9)/i; // #6 + #6.5–#6.9 attribution stack
+  const attributionEntries = journal.filter((j) =>
+    ATTRIBUTION_MOVE_RE.test(j.heading)
+  );
+  const lastAttribution = attributionEntries[0];
+  const lastAttributionLabel = lastAttribution
+    ? (() => {
+        const m =
+          /Move\s*#[\d.]+/.exec(lastAttribution.heading);
+        return m ? m[0] : "Move #6";
+      })()
+    : null;
+  const lastAttributionDate = lastAttribution
+    ? (() => {
+        const m =
+          /\[(\d{4}-\d{2}-\d{2})\s+\d{2}:\d{2}\]/.exec(
+            lastAttribution.heading
+          );
+        return m ? m[1] : null;
+      })()
+    : null;
+  // Status pill: green if last shipped was the dashboard (Move #6.9) — surface
+  // is live; yellow if last shipped was an audit script (Move #6.5–#6.8) —
+  // scripts are wired but no fresh cycle run; neutral if no attribution work
+  // shipped yet.
+  const lastAttributionIntent = lastAttributionLabel
+    ? /#6\.9/.test(lastAttributionLabel)
+      ? "success"
+      : /#6\.\d/.test(lastAttributionLabel)
+      ? "warning"
+      : "secondary"
+    : "outline";
+  const lastAttributionStatusText = lastAttributionLabel
+    ? /#6\.9/.test(lastAttributionLabel)
+      ? "dashboard live"
+      : /#6\.5/.test(lastAttributionLabel)
+      ? "audit ready"
+      : /#6\.6/.test(lastAttributionLabel)
+      ? "TikTok audit ready"
+      : /#6\.7/.test(lastAttributionLabel)
+      ? "Snap+Pinterest audit ready"
+      : /#6\.8/.test(lastAttributionLabel)
+      ? "rollup ready"
+      : "shipped"
+    : "not started";
+  // Next-action from the synthesis doc's day-by-day mapping.
+  const nextMove = lastAttributionLabel
+    ? "Run Move #6.5 weekly attribution audit"
+    : "Ship Move #6 (install Triple Whale)";
+  const nextMoveLink = lastAttributionLabel
+    ? "/30-day-plan"
+    : "/playbooks";
+
   // 30-day rollout plan (synthesis doc — auto-indexed in content.json).
   const rollout = research.find((r) => r.file.startsWith("03-30-day"));
   const weekTables = rollout?.tables ?? [];
@@ -103,6 +165,72 @@ export default function Home() {
           sub="Cron-driven · every bounded improvement"
         />
       </section>
+
+      {lastAttribution && (
+        <section>
+          <Card className="border-accent/40 bg-accent/5">
+            <CardHeader>
+              <div className="flex flex-wrap items-baseline justify-between gap-2">
+                <div className="flex items-baseline gap-3">
+                  <CardTitle className="text-base">
+                    What to do this cycle
+                  </CardTitle>
+                  <Badge variant={lastAttributionIntent}>
+                    {lastAttributionStatusText}
+                  </Badge>
+                </div>
+                <CardDescription className="font-mono text-[11px]">
+                  attribution · {lastAttributionDate ?? "—"}
+                </CardDescription>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <div className="flex flex-wrap items-baseline justify-between gap-3">
+                <div className="space-y-1">
+                  <div className="text-sm font-medium leading-tight">
+                    Last attribution cycle shipped{" "}
+                    <span className="font-mono tabular-nums">
+                      {lastAttributionLabel}
+                    </span>{" "}
+                    on{" "}
+                    <span className="font-mono tabular-nums">
+                      {lastAttributionDate ?? "—"}
+                    </span>
+                    .
+                  </div>
+                  <div className="text-xs text-muted-foreground leading-relaxed">
+                    Next:{" "}
+                    <strong className="text-foreground">{nextMove}</strong>{" "}
+                    — pulls the latest fixtures, runs the 6 audit gates, and
+                    fires Slack on drift.
+                  </div>
+                </div>
+                <Link
+                  href={nextMoveLink}
+                  className="inline-flex items-center gap-1 rounded-md border border-border bg-accent px-3 py-1.5 text-xs font-medium text-accent-foreground hover:bg-accent/90"
+                >
+                  Open the plan →
+                </Link>
+              </div>
+              <div className="flex flex-wrap items-center gap-2 text-[11px] font-mono text-muted-foreground">
+                <span>
+                  {shippedMoves} / {top10.status.length} top-10 shipped
+                </span>
+                <span>·</span>
+                <span>
+                  {counts.researchDocs} research docs
+                </span>
+                <span>·</span>
+                <span>
+                  {counts.playbooks} playbooks
+                </span>
+                <span>·</span>
+                <span>Day 22 of 30-day plan</span>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
+      )}
 
       {rollout && (
         <section>
