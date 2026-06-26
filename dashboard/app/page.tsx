@@ -42,6 +42,21 @@ export default function Home() {
   // Latest journal entry.
   const latest = journal[0];
 
+  // 30-day rollout plan (synthesis doc — auto-indexed in content.json).
+  const rollout = research.find((r) => r.file.startsWith("03-30-day"));
+  const weekTables = rollout?.tables ?? [];
+  const weeks = weekTables.slice(0, 4).map((t) => {
+    const moveCount = t.rows.filter(
+      (r) => /Move\s*#\d+/.test(String(r["Move"] ?? ""))
+    ).length;
+    const totalTime = t.rows.reduce((acc, r) => {
+      const t = String(r["Time"] ?? "");
+      const m = /(\d+(?:\.\d+)?)\s*hr/i.exec(t);
+      return acc + (m ? parseFloat(m[1]) : 0);
+    }, 0);
+    return { heading: t.heading, moveCount, totalTime };
+  });
+
   return (
     <div className="flex flex-col gap-8">
       <section className="flex flex-col gap-2">
@@ -88,6 +103,60 @@ export default function Home() {
           sub="Cron-driven · every bounded improvement"
         />
       </section>
+
+      {rollout && (
+        <section>
+          <Card>
+            <CardHeader>
+              <div className="flex flex-wrap items-baseline justify-between gap-2">
+                <div className="flex items-baseline gap-3">
+                  <CardTitle className="text-base">
+                    30-day rollout plan
+                  </CardTitle>
+                  <Badge variant="accent">synthesis</Badge>
+                </div>
+                <CardDescription className="font-mono text-[11px]">
+                  /research/{rollout.file}
+                </CardDescription>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+                {weeks.map((w, i) => (
+                  <div
+                    key={w.heading}
+                    className="rounded-lg border border-border bg-muted/30 p-3"
+                  >
+                    <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
+                      Week {i + 1}
+                    </div>
+                    <div className="mt-1 text-sm font-medium leading-tight">
+                      {w.heading.replace(/^Week\s+\d+\s+[—-]\s+/, "").split(" (")[0]}
+                    </div>
+                    <div className="mt-2 font-mono tabular-nums text-xs text-muted-foreground">
+                      {w.moveCount} {w.moveCount === 1 ? "move" : "moves"} ·{" "}
+                      {w.totalTime > 0 ? `${w.totalTime.toFixed(1)} hr` : "buffer"}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="flex flex-wrap items-center justify-between gap-3 text-xs">
+                <p className="max-w-2xl text-muted-foreground leading-relaxed">
+                  All <strong>16 moves</strong> sequenced day-by-day for a brand
+                  starting from zero. Each move&apos;s prerequisite ships in the
+                  prior week — no tool without its measurement first.
+                </p>
+                <Link
+                  href="/30-day-plan"
+                  className="inline-flex items-center gap-1 rounded-md border border-border bg-accent px-3 py-1.5 font-medium text-accent-foreground hover:bg-accent/90"
+                >
+                  Open the full plan →
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
+      )}
 
       <section className="grid grid-cols-1 gap-4 lg:grid-cols-3">
         <Card className="lg:col-span-2">
