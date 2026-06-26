@@ -29,9 +29,11 @@ ecommerce-ops/
 │   │                                       /30-day-plan, /ai, /channels, /cro, /inventory,
 │   │                                       /retention, /unit-economics
 │   └── src/lib/content.json               ← auto-generated index of research/ + playbooks/
-├── assets/                                ← 3 shipped: copy templates (8 Klaviyo+Postscript
+├── assets/                                ← 4 shipped: copy templates (8 Klaviyo+Postscript
 │                                          templates) + brand voice (5 profiles × 5 dimensions)
-│                                          + UGC brief (5 outreach + 3 contracts + Klaviyo segment)
+│                                          + UGC brief (5 outreach + 3 contracts + Klaviyo
+│                                          segment) + promo calendar (12 months × 5 voice
+│                                          variants × 8 templates × 5 outreach emails)
 └── docs/                                  ← journal + decision log
     └── journal.md                         ← every cron tick logs here (newest at top)
 ```
@@ -57,7 +59,7 @@ ecommerce-ops/
 | **Tests** | 499/499 green | 440 Python (11 test files) + 59 JS (1 test file); `for t in scripts/tests/test_*.py; do python3 "$t"; done` + `node dashboards/tests/test_unified_attribution_health.js` |
 | **Journal** | Live | Every cron tick logs to `docs/journal.md` with what shipped, why, files touched, verification, next action |
 | **A/B testing** | 1 follow-up shipped | Move #9.5 PDP A/B testing program (companion to Move #9) |
-| **Assets** | 3 shipped | `assets/01-copy-templates.md` (8 paste-ready Klaviyo email + Postscript SMS templates with compliance + decision matrix) + `assets/02-brand-voice.md` (5 voice profiles × 5-dimension framework + adaptation recipe for non-default brands) + `assets/03-ugc-brief.md` (3 sourcing model decision matrix + 1 commissioning template + 5 creator outreach emails + 3 contract templates for paid/gifted/affiliate + Klaviyo UGC segment wiring + cohort-LTV measurement) |
+| **Assets** | 4 shipped | `assets/01-copy-templates.md` (8 paste-ready Klaviyo email + Postscript SMS templates with compliance + decision matrix) + `assets/02-brand-voice.md` (5 voice profiles × 5-dimension framework + adaptation recipe for non-default brands) + `assets/03-ugc-brief.md` (3 sourcing model decision matrix + 1 commissioning template + 5 creator outreach emails + 3 contract templates for paid/gifted/affiliate + Klaviyo UGC segment wiring + cohort-LTV measurement) + `assets/04-promo-calendar.md` (12-month Default calendar + 4 voice-driven variant tables: Luxury / Sustainable / Gen-Z / B2B + 10 numbered pitfalls + 5 verification gates; compounds Asset 01 T1-T8 templates + Asset 02 voice framework + Asset 03 U1-U5 outreach emails) |
 
 **Where to start (new operator):** Open `research/03-30-day-rollout-plan.md` for the 4-week day-by-day plan, then jump to `dashboard/` (live operator dashboard, served at `http://127.0.0.1:8767/` after `cd dashboard && npx next dev`), then drill into any `playbooks/NN-*.md` for a specific move's runbook.
 
