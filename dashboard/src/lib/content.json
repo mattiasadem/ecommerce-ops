@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-27T05:53:04.203Z",
+  "generatedAt": "2026-06-27T07:13:20.339Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -5978,6 +5978,30 @@
         "Gen-Z": 25,
         "B2B": 23
       }
+    },
+    {
+      "file": "13-international-pricing-card.md",
+      "title": "Goal",
+      "meta": [
+        "Picking the right PPP-premium per market + per voice profile — the 7-market × 5-voice = 35-cell matrix (Section 3 below) gives the operator the exact PPP-premium to apply per market per voice profile, ranging from -10% (Luxury in UK, where GBP already has parity perception) to +30% (Sustainable in DACH, where DE customers pay a premium for verifiable sustainability).",
+        "Pasting the 7-market price-card into Shopify Markets — the per-market US-baseline → local-currency mapping (Section 4 below) is paste-ready for the Shopify Markets pricing rules screen, with each market's free-shipping threshold + DDP/duty-treatment + per-voice first-order-discount already filled in.",
+        "Running the FX-fee calculator — the per-market Stripe / PayPal / Shopify Payments FX-fee math is built into the price-card, with the operator adjusting their contribution-margin assumption to absorb the 1.5–3.5% FX-fee band by market.",
+        "Avoiding the 10 named pitfalls with corrective Fix: lines — including the \"currency-converted 1:1\" trap (drops CVR 20–40%) / the \"wrong local-currency rounding\" trap (£14.99 is canonical UK, €14.99 feels arbitrary in EU, ¥1490 is canonical JP) / the \"no per-voice per-market variant\" trap (Default €65 EUR vs Luxury €445 EUR vs Sustainable €72 EUR all need different copy + PDP framing) / etc.",
+        "Passing the 5 verification gates before considering the per-market price-card production-grade (per-market contribution margin still ≥30% after FX + duties + shipping subsidies, per-market CVR within ±20% of US-baseline CVR after 30 days, per-market AOV within ±15% of US-baseline AOV after 30 days, DDP wired for EU ≤€150 + UK ≤£135, FX-fee buffer of 2.5% baked into the international P&L).",
+        "(a) Conversion-rate penalty is structural, not transient. US-prices-currency-converted drops CVR 20–40% in non-US markets (Shopify Markets benchmarks 2025). A $5M US GMV brand launching UK with no per-market price-card typically captures only $200k–$400k of UK Year-1 revenue; with a per-market price-card, the same brand captures $600k–$1.2M of UK Year-1 revenue. The 3× revenue difference is the entire Year-1 ROI of international expansion."
+      ],
+      "sectionCount": 12,
+      "numberedSections": [],
+      "size": 47699,
+      "assetNumber": 13,
+      "voiceGated": true,
+      "voiceCounts": {
+        "Default": 49,
+        "Luxury": 41,
+        "Sustainable": 53,
+        "Gen-Z": 48,
+        "B2B": 44
+      }
     }
   ],
   "top10": {
@@ -6217,6 +6241,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-06-27 05:53] Playbook seed — International rollout (cross-border DTC operator build: 3-path GMV-tier decision matrix + 6 phases [Phase 1 CA + UK / Phase 2 EU + AU / Phase 3 JP + DACH + Nordics / Phase 4 steady-state] + 12-prereq gate + 15 pitfalls with corrective Fix lines + 4 phase-by-phase verification gates + 12-metric monitoring table + 3-tier cost & ROI table [Path A 15:1 to 40:1 / Path B 20:1 to 60:1 25:1 median / Path C 30:1 to 100:1]; compounds the 10 US playbooks by adding the international layer the US-centric stack implicitly assumes doesn't exist; pairs with research/04 as the operator build vs the strategic framework)",
+      "body": "- **What shipped:** `playbooks/11-international-rollout.md` (~494 lines / 49KB / the sixteenth playbook in the workspace + the **natural operator-build companion to research/04-international-expansion.md**). The playbook maps research/04's 5-pillar framework (Market selection + Currency/FX + Duties/Taxes + Fulfillment + Localization) into a **3-phase, 6-phase-build, 4-phase-gate rollout** over **6–12 months**. The playbook ships **14 top-level sections**: (1) **Goal** — frame the 6 deliverables (live cross-border storefront + tax/duty compliance + 3PL cross-border fulfillment + localized payment methods + voice framework localization + per-market ad campaigns). (2) **Which path fits your brand** — 3-path GMV-tier decision matrix (Path A <$500k US GMV → CA only, $300–$500/mo cost stack, 10–"
+    },
+    {
       "heading": "[2026-06-28 03:30] Research seed — International expansion (cross-border DTC: 5-pillar framework + 3 GMV-tier paths + 4 phase-by-phase verification gates + 15 pitfalls; 25:1 Year-1 default ROI; compounds 15 shipped playbooks + 12 shipped assets by documenting the international layer the US-centric stack implicitly assumes)",
       "body": "- **What shipped:** `research/04-international-expansion.md` (~352 lines / 36KB / the fifth artifact in the `research/` track — a deep-dive research synthesis that fills the **cross-border DTC gap** that the 30-day rollout plan + top-10 leverage moves + 15 shipped playbooks + 12 shipped assets all implicitly defer. The 30-day plan's \"Next moves after 30 days\" section lists Move #11 (subscriptions) / #12 (3PL) / #13 (marketplace) / #14 (lifecycle marketing) but conspicuously omits international expansion — the top-10 list's \"what this list is NOT\" section says \"there are dozens of other moves (3PL migration, subscription program, marketplace expansion, etc.) — these are the top 10 by ROI per hour\" but doesn't enumerate international either. The research landscape doc (`research/00-ecommerce"
     },
@@ -6372,9 +6400,9 @@
   "counts": {
     "researchDocs": 5,
     "playbooks": 16,
-    "assets": 12,
+    "assets": 13,
     "tables": 38,
     "findings": 8,
-    "journalEntries": 38
+    "journalEntries": 39
   }
 }
