@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-27T04:40:55.752Z",
+  "generatedAt": "2026-06-27T05:53:04.203Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -5597,6 +5597,21 @@
       "sectionCount": 17,
       "numberedSections": [],
       "size": 33551
+    },
+    {
+      "file": "11-international-rollout.md",
+      "title": "Goal",
+      "meta": [
+        "Live cross-border storefront — Shopify Markets activated with multi-currency display + per-market pricing + DDP (Delivered Duty Paid) duties + translated locale variants for Phase 1 (CA + UK) in Month 1–2, Phase 2 (EU + AU) in Month 3–5, and optionally Phase 3 (JP + DACH + Nordics) in Month 6–12.",
+        "Tax + duty compliance — IOSS registration for EU (≤€150 orders), UK VAT MOSS registration (≤£135 orders), AU GST registration (threshold A$75k), CA USMCA duty-free certification, and EU GDPR-compliant email capture with double opt-in.",
+        "3PL cross-border fulfillment — DDP (Delivered Duty Paid) shipping with all duties prepaid (the 25–40% CVR lift vs DAP), free-shipping threshold strategy for international (typically $75–$125 vs US $50), 30-day return window with returnless-refund policy for sub-$30 orders.",
+        "Localized payment methods — Klarna + AfterPay in DACH/Nordics, iDEAL in NL, Bancontact in BE, Konbini in JP, Alipay in CN-expat, plus the existing Shopify Payments / Stripe / PayPal in all markets.",
+        "Voice framework localization — UK-English variant of the Default voice profile (currency, spelling, sizing, return-policy tone) + EU-localized Sustainable voice profile per the EU Green Claims Directive 2026 (no \"eco-friendly\" / \"carbon-neutral\" without verifiable Scope 1+2+3 data) + per-market regulatory phrasing for cosmetics/food/supplements.",
+        "Per-market ad campaigns — Meta + Google + TikTok international audience targeting with per-market creative variants, Klaviyo per-locale flows with market-specific send-time optimization, Triple Whale per-market cohort-LTV measurement via research/04 Pillar 5."
+      ],
+      "sectionCount": 32,
+      "numberedSections": [],
+      "size": 47564
     }
   ],
   "assets": [
@@ -6202,6 +6217,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-06-28 03:30] Research seed — International expansion (cross-border DTC: 5-pillar framework + 3 GMV-tier paths + 4 phase-by-phase verification gates + 15 pitfalls; 25:1 Year-1 default ROI; compounds 15 shipped playbooks + 12 shipped assets by documenting the international layer the US-centric stack implicitly assumes)",
+      "body": "- **What shipped:** `research/04-international-expansion.md` (~352 lines / 36KB / the fifth artifact in the `research/` track — a deep-dive research synthesis that fills the **cross-border DTC gap** that the 30-day rollout plan + top-10 leverage moves + 15 shipped playbooks + 12 shipped assets all implicitly defer. The 30-day plan's \"Next moves after 30 days\" section lists Move #11 (subscriptions) / #12 (3PL) / #13 (marketplace) / #14 (lifecycle marketing) but conspicuously omits international expansion — the top-10 list's \"what this list is NOT\" section says \"there are dozens of other moves (3PL migration, subscription program, marketplace expansion, etc.) — these are the top 10 by ROI per hour\" but doesn't enumerate international either. The research landscape doc (`research/00-ecommerce"
+    },
+    {
       "heading": "[2026-06-27 21:30] Operator-surface gap fix — Add /assets library route to the Next.js dashboard (12 paste-ready assets finally surfaced to operators; closes the 1+ tick drift where the dashboard's \"11 routes + CTA banner\" claim never matched on-disk reality since Asset 01 shipped)",
       "body": "- **What shipped:** A new `dashboard/app/assets/page.tsx` route that renders all 12 paste-ready assets (`assets/01-copy-templates.md` through `assets/12-impact-data-pipeline.md`) as a browsable library, plus the parser + types + nav wiring to make it work: (1) **`dashboard/scripts/parse-content.mjs`** — added `parseAssets()` function that mirrors `parsePlaybooks()` but additionally extracts (a) the Goal section's first 6 bullets as the asset's \"what this is\" blurb, (b) voice-density counts for the 5 canonical voice profiles (Default / Luxury / Sustainable / Gen-Z / B2B) via the canonical `\\b<voice>\\b` regex, (c) a `voiceGated` boolean flag that's true when all 5 voices appear ≥15 times (the canonical v1.24.0 voice-density recipe's threshold), and (d) the `assetNumber` extracted from the fi"
     },
@@ -6352,10 +6371,10 @@
   ],
   "counts": {
     "researchDocs": 5,
-    "playbooks": 15,
+    "playbooks": 16,
     "assets": 12,
     "tables": 38,
     "findings": 8,
-    "journalEntries": 37
+    "journalEntries": 38
   }
 }
