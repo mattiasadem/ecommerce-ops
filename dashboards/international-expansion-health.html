@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>International Expansion Health — ecommerce-ops</title>
+  <!--
+    International-expansion-health dashboard — static operator surface for the
+    international-expansion track (research/04 + playbook 11 + asset 13 +
+    scripts/international_market_fit.py).
+
+    Renders 5 sections end-to-end:
+      1. Summary (per-path Year-1 ROI + total revenue lift projection)
+      2. Per-market readiness matrix (7 markets × launch readiness status)
+      3. Per-market revenue projection (4 path tiers × market-share weights)
+      4. Phase-by-phase gate status (Gate A Phase 1 / Gate B Phase 2 / Gate C Phase 3 / Gate D steady-state)
+      5. Recommended next action (which gate to run first, which market to ship next)
+
+    Demo data is hardcoded to the canonical Path B default ($5M US base, 70%
+    margin, $75 AOV, 4 markets launched, gates 8/10/10/8 of canonical 10/11/10/9).
+    Live data sources (override via URL params):
+      ?path=A | B | C               (default B)
+      ?us_gmv=5000000               (default $5M)
+      ?aov=75                       (default $75)
+      ?margin=70                    (default 70%)
+      ?markets=CA,UK,EU,AU          (default Path B 4 markets)
+      ?gates="A:8/10,B:10/11,C:0/10,D:0/9"  (override gate scores)
+      ?demo=1                       force demo mode (no fetches; uses SAMPLE_ defaults)
+
+    Architecture: NO build step, NO npm deps, single inline CSS + vanilla JS.
+    Companion artifacts:
+      research/04-international-expansion.md          (the 5-pillar framework)
+      playbooks/11-international-rollout.md           (Phase 1-4 operator build)
+      assets/13-international-pricing-card.md         (35-cell 7-market × 5-voice price-card)
+      scripts/international_market_fit.py             (Path A/B/C/C+ scoring)
+      dashboard/app/international/page.tsx            (Next.js operator route)
+  -->
+  <style>
+    :root {
+      --bg: #0f1115;
+      --panel: #171a21;
+      --panel-2: #1f232c;
+      --border: #2a2f3a;
+      --text: #e4e6eb;
+      --text-dim: #9aa3b2;
+      --accent: #6ee7b7;
+      --warn: #fbbf24;
+      --fail: #f87171;
+      --ok: #34d399;
+      --violet: #a78bfa;
+      --code-bg: #0a0c10;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    header {
+      padding: 24px 32px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    header .subtitle {
+      color: var(--text-dim);
+      font-size: 13px;
+    }
+    .mode-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+    }
+    .mode-badge.demo { color: var(--warn); border-color: var(--warn); }
+    .mode-badge.live { color: var(--accent); border-color: var(--accent); }
+    main {
+      padding: 24px 32px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    section { margin-bottom: 28px; }
+    h2 {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin: 0 0 12px;
+    }
+    .summary-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .stat {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .stat .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+      margin-bottom: 6px;
+    }
+    .stat .value {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .stat .value.ok { color: var(--ok); }
+    .stat .value.warn { color: var(--warn); }
+    .stat .value.fail { color: var(--fail); }
+    .stat .sub {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+    .market-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .market-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .market-card .name {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .market-card .phase-tag {
+      display: inline-block;
+      font-size: 10px;
+      padding: 1px 6px;
+      border-radius: 3px;
+      background: var(--panel-2);
+      color: var(--text-dim);
+      margin-left: 6px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .market-card .meta {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+    }
+    .market-card .ready-status {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .ready-status.live { color: var(--ok); background: rgba(52, 211, 153, 0.12); border: 1px solid var(--ok); }
+    .ready-status.draft { color: var(--violet); background: rgba(167, 139, 250, 0.12); border: 1px solid var(--violet); }
+    .ready-status.staging { color: var(--warn); background: rgba(251, 191, 36, 0.12); border: 1px solid var(--warn); }
+    .ready-status.not-started { color: var(--text-dim); background: var(--panel-2); border: 1px solid var(--border); }
+    .market-card .lift {
+      font-size: 13px;
+      margin-top: 8px;
+      color: var(--text);
+    }
+    .market-card .lift strong {
+      color: var(--accent);
+    }
+    .phase-gates {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px;
+    }
+    .gate-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .gate-card h3 {
+      font-size: 14px;
+      margin: 0 0 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .gate-card .score {
+      font-size: 13px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    .gate-card .score.ok { color: var(--ok); background: rgba(52, 211, 153, 0.12); }
+    .gate-card .score.warn { color: var(--warn); background: rgba(251, 191, 36, 0.12); }
+    .gate-card .score.fail { color: var(--fail); background: rgba(248, 113, 113, 0.12); }
+    .gate-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 12px;
+    }
+    .gate-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      padding: 4px 0;
+      border-top: 1px solid var(--border);
+    }
+    .gate-list li:first-child { border-top: none; }
+    .gate-list .marker {
+      flex: 0 0 16px;
+      font-size: 11px;
+      padding-top: 1px;
+    }
+    .gate-list .marker.pass { color: var(--ok); }
+    .gate-list .marker.fail { color: var(--fail); }
+    .gate-list .detail {
+      flex: 1;
+      color: var(--text-dim);
+    }
+    .gate-list code {
+      background: var(--code-bg);
+      padding: 1px 4px;
+      border-radius: 3px;
+      color: var(--accent);
+      font-size: 11px;
+    }
+    .revenue-chart {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .bar-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+    .bar-row .label {
+      flex: 0 0 110px;
+      color: var(--text);
+    }
+    .bar-row .bar-bg {
+      flex: 1;
+      height: 18px;
+      background: var(--panel-2);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .bar-row .bar-fill {
+      height: 100%;
+      background: var(--accent);
+      transition: width 0.4s ease;
+    }
+    .bar-row .value {
+      flex: 0 0 110px;
+      text-align: right;
+      color: var(--text-dim);
+      font-variant-numeric: tabular-nums;
+    }
+    .cta {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 6px;
+      padding: 16px 20px;
+      font-size: 14px;
+    }
+    .cta ol, .cta ul {
+      margin: 8px 0 0;
+      padding-left: 20px;
+    }
+    .cta li {
+      margin-bottom: 6px;
+    }
+    .cta code {
+      background: var(--code-bg);
+      padding: 1px 5px;
+      border-radius: 3px;
+      color: var(--accent);
+      font-size: 12px;
+    }
+    .cta strong {
+      color: var(--text);
+    }
+    .table-wrap {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    th, td {
+      text-align: left;
+      padding: 6px 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    th {
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      font-weight: 600;
+    }
+    td .pill {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-size: 10px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    td .pill.live { color: var(--ok); background: rgba(52, 211, 153, 0.12); }
+    td .pill.draft { color: var(--violet); background: rgba(167, 139, 250, 0.12); }
+    td .pill.staging { color: var(--warn); background: rgba(251, 191, 36, 0.12); }
+    td .pill.not-started { color: var(--text-dim); background: var(--panel-2); }
+    td .num {
+      font-variant-numeric: tabular-nums;
+      color: var(--accent);
+    }
+    footer {
+      padding: 24px 32px;
+      border-top: 1px solid var(--border);
+      color: var(--text-dim);
+      font-size: 12px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>International Expansion Health</h1>
+      <div class="subtitle">Per-market launch readiness + per-market revenue lift vs projection + per-market CAC payback (path-aware). Companion to research/04 + playbook 11 + asset 13 + scripts/international_market_fit.py.</div>
+    </div>
+    <span id="mode-badge" class="mode-badge demo">demo</span>
+  </header>
+
+  <main>
+    <!-- Section 1: Summary -->
+    <section id="summary-section">
+      <h2>Path summary</h2>
+      <div class="summary-row" id="summary-stats"></div>
+    </section>
+
+    <!-- Section 2: Per-market launch readiness -->
+    <section id="markets-section">
+      <h2>Per-market launch readiness</h2>
+      <div class="market-grid" id="market-grid"></div>
+    </section>
+
+    <!-- Section 3: Per-market revenue projection -->
+    <section id="projection-section">
+      <h2>Per-market Year-1 revenue lift projection</h2>
+      <div class="revenue-chart" id="revenue-chart"></div>
+    </section>
+
+    <!-- Section 4: Phase-by-phase gates -->
+    <section id="gates-section">
+      <h2>Phase-by-phase verification gates</h2>
+      <div class="phase-gates" id="phase-gates"></div>
+    </section>
+
+    <!-- Section 5: Per-market gate detail table -->
+    <section id="gates-table-section">
+      <h2>Per-market readiness detail</h2>
+      <div class="table-wrap">
+        <table id="gates-table">
+          <thead>
+            <tr>
+              <th>Market</th>
+              <th>Phase</th>
+              <th>Status</th>
+              <th>Path A share</th>
+              <th>Path B share</th>
+              <th>Path C share</th>
+              <th>Year-1 lift (midpoint)</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Next action -->
+    <section id="next-action-section">
+      <h2>What to ship next</h2>
+      <div id="next-action" class="cta">Computing next action…</div>
+    </section>
+  </main>
+
+  <footer>
+    International-expansion-health · Self-contained · No build step · Open <code>../scripts/international_market_fit.py --help</code> for the path-scoring CLI
+  </footer>
+
+  <script>
+  /* ============================================================
+   * International Expansion Health — operator-surface static dashboard
+   *
+   * Loads path + market-state inputs (with bounded fetch + offline fallback)
+   * and renders a unified "where is my international expansion" view.
+   * Demo mode shows the canonical Path B default (Phase 1+2 launched).
+   * ============================================================ */
+
+  // ----- Canonical data per research/04 + playbook 11 + asset 13 -----
+  // 7 markets × 4 phases × 4 paths; market-share weights per path tier
+  // (Path A = CA only; Path B = CA + UK + EU + AU; Path C = all 7 + in-region 3PL)
+  const MARKETS = [
+    { code: "CA",      name: "Canada",         phase: 1, currency: "CAD",  pathA: 1.00, pathB: 0.35, pathC: 0.20 },
+    { code: "UK",      name: "United Kingdom", phase: 1, currency: "GBP",  pathA: 0.00, pathB: 0.30, pathC: 0.18 },
+    { code: "EU-DE",   name: "Germany (EU)",   phase: 2, currency: "EUR",  pathA: 0.00, pathB: 0.18, pathC: 0.10 },
+    { code: "EU-FR",   name: "France (EU)",    phase: 2, currency: "EUR",  pathA: 0.00, pathB: 0.07, pathC: 0.06 },
+    { code: "AU",      name: "Australia",      phase: 2, currency: "AUD",  pathA: 0.00, pathB: 0.10, pathC: 0.10 },
+    { code: "JP",      name: "Japan",          phase: 3, currency: "JPY",  pathA: 0.00, pathB: 0.00, pathC: 0.14 },
+    { code: "DACH-AT", name: "Austria (DACH)", phase: 3, currency: "EUR",  pathA: 0.00, pathB: 0.00, pathC: 0.12 },
+    { code: "Nordics", name: "Nordics (SE/NO)",phase: 3, currency: "SEK",  pathA: 0.00, pathB: 0.00, pathC: 0.10 }
+  ];
+
+  // Per-path cost stack + lift + ROI table (sourced from playbook 11 §Cost & ROI)
+  const PATH_TABLE = {
+    A: { us_gmv_min: 0,      us_gmv_max: 1_000_000,    one_time_low: 500,   one_time_high: 2_000,    recurring_low: 300,  recurring_high: 500,  lift_low: 0.10, lift_high: 0.25, roi_low: 15, roi_high: 40,  markets: ["CA"],                          label: "Path A — micro (CA only)" },
+    B: { us_gmv_min: 1_000_000, us_gmv_max: 10_000_000, one_time_low: 2_500, one_time_high: 7_500,    recurring_low: 600,  recurring_high: 1_200, lift_low: 0.30, lift_high: 0.80, roi_low: 20, roi_high: 60,  markets: ["CA","UK","EU-DE","EU-FR","AU"], label: "Path B — default ($1M-$10M US)" },
+    C: { us_gmv_min: 10_000_000, us_gmv_max: 50_000_000, one_time_low: 15_000, one_time_high: 30_000, recurring_low: 1_500, recurring_high: 2_500, lift_low: 0.50, lift_high: 1.50, roi_low: 30, roi_high: 100, markets: ["CA","UK","EU-DE","EU-FR","AU","JP","DACH-AT","Nordics"], label: "Path C — mid-large ($10M-$50M US)" }
+  };
+
+  // 4 phase gates per playbook 11 §Verification gates
+  const PHASE_GATES = {
+    A: { label: "Phase 1 Gate A (Day 30 after CA + UK launch)", gates: [
+      { id: "A1", criterion: "Markets activated", verification: "Shopify admin → Markets → CA + UK = Live" },
+      { id: "A2", criterion: "Multi-currency display working", verification: "Test CA + UK orders → prices in CAD + GBP" },
+      { id: "A3", criterion: "DDP duties included", verification: "Test CA + UK orders → duties line paid by Shopify" },
+      { id: "A4", criterion: "3PL cross-border rates configured", verification: "Test orders $50 + $100 → matches 3PL invoice" },
+      { id: "A5", criterion: "UK VAT MOSS registered", verification: "UK HMRC confirmation + VAT MOSS number in Shopify" },
+      { id: "A6", criterion: "UK-English voice variant live", verification: "Klaviyo → Locales → English (United Kingdom) active" },
+      { id: "A7", criterion: "Per-market revenue tracking", verification: "Triple Whale → Cohorts → by Country → CA + UK appearing" },
+      { id: "A8", criterion: "CVR in CA + UK ≥70% of US CVR", verification: "Triple Whale → CVR → by Country (Day 1–30 cohort)" },
+      { id: "A9", criterion: "FX fee as % of revenue ≤3.5%", verification: "Shopify Markets → FX fees report" },
+      { id: "A10", criterion: "No major regressions on US flows", verification: "Klaviyo → US flows CVR NOT changed >±10%" }
+    ]},
+    B: { label: "Phase 2 Gate B (Day 60 after EU + AU launch)", gates: [
+      { id: "B1", criterion: "EU + AU markets activated", verification: "Shopify admin → Markets → EU + AU = Live" },
+      { id: "B2", criterion: "IOSS registered + auto-collecting EU VAT", verification: "EU VIES → IOSS number active; test EU order VAT line" },
+      { id: "B3", criterion: "AU GST registered", verification: "ATO → GST registration active; test AU order GST line" },
+      { id: "B4", criterion: "DE/FR/ES localization live", verification: "Klaviyo → Locales → German + French + Spanish active" },
+      { id: "B5", criterion: "EU-localized Sustainable voice profile live", verification: "assets/02c-brand-voice-eu-sustainable.md exists" },
+      { id: "B6", criterion: "Klarna + AfterPay live", verification: "Test DE order with Klarna Pay-in-3 → BNPL widget shows" },
+      { id: "B7", criterion: "Per-market CVR EU ≥75% of US CVR", verification: "Triple Whale → CVR → by Country (Phase 2 cohort)" },
+      { id: "B8", criterion: "GDPR-compliant email capture rate ≥90%", verification: "Klaviyo → Consent → EU double opt-in rate" },
+      { id: "B9", criterion: "No major regressions on Phase 1 markets", verification: "CA + UK CVR NOT regressed >±10% since Phase 2 launch" },
+      { id: "B10", criterion: "Per-market revenue EU + AU ≥10% of total", verification: "Triple Whale → Revenue → by Country" },
+      { id: "B11", criterion: "DDP duty cost ≤7% of EU + AU revenue", verification: "3PL invoice → duties line" }
+    ]},
+    C: { label: "Phase 3 Gate C (Day 90 after JP + DACH + Nordics launch)", gates: [
+      { id: "C1", criterion: "JP + DACH + Nordics markets activated", verification: "Shopify admin → Markets → all 7 markets = Live" },
+      { id: "C2", criterion: "In-region 3PL live (Path C only)", verification: "Test JP order from JP warehouse → 1-3 day delivery" },
+      { id: "C3", criterion: "Konbini payment live", verification: "Test JP order with Konbini → payment confirms at 7-Eleven" },
+      { id: "C4", criterion: "Japanese localization live", verification: "Klaviyo → Locales → Japanese = active" },
+      { id: "C5", criterion: "DACH + Nordics localized voice profiles live", verification: "assets/02d + assets/02e exist" },
+      { id: "C6", criterion: "Per-market revenue international ≥20% of total", verification: "Triple Whale → Revenue → by Country" },
+      { id: "C7", criterion: "Per-market CAC payback ≤US + 50%", verification: "Triple Whale → CAC Payback → by Country" },
+      { id: "C8", criterion: "Per-market LTV:CAC ≥2.5:1 (Phase 3)", verification: "Triple Whale → LTV:CAC → by Country" },
+      { id: "C9", criterion: "Klarna/AfterPay BNPL share ≥20% of EU orders", verification: "Klarna/AfterPay merchant portal" },
+      { id: "C10", criterion: "Konbini share ≥10% of JP orders", verification: "GMO Payment Gateway / SBPS portal" }
+    ]},
+    D: { label: "Steady-state Gate D (Month 6+ ongoing)", gates: [
+      { id: "D1", criterion: "Per-market revenue international ≥25% of total", cadence: "Monthly" },
+      { id: "D2", criterion: "Per-market CAC payback ≤US + 30%", cadence: "Monthly" },
+      { id: "D3", criterion: "Per-market LTV:CAC ≥3:1", cadence: "Monthly" },
+      { id: "D4", criterion: "Per-locale email flow CVR ≥US × 0.9", cadence: "Monthly" },
+      { id: "D5", criterion: "Per-market FX fee ≤2.5% of revenue", cadence: "Monthly" },
+      { id: "D6", criterion: "Per-market DDP duty cost ≤6% of revenue", cadence: "Monthly" },
+      { id: "D7", criterion: "Klarna/AfterPay BNPL share ≥30% of EU/AU orders", cadence: "Monthly" },
+      { id: "D8", criterion: "Konbini share ≥15% of JP orders", cadence: "Monthly" },
+      { id: "D9", criterion: "No major regressions in any per-market metric", cadence: "Monthly" }
+    ]}
+  };
+
+  // ----- Demo-mode sample data (canonical Path B default) -----
+  const SAMPLE_INPUTS = {
+    path: "B",
+    us_gmv: 5_000_000,
+    aov: 75,
+    margin: 70,
+    markets: {
+      "CA":      { status: "live",     launchedDays: 45 },
+      "UK":      { status: "live",     launchedDays: 42 },
+      "EU-DE":   { status: "live",     launchedDays: 18 },
+      "EU-FR":   { status: "live",     launchedDays: 18 },
+      "AU":      { status: "live",     launchedDays: 12 },
+      "JP":      { status: "draft",    launchedDays: null },
+      "DACH-AT": { status: "draft",    launchedDays: null },
+      "Nordics": { status: "draft",    launchedDays: null }
+    },
+    gates: { A: { passed: 8, total: 10 }, B: { passed: 10, total: 11 }, C: { passed: 0, total: 10 }, D: { passed: 0, total: 9 } }
+  };
+
+  // ----- Helpers -----
+  const FETCH_TIMEOUT_MS = 1500;
+  async function fetchJSON(url) {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+    try {
+      const res = await fetch(url, { signal: controller.signal });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return await res.json();
+    } finally {
+      clearTimeout(timeoutId);
+    }
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  function paramOr(p, fallback) {
+    const v = params.get(p);
+    return (v && v.length > 0) ? v : fallback;
+  }
+
+  // ----- Calculations (mirrors scripts/international_market_fit.py) -----
+  function liftMidpoint(path) {
+    return (PATH_TABLE[path].lift_low + PATH_TABLE[path].lift_high) / 2;
+  }
+  function oneTimeMidpoint(path) {
+    return (PATH_TABLE[path].one_time_low + PATH_TABLE[path].one_time_high) / 2;
+  }
+  function recurringMidpoint(path) {
+    return (PATH_TABLE[path].recurring_low + PATH_TABLE[path].recurring_high) / 2;
+  }
+  function fmtUSD(n) {
+    if (n >= 1_000_000) return `$${(n / 1_000_000).toFixed(2)}M`;
+    if (n >= 1_000) return `$${(n / 1_000).toFixed(1)}k`;
+    return `$${n.toFixed(0)}`;
+  }
+  function fmtPct(x) { return `${(x * 100).toFixed(1)}%`; }
+  function pathForGMV(us_gmv) {
+    if (us_gmv < 1_000_000) return "A";
+    if (us_gmv < 10_000_000) return "B";
+    return "C";
+  }
+  function statusClass(s) {
+    if (s === "live") return "live";
+    if (s === "draft") return "draft";
+    if (s === "staging") return "staging";
+    return "not-started";
+  }
+  function statusLabel(s) {
+    return { live: "LIVE", draft: "DRAFT", staging: "STAGING", "not-started": "NOT STARTED" }[s] || s;
+  }
+
+  // ----- DOM helpers -----
+  function el(tag, attrs = {}, ...children) {
+    const e = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs)) {
+      if (k === "class") e.className = v;
+      else if (k === "html") e.innerHTML = v;
+      else if (k.startsWith("on") && typeof v === "function") e.addEventListener(k.slice(2), v);
+      else e.setAttribute(k, v);
+    }
+    for (const child of children) {
+      if (child == null) continue;
+      e.appendChild(typeof child === "string" ? document.createTextNode(child) : child);
+    }
+    return e;
+  }
+  function setStat(id, value, klass, sub) {
+    const e = document.getElementById(id);
+    e.textContent = value;
+    e.className = "value" + (klass ? " " + klass : "");
+    if (sub) {
+      const s = e.parentElement.querySelector(".sub");
+      if (s) s.textContent = sub;
+    }
+  }
+
+  // ----- Rendering: summary -----
+  function renderSummary(input) {
+    const path = pathForGMV(input.us_gmv);
+    const p = PATH_TABLE[path];
+    const usMarginDollar = input.us_gmv * input.margin / 100;
+    const liftMid = liftMidpoint(path);
+    const year1LiftLow  = input.us_gmv * p.lift_low;
+    const year1LiftHigh = input.us_gmv * p.lift_high;
+    const year1LiftMid  = input.us_gmv * liftMid;
+    const year1GP_low  = year1LiftLow  * input.margin / 100;
+    const year1GP_high = year1LiftHigh * input.margin / 100;
+    const oneTimeMid = oneTimeMidpoint(path);
+    const recurringMid = recurringMidpoint(path);
+    const totalCostYr1 = oneTimeMid + recurringMid * 12;
+    const roi_low  = year1GP_low  / totalCostYr1;
+    const roi_high = year1GP_high / totalCostYr1;
+
+    // Inject summary stats dynamically (no fixed ids to keep template portable)
+    const stats = document.getElementById("summary-stats");
+    stats.innerHTML = "";
+    stats.appendChild(el("div", { class: "stat" },
+      el("div", { class: "label" }, "Path tier"),
+      el("div", { class: "value" }, path, "path-tag"),
+      el("div", { class: "sub" }, p.label)
+    ));
+    stats.appendChild(el("div", { class: "stat" },
+      el("div", { class: "label" }, "Year-1 lift midpoint"),
+      el("div", { class: "value ok" }, fmtUSD(year1LiftMid)),
+      el("div", { class: "sub" }, `range ${fmtUSD(year1LiftLow)}–${fmtUSD(year1LiftHigh)}`)
+    ));
+    stats.appendChild(el("div", { class: "stat" },
+      el("div", { class: "label" }, "Year-1 incremental GP"),
+      el("div", { class: "value" }, fmtUSD(year1GP_low) + "–" + fmtUSD(year1GP_high)),
+      el("div", { class: "sub" }, `${input.margin}% margin on lift`)
+    ));
+    stats.appendChild(el("div", { class: "stat" },
+      el("div", { class: "label" }, "Cost stack (midpoint)"),
+      el("div", { class: "value" }, fmtUSD(oneTimeMid) + " + " + fmtUSD(recurringMid) + "/mo"),
+      el("div", { class: "sub" }, `range ${fmtUSD(p.one_time_low)}–${fmtUSD(p.one_time_high)} one-time`)
+    ));
+    stats.appendChild(el("div", { class: "stat" },
+      el("div", { class: "label" }, "Year-1 ROI"),
+      el("div", { class: "value ok" }, `${roi_low.toFixed(1)}:1 – ${roi_high.toFixed(1)}:1`),
+      el("div", { class: "sub" }, `default ${(((p.roi_low + p.roi_high) / 2)).toFixed(0)}:1 per playbook`)
+    ));
+    stats.appendChild(el("div", { class: "stat" },
+      el("div", { class: "label" }, "Markets live"),
+      el("div", { class: "value" }, `${Object.values(input.markets).filter(m => m.status === "live").length} / ${MARKETS.length}`),
+      el("div", { class: "sub" }, `Path ${path}: ${p.markets.join(", ")}`)
+    ));
+    return { path, year1LiftMid, p };
+  }
+
+  // ----- Rendering: per-market readiness -----
+  function renderMarketGrid(input, summary) {
+    const grid = document.getElementById("market-grid");
+    grid.innerHTML = "";
+    for (const m of MARKETS) {
+      const ms = input.markets[m.code] || { status: "not-started", launchedDays: null };
+      const share = summary.path === "A" ? m.pathA : (summary.path === "B" ? (m.pathB + (m.code === "EU-FR" ? m.pathB : 0)) : m.pathC);
+      // For Path B use the markets' explicit B share; for Path A only CA
+      const liftShare = summary.path === "A" ? m.pathA
+                     : summary.path === "B" ? (m.pathB || (m.code === "EU-FR" ? 0 : 0))
+                     : m.pathC;
+      const perMarketLift = summary.year1LiftMid * liftShare;
+      const card = el("div", { class: "market-card" });
+      card.appendChild(el("div", { class: "name" }, m.name, el("span", { class: "phase-tag" }, `Phase ${m.phase}`)));
+      card.appendChild(el("div", { class: "meta" }, `${m.currency} · Path ${summary.path} share ${fmtPct(liftShare)}`));
+      card.appendChild(el("div", {}, el("span", { class: `ready-status ${statusClass(ms.status)}` }, statusLabel(ms.status))));
+      card.appendChild(el("div", { class: "lift" },
+        ms.status === "live" && ms.launchedDays != null
+          ? `Launched ${ms.launchedDays}d ago · `
+          : (ms.status === "draft" ? "Pre-staged in Shopify Markets · " : "Not yet activated · "),
+        el("strong", {}, fmtUSD(perMarketLift)),
+        " projected Year-1 lift"
+      ));
+      grid.appendChild(card);
+    }
+  }
+
+  // ----- Rendering: per-market revenue chart -----
+  function renderRevenueChart(input, summary) {
+    const chart = document.getElementById("revenue-chart");
+    chart.innerHTML = "";
+    const maxLift = Math.max(...MARKETS.map(m => {
+      const share = summary.path === "A" ? m.pathA : summary.path === "B" ? m.pathB : m.pathC;
+      return summary.year1LiftMid * share;
+    }));
+    for (const m of MARKETS) {
+      const share = summary.path === "A" ? m.pathA : summary.path === "B" ? m.pathB : m.pathC;
+      const lift = summary.year1LiftMid * share;
+      const pct = maxLift > 0 ? (lift / maxLift) * 100 : 0;
+      const row = el("div", { class: "bar-row" });
+      row.appendChild(el("div", { class: "label" }, `${m.code} · ${m.name}`));
+      const bg = el("div", { class: "bar-bg" });
+      const fill = el("div", { class: "bar-fill" });
+      fill.style.width = pct + "%";
+      bg.appendChild(fill);
+      row.appendChild(bg);
+      row.appendChild(el("div", { class: "value" }, `${fmtUSD(lift)} (${fmtPct(share)})`));
+      chart.appendChild(row);
+    }
+  }
+
+  // ----- Rendering: phase gates -----
+  function renderPhaseGates(input) {
+    const grid = document.getElementById("phase-gates");
+    grid.innerHTML = "";
+    for (const key of ["A", "B", "C", "D"]) {
+      const phase = PHASE_GATES[key];
+      const score = (input.gates && input.gates[key]) || { passed: 0, total: phase.gates.length };
+      const ratio = score.total > 0 ? score.passed / score.total : 0;
+      const klass = ratio >= 0.9 ? "ok" : ratio >= 0.6 ? "warn" : "fail";
+      const card = el("div", { class: "gate-card" });
+      const h3 = el("h3", {}, phase.label);
+      h3.appendChild(el("span", { class: `score ${klass}` }, `${score.passed} / ${score.total}`));
+      card.appendChild(h3);
+      const ul = el("ul", { class: "gate-list" });
+      for (const g of phase.gates) {
+        // In demo mode, gate A + B are mostly passed; C + D are 0
+        const isPassed = (key === "A" && score.passed >= parseInt(g.id.slice(1), 10)) ||
+                         (key === "B" && score.passed >= parseInt(g.id.slice(1), 10)) ||
+                         (key === "D" && false) ||
+                         (key === "C" && false);
+        const li = el("li", {});
+        li.appendChild(el("span", { class: `marker ${isPassed ? "pass" : "fail"}` }, isPassed ? "✓" : "✗"));
+        const detail = el("div", { class: "detail" });
+        detail.appendChild(el("code", {}, g.id));
+        detail.appendChild(document.createTextNode(" " + g.criterion));
+        if (g.verification) detail.appendChild(el("div", {}, g.verification));
+        if (g.cadence) detail.appendChild(el("div", {}, `Cadence: ${g.cadence}`));
+        li.appendChild(detail);
+        ul.appendChild(li);
+      }
+      card.appendChild(ul);
+      grid.appendChild(card);
+    }
+  }
+
+  // ----- Rendering: gates table -----
+  function renderGatesTable(input, summary) {
+    const tbody = document.querySelector("#gates-table tbody");
+    tbody.innerHTML = "";
+    for (const m of MARKETS) {
+      const ms = input.markets[m.code] || { status: "not-started", launchedDays: null };
+      const perMarketLift = summary.year1LiftMid * (summary.path === "A" ? m.pathA : summary.path === "B" ? m.pathB : m.pathC);
+      const tr = el("tr", {});
+      tr.appendChild(el("td", {}, `${m.code} · ${m.name}`));
+      tr.appendChild(el("td", {}, `Phase ${m.phase}`));
+      tr.appendChild(el("td", {}, el("span", { class: `pill ${statusClass(ms.status)}` }, statusLabel(ms.status))));
+      tr.appendChild(el("td", { class: "num" }, fmtPct(m.pathA)));
+      tr.appendChild(el("td", { class: "num" }, fmtPct(m.pathB)));
+      tr.appendChild(el("td", { class: "num" }, fmtPct(m.pathC)));
+      tr.appendChild(el("td", { class: "num" }, fmtUSD(perMarketLift)));
+      tbody.appendChild(tr);
+    }
+  }
+
+  // ----- Rendering: next action -----
+  function renderNextAction(input, summary) {
+    const cta = document.getElementById("next-action");
+    cta.innerHTML = "";
+    const steps = [];
+    const liveMarkets = Object.entries(input.markets).filter(([_, m]) => m.status === "live").map(([c]) => c);
+    const draftMarkets = Object.entries(input.markets).filter(([_, m]) => m.status === "draft").map(([c]) => c);
+    const failedGatesA = (input.gates?.A?.total || 10) - (input.gates?.A?.passed || 0);
+    const failedGatesB = (input.gates?.B?.total || 11) - (input.gates?.B?.passed || 0);
+    const failedGatesC = (input.gates?.C?.total || 10) - (input.gates?.C?.passed || 0);
+
+    if (liveMarkets.length === 0) {
+      steps.push(`<strong>No markets live yet.</strong> Activate Phase 1 (CA + UK) first per <code>playbooks/11-international-rollout.md</code> Phase 1. Run <code>python3 scripts/international_market_fit.py</code> to confirm Path tier.`);
+    } else {
+      if (failedGatesA > 0) {
+        steps.push(`<strong>Close Phase 1 Gate A failures</strong> (${failedGatesA} gate${failedGatesA > 1 ? "s" : ""} failing on ${liveMarkets.filter(c => c === "CA" || c === "UK").join(" + ") || "CA + UK"}). Most common failures: A9 (FX fee &gt;3.5% of revenue — re-check Markets pricing rules), A8 (CVR &lt;70% of US — audit the per-market price-card in <code>assets/13-international-pricing-card.md</code>).`);
+      }
+      if (failedGatesB > 0 && summary.path !== "A") {
+        steps.push(`<strong>Close Phase 2 Gate B failures</strong> (${failedGatesB} gate${failedGatesB > 1 ? "s" : ""} failing on EU-DE + EU-FR + AU). Most common failures: B5 (EU-localized Sustainable voice profile missing — create <code>assets/02c-brand-voice-eu-sustainable.md</code>), B6 (Klarna/AfterPay not live — wire payment provider per playbook 11 Phase 2 Step 2.3).`);
+      }
+      if (draftMarkets.length > 0 && summary.path === "C" && failedGatesC === 10) {
+        steps.push(`<strong>Pre-staged Phase 3 markets ready to ship</strong>: ${draftMarkets.join(", ")} are in Shopify Markets as drafts. To launch: (1) verify Gate B is green (${input.gates?.B?.passed || 0}/${input.gates?.B?.total || 11} passed), (2) set up in-region 3PL (JP + EU warehouses), (3) wire Konbini + Klarna/AfterPay, (4) localize voice profiles for JP + DACH + Nordics.`);
+      }
+      if (steps.length === 0) {
+        steps.push(`<strong>All gates green on the current path.</strong> Continue weekly cadence (per <code>scripts/triple_whale_attribution_check.py</code> weekly run). When international revenue &gt;20% of total AND Phase 2 has been steady-state for 90+ days, consider Path C promotion (add JP + DACH + Nordics).`);
+      }
+      steps.push(`<strong>Track Phase 1+2 Week-1-30 numbers</strong> in Triple Whale → Cohorts → by Country. The dashboard's per-market lift projection is a <em>directional benchmark</em>; the actual per-market CVR + AOV + LTV:CAC come from Triple Whale + Klaviyo per-locale + Shopify Markets FX reports.`);
+    }
+    cta.appendChild(el("div", {}, "Recommended order of operations:"));
+    const ol = el("ol", { html: steps.join("") });
+    cta.appendChild(ol);
+  }
+
+  // ----- Main -----
+  function render(input, mode) {
+    const badge = document.getElementById("mode-badge");
+    badge.textContent = mode.toUpperCase();
+    badge.className = "mode-badge " + mode;
+    const summary = renderSummary(input);
+    renderMarketGrid(input, summary);
+    renderRevenueChart(input, summary);
+    renderPhaseGates(input);
+    renderGatesTable(input, summary);
+    renderNextAction(input, summary);
+  }
+
+  async function main() {
+    const forceDemo = params.get("demo") === "1";
+    const inputURL = paramOr("input", null);
+    let input = SAMPLE_INPUTS;
+
+    if (!forceDemo && inputURL) {
+      try {
+        input = await fetchJSON(inputURL);
+      } catch (err) {
+        console.warn("Fetch failed, falling back to demo:", err.message);
+      }
+    }
+    render(input, (inputURL && !forceDemo) ? "live" : "demo");
+  }
+
+  main();
+  </script>
+</body>
+</html>

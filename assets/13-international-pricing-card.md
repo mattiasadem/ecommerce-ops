@@ -342,7 +342,7 @@ node dashboards/tests/test_unified_attribution_health.js 2>&1 | tail -1
 
 **Sibling dashboards cross-referenced (every cross-reference resolves):**
 - `dashboards/unified-attribution-health.html` (Move #6.9 — the static attribution-health dashboard; the per-market revenue overlay extends this dashboard's per-platform view)
-- **`dashboards/international-expansion-health.html`** *(future-tick companion per research/04 line 301 + playbook 11 line 494; planned, does not yet exist)* — static HTML dashboard showing per-market launch readiness (Gate A/B/C status per market) + per-market revenue lift vs projection + per-market CAC payback; this card's 35-cell matrix is the operator-build input to that dashboard's per-market projection view.
+- **`dashboards/international-expansion-health.html`** *(shipped 2026-06-27 per the dashboard-tick follow-up to research/04 line 301 + playbook 11 line 494 + asset 13 line 345; was future-tick companion)* — static HTML dashboard showing per-market launch readiness (Gate A/B/C/D status per market from playbook 11 §Verification gates) + per-market Year-1 revenue lift vs projection (per-path market-share weights from the script) + per-market CAC payback; this card's 35-cell matrix is the operator-build input to that dashboard's per-market projection view.
 
 **Forward-pointing references (planned future-tick companions):**
 

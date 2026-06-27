@@ -298,7 +298,7 @@ A new operator who's shipped Phases 1+2 should pick the follow-up that matches t
 - `playbooks/11-international-rollout.md` — paste-ready operator build mapping each section of this doc into step-by-step Playbook shape (mirrors the 16 shipped US playbooks)
 - `assets/13-international-pricing-card.md` — per-market price-test templates + per-market voice override variants + per-market FX-fee calculator
 - `scripts/international_market_fit.py` + `scripts/tests/test_international_market_fit.py` — Archetype A/B hybrid scoring script: takes a brand's category + AOV + US contribution margin + supply-chain complexity → outputs Path A / Path B / Path C recommendation with expected revenue lift + cost stack
-- `dashboards/international-expansion-health.html` — static HTML dashboard showing per-market launch readiness (Gate A/B/C status per market) + per-market revenue lift vs projection + per-market CAC payback
+- `dashboards/international-expansion-health.html` — static HTML dashboard showing per-market launch readiness (Gate A/B/C status per market) + per-market revenue lift vs projection + per-market CAC payback (shipped 2026-06-27 per the dashboard-tick follow-up to the asset-13 + script-layer pair)
 
 ## Sources
 
