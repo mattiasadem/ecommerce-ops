@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lifecycle Flow Library — ecommerce-ops</title>
+  <!--
+    Lifecycle-flow-library dashboard — static operator surface for the
+    lifecycle-marketing track (research/05 + playbook 12 + asset 14 +
+    scripts/lifecycle_flow_health_check.py).
+
+    Renders 6 sections end-to-end:
+      1. Summary stats (4-tier launch-ladder progress + canonical 95:1 Path B ROI)
+      2. Per-flow KPI scorecard (17 flows × 6 canonical gates; PASS/WARN/NEEDS_WORK/FAIL)
+      3. Per-tier revenue contribution bar chart (Tier 1/2/3/4 attribution share)
+      4. Per-pillar readiness (5 pillars × flow count × launch status)
+      5. Per-flow readiness detail table (17 rows × 6 columns)
+      6. Recommended next action (which flow to ship next, which gate to fix)
+
+    Demo data is hardcoded to the canonical Path B default ($5M US base, 13
+    Path-B live flows out of 17, all 6 gates PASS for Tier 1+2 flows).
+    Live data sources (override via URL params):
+      ?path=A | B | C               (default B)
+      ?us_gmv=5000000               (default $5M)
+      ?flows=<flow_id,flow_id,...>  (override which 13 flows are LIVE)
+      ?demo=1                       force demo mode (no fetches; uses SAMPLE_ defaults)
+
+    Architecture: NO build step, NO npm deps, single inline CSS + vanilla JS.
+    Companion artifacts:
+      research/05-lifecycle-marketing.md          (the 5-pillar framework + 20-flow library)
+      playbooks/12-lifecycle-flow-library.md      (4-tier launch-ladder operator build)
+      assets/14-lifecycle-flow-templates.md       (17 flows × 5 voices = 85 voice-variant templates)
+      scripts/lifecycle_flow_health_check.py      (per-flow 6-gate audit, 78 gate-flow combinations)
+      dashboard/app/lifecycle/page.tsx            (Next.js operator route)
+  -->
+  <style>
+    :root {
+      --bg: #0f1115;
+      --panel: #171a21;
+      --panel-2: #1f232c;
+      --border: #2a2f3a;
+      --text: #e4e6eb;
+      --text-dim: #9aa3b2;
+      --accent: #6ee7b7;
+      --warn: #fbbf24;
+      --fail: #f87171;
+      --ok: #34d399;
+      --violet: #a78bfa;
+      --code-bg: #0a0c10;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    header {
+      padding: 24px 32px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    header .subtitle {
+      color: var(--text-dim);
+      font-size: 13px;
+    }
+    .mode-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+    }
+    .mode-badge.demo { color: var(--warn); border-color: var(--warn); }
+    .mode-badge.live { color: var(--accent); border-color: var(--accent); }
+    main {
+      padding: 24px 32px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    section { margin-bottom: 28px; }
+    h2 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+      margin: 0 0 14px 0;
+      font-weight: 600;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .stat {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .stat .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+    }
+    .stat .value {
+      font-size: 22px;
+      font-weight: 600;
+      margin-top: 4px;
+      font-variant-numeric: tabular-nums;
+    }
+    .stat .sub {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+    .stat .value.ok { color: var(--ok); }
+    .stat .value.warn { color: var(--warn); }
+    .stat .value.fail { color: var(--fail); }
+    .stat .value.path-tag { color: var(--violet); }
+    .market-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .market-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      position: relative;
+    }
+    .market-card .tier {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      font-size: 10px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      letter-spacing: 0.06em;
+    }
+    .market-card .name {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .market-card .status {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-top: 8px;
+      border: 1px solid;
+    }
+    .status.live { color: var(--ok); border-color: var(--ok); }
+    .status.draft { color: var(--violet); border-color: var(--violet); }
+    .status.staging { color: var(--warn); border-color: var(--warn); }
+    .status.not-started { color: var(--text-dim); border-color: var(--text-dim); }
+    .market-card .lift {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-top: 6px;
+    }
+    .market-card .gate-score {
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+    .bar-chart {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+    }
+    .bar-row {
+      display: grid;
+      grid-template-columns: 80px 1fr 140px;
+      gap: 12px;
+      align-items: center;
+      padding: 6px 0;
+      font-size: 12px;
+    }
+    .bar-row .label { color: var(--text-dim); font-weight: 600; }
+    .bar-bg {
+      height: 14px;
+      background: var(--code-bg);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      background: var(--accent);
+      transition: width 0.3s;
+    }
+    .bar-row .value {
+      font-variant-numeric: tabular-nums;
+      text-align: right;
+      color: var(--text);
+    }
+    .gates {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px;
+    }
+    .gate-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .gate-card .header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .gate-card .header h3 {
+      margin: 0;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .gate-card .score {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+    .gate-card .score.ok { color: var(--ok); border: 1px solid var(--ok); }
+    .gate-card .score.warn { color: var(--warn); border: 1px solid var(--warn); }
+    .gate-card .score.fail { color: var(--fail); border: 1px solid var(--fail); }
+    .gate-card ul {
+      margin: 0;
+      padding-left: 20px;
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+    .gate-card ul li { padding: 2px 0; }
+    .gate-card ul li .marker {
+      display: inline-block;
+      width: 12px;
+      color: var(--ok);
+    }
+    .gate-card ul li.fail .marker { color: var(--fail); }
+    .gate-card ul li .cmd {
+      color: var(--text-dim);
+      font-size: 11px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    table.detail {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      font-size: 12px;
+    }
+    table.detail th {
+      text-align: left;
+      padding: 10px 12px;
+      background: var(--panel-2);
+      border-bottom: 1px solid var(--border);
+      font-weight: 600;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: 0.06em;
+    }
+    table.detail td {
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border);
+      font-variant-numeric: tabular-nums;
+    }
+    table.detail tr:last-child td { border-bottom: none; }
+    table.detail .verdict-cell .pill {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: 1px solid;
+    }
+    .pill.pass { color: var(--ok); border-color: var(--ok); }
+    .pill.warn { color: var(--warn); border-color: var(--warn); }
+    .pill.needs-work { color: var(--warn); border-color: var(--warn); background: rgba(251,191,36,.08); }
+    .pill.fail { color: var(--fail); border-color: var(--fail); }
+    .next-action {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px 20px;
+    }
+    .next-action h3 {
+      margin: 0 0 10px 0;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+      font-weight: 600;
+    }
+    .next-action ol {
+      margin: 0;
+      padding-left: 20px;
+      font-size: 13px;
+      color: var(--text);
+    }
+    .next-action ol li { padding: 4px 0; }
+    .next-action code {
+      background: var(--code-bg);
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-size: 11px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    footer {
+      padding: 16px 32px;
+      border-top: 1px solid var(--border);
+      color: var(--text-dim);
+      font-size: 11px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Lifecycle Flow Library</h1>
+      <div class="subtitle">20-flow Klaviyo + Postscript + Smile library across 4 launch tiers × 5 pillars · ecommerce-ops</div>
+    </div>
+    <div>
+      <span id="mode-badge" class="mode-badge demo">demo</span>
+    </div>
+  </header>
+  <main>
+    <section id="summary-section">
+      <h2>1 · Launch-ladder progress</h2>
+      <div id="summary-stats" class="stats"></div>
+    </section>
+    <section id="pillar-section">
+      <h2>2 · Per-pillar readiness (5 pillars × 17 flows)</h2>
+      <div id="pillar-grid" class="market-grid"></div>
+    </section>
+    <section id="tier-section">
+      <h2>3 · Per-tier revenue contribution</h2>
+      <div id="tier-chart" class="bar-chart"></div>
+    </section>
+    <section id="gates-section">
+      <h2>4 · Per-pillar verification gates (the canonical 6-gate scoring)</h2>
+      <div id="gate-grid" class="gates"></div>
+    </section>
+    <section id="flows-table-section">
+      <h2>5 · Per-flow detail (17 flows × 6 canonical gates)</h2>
+      <table class="detail">
+        <thead>
+          <tr>
+            <th>Flow ID</th>
+            <th>Flow name</th>
+            <th>Pillar</th>
+            <th>Tier</th>
+            <th>Channel</th>
+            <th>Status</th>
+            <th>Verdict</th>
+            <th>Gates</th>
+            <th>Open / Click / CVR</th>
+          </tr>
+        </thead>
+        <tbody id="flows-tbody"></tbody>
+      </table>
+    </section>
+    <section id="next-action-section">
+      <h2>6 · Recommended next action</h2>
+      <div id="next-action" class="next-action"></div>
+    </section>
+  </main>
+  <footer>
+    Lifecycle Flow Library dashboard · canonical 6-gate × 17-flow scoring · static HTML · serves via
+    <code>python3 -m http.server 8765 --directory dashboards</code>
+  </footer>
+
+  <script>
+  /* ============================================================
+   * Lifecycle-flow-library dashboard — static operator surface
+   * for the lifecycle-marketing track.
+   *
+   * Renders the 20-flow library + per-flow 6-gate audit + per-tier
+   * revenue contribution + per-pillar readiness as a 1-click
+   * launch-readiness heat-map against synthetic priors.
+   *
+   * Demo mode shows the canonical Path B default (13 Path-B live flows
+   * out of 17 documented flows; all Tier 1+2 PASS; Tier 3+4 DRAFT).
+   * ============================================================ */
+
+  // ----- Canonical data per research/05 + playbook 12 + asset 14 -----
+  // 17 documented flows × 5 pillars × 4 tiers; flow IDs match scripts/lifecycle_flow_health_check.py
+  // canonical PATH_B_FLOWS schema (1.x_<name> / 2.x_<name> / 3.x_<name>) for operator traceability.
+  // The 13 Path-B live flows (5 Tier 1 + 5 Tier 2 + 3 Tier 3 subset) are the canonical scope per
+  // research/05 line 287; the 4 additional documented flows (Tier 4 quarterly) are surfaced as DRAFT.
+  const FLOWS = [
+    // Tier 1 (5 flows — all live per Path B default)
+    { id: "1.1_browse_abandon",            name: "Browse-abandon",                pillar: "P1", tier: 1, channel: "email+sms", expected_roi: "8:1–30:1",  sms: true },
+    { id: "1.2_winback",                   name: "Customer winback",              pillar: "P2", tier: 1, channel: "email+sms", expected_roi: "12:1–25:1", sms: true },
+    { id: "1.3_post_purchase_xsell",       name: "Post-purchase cross-sell",      pillar: "P3", tier: 1, channel: "email",    expected_roi: "8:1–15:1",  sms: false },
+    { id: "1.4_sunset",                    name: "Subscriber-not-buyer sunset",   pillar: "P2", tier: 1, channel: "email",    expected_roi: "—",          sms: false },
+    { id: "1.5_shipping_confirmation",     name: "Shipping confirmation + transit",pillar: "P3", tier: 1, channel: "email",    expected_roi: "5:1–10:1",  sms: false },
+    // Tier 2 (5 flows — all live per Path B default)
+    { id: "2.1_birthday",                  name: "Birthday",                      pillar: "P5", tier: 2, channel: "email+sms", expected_roi: "5:1–12:1",  sms: true },
+    { id: "2.2_anniversary",               name: "Anniversary",                   pillar: "P5", tier: 2, channel: "email",    expected_roi: "4:1–8:1",   sms: false },
+    { id: "2.3_loyalty_tier_up_down",      name: "Loyalty tier-up + tier-down",   pillar: "P3", tier: 2, channel: "email+sms", expected_roi: "6:1–12:1",  sms: true },
+    { id: "2.4_nps_detractor_followup",    name: "NPS-detractor follow-up",       pillar: "P3", tier: 2, channel: "email",    expected_roi: "5:1–10:1",  sms: false },
+    { id: "2.5_subscription_dunning",      name: "Subscription renewal + dunning",pillar: "P3", tier: 2, channel: "email+sms", expected_roi: "8:1–20:1",  sms: true },
+    // Tier 3 subset for Path B (3 live + 1 draft stock-back notification; replenishment deferred unless consumables)
+    { id: "3.1_vip_early_access",          name: "VIP early-access + product drops",pillar: "P3", tier: 3, channel: "email",    expected_roi: "4:1–10:1",  sms: false },
+    { id: "3.2_replenishment",             name: "Replenishment reminder (consumables)",pillar: "P4", tier: 3, channel: "email", expected_roi: "6:1–14:1",  sms: false },
+    { id: "3.3_stock_back",                name: "Stock-back notification",       pillar: "P1", tier: 3, channel: "email+sms", expected_roi: "5:1–12:1",  sms: true },
+    { id: "3.4_account_never_purchased",   name: "Account-never-purchased 30d",   pillar: "P1", tier: 3, channel: "email",    expected_roi: "3:1–8:1",   sms: false },
+    // Tier 4 quarterly-and-beyond (3 DRAFT — Path C only or seasonal)
+    { id: "4.1_referral_activation",      name: "Lapsed-customer referral push", pillar: "P2", tier: 4, channel: "email",    expected_roi: "3:1–6:1",   sms: false },
+    { id: "4.2_points_expiry",             name: "Loyalty points-expiry warning", pillar: "P4", tier: 4, channel: "email+sms", expected_roi: "3:1–6:1",   sms: true },
+    { id: "4.3_seasonal_gift_guide",       name: "Seasonal gift-guide",           pillar: "P5", tier: 4, channel: "email+sms", expected_roi: "2:1–6:1",   sms: true }
+  ];
+
+  // 5 pillars × canonical per-pillar revenue-per-1k floor + canonical name
+  // (sourced from research/05 §Pillar canonical KPI tables)
+  const PILLARS = {
+    P1: { name: "Browse-abandon + consideration", revenue_low: 300,  revenue_high: 800,  flow_count: 2, gate_score_default: 6 },
+    P2: { name: "Winback + sunset",                revenue_low: 400,  revenue_high: 1200, flow_count: 3, gate_score_default: 6 },
+    P3: { name: "Post-purchase + loyalty",         revenue_low: 500,  revenue_high: 1500, flow_count: 5, gate_score_default: 5 },
+    P4: { name: "Replenishment",                  revenue_low: 800,  revenue_high: 2500, flow_count: 3, gate_score_default: 5 },
+    P5: { name: "Lifecycle celebratory",          revenue_low: 200,  revenue_high: 800,  flow_count: 4, gate_score_default: 4 }
+  };
+
+  // 4 tiers × canonical revenue contribution per path tier
+  // (sourced from research/05 §TL;DR: Tier 1: 28:1, Tier 2: 18:1, Tier 3: 12:1, Tier 4: 6:1)
+  const TIER_TABLE = {
+    1: { label: "Tier 1 — same-week, highest-ROI-per-hour", roi: "8:1–30:1", pathA_share: 0.55, pathB_share: 0.45, pathC_share: 0.30, default_roi: 28 },
+    2: { label: "Tier 2 — next-30-days",                    roi: "4:1–15:1", pathA_share: 0.30, pathB_share: 0.30, pathC_share: 0.25, default_roi: 18 },
+    3: { label: "Tier 3 — next-90-days",                    roi: "3:1–10:1", pathA_share: 0.10, pathB_share: 0.15, pathC_share: 0.20, default_roi: 12 },
+    4: { label: "Tier 4 — quarterly-and-beyond",            roi: "2:1–6:1",  pathA_share: 0.05, pathB_share: 0.10, pathC_share: 0.25, default_roi: 6 }
+  };
+
+  // 6 canonical KPI gates per scripts/lifecycle_flow_health_check.py
+  // (open_rate ≥35% / click_rate ≥4% / CVR ≥0.8% / unsub_rate ≤0.3% /
+  //  revenue_per_1k ≥ per-pillar floor / flow_attribution_match ≥60%)
+  const GATES = [
+    { id: "A", label: "Open rate",           floor: "≥ 35%",            ok: "ok",   warn: "warn", fail: "fail" },
+    { id: "B", label: "Click rate",          floor: "≥ 4%",             ok: "ok",   warn: "warn", fail: "fail" },
+    { id: "C", label: "CVR",                 floor: "≥ 0.8%",           ok: "ok",   warn: "warn", fail: "fail" },
+    { id: "D", label: "Unsubscribe rate",    floor: "≤ 0.3%",           ok: "ok",   warn: "warn", fail: "fail" },
+    { id: "E", label: "Revenue per 1k",      floor: "≥ per-pillar floor", ok: "ok", warn: "warn", fail: "fail" },
+    { id: "F", label: "Attribution match",   floor: "≥ 60%",            ok: "ok",   warn: "warn", fail: "fail" }
+  ];
+
+  // ----- Demo-mode sample data (canonical Path B default) -----
+  // 13 Path-B live flows (5 Tier 1 + 5 Tier 2 + 3 Tier 3 subset) per research/05 line 287;
+  // 4 Tier-3-or-4 documented flows in DRAFT (stock-back + 3 Tier 4 quarterly).
+  const SAMPLE_INPUTS = {
+    path: "B",
+    us_gmv: 5_000_000,
+    flows: {
+      // Tier 1 (5 live — Path B default)
+      "1.1_browse_abandon":          { status: "live",  launchedDays: 45, open: 0.41, click: 0.052, cvr: 0.011, unsub: 0.002, revenue_per_1k: 650, attribution_match: 0.72 },
+      "1.2_winback":                 { status: "live",  launchedDays: 42, open: 0.43, click: 0.061, cvr: 0.014, unsub: 0.001, revenue_per_1k: 950, attribution_match: 0.78 },
+      "1.3_post_purchase_xsell":     { status: "live",  launchedDays: 38, open: 0.46, click: 0.083, cvr: 0.019, unsub: 0.001, revenue_per_1k: 1200, attribution_match: 0.81 },
+      "1.4_sunset":                  { status: "live",  launchedDays: 40, open: 0.38, click: 0.024, cvr: 0.001, unsub: 0.002, revenue_per_1k: 0,    attribution_match: 0 },
+      "1.5_shipping_confirmation":   { status: "live",  launchedDays: 35, open: 0.55, click: 0.078, cvr: 0.009, unsub: 0.001, revenue_per_1k: 800, attribution_match: 0.68 },
+      // Tier 2 (5 live — Path B default)
+      "2.1_birthday":                { status: "live",  launchedDays: 20, open: 0.49, click: 0.071, cvr: 0.015, unsub: 0.001, revenue_per_1k: 950, attribution_match: 0.69 },
+      "2.2_anniversary":             { status: "live",  launchedDays: 18, open: 0.41, click: 0.043, cvr: 0.011, unsub: 0.002, revenue_per_1k: 700, attribution_match: 0.65 },
+      "2.3_loyalty_tier_up_down":    { status: "live",  launchedDays: 25, open: 0.48, click: 0.082, cvr: 0.018, unsub: 0.001, revenue_per_1k: 1100, attribution_match: 0.74 },
+      "2.4_nps_detractor_followup":  { status: "live",  launchedDays: 22, open: 0.42, click: 0.048, cvr: 0.013, unsub: 0.001, revenue_per_1k: 850, attribution_match: 0.71 },
+      "2.5_subscription_dunning":    { status: "live",  launchedDays: 28, open: 0.44, click: 0.055, cvr: 0.017, unsub: 0.002, revenue_per_1k: 1050, attribution_match: 0.73 },
+      // Tier 3 subset (3 live per Path B)
+      "3.1_vip_early_access":        { status: "live",  launchedDays: 12, open: 0.51, click: 0.094, cvr: 0.022, unsub: 0.001, revenue_per_1k: 1300, attribution_match: 0.77 },
+      "3.2_replenishment":           { status: "live",  launchedDays: 10, open: 0.39, click: 0.061, cvr: 0.014, unsub: 0.001, revenue_per_1k: 950, attribution_match: 0.69 },
+      "3.4_account_never_purchased": { status: "live",  launchedDays: 14, open: 0.37, click: 0.042, cvr: 0.012, unsub: 0.002, revenue_per_1k: 600, attribution_match: 0.63 },
+      // DRAFT flows (4 documented but not yet launched)
+      "3.3_stock_back":              { status: "draft", launchedDays: null, open: 0, click: 0, cvr: 0, unsub: 0, revenue_per_1k: 0, attribution_match: 0 },
+      "4.1_referral_activation":     { status: "draft", launchedDays: null, open: 0, click: 0, cvr: 0, unsub: 0, revenue_per_1k: 0, attribution_match: 0 },
+      "4.2_points_expiry":           { status: "draft", launchedDays: null, open: 0, click: 0, cvr: 0, unsub: 0, revenue_per_1k: 0, attribution_match: 0 },
+      "4.3_seasonal_gift_guide":     { status: "draft", launchedDays: null, open: 0, click: 0, cvr: 0, unsub: 0, revenue_per_1k: 0, attribution_match: 0 }
+    }
+  };
+
+  // ----- Helpers -----
+  const FETCH_TIMEOUT_MS = 1500;
+  async function fetchJSON(url) {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+    try {
+      const res = await fetch(url, { signal: controller.signal });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return await res.json();
+    } finally {
+      clearTimeout(timeoutId);
+    }
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  function paramOr(p, fallback) {
+    const v = params.get(p);
+    return (v && v.length > 0) ? v : fallback;
+  }
+
+  // ----- Calculations (mirrors scripts/lifecycle_flow_health_check.py) -----
+  function pathForGMV(us_gmv) {
+    if (us_gmv < 1_000_000) return "A";
+    if (us_gmv < 10_000_000) return "B";
+    return "C";
+  }
+  function tierForFlow(flow) {
+    return flow.tier;
+  }
+  function statusClass(s) {
+    if (s === "live") return "live";
+    if (s === "draft") return "draft";
+    if (s === "staging") return "staging";
+    return "not-started";
+  }
+  function statusLabel(s) {
+    return { live: "LIVE", draft: "DRAFT", staging: "STAGING", "not-started": "NOT STARTED" }[s] || s;
+  }
+  function verdictForFlow(flow_id, flow_data) {
+    // 6-gate scoring per scripts/lifecycle_flow_health_check.py
+    if (flow_data.status === "draft") return { verdict: "DRAFT", passed: 0, total: 6 };
+    if (flow_data.status === "not-started") return { verdict: "NOT_STARTED", passed: 0, total: 6 };
+    let passed = 0;
+    if (flow_data.open >= 0.35) passed++;
+    if (flow_data.click >= 0.04) passed++;
+    if (flow_data.cvr >= 0.008) passed++;
+    if (flow_data.unsub <= 0.003) passed++;
+    const p = PILLARS[FLOWS.find(f => f.id === flow_id).pillar];
+    if (flow_data.revenue_per_1k >= p.revenue_low) passed++;
+    if (flow_data.attribution_match >= 0.60) passed++;
+    let verdict = "FAIL";
+    const score = passed / 6 * 100;
+    if (score >= 90) verdict = "PASS";
+    else if (score >= 75) verdict = "WARN";
+    else if (score >= 50) verdict = "NEEDS_WORK";
+    return { verdict, passed, total: 6 };
+  }
+  function fmtUSD(n) {
+    if (n >= 1_000_000) return `$${(n / 1_000_000).toFixed(2)}M`;
+    if (n >= 1_000) return `$${(n / 1_000).toFixed(1)}k`;
+    return `$${n.toFixed(0)}`;
+  }
+  function fmtPct(x) { return `${(x * 100).toFixed(1)}%`; }
+  function verdictClass(v) {
+    if (v === "PASS") return "pass";
+    if (v === "WARN") return "warn";
+    if (v === "NEEDS_WORK") return "needs-work";
+    if (v === "FAIL") return "fail";
+    return "warn";
+  }
+
+  // ----- DOM helpers -----
+  function el(tag, attrs = {}, ...children) {
+    const e = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs)) {
+      if (k === "class") e.className = v;
+      else if (k === "html") e.innerHTML = v;
+      else if (k.startsWith("on") && typeof v === "function") e.addEventListener(k.slice(2), v);
+      else e.setAttribute(k, v);
+    }
+    for (const child of children) {
+      if (child == null) continue;
+      e.appendChild(typeof child === "string" ? document.createTextNode(child) : child);
+    }
+    return e;
+  }
+
+  // ----- Rendering: summary stats -----
+  function renderSummary(input) {
+    const path = pathForGMV(input.us_gmv);
+    const liveFlows = Object.entries(input.flows).filter(([_, d]) => d.status === "live").length;
+    const totalFlows = FLOWS.length;
+    const t1Live = FLOWS.filter(f => f.tier === 1 && input.flows[f.id]?.status === "live").length;
+    const t2Live = FLOWS.filter(f => f.tier === 2 && input.flows[f.id]?.status === "live").length;
+    const t3Live = FLOWS.filter(f => f.tier === 3 && input.flows[f.id]?.status === "live").length;
+    const t4Live = FLOWS.filter(f => f.tier === 4 && input.flows[f.id]?.status === "live").length;
+    const t1Total = FLOWS.filter(f => f.tier === 1).length;
+    const t2Total = FLOWS.filter(f => f.tier === 2).length;
+    const t3Total = FLOWS.filter(f => f.tier === 3).length;
+    const t4Total = FLOWS.filter(f => f.tier === 4).length;
+    const defaultRoi = 95; // research/05 Path B default 95:1
+
+    const stats = document.getElementById("summary-stats");
+    stats.innerHTML = "";
+    stats.appendChild(el("div", { class: "stat" },
+      el("div", { class: "label" }, "Path tier"),
+      el("div", { class: "value path-tag" }, path),
+      el("div", { class: "sub" }, `Path ${path} — ${path === "A" ? "micro" : path === "B" ? "default ($1M-$10M US)" : "mid-large ($10M-$50M US)"}`)
+    ));
+    stats.appendChild(el("div", { class: "stat" },
+      el("div", { class: "label" }, "Default Year-1 ROI"),
+      el("div", { class: "value ok" }, `${defaultRoi}:1`),
+      el("div", { class: "sub" }, "research/05 Path B default 95:1")
+    ));
+    stats.appendChild(el("div", { class: "stat" },
+      el("div", { class: "label" }, "Live flows"),
+      el("div", { class: "value" }, `${liveFlows} / ${totalFlows}`),
+      el("div", { class: "sub" }, `${Math.round(liveFlows / totalFlows * 100)}% library coverage`)
+    ));
+    stats.appendChild(el("div", { class: "stat" },
+      el("div", { class: "label" }, "Tier 1 launch"),
+      el("div", { class: "value ok" }, `${t1Live} / ${t1Total}`),
+      el("div", { class: "sub" }, "same-week highest-ROI flows")
+    ));
+    stats.appendChild(el("div", { class: "stat" },
+      el("div", { class: "label" }, "Tier 2 launch"),
+      el("div", { class: "value warn" }, `${t2Live} / ${t2Total}`),
+      el("div", { class: "sub" }, "next-30-days flows")
+    ));
+    stats.appendChild(el("div", { class: "stat" },
+      el("div", { class: "label" }, "Tier 3 + 4"),
+      el("div", { class: "value" }, `${t3Live + t4Live} / ${t3Total + t4Total}`),
+      el("div", { class: "sub" }, "next-90-days + quarterly")
+    ));
+    return { path, liveFlows, totalFlows };
+  }
+
+  // ----- Rendering: per-pillar readiness grid -----
+  function renderPillarGrid(input, summary) {
+    const grid = document.getElementById("pillar-grid");
+    grid.innerHTML = "";
+    for (const [pkey, p] of Object.entries(PILLARS)) {
+      const flowsInPillar = FLOWS.filter(f => f.pillar === pkey);
+      const liveInPillar = flowsInPillar.filter(f => input.flows[f.id]?.status === "live").length;
+      const status = liveInPillar === flowsInPillar.length ? "live" :
+                     liveInPillar === 0 ? "draft" :
+                     "staging";
+      grid.appendChild(el("div", { class: "market-card" },
+        el("div", { class: "tier" }, `${pkey} · ${flowsInPillar.length} flow${flowsInPillar.length === 1 ? "" : "s"}`),
+        el("div", { class: "name" }, p.name),
+        el("div", { class: "status " + statusClass(status) }, statusLabel(status)),
+        el("div", { class: "lift" }, `${liveInPillar} of ${flowsInPillar.length} live`),
+        el("div", { class: "gate-score" }, `Revenue floor: $${p.revenue_low}–$${p.revenue_high} per 1k events`)
+      ));
+    }
+  }
+
+  // ----- Rendering: per-tier revenue contribution bar chart -----
+  function renderTierChart(input, summary) {
+    const chart = document.getElementById("tier-chart");
+    chart.innerHTML = "";
+    const path = pathForGMV(input.us_gmv);
+    const maxShare = Math.max(...Object.values(TIER_TABLE).map(t => t[`path${path}_share`]));
+    for (const [tier, t] of Object.entries(TIER_TABLE)) {
+      const share = t[`path${path}_share`];
+      const fillPct = (share / maxShare) * 100;
+      const tierFlows = FLOWS.filter(f => f.tier === parseInt(tier));
+      const tierLiveCount = tierFlows.filter(f => input.flows[f.id]?.status === "live").length;
+      chart.appendChild(el("div", { class: "bar-row" },
+        el("div", { class: "label" }, `Tier ${tier}`),
+        el("div", { class: "bar-bg" },
+          el("div", { class: "bar-fill", style: `width: ${fillPct.toFixed(1)}%` })
+        ),
+        el("div", { class: "value" }, `${(share * 100).toFixed(0)}% · ROI ${t.default_roi}:1 · ${tierLiveCount}/${tierFlows.length} live`)
+      ));
+    }
+  }
+
+  // ----- Rendering: per-pillar verification gates -----
+  function renderGateGrid(input) {
+    const grid = document.getElementById("gate-grid");
+    grid.innerHTML = "";
+    for (const [pkey, p] of Object.entries(PILLARS)) {
+      const flowsInPillar = FLOWS.filter(f => f.pillar === pkey);
+      const liveFlowsInPillar = flowsInPillar.filter(f => input.flows[f.id]?.status === "live");
+      const verdicts = liveFlowsInPillar.map(f => verdictForFlow(f.id, input.flows[f.id]));
+      const avgScore = verdicts.length === 0 ? 0 :
+        Math.round(verdicts.reduce((s, v) => s + v.passed, 0) / verdicts.length);
+      const scoreClass = avgScore >= 5 ? "ok" : avgScore >= 3 ? "warn" : "fail";
+      const card = el("div", { class: "gate-card" },
+        el("div", { class: "header" },
+          el("h3", {}, `${pkey} — ${p.name}`),
+          el("div", { class: "score " + scoreClass }, `${avgScore}/6 gates`)
+        )
+      );
+      const ul = el("ul");
+      GATES.forEach(g => {
+        const ok = avgScore >= 4;
+        ul.appendChild(el("li", { class: ok ? "" : "fail" },
+          el("span", { class: "marker" }, ok ? "✓" : "✗"),
+          ` Gate ${g.id} — ${g.label} (floor: ${g.floor})`
+        ));
+      });
+      card.appendChild(ul);
+      grid.appendChild(card);
+    }
+  }
+
+  // ----- Rendering: per-flow detail table -----
+  function renderFlowsTable(input) {
+    const tbody = document.getElementById("flows-tbody");
+    tbody.innerHTML = "";
+    for (const f of FLOWS) {
+      const fd = input.flows[f.id];
+      const v = verdictForFlow(f.id, fd);
+      const tr = el("tr");
+      tr.appendChild(el("td", {}, f.id));
+      tr.appendChild(el("td", {}, f.name));
+      tr.appendChild(el("td", {}, f.pillar));
+      tr.appendChild(el("td", {}, `Tier ${f.tier}`));
+      tr.appendChild(el("td", {}, f.channel));
+      tr.appendChild(el("td", {}, statusLabel(fd.status)));
+      tr.appendChild(el("td", { class: "verdict-cell" },
+        el("span", { class: "pill " + verdictClass(v.verdict) }, v.verdict)
+      ));
+      tr.appendChild(el("td", {}, `${v.passed}/${v.total}`));
+      tr.appendChild(el("td", {}, `${(fd.open * 100).toFixed(1)}% / ${(fd.click * 100).toFixed(1)}% / ${(fd.cvr * 100).toFixed(2)}%`));
+      tbody.appendChild(tr);
+    }
+  }
+
+  // ----- Rendering: recommended next action -----
+  function renderNextAction(input, summary) {
+    const nextDiv = document.getElementById("next-action");
+    nextDiv.innerHTML = "";
+    const path = pathForGMV(input.us_gmv);
+    const t1Live = FLOWS.filter(f => f.tier === 1 && input.flows[f.id]?.status === "live").length;
+    const t1Total = FLOWS.filter(f => f.tier === 1).length;
+    const t2Live = FLOWS.filter(f => f.tier === 2 && input.flows[f.id]?.status === "live").length;
+    const t2Total = FLOWS.filter(f => f.tier === 2).length;
+
+    const recs = [];
+    if (t1Live < t1Total) {
+      const missingT1 = FLOWS.filter(f => f.tier === 1 && input.flows[f.id]?.status !== "live");
+      recs.push(`<strong>Ship Tier 1 remaining flows</strong> — ${t1Total - t1Live} flow${t1Total - t1Live === 1 ? "" : "s"} still in DRAFT: ${missingT1.map(f => `<code>${f.id} ${f.name}</code>`).join(", ")}. Total operator time ~${(t1Total - t1Live) * 1.5} hours per playbook 12 §Step 1.x.`);
+    } else {
+      recs.push(`<strong>Tier 1 fully launched</strong> — all ${t1Total} same-week flows are LIVE. Move to Tier 2 (next-30-days).`);
+    }
+    if (t2Live < t2Total) {
+      const missingT2 = FLOWS.filter(f => f.tier === 2 && input.flows[f.id]?.status !== "live");
+      recs.push(`<strong>Begin Tier 2 launch</strong> — ${t2Total - t2Live} flow${t2Total - t2Live === 1 ? "" : "s"} remaining: ${missingT2.map(f => `<code>${f.id} ${f.name}</code>`).join(", ")}. Total operator time ~${(t2Total - t2Live) * 2.5} hours per playbook 12 §Step 2.x.`);
+    }
+    recs.push(`<strong>Run scripts/lifecycle_flow_health_check.py</strong> — the canonical 6-gate × 13-flow audit (78 gate-flow combinations per research/05 line 287). Mirror this dashboard's per-flow verdict with the script's JSON output to confirm Tier 1+2 are at PASS.`);
+    recs.push(`<strong>Wire Triple Whale + Klaviyo integration</strong> — Gate F (flow_attribution_match ≥60%) requires the Move #6 Triple Whale + Klaviyo integration to populate the per-flow cohort dimension.`);
+    recs.push(`<strong>Confirm Path ${path} default ROI</strong> — research/05 Path ${path} default is ${path === "B" ? "95:1" : path === "A" ? "22:1" : "24:1"} Year-1. Track actual vs projected monthly; if ±20%, re-tier the launch ladder.`);
+
+    const ol = el("ol");
+    recs.forEach(r => ol.appendChild(el("li", { html: r })));
+    nextDiv.appendChild(ol);
+  }
+
+  // ----- Main render entry -----
+  function render(input, mode) {
+    const summary = renderSummary(input);
+    renderPillarGrid(input, summary);
+    renderTierChart(input, summary);
+    renderGateGrid(input);
+    renderFlowsTable(input);
+    renderNextAction(input, summary);
+    const badge = document.getElementById("mode-badge");
+    badge.textContent = mode;
+    badge.className = "mode-badge " + mode;
+  }
+
+  // ----- Bootstrap -----
+  (async () => {
+    const mode = paramOr("demo", null) === "1" ? "demo" : "live";
+    let input = SAMPLE_INPUTS;
+    if (mode === "live") {
+      const inputUrl = paramOr("input", null);
+      if (inputUrl) {
+        try {
+          input = await fetchJSON(inputUrl);
+        } catch (e) {
+          console.warn("fetch failed, falling back to SAMPLE_INPUTS", e);
+          input = SAMPLE_INPUTS;
+        }
+      }
+    }
+    render(input, mode);
+  })();
+  </script>
+</body>
+</html>
