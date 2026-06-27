@@ -155,6 +155,61 @@ async function parsePlaybooks() {
   return pbs;
 }
 
+// Assets = the paste-ready content library (copy templates, brand-voice, UGC briefs,
+// promo calendar, retention metrics, NPS surveys, competitive teardown, CS responses,
+// impact reporting, affiliate program, CS training, impact-data pipeline).
+// Mirrors parsePlaybooks but also extracts the Goal bullet-list as the asset's
+// "what this is" blurb and tags voice-density for the override-gated assets.
+async function parseAssets() {
+  const dir = join(ROOT, "assets");
+  let files = [];
+  try {
+    files = (await readdir(dir)).filter((f) => f.endsWith(".md")).sort();
+  } catch {
+    return [];
+  }
+  const assets = [];
+  for (const f of files) {
+    const md = await readFile(join(dir, f), "utf8");
+    const sections = splitSections(md);
+    const first = sections[0];
+    const title = first?.heading ?? f.replace(/\.md$/, "");
+    // Goal section is the canonical "what this is" blurb — pull first 6 bullets.
+    const goalSection = sections.find((s) => /^goal$/i.test(s.heading));
+    const meta = goalSection
+      ? extractBullets(goalSection.body.join("\n") ?? "").slice(0, 6)
+      : extractBullets(first?.body.join("\n") ?? "").slice(0, 6);
+    // Voice-density count: how many of the 5 canonical voice profiles appear ≥15 times.
+    const voices = ["Default", "Luxury", "Sustainable", "Gen-Z", "B2B"];
+    const voiceCounts = {};
+    for (const v of voices) {
+      const re = new RegExp(`\\b${v}\\b`, "g");
+      voiceCounts[v] = (md.match(re) || []).length;
+    }
+    const voiceGated = voices.every((v) => voiceCounts[v] >= 15);
+    // Pull top-level numbered sections (for the section preview)
+    const numbered = [];
+    for (const s of sections) {
+      if (/^\d+\./.test(s.heading)) numbered.push({ heading: s.heading, body: s.body.join("\n").trim() });
+    }
+    // Asset number (for the AS-NN badge)
+    const numMatch = /^(\d+)-/.exec(f);
+    const assetNumber = numMatch ? parseInt(numMatch[1], 10) : null;
+    assets.push({
+      file: f,
+      title,
+      meta,
+      sectionCount: sections.length,
+      numberedSections: numbered.slice(0, 20),
+      size: md.length,
+      assetNumber,
+      voiceGated,
+      voiceCounts,
+    });
+  }
+  return assets;
+}
+
 async function parseTop10() {
   const md = await readFile(join(ROOT, "research/02-top-10-leverage-moves.md"), "utf8");
   const tables = [];
@@ -207,9 +262,10 @@ async function parseJournal() {
 }
 
 (async () => {
-  const [research, playbooks, top10, journal] = await Promise.all([
+  const [research, playbooks, assets, top10, journal] = await Promise.all([
     parseResearch(),
     parsePlaybooks(),
+    parseAssets(),
     parseTop10(),
     parseJournal(),
   ]);
@@ -217,11 +273,13 @@ async function parseJournal() {
     generatedAt: new Date().toISOString(),
     research,
     playbooks,
+    assets,
     top10,
     journal,
     counts: {
       researchDocs: research.length,
       playbooks: playbooks.length,
+      assets: assets.length,
       tables: research.reduce((n, r) => n + r.tables.length, 0),
       findings: research.reduce((n, r) => n + r.findings.length, 0),
       journalEntries: journal.length,
@@ -229,6 +287,6 @@ async function parseJournal() {
   };
   await writeFile(OUT, JSON.stringify(out, null, 2));
   console.log(
-    `wrote ${OUT} — ${out.counts.researchDocs} research docs, ${out.counts.playbooks} playbooks, ${out.counts.tables} tables, ${out.counts.findings} findings`
+    `wrote ${OUT} — ${out.counts.researchDocs} research docs, ${out.counts.playbooks} playbooks, ${out.counts.assets} assets, ${out.counts.tables} tables, ${out.counts.findings} findings`
   );
 })();

@@ -31,6 +31,18 @@ export interface Playbook {
   size: number;
 }
 
+export interface Asset {
+  file: string;
+  title: string;
+  meta: string[];
+  sectionCount: number;
+  numberedSections: { heading: string; body: string }[];
+  size: number;
+  assetNumber: number | null;
+  voiceGated: boolean;
+  voiceCounts: { [voice: string]: number };
+}
+
 export interface Top10Status {
   move: string;
   status: string;
@@ -49,11 +61,13 @@ export interface Content {
   generatedAt: string;
   research: ResearchDoc[];
   playbooks: Playbook[];
+  assets: Asset[];
   top10: { tables: { heading: string; rows: TableRow[] }[]; status: Top10Status[] };
   journal: JournalEntry[];
   counts: {
     researchDocs: number;
     playbooks: number;
+    assets: number;
     tables: number;
     findings: number;
     journalEntries: number;

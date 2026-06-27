@@ -14,6 +14,7 @@ const NAV = [
   { href: "/ai", label: "AI / Automation" },
   { href: "/top-10", label: "Top 10 Moves" },
   { href: "/playbooks", label: "Playbooks" },
+  { href: "/assets", label: "Assets" },
   { href: "/journal", label: "Journal" },
 ];
 

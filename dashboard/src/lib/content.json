@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-25T22:31:16.264Z",
+  "generatedAt": "2026-06-27T03:26:26.433Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -4984,6 +4984,372 @@
       "size": 33551
     }
   ],
+  "assets": [
+    {
+      "file": "01-copy-templates.md",
+      "title": "Goal",
+      "meta": [
+        "8 templates across 4 flow types: 3 email (welcome #1 / cart-abandon #1 / cart-abandon #2 escalation) + 4 SMS (welcome / cart-abandon #1 / cart-abandon #2 escalation / review request) + 1 win-back email template (60+ days inactive).",
+        "Each template is paste-ready: subject line A/B variants, preview text, full body (≤160 chars for SMS), variable map ({{ first_name }}, {{ event.extra.line_items.0.title }}, etc.), and a one-line when to use / when NOT to use rule.",
+        "Compliance baked in: CAN-SPAM physical address + unsubscribe footer in every email; TCPA \"Reply STOP to opt out\" + double-opt-in checkbox + 10DLC registration reminder in every SMS.",
+        "Klaviyo + Postscript native variables: every {{ ... }} in the templates resolves from the standard Shopify-integrated event payload. Operator pastes the template into Klaviyo's flow editor, Klaviyo auto-fills the variables per recipient, no manual merge tags required.",
+        "Sibling-consistency: every template references the playbook it came from so operators who need the full step-by-step can jump to the playbook in one click."
+      ],
+      "sectionCount": 45,
+      "numberedSections": [],
+      "size": 21530,
+      "assetNumber": 1,
+      "voiceGated": false,
+      "voiceCounts": {
+        "Default": 1,
+        "Luxury": 0,
+        "Sustainable": 0,
+        "Gen-Z": 0,
+        "B2B": 0
+      }
+    },
+    {
+      "file": "02-brand-voice.md",
+      "title": "Goal",
+      "meta": [
+        "5 voice profiles covering the most common brand types in DTC: Default (confident + plain + lightly irreverent) / Luxury (refined + quiet + maximalist grammar) / Sustainable / eco (warm + earnest + educational) / Gen-Z playful (high-energy + lowercase + meme-aware) / B2B / professional (precise + benefit-led + no jokes).",
+        "5-dimension voice framework (formality / humor / brand-name usage / price disclosure / objection handling) — every profile is defined as a position on each dimension. Operators can interpolate between profiles (e.g. \"luxury + slightly warmer\" = refined + earnest) instead of picking from a fixed menu.",
+        "Worked adapted Template 1 for each profile — operators see the diff between Default and their target voice in one side-by-side block. After reading, they can adapt any of Asset 01's other 7 templates in 5-15 minutes per template.",
+        "Decision matrix at the bottom — operators answer 3-5 questions about their brand and the matrix recommends a profile (Default / Luxury / Sustainable / Gen-Z / B2B).",
+        "Common pitfalls list (10 named, each with corrective Fix line) — the mistakes operators make when they skip voice work (using \"Dear valued customer\" / writing in third person / over-using emojis / undercutting premium pricing with discount-led copy).",
+        "Verification gates (5 gates per template after adaptation) — the runnable check that the adapted voice passes a quick smoke test before activating the flow."
+      ],
+      "sectionCount": 12,
+      "numberedSections": [],
+      "size": 27252,
+      "assetNumber": 2,
+      "voiceGated": true,
+      "voiceCounts": {
+        "Default": 25,
+        "Luxury": 17,
+        "Sustainable": 16,
+        "Gen-Z": 19,
+        "B2B": 22
+      }
+    },
+    {
+      "file": "03-ugc-brief.md",
+      "title": "Goal",
+      "meta": [
+        "Three sourcing models covered end-to-end: (1) Organic reviews (auto-collected via Yotpo / Loox / Judge.me from real customers, triggered by Asset 01's SMS Review Request template + post-purchase Klaviyo email flow) — free, slow (30–90 days to first 50 reviews), high-trust; (2) Gifted creator content (free product in exchange for 1 IG/TikTok post + usage rights) — low-cost ($30 COGS), medium-trust, mid-speed (14–30 days); (3) Paid creator content (cash + free product in exchange for 1–3 posts + usage rights for ads) — high-cost ($150–$500/creator), highest-trust when creator-audience-fit is good, fast (7–14 days).",
+        "5 creator outreach email templates paste-ready for Klaviyo (or Gmail): paid initial pitch / gifted initial pitch / affiliate / re-engagement / declining politely (for creators who don't fit). Each template uses the operator's brand voice (see Asset 02) and includes the variables an operator pastes in.",
+        "3 contract templates paste-ready for Google Docs or Notion: paid creator agreement / gifted creator agreement / affiliate creator agreement. Each names the deliverable, the usage rights (organic vs paid amplification), the timeline, and the kill-fee clause.",
+        "Klaviyo UGC segment tag — a source = ugc-creator property added to the customer's profile when a creator's audience converts, so operators can measure creator-driven LTV vs paid LTV separately (the cohort overlay that Move #9.5 PDP A/B testing + Move #10 AI ad creative both depend on).",
+        "Commissioning template (the \"creative brief\" sent to every creator regardless of paid/gifted/affiliate) — a 1-page Google Doc that names the product, the angle, the deliverables, the do's-and-don'ts, and the usage-rights scope.",
+        "Sibling-consistency: every outreach email references Asset 01's SMS Review Request template (organic path), Asset 02's brand voice (outreach tone), Move #9's PDP reviews block (the destination), and Move #9.5's cohort-LTV overlay (the measurement)."
+      ],
+      "sectionCount": 59,
+      "numberedSections": [
+        {
+          "heading": "1. Parties",
+          "body": "- **Brand:** [BRAND LEGAL NAME], [ADDRESS], [EIN/TAX ID]\n- **Creator:** [CREATOR LEGAL NAME OR HANDLE], [ADDRESS], [TAX ID / W-9 on file]"
+        },
+        {
+          "heading": "2. Deliverables",
+          "body": "- **Quantity:** [N] posts across [IG feed / Reels / TikTok / Stories]\n- **First draft due:** [DATE] (typically 14 days after product receipt)\n- **Final approval:** required from Brand before posting\n- **Posting window:** [DATE RANGE — typically 14–30 days after final approval]\n- **Platform handles to tag:** @[BRAND HANDLE]"
+        },
+        {
+          "heading": "3. Compensation",
+          "body": "- **Cash:** $[AMOUNT] USD, paid within [N] days of final approval via [PayPal / Wise / ACH]\n- **Product:** 1 free [PRODUCT NAME] (MSRP $[AMOUNT]), shipped within 48h of contract signing\n- **Affiliate commission (optional):** [COMMISSION]% of attributed revenue for [N] days from posting"
+        },
+        {
+          "heading": "4. Usage rights",
+          "body": "- **Organic repost:** Creator grants Brand non-exclusive right to repost on Brand's owned channels (IG, TikTok, FB, brand website) with @[CREATOR HANDLE] credit for [N] months from posting date\n- **Paid amplification:** Creator grants Brand non-exclusive right to use Content in paid ads (Meta, TikTok, Google) for [N] months from posting date\n- **Whitelisting:** [Creator grants Brand the right to run Meta Partnership Ads using Creator's handle for [N] months / Brand does NOT have whitelisting rights]\n- **Spark Ads (TikTok):** [Creator grants Brand the right to boost via TikTok Spark Ads for [N] months / Brand does NOT have Spark Ads rights]\n- **Attribution window:** [30 / 60 / 90] days from posting date for affiliate commission + cohort-LTV overlay"
+        },
+        {
+          "heading": "5. Kill fee (if Brand cancels mid-cycle)",
+          "body": "- **After product ships but before first draft:** Brand pays [25–50]% of full cash fee + Creator keeps product\n- **After first draft is submitted:** Brand pays [50–75]% of full cash fee + Creator keeps product\n- **After final draft is approved:** Brand pays 100% of full cash fee + Creator keeps product\n- **After content is posted:** Brand pays 100% of full cash fee + Creator keeps product + Brand retains usage rights as specified in Section 4"
+        },
+        {
+          "heading": "6. Kill fee (if Creator cancels mid-cycle)",
+          "body": "- **Before first draft:** Creator returns product (if received) within 7 days at Brand's expense; no further obligations\n- **After first draft:** Creator forfeits any unpaid cash fee; Brand retains rights to the draft content (with credit) for [N] months\n- **After final draft approval but before posting:** Creator forfeits any unpaid cash fee; Brand retains rights to the approved content (with credit) for [N] months"
+        },
+        {
+          "heading": "7. FTC compliance",
+          "body": "- Creator will tag all posts with #ad (or platform-specific paid partnership tag — e.g. \"Paid partnership with [BRAND]\" on IG) as the first hashtag AND in the first 2 lines of caption\n- Creator will use clear disclosure language (\"I was paid to create this content\" / \"Gifted in exchange for this post\") if asked by platform or audience\n- Creator will not make claims outside the approved brief (Section X of the brief)\n- Brand will provide claim language in the brief; Creator is not liable for claims made by Brand"
+        },
+        {
+          "heading": "8. Confidentiality",
+          "body": "- Both parties agree to keep compensation terms confidential unless required to disclose by law\n- Creator will not disclose unreleased products to third parties before public launch\n- Brand will not disclose Creator's private analytics (audience demographics, engagement rates) to third parties without permission"
+        },
+        {
+          "heading": "9. Termination",
+          "body": "- Either party may terminate for cause (material breach) with 7 days written notice\n- Upon termination, both parties retain rights to content already posted; kill fees in Sections 5–6 apply\n- Creator may remove their content from their own handle after the usage-rights window expires (Section 4) with 30 days notice to Brand"
+        },
+        {
+          "heading": "10. Governing law",
+          "body": "- This agreement is governed by the laws of [STATE / COUNTRY]\n- Disputes will be resolved via [ARBITRATION SERVICE — e.g. American Arbitration Association] in [CITY]"
+        },
+        {
+          "heading": "1. Parties",
+          "body": "- **Brand:** [BRAND LEGAL NAME], [ADDRESS]\n- **Creator:** [CREATOR HANDLE], [SHIPPING ADDRESS]"
+        },
+        {
+          "heading": "2. Product gift",
+          "body": "- **Product:** 1 free [PRODUCT NAME] (MSRP $[AMOUNT])\n- **Ships within:** 48h of contract signing\n- **Creator keeps product:** yes, regardless of whether content is posted"
+        },
+        {
+          "heading": "3. Deliverables",
+          "body": "- **Quantity:** 1 post (IG feed / Reel / TikTok — Creator's choice)\n- **First draft due:** [DATE] (typically 14 days after product receipt)\n- **Final approval:** optional (Creator may post without Brand approval if using organic-only rights)\n- **Posting window:** [DATE RANGE — typically 14–30 days after product receipt]\n- **Platform handles to tag:** @[BRAND HANDLE]"
+        },
+        {
+          "heading": "4. Compensation",
+          "body": "- **Cash:** $0 (gifted product only)\n- **Affiliate commission (optional):** [COMMISSION]% of attributed revenue for [N] days from posting (Creator must enroll in Brand's affiliate program separately)"
+        },
+        {
+          "heading": "5. Usage rights",
+          "body": "- **Organic repost:** Creator grants Brand non-exclusive right to repost on Brand's owned channels with @[CREATOR HANDLE] credit for [N] months from posting date\n- **Paid amplification:** [Creator grants Brand the right to use Content in paid ads for [N] months / Brand does NOT have paid amplification rights — gifted creators typically decline this; if paid rights are required, use Contract C1 paid instead]\n- **Whitelisting / Spark Ads:** [typically NOT granted for gifted creators — discuss separately if needed]"
+        },
+        {
+          "heading": "6. FTC compliance",
+          "body": "- Creator will tag all posts with #gifted or #sp (sponsored product) AND #ad (because the product was given in exchange for content)\n- Creator will not make claims outside the approved brief (Section X of the brief)"
+        },
+        {
+          "heading": "7. Kill fee",
+          "body": "- **If Creator cancels before first draft:** Creator returns product within 7 days at Brand's expense\n- **If Creator cancels after posting:** no kill fee (product is already Creator's; Brand retains usage rights as specified in Section 5)"
+        },
+        {
+          "heading": "1. Parties",
+          "body": "- **Brand:** [BRAND LEGAL NAME], [ADDRESS]\n- **Creator:** [CREATOR LEGAL NAME], [ADDRESS], [TAX ID / W-9 on file]"
+        },
+        {
+          "heading": "2. Referral program",
+          "body": "- **Platform:** [ShareASale / Refersion / GoAffPro / Brand-direct]\n- **Unique link:** [REFERRAL LINK]\n- **Cookie window:** [30 / 60] days from first click\n- **Commission rate:** [COMMISSION]% of net order value (after returns + discounts; before shipping + taxes)"
+        },
+        {
+          "heading": "3. Payouts",
+          "body": "- **Schedule:** monthly (or upon request if balance exceeds $[THRESHOLD])\n- **Method:** [PayPal / Wise / Direct deposit]\n- **Minimum payout:** $[THRESHOLD] (typically $50–100); balances below threshold roll over to next month\n- **Hold period:** [N] days from order to allow for returns (typically 30–60 days; longer for high-AOV / high-return-rate categories)"
+        }
+      ],
+      "size": 40776,
+      "assetNumber": 3,
+      "voiceGated": false,
+      "voiceCounts": {
+        "Default": 6,
+        "Luxury": 3,
+        "Sustainable": 3,
+        "Gen-Z": 3,
+        "B2B": 4
+      }
+    },
+    {
+      "file": "04-promo-calendar.md",
+      "title": "Goal",
+      "meta": [
+        "12 monthly slots — one per month — with the voice profile, discount intensity, audience segment, template stack (which Asset 01 templates fire that month), UGC campaign status (creator-driven months get Asset 03 outreach emails), and loyalty program state (member-only slots vs always-on).",
+        "Q1-low / Q2-creator / Q3-mid / Q4-peak macro shape — the calendar is anchored on real retail seasonality (Q1 = post-holiday recovery, Q4 = BFCM + holiday peak), not on \"ship a promo every month for the sake of shipping a promo\" (the discount-fatigue trap from Pitfall #1 below).",
+        "Voice profile explicitly chosen per month — Default brands run Default every month (Discount frequency = Monthly per Asset 02's matrix); Luxury brands run Luxury every month (Discount frequency = Never/seasonal — only the 4 seasonal peak slots get a discount, the other 8 months are full-price); Sustainable brands run Sustainable every month with member-only slot gates; Gen-Z brands run Daily/flash sales aligned with launch drops; B2B brands ignore consumer seasonality and run a quarterly-volume cadence (last table in this asset).",
+        "Discount intensity calibrated to voice — the same 20%-off holiday slot reads differently in Default vs Luxury vs Sustainable voice (Asset 02 Pitfall #5 + #7 cover the \"Luxury voice + '10% off'\" trap and the \"Sustainable voice + discount-led\" trap).",
+        "Klaviyo + Postscript template stack — for each month, a named list of which Asset 01 templates fire (e.g. \"January fires T1 Welcome + T2 Cart-Abandon Soft + T8 Win-Back; suppress T4-T7 SMS until February\").",
+        "UGC campaign cadence — Q2 (April–June) + Q4 (October–December) are creator-driven campaign months per Asset 03's recommended cadence; the 5 outreach emails in Asset 03 fire in those months."
+      ],
+      "sectionCount": 10,
+      "numberedSections": [],
+      "size": 42164,
+      "assetNumber": 4,
+      "voiceGated": true,
+      "voiceCounts": {
+        "Default": 51,
+        "Luxury": 45,
+        "Sustainable": 50,
+        "Gen-Z": 43,
+        "B2B": 38
+      }
+    },
+    {
+      "file": "05-retention-metrics.md",
+      "title": "Goal",
+      "meta": [
+        "12 named metrics covering acquisition-side retention (CAC / payback / LTV / LTV:CAC), behavior-side retention (retention rate D1/D7/D30/D90 / repeat purchase rate / churn rate / cohort LTV / unsubscribe rate), and brand-side retention (NPS / email engagement) — the full retention-health surface area",
+        "Canonical formula + default benchmark range + Klaviyo/Shopify/Triple Whale data source for each metric — paste-ready into a monthly snapshot spreadsheet or dashboard tile",
+        "4 voice-driven benchmark overrides (Luxury / Sustainable / Gen-Z / B2B) — same shape as Asset 04's 4 variant tables; operators in a non-default voice apply the override column instead of the Default",
+        "Decision matrix that ranks the 12 metrics by ROI-per-hour-of-measurement-effort: ship metrics #1–#3 (CAC + LTV + LTV:CAC) first because they unblock Move #6 Triple Whale's \"killer test\" + Move #9.5 PDP A/B testing's \"cohort overlay check\"; ship metrics #4–#6 (retention rate + RPR + churn) next because they measure the moves you're shipping; defer metrics #10–#12 (NPS + email engagement + unsubscribe rate) to month 2+ because they're leading indicators",
+        "The 10 most common measurement pitfalls with corrective Fix: lines — including the \"Triple Whale vs GA4 mismatch\" trap (Move #6 Pitfall #15), the \"shipped-template-but-don't-know-which-metric-moved\" trap (the central operator question this asset closes), and the \"benchmarks don't match my brand voice\" trap (the 4 voice-driven overrides are the fix)",
+        "5 verification gates — monthly-snapshot-completeness / formula-correctness / benchmark-applicability / data-source-pipeline / trend-direction — that an operator runs before declaring the snapshot valid"
+      ],
+      "sectionCount": 19,
+      "numberedSections": [],
+      "size": 42150,
+      "assetNumber": 5,
+      "voiceGated": true,
+      "voiceCounts": {
+        "Default": 28,
+        "Luxury": 21,
+        "Sustainable": 18,
+        "Gen-Z": 29,
+        "B2B": 29
+      }
+    },
+    {
+      "file": "06-nps-survey-toolkit.md",
+      "title": "Goal",
+      "meta": [
+        "3 survey channels — Postscript SMS (1-question, post-purchase, 14-day delay), Wootric email (1-question + 9 follow-up questions, 30-day delay), Delighted (free tier, web + email, 7-day delay). Each has explicit pricing, response-rate, and use-case fit.",
+        "A 1-question + 9-question survey template — the canonical 1-question NPS survey (\"How likely are you to recommend {{ company.name }} to a friend?\") + the 9-question follow-up that probes detractors vs promoters with verbatim-capture rules.",
+        "Survey-frequency guardrails — the canonical \"survey-fatigue trap\" rules (max 1 NPS survey per customer per 90 days; 3 NPS surveys per year per customer max; no NPS survey within 14 days of a complaint or refund).",
+        "Klaviyo NPS segment wiring — 4-step recipe to set nps_score custom property + tag promoters (9–10) vs passives (7–8) vs detractors (0–6) + feed cohort-by-NPS-bucket into the cohort-LTV overlay.",
+        "Cohort-by-NPS-bucket LTV analysis — the canonical query to compute 90-day / 180-day / 365-day LTV by NPS bucket (Promoter LTV / Passive LTV / Detractor LTV), which proves the Move #8 loyalty + Asset 03 UGC + Asset 04 Q4-peak investment thesis with hard numbers."
+      ],
+      "sectionCount": 12,
+      "numberedSections": [],
+      "size": 41692,
+      "assetNumber": 6,
+      "voiceGated": true,
+      "voiceCounts": {
+        "Default": 36,
+        "Luxury": 34,
+        "Sustainable": 33,
+        "Gen-Z": 39,
+        "B2B": 38
+      }
+    },
+    {
+      "file": "07-competitive-teardown.md",
+      "title": "Goal",
+      "meta": [
+        "An 8-dimension scoring framework — positioning / pricing / retention / loyalty / content / shipping / creator mix / paid mix. Each dimension has 5 voice-driven override columns (Default / Luxury / Sustainable / Gen-Z / B2B) + a 1–5 scoring scale + 3–5 concrete sub-questions + a \"What moves this dimension\" attribution block.",
+        "A 3×5 scoring matrix template — 8 dimension rows × 3–5 competitor columns × 1–5 scoring cells, paste-ready into Google Sheets / Notion / Airtable.",
+        "A competitor-sourcing decision matrix — 4 sourcing models for finding competitors (Google search + marketplace browsing / Meta Ad Library + TikTok Creative Center / Similarweb + Semrush / Shopify store-listing directories) with cost / time-to-data / data-depth columns.",
+        "A voice-driven override matrix — 5 voice profiles × 8 dimensions = 40 cells of \"what the operator's voice changes about how to score this dimension.\" Luxury brands score shipping \"free 2-day + white-glove\" as 5; Gen-Z brands score shipping \"free 5–7 day + surprise-and-delight unboxing\" as 5; both are valid but they're NOT the same score.",
+        "8 verification gates — one per dimension, each with a paste-runnable recipe to confirm the operator's teardown data is real (not vibes-based)."
+      ],
+      "sectionCount": 15,
+      "numberedSections": [],
+      "size": 42368,
+      "assetNumber": 7,
+      "voiceGated": true,
+      "voiceCounts": {
+        "Default": 39,
+        "Luxury": 40,
+        "Sustainable": 25,
+        "Gen-Z": 36,
+        "B2B": 33
+      }
+    },
+    {
+      "file": "08-cs-response-library.md",
+      "title": "Goal",
+      "meta": [
+        "12 named CS scenarios covering ~85% of DTC support volume — shipping-delay inquiry / wrong-size exchange / defective-product / refund request / exchange request / NPS-detractor follow-up (per Asset 06 Q7 routing) / loyalty tier question (per Move #8) / UGC creator inquiry (per Asset 03) / B2B account-manager reply / subscription skip-or-pause / discount code not working / general \"where is my order\" (WISMO). Each scenario has a paste-ready Default response + 4 voice-driven overrides (Luxury / Sustainable / Gen-Z / B2B).",
+        "Voice-driven override templates — every scenario ships with 5 variants (Default + Luxury + Sustainable + Gen-Z + B2B) so that operators in non-Default voice profiles apply the right tone in every reply. Honest-read: 80% of Luxury CX failures come from mis-toned responses — a Luxury customer receiving \"Oh no! That's totally on us 😭\" from a Gen-Z-toned CS rep is a top-decile NPS-Detractor and a 90-day churn; the Luxury template uses \"Dearest [Name], we deeply regret the inconvenience\" with hand-written-card follow-up.",
+        "Gorgias macro + intent + tag wiring — the canonical recipe to set up Gorgias for DTC CS: 12 macros (one per scenario) + 12 intents (for Gorgias Automate AI deflection) + 12 tags (for routing + analytics + cohort-LTV overlay with Move #8 loyalty tier) + 5 voice-profile filters (so a Luxury-tier customer gets routed to a Luxury-trained agent with the Luxury macro).",
+        "Klaviyo NPS-detractor follow-up routing — the Asset 06 Q7 yes/no path routes here: when a detractor answers \"yes\" to \"would you like a member of our team to follow up\", the customer is auto-tagged nps_detractor_followup_yes in Klaviyo and the CS team gets a 48-hour-SLA task with the Scenario 6 template pre-loaded.",
+        "12-month calibration plan — the canonical \"ship 3 templates per week for 4 weeks\" cadence that gets the full library live without overwhelming the CS team; this matches Asset 04's Q1-low/Q4-peak cadence (ship CS templates Q1, calibrate Q2, measure NPS-detractor recovery Q3, scale Q4).",
+        "10 common CS-template pitfalls with corrective Fix: lines — including the mis-toned Luxury response trap (Pitfall #1) + the no-template-for-UGC-creator-inquiry trap (Pitfall #5) + the NPS-detractor-no-follow-up trap (Pitfall #6) + the CS-template-not-wired-to-Klaviyo-segment trap (Pitfall #8)."
+      ],
+      "sectionCount": 20,
+      "numberedSections": [],
+      "size": 50549,
+      "assetNumber": 8,
+      "voiceGated": true,
+      "voiceCounts": {
+        "Default": 34,
+        "Luxury": 47,
+        "Sustainable": 28,
+        "Gen-Z": 26,
+        "B2B": 31
+      }
+    },
+    {
+      "file": "09-impact-reporting.md",
+      "title": "Goal",
+      "meta": [
+        "A 6-pillar impact-reporting framework — Carbon / Materials / Labor / Packaging / Community / Certification. Each pillar has 5 voice-driven override columns (Default / Luxury / Sustainable / Gen-Z / B2B) + a 1–5 maturity scale + 3–5 concrete sub-questions + a \"What moves this pillar\" attribution block.",
+        "A paste-ready 6-pillar reporting template — 6 pillar sections × 5 voice-driven override tables = 30 cells of \"what the operator's voice changes about how to report this pillar.\" Sustainable brands report Carbon in tons CO2e shipped + Materials in % recycled + Labor in % living-wage + Packaging in % recycled-input + Community in $ donated + Certification in B-Corp-score. Default brands report the same metrics but in customer-friendly language (\"the carbon equivalent of X flights\"). Luxury brands report the same metrics but in heritage-language (\"the Florence atelier has used solar power since 2018\"). Gen-Z brands report the same metrics but in meme-aware-language (\"we offset enough carbon to plant Y trees, but the real flex is...\").",
+        "A data-source wiring recipe — 6 canonical data sources for the 6 pillars (Shopify Planet / EcoCart / Patch for carbon / Bluesign / Oeko-Tex / GOTS for materials / Fair Trade USA / B Corp for labor / How2Recycle for packaging / 1% for the Planet / B Corp / Climate Neutral Certified for certification) with cost / time-to-data / data-depth / when-to-use columns.",
+        "A voice-driven override matrix — 5 voice profiles × 6 pillars = 30 cells of voice-specific reporting tone. Sustainable brands lead with mission + numbers + certification. Default brands lead with customer-relevant translation (\"your last shipment = 2.3 lbs CO2 = a 5-mile drive\"). Luxury brands lead with heritage + scarcity + provenance. Gen-Z brands lead with humor + accountability + transparency. B2B brands lead with compliance + ROI + audit-trail.",
+        "5 verification gates — one per non-certification pillar (Gate A Carbon-verification via Shopify Planet API + supplier energy invoices / Gate B Materials-verification via supplier certificates + GOTS / Oeko-Tex chain-of-custody / Gate C Labor-verification via Fair Trade USA audit + supplier wage statements / Gate D Packaging-verification via How2Recycle label audit + supplier FSC certificates / Gate E Community-verification via 1% for the Planet donation receipts + Move #8 loyalty-impact-rewards ledger). The Certification pillar (Gate F) is binary: either the brand has the certification or it doesn't, with a documented audit date."
+      ],
+      "sectionCount": 13,
+      "numberedSections": [],
+      "size": 46197,
+      "assetNumber": 9,
+      "voiceGated": true,
+      "voiceCounts": {
+        "Default": 48,
+        "Luxury": 16,
+        "Sustainable": 20,
+        "Gen-Z": 16,
+        "B2B": 17
+      }
+    },
+    {
+      "file": "10-affiliate-program-playbook.md",
+      "title": "Goal",
+      "meta": [
+        "Picking one of 6 program paths (decision matrix below — A through F) based on GMV tier + tool budget + creator-mix strategy.",
+        "Setting the 7 program-design dimensions (commission tier framework + payout schedule + cookie window + content-requirements policy + FTC-disclosure policy + cookie-deprecation mitigation + cohort-LTV measurement) — each with a Default benchmark + 4 voice-driven override columns (Luxury / Sustainable / Gen-Z / B2B) for the 35-cell voice override grid.",
+        "Running the 6-step build (pick path → install platform → configure 7 dimensions → seed first 10–20 affiliates → launch → verify).",
+        "Avoiding the 10 named pitfalls with corrective Fix: lines — including the 30-day tool-abandonment trap (Move #6 Pitfall #15), the creator-volume trap (50+ creators with low quality per Move #10), the iOS cookie-deprecation trap, and the FTC-disclosure-language trap.",
+        "Passing the 5 verification gates before considering the program live."
+      ],
+      "sectionCount": 28,
+      "numberedSections": [],
+      "size": 39689,
+      "assetNumber": 10,
+      "voiceGated": true,
+      "voiceCounts": {
+        "Default": 29,
+        "Luxury": 25,
+        "Sustainable": 24,
+        "Gen-Z": 26,
+        "B2B": 25
+      }
+    },
+    {
+      "file": "11-cs-training-program.md",
+      "title": "Goal",
+      "meta": [
+        "12 named training modules (1:1 with Asset 08's 12 scenarios) — each module teaches a CS rep to recognize the scenario, pick the right voice-driven override, personalize the template, and measure the outcome. Module 1 WISMO + Module 2 shipping-delay + Module 3 wrong-size + Module 4 defective + Module 5 refund + Module 6 NPS-detractor + Module 7 loyalty-tier + Module 8 UGC-creator + Module 9 B2B-AM + Module 10 subscription + Module 11 discount-code + Module 12 general-inquiry.",
+        "5-voice-driven override training — every module ships with a 5-voice override matrix (Default + Luxury + Sustainable + Gen-Z + B2B) and a 5-voice selection heuristic (how the rep picks the right voice for the inbound customer in <30 seconds). The heuristic is the canonical \"voice profile lookup\" using Klaviyo + Gorgias + Move #8 loyalty-tier metadata.",
+        "4-week ramp curriculum — the canonical \"Week 1 ship 5 templates + train 2 reps\" cadence that gets the full library live without overwhelming the team. Week 1 covers Scenarios 1–5 (WISMO + shipping-delay + wrong-size + defective + discount-code = ~55% of CS volume) with the 5 voice-driven overrides; Week 2 adds Scenarios 5/6/7 (refund + NPS-detractor + loyalty-tier = the high-LTV-recovery scenarios); Week 3 adds Scenarios 8/9/10 (UGC-creator + B2B-AM + subscription); Week 4 ships Module 12 general-inquiry + the measurement module + the continuous-improvement module.",
+        "Gorgias macro + intent + tag fluency drill — every CS rep completes a 30-question Gorgias fluency drill (10 macro-recognition questions + 10 intent-routing questions + 10 tag-selection questions) within Week 1; passing score ≥80% gates the rep from shadow-mode to live-ticket-mode.",
+        "Klaviyo NPS-detractor routing drill — every CS rep completes a 10-question NPS-detractor routing drill within Week 2 (recognize detractor → pull Asset 06 Q7-yes status → apply Asset 08 Scenario 6 template → meet 48-hour SLA → log outcome in Klaviyo + Gorgias); passing score ≥90% (NPS-detractor routing is the highest-LTV scenario, higher bar than general templates).",
+        "5 voice-driven override profile cards — one card per voice profile (Default / Luxury / Sustainable / Gen-Z / B2B), each with: 3 tone tells (words to use / words to avoid / punctuation style), 3 customer signals that indicate this voice (LTV tier / cohort tag / browse behavior / Move #8 loyalty tier / Asset 06 NPS bucket), 3 sample template pairings (Default → override), 2 anti-pattern red flags (the mis-applied override that triggers a 90-day churn). Cards are laminated + posted at every CS workstation."
+      ],
+      "sectionCount": 36,
+      "numberedSections": [],
+      "size": 67395,
+      "assetNumber": 11,
+      "voiceGated": true,
+      "voiceCounts": {
+        "Default": 41,
+        "Luxury": 49,
+        "Sustainable": 34,
+        "Gen-Z": 34,
+        "B2B": 78
+      }
+    },
+    {
+      "file": "12-impact-data-pipeline.md",
+      "title": "Goal",
+      "meta": [
+        "Wiring the 8 canonical data sources (Shopify Planet API / EcoCart API / Fair Trade USA API / B Corp certification API / 1% for the Planet member API / Climate Neutral Certified API / GOTS / GRS / Oeko-Tex chain-of-custody API / How2Recycle label audit API) per the 24-cell decision matrix (8 sources × 3 GMV tiers: <$50k / $50k–$500k / $500k+).",
+        "Building the 6-pillar ETL — one pipeline per Asset 09 Pillar (Carbon / Materials / Labor / Packaging / Community / Certification) with paste-ready Python (or low-code Make.com / n8n / Zapier equivalent for operators without Python infrastructure) that pulls from the wired sources → normalizes to a single impact_data schema → writes to the operator's warehouse (BigQuery / Snowflake / Postgres / Google Sheets for <$50k).",
+        "Building the 5-voice reporting dashboard — a single self-contained HTML page at dashboards/impact-data-pipeline.html that renders the 6-pillar data with 5 voice-driven override columns (Default customer-friendly / Luxury heritage-language / Sustainable mission-first / Gen-Z meme-aware / B2B compliance-audit-trail) + auto-publishes quarterly impact update emails via Klaviyo per Asset 04's Q1 (Earth Day) + Q4 (Giving Tuesday) cadence.",
+        "Wiring 3 customer-facing surfaces — PDP per-product carbon + materials + packaging labels (auto-pulled from the pipeline) + Gorgias macro for CS rep \"is your product sustainable?\" answers (pulls live data from the pipeline on demand) + Asset 10 Sustainable-affiliate-mission-alignment-verifier script (checks the creator's last-90-days-of-content for carbon / materials / labor / community keywords before approving commission tier).",
+        "Avoiding the 10 named pitfalls with corrective Fix: lines — including the \"Shopify Planet alone is not enough\" trap (covers shipping Scope 3 only; misses materials + labor + packaging) / the \"Fair Trade USA API is per-supplier\" trap (you must call it once per supplier, not once total) / the \"B Corp certification is annual\" trap (you must re-verify the certification each year; the API doesn't auto-renew) / the \"1% for the Planet donation amount is reported but not in real-time\" trap / etc.",
+        "Passing the 5 verification gates before considering the pipeline production-grade."
+      ],
+      "sectionCount": 33,
+      "numberedSections": [],
+      "size": 72386,
+      "assetNumber": 12,
+      "voiceGated": true,
+      "voiceCounts": {
+        "Default": 26,
+        "Luxury": 20,
+        "Sustainable": 40,
+        "Gen-Z": 25,
+        "B2B": 23
+      }
+    }
+  ],
   "top10": {
     "tables": [
       {
@@ -5221,6 +5587,86 @@
   },
   "journal": [
     {
+      "heading": "[2026-06-27 15:49] Asset seed — Impact data pipeline (6-pillar ETL: Shopify Planet / EcoCart / GOTS / Fair Trade USA / How2Recycle / 1% for the Planet / B Corp → unified impact dashboard; 3 customer-facing surfaces: PDP labels + Gorgias macro + Klaviyo quarterly email; affiliate-mission-alignment verifier; README hygiene rolled in 11→12)",
+      "body": "- **What shipped:** `assets/12-impact-data-pipeline.md` (~892 lines / 80KB / the twelfth artifact in the `assets/` track — a paste-ready automated ETL pipeline that closes the **manual data-collection wall** that Asset 09 (6-pillar impact-reporting framework) + Asset 10 (Sustainable commission tier 20/25/30%) + Asset 11 (Module 6 NPS-detractor impact-relevance drill) all hit when an operator tries to actually implement them. Asset 09 ships the manual data-collection rubric; Asset 10 ships the mission-alignment-verification step; Asset 11 ships the per-pillar data lookup the CS rep does manually. **All three problems share the same root cause: no automated pipeline produces the impact data on demand.** Asset 12 IS the pipeline. Per Asset 02's voice framework, **Sustainable is the canonical "
+    },
+    {
+      "heading": "[2026-06-26 21:49] Asset seed — Impact reporting template (6-pillar sustainability framework × 5 voice-driven override tables)",
+      "body": "- **What shipped:** `assets/09-impact-reporting.md` (300 lines / 45KB / the ninth artifact in the `assets/` track — a paste-ready impact-reporting framework that closes the **sustainability-reporting gap** that Asset 07's competitive-teardown Dimension 2 (Pricing) + Dimension 5 (Shipping) + Asset 08's Scenario 5 (refund) + Scenario 10 (subscription pause) make visible. Per Asset 02's voice framework, **Sustainable is the canonical primary voice** for impact reporting, but Default / Luxury / Gen-Z / B2B each have a distinct impact-report tone that the framework captures via 30 voice-driven override cells (6 pillars × 5 voice profiles). The framework ships **7 top-level sections** mirroring Asset 08's canonical 8-section skeleton: (1) **Goal** — frames why sustainability reporting is the nex"
+    },
+    {
+      "heading": "[2026-06-28 12:30] Asset seed — Customer-service response template library (12 scenarios × 5 voice-driven override templates × Gorgias + Klaviyo NPS-detractor wiring)",
+      "body": "- **What shipped:** `assets/08-cs-response-library.md` (296 lines / 51KB / the eighth artifact in the `assets/` track — a paste-ready customer-service response template library that closes the **post-purchase voice gap** that Asset 07's Dimension 8 (Voice-and-tone) makes visible. Asset 02 defined the 5 voice profiles for marketing; Asset 07 made voice-and-tone a competitive-positioning dimension; this asset applies the 5 voice profiles to the 12 most-common DTC CS scenarios so the brand voice is consistent from marketing acquisition through post-purchase service. **The library has 7 user-visible sections:** (1) **Goal** — frames why CS is the post-purchase voice + 5 honest-read callouts (CS tone MUST match brand voice per Asset 06 Q8 / templates save 2–5 min per ticket / 12 scenarios cover"
+    },
+    {
+      "heading": "[2026-06-28 06:30] README accuracy hygiene — reflect 7-shipped assets (Assets row 6→7 + folder-map 6→7; closes 1-tick drift from Asset 07 competitive teardown)",
+      "body": "- **What shipped:** Updated `README.md` to reflect 2 stale-on-disk claims re-introduced by the 2026-06-27 15:00 Asset 07 competitive teardown tick (2 patches, +13/-2 lines, 76 → 87 lines net after re-wrap; no other sections touched): **(1) Folder-map `assets/` line** — was `6 shipped: copy templates ... + retention metrics ... + NPS survey toolkit ...`; now `7 shipped:` with a 6-line continuation appended naming Asset 07: `+ competitive teardown (8-dimension × 5-voice scoring framework: Positioning / Pricing / Retention / Content / Shipping / Creator / Paid / Voice-and-tone — with 40 voice-driven override cells + 3×5 scoring matrix template + competitor-sourcing decision matrix)`. **(2) Current-status `Assets` row** — was `6 shipped |` listing Asset 01 through Asset 06 in the long-form pip"
+    },
+    {
+      "heading": "[2026-06-27 15:00] Asset seed — Competitive teardown template (8-dimension framework × 5 voice-driven override tables × competitor-sourcing decision matrix)",
+      "body": "- **What shipped:** `assets/07-competitive-teardown.md` (351 lines / 43KB / the seventh artifact in the `assets/` track — a paste-ready competitive-benchmarking framework that closes the \"where does my brand sit vs 3–5 competitors?\" gap for new operators). **The teardown has 7 user-visible sections (7 top-level `## ` headers + 8 `### ` dimension subsections + 8 dimension-scoring tables + 5 voice-driven override columns per dimension = 40 override cells):** (1) **Goal** — frames why operators need a teardown (positioning / pricing / lifecycle decisions made in a vacuum → race-to-the-bottom on price OR missing the creator-mix gap) + 5 honest-read callouts (framework ships before competitors named / competitive data ages in 30–90d / voice-driven overrides matter MORE than headline score / tea"
+    },
+    {
+      "heading": "[2026-06-27 09:00] README accuracy hygiene — reflect 6-shipped assets (Assets row 5→6 + folder-map 5→6)",
+      "body": "- **What shipped:** Updated `README.md` to reflect 2 stale-on-disk claims re-introduced by the 2026-06-26 15:30 Asset 06 NPS survey toolkit tick (2 patches, +7/-2 lines, 71 → 76 lines): **(1) Folder-map `assets/` line** — was `5 shipped: copy templates ... + retention metrics (12 metrics × 5 voice profiles × 10 pitfalls × 5 verification gates)`; now `6 shipped:` with a 5-line continuation appended naming Asset 06: `+ NPS survey toolkit (Postscript + Wootric + Delighted + 4-channel decision matrix + 1+9-question template + 5 guardrails + Klaviyo 4-step wiring + cohort-by-NPS-bucket LTV SQL + 10 pitfalls + 5 verification gates)`. **(2) Current-status `Assets` row** — was `5 shipped | assets/01-... + assets/02-... + assets/03-... + assets/04-... + assets/05-retention-metrics.md (12-metric ret"
+    },
+    {
+      "heading": "[2026-06-26 15:30] Asset seed — NPS survey toolkit (Postscript + Wootric + Delighted + cohort-by-NPS-bucket LTV analysis)",
+      "body": "- **What shipped:** `assets/06-nps-survey-toolkit.md` (270 lines / 41KB / the sixth artifact in the `assets/` track — a paste-ready NPS-survey program that closes the **data-pipeline gap** of Asset 05 Metric #11 NPS. Asset 05 defined the canonical formula `NPS = % Promoters (9–10) − % Detractors (0–6)` + the 30–50 Default benchmark + the 4 voice-driven override columns + the Triple Whale / Klaviyo / Postscript data source — but Metric #11 has **no data pipeline** without a survey program. **This toolkit IS the data pipeline.** The toolkit has 10 user-visible sections: (1) **Goal** — frames why Metric #11 needs a multi-channel survey program + 4 honest-read callouts (leading-indicator lag, response-rate baseline, voice-driven override columns, survey-fatigue trap). (2) **Decision matrix** —"
+    },
+    {
+      "heading": "[2026-06-26 14:30] README accuracy hygiene — reflect 5-shipped assets (Assets row 4→5 + folder-map 4→5)",
+      "body": "- **What shipped:** Updated `README.md` to reflect 1 stale-on-disk claim re-introduced by the 2026-06-26 13:52 Asset 05 retention metrics tick (2 patches, +4/-2 lines, 69 → 71 lines): **(1) Folder-map `assets/` line** — was `4 shipped: copy templates ... + brand voice ... + UGC brief (5 outreach + 3 contracts + Klaviyo segment) + promo calendar (12 months × 5 voice variants × 8 templates × 5 outreach emails)`; now `5 shipped:` with a 5th line `+ retention metrics (12 metrics × 5 voice profiles × 10 pitfalls × 5 verification gates)`. **(2) Current-status `Assets` row** — was `4 shipped` listing Asset 01 + Asset 02 + Asset 03 + Asset 04; now `5 shipped` with `assets/05-retention-metrics.md (12-metric retention reference card: CAC + LTV + LTV:CAC + retention rate D1/D7/D30/D90 + repeat purcha"
+    },
+    {
+      "heading": "[2026-06-26 13:52] Asset seed — Retention metrics reference card (12 metrics × 5 voice profiles × 5 verification gates)",
+      "body": "- **What shipped:** `assets/05-retention-metrics.md` (419 lines / 42KB / the fifth artifact in the `assets/` track — a paste-ready retention-metrics reference card that closes the **measurement layer** of the brand-kit. Operators have been asking \"which metric does my flow actually move?\" — this card answers it with the canonical formula + a default-benchmark range + the Klaviyo/Shopify/Triple Whale data source for each of 12 named metrics + 4 voice-driven override columns that map Asset 02's 5-dimension voice framework to the benchmark ranges). **The card has 7 user-visible sections:** (1) **Goal** — frames why operators need 12 metrics, not 3 (the 12 cover acquisition-side retention + behavior-side retention + brand-side retention, the full retention-health surface area). (2) **Decision "
+    },
+    {
+      "heading": "[2026-06-26 12:47] README accuracy hygiene — reflect 4-shipped assets (Assets 3→4 + folder-map 3→4)",
+      "body": "- **What shipped:** Updated `README.md` to reflect 1 stale-on-disk claim re-introduced by the 2026-06-28 Asset 04 promo calendar tick (2 patches, +5/-3 lines, 67 → 69 lines): **(1) Folder-map `assets/` line** — was `3 shipped: copy templates ... + brand voice ... + UGC brief (5 outreach + 3 contracts + Klaviyo segment)`; now `4 shipped:` with a 4th line `+ promo calendar (12 months × 5 voice variants × 8 templates × 5 outreach emails)`. **(2) Current-status `Assets` row** — was `3 shipped` listing Asset 01 + Asset 02 + Asset 03; now `4 shipped` with `assets/04-promo-calendar.md (12-month Default calendar + 4 voice-driven variant tables: Luxury / Sustainable / Gen-Z / B2B + 10 numbered pitfalls + 5 verification gates; compounds Asset 01 T1-T8 templates + Asset 02 voice framework + Asset 03 "
+    },
+    {
+      "heading": "[2026-06-28 00:30] Asset seed — 12-month promotional calendar (12 months × 5 voice variants × 8 templates × 5 outreach emails)",
+      "body": "- **What shipped:** `assets/04-promo-calendar.md` (230 lines / 42KB / the fourth artifact in the `assets/` track — a paste-ready 12-month promotional calendar that closes the \"when do I run a sale?\" + \"when do I commission creators?\" gaps for new operators). **The calendar has 10 user-visible sections:** (1) **The 12-month Default calendar table** — 12 rows (January through December) × 7 columns (Month / Theme / Voice profile / Discount intensity / Audience segment / Asset 01 templates that fire / UGC campaign / Loyalty gate) anchored on the Q1-low / Q2-creator / Q3-mid / Q4-peak macro shape that mirrors real DTC seasonality (post-holiday recovery in Q1, creator-campaign + Mother's Day + Father's Day in Q2, mid-year sitewide in July + back-to-school in August + intent-driven September, BFC"
+    },
+    {
+      "heading": "[2026-06-27 18:30] README accuracy hygiene — reflect 3-shipped assets + correct route count (11, not 12)",
+      "body": "- **What shipped:** Updated `README.md` to reflect 2 stale-on-disk claims re-introduced by the 2026-06-26 Asset 03 UGC brief tick (3 patches, +4/-3 lines, 66 → 67 lines): **(1) Folder-map `assets/` line** — was `2 shipped: copy templates (8 Klaviyo+Postscript templates) + brand voice (5 profiles × 5 dimensions)`; now `3 shipped:` with a 3rd line `+ UGC brief (5 outreach + 3 contracts + Klaviyo segment)`. **(2) Current-status `Operator surfaces` row** — was `12 routes`; now `11 routes` (on-disk has 10 subfolders + `page.tsx` = 11; the folder-map `dashboard/app/` line was already correct at 11 from the previous hygiene tick, but this Operator surfaces summary was missed). **(3) Current-status `Assets` row** — was `2 shipped` listing Asset 01 + Asset 02; now `3 shipped` with `assets/03-ugc-br"
+    },
+    {
+      "heading": "[2026-06-26 09:30] Asset seed — UGC brief (commissioning template + creator outreach + usage rights contracts + Klaviyo UGC segment tag)",
+      "body": "- **What shipped:** `assets/03-ugc-brief.md` (548 lines / 41KB / the third artifact in the `assets/` track — a paste-ready UGC program that closes the content loop between Asset 01's SMS Review Request template (which collects organic reviews) + Asset 02's brand voice (which writes the outreach) and Move #9's PDP reviews block (which surfaces the UGC). **The brief has 8 user-visible sections:** (1) **3 sourcing model decision matrix** — Organic (Yotpo / Loox / Judge.me auto-collect, free, 30–90d to 50 reviews, highest trust), Gifted (free product, $30 COGS, 14–30d, medium trust), Paid ($150–$500/creator + product, 7–14d, highest trust when audience-fit is good), Affiliate (commission-only, $0 upfront + 10–25% rev share, 14–30d, medium trust); each row has When-to-use / When-NOT-to-use / Co"
+    },
+    {
+      "heading": "[2026-06-27 17:50] README accuracy hygiene — reflect 2-shipped assets + correct route count (11, not 12)",
+      "body": "- **What shipped:** Updated `README.md` to reflect 3 stale-on-disk claims (4 patches, +6/-5 lines, 65 → 66 lines): **(1) Folder-map `assets/` line** — was `(planned) brand assets, copy templates, briefs`; now `2 shipped: copy templates (8 Klaviyo+Postscript templates) + brand voice (5 profiles × 5 dimensions)`. **(2) Folder-map `dashboard/app/` line** — was `12 routes:`; now `11 routes:` (on-disk has 10 subfolders + `page.tsx` = 11, not 12; the README's own inline route list was 11, the count was 1-off). **(3) Current-status `Assets` row** — was `Empty (planned) | Copy templates, brand-voice docs, UGC briefs — bounded follow-up for a future tick`; now `2 shipped | assets/01-copy-templates.md (8 paste-ready Klaviyo email + Postscript SMS templates with compliance + decision matrix) + assets"
+    },
+    {
+      "heading": "[2026-06-27 11:50] Asset seed — Brand voice profiles & adaptation guide (companion to Asset 01)",
+      "body": "- **What shipped:** `assets/02-brand-voice.md` (415 lines / 27.3KB / the second artifact in the `assets/` track — a brand-voice adaptation framework that takes Asset 01's 8 paste-ready templates and shows operators how to adapt them to 4 non-default voice profiles in 5-15 minutes per template). **The framework has 6 user-visible sections**: (1) **The 5-dimension voice framework** — Formality / Humor / Brand-name usage / Price disclosure / Objection handling — each on a 1-5 scale; operators whose brand sits between profiles can interpolate dimensions instead of picking from a fixed menu. (2) **5 voice profiles** — **Default** (Formality 2 / Humor 3 / Brand-name 2 / Price 2 / Objection 3 — the canonical Asset 01 voice, shown explicitly as the baseline) / **Luxury** (Formality 4 / Humor 1 / B"
+    },
+    {
+      "heading": "[2026-06-27 05:47] Asset seed — Copy templates (Klaviyo email + Postscript SMS)",
+      "body": "- **What shipped:** `assets/01-copy-templates.md` (343 lines / 21.3KB / 8 paste-ready copy templates — 5 email + 3 SMS templates + the canonical decision matrix + 10 pitfalls + 5 verification gates + Related section). This is the first artifact in the `assets/` track (which the README's Current status table marks as \"Empty (planned)\"), opening the track for the first time. **The 8 templates cover the full retention-automation surface that operators need on day 1:** Template 1 Email Welcome #1 (5min after signup) + Template 2 Email Cart-Abandon #1 (4h, no discount) + Template 3 Email Cart-Abandon #2 Escalation (24h, 10% unique code) + Template 4 SMS Welcome (5min after SMS opt-in, 10% code) + Template 5 SMS Cart-Abandon #1 (1h, no discount) + Template 6 SMS Cart-Abandon #2 Escalation (24h, "
+    },
+    {
+      "heading": "[2026-06-26 23:30] Hygiene — README.md accuracy: reflect operator-phase workspace state",
+      "body": "- **What shipped:** Rewrote `README.md` (36 → 65 lines, +44/−14). The old \"Current status\" section claimed \"Research phase: complete (2026-06). Two docs in `/research`\" and \"Next phase: build a runnable MVP\" — both dramatically stale given that the workspace has shipped 16 leverage moves + 15 playbooks + 11 scripts + 440 Python TDD tests + 59 JS tests + 1 static dashboard + 1 Next.js dashboard (12 routes) + 1 CTA banner + 1 synthesis doc since the README was last written. The new README has **4 sections** (Mission / Folder map / Research principles / Current status / How this folder is maintained) and reflects the actual operator-phase state: **(1) Folder map** now lists all 4 research docs (including the just-shipped `03-30-day-rollout-plan.md` synthesis), all 15 playbooks by name, all 11"
+    },
+    {
+      "heading": "[2026-06-26 17:30] Move #6.10.1 — \"What to do this cycle\" CTA banner on home page",
+      "body": "- **What shipped:** Added a prominent attribution-status CTA banner card to `dashboard/app/page.tsx` (+128 lines). The banner sits between the metric grid and the 30-day rollout plan card on the home page. **Renders 5 user-visible elements**: (1) **Title** \"What to do this cycle\" + status pill (green \"dashboard live\" / yellow \"audit ready\" / yellow \"TikTok audit ready\" / yellow \"Snap+Pinterest audit ready\" / yellow \"rollup ready\" / outline \"not started\" based on which attribution move shipped last); (2) **Last-cycle status line** \"Last attribution cycle shipped Move #6.9 on 2026-06-25\" (parses date + Move #N from the latest attribution-related journal entry's heading); (3) **Next-action line** \"Next: **Run Move #6.5 weekly attribution audit** — pulls the latest fixtures, runs the 6 audit g"
+    },
+    {
+      "heading": "[2026-06-26 04:55] Hygiene fix — Add main_test() runner to test_ai_ad_creative_roi.py (39 silent no-op tests now execute)",
+      "body": "- **What shipped:** Appended a `def main_test() -> int:` runner + `if __name__ == \"__main__\":` block to `scripts/tests/test_ai_ad_creative_roi.py` (32 lines added, 1 line removed). The file already defined 39 plain-function `test_*()` functions (test_module_imports / test_dataclass_fields_present / 7 input-validation tests / 8 forecast math tests / 5 health-band tests / 2 render tests / 5 CLI tests / 4 realistic-scenario tests / 5 cross-script-consistency tests) — but the runner was missing, so `python3 scripts/tests/test_ai_ad_creative_roi.py` produced 0 bytes of output, exit 0, 0 tests executed. **The fix matches the convention used by all 10 other test files in the workspace** — specifically the plain-function shape from `test_abandoned_cart_roi.py` / `test_pdp_ab_test.py` / `test_tripl"
+    },
+    {
+      "heading": "[2026-06-25 22:25] Move #6.10 — Synthesis artifact: 30-day rollout plan (research/03-30-day-rollout-plan.md)",
+      "body": "- **What shipped:** `research/03-30-day-rollout-plan.md` (207-line synthesis artifact that sequences all 16 shipped moves into a day-by-day 30-day rollout plan for a brand starting from zero). **The value of this artifact is converting the workspace from \"research corpus + 16 playbooks + 9 scripts + 1 dashboard\" into an executable roadmap** — operators landing on the workspace no longer have to read the top-10 table + skim 16 playbooks + decide what to do first; the 30-day plan is the answer to \"where do I start?\" **Structure (10 sections + 4 week subsections):** `## TL;DR` (4-week rhythm: foundation / recovery / scale / optimization) / `## Who this is for` (Shopify $100k–$50M GMV primary, non-Shopify secondary, pre-revenue skip paths) / `## Prerequisites` (live store + 30d history + admin"
+    },
+    {
       "heading": "[2026-06-25 21:10] Move #6.9 — Unified attribution dashboard (static HTML, no build step, 59 tests, 12:1 net annual ROI)",
       "body": "- **What shipped:** `dashboards/unified-attribution-health.html` (625-line / 23KB self-contained static HTML dashboard — **0 build step, 0 npm deps**, vanilla JS + CSS only — that loads the 4 JSON outputs from Move #6.5 (Meta + Google + GA4) + Move #6.6 (TikTok) + Move #6.7 (Snap + Pinterest) + Move #6.8 (cross-platform rollup) and renders them as 1 unified \"what is my attribution health this week\" view with **5 user-visible sections** [This cycle (4 stat cards: platforms / gates passing / overall / drift detected) / Per-platform gate status (4-card grid with ✓/✗ markers + detail + remediation per gate) / Cross-platform drift (vs last cycle — drift bar chart with threshold-relative fill widths + max match-rate / coverage / dropping-platforms stats) / Shared root-cause hypothesis (panel sho"
     },
@@ -5288,8 +5734,9 @@
   "counts": {
     "researchDocs": 4,
     "playbooks": 15,
+    "assets": 12,
     "tables": 34,
     "findings": 8,
-    "journalEntries": 16
+    "journalEntries": 36
   }
 }
