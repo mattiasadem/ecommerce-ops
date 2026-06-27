@@ -11,7 +11,8 @@ ecommerce-ops/
 │   ├── 00-ecommerce-ops-landscape.md      (unit econ, channels, retention, AI)
 │   ├── 01-tools-stack-comparison.md       (vendor matrix, pricing, recommended stacks)
 │   ├── 02-top-10-leverage-moves.md        (ranked playbook backlog with status tracker)
-│   └── 03-30-day-rollout-plan.md          (synthesis: 4-week plan sequencing 16 shipped moves)
+│   ├── 03-30-day-rollout-plan.md          (synthesis: 4-week plan sequencing 16 shipped moves)
+│   └── 04-international-expansion.md      (cross-border DTC: 5-pillar framework + 3 GMV-tier paths + 4 phase-by-phase verification gates + 15 pitfalls + 25:1 Year-1 ROI default; compounds 16 shipped playbooks + 12 shipped assets by documenting the international layer the US-centric stack assumes)
 ├── playbooks/                             ← step-by-step runbooks ("how do we actually do X")
 │                                          (15 shipped: abandoned-cart / upsell / checkout /
 │                                          welcome / Klaviyo+Postscript migration / Triple Whale /
@@ -87,7 +88,7 @@ ecommerce-ops/
 
 | Track | Status | Notes |
 |---|---|---|
-| **Research** | Complete (4 docs) | `00` landscape + `01` stack comparison + `02` top-10 + `03` 30-day synthesis |
+| **Research** | Complete (5 docs) | `00` landscape + `01` stack comparison + `02` top-10 + `03` 30-day synthesis + `04` international expansion (cross-border DTC framework) |
 | **Top-10 playbooks** | 10/10 shipped | #1–#10 all shipped with companion scripts where applicable (Abandoned cart / Post-purchase upsell / Checkout audit / Welcome series / Klaviyo+Postscript migration / Triple Whale / SMS / Loyalty / Mobile PDP / AI ad creative) |
 | **Attribution quality stack** | 5/5 shipped | Move #6 Triple Whale + #6.5 Meta/Google/GA4 audit + #6.6 TikTok audit + #6.7 Snap+Pinterest audit + #6.8 cross-platform drift rollup |
 | **Operator surfaces** | 3/3 shipped | `dashboards/unified-attribution-health.html` (static) + `dashboard/` (Next.js with 12 routes including the new /assets library page + CTA banner) + `research/03-30-day-rollout-plan.md` (synthesis) |

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-27T03:26:26.433Z",
+  "generatedAt": "2026-06-27T04:40:55.752Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -4737,6 +4737,621 @@
         }
       ],
       "findings": []
+    },
+    {
+      "file": "04-international-expansion.md",
+      "title": "TL;DR",
+      "sections": [
+        {
+          "heading": "TL;DR",
+          "level": 2,
+          "table": null,
+          "body": "\nA US-based DTC Shopify brand at **$1M–$50M GMV** can expand into **EU + UK + Canada + Australia** with a **3-phase rollout** over **6–12 months** at a **total cost stack of $300–$2,500/mo** plus **one-time setup of $5k–$25k** (mostly 3PL onboarding + Shopify Markets Pro annual fee + translation + VAT/IOSS registration) and an expected **Year-1 revenue lift of 30–150%** depending on the brand's category fit for international demand.\n\n**The 3-phase rhythm:**\n\n- **Phase 1 (Months 1–2): Canada + UK.** Lowest-friction English-language markets; Shopify Markets handles currency + duties; CA/UK both have established cross-border consumer trust with US brands; expected **15–40% revenue lift** on a $5M US base.\n- **Phase 2 (Months 3–5): EU + Australia.** EU requires IOSS registration + EU VAT MOSS compliance + language localization (DE/FR/ES minimum); Australia is English-language + low-friction (GST registration threshold A$75k); expected **30–80% revenue lift** on a $5M US base.\n- **Phase 3 (Months 6–12): Japan + Nordics + DACH.** Highest-friction markets with strong local-competitor density + payment-method preferences (Konbini in JP, Klarna/AfterPay in DACH/Nordics); expected **50–150% revenue lift** but **2–4× the per-market ops cost** of Phase 1+2.\n\n**Decision points** are explicit at each phase boundary — if the brand's category isn't a fit (e.g. SKUs too heavy/fragile for cross-border, AOV too low to absorb duties, voice framework too US-centric), the phase forks or defers. See \"GMV-tier paths\" below.\n"
+        },
+        {
+          "heading": "Who this is for",
+          "level": 2,
+          "table": null,
+          "body": "\n- **Primary:** US-based DTC Shopify brand at $1M–$50M GMV with at least 1 product line that has international demand signals (UK/EU traffic >10% of site visits, or search-volume for brand keywords in target markets, or inbound wholesale inquiries from international distributors).\n- **Secondary:** US-based DTC brand on non-Shopify platforms (WooCommerce + BigCommerce + Magento) — most of this doc applies; the platform-specific forks are at \"Shopify Markets\" alternatives (WooCommerce multi-currency plugins + Weglot for translation + TaxJar for VAT) called out in each section.\n- **Not for:** Pre-revenue brands (defer until $1M+ GMV — international ops overhead is not amortized below this); single-product brands with US-only supply chains (e.g. products with US-only ingredients, US-only certifications); brands in regulated categories where market-by-market approval is required (CBD, supplements, alcohol, firearms, medical devices — these need category-specific regulatory expertise beyond this doc's scope).\n"
+        },
+        {
+          "heading": "Prerequisites",
+          "level": 2,
+          "table": null,
+          "body": "\nBefore Month 1 of Phase 1, you need:\n\n- A live Shopify (or compatible) store with at least 12 months of US order history + baseline unit economics (CAC, LTV, AOV, contribution margin).\n- Admin access to: Shopify admin (Settings → Markets), Meta Ads Manager (international audience targeting), Google Ads (international campaigns), Klaviyo (multi-locale flows), your 3PL (cross-border rate quote), your fulfillment partner.\n- An established baseline of US contribution margin ≥ 30% (international expansion eats 5–15pp of contribution margin via duties + shipping subsidies + FX fees; a brand with <30% US contribution margin should defer international expansion until unit economics improve).\n- A documented voice framework (Asset 02 brand-voice) with at least Default + Luxury + Sustainable + Gen-Z + B2B voice profiles — international expansion needs at minimum UK-English + EU-localized variants of each voice profile.\n- An established retention stack (Move #1 cart abandon + Move #4 welcome + Move #7 SMS + Move #8 loyalty) — these four flows are the **international growth engine**; a brand without them gets <30% of the international LTV upside.\n- A cross-border-friendly product (not too heavy, not too fragile, not too regulated — see \"Category-fit matrix\" below).\n- 4–8 hr/wk of operator time during Phase 1 (lower after launch) + $5k–$25k one-time setup budget.\n\nIf any of the above is missing, the plan **defers the dependent phase** rather than skipping the whole rollout. The decision matrix at each phase boundary handles this.\n"
+        },
+        {
+          "heading": "The 5-pillar framework — what cross-border DTC actually requires",
+          "level": 2,
+          "table": null,
+          "body": "\nCross-border DTC is not \"ship your US site internationally + accept the orders.\" It's a 5-pillar system where each pillar has its own decisions, costs, and failure modes:\n"
+        },
+        {
+          "heading": "Pillar 1 — Market selection & prioritization",
+          "level": 3,
+          "table": [
+            {
+              "Phase": "1",
+              "Market": "Canada",
+              "Why this market": "English + same continent; 38M population; US-brand affinity strong; CDN$ currency; duties trivial under USMCA",
+              "GMV tier fit": "All tiers",
+              "Localization cost": "$500–$2,000",
+              "Expected revenue lift on $5M US base": "5–15%"
+            },
+            {
+              "Phase": "1",
+              "Market": "United Kingdom",
+              "Why this market": "67M English speakers; UK consumer trust in US brands; GBP currency; duties + VAT regulated post-Brexit; 5–7 day shipping via DHL/FedEx",
+              "GMV tier fit": "All tiers",
+              "Localization cost": "$2k–$5k",
+              "Expected revenue lift on $5M US base": "10–25%"
+            },
+            {
+              "Phase": "2",
+              "Market": "EU (DE + FR + ES + IT + NL)",
+              "Why this market": "450M consumers across 27 countries; EU VAT MOSS + IOSS required; DE + FR + ES minimum for ~70% EU revenue; payment-method localization required (Klarna, AfterPay, iDEAL, SEPA)",
+              "GMV tier fit": "Mid-to-large",
+              "Localization cost": "$5k–$15k",
+              "Expected revenue lift on $5M US base": "15–50%"
+            },
+            {
+              "Phase": "2",
+              "Market": "Australia",
+              "Why this market": "26M English speakers; A$ currency; GST registration threshold A$75k (~US$50k) is low; 7–10 day shipping via AU Post + DHL; strong US-brand affinity",
+              "GMV tier fit": "All tiers",
+              "Localization cost": "$2k–$5k",
+              "Expected revenue lift on $5M US base": "5–15%"
+            },
+            {
+              "Phase": "3",
+              "Market": "Japan",
+              "Why this market": "125M consumers; high purchasing power; US-brand affinity very strong (especially fashion + beauty + supplements); JPY currency; Konbini payment required (~30% of JP ecommerce); 5–7 day shipping via DHL/JP Post",
+              "GMV tier fit": "Large",
+              "Localization cost": "$8k–$20k",
+              "Expected revenue lift on $5M US base": "5–20% (high AOV offsets low CVR)"
+            },
+            {
+              "Phase": "3",
+              "Market": "DACH + Nordics (DE + AT + CH + SE + DK + NO + FI)",
+              "Why this market": "High purchasing power; Klarna/AfterPay dominant; English-language tolerance lower (DE + Nordics prefer localized sites); 70%+ of DACH orders use invoice payment",
+              "GMV tier fit": "Large",
+              "Localization cost": "$8k–$25k",
+              "Expected revenue lift on $5M US base": "10–30%"
+            },
+            {
+              "Phase": "Category",
+              "Market": "Cross-border fit",
+              "Why this market": "Why",
+              "GMV tier fit": "",
+              "Localization cost": "",
+              "Expected revenue lift on $5M US base": ""
+            },
+            {
+              "Phase": "---",
+              "Market": "---",
+              "Why this market": "---",
+              "GMV tier fit": "",
+              "Localization cost": "",
+              "Expected revenue lift on $5M US base": ""
+            },
+            {
+              "Phase": "Apparel / accessories",
+              "Market": "★★★★★",
+              "Why this market": "High AOV (offsets duties), low return-rate for tried-on items via size-guide rigor; US brands have strong differentiation in sustainable + premium segments",
+              "GMV tier fit": "",
+              "Localization cost": "",
+              "Expected revenue lift on $5M US base": ""
+            },
+            {
+              "Phase": "Beauty / personal care",
+              "Market": "★★★★☆",
+              "Why this market": "High demand globally; regulatory friction in some categories (EU cosmetics regulation, JP quasi-drug rules); AOV $40–$80 ideal",
+              "GMV tier fit": "",
+              "Localization cost": "",
+              "Expected revenue lift on $5M US base": ""
+            },
+            {
+              "Phase": "Home goods / decor",
+              "Market": "★★★☆☆",
+              "Why this market": "High return-rate on bulky items + dimensional-weight shipping costs; works for lightweight premium decor (candles, ceramics) not furniture",
+              "GMV tier fit": "",
+              "Localization cost": "",
+              "Expected revenue lift on $5M US base": ""
+            },
+            {
+              "Phase": "Food / beverage",
+              "Market": "★★☆☆☆☆",
+              "Why this market": "Strict regulatory per market (FDA ≠ EFSA ≠ FSANZ); shelf-life constraints; works for shelf-stable low-value items, fails for fresh or refrigerated",
+              "GMV tier fit": "",
+              "Localization cost": "",
+              "Expected revenue lift on $5M US base": ""
+            },
+            {
+              "Phase": "Supplements / vitamins",
+              "Market": "★☆☆☆☆",
+              "Why this market": "Highest regulatory friction (each market has independent approval — EFSA in EU, TGA in AU, MHLW in JP); defer unless you have category-specific regulatory expertise",
+              "GMV tier fit": "",
+              "Localization cost": "",
+              "Expected revenue lift on $5M US base": ""
+            },
+            {
+              "Phase": "CBD / hemp",
+              "Market": "☆☆☆☆☆",
+              "Why this market": "Effectively banned in most cross-border markets; skip",
+              "GMV tier fit": "",
+              "Localization cost": "",
+              "Expected revenue lift on $5M US base": ""
+            }
+          ],
+          "body": "\nThe canonical 5-market expansion sequence for a US DTC brand entering cross-border:\n\n| Phase | Market | Why this market | GMV tier fit | Localization cost | Expected revenue lift on $5M US base |\n|---|---|---|---|---|---|\n| 1 | **Canada** | English + same continent; 38M population; US-brand affinity strong; CDN$ currency; duties trivial under USMCA | All tiers | $500–$2,000 | 5–15% |\n| 1 | **United Kingdom** | 67M English speakers; UK consumer trust in US brands; GBP currency; duties + VAT regulated post-Brexit; 5–7 day shipping via DHL/FedEx | All tiers | $2k–$5k | 10–25% |\n| 2 | **EU (DE + FR + ES + IT + NL)** | 450M consumers across 27 countries; EU VAT MOSS + IOSS required; DE + FR + ES minimum for ~70% EU revenue; payment-method localization required (Klarna, AfterPay, iDEAL, SEPA) | Mid-to-large | $5k–$15k | 15–50% |\n| 2 | **Australia** | 26M English speakers; A$ currency; GST registration threshold A$75k (~US$50k) is low; 7–10 day shipping via AU Post + DHL; strong US-brand affinity | All tiers | $2k–$5k | 5–15% |\n| 3 | **Japan** | 125M consumers; high purchasing power; US-brand affinity very strong (especially fashion + beauty + supplements); JPY currency; **Konbini payment** required (~30% of JP ecommerce); 5–7 day shipping via DHL/JP Post | Large | $8k–$20k | 5–20% (high AOV offsets low CVR) |\n| 3 | **DACH + Nordics (DE + AT + CH + SE + DK + NO + FI)** | High purchasing power; Klarna/AfterPay dominant; English-language tolerance lower (DE + Nordics prefer localized sites); 70%+ of DACH orders use invoice payment | Large | $8k–$25k | 10–30% |\n\n**The 3-market Phase 1+2 default (CA + UK + EU + AU) captures ~80% of typical cross-border DTC lift** at ~30% of the cost of a full 7-market rollout. Phase 3 is gated on Phase 1+2 delivering >20% of total revenue + operator capacity.\n\n**Category-fit matrix — when international works:**\n\n| Category | Cross-border fit | Why |\n|---|---|---|\n| **Apparel / accessories** | ★★★★★ | High AOV (offsets duties), low return-rate for tried-on items via size-guide rigor; US brands have strong differentiation in sustainable + premium segments |\n| **Beauty / personal care** | ★★★★☆ | High demand globally; regulatory friction in some categories (EU cosmetics regulation, JP quasi-drug rules); AOV $40–$80 ideal |\n| **Home goods / decor** | ★★★☆☆ | High return-rate on bulky items + dimensional-weight shipping costs; works for lightweight premium decor (candles, ceramics) not furniture |\n| **Food / beverage** | ★★☆☆☆☆ | Strict regulatory per market (FDA ≠ EFSA ≠ FSANZ); shelf-life constraints; works for shelf-stable low-value items, fails for fresh or refrigerated |\n| **Supplements / vitamins** | ★☆☆☆☆ | Highest regulatory friction (each market has independent approval — EFSA in EU, TGA in AU, MHLW in JP); defer unless you have category-specific regulatory expertise |\n| **CBD / hemp** | ☆☆☆☆☆ | Effectively banned in most cross-border markets; skip |\n"
+        },
+        {
+          "heading": "Pillar 2 — Currency, pricing & FX",
+          "level": 3,
+          "table": null,
+          "body": "\nThe two canonical approaches to international pricing:\n\n**(a) Local-currency display (recommended).** Show prices in the customer's local currency (EUR, GBP, CAD, AUD, JPY). Use **purchasing-power-parity (PPP) pricing** to set per-market prices: target a per-market price that's 5–15% above the US price (offsetting shipping subsidies + duties + FX fees + lower local CAC).\n\n**(b) USD-only display (simplest).** Show all prices in USD. Pros: zero FX work. Cons: **20–40% conversion-rate penalty** for non-US shoppers (Shopify Markets benchmarks) — the displayed USD price feels expensive even when FX-converted.\n\n**FX fees eat 1.5–3.5% of revenue.** Stripe International charges 1.5% on US cards + 1% on non-US cards (capped) + a $0.30 fixed fee on currency conversion; PayPal International charges 3–4%; Shopify Payments tiered rates apply. **Budget 2.5% FX fee in the international P&L** as the median.\n\n**Pricing psychology — the \"round number in local currency\" rule.** Prices that are $19.99 USD should NOT be exactly €19.99 EUR (which feels arbitrary in EU markets) — round to €19.95 or €19.90. Similarly, £14.99 GBP is canonical UK; CAD$24.99 is canonical CA. **Spend 30 min per market on pricing psychology research** before launching — the wrong local price can drop CVR 10–20% in a specific market even when the math is \"right.\"\n"
+        },
+        {
+          "heading": "Pillar 3 — Duties, taxes & customs",
+          "level": 3,
+          "table": null,
+          "body": "\nThe four-corners framework that determines per-market duty + tax cost:\n\n**(a) EU — IOSS (Import One-Stop Shop).** For shipments ≤ €150, register for IOSS and charge VAT at point of sale (no customs hold, no surprise duty on delivery). For shipments > €150, customer pays VAT + duties on delivery (DAP — \"delivered at place\" — customer absorbs the friction). **IOSS registration is free via the EU portal; takes 2–4 weeks; mandatory for cross-border EU shipments.**\n\n**(b) UK — similar to EU post-Brexit.** For shipments ≤ £135, use the UK VAT MOSS scheme (charge VAT at checkout, no customs hold). For shipments > £135, customer pays VAT + duties on delivery. **UK is technically separate from EU IOSS — separate registration required.** The UK has its own VAT threshold (£85k of UK sales for mandatory registration, but voluntary registration below this is recommended for cross-border).\n\n**(c) Canada — USMCA.** US-Canada trade is duty-FREE for products meeting USMCA rules of origin (made in North America with ≥60% North American content). For non-USMCA products, duties range 0–18%. GST/HST applies at 5–15% per province.\n\n**(d) Australia — GST registration.** Mandatory GST registration at A$75k of AU sales. Charge 10% GST at checkout. Customs duties 0–10% per HS code.\n\n**DDP (Delivered Duty Paid) vs DAP (Delivered At Place) — the customer-experience decision.** DDP = seller pays duties + VAT upfront and includes them in the displayed price. DAP = customer pays duties + VAT on delivery. **DDP lifts CVR 15–25%** because the customer sees the final price upfront; **DAP triggers 20–40% delivery refusal rates** (the \"I didn't expect this much!\" abandonment). **For markets where IOSS/VAT MOSS applies (EU ≤€150, UK ≤£135), DDP is essentially free to implement — use it.** For DAP-required markets (EU >€150, AU, JP), either (a) absorb duties into the displayed price (best for AOV >$80) or (b) use a 3PL's \"landed cost\" calculator at checkout (Zonos, TaxJar, Avalara) to show estimated duties upfront (best for AOV <$80).\n"
+        },
+        {
+          "heading": "Pillar 4 — Fulfillment, shipping & returns",
+          "level": 3,
+          "table": [
+            {
+              "Model": "(a) Cross-border from US 3PL",
+              "Setup cost": "$0",
+              "Per-shipment cost": "$15–$40 (USPS, DHL, FedEx International)",
+              "Best for": "Brands at <500 international orders/mo; lightweight products (<2kg)",
+              "Fulfillment time": "7–14 days"
+            },
+            {
+              "Model": "(b) In-region 3PL with US-stock restock",
+              "Setup cost": "$2k–$10k onboarding",
+              "Per-shipment cost": "$4–$12",
+              "Best for": "Brands at 500–5,000 international orders/mo; medium-weight products",
+              "Fulfillment time": "3–7 days"
+            },
+            {
+              "Model": "(c) Distributed 3PL (US + EU + UK + AU)",
+              "Setup cost": "$10k–$50k onboarding",
+              "Per-shipment cost": "$3–$10",
+              "Best for": "Brands at >5,000 international orders/mo; heavy/bulky products",
+              "Fulfillment time": "1–5 days"
+            }
+          ],
+          "body": "\nThe three canonical fulfillment models:\n\n| Model | Setup cost | Per-shipment cost | Best for | Fulfillment time |\n|---|---|---|---|---|\n| **(a) Cross-border from US 3PL** | $0 | $15–$40 (USPS, DHL, FedEx International) | Brands at <500 international orders/mo; lightweight products (<2kg) | 7–14 days |\n| **(b) In-region 3PL with US-stock restock** | $2k–$10k onboarding | $4–$12 | Brands at 500–5,000 international orders/mo; medium-weight products | 3–7 days |\n| **(c) Distributed 3PL (US + EU + UK + AU)** | $10k–$50k onboarding | $3–$10 | Brands at >5,000 international orders/mo; heavy/bulky products | 1–5 days |\n\n**Default for Phase 1: cross-border from US 3PL** (the lowest-cost option that works for most brands). Upgrade to (b) when international order volume exceeds 500/mo or CVR drops below 1% on cross-border (indicates shipping time is the bottleneck).\n\n**Free-shipping threshold strategy.** US brands typically offer free shipping over $50–$75. International shipping costs 2–3× more, so a US-equivalent free-shipping threshold eats 15–25% of AOV. **Three options:**\n\n- **(a) Keep the US threshold + offer \"discounted\" international shipping** (e.g. $9.95 flat for orders >$75, $19.95 below). Works for high-AOV brands ($75+ AOV); fails for low-AOV brands.\n- **(b) Raise the international threshold 2× (e.g. $150 for free shipping)**. Works for premium / luxury brands; fails for mass-market.\n- **(c) Build duties into the international displayed price** (DDP) and offer free shipping at the same threshold. Best customer experience; eats margin. The right move for sustainable / luxury / premium brands where customers refuse to pay for shipping.\n\n**Returns — the under-appreciated cost.** Cross-border return shipping costs $15–$40 per item with 14–30 day transit. **Set a 30-day return window for international orders (vs US 60–90 days); restocking fees of $5–$15 to cover return shipping; \"returnless refund\" policy for sub-$30 items.** Brands that don't pre-design returns lose 10–20% of contribution margin to return shipping costs.\n"
+        },
+        {
+          "heading": "Pillar 5 — Localization (language + cultural + payment)",
+          "level": 3,
+          "table": [
+            {
+              "Layer": "Currency display",
+              "What": "Show prices in local currency",
+              "Tools": "Shopify Markets (built-in)",
+              "Cost": "$0 (included in Shopify) + 1.5–3% FX fees"
+            },
+            {
+              "Layer": "Translation",
+              "What": "Translate PDP, cart, checkout, Klaviyo flows",
+              "Tools": "Shopify Markets translations (free for 20+ languages); Weglot ($0–$500/mo); human translation ($0.10–$0.25/word for 10–50k words one-time)",
+              "Cost": "$0–$3k one-time + $0–$500/mo"
+            },
+            {
+              "Layer": "Cultural adaptation",
+              "What": "Voice profile + imagery + copy tone per market",
+              "Tools": "Asset 02 voice framework adapted per market; UK English vs US English differs (e.g. \"trousers\" not \"pants\", \"lift\" not \"elevator\"); EU imagery should reflect EU demographic diversity",
+              "Cost": "$2k–$8k per market (creative agency)"
+            },
+            {
+              "Layer": "Payment methods",
+              "What": "Local payment methods beyond Visa/MC",
+              "Tools": "Klarna (DACH + Nordics + UK + NL); AfterPay/Clearpay (UK + AU + CA); iDEAL (NL); Bancontact (BE); Konbini + JP bank transfer (JP); Alipay/WeChat Pay (CN — gated on cross-border)",
+              "Cost": "$0–$1k/mo per provider (transaction-fee based, typically 1–2.5% + $0.30)"
+            }
+          ],
+          "body": "\nThe four-layer localization stack:\n\n| Layer | What | Tools | Cost |\n|---|---|---|---|\n| **Currency display** | Show prices in local currency | Shopify Markets (built-in) | $0 (included in Shopify) + 1.5–3% FX fees |\n| **Translation** | Translate PDP, cart, checkout, Klaviyo flows | Shopify Markets translations (free for 20+ languages); Weglot ($0–$500/mo); human translation ($0.10–$0.25/word for 10–50k words one-time) | $0–$3k one-time + $0–$500/mo |\n| **Cultural adaptation** | Voice profile + imagery + copy tone per market | Asset 02 voice framework adapted per market; UK English vs US English differs (e.g. \"trousers\" not \"pants\", \"lift\" not \"elevator\"); EU imagery should reflect EU demographic diversity | $2k–$8k per market (creative agency) |\n| **Payment methods** | Local payment methods beyond Visa/MC | Klarna (DACH + Nordics + UK + NL); AfterPay/Clearpay (UK + AU + CA); iDEAL (NL); Bancontact (BE); Konbini + JP bank transfer (JP); Alipay/WeChat Pay (CN — gated on cross-border) | $0–$1k/mo per provider (transaction-fee based, typically 1–2.5% + $0.30) |\n\n**The 5-payment-method minimum for international:**\n\n1. **Visa / Mastercard / AmEx** (universal)\n2. **PayPal** (high trust in DE + UK + AU; 70%+ checkout-completion lift in DE markets)\n3. **Apple Pay / Google Pay** (high mobile conversion; ~30% of EU mobile checkouts)\n4. **Klarna or AfterPay** (BNPL — required for DACH + Nordics + UK; 20–30% checkout-completion lift)\n5. **One regional-local method** (iDEAL for NL, Bancontact for BE, Konbini for JP, Alipay for CN — non-negotiable for that market)\n\n**Voice framework localization (the Asset 02 brand-voice extension).** The 5-voice framework (Default / Luxury / Sustainable / Gen-Z / B2B) needs at minimum **UK-English variants** (not just US-English) + **EU-localized Luxury + Sustainable variants** (EU Sustainable tone has stricter regulatory constraints — no \"eco-friendly\" without certification per EU Green Claims Directive 2026). A full localization pass takes 2–4 weeks of voice-team time; partial localization (UK + DE only) takes 1 week.\n"
+        },
+        {
+          "heading": "GMV-tier paths — which markets when",
+          "level": 2,
+          "table": null,
+          "body": "\nThe 3-phase rollout above assumes a default $1M–$10M GMV brand. Different GMV tiers have different optimal phase sequences:\n"
+        },
+        {
+          "heading": "Path A — $100k–$500k GMV (micro-brand)",
+          "level": 3,
+          "table": null,
+          "body": "\n**Recommended:** Canada only + US-affiliate program. Total cost: $500–$2k setup + $50–$200/mo. Expected lift: 5–15%.\n\nWhy this scope: at <$500k US GMV, international expansion is **unjustified ops overhead**. The 50–500 international orders/mo that CA generates are enough to test cross-border mechanics without committing to IOSS registration + EU translation + multi-market pricing psychology. **Defer UK + EU + AU until US GMV exceeds $1M.**\n"
+        },
+        {
+          "heading": "Path B — $1M–$10M GMV (small-to-mid DTC) — DEFAULT",
+          "level": 3,
+          "table": null,
+          "body": "\n**Recommended:** Phase 1 (CA + UK) + Phase 2 (EU + AU). Total cost: $5k–$25k setup + $300–$2k/mo. Expected lift: 30–80% on a $5M US base.\n\nWhy this scope: at $1M–$10M US GMV, the brand has the volume to justify IOSS + EU translation + multi-market pricing + a 4-market 3PL setup. The 30–80% revenue lift is realistic; the 4-market scope is the sweet spot before ops overhead outpaces marginal revenue. **Phase 3 (JP + DACH + Nordics) is gated on Phase 1+2 delivering >20% of total revenue AND operator capacity.**\n"
+        },
+        {
+          "heading": "Path C — $10M–$50M GMV (mid-to-large DTC)",
+          "level": 3,
+          "table": null,
+          "body": "\n**Recommended:** All 7 markets with in-region 3PL distribution. Total cost: $25k–$100k setup + $2k–$8k/mo (3PL amortized) + $5k–$15k/mo (translation + creative localization). Expected lift: 50–150% on a $10M US base.\n\nWhy this scope: at $10M+ US GMV, the brand can justify a 3-region distributed 3PL (US + EU + AU) for 1–5 day fulfillment, full 7-market pricing psychology research, native-language voice profiles (DE/FR/ES/JP), and in-region customer service. The 50–150% lift is realistic; the per-market ops cost is 3–5× higher than Path B but the per-market revenue is 5–10× higher.\n"
+        },
+        {
+          "heading": "Common pitfalls — the 15 things that derail an international rollout",
+          "level": 2,
+          "table": null,
+          "body": "\n1. **Launching EU without IOSS registration** → customs holds on every shipment, 5–14 day delays, 30%+ customer complaints. Fix: IOSS registration takes 2–4 weeks; start the process 8 weeks before EU launch.\n2. **Using US prices (just currency-converted) for international markets** → 20–40% CVR penalty. Fix: PPP pricing per market (5–15% above US price).\n3. **Not localizing voice for UK English** → \"pants\" reads as underwear, \"fanny pack\" reads as vagina, \"hood\" (of a car) doesn't exist. Fix: UK-English pass on all PDP + Klaviyo + Gorgias macros; budget 1 week.\n4. **Forgetting that UK is no longer in EU** → UK VAT MOSS is separate from EU IOSS; UK has its own £135 threshold; cross-border to UK from EU requires UK VAT registration. Fix: treat UK as its own market with its own VAT/shipping/returns policies.\n5. **Shipping from US with 14-day delivery to customers expecting Amazon Prime** → 50%+ cart abandonment on shipping-time-sensitive categories. Fix: set delivery expectations clearly (\"7–14 days\" not \"Free 2-day shipping\"); for Phase 2, switch to in-region 3PL when volume justifies.\n6. **Not setting up Klarna/AfterPay in DACH** → 30–40% of DE/NL/SE shoppers won't complete checkout without BNPL. Fix: Klarna integration is 1–2 days; shopify Markets supports it natively; the conversion lift is immediate.\n7. **Charging duties on delivery (DAP) without warning** → 25–40% delivery refusal rates, customer-service nightmare, chargebacks. Fix: DDP via IOSS/VAT MOSS for eligible shipments; landed-cost calculator (Zonos/TaxJar/Avalara) for non-eligible.\n8. **Not budgeting for FX fees in the P&L** → 1.5–3.5% margin compression. Fix: budget 2.5% FX fee; negotiate multi-currency settlement with Stripe/PayPal.\n9. **Returning US-sized packaging internationally** → dimensional-weight shipping costs 2–3× more than weight suggests; 40–60% of international shipping cost is dimensional weight, not product weight. Fix: redesign packaging for international (smaller, lighter, no oversized US boxes); use poly-mailers for soft goods.\n10. **Using US-only returns policy** → 30–60 day return shipping costs $15–$40 per item, eats margin. Fix: 30-day return window + restocking fees + \"returnless refund\" policy for sub-$30 items.\n11. **Translating with Google Translate / DeepL without human review** → embarrassing mistranslations, regulatory non-compliance for \"organic\" / \"natural\" / \"eco-friendly\" claims. Fix: human translation for all PDP + Klaviyo flows + Gorgias macros; AI translation OK for cart/checkout (low-risk).\n12. **Not adapting Klaviyo flows to local time zones** → emails arrive at 3am local time, drop CTR 20–40%. Fix: per-market send-time defaults; Klaviyo supports per-locale timing.\n13. **Launching JP without Konbini payment** → 30% of JP shoppers can't pay; conversion collapses. Fix: Konbini integration is $1k–$3k setup + 3–5% transaction fee; non-negotiable for JP market.\n14. **Forgetting GDPR for EU email capture** → €20M or 4% of revenue fines per violation. Fix: double opt-in for EU subscribers; clear consent language; cookie consent banner; data-processing agreement with Klaviyo + Gorgias + Shopify.\n15. **Scaling international before unit economics work in US** → international is a multiplier on existing US ops, not a replacement. If US LTV:CAC is <3:1, international expansion burns cash 2–3× faster. Fix: gate international expansion on US LTV:CAC ≥ 3:1 + contribution margin ≥ 30%.\n"
+        },
+        {
+          "heading": "Verification gates (end-of-phase check)",
+          "level": 2,
+          "table": null,
+          "body": ""
+        },
+        {
+          "heading": "Gate A — Phase 1 (CA + UK) ready to launch",
+          "level": 3,
+          "table": null,
+          "body": "\n- Shopify Markets activated with CA + UK markets configured (currency, language, pricing).\n- IOSS/VAT MOSS registration confirmed (EU IOSS not yet required if Phase 1 = CA + UK only).\n- 3PL cross-border rate quotes obtained (USPS, DHL, FedEx International) — per-zone rates documented.\n- Klarna/AfterPay not yet required (skip for Phase 1; add in Phase 2 for EU).\n- UK-English voice pass complete on PDP + Klaviyo + Gorgias.\n- 30-day return policy + restocking fee documented per market.\n- Per-market pricing psychology research done (round-number-in-local-currency).\n- 4-week pre-launch Meta + Google campaign briefs prepared (separate ad sets per market).\n- **Test order flow verified end-to-end:** place test order from CA + UK (use a forwarding service or a friend abroad); verify currency display + duties treatment + estimated delivery time.\n"
+        },
+        {
+          "heading": "Gate B — Phase 2 (EU + AU) ready to launch",
+          "level": 3,
+          "table": null,
+          "body": "\n- IOSS registration active (EU portal confirmation email on file).\n- UK VAT MOSS registration active (separate from EU; HMRC confirmation on file).\n- AU GST registration active (ABN + GST registration on file).\n- EU translation complete for DE + FR + ES (3 minimum languages; 27 is overkill until €1M+ EU GMV).\n- Klarna + AfterPay integrated (DE + AU markets).\n- EU voice variants for Sustainable (EU Green Claims Directive compliance) + Luxury (EU consumer-protection regulations on luxury claims).\n- Cookie consent banner GDPR-compliant.\n- 3PL cross-border rate quotes refreshed (EU + AU zones).\n- DDP-enabled at checkout for eligible shipments (≤€150 EU, ≤£135 UK, ≤A$1,000 AU).\n- Landed-cost calculator for non-eligible shipments (Zonos / TaxJar / Avalara).\n- **Test order flow verified end-to-end:** place test order from DE + AU; verify currency + duties + translation + payment methods + estimated delivery.\n"
+        },
+        {
+          "heading": "Gate C — Phase 3 (JP + DACH + Nordics) ready to launch",
+          "level": 3,
+          "table": null,
+          "body": "\n- Konbini payment integrated for JP market.\n- Klarna/AfterPay extended to DACH + Nordics markets.\n- DE + SE + DK + NO + FI translation complete (or English-only for high-tolerance markets — DE has lower English-tolerance, Nordics are higher).\n- JP + DACH voice variants for Luxury + Sustainable (highest-priority per these markets).\n- In-region 3PL activated (EU + UK + AU at minimum).\n- Per-market pricing psychology research refreshed (PPP + round-number rule).\n- **Test order flow verified end-to-end:** place test order from JP + DE + SE; verify everything from Gate B + per-market payment methods + JP Konbini flow.\n"
+        },
+        {
+          "heading": "Gate D — Steady-state international ops (month 6+)",
+          "level": 3,
+          "table": null,
+          "body": "\n- International revenue ≥ 20% of total revenue (the gating threshold for Phase 3).\n- International LTV:CAC ≥ 2.5:1 (lower than US 3:1 because of higher CAC in new markets; ≥2.5:1 is healthy).\n- International contribution margin ≥ 20% (after duties + shipping + FX + 3PL costs).\n- Per-market return-rate ≤ 8% (industry baseline is 5–8% for apparel; 2–4% for non-apparel).\n- IOSS/VAT MOSS quarterly filing up-to-date.\n- GDPR + UK GDPR + AU Privacy Act + APPI (JP) compliance audited annually.\n- Per-market CAC payback ≤ 9 months.\n"
+        },
+        {
+          "heading": "Cost & ROI estimate (default $5M US GMV brand, Path B scope)",
+          "level": 2,
+          "table": [
+            {
+              "Item": "Shopify Markets Pro (annual fee for multi-market pricing)",
+              "One-time": "$2,400 (annual)",
+              "Monthly": "—"
+            },
+            {
+              "Item": "IOSS + UK VAT MOSS + AU GST registration",
+              "One-time": "$0 (free via government portals)",
+              "Monthly": "—"
+            },
+            {
+              "Item": "Translation (10 PDP + 10 Klaviyo flows × 4 languages = 40,000 words @ $0.15/word)",
+              "One-time": "$6,000",
+              "Monthly": "—"
+            },
+            {
+              "Item": "Voice localization (UK + DE voice variants)",
+              "One-time": "$4,000",
+              "Monthly": "—"
+            },
+            {
+              "Item": "3PL cross-border onboarding + rate negotiation",
+              "One-time": "$2,000",
+              "Monthly": "$300–$1,500"
+            },
+            {
+              "Item": "Payment-method integrations (Klarna + AfterPay)",
+              "One-time": "$1,000",
+              "Monthly": "$200–$800 (transaction-fee based)"
+            },
+            {
+              "Item": "Per-market creative agency (10 PDP images × 4 markets)",
+              "One-time": "$8,000",
+              "Monthly": "—"
+            },
+            {
+              "Item": "Zonos / TaxJar landed-cost calculator",
+              "One-time": "—",
+              "Monthly": "$30–$250"
+            },
+            {
+              "Item": "Weglot (translation platform)",
+              "One-time": "—",
+              "Monthly": "$0–$500"
+            },
+            {
+              "Item": "FX buffer (2.5% of international revenue)",
+              "One-time": "—",
+              "Monthly": "Variable"
+            },
+            {
+              "Item": "Customer-service localization (Gorgias multi-locale + 1 EU CS hire)",
+              "One-time": "$2,000",
+              "Monthly": "$800–$2,000"
+            },
+            {
+              "Item": "Per-market Meta + Google ad-spend budget (Month 1–3 ramp)",
+              "One-time": "—",
+              "Monthly": "$2,000–$8,000"
+            },
+            {
+              "Item": "Total",
+              "One-time": "$25,400 one-time",
+              "Monthly": "$3,330–$13,050/mo"
+            }
+          ],
+          "body": "\n| Item | One-time | Monthly |\n|---|---|---|\n| **Shopify Markets Pro** (annual fee for multi-market pricing) | $2,400 (annual) | — |\n| **IOSS + UK VAT MOSS + AU GST registration** | $0 (free via government portals) | — |\n| **Translation (10 PDP + 10 Klaviyo flows × 4 languages = 40,000 words @ $0.15/word)** | $6,000 | — |\n| **Voice localization (UK + DE voice variants)** | $4,000 | — |\n| **3PL cross-border onboarding + rate negotiation** | $2,000 | $300–$1,500 |\n| **Payment-method integrations (Klarna + AfterPay)** | $1,000 | $200–$800 (transaction-fee based) |\n| **Per-market creative agency (10 PDP images × 4 markets)** | $8,000 | — |\n| **Zonos / TaxJar landed-cost calculator** | — | $30–$250 |\n| **Weglot (translation platform)** | — | $0–$500 |\n| **FX buffer (2.5% of international revenue)** | — | Variable |\n| **Customer-service localization (Gorgias multi-locale + 1 EU CS hire)** | $2,000 | $800–$2,000 |\n| **Per-market Meta + Google ad-spend budget (Month 1–3 ramp)** | — | $2,000–$8,000 |\n| **Total** | **$25,400 one-time** | **$3,330–$13,050/mo** |\n\n**Default Year-1 ROI:**\n\nA $5M US GMV brand expanding into 4 markets (CA + UK + EU + AU) typically achieves **30–80% revenue lift** (i.e. $1.5M–$4M incremental international revenue Year 1) at **$25k one-time + $40k–$155k recurring costs** (12 months × $3,330–$13,050/mo) = **$65k–$180k total Year-1 cost**.\n\n- **Conservative ($1.5M incremental at $180k cost):** 8.3:1 Year 1 ROI.\n- **Aggressive ($4M incremental at $65k cost):** 61.5:1 Year 1 ROI.\n- **Median:** $2.5M incremental at $100k cost → **25:1 Year 1 ROI.**\n\n**Honest-read:** The first 3–6 months are mostly cost; the payoff is months 6–18 as attribution quality compounds, voice localization improves CVR, and Klarna/AfterPay raise checkout completion. **Operators who can't commit to 12 months of post-launch measurement should defer Phases 2+3.**\n"
+        },
+        {
+          "heading": "Next moves after Phase 2",
+          "level": 2,
+          "table": null,
+          "body": "\nThe 4-market Phase 1+2 default above is the **MVP international stack**. Once shipped + steady-state, the high-leverage follow-ups are:\n\n1. **Phase 3 (JP + DACH + Nordics)** — gated on Phase 1+2 delivering >20% of total revenue + operator capacity + Konbini/Klarna integration ready.\n2. **In-region 3PL distribution** — gated on international order volume exceeding 500/mo OR CVR dropping below 1% on cross-border shipping time.\n3. **Native-language voice profiles (DE/FR/ES/JP)** — replaces UK-English + machine-translation approach with native-speaker voice content; 20–40% CVR lift.\n4. **International Klaviyo segment building** — separate segments per market with localized welcome + cart-abandon + post-purchase + winback flows; compounds Asset 04 promo-calendar + Asset 06 NPS-survey + Asset 11 CS-training.\n5. **Per-market affiliate / creator programs** — international creator outreach (Move #10 affiliate-program playbook + Asset 10 affiliate-program-playbook adapted per market).\n6. **Marketplace expansion (Amazon EU + Amazon JP)** — gated on Phase 1+2 reaching steady-state AND brand's category being marketplace-fit (apparel + beauty + home goods work; consumables + supplements fail on Amazon EU regulatory friction).\n\nA new operator who's shipped Phases 1+2 should pick the follow-up that matches their brand's next bottleneck, then come back to international expansion for the next market entry.\n"
+        },
+        {
+          "heading": "Related",
+          "level": 2,
+          "table": null,
+          "body": "\n- `research/00-ecommerce-ops-landscape.md` — strategic landscape + unit-econ framework (assumes US-only; this doc is the international extension)\n- `research/01-tools-stack-comparison.md` — vendor matrix + pricing (this doc adds Shopify Markets + Zonos + TaxJar + Avalara + Klarna + AfterPay + Weglot + IOSS-registration references)\n- `research/02-top-10-leverage-moves.md` — the prioritized list + status tracker (the \"what this list is NOT\" section already calls out 3PL migration + subscription program + marketplace expansion; this doc adds international expansion as the 4th deferred move)\n- `research/03-30-day-rollout-plan.md` — the US-centric 30-day rollout (compounds by adding Phase 4: International expansion at Month 6+ in the next revision of the rollout plan)\n- `playbooks/01-abandoned-cart-flow-klaviyo.md` — Move #1 (needs per-market localization before international application)\n- `playbooks/02-post-purchase-upsell-reconvert.md` — Move #2 (needs per-market pricing)\n- `playbooks/03-checkout-audit-baymard.md` — Move #3 (needs per-market payment-method addition)\n- `playbooks/04-welcome-series-klaviyo.md` — Move #4 (needs per-market send-time + GDPR double opt-in)\n- `playbooks/05-migrate-to-klaviyo-postscript.md` — Move #5 (Klaviyo already supports per-locale flows; SMS via Postscript has separate per-country pricing)\n- `playbooks/06-install-attribution-triplewhale-or-polar.md` — Move #6 (Triple Whale tracks per-market revenue but FX conversion is automatic)\n- `playbooks/06-sms-welcome-and-cart-abandon.md` — Move #7 (Postscript supports per-country SMS; UK/EU/AU require separate sender-ID registration)\n- `playbooks/07-loyalty-program-smile.md` — Move #8 (Smile.io supports multi-currency; per-market points-earning rates may need tuning)\n- `playbooks/09-mobile-pdp-redesign.md` — Move #9 (mobile is 65–75% of international traffic vs 70% US; same redesign applies)\n- `playbooks/09.5-pdp-ab-testing-program.md` — Move #9.5 (per-market test backlogs; UK/EU often diverge from US on PDP tests)\n- `playbooks/10-ai-ad-creative-iteration.md` — Move #10 (per-market creative iteration; UK + EU often have distinct winning creative vs US)\n- `playbooks/06.5-attribution-quality-audit.md` — Move #6.5 (per-market attribution quality; EU has stricter consent signals so match rates differ)\n- `playbooks/06.6-tiktok-attribution-quality-audit.md` — Move #6.6 (TikTok has weaker EU presence; expand to per-market TikTok ads cautiously)\n- `playbooks/06.7-snap-pinterest-attribution-quality-audit.md` — Move #6.7 (Snap is US/UK heavy; Pinterest has stronger EU presence)\n- `playbooks/06.8-cross-platform-attribution-drift-unification.md` — Move #6.8 (the drift rollup needs per-market thresholds; this is a future-tick enhancement)\n- `dashboards/unified-attribution-health.html` — Move #6.9 dashboard (needs a future-tick per-market tab)\n- `scripts/attribution_quality_audit.py` + `scripts/tests/test_attribution_quality_audit.py` — Move #6.5 script (per-market version planned)\n- `scripts/tiktok_attribution_audit.py` + `scripts/tests/test_tiktok_attribution_audit.py` — Move #6.6 script (per-market version planned)\n- `scripts/snap_pinterest_attribution_audit.py` + `scripts/tests/test_snap_pinterest_attribution_audit.py` — Move #6.7 script (per-market version planned)\n- `scripts/attribution_cross_platform_rollup.py` + `scripts/tests/test_attribution_cross_platform_rollup.py` — Move #6.8 script (per-market version planned)\n- `dashboard/` — Next.js 15 + shadcn dashboard that renders this research + the playbooks + the attribution dashboard in a unified SPA (will need a future-tick `/international` route to render this doc)\n\n**Planned future-tick companions:**\n- `playbooks/11-international-rollout.md` — paste-ready operator build mapping each section of this doc into step-by-step Playbook shape (mirrors the 16 shipped US playbooks)\n- `assets/13-international-pricing-card.md` — per-market price-test templates + per-market voice override variants + per-market FX-fee calcul"
+        },
+        {
+          "heading": "Sources",
+          "level": 2,
+          "table": null,
+          "body": "\n**Shopify**\n- [Shopify Markets: International Ecommerce](https://www.shopify.com/markets)\n- [Shopify Markets Pricing](https://www.shopify.com/pricing)\n- [Cross-Border Ecommerce: Strategy & Best Practices](https://www.shopify.com/enterprise/blog/cross-border-ecommerce)\n\n**EU VAT / IOSS**\n- [EU IOSS (Import One-Stop Shop) — European Commission](https://ec.europa.eu/taxation_customs/business/vat/ioss_en)\n- [EU VAT MOSS — European Commission](https://ec.europa.eu/taxation_customs/business/vat/vat-digital-single-market_en)\n- [EU Green Claims Directive 2026 — European Commission](https://environment.ec.europa.eu/topics/circular-economy/green-claims_en)\n\n**UK (post-Brexit)**\n- [UK VAT MOSS — HMRC](https://www.gov.uk/guidance/register-and-use-the-vat-moss-service)\n- [UK Cross-Border Trade — HMRC](https://www.gov.uk/import-goods-into-uk)\n- [UK Consumer Rights Act 2015](https://www.legislation.gov.uk/ukpga/2015/15/contents)\n\n**Payment methods**\n- [Klarna Merchant Documentation](https://docs.klarna.com/)\n- [AfterPay/Clearpay Merchant Documentation](https://www.afterpay.com/en-AU/business)\n- [iDEAL Merchant Documentation](https://www.ideal.nl/en/businesses/)\n- [Stripe International Pricing](https://stripe.com/pricing)\n- [PayPal International Fees](https://www.paypal.com/us/webapps/mpp/paypal-fees)\n\n**Fulfillment / cross-border 3PL**\n- [ShipBob International Fulfillment](https://www.shipbob.com/international-fulfillment/)\n- [ShipMonk Cross-Border](https://www.shipmonk.com/)\n- [DHL Express International Shipping](https://www.dhl.com/global-en/home.html)\n- [FedEx International Shipping](https://www.fedex.com/en-us/shipping/international.html)\n- [USPS International Shipping](https://www.usps.com/international/)\n\n**Landed-cost calculators**\n- [Zonos International Checkout](https://www.zonos.com/)\n- [TaxJar International](https://www.taxjar.com/)\n- [Avalara Cross-Border](https://www.avalara.com/us/en/products/cross-border.html)\n\n**Translation / localization**\n- [Weglot Translation Platform](https://www.weglot.com/)\n- [Shopify Markets Translations](https://help.shopify.com/en/manual/markets)\n\n**GDPR / privacy**\n- [GDPR — European Commission](https://gdpr-info.eu/)\n- [UK GDPR — ICO](https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/)\n- [AU Privacy Act 1988 — OAIC](https://www.oaic.gov.au/privacy/the-privacy-act)\n- [Japan APPI (Act on the Protection of Personal Information)](https://www.ppc.go.jp/en/legal/)\n\n**DTC benchmarks**\n- [Shopify Cross-Border Ecommerce Statistics 2026](https://www.shopify.com/enterprise/blog/cross-border-ecommerce-statistics)\n- [International Ecommerce Benchmarks — BigCommerce](https://www.bigcommerce.com/blog/international-ecommerce/)\n- [Cross-Border Conversion Rates — Statista](https://www.statista.com/topics/2443/cross-border-e-commerce/)\n- [Baymard International Checkout Usability](https://www.baymard.com/checkout-usability)"
+        }
+      ],
+      "tables": [
+        {
+          "heading": "Pillar 1 — Market selection & prioritization",
+          "rows": [
+            {
+              "Phase": "1",
+              "Market": "Canada",
+              "Why this market": "English + same continent; 38M population; US-brand affinity strong; CDN$ currency; duties trivial under USMCA",
+              "GMV tier fit": "All tiers",
+              "Localization cost": "$500–$2,000",
+              "Expected revenue lift on $5M US base": "5–15%"
+            },
+            {
+              "Phase": "1",
+              "Market": "United Kingdom",
+              "Why this market": "67M English speakers; UK consumer trust in US brands; GBP currency; duties + VAT regulated post-Brexit; 5–7 day shipping via DHL/FedEx",
+              "GMV tier fit": "All tiers",
+              "Localization cost": "$2k–$5k",
+              "Expected revenue lift on $5M US base": "10–25%"
+            },
+            {
+              "Phase": "2",
+              "Market": "EU (DE + FR + ES + IT + NL)",
+              "Why this market": "450M consumers across 27 countries; EU VAT MOSS + IOSS required; DE + FR + ES minimum for ~70% EU revenue; payment-method localization required (Klarna, AfterPay, iDEAL, SEPA)",
+              "GMV tier fit": "Mid-to-large",
+              "Localization cost": "$5k–$15k",
+              "Expected revenue lift on $5M US base": "15–50%"
+            },
+            {
+              "Phase": "2",
+              "Market": "Australia",
+              "Why this market": "26M English speakers; A$ currency; GST registration threshold A$75k (~US$50k) is low; 7–10 day shipping via AU Post + DHL; strong US-brand affinity",
+              "GMV tier fit": "All tiers",
+              "Localization cost": "$2k–$5k",
+              "Expected revenue lift on $5M US base": "5–15%"
+            },
+            {
+              "Phase": "3",
+              "Market": "Japan",
+              "Why this market": "125M consumers; high purchasing power; US-brand affinity very strong (especially fashion + beauty + supplements); JPY currency; Konbini payment required (~30% of JP ecommerce); 5–7 day shipping via DHL/JP Post",
+              "GMV tier fit": "Large",
+              "Localization cost": "$8k–$20k",
+              "Expected revenue lift on $5M US base": "5–20% (high AOV offsets low CVR)"
+            },
+            {
+              "Phase": "3",
+              "Market": "DACH + Nordics (DE + AT + CH + SE + DK + NO + FI)",
+              "Why this market": "High purchasing power; Klarna/AfterPay dominant; English-language tolerance lower (DE + Nordics prefer localized sites); 70%+ of DACH orders use invoice payment",
+              "GMV tier fit": "Large",
+              "Localization cost": "$8k–$25k",
+              "Expected revenue lift on $5M US base": "10–30%"
+            },
+            {
+              "Phase": "Category",
+              "Market": "Cross-border fit",
+              "Why this market": "Why",
+              "GMV tier fit": "",
+              "Localization cost": "",
+              "Expected revenue lift on $5M US base": ""
+            },
+            {
+              "Phase": "---",
+              "Market": "---",
+              "Why this market": "---",
+              "GMV tier fit": "",
+              "Localization cost": "",
+              "Expected revenue lift on $5M US base": ""
+            },
+            {
+              "Phase": "Apparel / accessories",
+              "Market": "★★★★★",
+              "Why this market": "High AOV (offsets duties), low return-rate for tried-on items via size-guide rigor; US brands have strong differentiation in sustainable + premium segments",
+              "GMV tier fit": "",
+              "Localization cost": "",
+              "Expected revenue lift on $5M US base": ""
+            },
+            {
+              "Phase": "Beauty / personal care",
+              "Market": "★★★★☆",
+              "Why this market": "High demand globally; regulatory friction in some categories (EU cosmetics regulation, JP quasi-drug rules); AOV $40–$80 ideal",
+              "GMV tier fit": "",
+              "Localization cost": "",
+              "Expected revenue lift on $5M US base": ""
+            },
+            {
+              "Phase": "Home goods / decor",
+              "Market": "★★★☆☆",
+              "Why this market": "High return-rate on bulky items + dimensional-weight shipping costs; works for lightweight premium decor (candles, ceramics) not furniture",
+              "GMV tier fit": "",
+              "Localization cost": "",
+              "Expected revenue lift on $5M US base": ""
+            },
+            {
+              "Phase": "Food / beverage",
+              "Market": "★★☆☆☆☆",
+              "Why this market": "Strict regulatory per market (FDA ≠ EFSA ≠ FSANZ); shelf-life constraints; works for shelf-stable low-value items, fails for fresh or refrigerated",
+              "GMV tier fit": "",
+              "Localization cost": "",
+              "Expected revenue lift on $5M US base": ""
+            },
+            {
+              "Phase": "Supplements / vitamins",
+              "Market": "★☆☆☆☆",
+              "Why this market": "Highest regulatory friction (each market has independent approval — EFSA in EU, TGA in AU, MHLW in JP); defer unless you have category-specific regulatory expertise",
+              "GMV tier fit": "",
+              "Localization cost": "",
+              "Expected revenue lift on $5M US base": ""
+            },
+            {
+              "Phase": "CBD / hemp",
+              "Market": "☆☆☆☆☆",
+              "Why this market": "Effectively banned in most cross-border markets; skip",
+              "GMV tier fit": "",
+              "Localization cost": "",
+              "Expected revenue lift on $5M US base": ""
+            }
+          ]
+        },
+        {
+          "heading": "Pillar 4 — Fulfillment, shipping & returns",
+          "rows": [
+            {
+              "Model": "(a) Cross-border from US 3PL",
+              "Setup cost": "$0",
+              "Per-shipment cost": "$15–$40 (USPS, DHL, FedEx International)",
+              "Best for": "Brands at <500 international orders/mo; lightweight products (<2kg)",
+              "Fulfillment time": "7–14 days"
+            },
+            {
+              "Model": "(b) In-region 3PL with US-stock restock",
+              "Setup cost": "$2k–$10k onboarding",
+              "Per-shipment cost": "$4–$12",
+              "Best for": "Brands at 500–5,000 international orders/mo; medium-weight products",
+              "Fulfillment time": "3–7 days"
+            },
+            {
+              "Model": "(c) Distributed 3PL (US + EU + UK + AU)",
+              "Setup cost": "$10k–$50k onboarding",
+              "Per-shipment cost": "$3–$10",
+              "Best for": "Brands at >5,000 international orders/mo; heavy/bulky products",
+              "Fulfillment time": "1–5 days"
+            }
+          ]
+        },
+        {
+          "heading": "Pillar 5 — Localization (language + cultural + payment)",
+          "rows": [
+            {
+              "Layer": "Currency display",
+              "What": "Show prices in local currency",
+              "Tools": "Shopify Markets (built-in)",
+              "Cost": "$0 (included in Shopify) + 1.5–3% FX fees"
+            },
+            {
+              "Layer": "Translation",
+              "What": "Translate PDP, cart, checkout, Klaviyo flows",
+              "Tools": "Shopify Markets translations (free for 20+ languages); Weglot ($0–$500/mo); human translation ($0.10–$0.25/word for 10–50k words one-time)",
+              "Cost": "$0–$3k one-time + $0–$500/mo"
+            },
+            {
+              "Layer": "Cultural adaptation",
+              "What": "Voice profile + imagery + copy tone per market",
+              "Tools": "Asset 02 voice framework adapted per market; UK English vs US English differs (e.g. \"trousers\" not \"pants\", \"lift\" not \"elevator\"); EU imagery should reflect EU demographic diversity",
+              "Cost": "$2k–$8k per market (creative agency)"
+            },
+            {
+              "Layer": "Payment methods",
+              "What": "Local payment methods beyond Visa/MC",
+              "Tools": "Klarna (DACH + Nordics + UK + NL); AfterPay/Clearpay (UK + AU + CA); iDEAL (NL); Bancontact (BE); Konbini + JP bank transfer (JP); Alipay/WeChat Pay (CN — gated on cross-border)",
+              "Cost": "$0–$1k/mo per provider (transaction-fee based, typically 1–2.5% + $0.30)"
+            }
+          ]
+        },
+        {
+          "heading": "Cost & ROI estimate (default $5M US GMV brand, Path B scope)",
+          "rows": [
+            {
+              "Item": "Shopify Markets Pro (annual fee for multi-market pricing)",
+              "One-time": "$2,400 (annual)",
+              "Monthly": "—"
+            },
+            {
+              "Item": "IOSS + UK VAT MOSS + AU GST registration",
+              "One-time": "$0 (free via government portals)",
+              "Monthly": "—"
+            },
+            {
+              "Item": "Translation (10 PDP + 10 Klaviyo flows × 4 languages = 40,000 words @ $0.15/word)",
+              "One-time": "$6,000",
+              "Monthly": "—"
+            },
+            {
+              "Item": "Voice localization (UK + DE voice variants)",
+              "One-time": "$4,000",
+              "Monthly": "—"
+            },
+            {
+              "Item": "3PL cross-border onboarding + rate negotiation",
+              "One-time": "$2,000",
+              "Monthly": "$300–$1,500"
+            },
+            {
+              "Item": "Payment-method integrations (Klarna + AfterPay)",
+              "One-time": "$1,000",
+              "Monthly": "$200–$800 (transaction-fee based)"
+            },
+            {
+              "Item": "Per-market creative agency (10 PDP images × 4 markets)",
+              "One-time": "$8,000",
+              "Monthly": "—"
+            },
+            {
+              "Item": "Zonos / TaxJar landed-cost calculator",
+              "One-time": "—",
+              "Monthly": "$30–$250"
+            },
+            {
+              "Item": "Weglot (translation platform)",
+              "One-time": "—",
+              "Monthly": "$0–$500"
+            },
+            {
+              "Item": "FX buffer (2.5% of international revenue)",
+              "One-time": "—",
+              "Monthly": "Variable"
+            },
+            {
+              "Item": "Customer-service localization (Gorgias multi-locale + 1 EU CS hire)",
+              "One-time": "$2,000",
+              "Monthly": "$800–$2,000"
+            },
+            {
+              "Item": "Per-market Meta + Google ad-spend budget (Month 1–3 ramp)",
+              "One-time": "—",
+              "Monthly": "$2,000–$8,000"
+            },
+            {
+              "Item": "Total",
+              "One-time": "$25,400 one-time",
+              "Monthly": "$3,330–$13,050/mo"
+            }
+          ]
+        }
+      ],
+      "findings": []
     }
   ],
   "playbooks": [
@@ -5587,7 +6202,11 @@
   },
   "journal": [
     {
-      "heading": "[2026-06-27 15:49] Asset seed — Impact data pipeline (6-pillar ETL: Shopify Planet / EcoCart / GOTS / Fair Trade USA / How2Recycle / 1% for the Planet / B Corp → unified impact dashboard; 3 customer-facing surfaces: PDP labels + Gorgias macro + Klaviyo quarterly email; affiliate-mission-alignment verifier; README hygiene rolled in 11→12)",
+      "heading": "[2026-06-27 21:30] Operator-surface gap fix — Add /assets library route to the Next.js dashboard (12 paste-ready assets finally surfaced to operators; closes the 1+ tick drift where the dashboard's \"11 routes + CTA banner\" claim never matched on-disk reality since Asset 01 shipped)",
+      "body": "- **What shipped:** A new `dashboard/app/assets/page.tsx` route that renders all 12 paste-ready assets (`assets/01-copy-templates.md` through `assets/12-impact-data-pipeline.md`) as a browsable library, plus the parser + types + nav wiring to make it work: (1) **`dashboard/scripts/parse-content.mjs`** — added `parseAssets()` function that mirrors `parsePlaybooks()` but additionally extracts (a) the Goal section's first 6 bullets as the asset's \"what this is\" blurb, (b) voice-density counts for the 5 canonical voice profiles (Default / Luxury / Sustainable / Gen-Z / B2B) via the canonical `\\b<voice>\\b` regex, (c) a `voiceGated` boolean flag that's true when all 5 voices appear ≥15 times (the canonical v1.24.0 voice-density recipe's threshold), and (d) the `assetNumber` extracted from the fi"
+    },
+    {
+      "heading": "[2026-06-27 15:49] Asset seed — Impact data pipeline (6-pillar ETL: Shopify Planet / EcoCart / GOTS / Fair Trade USA / How2Recycle / 1% for the Planet / B Corp → unified impact dashboard; 3 customer-facing surfaces: PDP labels + Gorgias macro + Klaviyo quarterly email; affiliate-mission-alignment-verifier; README hygiene rolled in 11→12)",
       "body": "- **What shipped:** `assets/12-impact-data-pipeline.md` (~892 lines / 80KB / the twelfth artifact in the `assets/` track — a paste-ready automated ETL pipeline that closes the **manual data-collection wall** that Asset 09 (6-pillar impact-reporting framework) + Asset 10 (Sustainable commission tier 20/25/30%) + Asset 11 (Module 6 NPS-detractor impact-relevance drill) all hit when an operator tries to actually implement them. Asset 09 ships the manual data-collection rubric; Asset 10 ships the mission-alignment-verification step; Asset 11 ships the per-pillar data lookup the CS rep does manually. **All three problems share the same root cause: no automated pipeline produces the impact data on demand.** Asset 12 IS the pipeline. Per Asset 02's voice framework, **Sustainable is the canonical "
     },
     {
@@ -5732,11 +6351,11 @@
     }
   ],
   "counts": {
-    "researchDocs": 4,
+    "researchDocs": 5,
     "playbooks": 15,
     "assets": 12,
-    "tables": 34,
+    "tables": 38,
     "findings": 8,
-    "journalEntries": 36
+    "journalEntries": 37
   }
 }
