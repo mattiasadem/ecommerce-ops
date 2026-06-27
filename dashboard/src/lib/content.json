@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-27T07:13:20.339Z",
+  "generatedAt": "2026-06-27T08:24:37.774Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -6241,6 +6241,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-06-27 07:13] Asset seed — International pricing card (7-market × 5-voice PPP pricing framework + per-market voice override variants + per-market FX-fee calculator)",
+      "body": "- **What shipped:** `assets/13-international-pricing-card.md` (349 lines / 48KB / the thirteenth asset in the workspace + the **natural asset companion to research/04-international-expansion.md** + **playbooks/11-international-rollout.md**). The asset maps research/04's Pillar 2 (Currency, pricing & FX) + playbook 11's Phase 1+2 (CA + UK + EU + AU) into a **paste-ready per-market price-card** that an operator ships Week 1 of international expansion. The asset ships **8 top-level sections**: (1) **Goal** — frame the 3 deliverables (paste-ready per-market price-card + per-market voice overrides + per-market FX-fee calculator) + the 3 converging pressures that make per-market pricing a Day-1 artifact not a Week-4 optimization (20-40% CVR penalty for currency-converted-1:1 prices / 5-15pp cont"
+    },
+    {
       "heading": "[2026-06-27 05:53] Playbook seed — International rollout (cross-border DTC operator build: 3-path GMV-tier decision matrix + 6 phases [Phase 1 CA + UK / Phase 2 EU + AU / Phase 3 JP + DACH + Nordics / Phase 4 steady-state] + 12-prereq gate + 15 pitfalls with corrective Fix lines + 4 phase-by-phase verification gates + 12-metric monitoring table + 3-tier cost & ROI table [Path A 15:1 to 40:1 / Path B 20:1 to 60:1 25:1 median / Path C 30:1 to 100:1]; compounds the 10 US playbooks by adding the international layer the US-centric stack implicitly assumes doesn't exist; pairs with research/04 as the operator build vs the strategic framework)",
       "body": "- **What shipped:** `playbooks/11-international-rollout.md` (~494 lines / 49KB / the sixteenth playbook in the workspace + the **natural operator-build companion to research/04-international-expansion.md**). The playbook maps research/04's 5-pillar framework (Market selection + Currency/FX + Duties/Taxes + Fulfillment + Localization) into a **3-phase, 6-phase-build, 4-phase-gate rollout** over **6–12 months**. The playbook ships **14 top-level sections**: (1) **Goal** — frame the 6 deliverables (live cross-border storefront + tax/duty compliance + 3PL cross-border fulfillment + localized payment methods + voice framework localization + per-market ad campaigns). (2) **Which path fits your brand** — 3-path GMV-tier decision matrix (Path A <$500k US GMV → CA only, $300–$500/mo cost stack, 10–"
     },
@@ -6403,6 +6407,6 @@
     "assets": 13,
     "tables": 38,
     "findings": 8,
-    "journalEntries": 39
+    "journalEntries": 40
   }
 }
