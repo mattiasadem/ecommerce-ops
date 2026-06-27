@@ -176,7 +176,7 @@ The 16 moves above are the **MVP stack**. Once shipped + steady-state, the high-
 3. **Move #11: Subscription / replenishment program** (ReCharge / Skio / Bold Subscriptions — recurring revenue + 20–30% LTV lift; the natural complement to the loyalty program).
 4. **Move #12: 3PL migration playbook** (ShipBob / ShipMonk / Deliverr — pick when order volume exceeds 500/mo and in-house fulfillment becomes the bottleneck).
 5. **Move #13: Marketplace expansion** (Amazon + Walmart + Target Plus — sell beyond Shopify when DTC audience plateaus).
-6. **Move #14: Lifecycle marketing expansion** (Klaviyo + Postscript have 30+ flows beyond welcome + cart abandon — browse abandonment, customer winback, sunset, post-purchase cross-sell, anniversary, birthday — each is a 1-tick playbook).
+6. **Move #14: Lifecycle marketing expansion** (Klaviyo + Postscript have 30+ flows beyond welcome + cart abandon — browse abandonment, customer winback, sunset, post-purchase cross-sell, anniversary, birthday — each is a 1-tick playbook). **Shipped as `research/05-lifecycle-marketing.md` (synthesis layer for the 20-flow library) + `playbooks/12-lifecycle-flow-library.md` (operator-build companion, shipped 2026-06-27; 4-tier launch ladder [Tier 1 same-week 5 flows / Tier 2 next-30-days 5 flows / Tier 3 next-90-days 4 flows / Tier 4 quarterly-and-beyond 3 flows] + 15 pitfalls + 9 verification gates + 95:1 default Year-1 ROI Path B; remaining companion artifacts: `assets/14-lifecycle-flow-templates.md` (per-flow email + SMS templates × 5 voice profiles) + `scripts/lifecycle_flow_health_check.py` (Archetype C/D-light hybrid 78 gate-flow audit) + `dashboard/app/lifecycle/page.tsx` + `dashboards/lifecycle-flow-library.html`)**.
 
 A new operator who's shipped the 30-day plan should pick the Move 11–14 that matches their brand's next bottleneck, then come back to Move #6.10 to wire the dashboard CTA into Slack.
 
@@ -200,6 +200,8 @@ A new operator who's shipped the 30-day plan should pick the Move 11–14 that m
 - `playbooks/06.6-tiktok-attribution-quality-audit.md` — Move #6.6
 - `playbooks/06.7-snap-pinterest-attribution-quality-audit.md` — Move #6.7
 - `playbooks/06.8-cross-platform-attribution-drift-unification.md` — Move #6.8
+- `playbooks/11-international-rollout.md` — Move #11 (cross-border DTC operator build; pairs with `research/04-international-expansion.md`)
+- `playbooks/12-lifecycle-flow-library.md` — Move #14 (lifecycle-marketing expansion operator build: 20-flow Klaviyo + Postscript + Smile library across 4 tiers [Tier 1 same-week 5 flows / Tier 2 next-30-days 5 flows / Tier 3 next-90-days 4 flows / Tier 4 quarterly-and-beyond 3 flows] + 15 pitfalls + 9 verification gates + 95:1 default Year-1 ROI Path B; pairs with `research/05-lifecycle-marketing.md`)
 - `dashboards/unified-attribution-health.html` — Move #6.9 dashboard
 - `scripts/attribution_quality_audit.py` + `scripts/tests/test_attribution_quality_audit.py` — Move #6.5 script
 - `scripts/tiktok_attribution_audit.py` + `scripts/tests/test_tiktok_attribution_audit.py` — Move #6.6 script
