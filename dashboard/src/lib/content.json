@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-28T01:10:43.711Z",
+  "generatedAt": "2026-06-28T04:46:50.485Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -6992,7 +6992,7 @@
           "body": "For Path C with B2B wholesale customers, add B2B-fulfillment:\n\n1. **EDI-856 ASN setup** — Advance Ship Notice for B2B customers (wholesale + retail). Most B2B customers require EDI-856 + EDI-940 (warehouse shipping order) + EDI-945 (warehouse shipping advice).\n2. **EDI integration platform** — use a managed-EDI provider (SPS Commerce OR TrueCommerce OR DiCentral). Budget $500–$2k/mo per B2B customer.\n3. **Bulk-pick-pack workflow** — for B2B orders (typically case-packs of 12-144 units), the 3PL picks in bulk + palletizes + ships via LTL freight. Different SLA than DTC (typically 5-10 business days for B2B vs 1-3 days for DTC).\n4. **B2B-specific return handling** — B2B returns typically involve damaged-in-transit claims + vendor RMAs. The 3PL handles grade-and-resell or return-to-vendor per the contract."
         }
       ],
-      "size": 64903
+      "size": 65146
     }
   ],
   "assets": [
@@ -7409,6 +7409,30 @@
       }
     },
     {
+      "file": "15-3pl-selection-card.md",
+      "title": "Goal",
+      "meta": [
+        "Pasting the per-3PL 6-dimension cost-comparison cells directly into Google Sheets — the 42 voice-driven override cells (7 3PLs × 6 dimensions = pick-pack-fee + storage-fee + receiving-fee + kitting-fee + returns-fee + SLA-ship-time) × 5 voice profiles = 210 voice-driven cells drop into the playbook's canonical 6×5 cost-comparison spreadsheet as plain values with conditional-formatting guidance (green for best in dimension, red for worst). Path A operators stop here (Tier 1 3PLs only = ShipBob Starter + Shopify Fulfillment Network + Rakuten Super Logistics = 18 voice-driven override cells across 3 3PLs × 6 dimensions).",
+        "Extending to ShipMonk + Red Stag + ShipBob Mid-Market for Path B operators — the Tier 2 3PL rows (ShipBob Mid-Market + ShipMonk + Red Stag) ship the multi-warehouse cost-stack math + the FDA-regulated-SKU + large-parcel-SKU size-match specialization. Path B operators ship Tier 1 + Tier 2 = 36 voice-driven override cells across 6 3PLs × 6 dimensions.",
+        "Extending to Stord + Flowspace + Extensiv orchestrator for Path C operators — the Tier 3 3PL rows (Stord + Flowspace + Extensiv orchestrator) ship the multi-3PL orchestration cost-stack + the international-3PL-footpring cost-stack overlay (US + EU + UK + CA + AU + JP per-market 3PL cost math per research/04 Pillar 4 + playbook 11 Path C) + the B2B-fulfillment add-on (EDI-856 + EDI-940 + EDI-945 + managed-EDI-provider cost-stack). Path C operators ship Tier 1 + Tier 2 + Tier 3 = 42 voice-driven override cells across 7 3PLs × 6 dimensions.",
+        "Wiring the voice-driven override columns — each 3PL ships with 5 voice-variant columns (Default / Luxury / Sustainable / Gen-Z / B2B). The operator selects ONE column as the brand's primary voice (per Asset 02's voice_profile Klaviyo profile property) and pastes that column's per-3PL cost-stack values into the 6×5 cost-comparison spreadsheet. The Default-voice column is the canonical primary column for the operational-fulfillment domain because (a) most 3PL contracts are brand-voice-neutral (cost-stack + SLA are functional, not tone-of-voice), but (b) the RFQ brief template + the SLA-defense contract clauses + the 12 pitfalls with Fix lines all benefit from per-voice tone-of-voice customization for the brand's external-facing 3PL-communication touchpoints (RFQ email + contract review notes + 3PL-QBR cadence agenda).",
+        "Avoiding the 12 named pitfalls with corrective Fix: lines — including the 3PL-size-mismatch trap (Pitfall #1, signing with an under-sized 3PL → SLA misses in Q4 peak per Multichannel Merchant 2024; canonical fix = match 3PL tier to 2× current peak volume) / the cost-stack-mismatch trap (Pitfall #2, not pre-computing per-SKU dimensional-weight → operator pays 20-50% more than expected per shipment; canonical fix = optimize packaging dimensions + ask 3PL to dim-optimize) / the WMS-integration-mismatch trap (Pitfall #3, signing with a 3PL whose WMS doesn't integrate with Shopify natively → 3rd-party-integrator adds $500-$2k/mo and breaks every 6 months; canonical fix = require native Shopify integration OR 3rd-party-integrator cost in RFQ brief) / the SLA-mismatch trap (Pitfall #4, no financial-penalty-for-misses clause → operator has no recourse when 3PL misses SLA; canonical fix = embed 95%+ on-time-ship + 99.5%+ accuracy + financial-penalty + 30-day-termination in contract) / the migration-operational trap (Pitfall #5, paying for both warehouses during the 2-week ramp → operator pays both warehouses' full month; canonical fix = build warehouse-wind-down plan BEFORE the migration).",
+        "Passing the 5 verification gates before signing any 3PL contract (per-3PL cost-stack cells ≥6 dimensions filled for the chosen 3PL + 8-prereq RFQ brief sent to 5+ 3PLs + 3-tier size-match decision matrix resolved for the chosen tier + per-voice-density ≥15 across all 5 voice profiles + anti-pattern grep + zero regressions on full test suite)."
+      ],
+      "sectionCount": 34,
+      "numberedSections": [],
+      "size": 66920,
+      "assetNumber": 15,
+      "voiceGated": true,
+      "voiceCounts": {
+        "Default": 28,
+        "Luxury": 16,
+        "Sustainable": 22,
+        "Gen-Z": 16,
+        "B2B": 32
+      }
+    },
+    {
       "file": "15-marketplace-listing-card.md",
       "title": "Goal",
       "meta": [
@@ -7670,6 +7694,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-06-28 03:50] Add assets/15-3pl-selection-card.md: Move #12 3PL-migration operator-copy layer",
+      "body": "- **What shipped:** `assets/15-3pl-selection-card.md` (new, ~67KB / 383 lines / the **16th asset in the workspace** + the canonical 3rd-layer operator-copy companion for the 3PL-migration track per the canonical `research → playbook → asset → operator-surface → scripts → static-dashboard` layer order; Move #12 from `research/03-30-day-rollout-plan.md` line 177 + the canonical next-pick per `playbooks/14-3pl-migration.md` line 443 §Next moves (a) explicit recommendation + `research/07-3pl-migration.md` line 7 forward-pointer + `research/03-30-day-rollout-plan.md` line 177 Move #12 status — **five pre-staging citations across research + playbook + synthesis doc** converging on this canonical pick per the v0.9.0 layer-order-completion sub-rule applied to the 3PL-migration track [research/07 +"
+    },
+    {
       "heading": "[2026-06-27 23:51] Add assets/15-marketplace-listing-card.md: Move #13 marketplace-listing operator-copy layer",
       "body": "- **What shipped:** `assets/15-marketplace-listing-card.md` (new, ~62KB / 523 lines / the **15th asset in the workspace** + the canonical 3rd-layer operator-copy companion for the marketplace-expansion track per the canonical research → playbook → asset → operator-surface → scripts → static-dashboard layer order; Move #13 from `research/03-30-day-rollout-plan.md` line 178 + the canonical next-pick per `playbooks/13-marketplace-launch.md` line 504 §Next moves + `research/06-marketplace-expansion.md` line 7 forward-pointer). The asset ships the canonical **5-marketplace × 5-voice = 25 voice-variant per-marketplace listing titles** [Amazon US ≤200 chars / Walmart ≤75 chars / Target Plus ≤100 chars / Amazon EU DE+FR+IT+ES+NL ≤200 chars with ≤50 chars mobile-first truncation / bol NL ≤150 chars"
     },
@@ -7721,9 +7749,9 @@
   "counts": {
     "researchDocs": 8,
     "playbooks": 19,
-    "assets": 15,
+    "assets": 16,
     "tables": 43,
     "findings": 8,
-    "journalEntries": 12
+    "journalEntries": 13
   }
 }
