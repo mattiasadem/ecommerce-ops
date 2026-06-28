@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3PL Migration Health — ecommerce-ops</title>
+  <!--
+    3PL Migration Health dashboard — static operator surface for the
+    3PL-migration track (research/07 + playbook 14 + asset 15 (3PL-selection-card)
+    + dashboard/app/3pl/page.tsx + scripts/threepl_unit_economics.py).
+
+    Renders 6 sections end-to-end:
+      1. Summary stats (Path tier default ROI + Year-1 lift + Year-1 incremental net + Ship-cost savings)
+      2. Per-3PL readiness cards (7 canonical 3PLs × launch status + cost-stack snapshot)
+      3. Per-path revenue contribution bar chart (Path A / B / C share of Year-1 net)
+      4. Per-phase verification gate scoring (Phase 1 RFQ + Phase 2 cutover + Phase 3 steady-state + Phase 4 multi-warehouse+international)
+      5. Per-3PL detail table (7 3PLs × 6 cost dimensions)
+      6. Recommended next action (which phase to ship next + which 3PL to shortlist)
+
+    Demo data is hardcoded to the canonical Path B default ($3M US base, 3000
+    orders/mo, 500-2000 orders/mo Path A tier; Path B = default 12:1 Year-2+ ROI).
+    Live data sources (override via URL params):
+      ?path=A | B | C               (default B)
+      ?us_gmv=3000000               (default $3M)
+      ?orders_per_month=3000        (default 3000)
+      ?demo=1                       force demo mode (no fetches; uses SAMPLE_ defaults)
+
+    Architecture: NO build step, NO npm deps, single inline CSS + vanilla JS.
+    Companion artifacts:
+      research/07-3pl-migration.md            (the 5-pillar framework + 3 GMV-tier paths + 15 pitfalls)
+      playbooks/14-3pl-migration.md           (4-phase ShipBob + ShipMonk + Red Stag + Stord + Flowspace + Extensiv operator build)
+      assets/15-3pl-selection-card.md         (7 3PLs × 6 dimensions × 5 voices = 35 voice-variant cells + 8-prereq RFQ brief + 3-tier size-match decision matrix)
+      scripts/threepl_unit_economics.py       (Archetype A/B hybrid Path A/B/C scorer, 54 TDD tests)
+      dashboard/app/3pl/page.tsx              (Next.js operator route, 16th route)
+  -->
+  <style>
+    :root {
+      --bg: #0f1115;
+      --panel: #171a21;
+      --panel-2: #1f232c;
+      --border: #2a2f3a;
+      --text: #e4e6eb;
+      --text-dim: #9aa3b2;
+      --accent: #6ee7b7;
+      --warn: #fbbf24;
+      --fail: #f87171;
+      --ok: #34d399;
+      --violet: #a78bfa;
+      --code-bg: #0a0c10;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    header {
+      padding: 24px 32px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    header .subtitle {
+      color: var(--text-dim);
+      font-size: 13px;
+    }
+    .mode-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+    }
+    .mode-badge.demo { color: var(--warn); border-color: var(--warn); }
+    .mode-badge.live { color: var(--accent); border-color: var(--accent); }
+    main {
+      padding: 24px 32px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    section { margin-bottom: 28px; }
+    h2 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+      margin: 0 0 14px 0;
+      font-weight: 600;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .stat {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .stat .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+    }
+    .stat .value {
+      font-size: 22px;
+      font-weight: 600;
+      margin-top: 4px;
+      font-variant-numeric: tabular-nums;
+    }
+    .stat .sub {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+    .stat .value.ok { color: var(--ok); }
+    .stat .value.warn { color: var(--warn); }
+    .stat .value.fail { color: var(--fail); }
+    .stat .value.path-tag { color: var(--violet); }
+    .market-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .market-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      position: relative;
+    }
+    .market-card .tier {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      font-size: 10px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      letter-spacing: 0.06em;
+    }
+    .market-card .name {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .market-card .status {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-top: 8px;
+      border: 1px solid;
+    }
+    .status.live { color: var(--ok); border-color: var(--ok); }
+    .status.draft { color: var(--violet); border-color: var(--violet); }
+    .status.staging { color: var(--warn); border-color: var(--warn); }
+    .status.not-started { color: var(--text-dim); border-color: var(--text-dim); }
+    .market-card .lift {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-top: 6px;
+    }
+    .market-card .gate-score {
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+    .bar-chart {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+    }
+    .bar-row {
+      display: grid;
+      grid-template-columns: 100px 1fr 140px;
+      gap: 12px;
+      align-items: center;
+      padding: 6px 0;
+      font-size: 12px;
+    }
+    .bar-row .label { color: var(--text-dim); }
+    .bar-bg {
+      height: 14px;
+      background: var(--code-bg);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 3px;
+    }
+    .bar-fill.warn { background: var(--warn); }
+    .bar-fill.violet { background: var(--violet); }
+    .bar-fill.fail { background: var(--fail); }
+    .bar-row .value { text-align: right; font-variant-numeric: tabular-nums; }
+    .gate-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+    }
+    .gate-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .gate-card .phase-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .gate-card .phase-name {
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .gate-card .phase-score {
+      font-size: 16px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      border: 1px solid;
+    }
+    .gate-card .phase-score.ok { color: var(--ok); border-color: var(--ok); }
+    .gate-card .phase-score.warn { color: var(--warn); border-color: var(--warn); }
+    .gate-card .phase-score.fail { color: var(--fail); border-color: var(--fail); }
+    .gate-card ul { list-style: none; padding: 0; margin: 0; font-size: 12px; }
+    .gate-card li {
+      padding: 4px 0;
+      color: var(--text-dim);
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+    }
+    .gate-card li .marker { flex-shrink: 0; }
+    .gate-card li.ok .marker { color: var(--ok); }
+    .gate-card li.fail .marker { color: var(--fail); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      font-size: 12px;
+    }
+    th, td {
+      text-align: left;
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    th {
+      background: var(--panel-2);
+      color: var(--text-dim);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 600;
+    }
+    tr:last-child td { border-bottom: none; }
+    td.num { font-variant-numeric: tabular-nums; }
+    .next-action ol { padding-left: 20px; margin: 0; }
+    .next-action li { padding: 4px 0; font-size: 13px; }
+    .next-action .tag {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-size: 10px;
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      margin-right: 6px;
+    }
+    footer {
+      padding: 16px 32px 32px;
+      color: var(--text-dim);
+      font-size: 11px;
+      border-top: 1px solid var(--border);
+      margin-top: 24px;
+    }
+    footer code {
+      background: var(--code-bg);
+      padding: 1px 6px;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>3PL Migration Health</h1>
+      <div class="subtitle">Move #12 — research/07 + playbook 14 + asset 15 + scripts/threepl_unit_economics.py + dashboard/app/3pl</div>
+    </div>
+    <div>
+      <span class="mode-badge demo" id="mode-badge">DEMO</span>
+    </div>
+  </header>
+  <main>
+    <section id="summary-section">
+      <h2>Summary</h2>
+      <div class="stats" id="summary-stats"></div>
+    </section>
+    <section id="threepl-section">
+      <h2>Per-3PL Readiness</h2>
+      <div class="market-grid" id="threepl-grid"></div>
+    </section>
+    <section id="path-chart-section">
+      <h2>Year-1 Incremental Net by Path</h2>
+      <div class="bar-chart" id="path-chart"></div>
+    </section>
+    <section id="phase-gates-section">
+      <h2>Phase-by-Phase Verification Gates</h2>
+      <div class="gate-grid" id="phase-gates"></div>
+    </section>
+    <section id="threepl-table-section">
+      <h2>Per-3PL Cost-Stack Detail</h2>
+      <table id="threepl-table"></table>
+    </section>
+    <section id="next-action-section" class="next-action">
+      <h2>Recommended Next Action</h2>
+      <ol id="next-action-list"></ol>
+    </section>
+  </main>
+  <footer>
+    Static dashboard — open with <code>python3 -m http.server 8765 --directory dashboards</code> → http://127.0.0.1:8765/3pl-migration-health.html
+    <br/>Demo data hardcoded to Path B $3M US GMV default. Override with <code>?path=A|B|C</code>, <code>?us_gmv=&lt;n&gt;</code>, <code>?orders_per_month=&lt;n&gt;</code>, <code>?demo=1</code>.
+    <br/>Companion artifacts: <code>research/07-3pl-migration.md</code> · <code>playbooks/14-3pl-migration.md</code> · <code>assets/15-3pl-selection-card.md</code> · <code>scripts/threepl_unit_economics.py</code> · <code>dashboard/app/3pl/page.tsx</code>
+  </footer>
+  <script>
+  (function() {
+    'use strict';
+
+    // ---- Canonical data structures (mirror scripts/threepl_unit_economics.py) ----
+    // Per 3PL (mirrors assets/15-3pl-selection-card.md §3-tier size-match decision matrix).
+    var THREEPLS = [
+      { id: 'shipbob_starter',       name: 'ShipBob Starter',          tier: 'Tier 1', ordersMin: 500,    ordersMax: 2000,    pickPackLow: 2.50, pickPackHigh: 4.00, storageLow: 0.30, storageHigh: 0.60, receivingLow: 25, receivingHigh: 50, kittingLow: 0.50, kittingHigh: 1.50, returnsLow: 2.00, returnsHigh: 4.00, slaShipDaysLow: 1.5, slaShipDaysHigh: 3.0 },
+      { id: 'shopify_fulfillment',   name: 'Shopify Fulfillment Net.',  tier: 'Tier 1', ordersMin: 500,    ordersMax: 2000,    pickPackLow: 3.00, pickPackHigh: 4.50, storageLow: 0.40, storageHigh: 0.80, receivingLow: 30, receivingHigh: 60, kittingLow: 0.75, kittingHigh: 1.75, returnsLow: 2.50, returnsHigh: 4.50, slaShipDaysLow: 2.0, slaShipDaysHigh: 3.5 },
+      { id: 'rakuten_super',         name: 'Rakuten Super Logistics',   tier: 'Tier 1', ordersMin: 500,    ordersMax: 2000,    pickPackLow: 2.75, pickPackHigh: 4.25, storageLow: 0.35, storageHigh: 0.70, receivingLow: 35, receivingHigh: 60, kittingLow: 0.50, kittingHigh: 1.50, returnsLow: 2.00, returnsHigh: 4.00, slaShipDaysLow: 2.0, slaShipDaysHigh: 4.0 },
+      { id: 'shipbob_midmarket',     name: 'ShipBob Mid-Market',        tier: 'Tier 2', ordersMin: 2000,   ordersMax: 10000,   pickPackLow: 3.50, pickPackHigh: 5.50, storageLow: 0.50, storageHigh: 1.00, receivingLow: 30, receivingHigh: 65, kittingLow: 1.00, kittingHigh: 2.00, returnsLow: 3.00, returnsHigh: 5.00, slaShipDaysLow: 1.0, slaShipDaysHigh: 2.5 },
+      { id: 'shipmonk',              name: 'ShipMonk',                  tier: 'Tier 2', ordersMin: 2000,   ordersMax: 8000,    pickPackLow: 3.25, pickPackHigh: 5.25, storageLow: 0.45, storageHigh: 0.90, receivingLow: 25, receivingHigh: 55, kittingLow: 1.00, kittingHigh: 1.80, returnsLow: 2.75, returnsHigh: 4.75, slaShipDaysLow: 1.0, slaShipDaysHigh: 2.5 },
+      { id: 'red_stag',              name: 'Red Stag Fulfillment',      tier: 'Tier 2', ordersMin: 2000,   ordersMax: 10000,   pickPackLow: 4.50, pickPackHigh: 6.00, storageLow: 0.60, storageHigh: 1.20, receivingLow: 40, receivingHigh: 75, kittingLow: 1.50, kittingHigh: 2.50, returnsLow: 3.50, returnsHigh: 5.50, slaShipDaysLow: 2.0, slaShipDaysHigh: 3.0 },
+      { id: 'stord_flowspace',       name: 'Stord + Flowspace + Extensiv', tier: 'Tier 3', ordersMin: 10000, ordersMax: 999999, pickPackLow: 4.00, pickPackHigh: 6.00, storageLow: 0.70, storageHigh: 1.50, receivingLow: 50, receivingHigh: 100, kittingLow: 1.00, kittingHigh: 2.50, returnsLow: 3.00, returnsHigh: 5.50, slaShipDaysLow: 1.0, slaShipDaysHigh: 2.0 }
+    ];
+
+    // Path-tier table (mirrors scripts/threepl_unit_economics.py PATH_COSTS / PATH_3PL_COST_YEAR1 / PATH_INCREMENTAL_NET_YEAR1 / PATH_ROI).
+    var PATH_TABLE = {
+      A: { ordersMin: 500,    ordersMax: 2000,    setupLow: 3000,    setupHigh: 8000,    recurLow: 700,    recurHigh: 1500,    year1CostLow: 8400,    year1CostHigh: 18000,    year1NetLow: 9000,     year1NetHigh: 75000,     roiLow: 5, roiHigh: 8,   savingsLow: 5,  savingsHigh: 15, shipTimeLow: 0.5, shipTimeHigh: 1.5, label: 'Path A — SMB 3PL solo (ShipBob Starter)' },
+      B: { ordersMin: 2000,   ordersMax: 10000,   setupLow: 8000,    setupHigh: 25000,   recurLow: 2000,   recurHigh: 4500,    year1CostLow: 24000,   year1CostHigh: 54000,   year1NetLow: 66000,    year1NetHigh: 420000,    roiLow: 8, roiHigh: 16,  savingsLow: 10, savingsHigh: 20, shipTimeLow: 1.0, shipTimeHigh: 3.0, label: 'Path B — Mid-market multi-warehouse DEFAULT (12:1 Year-2+ ROI)' },
+      C: { ordersMin: 10000,  ordersMax: 999999,  setupLow: 50000,   setupHigh: 150000,  recurLow: 8000,   recurHigh: 25000,   year1CostLow: 96000,   year1CostHigh: 300000,  year1NetLow: 620000,   year1NetHigh: 5600000,   roiLow: 7, roiHigh: 14,  savingsLow: 15, savingsHigh: 25, shipTimeLow: 2.0, shipTimeHigh: 5.0, label: 'Path C — Enterprise multi-3PL orchestration (Stord + Flowspace + Extensiv)' }
+    };
+
+    // Phase gates (mirrors playbook 14 §Phase 1+2+3+4 verification gates = 10/10/10/9 prereqs).
+    var PHASE_GATES = [
+      { id: 'A', label: 'Phase 1 — RFQ + contract + WMS build', total: 10,
+        gates: [
+          { id: 'A1',  criterion: '500+ orders/mo for 3 consecutive months (ShipBob 2024 break-even)', status: 'ok' },
+          { id: 'A2',  criterion: 'Move #1 abandoned-cart + #4 welcome-series + #6 attribution + #8 post-purchase shipped', status: 'ok' },
+          { id: 'A3',  criterion: 'RFQ brief sent to 5+ 3PLs (ShipBob + ShipMonk + Red Stag + Shopify Fulfillment + Rakuten)', status: 'ok' },
+          { id: 'A4',  criterion: 'Per-3PL 6×5 cost-comparison spreadsheet (pick-pack + storage + receiving + kitting + returns + ship-time)', status: 'ok' },
+          { id: 'A5',  criterion: '8 SLA-defense contract clauses baked in (95%+ on-time + financial-penalty + 99.5% pick-pack + real-time-sync + $1M insurance + 30-day termination + multi-warehouse + returns)', status: 'ok' },
+          { id: 'A6',  criterion: 'WMS integration tested (3PL sandbox + 10 test orders + inventory-sync verification)', status: 'ok' },
+          { id: 'A7',  criterion: '3 months clean accounting (P&L + COGS + ship-cost-per-order baseline)', status: 'ok' },
+          { id: 'A8',  criterion: 'Per-3PL site-visit to top 2 candidates (facility + WMS + AM cadence)', status: 'ok' },
+          { id: 'A9',  criterion: 'Path-tier decided (Path A / B / C per scripts/threepl_unit_economics.py recommendation)', status: 'ok' },
+          { id: 'A10', criterion: 'Operator capacity ≥2 hr/wk sustained (canonical playbook 14 §Prereq #12)', status: 'ok' }
+        ]
+      },
+      { id: 'B', label: 'Phase 2 — Inventory pull + 3PL inbound + cutover', total: 10,
+        gates: [
+          { id: 'B1',  criterion: 'Inventory pull from origin warehouse (cycle count + serialized SKU list + per-SKU photo)', status: 'ok' },
+          { id: 'B2',  criterion: '3PL inbound creation (ASNs + receiving appointment + dimensional-weight verification)', status: 'ok' },
+          { id: 'B3',  criterion: 'Per-SKU cost-stack updated with 3PL pick-pack + storage + receiving + kitting + returns', status: 'ok' },
+          { id: 'B4',  criterion: 'Cross-warehouse-balance monitoring script (per playbook 14 §Pillar 4 + asset 15 §3-tier size-match)', status: 'ok' },
+          { id: 'B5',  criterion: 'Path B only: 2nd-warehouse negotiation + per-warehouse inventory-routing algorithm', status: 'ok' },
+          { id: 'B6',  criterion: 'Branded packing slip + customer-notification template live', status: 'ok' },
+          { id: 'B7',  criterion: 'Returns portal + reverse-logistics tested (per asset 15 §3-tier returns-tier clause)', status: 'ok' },
+          { id: 'B8',  criterion: 'Path A → Path B cutover week: parallel-pilot 2 weeks + site-visit to top 2 3PL candidates', status: 'ok' },
+          { id: 'B9',  criterion: 'Ship-cost-per-order monitoring live (target 5-15% reduction from baseline per Path A savings band)', status: 'warn' },
+          { id: 'B10', criterion: 'SLA-defense financial-penalty clause tested (3PL missed on-time-ship-rate; penalty invoiced)', status: 'fail' }
+        ]
+      },
+      { id: 'C', label: 'Phase 3 — Path B steady-state + Path C international', total: 10,
+        gates: [
+          { id: 'C1',  criterion: 'Steady-state Week 8+ with on-time-ship-rate ≥95% (per asset 15 §8 SLA-defense clauses)', status: 'draft' },
+          { id: 'C2',  criterion: 'Pick-pack-accuracy ≥99.5% (per asset 15 §8 SLA-defense clauses)', status: 'draft' },
+          { id: 'C3',  criterion: 'Multi-warehouse-enabled conversion lift measured (+3-8% per research/07 §Pillar 4)', status: 'draft' },
+          { id: 'C4',  criterion: 'Path C only: international 3PL footpring (per-region: EU + UK + CA + AU + JP)', status: 'draft' },
+          { id: 'C5',  criterion: 'Path C only: dedicated 3PL-account-manager + per-region SLA dashboards', status: 'draft' },
+          { id: 'C6',  criterion: 'Path C only: B2B-fulfillment add-on (Stord OR Flowspace OR Extensiv orchestrator)', status: 'draft' },
+          { id: 'C7',  criterion: 'Ship-cost-savings target: Path A 5-15% / Path B 10-20% / Path C 15-25%', status: 'draft' },
+          { id: 'C8',  criterion: 'Ship-time P50+P95 tracked + improvement vs baseline (Path A 0.5-1.5d / B 1-3d / C 2-5d)', status: 'draft' },
+          { id: 'C9',  criterion: 'NPS-by-fulfillment-channel tracked monthly (per research/07 §Pillar 5)', status: 'draft' },
+          { id: 'C10', criterion: 'Oversell-rate ≤0.1% (real-time inventory-sync verified per asset 15 §SLA-defense clause 5)', status: 'draft' }
+        ]
+      },
+      { id: 'D', label: 'Phase 4 — Multi-warehouse + international + dedicated AM', total: 9,
+        gates: [
+          { id: 'D1', criterion: 'Multi-warehouse 2-day-ship coverage on 80%+ US ZIPs (per research/07 §Pillar 4)', status: 'draft' },
+          { id: 'D2', criterion: 'International 3PL footpring: 2-3 day ship time to EU + UK + CA + AU + JP', status: 'draft' },
+          { id: 'D3', criterion: 'Per-region SLA dashboards (Path C enterprise tier)', status: 'draft' },
+          { id: 'D4', criterion: 'B2B-fulfillment channel live (Stord OR Flowspace OR Extensiv)', status: 'draft' },
+          { id: 'D5', criterion: 'Annual RFQ-re-bid (re-quote 5+ 3PLs every 12 months per playbook 14 §Phase 4 Step 6)', status: 'draft' },
+          { id: 'D6', criterion: 'Dedicated supply-chain-manager + 15 hr/wk operator time sustained', status: 'draft' },
+          { id: 'D7', criterion: 'Path C Year-2+ steady-state ROI 10:1 (per research/07 §Cost & ROI estimate)', status: 'draft' },
+          { id: 'D8', criterion: 'International revenue lift +10-30% (per research/07 §Pillar 4)', status: 'draft' },
+          { id: 'D9', criterion: 'Quarterly SLA-QBR cadence with primary 3PL + international partners', status: 'draft' }
+        ]
+      }
+    ];
+
+    // SAMPLE_INPUTS — canonical Path B default reference profile.
+    // Mirrors scripts/threepl_unit_economics.py SAMPLE_INPUTS canonical defaults ($3M US GMV / 3000 orders/mo).
+    var SAMPLE_INPUTS = {
+      path: 'B',
+      us_gmv: 3000000,
+      orders_per_month: 3000,
+      threepls: {
+        shipbob_starter:     { status: 'live',      notes: 'Phase 1 RFQ complete' },
+        shopify_fulfillment: { status: 'staging',   notes: 'Site visit complete' },
+        rakuten_super:       { status: 'live',      notes: 'RFQ brief sent' },
+        shipbob_midmarket:   { status: 'staging',   notes: 'Negotiating multi-warehouse' },
+        shipmonk:            { status: 'staging',   notes: 'Per-SKU quote in progress' },
+        red_stag:            { status: 'draft',     notes: 'Large-parcel tier candidate' },
+        stord_flowspace:     { status: 'not-started', notes: 'Path C orchestrator not yet selected' }
+      }
+    };
+
+    // ---- Helper functions ----
+    function pathForOrders(orders) {
+      if (orders >= 10000) return 'C';
+      if (orders >= 2000)  return 'B';
+      return 'A';
+    }
+    function netMidpoint(p)   { return (PATH_TABLE[p].year1NetLow + PATH_TABLE[p].year1NetHigh) / 2; }
+    function setupMidpoint(p) { return (PATH_TABLE[p].setupLow + PATH_TABLE[p].setupHigh) / 2; }
+    function recurMidpoint(p) { return (PATH_TABLE[p].recurLow + PATH_TABLE[p].recurHigh) / 2; }
+    function fmtUSD(n) {
+      if (n >= 1e6) return '$' + (n / 1e6).toFixed(2) + 'M';
+      if (n >= 1e3) return '$' + (n / 1e3).toFixed(1) + 'k';
+      return '$' + n.toFixed(0);
+    }
+    function fmtPct(x) { return x.toFixed(1) + '%'; }
+    function statusClass(s)  { return s === 'live' ? 'live' : s === 'draft' ? 'draft' : s === 'staging' ? 'staging' : 'not-started'; }
+    function statusLabel(s)  { return s === 'live' ? 'LIVE' : s === 'draft' ? 'DRAFT' : s === 'staging' ? 'STAGING' : 'NOT STARTED'; }
+
+    // ---- Render functions ----
+    function renderSummary(input) {
+      var p = input.path;
+      var pt = PATH_TABLE[p];
+      var net = netMidpoint(p);
+      var stats = [
+        { label: 'Path tier', value: p, cls: 'path-tag', sub: pt.label },
+        { label: 'Year-1 incremental net', value: fmtUSD(pt.year1NetLow) + '–' + fmtUSD(pt.year1NetHigh), cls: 'ok', sub: 'midpoint ' + fmtUSD(net) },
+        { label: 'Year-1 ROI range', value: pt.roiLow + ':1–' + pt.roiHigh + ':1', cls: 'ok', sub: 'canonical ' + ((pt.roiLow + pt.roiHigh) / 2).toFixed(0) + ':1 default' },
+        { label: 'Year-1 3PL cost', value: fmtUSD(pt.year1CostLow) + '–' + fmtUSD(pt.year1CostHigh), cls: 'warn', sub: 'setup + recurring' },
+        { label: 'Ship-cost savings', value: fmtPct(pt.savingsLow) + '–' + fmtPct(pt.savingsHigh), cls: 'ok', sub: 'off current per-order ship cost' },
+        { label: 'Ship-time improvement', value: pt.shipTimeLow + '–' + pt.shipTimeHigh + ' days', cls: 'ok', sub: 'vs current ship-time P50' }
+      ];
+      var html = '';
+      for (var i = 0; i < stats.length; i++) {
+        var s = stats[i];
+        html += '<div class="stat"><div class="label">' + s.label + '</div><div class="value ' + s.cls + '">' + s.value + '</div><div class="sub">' + s.sub + '</div></div>';
+      }
+      document.getElementById('summary-stats').innerHTML = html;
+    }
+
+    function renderThreeplGrid(input) {
+      var html = '';
+      for (var i = 0; i < THREEPLS.length; i++) {
+        var t = THREEPLS[i];
+        var s = input.threepls[t.id];
+        var status = s ? s.status : 'not-started';
+        var ppMid = (t.pickPackLow + t.pickPackHigh) / 2;
+        html += '<div class="market-card">' +
+                  '<span class="tier">' + t.tier + '</span>' +
+                  '<div class="name">' + t.name + '</div>' +
+                  '<div class="status ' + statusClass(status) + '">' + statusLabel(status) + '</div>' +
+                  '<div class="lift">' + t.ordersMin.toLocaleString() + '–' + (t.ordersMax >= 999999 ? '∞' : t.ordersMax.toLocaleString()) + ' orders/mo · pick-pack ' + fmtUSD(ppMid) + '</div>' +
+                  '<div class="gate-score">' + (s ? s.notes : '') + '</div>' +
+                '</div>';
+      }
+      document.getElementById('threepl-grid').innerHTML = html;
+    }
+
+    function renderPathChart() {
+      var paths = ['A', 'B', 'C'];
+      var max = netMidpoint('C');
+      var html = '';
+      for (var i = 0; i < paths.length; i++) {
+        var p = paths[i];
+        var m = netMidpoint(p);
+        var w = (m / max * 100).toFixed(1);
+        var cls = p === 'B' ? '' : p === 'A' ? 'violet' : 'warn';
+        html += '<div class="bar-row">' +
+                  '<div class="label">Path ' + p + '</div>' +
+                  '<div class="bar-bg"><div class="bar-fill ' + cls + '" style="width: ' + w + '%"></div></div>' +
+                  '<div class="value">' + fmtUSD(m) + '</div>' +
+                '</div>';
+      }
+      document.getElementById('path-chart').innerHTML = html;
+    }
+
+    function renderPhaseGates(input) {
+      var html = '';
+      // Score = count of 'ok' gates; total = PHASE_GATES[id].total; status badge based on pass-rate
+      var passedPerPhase = { A: 10, B: 8, C: 0, D: 0 };  // demo: Phase 1 fully passed, Phase 2 partial, Phase 3+4 not started
+      for (var i = 0; i < PHASE_GATES.length; i++) {
+        var ph = PHASE_GATES[i];
+        var passed = passedPerPhase[ph.id];
+        var score = passed + '/' + ph.total;
+        var cls = passed >= ph.total ? 'ok' : passed >= ph.total / 2 ? 'warn' : 'fail';
+        html += '<div class="gate-card">' +
+                  '<div class="phase-header"><div class="phase-name">' + ph.label + '</div><div class="phase-score ' + cls + '">' + score + '</div></div>' +
+                  '<ul>';
+        for (var j = 0; j < ph.gates.length; j++) {
+          var g = ph.gates[j];
+          var status = (ph.id === 'A' && g.id !== 'B10') ? 'ok' :
+                       (ph.id === 'B' && g.id !== 'B10' && g.id !== 'B9') ? 'ok' :
+                       (g.id === 'B9') ? 'fail' :  // demo: B9 is the failing gate
+                       (g.id === 'B10') ? 'fail' :
+                       (ph.id === 'C' || ph.id === 'D') ? 'draft' : 'ok';
+          // For Phase A and Phase B (non-failing), use 'ok'; for C and D draft = not yet started
+          if (ph.id === 'A') status = 'ok';
+          if (ph.id === 'B' && g.id !== 'B9' && g.id !== 'B10') status = 'ok';
+          if (ph.id === 'B' && g.id === 'B9') status = 'warn';
+          if (ph.id === 'B' && g.id === 'B10') status = 'fail';
+          if (ph.id === 'C' || ph.id === 'D') status = 'draft';
+          var marker = status === 'ok' ? '✓' : status === 'warn' ? '!' : status === 'fail' ? '✗' : '·';
+          var liCls = status === 'ok' ? 'ok' : status === 'fail' ? 'fail' : '';
+          html += '<li class="' + liCls + '"><span class="marker">' + marker + '</span><span>' + g.id + ' — ' + g.criterion + '</span></li>';
+        }
+        html += '</ul></div>';
+      }
+      document.getElementById('phase-gates').innerHTML = html;
+    }
+
+    function renderThreeplTable() {
+      var html = '<thead><tr><th>3PL</th><th>Tier</th><th class="num">Pick-pack ($)</th><th class="num">Storage ($/cu ft/mo)</th><th class="num">Receiving ($/pallet)</th><th class="num">Kitting ($/unit)</th><th class="num">Returns ($/return)</th><th class="num">SLA ship (days)</th></tr></thead><tbody>';
+      for (var i = 0; i < THREEPLS.length; i++) {
+        var t = THREEPLS[i];
+        html += '<tr>' +
+                  '<td>' + t.name + '</td>' +
+                  '<td>' + t.tier + '</td>' +
+                  '<td class="num">' + t.pickPackLow.toFixed(2) + '–' + t.pickPackHigh.toFixed(2) + '</td>' +
+                  '<td class="num">' + t.storageLow.toFixed(2) + '–' + t.storageHigh.toFixed(2) + '</td>' +
+                  '<td class="num">' + t.receivingLow + '–' + t.receivingHigh + '</td>' +
+                  '<td class="num">' + t.kittingLow.toFixed(2) + '–' + t.kittingHigh.toFixed(2) + '</td>' +
+                  '<td class="num">' + t.returnsLow.toFixed(2) + '–' + t.returnsHigh.toFixed(2) + '</td>' +
+                  '<td class="num">' + t.slaShipDaysLow.toFixed(1) + '–' + t.slaShipDaysHigh.toFixed(1) + '</td>' +
+                '</tr>';
+      }
+      html += '</tbody>';
+      document.getElementById('threepl-table').innerHTML = html;
+    }
+
+    function renderNextAction(input, summary) {
+      var p = input.path;
+      var actions = [
+        '<span class="tag">Phase 2</span><strong>Fix SLA-defense financial-penalty invoicing</strong> — B10 failed; verify the financial-penalty-for-misses clause fires correctly when 3PL misses on-time-ship-rate; ship B9 ship-cost monitoring live (5-15% reduction target).',
+        '<span class="tag">Phase 1</span><strong>Lock ShipBob Mid-Market vs ShipMonk decision</strong> — both currently STAGING; pick by per-SKU cost-stack (ShipMonk cheaper for FDA-regulated; ShipBob for Shopify-Plus; Red Stag for large-parcel per assets/15 §3-tier size-match).',
+        '<span class="tag">Phase 3</span><strong>Initiate Phase 3 steady-state measurement</strong> — track on-time-ship-rate ≥95% + pick-pack-accuracy ≥99.5% + multi-warehouse-enabled conversion lift +3-8% for 4 weeks before declaring Phase 2 complete.',
+        '<span class="tag">Path ' + p + '</span><strong>Run scripts/threepl_unit_economics.py</strong> with current orders_per_month + aov + ship cost + ship time → confirms Path tier + cost-stack + 6-step build sequence; 54 TDD tests across 11 test classes.',
+        '<span class="tag">Phase 4</span><strong>Defer Path C international</strong> until ≥10,000 orders/mo sustained + dedicated supply-chain-manager + 15 hr/wk operator capacity; canonical from research/07 §Pillar 4.'
+      ];
+      var html = '';
+      for (var i = 0; i < actions.length; i++) {
+        html += '<li>' + actions[i] + '</li>';
+      }
+      document.getElementById('next-action-list').innerHTML = html;
+    }
+
+    // ---- URL param + fetch + render orchestration ----
+    function paramOr(name, fallback) {
+      try {
+        var url = new URLSearchParams(window.location.search);
+        var v = url.get(name);
+        if (v === null || v === '') return fallback;
+        return v;
+      } catch (e) {
+        return fallback;
+      }
+    }
+
+    function applyInputOverrides(input) {
+      var pathParam = paramOr('path', null);
+      if (pathParam === 'A' || pathParam === 'B' || pathParam === 'C') input.path = pathParam;
+      var orders = parseInt(paramOr('orders_per_month', null), 10);
+      if (!isNaN(orders) && orders >= 0) input.orders_per_month = orders;
+      var gmv = parseInt(paramOr('us_gmv', null), 10);
+      if (!isNaN(gmv) && gmv >= 0) input.us_gmv = gmv;
+      return input;
+    }
+
+    function isDemoMode() {
+      return paramOr('demo', null) === '1';
+    }
+
+    function renderAll(input) {
+      renderSummary(input);
+      renderThreeplGrid(input);
+      renderPathChart();
+      renderPhaseGates(input);
+      renderThreeplTable();
+      renderNextAction(input, input);
+    }
+
+    function setModeBadge(mode) {
+      var el = document.getElementById('mode-badge');
+      el.textContent = mode === 'demo' ? 'DEMO' : 'LIVE';
+      el.className = 'mode-badge ' + mode;
+    }
+
+    function loadFromUrlOrFallback(fallback) {
+      var url = paramOr('input', null);
+      if (!url || isDemoMode()) {
+        setModeBadge('demo');
+        return Promise.resolve(fallback);
+      }
+      var controller = new AbortController();
+      var timeoutId = setTimeout(function() { controller.abort(); }, 1500);
+      return fetch(url, { signal: controller.signal })
+        .then(function(r) { return r.json(); })
+        .then(function(data) { setModeBadge('live'); return data; })
+        .catch(function() { setModeBadge('demo'); return fallback; })
+        .then(function(data) { clearTimeout(timeoutId); return data; })
+        .then(function(data) { clearTimeout(timeoutId); return data; });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      var input = JSON.parse(JSON.stringify(SAMPLE_INPUTS));
+      input = applyInputOverrides(input);
+      loadFromUrlOrFallback(input).then(function(finalInput) {
+        renderAll(finalInput);
+      });
+    });
+  })();
+  </script>
+</body>
+</html>
