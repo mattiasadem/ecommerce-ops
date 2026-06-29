@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marketplace Expansion Health — ecommerce-ops</title>
+  <!--
+    Marketplace Expansion Health dashboard — static operator surface for the
+    marketplace-expansion track (research/06 + playbook 13 + asset 15 + dashboard/app/marketplace/page.tsx + scripts/marketplace_unit_economics.py).
+
+    Renders 6 sections end-to-end:
+      1. Summary stats (Path tier default ROI + Year-1 incremental net + DTC-cannibalization-adjusted net + Year-1 cost stack)
+      2. Per-marketplace readiness cards (8 canonical marketplaces × launch status + DTC-cannibalization snapshot + per-marketplace revenue share)
+      3. Per-path revenue contribution bar chart (Path A / B / C share of Year-1 net)
+      4. Per-phase verification gate scoring (Phase 1 Amazon-only + Phase 2 Amazon+Walmart + Phase 3 international + Phase 4 Target Plus+steady-state)
+      5. Per-marketplace detail table (8 marketplaces × 6 columns: Market / Path tier / Revenue share % / Status / Cannibalization / YoY projection)
+      6. Recommended next action (which phase to ship next + which marketplace to shortlist)
+
+    Demo data is hardcoded to the canonical Path B default ($5M US base, Path B = default 8.3:1 Year-1 ROI per research/06 + playbook 13).
+    Live data sources (override via URL params):
+      ?path=A | B | C               (default B)
+      ?us_gmv=5000000               (default $5M)
+      ?demo=1                       force demo mode (no fetches; uses SAMPLE_ defaults)
+
+    Architecture: NO build step, NO npm deps, single inline CSS + vanilla JS.
+    Companion artifacts:
+      research/06-marketplace-expansion.md            (the 5-pillar framework + 3 GMV-tier paths + 15 pitfalls)
+      playbooks/13-marketplace-launch.md              (4-phase Amazon + Walmart + Target Plus + EU marketplaces operator build)
+      assets/15-marketplace-listing-card.md           (paste-ready 5-marketplace × 5-voice = 25 voice-variant listing titles)
+      dashboard/app/marketplace/page.tsx              (Next.js operator-surface route; 15th route)
+      scripts/marketplace_unit_economics.py           (Archetype A/B hybrid Path A/B/C scorer; 81 TDD tests)
+
+    All canonical constants (PATH_A/B/C_FLOOR, PATH_COSTS, PATH_INCREMENTAL_REVENUE_PCT, PATH_DTC_CANNIBALIZATION_RATE,
+    PATH_ROI, MARKETPLACE_REVENUE_SHARES) mirror scripts/marketplace_unit_economics.py exactly. Per the v0.11.0
+    static-dashboard-tick recipe, this dashboard uses self-contained inline CSS + vanilla JS, no Chart.js / no npm /
+    no build step. Pure-Node smoke tests live in dashboards/tests/test_marketplace_expansion_health.js (≥70 tests
+    across 17 categories per the v0.11.0 recipe).
+  -->
+  <style>
+    :root {
+      --bg: #0f1115;
+      --panel: #161922;
+      --panel-2: #1d2230;
+      --border: #2a2f3d;
+      --text: #e8eaf0;
+      --text-dim: #9097a8;
+      --accent: #58a6ff;
+      --ok: #4ec9b0;
+      --warn: #e0af68;
+      --fail: #f06a6a;
+      --violet: #b48ead;
+      --code-bg: #0a0c10;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    header {
+      padding: 24px 32px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    header .subtitle {
+      color: var(--text-dim);
+      font-size: 13px;
+    }
+    .mode-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+    }
+    .mode-badge.demo { color: var(--warn); border-color: var(--warn); }
+    .mode-badge.live { color: var(--accent); border-color: var(--accent); }
+    main {
+      padding: 24px 32px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    section { margin-bottom: 28px; }
+    h2 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+      margin: 0 0 14px 0;
+      font-weight: 600;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .stat {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .stat .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+    }
+    .stat .value {
+      font-size: 22px;
+      font-weight: 600;
+      margin-top: 4px;
+      font-variant-numeric: tabular-nums;
+    }
+    .stat .sub {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+    .stat .value.ok { color: var(--ok); }
+    .stat .value.warn { color: var(--warn); }
+    .stat .value.fail { color: var(--fail); }
+    .stat .value.path-tag { color: var(--violet); }
+    .market-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .market-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      position: relative;
+    }
+    .market-card .tier {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      font-size: 10px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      letter-spacing: 0.06em;
+    }
+    .market-card .name {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .market-card .status {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-top: 8px;
+      border: 1px solid;
+    }
+    .status.live { color: var(--ok); border-color: var(--ok); }
+    .status.draft { color: var(--violet); border-color: var(--violet); }
+    .status.staging { color: var(--warn); border-color: var(--warn); }
+    .status.not-started { color: var(--text-dim); border-color: var(--text-dim); }
+    .market-card .lift {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-top: 6px;
+    }
+    .market-card .gate-score {
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+    .bar-chart {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+    }
+    .bar-row {
+      display: grid;
+      grid-template-columns: 100px 1fr 140px;
+      gap: 12px;
+      align-items: center;
+      padding: 6px 0;
+      font-size: 12px;
+    }
+    .bar-row .label { color: var(--text-dim); }
+    .bar-bg {
+      height: 14px;
+      background: var(--code-bg);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 3px;
+    }
+    .bar-fill.warn { background: var(--warn); }
+    .bar-fill.violet { background: var(--violet); }
+    .bar-fill.fail { background: var(--fail); }
+    .bar-row .value { text-align: right; font-variant-numeric: tabular-nums; }
+    .gate-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+    }
+    .gate-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .gate-card .phase-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .gate-card .phase-name {
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .gate-card .phase-score {
+      font-size: 16px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      border: 1px solid;
+    }
+    .gate-card .phase-score.ok { color: var(--ok); border-color: var(--ok); }
+    .gate-card .phase-score.warn { color: var(--warn); border-color: var(--warn); }
+    .gate-card .phase-score.fail { color: var(--fail); border-color: var(--fail); }
+    .gate-card ul { list-style: none; padding: 0; margin: 0; font-size: 12px; }
+    .gate-card li {
+      padding: 3px 0;
+      display: grid;
+      grid-template-columns: 14px 1fr auto;
+      gap: 6px;
+      align-items: baseline;
+    }
+    .gate-card li .check {
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .gate-card li .check.ok { color: var(--ok); }
+    .gate-card li .check.warn { color: var(--warn); }
+    .gate-card li .check.fail { color: var(--fail); }
+    .gate-card li .check.draft { color: var(--violet); }
+    .gate-card li .check.not-started { color: var(--text-dim); }
+    .gate-card li .gate-id {
+      color: var(--text-dim);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 11px;
+    }
+    table.detail-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      font-size: 12px;
+    }
+    table.detail-table th, table.detail-table td {
+      padding: 8px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    table.detail-table th {
+      background: var(--panel-2);
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-size: 10px;
+      font-weight: 600;
+    }
+    table.detail-table td { font-variant-numeric: tabular-nums; }
+    table.detail-table td.right { text-align: right; }
+    table.detail-table tr:last-child td { border-bottom: 0; }
+    .next-action {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 6px;
+      padding: 16px;
+    }
+    .next-action h3 {
+      margin: 0 0 8px 0;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .next-action p {
+      margin: 4px 0;
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+    .next-action code {
+      background: var(--code-bg);
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 11px;
+    }
+    footer {
+      padding: 20px 32px 30px;
+      color: var(--text-dim);
+      font-size: 11px;
+      border-top: 1px solid var(--border);
+      margin-top: 30px;
+    }
+    footer code {
+      background: var(--code-bg);
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 11px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Marketplace Expansion Health</h1>
+      <div class="subtitle">Move #13 · research/06 + playbook 13 + asset 15 + script + route · Path B default 8.3:1 Year-1 ROI</div>
+    </div>
+    <span id="mode-badge" class="mode-badge demo">DEMO</span>
+  </header>
+  <main>
+    <section id="summary-section">
+      <h2>1 · Path Summary</h2>
+      <div class="stats" id="summary-stats"></div>
+    </section>
+    <section id="market-section">
+      <h2>2 · Per-Marketplace Readiness</h2>
+      <div class="market-grid" id="market-grid"></div>
+    </section>
+    <section id="path-chart-section">
+      <h2>3 · Per-Path Year-1 Incremental Net</h2>
+      <div class="bar-chart" id="path-chart"></div>
+    </section>
+    <section id="phase-gates-section">
+      <h2>4 · Per-Phase Verification Gate Status</h2>
+      <div class="gate-grid" id="phase-gates"></div>
+    </section>
+    <section id="market-table-section">
+      <h2>5 · Per-Marketplace Detail Table</h2>
+      <table class="detail-table">
+        <thead>
+          <tr>
+            <th>Marketplace</th>
+            <th>Path tier</th>
+            <th>Revenue share</th>
+            <th>Status</th>
+            <th>DTC cannibalization</th>
+            <th>Year-1 revenue (mid)</th>
+          </tr>
+        </thead>
+        <tbody id="market-table-body"></tbody>
+      </table>
+    </section>
+    <section id="next-action-section">
+      <h2>6 · Recommended Next Action</h2>
+      <div class="next-action" id="next-action"></div>
+    </section>
+  </main>
+  <footer>
+    Self-contained static dashboard · no build step · no external deps.
+    Mirrors <code>scripts/marketplace_unit_economics.py</code> canonical constants (PATH_A_FLOOR=500000, PATH_B_FLOOR=1000000, PATH_C_FLOOR=10000000, PATH_COSTS, PATH_INCREMENTAL_REVENUE_PCT, PATH_DTC_CANNIBALIZATION_RATE, PATH_ROI, MARKETPLACE_REVENUE_SHARES).
+    Companion: <code>research/06-marketplace-expansion.md</code> + <code>playbooks/13-marketplace-launch.md</code> + <code>assets/15-marketplace-listing-card.md</code> + <code>dashboard/app/marketplace/page.tsx</code> + <code>scripts/marketplace_unit_economics.py</code>.
+    URL params: <code>?path=A|B|C</code> · <code>?us_gmv=N</code> · <code>?demo=1</code>.
+  </footer>
+
+  <script>
+    // ---- Canonical data structures (mirror scripts/marketplace_unit_economics.py) ----
+    // 8 canonical marketplaces (per research/06 §GMV-tier paths + playbook 13 §Phase 1-4 + asset 15 §5-marketplace paste-ready listings).
+    var MARKETPLACES = [
+      { id: 'amazon_us',        name: 'Amazon US',        tier: 'Path A+B+C', region: 'US',          feeStackPctLow: 30, feeStackPctHigh: 45, heroSkuRequired: true,  brandRegistryRequired: true,  yoyRevenueLow: 500000, yoyRevenueHigh: 2500000, status: 'live' },
+      { id: 'walmart_us',       name: 'Walmart US',       tier: 'Path B+C',   region: 'US',          feeStackPctLow: 25, feeStackPctHigh: 35, heroSkuRequired: true,  brandRegistryRequired: false, yoyRevenueLow: 200000, yoyRevenueHigh: 1500000, status: 'staging' },
+      { id: 'target_plus',      name: 'Target Plus',      tier: 'Path C',     region: 'US',          feeStackPctLow: 40, feeStackPctHigh: 55, heroSkuRequired: true,  brandRegistryRequired: false, yoyRevenueLow: 100000, yoyRevenueHigh: 750000,  status: 'draft' },
+      { id: 'amazon_eu',        name: 'Amazon EU (DE/FR/IT/ES/NL)', tier: 'Path C', region: 'EU', feeStackPctLow: 30, feeStackPctHigh: 45, heroSkuRequired: true, brandRegistryRequired: true,  yoyRevenueLow: 300000, yoyRevenueHigh: 2000000, status: 'draft' },
+      { id: 'amazon_jp',        name: 'Amazon JP',        tier: 'Path C',     region: 'JP',          feeStackPctLow: 30, feeStackPctHigh: 45, heroSkuRequired: true,  brandRegistryRequired: true,  yoyRevenueLow: 100000, yoyRevenueHigh: 800000,  status: 'not-started' },
+      { id: 'bol_nl',           name: 'bol (NL)',         tier: 'Path C',     region: 'NL',          feeStackPctLow: 25, feeStackPctHigh: 35, heroSkuRequired: true,  brandRegistryRequired: false, yoyRevenueLow: 50000,  yoyRevenueHigh: 400000,  status: 'not-started' },
+      { id: 'zalando',          name: 'Zalando',          tier: 'Path C',     region: 'EU',          feeStackPctLow: 30, feeStackPctHigh: 50, heroSkuRequired: true,  brandRegistryRequired: false, yoyRevenueLow: 30000,  yoyRevenueHigh: 350000,  status: 'not-started' },
+      { id: 'cdiscount',        name: 'Cdiscount',        tier: 'Path C',     region: 'FR',          feeStackPctLow: 30, feeStackPctHigh: 45, heroSkuRequired: true,  brandRegistryRequired: false, yoyRevenueLow: 20000,  yoyRevenueHigh: 250000,  status: 'not-started' }
+    ];
+
+    // Path-tier table (mirrors scripts/marketplace_unit_economics.py PATH_COSTS / PATH_INCREMENTAL_REVENUE_PCT / PATH_DTC_CANNIBALIZATION_RATE / PATH_ROI).
+    // Tuple values: cost one-time low/high, cost recurring low/high, year-1 incremental revenue % low/high, DTC-cannibalization rate low/high, ROI low/high, marketplaces in scope.
+    var PATH_TABLE = {
+      A: { gmvMin: 500000,    gmvMax: 999999,    costOneTimeLow: 5000,    costOneTimeHigh: 15000,   costRecurLow: 1000,    costRecurHigh: 2500,    revPctLow: 20, revPctHigh: 45, cannibalLow: 10, cannibalHigh: 20, roiLow: 5, roiHigh: 12, marketplaces: ['amazon_us'], revenueShares: { 'amazon_us': 100 }, label: 'Path A — Amazon-only (US DTC $500k-$5M, 8:1 ROI default)' },
+      B: { gmvMin: 1000000,   gmvMax: 9999999,   costOneTimeLow: 10000,   costOneTimeHigh: 25000,   costRecurLow: 2500,    costRecurHigh: 5000,    revPctLow: 30, revPctHigh: 70, cannibalLow: 15, cannibalHigh: 25, roiLow: 8, roiHigh: 18, marketplaces: ['amazon_us', 'walmart_us'], revenueShares: { 'amazon_us': 65, 'walmart_us': 35 }, label: 'Path B — Amazon + Walmart (US DTC $1M-$10M DEFAULT, 12:1 ROI default)' },
+      C: { gmvMin: 10000000,  gmvMax: 99999999,  costOneTimeLow: 50000,   costOneTimeHigh: 100000,  costRecurLow: 10000,   costRecurHigh: 20000,   revPctLow: 40, revPctHigh: 100, cannibalLow: 20, cannibalHigh: 35, roiLow: 6, roiHigh: 14, marketplaces: ['amazon_us', 'walmart_us', 'target_plus', 'amazon_eu', 'amazon_jp', 'bol_nl', 'zalando', 'cdiscount'], revenueShares: { 'amazon_us': 35, 'walmart_us': 15, 'target_plus': 8, 'amazon_eu': 22, 'amazon_jp': 8, 'bol_nl': 5, 'zalando': 4, 'cdiscount': 3 }, label: 'Path C — All 8 marketplaces (US DTC $10M+, 10:1 ROI default)' }
+    };
+
+    // Phase gates (mirrors playbook 13 §Phase 1+2+3+4 verification gates = 11/10/10/9 prereqs).
+    var PHASE_GATES = [
+      { id: 'A', label: 'Phase 1 — Amazon-only ~25hr Weeks 1-4', total: 11,
+        gates: [
+          { id: 'A1',  criterion: 'Move #1 abandoned-cart + #4 welcome-series + #6 attribution + #8 post-purchase shipped (4 prerequisites)', status: 'ok' },
+          { id: 'A2',  criterion: 'USPTO trademark registered (USPTO filing receipt + serial number)', status: 'ok' },
+          { id: 'A3',  criterion: 'Amazon Brand Registry enrollment approved (Brand Registry console access)', status: 'ok' },
+          { id: 'A4',  criterion: 'Amazon Seller Central 1P-vs-3P decision made (3P default for $5M GMV per playbook 13 §Step 1.3)', status: 'ok' },
+          { id: 'A5',  criterion: 'FBA inbound readiness OR FBM self-fulfillment capability (per playbook 13 §Step 1.4)', status: 'ok' },
+          { id: 'A6',  criterion: 'Brand-hero SKU in marketplace-fit category (per asset 15 §per-marketplace category fit)', status: 'ok' },
+          { id: 'A7',  criterion: 'Per-marketplace listing created (title + 5 bullets + A+ content + Brand Store per asset 15 paste-ready templates)', status: 'ok' },
+          { id: 'A8',  criterion: 'Sponsored Products + Sponsored Brands launched (per research/06 §Pillar 5 attribution-merge)', status: 'ok' },
+          { id: 'A9',  criterion: 'Vine review acquisition ($200/SKU per playbook 13 §5 brand-canary-defense levers)', status: 'ok' },
+          { id: 'A10', criterion: 'Buy Box ownership >90% (per playbook 13 §brand-canary-defense lever 3)', status: 'warn' },
+          { id: 'A11', criterion: 'Operator capacity ≥5 hr/wk sustained for 4 weeks (canonical playbook 13 §Prerequisite #8)', status: 'ok' }
+        ]
+      },
+      { id: 'B', label: 'Phase 2 — Amazon + Walmart ~20hr Weeks 5-12', total: 10,
+        gates: [
+          { id: 'B1',  criterion: 'Phase 1 11/11 prereqs complete (steady-state Week 4+ with on-time-ship-rate ≥97%)', status: 'ok' },
+          { id: 'B2',  criterion: 'Walmart Marketplace 3P seller account approved (Walmart Seller Center access)', status: 'ok' },
+          { id: 'B3',  criterion: 'Walmart Sponsored Products + Brand Portal activated (per playbook 13 §Phase 2 Step 2.3)', status: 'ok' },
+          { id: 'B4',  criterion: 'WFS (Walmart Fulfillment Services) inbound readiness (per playbook 13 §Phase 2 Step 2.4)', status: 'ok' },
+          { id: 'B5',  criterion: 'Cross-listing-automation setup (per-marketplace SKU mapping + inventory-sync per playbook 13 §Step 2.5)', status: 'ok' },
+          { id: 'B6',  criterion: 'Amazon DSP branded-keyword defense live ($500-$2,000/mo per playbook 13 §brand-canary-defense lever 4)', status: 'warn' },
+          { id: 'B7',  criterion: 'Amazon Transparency per-unit-serial codes (per playbook 13 §brand-canary-defense lever 5)', status: 'ok' },
+          { id: 'B8',  criterion: 'Triple Whale Marketplace Sync + Amazon Attribution + post-purchase email attribution wired (per playbook 13 §5 attribution-merge stitches)', status: 'ok' },
+          { id: 'B9',  criterion: 'DTC-cannibalization rate measured <25% per Marketplace Pulse 2024 benchmark (per research/06 §Pillar 2 brand-canary-defense)', status: 'warn' },
+          { id: 'B10', criterion: 'Buy Box ownership >90% sustained + Walmart Buy Box >85% (per playbook 13 §Step 2.6)', status: 'fail' }
+        ]
+      },
+      { id: 'C', label: 'Phase 3 — International ~75hr Weeks 13-24', total: 10,
+        gates: [
+          { id: 'C1',  criterion: 'Phase 2 10/10 prereqs complete (steady-state Week 12+ with on-time-ship-rate ≥95%)', status: 'draft' },
+          { id: 'C2',  criterion: 'EU compliance stack: CE + VAT-MOSS + EPR + GPSR effective Dec 2024 ($10k-30k one-time + $2k-10k/yr per research/06 §Pillar 4)', status: 'draft' },
+          { id: 'C3',  criterion: 'Amazon EU 5 marketplaces (DE + FR + IT + ES + NL) listings created per asset 15 paste-ready NL/FR/IT/ES/DE translations', status: 'draft' },
+          { id: 'C4',  criterion: 'bol NL-only Dutch language listings live (per asset 15 §bol NL-only Dutch guardrail; NOT literal English translation)', status: 'draft' },
+          { id: 'C5',  criterion: 'Amazon JP listing live (per asset 15 §per-marketplace JP translation + Japan-specific compliance)', status: 'draft' },
+          { id: 'C6',  criterion: 'Zalando + Cdiscount onboarding (per playbook 13 §Phase 3 Step 3.4 + Step 3.5)', status: 'draft' },
+          { id: 'C7',  criterion: 'International 3PL footprint for 2-3 day ship time (per research/07 §Pillar 4 international 3PL; compounds with 3PL-migration track)', status: 'draft' },
+          { id: 'C8',  criterion: 'Multi-currency checkout live (per playbook 13 §Phase 3 Step 3.6)', status: 'draft' },
+          { id: 'C9',  criterion: 'Multi-region SLA dashboards (EU + UK + JP per playbook 13 §Phase 3 Step 3.7)', status: 'draft' },
+          { id: 'C10', criterion: 'Operator capacity ≥25 hr/wk sustained for 12 weeks (canonical playbook 13 §Phase 3 Step 3.8)', status: 'draft' }
+        ]
+      },
+      { id: 'D', label: 'Phase 4 — Target Plus + steady-state ~30hr Quarter 2+', total: 9,
+        gates: [
+          { id: 'D1', criterion: 'Phase 3 10/10 prereqs complete (steady-state Quarter 2+ with multi-region on-time-ship-rate ≥95%)', status: 'draft' },
+          { id: 'D2', criterion: 'Target Plus 1P-via-Roundel application approved (5-10% approval rate; only $5M+ brands in apparel+home+beauty+electronics per playbook 13 §Phase 4 Step 4.2)', status: 'draft' },
+          { id: 'D3', criterion: 'Roundel category-fit + inventory-pool rules met (per Roundel 2024 application requirements)', status: 'draft' },
+          { id: 'D4', criterion: 'Path C only: dedicated marketplace-manager + 25 hr/wk ongoing (per playbook 13 §Phase 4 Step 4.4)', status: 'draft' },
+          { id: 'D5', criterion: 'Per-marketplace 8-metric KPI dashboard live (per research/06 §Pillar 5 attribution-merge + 8-metric monitoring table per playbook 13 §Step 4.5)', status: 'draft' },
+          { id: 'D6', criterion: 'Path C Year-1 ROI target ≥6:1 (per research/06 §Cost & ROI estimate Path C default)', status: 'draft' },
+          { id: 'D7', criterion: 'Quarterly RFQ re-bid (re-quote marketplaces every 12 months per playbook 13 §Phase 4 Step 4.6)', status: 'draft' },
+          { id: 'D8', criterion: 'International revenue lift +30-50% (per research/06 §Pillar 4 international expansion)', status: 'draft' },
+          { id: 'D9', criterion: 'Annual brand-canary-defense audit (Brand Registry + Vine + Buy Box + Amazon DSP + Transparency all live per playbook 13 §Phase 4 Step 4.7)', status: 'draft' }
+        ]
+      }
+    ];
+
+    // SAMPLE_INPUTS — canonical Path B default reference profile.
+    // Mirrors scripts/marketplace_unit_economics.py SAMPLE_INPUTS canonical defaults ($5M US GMV / Path B default).
+    var SAMPLE_INPUTS = {
+      path: 'B',
+      us_gmv: 5000000,
+      marketplaces: {
+        amazon_us:        { status: 'live',        notes: 'Phase 1 Amazon live; Buy Box 87%' },
+        walmart_us:       { status: 'staging',     notes: 'Phase 2 Walmart seller account approved' },
+        target_plus:      { status: 'draft',       notes: 'Path C Roundel application pending' },
+        amazon_eu:        { status: 'draft',       notes: 'EU compliance stack contracted' },
+        amazon_jp:        { status: 'not-started', notes: 'Path C Phase 3 not yet started' },
+        bol_nl:           { status: 'not-started', notes: 'Path C Phase 3 NL-only Dutch not yet started' },
+        zalando:          { status: 'not-started', notes: 'Path C Phase 3 Zalando onboarding not yet started' },
+        cdiscount:        { status: 'not-started', notes: 'Path C Phase 3 Cdiscount onboarding not yet started' }
+      }
+    };
+
+    // ---- Helper functions ----
+    function pathForGmv(us_gmv) {
+      if (us_gmv >= 10000000) return 'C';
+      if (us_gmv >= 1000000)  return 'B';
+      return 'A';
+    }
+    function netMidpoint(p) { return (PATH_TABLE[p].costRecurLow + PATH_TABLE[p].costRecurHigh) / 2; }
+    function year1NetLow(us_gmv, p)  {
+      // Year-1 incremental revenue = us_gmv * revPctLow / 100
+      return us_gmv * PATH_TABLE[p].revPctLow / 100;
+    }
+    function year1NetHigh(us_gmv, p) {
+      return us_gmv * PATH_TABLE[p].revPctHigh / 100;
+    }
+    function year1AdjustedNetLow(us_gmv, p) {
+      // DTC-cannibalization-adjusted net = incremental * (1 - cannibal/100)
+      return year1NetLow(us_gmv, p) * (1 - PATH_TABLE[p].cannibalHigh / 100);
+    }
+    function year1AdjustedNetHigh(us_gmv, p) {
+      return year1NetHigh(us_gmv, p) * (1 - PATH_TABLE[p].cannibalLow / 100);
+    }
+    function year1CostLow(p)  { return PATH_TABLE[p].costOneTimeLow + PATH_TABLE[p].costRecurLow * 1; }
+    function year1CostHigh(p) { return PATH_TABLE[p].costOneTimeHigh + PATH_TABLE[p].costRecurHigh * 1; }
+    function fmtUSD(n) {
+      if (n >= 1e6) return '$' + (n / 1e6).toFixed(2) + 'M';
+      if (n >= 1e3) return '$' + (n / 1e3).toFixed(1) + 'k';
+      return '$' + n.toFixed(0);
+    }
+    function fmtPct(x) { return x.toFixed(1) + '%'; }
+    function statusClass(s)  { return s === 'live' ? 'live' : s === 'draft' ? 'draft' : s === 'staging' ? 'staging' : 'not-started'; }
+    function statusLabel(s)  { return s === 'live' ? 'LIVE' : s === 'draft' ? 'DRAFT' : s === 'staging' ? 'STAGING' : 'NOT STARTED'; }
+
+    // ---- Render functions ----
+    function renderSummary(input) {
+      var p = input.path;
+      var pt = PATH_TABLE[p];
+      var incLow = year1NetLow(input.us_gmv, p);
+      var incHigh = year1NetHigh(input.us_gmv, p);
+      var adjLow = year1AdjustedNetLow(input.us_gmv, p);
+      var adjHigh = year1AdjustedNetHigh(input.us_gmv, p);
+      var costLow = year1CostLow(p);
+      var costHigh = year1CostHigh(p);
+      var roiLow = pt.roiLow;
+      var roiHigh = pt.roiHigh;
+      var cannibalLow = pt.cannibalLow;
+      var cannibalHigh = pt.cannibalHigh;
+      var incLowLabel = fmtUSD(incLow);
+      var incHighLabel = fmtUSD(incHigh);
+      var adjLowLabel = fmtUSD(adjLow);
+      var adjHighLabel = fmtUSD(adjHigh);
+      var costLowLabel = fmtUSD(costLow);
+      var costHighLabel = fmtUSD(costHigh);
+      document.getElementById('summary-stats').innerHTML = [
+        statBox('Path tier', 'B', 'path-tag', pt.label),
+        statBox('Year-1 ROI', roiLow + ':1 - ' + roiHigh + ':1', 'ok', 'Range: ' + (p === 'A' ? '5:1 to 12:1' : p === 'B' ? '8:1 to 18:1' : '6:1 to 14:1')),
+        statBox('Year-1 incremental net', incLowLabel + ' - ' + incHighLabel, 'ok', 'Incremental revenue ' + fmtPct(pt.revPctLow) + '-' + fmtPct(pt.revPctHigh) + ' of US-DTC-GMV'),
+        statBox('DTC-cannibalization adj.', adjLowLabel + ' - ' + adjHighLabel, 'warn', 'Amazon Halo ' + fmtPct(cannibalLow) + '-' + fmtPct(cannibalHigh) + ' cannibalization rate'),
+        statBox('Year-1 cost stack', costLowLabel + ' - ' + costHighLabel, 'fail', 'Setup + Year-1 recurring'),
+        statBox('Marketplaces in scope', pt.marketplaces.length + ' (' + pt.marketplaces.join(', ') + ')', 'ok', 'Path ' + p + ' marketplace scope')
+      ].join('');
+    }
+
+    function statBox(label, value, valueClass, sub) {
+      return '<div class="stat"><div class="label">' + label + '</div><div class="value ' + valueClass + '">' + value + '</div><div class="sub">' + sub + '</div></div>';
+    }
+
+    function renderMarketGrid(input) {
+      var p = input.path;
+      var pt = PATH_TABLE[p];
+      var marketsInScope = pt.marketplaces;
+      var cards = [];
+      for (var i = 0; i < marketsInScope.length; i++) {
+        var m = MARKETPLACES[marketIndex(marketsInScope[i])];
+        if (!m) continue;
+        var share = pt.revenueShares[m.id] || 0;
+        var status = (input.marketplaces[m.id] && input.marketplaces[m.id].status) || 'not-started';
+        var notes = (input.marketplaces[m.id] && input.marketplaces[m.id].notes) || 'Not in Path ' + p + ' scope';
+        var cannibalLabel = pt.cannibalLow + '-' + pt.cannibalHigh + '% DTC';
+        var yoyLabel = fmtUSD(m.yoyRevenueLow) + ' - ' + fmtUSD(m.yoyRevenueHigh);
+        var tierLabel = 'Path ' + p + ' tier';
+        var feeLabel = 'Fee-stack ' + m.feeStackPctLow + '-' + m.feeStackPctHigh + '%';
+        cards.push(
+          '<div class="market-card">' +
+            '<div class="tier">' + tierLabel + '</div>' +
+            '<div class="name">' + m.name + '</div>' +
+            '<div class="status ' + statusClass(status) + '">' + statusLabel(status) + '</div>' +
+            '<div class="lift">Revenue share: ' + share + '% of Path ' + p + ' incremental · ' + feeLabel + '</div>' +
+            '<div class="gate-score">' + cannibalLabel + ' cannibalization · Year-1 revenue ' + yoyLabel + ' · ' + notes + '</div>' +
+          '</div>'
+        );
+      }
+      document.getElementById('market-grid').innerHTML = cards.join('');
+    }
+
+    function marketIndex(id) {
+      for (var i = 0; i < MARKETPLACES.length; i++) if (MARKETPLACES[i].id === id) return i;
+      return -1;
+    }
+
+    function renderPathChart(input) {
+      var p = input.path;
+      var rows = [];
+      var maxNet = 0;
+      var paths = ['A', 'B', 'C'];
+      var nets = {};
+      for (var i = 0; i < paths.length; i++) {
+        var pp = paths[i];
+        nets[pp] = (year1NetLow(input.us_gmv, pp) + year1NetHigh(input.us_gmv, pp)) / 2;
+        if (nets[pp] > maxNet) maxNet = nets[pp];
+      }
+      for (var j = 0; j < paths.length; j++) {
+        var path = paths[j];
+        var net = nets[path];
+        var pct = maxNet > 0 ? (net / maxNet * 100) : 0;
+        var isCurrent = (path === p);
+        var fillClass = isCurrent ? '' : (path === 'A' ? 'warn' : 'violet');
+        rows.push(
+          '<div class="bar-row">' +
+            '<div class="label">Path ' + path + (isCurrent ? ' ← current' : '') + '</div>' +
+            '<div class="bar-bg"><div class="bar-fill ' + fillClass + '" style="width: ' + pct.toFixed(1) + '%"></div></div>' +
+            '<div class="value">' + fmtUSD(net) + '</div>' +
+          '</div>'
+        );
+      }
+      document.getElementById('path-chart').innerHTML = rows.join('');
+    }
+
+    function renderPhaseGates(input) {
+      var cards = [];
+      for (var i = 0; i < PHASE_GATES.length; i++) {
+        var pg = PHASE_GATES[i];
+        var okCount = 0, warnCount = 0, failCount = 0, draftCount = 0;
+        var gateRows = [];
+        for (var k = 0; k < pg.gates.length; k++) {
+          var g = pg.gates[k];
+          var checkChar = g.status === 'ok' ? '✓' : g.status === 'warn' ? '!' : g.status === 'fail' ? '✗' : '·';
+          if (g.status === 'ok') okCount++;
+          else if (g.status === 'warn') warnCount++;
+          else if (g.status === 'fail') failCount++;
+          else draftCount++;
+          gateRows.push(
+            '<li>' +
+              '<span class="check ' + g.status + '">' + checkChar + '</span>' +
+              '<span><span class="gate-id">' + g.id + '</span> ' + g.criterion + '</span>' +
+              '<span class="check ' + g.status + '">' + statusLabel(g.status) + '</span>' +
+            '</li>'
+          );
+        }
+        var scoreClass = failCount > 0 ? 'fail' : (warnCount > 0 ? 'warn' : 'ok');
+        var scoreLabel = okCount + '/' + pg.total;
+        cards.push(
+          '<div class="gate-card">' +
+            '<div class="phase-header">' +
+              '<div class="phase-name">' + pg.label + '</div>' +
+              '<div class="phase-score ' + scoreClass + '">' + scoreLabel + '</div>' +
+            '</div>' +
+            '<ul>' + gateRows.join('') + '</ul>' +
+          '</div>'
+        );
+      }
+      document.getElementById('phase-gates').innerHTML = cards.join('');
+    }
+
+    function renderMarketTable(input) {
+      var p = input.path;
+      var pt = PATH_TABLE[p];
+      var rows = [];
+      var marketsInScope = pt.marketplaces;
+      for (var i = 0; i < marketsInScope.length; i++) {
+        var m = MARKETPLACES[marketIndex(marketsInScope[i])];
+        if (!m) continue;
+        var share = pt.revenueShares[m.id] || 0;
+        var status = (input.marketplaces[m.id] && input.marketplaces[m.id].status) || 'not-started';
+        var cannibalLabel = pt.cannibalLow + '-' + pt.cannibalHigh + '%';
+        var yoyMid = (m.yoyRevenueLow + m.yoyRevenueHigh) / 2;
+        rows.push(
+          '<tr>' +
+            '<td>' + m.name + '</td>' +
+            '<td>' + m.tier + '</td>' +
+            '<td class="right">' + share + '%</td>' +
+            '<td><span class="status ' + statusClass(status) + '">' + statusLabel(status) + '</span></td>' +
+            '<td class="right">' + cannibalLabel + '</td>' +
+            '<td class="right">' + fmtUSD(yoyMid) + '</td>' +
+          '</tr>'
+        );
+      }
+      document.getElementById('market-table-body').innerHTML = rows.join('');
+    }
+
+    function renderNextAction(input, summary) {
+      var p = input.path;
+      var pg = PHASE_GATES[0]; // Phase 1
+      var liveCount = 0, failCount = 0, draftCount = 0;
+      for (var i = 0; i < pg.gates.length; i++) {
+        if (pg.gates[i].status === 'live' || pg.gates[i].status === 'ok') liveCount++;
+        else if (pg.gates[i].status === 'fail') failCount++;
+        else draftCount++;
+      }
+      var actionHtml = '';
+      if (p === 'A') {
+        actionHtml = '<h3>Path A (Amazon-only) — Phase 1 launch</h3>' +
+          '<p>Operator is at $500k-$999k US DTC GMV; Path A is the canonical entry tier per research/06 §Path A.</p>' +
+          '<p><strong>Next action:</strong> Complete the canonical 11/11 Phase 1 verification gates then launch Amazon US 3P via FBA with Brand Registry enrolled. Run <code>python3 scripts/marketplace_unit_economics.py</code> to re-score per <code>?us_gmv=750000</code>.</p>' +
+          '<p>Compounds: research/06 §Path A + playbook 13 §Phase 1 (9-step build) + asset 15 paste-ready Amazon-only listings + scripts/marketplace_unit_economics.py.</p>';
+      } else if (p === 'B') {
+        actionHtml = '<h3>Path B (Amazon + Walmart) DEFAULT — Phase 2 launch</h3>' +
+          '<p>Operator is at $1M-$10M US DTC GMV; Path B is the canonical DEFAULT tier per research/06 §Path B + playbook 13 §Phase 2 (12:1 default Year-1 ROI, $2.25M Year-1 incremental net at $5M base).</p>' +
+          '<p><strong>Next action:</strong> Clear the 2 warn/fail gates in Phase 1 (Buy Box ownership + DTC-cannibalization measurement) then enable Walmart Marketplace. Move to Phase 2 Amazon+Walmart in Week 5-12.</p>' +
+          '<p>Compounds: research/06 §Path B + playbook 13 §Phase 2 + asset 15 paste-ready Amazon+Walmart listings + scripts/marketplace_unit_economics.py.</p>';
+      } else {
+        actionHtml = '<h3>Path C (all 8 marketplaces) — Phase 3 international launch</h3>' +
+          '<p>Operator is at $10M+ US DTC GMV; Path C is the canonical enterprise tier per research/06 §Path C + playbook 13 §Phase 3 (10:1 ROI default, 8 marketplaces across US + EU + JP).</p>' +
+          '<p><strong>Next action:</strong> Complete EU compliance stack (CE + VAT-MOSS + EPR + GPSR effective Dec 2024) then onboard Amazon EU 5 + bol NL + Zalando + Cdiscount + Amazon JP. Compounds with 3PL-migration track Path C international 3PL footprint for 2-3 day ship time.</p>' +
+          '<p>Compounds: research/06 §Path C + playbook 13 §Phase 3 + asset 15 paste-ready international listings + research/07 3PL-migration Path C + scripts/marketplace_unit_economics.py.</p>';
+      }
+      document.getElementById('next-action').innerHTML = actionHtml;
+    }
+
+    // ---- Fetch + param handling (canonical v0.11.0 fetch-timeout contract) ----
+    var FETCH_TIMEOUT_MS = 1500;
+    function paramOr(name, fallback) {
+      var params = new URLSearchParams(window.location.search);
+      var v = params.get(name);
+      return v === null ? fallback : v;
+    }
+
+    function fetchJSON(url) {
+      return new Promise(function(resolve, reject) {
+        var controller = new AbortController();
+        var timeoutId = setTimeout(function() { controller.abort(); }, FETCH_TIMEOUT_MS);
+        fetch(url, { signal: controller.signal })
+          .then(function(r) { clearTimeout(timeoutId); if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+          .then(function(data) { resolve(data); })
+          .catch(function(err) { clearTimeout(timeoutId); reject(err); });
+      });
+    }
+
+    function loadInput() {
+      var demo = paramOr('demo', null);
+      var pathParam = paramOr('path', null);
+      var gmvParam = paramOr('us_gmv', null);
+      var inputParam = paramOr('input', null);
+
+      var input = JSON.parse(JSON.stringify(SAMPLE_INPUTS));
+
+      if (pathParam) input.path = pathParam.toUpperCase();
+      if (gmvParam) input.us_gmv = parseFloat(gmvParam);
+
+      var badge = document.getElementById('mode-badge');
+      if (demo === '1' || !inputParam) {
+        badge.textContent = 'DEMO';
+        badge.className = 'mode-badge demo';
+        return Promise.resolve(input);
+      }
+
+      badge.textContent = 'LIVE';
+      badge.className = 'mode-badge live';
+      return fetchJSON(inputParam).then(function(data) {
+        if (data.path) input.path = data.path;
+        if (typeof data.us_gmv === 'number') input.us_gmv = data.us_gmv;
+        if (data.marketplaces) input.marketplaces = data.marketplaces;
+        return input;
+      }).catch(function(err) {
+        badge.textContent = 'DEMO';
+        badge.className = 'mode-badge demo';
+        return input;
+      });
+    }
+
+    function renderAll(input) {
+      renderSummary(input);
+      renderMarketGrid(input);
+      renderPathChart(input);
+      renderPhaseGates(input);
+      renderMarketTable(input);
+      renderNextAction(input);
+    }
+
+    // ---- Bootstrap ----
+    document.addEventListener('DOMContentLoaded', function() {
+      loadInput().then(function(input) { renderAll(input); }).catch(function(err) {
+        document.getElementById('mode-badge').textContent = 'DEMO (fallback)';
+        document.getElementById('mode-badge').className = 'mode-badge demo';
+        renderAll(SAMPLE_INPUTS);
+      });
+    });
+  </script>
+</body>
+</html>

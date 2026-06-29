@@ -375,16 +375,17 @@ export default function MarketplacePage() {
               <code className="rounded bg-muted px-1">
                 dashboards/marketplace-expansion-health.html
               </code>{" "}
-              — static HTML dashboard rendering the 4-phase launch ladder as a
-              per-marketplace launch-readiness heat-map + per-marketplace
+              — <strong>shipped 2026-06-28</strong> per the dashboard-tick
+              follow-up to research/06 + playbook 13 + asset 15 + the script +
+              this route. Static HTML dashboard rendering the 4-phase launch
+              ladder as a per-marketplace launch-readiness heat-map + per-marketplace
               Year-1 revenue contribution + 4-phase gate status (Gate A/B/C/D
               per playbook 13 §Verification gates 11/10/10/9 prereqs) +
               DTC-cannibalization overlay as a 1-click operator surface.
-              Pre-staged in research/06 §Next moves #4 + playbook 13 §Next
-              moves + asset 15 §Related. Mirrors the Move #6.9 +
-              international-expansion-health + lifecycle-flow-library
-              static-dashboard pattern with 5+ sections + 4 data structures +
-              8 helper functions.
+              Self-contained static HTML ~39KB; 6 sections + 83 Node smoke
+              tests across 17 categories. Compounds the 5 prior marketplace
+              artifacts by visualizing them as a 1-click per-marketplace
+              launch readiness heat-map with per-marketplace revenue shares.
             </li>
           </ul>
         </CardContent>
