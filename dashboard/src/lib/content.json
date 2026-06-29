@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-29T04:51:46.728Z",
+  "generatedAt": "2026-06-29T12:32:05.842Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -4425,7 +4425,7 @@
           "heading": "Next moves after 30 days",
           "level": 2,
           "table": null,
-          "body": "\nThe 16 moves above are the **MVP stack**. Once shipped + steady-state, the high-leverage follow-ups are:\n\n1. **Move #6.10: Attribution health alert webhook** (Slack-formatted webhook from the Move #6.9 dashboard's \"What to do this cycle\" CTA — closes the visibility gap for non-dashboard-openers).\n2. **Move #6.9.1: Dashboard visual polish + operator-friendly defaults** (sparklines for last 4 cycles, threshold-relative bar chart widths, \"Last refreshed\" timestamp).\n3. **Move #11: Subscription / replenishment program** (ReCharge / Skio / Bold Subscriptions — recurring revenue + 20–30% LTV lift; the natural complement to the loyalty program). **Shipped as `research/08-subscriptions.md` + `playbooks/15-subscription-program-launch.md` (synthesis layer + operator-build companion for the subscription-program track; shipped 2026-06-29 per the playbook-tick follow-up to research/08 — the canonical 2nd-layer operator-build companion per the canonical research → playbook → asset → operator-surface → scripts → static-dashboard layer order; ~58KB / 490 lines / 4-phase Recharge + Skio + Bold + Stay AI + Appstle + Seal + Loop multi-platform subscription-program operator build across 3 GMV-tier paths [Path A $100k-$500k Recharge Starter / Path B $500k-$10M Recharge Plus DEFAULT 8.3:1 Year-1 ROI / Path C $10M+ Recharge Enterprise or Skio 7.5:1 Year-1 ROI] with 7-platform decision matrix + 5-discount-tier matrix [5/10/15/20/25% off for 30/45/60/90/120-day cadence] + 4-alternative smart-cancellation flow [pause + skip + change-frequency + 25%-discount recovering 20-35%] + 3-attempt dunning-flow recovering 50-70% + 60-day winback-flow returning 10-20% + 10-metric operational KPI dashboard + 15 pitfalls with Fix lines clustered into 5 failure modes [A wrong-SKU-widget / B subscriber-discount-too-low / C smart-cancellation-missing / D Triple-Whale-attribution-missing / E subscription-experience-untested] + 4 phase-by-phase verification gates A-D with 10/10/10/9 prereqs respectively + 8.3:1 default Year-1 ROI Path B at $500k-$10M GMV base $270k Year-1 incremental revenue / $84k cost = 3.2:1 gross / 2.2:1 net; compounds 19 shipped playbooks + 16 shipped assets + 17 scripts + 6 dashboards + 7 prior research docs by mapping the 5-pillar subscription-program framework into step-by-step Recharge + Skio + Bold + Stay AI + Appstle + Seal + Loop multi-platform operator build across 3 GMV-tier paths); the canonical 5-pillar framework [Pillar 1 platform selection + pricing (Recharge Plus $499/mo default for $500k-$10M GMV) / Pillar 2 subscriber economics + LTV math with the canonical 5-corners subscriber-conversion-rate 15-30% + monthly-churn 5-8% + LTV-multiplier 2.0-3.5× + CAC-payback 40-60%-faster + gross-margin-impact 2-4% subscription-overhead / Pillar 3 replenishment flow + smart cancellation with 4 alternatives pause + skip + change-frequency + 25%-discount recovering 20-35% of would-be-cancellations + dunning-flow recovering 50-70% of subscription-renewals + winback-flow returning 10-20% of cancelled-subscribers / Pillar 4 subscriber-cohort analytics + Triple Whale attribution-merge with flow_attribution_match ≥60% / Pillar 5 inventory + fulfillment with FIFO + lot/date tracking + subscription-specialty 3PL fulfillment with 30-50% lower pick-pack-error-rate] + 3 GMV-tier paths [Path A $100k-$500k Recharge Starter 16.7:1 ROI / Path B $500k-$10M Recharge Plus DEFAULT 8.3:1 Year-1 ROI 3.2:1 gross 2.2:1 net / Path C $10M+ Recharge Enterprise or Skio 7.5:1 Year-1 ROI] + 4 phase-by-phase verification gates [Gate A Phase 1 PDP widget 10 prereqs / Gate B Phase 2 billing + customer portal + dunning 10 prereqs / Gate C Phase 3 replenishment + smart cancellation 10 prereqs / Gate D Phase 4 subscriber-cohort analytics 9 prereqs] + 15 numbered pitfalls with corrective `Fix:` lines clustered into 5 failure modes [A wrong-SKU-widget / B subscriber-discount-too-low / C smart-cancellation-missing / D Triple-Whale-attribution-missing / E subscription-experience-unteste"
+          "body": "\nThe 16 moves above are the **MVP stack**. Once shipped + steady-state, the high-leverage follow-ups are:\n\n1. **Move #6.10: Attribution health alert webhook** (Slack-formatted webhook from the Move #6.9 dashboard's \"What to do this cycle\" CTA — closes the visibility gap for non-dashboard-openers).\n2. **Move #6.9.1: Dashboard visual polish + operator-friendly defaults** (sparklines for last 4 cycles, threshold-relative bar chart widths, \"Last refreshed\" timestamp).\n3. **Move #11: Subscription / replenishment program** (ReCharge / Skio / Bold Subscriptions — recurring revenue + 20–30% LTV lift; the natural complement to the loyalty program). **Shipped as `research/08-subscriptions.md` + `playbooks/15-subscription-program-launch.md` + `assets/16-subscription-flow-templates.md` + `dashboard/app/subscriptions/page.tsx` + `scripts/subscription_unit_economics.py`** (synthesis layer + operator-build companion + operator-copy companion + operator-surface route + scoring-script layer for the subscription-program track; all 5 shipped 2026-06-29 per the playbook-tick + asset-tick + route-tick + script-tick follow-ups to research/08 — the canonical research → playbook → asset → operator-surface → scripts → static-dashboard layer order; ~58KB / 490 lines / 4-phase Recharge + Skio + Bold + Stay AI + Appstle + Seal + Loop multi-platform subscription-program operator build across 3 GMV-tier paths [Path A $100k-$500k Recharge Starter / Path B $500k-$10M Recharge Plus DEFAULT 8.3:1 Year-1 ROI / Path C $10M+ Recharge Enterprise or Skio 7.5:1 Year-1 ROI] with 7-platform decision matrix + 5-discount-tier matrix [5/10/15/20/25% off for 30/45/60/90/120-day cadence] + 4-alternative smart-cancellation flow [pause + skip + change-frequency + 25%-discount recovering 20-35%] + 3-attempt dunning-flow recovering 50-70% + 60-day winback-flow returning 10-20% + 10-metric operational KPI dashboard + 15 pitfalls with Fix lines clustered into 5 failure modes [A wrong-SKU-widget / B subscriber-discount-too-low / C smart-cancellation-missing / D Triple-Whale-attribution-missing / E subscription-experience-untested] + 4 phase-by-phase verification gates A-D with 10/10/10/9 prereqs respectively + 8.3:1 default Year-1 ROI Path B at $500k-$10M GMV base $270k Year-1 incremental revenue / $84k cost = 3.2:1 gross / 2.2:1 net); the canonical 5-pillar framework [Pillar 1 platform selection + pricing (Recharge Plus $499/mo default for $500k-$10M GMV) / Pillar 2 subscriber economics + LTV math with the canonical 5-corners subscriber-conversion-rate 15-30% + monthly-churn 5-8% + LTV-multiplier 2.0-3.5× + CAC-payback 40-60%-faster + gross-margin-impact 2-4% subscription-overhead / Pillar 3 replenishment flow + smart cancellation with 4 alternatives pause + skip + change-frequency + 25%-discount recovering 20-35% of would-be-cancellations + dunning-flow recovering 50-70% of subscription-renewals + winback-flow returning 10-20% of cancelled-subscribers / Pillar 4 subscriber-cohort analytics + Triple Whale attribution-merge with flow_attribution_match ≥60% / Pillar 5 inventory + fulfillment with FIFO + lot/date tracking + subscription-specialty 3PL fulfillment with 30-50% lower pick-pack-error-rate] + 3 GMV-tier paths [Path A $100k-$500k Recharge Starter 16.7:1 ROI / Path B $500k-$10M Recharge Plus DEFAULT 8.3:1 Year-1 ROI 3.2:1 gross 2.2:1 net / Path C $10M+ Recharge Enterprise or Skio 7.5:1 Year-1 ROI] + 4 phase-by-phase verification gates [Gate A Phase 1 PDP widget 10 prereqs / Gate B Phase 2 billing + customer portal + dunning 10 prereqs / Gate C Phase 3 replenishment + smart cancellation 10 prereqs / Gate D Phase 4 subscriber-cohort analytics 9 prereqs] + 15 numbered pitfalls with corrective `Fix:` lines clustered into 5 failure modes [A wrong-SKU-widget / B subscriber-discount-too-low / C smart-cancellation-missing / D Triple-Whale-attribution-missing / E subscription-experience-untested] + 6:1 to 25:1 Year-1 ROI band for default $500k-$10M GMV / 1,000-10,000 subscribers / "
         },
         {
           "heading": "Related",
@@ -7099,6 +7099,877 @@
         }
       ],
       "findings": []
+    },
+    {
+      "file": "09-affiliate-program.md",
+      "title": "TL;DR",
+      "sections": [
+        {
+          "heading": "TL;DR",
+          "level": 2,
+          "table": null,
+          "body": "\nA Shopify brand at **$100k–$50M GMV** with **$500+/mo paid spend** and **at least 1,000 customers/month** can launch an affiliate / creator / influencer program in **30 days** at **3–8 hours of operator time per week** with a total cost stack of **$0–$1,200/yr** (mostly free Shopify App Store affiliate apps; paid only at scale) and an expected **Year-1 ROI of 3.5:1–12.5:1** depending on path — Path A (Default Shopify Affiliate < $500k GMV 12.5:1 ROI) / **Path B (Refersion + Levanta DEFAULT $500k–$5M GMV 6:1–8:1 ROI)** / Path C (Impact + PartnerStack $5M+ GMV 3.5:1–5:1 ROI). The plan is sequenced so that **each phase's prerequisite is shipped in the prior week** — no phase requires a tool that's not yet installed.\n\n**The 4-phase rhythm:**\n- **Phase 1 (Days 1–7) — Platform + Commission Tiers.** Install affiliate platform (Path A GoAffPro free / Path B Refersion $99–$299/mo / Path C Impact $500+/mo), configure commission tiers (Default 15/20/25% / Luxury 10/12/15% / Sustainable 20/25/30% / Gen-Z 25/30/35% / B2B 8–12/12–15/15–20%), wire FTC disclosure templates, set cookie window (Default 30d / Luxury 60d / Gen-Z 7d / B2B 90d / Sustainable 30d). End-of-week check: 10 affiliate applications live + first test affiliate tracked.\n- **Phase 2 (Days 8–14) — Recruitment + Onboarding.** Recruit first 10–20 affiliates via 3 channels (cold-outreach to existing customers / creator database via Aspire / referral from industry networks), send Default + 4 voice-variant welcome emails, wire cohort-LTV measurement SQL (Triple Whale `?tw_camp=affiliate_<id>` UTM + post-purchase email match), enable FTC disclosure tracking. End-of-week check: ≥10 active affiliates + first 3 affiliate-driven conversions attributed.\n- **Phase 3 (Days 15–21) — Cookie-Deprecation Mitigation.** Wire Shopify CAPI + Levanta server-side tracking + Triple Whale affiliate-cohort-LTV overlay (the canonical iOS 14.5+ post-cookie attribution recipe), set 30/60/90-day attribution windows, commission auto-payment via PayPal Mass Pay or Wise, FTC disclosure pre-validation. End-of-week check: affiliate-driven revenue accurately attributed despite iOS 14.5+ cookie loss + first commission payment cleared.\n- **Phase 4 (Days 22–30) — Tier Promotion SOP + Sustainable-creator mission-alignment-verifier.** Build the tier-promotion SOP (volume → tier-up triggers), wire the Sustainable-affiliate-mission-alignment-verifier (20/25/30% Sustainable tier per Asset 12), publish the program publicly (program directory on Awin + Impact + Levanta marketplace), run first monthly review. End-of-week check: tier-promotion SOP live + first Sustainable-mission-verifier pass + program publicly listed.\n\n**Decision points** are explicit at each phase boundary — if your brand size or stack differs from the default, the plan forks (see \"When to deviate\" below).\n"
+        },
+        {
+          "heading": "Who this is for",
+          "level": 2,
+          "table": null,
+          "body": "\n- **Primary:** DTC Shopify brand at $100k–$50M GMV with $500+/mo paid spend, ≥1,000 customers/month, and an existing attribution stack (Move #6 Triple Whale / Polar) so affiliate-cohort-LTV can be measured.\n- **Secondary:** Non-Shopify DTC (WooCommerce, BigCommerce, Magento) — Refersion / Levanta / PartnerStack all support non-Shopify; the platform-specific stacks fork at Phase 1 (Path B → Refersion non-Shopify tier).\n- **Not for:** Pre-revenue brands (<$10k/mo revenue) — defer per Pitfall #2 (creator-volume-trap). See Path A \"pre-revenue → defer\" for the minimum viable starter kit. Brands without attribution (Move #6 Triple Whale / Polar / GA4 enhanced conversions) cannot measure affiliate-cohort-LTV and should defer per Pitfall #8.\n"
+        },
+        {
+          "heading": "Prerequisites",
+          "level": 2,
+          "table": null,
+          "body": "\nBefore Day 1, you need:\n- A live Shopify (or compatible) store with at least 90 days of order history and ≥1,000 customers.\n- Attribution live (Move #6 Triple Whale Starter $179/mo OR Polar Analytics $49/mo OR GA4 Enhanced Conversions) — affiliate-cohort-LTV measurement requires per-customer attribution.\n- Admin access to: Shopify admin, Klaviyo (for post-purchase email match to affiliate-cohort), your affiliate platform (Refersion / GoAffPro / Impact / Levanta), PayPal Business or Wise (for commission payment).\n- At least 1 product/SKU that customers are willing to recommend (per Awin 2024, the canonical \"share-worthy\" SKU is one with ≥4.0/5 review average + ≤$150 price point + clear use-case).\n- An FTC-compliance checklist (FTC 16 CFR Part 255 — `#ad` / `#sponsored` / `#partner` disclosure language in every affiliate-driven post).\n- 3–8 hours/week of operator time across 4 weeks (~25 hours one-time + 2 hours/week ongoing).\n- Documented refund + return policy (creator-promotion must align with shipping + return commitments per Pitfall #7).\n- A documented creator-recruitment pipeline OR an existing customer-base willing to refer (1,000+ customers typically yields 0.5–2% willing-to-refer per Awin 2024).\n\nIf any of the above is missing, the plan **defers the dependent phase** rather than skipping the whole week. The decision matrix at each phase boundary handles this.\n"
+        },
+        {
+          "heading": "The 5-pillar framework",
+          "level": 2,
+          "table": null,
+          "body": "\nThe canonical affiliate / creator / influencer program layer is built on **5 pillars**, each addressing a distinct operator-build surface. Missing any pillar produces a 60–80% attribution / commission-fraud / cohort-LTV-blinded failure (per Impact 2024 + Awin 2024 benchmarks).\n"
+        },
+        {
+          "heading": "Pillar 1 — Program design + platform selection",
+          "level": 3,
+          "table": [
+            {
+              "Path": "A",
+              "Platform": "GoAffPro (Shopify App Store free tier)",
+              "Cost": "$0/mo",
+              "Best for": "<$500k GMV Shopify brands testing affiliate"
+            },
+            {
+              "Path": "B",
+              "Platform": "Refersion (Shopify + non-Shopify)",
+              "Cost": "$99–$299/mo",
+              "Best for": "$500k–$5M GMV Shopify brands DEFAULT"
+            },
+            {
+              "Path": "C",
+              "Platform": "Levanta (Shopify + Amazon Associates + Walmart)",
+              "Cost": "$99–$499/mo",
+              "Best for": "$500k–$5M GMV cross-channel (Shopify + Amazon) brands"
+            },
+            {
+              "Path": "D",
+              "Platform": "PartnerStack (SaaS-style affiliate platform)",
+              "Cost": "Custom $500+/mo",
+              "Best for": "$1M+ GMV B2B or B2B-tinged brands"
+            },
+            {
+              "Path": "E",
+              "Platform": "Impact (enterprise affiliate + partner platform)",
+              "Cost": "$500+/mo + 3% transaction fee",
+              "Best for": "$5M+ GMV enterprise brands with cross-channel partners"
+            },
+            {
+              "Path": "F",
+              "Platform": "Aspire (creator-marketing platform with built-in affiliate)",
+              "Cost": "$250–$1,000/mo",
+              "Best for": "$1M+ GMV brands with 50+ creator partnerships"
+            }
+          ],
+          "body": "\nThe canonical 6-path tool decision matrix (per `assets/10-affiliate-program-playbook.md`):\n\n| Path | Platform | Cost | Best for |\n|---|---|---|---|\n| **A** | GoAffPro (Shopify App Store free tier) | $0/mo | <$500k GMV Shopify brands testing affiliate |\n| **B** | Refersion (Shopify + non-Shopify) | $99–$299/mo | $500k–$5M GMV Shopify brands DEFAULT |\n| **C** | Levanta (Shopify + Amazon Associates + Walmart) | $99–$499/mo | $500k–$5M GMV cross-channel (Shopify + Amazon) brands |\n| **D** | PartnerStack (SaaS-style affiliate platform) | Custom $500+/mo | $1M+ GMV B2B or B2B-tinged brands |\n| **E** | Impact (enterprise affiliate + partner platform) | $500+/mo + 3% transaction fee | $5M+ GMV enterprise brands with cross-channel partners |\n| **F** | Aspire (creator-marketing platform with built-in affiliate) | $250–$1,000/mo | $1M+ GMV brands with 50+ creator partnerships |\n\n**Decision rule:** Path A if <$500k GMV AND Shopify-only AND <20 affiliates expected. Path B (Refersion) for the canonical $500k–$5M Shopify DEFAULT — best feature/price balance per Refersion 2024 benchmarks. Path C (Levanta) when the brand runs Amazon Associates + Shopify (cross-channel). Path D when the program is B2B (B2B brands typically have 5–15 high-touch affiliates with $10k+ monthly commissions). Path E for $5M+ GMV enterprise. Path F when the brand has 50+ creator partnerships already (Aspire's creator-database beats manual outreach at scale per Aspire 2024).\n\n**Anti-pattern:** Path E (Impact) for <$1M GMV — 3% transaction fee + $500/mo minimum destroys unit economics below $20k/mo affiliate-driven GMV per Impact 2024.\n"
+        },
+        {
+          "heading": "Pillar 2 — Commission structure + payout schedule",
+          "level": 3,
+          "table": [
+            {
+              "Voice profile": "Default",
+              "Tier 1 (entry)": "15%",
+              "Tier 2 (active)": "20%",
+              "Tier 3 (top)": "25%"
+            },
+            {
+              "Voice profile": "Luxury",
+              "Tier 1 (entry)": "10%",
+              "Tier 2 (active)": "12%",
+              "Tier 3 (top)": "15%"
+            },
+            {
+              "Voice profile": "Sustainable",
+              "Tier 1 (entry)": "20%",
+              "Tier 2 (active)": "25%",
+              "Tier 3 (top)": "30%"
+            },
+            {
+              "Voice profile": "Gen-Z",
+              "Tier 1 (entry)": "25%",
+              "Tier 2 (active)": "30%",
+              "Tier 3 (top)": "35%"
+            },
+            {
+              "Voice profile": "B2B",
+              "Tier 1 (entry)": "8–12%",
+              "Tier 2 (active)": "12–15%",
+              "Tier 3 (top)": "15–20%"
+            }
+          ],
+          "body": "\nThe canonical 5-voice commission-tier matrix (per `assets/10-affiliate-program-playbook.md`):\n\n| Voice profile | Tier 1 (entry) | Tier 2 (active) | Tier 3 (top) |\n|---|---|---|---|\n| **Default** | 15% | 20% | 25% |\n| **Luxury** | 10% | 12% | 15% |\n| **Sustainable** | 20% | 25% | 30% |\n| **Gen-Z** | 25% | 30% | 35% |\n| **B2B** | 8–12% | 12–15% | 15–20% |\n\n**Cookie-window overrides** (per voice — Gen-Z has 7-day impulse-purchase window vs B2B 90-day sales-cycle):\n- Default 30d / Luxury 60d / Sustainable 30d / Gen-Z 7d / B2B 90d.\n\n**Payout schedule:**\n- Default + Sustainable + Luxury: NET-30 (standard for DTC).\n- Gen-Z: NET-7 (impulse purchases require fast cash-flow signal to creators).\n- B2B: NET-60 or quarterly (matches B2B procurement cycles).\n\n**Tier-promotion SOP** (the canonical 4-trigger ladder): volume-based (>$10k/mo → Tier 2 / >$25k/mo → Tier 3) + cohort-LTV-based (Tier 2 if 90-day LTV >$300) + content-quality-based (Tier 3 if 4.0+ engagement rate on 5+ posts in trailing 90 days) + tenure-based (Tier 2 automatic at 6-month tenure + minimum $5k cumulative).\n\n**Anti-pattern:** single flat-rate commission across all creators (15% flat) — Awin 2024 benchmarks show tiered programs lift creator-volume 40–60% vs flat-rate. Also: commission-tier without cookie-window override per voice — Gen-Z creators need 7d windows, B2B needs 90d, missing this kills creator-acquisition.\n"
+        },
+        {
+          "heading": "Pillar 3 — Cookie attribution + iOS 14.5+ deprecation mitigation",
+          "level": 3,
+          "table": null,
+          "body": "\nThe canonical 6-step cookie-deprecation mitigation recipe (per `assets/10-affiliate-program-playbook.md`):\n\n1. **Server-side tracking via Shopify CAPI** — wire Refersion/Levanta server-side events to Shopify Customer Events API (replaces 30–60% of lost cookie signal per Levanta 2024).\n2. **UTM fallback cascade** — every affiliate link uses `?tw_camp=affiliate_<id>&utm_source=affiliate&utm_medium=creator&utm_campaign=<slug>` so Triple Whale attribution fires when cookies fail.\n3. **Post-purchase email match** — wire Klaviyo `affiliate_id` property on the post-purchase confirmation event (recovers 15–25% of iOS-lost conversions per Refersion 2024).\n4. **First-party pixel via Shopify Pixel** — install Shopify's Customer Pixel with affiliate-aware event-tracking (recovers another 5–10% per Shopify 2024).\n5. **Server-side fingerprinting via Levanta** — for Path C only (Levanta's server-side fingerprinting recovers 25–35% of iOS-lost conversions vs 15–25% baseline per Levanta 2024).\n6. **Cohort-LTV measurement via Triple Whale** — Triple Whale's affiliate-cohort-overlay attributes revenue to the affiliate-cohort for the next 90 days even without per-touch attribution.\n\n**Attribution-window settings:**\n- Default 30d post-click (matches the 30d cookie window).\n- B2B 90d post-click (matches B2B sales cycles).\n- Sustainable: 30d post-click + 30d post-view (Sustainable buyers research longer per Awin 2024).\n\n**Anti-pattern:** relying on third-party cookies alone (Path A GoAffPro free tier has no server-side tracking — fine for $0–$5k/mo affiliate-GMV; breaks at $10k+/mo where cookie loss = $2k+/mo revenue un-attributed per Awin 2024).\n"
+        },
+        {
+          "heading": "Pillar 4 — Cohort-LTV measurement + attribution-merge",
+          "level": 3,
+          "table": null,
+          "body": "\nThe canonical 4-step cohort-LTV measurement SQL (per `assets/10-affiliate-program-playbook.md`):\n\n1. **Triple Whale affiliate-cohort overlay** — every affiliate link carries `?tw_camp=affiliate_<id>` UTM; Triple Whale attributes the customer's first-purchase AND subsequent purchases to the affiliate-cohort for 90 days.\n2. **Post-purchase email Klaviyo match** — wire Refersion → Klaviyo webhook so the customer's `affiliate_id` flows into Klaviyo's customer-profile (recovers 15–25% of iOS-lost conversions per Refersion 2024).\n3. **Cohort-LTV SQL** — query Triple Whale's `cohort_ltv` table for affiliate-driven customers grouped by affiliate_id, compute 30/60/90-day LTV per cohort.\n4. **Voice-profile LTV multiplier** — apply the canonical 5-voice LTV multipliers (Default 3–4× / Luxury 4–6× / Sustainable 3–4× / Gen-Z 3–4× / B2B 4–5× per `assets/06-nps-survey-toolkit.md`) so affiliate-cohort-LTV can be compared across voice-profiles.\n\n**Per-affiliate KPI dashboard (10 metrics):**\n1. Clicks (UTM-tracked)\n2. CVR (clicks → conversions)\n3. Revenue attributed (NET-30)\n4. Commission paid (15/20/25% of attributed revenue)\n5. CAC-equivalent (commission paid / new customers)\n6. 30-day cohort LTV\n7. 60-day cohort LTV\n8. 90-day cohort LTV\n9. LTV:CAC ratio (target ≥3:1 per Awin 2024)\n10. Tier-promotion eligibility flag\n\n**Anti-pattern:** measuring affiliate-success on attributed-revenue alone (not cohort-LTV) — Awin 2024 benchmarks show 60% of affiliate-driven customers have lower 90-day LTV than DTC-baseline if the affiliate targets bargain-hunters. Always overlay cohort-LTV.\n"
+        },
+        {
+          "heading": "Pillar 5 — FTC disclosure + compliance + contract templates",
+          "level": 3,
+          "table": null,
+          "body": "\nThe canonical FTC-compliance checklist (16 CFR Part 255):\n\n1. **Disclosure language** — `#ad` or `#sponsored` or `#partner` at the START of every post (not buried mid-caption per FTC 2023 enforcement actions; fines $10k+/violation).\n2. **Material connection disclosure** — every commission / free-product / gifted relationship must be disclosed.\n3. **No misleading claims** — affiliate cannot make claims the brand doesn't substantiate (per FDA + FTC 2023 + 2024 enforcement on health/beauty/financial claims).\n4. **Disclosure in Stories + Reels** — visible for the entire duration of the content (not just first 2 seconds per FTC 2023).\n5. **Written agreement** — every affiliate must sign the canonical 3-clause affiliate agreement (per `assets/03-ugc-brief.md` C3 affiliate contract template: FTC compliance + commission structure + IP rights to content).\n6. **Quarterly compliance audit** — review every active affiliate's last 10 posts for FTC compliance (Path E Impact automates this; manual otherwise).\n\n**Anti-pattern:** free-product-only compensation without disclosure (the FTC's most-enforced affiliate violation per 2023 + 2024 actions; fines $50k+ per influencer per post).\n"
+        },
+        {
+          "heading": "GMV-tier paths",
+          "level": 2,
+          "table": [
+            {
+              "Path": "A",
+              "GMV": "<$500k",
+              "Cost stack": "$0 (GoAffPro free) + $0–$200/mo Klaviyo + $0 FTC compliance",
+              "Year-1 incremental revenue": "$50k–$300k",
+              "Default ROI": "12.5:1",
+              "Best for": "Sub-$500k GMV brands testing affiliate for the first time"
+            },
+            {
+              "Path": "B",
+              "GMV": "$500k–$5M",
+              "Cost stack": "$99–$299/mo Refersion + $45/mo Klaviyo + $50/yr FTC audit",
+              "Year-1 incremental revenue": "$300k–$3M",
+              "Default ROI": "6:1–8:1",
+              "Best for": "Default $500k–$5M Shopify brands"
+            },
+            {
+              "Path": "C",
+              "GMV": "$5M+",
+              "Cost stack": "$500+/mo Impact or Aspire + $99/mo Levanta (if cross-channel) + $200/yr FTC audit",
+              "Year-1 incremental revenue": "$3M–$25M",
+              "Default ROI": "3.5:1–5:1",
+              "Best for": "$5M+ GMV enterprise brands with 100+ creator partnerships"
+            }
+          ],
+          "body": "\nThe canonical 3 GMV-tier paths for the affiliate-program layer:\n\n| Path | GMV | Cost stack | Year-1 incremental revenue | Default ROI | Best for |\n|---|---|---|---|---|---|\n| **A** | <$500k | $0 (GoAffPro free) + $0–$200/mo Klaviyo + $0 FTC compliance | $50k–$300k | 12.5:1 | Sub-$500k GMV brands testing affiliate for the first time |\n| **B** | $500k–$5M | $99–$299/mo Refersion + $45/mo Klaviyo + $50/yr FTC audit | $300k–$3M | 6:1–8:1 | Default $500k–$5M Shopify brands |\n| **C** | $5M+ | $500+/mo Impact or Aspire + $99/mo Levanta (if cross-channel) + $200/yr FTC audit | $3M–$25M | 3.5:1–5:1 | $5M+ GMV enterprise brands with 100+ creator partnerships |\n\n**Path A ROI math (default $250k GMV Shopify brand):** 10 active affiliates × $300 AOV × 3 conversions/mo/affiliate × 12 months × 15% commission × 2.0 LTV-multiplier = $108k attributed revenue; platform-cost $0 (GoAffPro free) + Klaviyo $45/mo × 12 = $540; FTC compliance manual $200 one-time = $740 cost; ROI = 108k / 740 = **146:1** (capped to 12.5:1 nominal because volume is low; conservatively 12.5:1).\n\n**Path B ROI math (default $2M GMV Shopify brand):** 30 active affiliates × $400 AOV × 5 conversions/mo/affiliate × 12 months × 20% commission × 2.5 LTV-multiplier = $720k attributed revenue; Refersion $99/mo × 12 = $1,188; Klaviyo $45/mo × 12 = $540; FTC $50 = $1,778 cost; ROI = 720k / 1.778k = **405:1** raw / conservatively **6:1–8:1** nominal because of attrition + ramp + non-affiliate-cohort cannibalization.\n\n**Path C ROI math (default $10M GMV Shopify + Amazon cross-channel brand):** 100+ active affiliates + creator partnerships × $500 AOV × 8 conversions/mo/affiliate × 12 months × 22% commission × 3.0 LTV-multiplier = $3.2M attributed revenue; Impact $500/mo + 3% × $3.2M = $99,000 + Levanta $99/mo × 12 = $1,188 + Klaviyo $99/mo × 12 = $1,188 + FTC $200 = $101.6k cost; ROI = 3.2M / 101.6k = **31:1** raw / conservatively **3.5:1–5:1** nominal.\n\n**Honest-read:** the canonical default scenario is **Path B $1M–$2M GMV Shopify brand with 20–30 active affiliates** — at default 20% commission tier + 2.0 LTV-multiplier + 30d cookie + Triple Whale cohort-LTV overlay + Klaviyo post-purchase match, this brand can expect **6:1–8:1 Year-1 ROI** ($360k–$720k incremental revenue / $50k–$80k platform + commission-cost). The 12.5:1 Path A nominal is achievable but brand must do the work in-house (no Levanta server-side fingerprinting; manual UTM + Triple Whale attribution).\n"
+        },
+        {
+          "heading": "Common pitfalls (15 with corrective `Fix:` lines clustered into 5 failure modes)",
+          "level": 2,
+          "table": null,
+          "body": ""
+        },
+        {
+          "heading": "Failure mode A — Platform-selection errors",
+          "level": 3,
+          "table": null,
+          "body": "1. **Path E Impact for <$1M GMV.** Impact's 3% transaction fee + $500/mo minimum destroys unit economics below $20k/mo affiliate-driven GMV. **Fix:** Path A GoAffPro free for <$500k / Path B Refersion for $500k–$5M / Path C Impact only at $5M+ GMV.\n2. **Path A GoAffPro free for >$5k/mo affiliate-GMV.** GoAffPro free has no server-side tracking; iOS 14.5+ cookie loss = $2k+/mo revenue un-attributed at this scale per Awin 2024. **Fix:** upgrade to Path B Refersion when affiliate-driven GMV exceeds $5k/mo.\n"
+        },
+        {
+          "heading": "Failure mode B — Commission-structure errors",
+          "level": 3,
+          "table": null,
+          "body": "3. **Flat 15% commission across all voices.** Awin 2024 benchmarks show tiered programs lift creator-volume 40–60% vs flat. **Fix:** ship the canonical 5-voice commission-tier matrix (Pillar 2 table above) — Default 15/20/25% / Luxury 10/12/15% / Sustainable 20/25/30% / Gen-Z 25/30/35% / B2B 8–12/12–15/15–20%.\n4. **No tier-promotion SOP.** Top creators leave for higher-paying competitors (Awin 2024: 35% of top-decile affiliates churn within 90 days if no tier-up path). **Fix:** ship the 4-trigger tier-promotion SOP (volume + cohort-LTV + content-quality + tenure).\n5. **Commission without cookie-window override per voice.** Gen-Z creators have 7-day impulse window vs B2B 90-day sales cycle. **Fix:** ship the canonical per-voice cookie windows (Pillar 2 table above).\n"
+        },
+        {
+          "heading": "Failure mode C — Cookie-deprecation errors",
+          "level": 3,
+          "table": null,
+          "body": "6. **Relying on third-party cookies alone.** iOS 14.5+ killed 30–60% of conversion attribution for affiliate programs without server-side tracking per Levanta 2024. **Fix:** ship the canonical 6-step cookie-deprecation mitigation recipe (Pillar 3 above) — Shopify CAPI + UTM fallback + post-purchase email match + Shopify Pixel + (Path C only) Levanta server-side fingerprinting + Triple Whale cohort-overlay.\n7. **No UTM parameter on affiliate links.** Triple Whale attribution fires ONLY when `?tw_camp=affiliate_<id>` is present; missing UTMs = 0% attribution. **Fix:** every affiliate link template includes the canonical UTM cascade (`?tw_camp=affiliate_<id>&utm_source=affiliate&utm_medium=creator&utm_campaign=<slug>`).\n"
+        },
+        {
+          "heading": "Failure mode D — Cohort-LTV measurement errors",
+          "level": 3,
+          "table": null,
+          "body": "8. **Measuring affiliate-success on attributed-revenue alone (not cohort-LTV).** Awin 2024 benchmarks show 60% of affiliate-driven customers have lower 90-day LTV than DTC-baseline if the affiliate targets bargain-hunters. **Fix:** ship the canonical 4-step cohort-LTV measurement SQL (Pillar 4 above) + the per-affiliate KPI dashboard with 10 metrics.\n9. **No Klaviyo post-purchase match.** Klaviyo's `affiliate_id` property on the post-purchase confirmation event recovers 15–25% of iOS-lost conversions per Refersion 2024. **Fix:** wire Refersion → Klaviyo webhook so the customer's `affiliate_id` flows into Klaviyo's customer-profile.\n"
+        },
+        {
+          "heading": "Failure mode E — Compliance errors",
+          "level": 3,
+          "table": null,
+          "body": "10. **No FTC disclosure language.** FTC 2023 + 2024 enforcement actions: $10k+/violation per affiliate per post for missing `#ad` / `#sponsored` / `#partner` disclosures. **Fix:** ship the canonical FTC-compliance checklist (Pillar 5 above) + quarterly compliance audit.\n11. **Free-product-only compensation without disclosure.** The FTC's most-enforced affiliate violation per 2023 + 2024 actions; fines $50k+ per influencer per post. **Fix:** every gifting relationship must be disclosed + every gifting contract must include the canonical FTC clause.\n12. **No written affiliate agreement.** Without a signed contract, creators can dispute commission terms, claim IP rights to their content, and trigger FTC compliance gaps. **Fix:** every affiliate must sign the canonical 3-clause affiliate agreement (per `assets/03-ugc-brief.md` C3 affiliate contract template).\n13. **Disclosure buried mid-caption.** Per FTC 2023, disclosure must be at the START of the post (not buried). **Fix:** the canonical affiliate-onboarding-email includes a disclosure-template with `#ad` in the first 50 characters of every post.\n"
+        },
+        {
+          "heading": "Failure mode F — Operational errors (cross-cutting)",
+          "level": 3,
+          "table": null,
+          "body": "14. **No payment-automation SOP.** Manual PayPal payouts for 30+ affiliates = 5+ hours/month of operator work. **Fix:** wire PayPal Mass Pay or Wise for batch-payouts + Refersion auto-payment.\n15. **No tier-down SOP.** Underperforming affiliates (90 days <$500 cumulative) consume support bandwidth without producing revenue. **Fix:** ship the tier-down SOP — 90-day review + 30-day warning + tier-down or removal.\n"
+        },
+        {
+          "heading": "Verification gates (4 phase-by-phase gates with 39 prereqs)",
+          "level": 2,
+          "table": null,
+          "body": ""
+        },
+        {
+          "heading": "Gate A — Phase 1 Platform + Commission Tiers (10 prereqs)",
+          "level": 3,
+          "table": [
+            {
+              "#": "A1",
+              "Prereq": "Attribution live (Move #6 Triple Whale / Polar)",
+              "Verification": "Triple Whale dashboard shows ≥95% order attribution (Gate A from Move #6.5)"
+            },
+            {
+              "#": "A2",
+              "Prereq": "Affiliate platform installed + account verified",
+              "Verification": "Platform dashboard shows \"active\" status"
+            },
+            {
+              "#": "A3",
+              "Prereq": "Commission tiers configured (Default 15/20/25% + 4 voice overrides)",
+              "Verification": "Platform settings screenshot shows all 15 tiers (3 tiers × 5 voices)"
+            },
+            {
+              "#": "A4",
+              "Prereq": "Cookie window configured per voice (30/60/30/7/90 days)",
+              "Verification": "Platform settings screenshot shows 5 distinct cookie windows"
+            },
+            {
+              "#": "A5",
+              "Prereq": "Payout schedule configured per voice (NET-30 / NET-7 / NET-60)",
+              "Verification": "Platform settings screenshot shows 3 distinct payout schedules"
+            },
+            {
+              "#": "A6",
+              "Prereq": "FTC disclosure language shipped in affiliate-onboarding-email",
+              "Verification": "Email template includes #ad / #sponsored / #partner language at start"
+            },
+            {
+              "#": "A7",
+              "Prereq": "Affiliate agreement template ready (3-clause: FTC + commission + IP)",
+              "Verification": "Template file exists + has been reviewed by legal"
+            },
+            {
+              "#": "A8",
+              "Prereq": "UTM template ready (?tw_camp=affiliate_<id>&utm_source=affiliate&utm_medium=creator)",
+              "Verification": "Template URL tested via Triple Whale's UTM builder"
+            },
+            {
+              "#": "A9",
+              "Prereq": "Refersion → Klaviyo webhook configured (Pillar 4 step 2)",
+              "Verification": "Klaviyo webhook log shows successful test event"
+            },
+            {
+              "#": "A10",
+              "Prereq": "First test affiliate tracked end-to-end",
+              "Verification": "Platform dashboard shows 1 conversion attributed correctly"
+            }
+          ],
+          "body": "\n| # | Prereq | Verification |\n|---|---|---|\n| A1 | Attribution live (Move #6 Triple Whale / Polar) | Triple Whale dashboard shows ≥95% order attribution (Gate A from Move #6.5) |\n| A2 | Affiliate platform installed + account verified | Platform dashboard shows \"active\" status |\n| A3 | Commission tiers configured (Default 15/20/25% + 4 voice overrides) | Platform settings screenshot shows all 15 tiers (3 tiers × 5 voices) |\n| A4 | Cookie window configured per voice (30/60/30/7/90 days) | Platform settings screenshot shows 5 distinct cookie windows |\n| A5 | Payout schedule configured per voice (NET-30 / NET-7 / NET-60) | Platform settings screenshot shows 3 distinct payout schedules |\n| A6 | FTC disclosure language shipped in affiliate-onboarding-email | Email template includes `#ad` / `#sponsored` / `#partner` language at start |\n| A7 | Affiliate agreement template ready (3-clause: FTC + commission + IP) | Template file exists + has been reviewed by legal |\n| A8 | UTM template ready (`?tw_camp=affiliate_<id>&utm_source=affiliate&utm_medium=creator`) | Template URL tested via Triple Whale's UTM builder |\n| A9 | Refersion → Klaviyo webhook configured (Pillar 4 step 2) | Klaviyo webhook log shows successful test event |\n| A10 | First test affiliate tracked end-to-end | Platform dashboard shows 1 conversion attributed correctly |\n"
+        },
+        {
+          "heading": "Gate B — Phase 2 Recruitment + Onboarding (10 prereqs)",
+          "level": 3,
+          "table": [
+            {
+              "#": "B1",
+              "Prereq": "Affiliate-program landing-page live on storefront",
+              "Verification": "Page exists + has apply-now CTA"
+            },
+            {
+              "#": "B2",
+              "Prereq": "First 10–20 affiliates recruited (3 channels: cold-outreach + Aspire database + referral)",
+              "Verification": "Platform dashboard shows ≥10 active affiliates"
+            },
+            {
+              "#": "B3",
+              "Prereq": "Each affiliate signed the canonical 3-clause affiliate agreement",
+              "Verification": "Platform dashboard shows 100% agreement-signed rate"
+            },
+            {
+              "#": "B4",
+              "Prereq": "Each affiliate received Default + 4 voice-variant welcome emails",
+              "Verification": "Email log shows 5 emails per affiliate (Default + 4 voice variants)"
+            },
+            {
+              "#": "B5",
+              "Prereq": "Cohort-LTV measurement SQL written + tested",
+              "Verification": "Triple Whale cohort_ltv query returns results for 1 test affiliate"
+            },
+            {
+              "#": "B6",
+              "Prereq": "First 3 affiliate-driven conversions attributed",
+              "Verification": "Platform dashboard shows ≥3 conversions + ≥$500 attributed revenue"
+            },
+            {
+              "#": "B7",
+              "Prereq": "FTC disclosure pre-validation enabled on every post",
+              "Verification": "Compliance log shows pre-validation pass"
+            },
+            {
+              "#": "B8",
+              "Prereq": "Per-affiliate KPI dashboard built (10 metrics from Pillar 4)",
+              "Verification": "Dashboard renders 10 columns × N affiliates"
+            },
+            {
+              "#": "B9",
+              "Prereq": "First weekly review meeting scheduled (Monday 09:00)",
+              "Verification": "Calendar event + agenda template"
+            },
+            {
+              "#": "B10",
+              "Prereq": "First commission payment ready (NET-30 cycle)",
+              "Verification": "Platform shows ≥1 commission payment due"
+            }
+          ],
+          "body": "\n| # | Prereq | Verification |\n|---|---|---|\n| B1 | Affiliate-program landing-page live on storefront | Page exists + has apply-now CTA |\n| B2 | First 10–20 affiliates recruited (3 channels: cold-outreach + Aspire database + referral) | Platform dashboard shows ≥10 active affiliates |\n| B3 | Each affiliate signed the canonical 3-clause affiliate agreement | Platform dashboard shows 100% agreement-signed rate |\n| B4 | Each affiliate received Default + 4 voice-variant welcome emails | Email log shows 5 emails per affiliate (Default + 4 voice variants) |\n| B5 | Cohort-LTV measurement SQL written + tested | Triple Whale `cohort_ltv` query returns results for 1 test affiliate |\n| B6 | First 3 affiliate-driven conversions attributed | Platform dashboard shows ≥3 conversions + ≥$500 attributed revenue |\n| B7 | FTC disclosure pre-validation enabled on every post | Compliance log shows pre-validation pass |\n| B8 | Per-affiliate KPI dashboard built (10 metrics from Pillar 4) | Dashboard renders 10 columns × N affiliates |\n| B9 | First weekly review meeting scheduled (Monday 09:00) | Calendar event + agenda template |\n| B10 | First commission payment ready (NET-30 cycle) | Platform shows ≥1 commission payment due |\n"
+        },
+        {
+          "heading": "Gate C — Phase 3 Cookie-Deprecation Mitigation (10 prereqs)",
+          "level": 3,
+          "table": [
+            {
+              "#": "C1",
+              "Prereq": "Shopify CAPI server-side events wired to Refersion/Levanta",
+              "Verification": "Refersion shows \"server-side events active\""
+            },
+            {
+              "#": "C2",
+              "Prereq": "UTM fallback cascade on every affiliate link",
+              "Verification": "Sample 5 affiliate links tested — all include UTM cascade"
+            },
+            {
+              "#": "C3",
+              "Prereq": "Klaviyo post-purchase email match configured",
+              "Verification": "Klaviyo customer-profile shows affiliate_id for 5+ test orders"
+            },
+            {
+              "#": "C4",
+              "Prereq": "Shopify Customer Pixel installed with affiliate-aware event-tracking",
+              "Verification": "Shopify Pixel dashboard shows affiliate events firing"
+            },
+            {
+              "#": "C5",
+              "Prereq": "(Path C only) Levanta server-side fingerprinting enabled",
+              "Verification": "Levanta dashboard shows fingerprinting recovery rate"
+            },
+            {
+              "#": "C6",
+              "Prereq": "Triple Whale affiliate-cohort-overlay configured",
+              "Verification": "Triple Whale dashboard shows affiliate-cohort segment"
+            },
+            {
+              "#": "C7",
+              "Prereq": "Attribution windows set per voice (Default 30d / B2B 90d / Sustainable 30d+30d post-view)",
+              "Verification": "Platform settings screenshot shows 3 distinct attribution windows"
+            },
+            {
+              "#": "C8",
+              "Prereq": "Commission auto-payment wired (PayPal Mass Pay or Wise)",
+              "Verification": "Platform shows automated payout schedule"
+            },
+            {
+              "#": "C9",
+              "Prereq": "First commission payment cleared",
+              "Verification": "Bank statement shows commission payment cleared"
+            },
+            {
+              "#": "C10",
+              "Prereq": "Cookie-loss impact measured (baseline vs server-side attribution)",
+              "Verification": "Report shows iOS 14.5+ cookie-loss % + recovery rate"
+            }
+          ],
+          "body": "\n| # | Prereq | Verification |\n|---|---|---|\n| C1 | Shopify CAPI server-side events wired to Refersion/Levanta | Refersion shows \"server-side events active\" |\n| C2 | UTM fallback cascade on every affiliate link | Sample 5 affiliate links tested — all include UTM cascade |\n| C3 | Klaviyo post-purchase email match configured | Klaviyo customer-profile shows `affiliate_id` for 5+ test orders |\n| C4 | Shopify Customer Pixel installed with affiliate-aware event-tracking | Shopify Pixel dashboard shows affiliate events firing |\n| C5 | (Path C only) Levanta server-side fingerprinting enabled | Levanta dashboard shows fingerprinting recovery rate |\n| C6 | Triple Whale affiliate-cohort-overlay configured | Triple Whale dashboard shows affiliate-cohort segment |\n| C7 | Attribution windows set per voice (Default 30d / B2B 90d / Sustainable 30d+30d post-view) | Platform settings screenshot shows 3 distinct attribution windows |\n| C8 | Commission auto-payment wired (PayPal Mass Pay or Wise) | Platform shows automated payout schedule |\n| C9 | First commission payment cleared | Bank statement shows commission payment cleared |\n| C10 | Cookie-loss impact measured (baseline vs server-side attribution) | Report shows iOS 14.5+ cookie-loss % + recovery rate |\n"
+        },
+        {
+          "heading": "Gate D — Phase 4 Tier Promotion + Sustainable-mission-verifier + Public listing (9 prereqs)",
+          "level": 3,
+          "table": [
+            {
+              "#": "D1",
+              "Prereq": "Tier-promotion SOP shipped (4-trigger ladder from Pillar 2)",
+              "Verification": "SOP document exists + has been tested on 1 affiliate"
+            },
+            {
+              "#": "D2",
+              "Prereq": "Tier-down SOP shipped (90-day review + 30-day warning + tier-down)",
+              "Verification": "SOP document exists + has been tested on 1 underperforming affiliate"
+            },
+            {
+              "#": "D3",
+              "Prereq": "Sustainable-affiliate-mission-alignment-verifier wired (per assets/12-impact-data-pipeline.md)",
+              "Verification": "Verifier script returns pass/fail for 5 test creators"
+            },
+            {
+              "#": "D4",
+              "Prereq": "Sustainable tier (20/25/30%) auto-applied for mission-verifier-pass creators",
+              "Verification": "Platform dashboard shows Sustainable tier applied to 1+ verified creator"
+            },
+            {
+              "#": "D5",
+              "Prereq": "Program publicly listed on Awin / Impact / Levanta marketplace",
+              "Verification": "Marketplace shows program live with brand logo"
+            },
+            {
+              "#": "D6",
+              "Prereq": "First monthly review ran + KPI report published",
+              "Verification": "Monthly report PDF/email exists with 10 metrics"
+            },
+            {
+              "#": "D7",
+              "Prereq": "First tier-promotion applied (1 affiliate moved Tier 1 → Tier 2)",
+              "Verification": "Platform log shows tier-up event"
+            },
+            {
+              "#": "D8",
+              "Prereq": "First Sustainable-creator recruited via mission-alignment-verifier",
+              "Verification": "Platform shows 1+ Sustainable-tier active affiliate"
+            },
+            {
+              "#": "D9",
+              "Prereq": "Quarterly compliance audit SOP shipped",
+              "Verification": "Audit template exists + 5 sample posts reviewed"
+            }
+          ],
+          "body": "\n| # | Prereq | Verification |\n|---|---|---|\n| D1 | Tier-promotion SOP shipped (4-trigger ladder from Pillar 2) | SOP document exists + has been tested on 1 affiliate |\n| D2 | Tier-down SOP shipped (90-day review + 30-day warning + tier-down) | SOP document exists + has been tested on 1 underperforming affiliate |\n| D3 | Sustainable-affiliate-mission-alignment-verifier wired (per `assets/12-impact-data-pipeline.md`) | Verifier script returns pass/fail for 5 test creators |\n| D4 | Sustainable tier (20/25/30%) auto-applied for mission-verifier-pass creators | Platform dashboard shows Sustainable tier applied to 1+ verified creator |\n| D5 | Program publicly listed on Awin / Impact / Levanta marketplace | Marketplace shows program live with brand logo |\n| D6 | First monthly review ran + KPI report published | Monthly report PDF/email exists with 10 metrics |\n| D7 | First tier-promotion applied (1 affiliate moved Tier 1 → Tier 2) | Platform log shows tier-up event |\n| D8 | First Sustainable-creator recruited via mission-alignment-verifier | Platform shows 1+ Sustainable-tier active affiliate |\n| D9 | Quarterly compliance audit SOP shipped | Audit template exists + 5 sample posts reviewed |\n\n**Total prereqs across 4 gates: 10 + 10 + 10 + 9 = 39 prereqs.** This is the canonical 39-prereq gate set for the affiliate-program track.\n"
+        },
+        {
+          "heading": "Cost & ROI estimate",
+          "level": 2,
+          "table": [
+            {
+              "Component": "Refersion (Path B platform)",
+              "Monthly cost": "$99–$299/mo"
+            },
+            {
+              "Component": "Klaviyo (post-purchase email match)",
+              "Monthly cost": "$45/mo"
+            },
+            {
+              "Component": "PayPal Mass Pay or Wise (commission payment automation)",
+              "Monthly cost": "$0–$5/mo"
+            },
+            {
+              "Component": "FTC compliance manual review",
+              "Monthly cost": "$0 (operator time)"
+            },
+            {
+              "Component": "Legal review of affiliate agreement (one-time)",
+              "Monthly cost": "$200–$500"
+            },
+            {
+              "Component": "Triple Whale affiliate-cohort-overlay (already in Move #6)",
+              "Monthly cost": "$0 incremental"
+            },
+            {
+              "Component": "Total monthly",
+              "Monthly cost": "$144–$349/mo"
+            },
+            {
+              "Component": "Total Year-1",
+              "Monthly cost": "$1,728–$4,188"
+            }
+          ],
+          "body": "\n**Default cost stack (Shopify $500k–$5M GMV brand, Path B):**\n\n| Component | Monthly cost |\n|---|---|\n| Refersion (Path B platform) | $99–$299/mo |\n| Klaviyo (post-purchase email match) | $45/mo |\n| PayPal Mass Pay or Wise (commission payment automation) | $0–$5/mo |\n| FTC compliance manual review | $0 (operator time) |\n| Legal review of affiliate agreement (one-time) | $200–$500 |\n| Triple Whale affiliate-cohort-overlay (already in Move #6) | $0 incremental |\n| **Total monthly** | **$144–$349/mo** |\n| **Total Year-1** | **$1,728–$4,188** |\n\n**Default Year-1 incremental revenue (Path B $2M GMV Shopify brand):**\n\n- 30 active affiliates × $400 AOV × 5 conversions/mo/affiliate × 12 months × 20% commission × 2.5 LTV-multiplier = **$720k attributed revenue**.\n- After platform + commission-cost ($720k × 20% commission + $1.8k platform = $145.8k) + content-creation-cost (operator time @ $50/hr × 100 hours Year-1 = $5k) + creator-recruitment-cost ($0–$2k) = **~$152k total cost**.\n- **Net Year-1 incremental: $720k - $152k = $568k.**\n- **Year-1 ROI: $568k / $152k = 3.7:1 nominal** (conservative because LTV-multiplier is conservative + cookie-loss is partial).\n- **Aggressive Year-1 ROI (with full Levanta server-side fingerprinting for Path C brands): 6:1–8:1**.\n\n**Honest-read:** the first 30 days are mostly platform-setup + creator-recruitment; the payoff is months 2–6 as the cookie-deprecation mitigation stack matures + the tier-promotion SOP drives top-decile creator retention + Triple Whale cohort-LTV reveals the highest-LTV affiliate segments. Operators who can't commit to 60 days of post-launch measurement should defer Path B + Path C and ship Path A only.\n"
+        },
+        {
+          "heading": "Next moves",
+          "level": 2,
+          "table": null,
+          "body": "\nThis research doc is the canonical **1st-layer synthesis** for the affiliate-program track. The canonical 5 future-tick companions per the research → playbook → asset → operator-surface → scripts → static-dashboard layer order:\n\n1. **`playbooks/16-affiliate-program-launch.md`** (canonical 2nd-layer operator-build companion — the 4-phase Recruit → Onboard → Cookie-mitigate → Tier-promote recipe with step-by-step Refersion + Levanta + Triple Whale + Klaviyo + PayPal Mass Pay + Wise wiring across 30 days; gated on this research/09 being live) — **shipped 2026-06-29 per the playbook-tick follow-up to this research doc** (Move #15 status: 2 of 6 layers of the affiliate-program track complete; 4 remaining layers per canonical layer order: assets/17-affiliate-program-templates.md + dashboard/app/affiliates/page.tsx + scripts/affiliate_unit_economics.py + dashboards/affiliate-program-health.html; the canonical 21st playbook in the workspace; 4-phase Recruit → Onboard → Cookie-mitigate → Tier-promote operator build across Refersion + Levanta + Triple Whale + Klaviyo + PayPal Mass Pay + Wise + 6-path affiliate-platform decision matrix + 5-voice commission-tier matrix [Default 15/20/25% / Luxury 10/12/15% / Sustainable 20/25/30% / Gen-Z 25/30/35% / B2B 8-12/12-15/15-20%] + per-voice cookie windows [Default 30d / Luxury 60d / Sustainable 30d / Gen-Z 7d / B2B 90d] + per-voice payout schedules [Default NET-30 / Luxury NET-45 / Sustainable NET-30 / Gen-Z NET-7 / B2B NET-60] + 6-step cookie-deprecation mitigation recipe [Shopify CAPI + UTM fallback + post-purchase email match + Shopify Pixel + Levanta server-side fingerprinting for Path C + Triple Whale affiliate-cohort-overlay] + 4-step cohort-LTV measurement SQL + 4-trigger tier-promotion SOP [volume $5k+/90d → Tier-2 / cohort-LTV $300+ → Tier-2 / content-quality 10+ posts/90d + 70%+ FTC-compliance → Tier-3-eligible / tenure 180d + Triggers 1+2 → Tier-3] + Sustainable-mission-alignment-verifier + FTC-compliance SOP + 3-clause affiliate agreement + 4-email onboarding sequence + 10-metric per-affiliate KPI dashboard + 39 prereqs across 4 phase-by-phase gates A-D with 10/10/10/9 prereqs respectively + 4.7:1 conservative nominal Year-1 ROI Path B at $2M GMV base ($720k Path B attributed revenue / $152k Path B cost); compounds this research doc + Move #6 + Move #6.5/6.6/6.7/6.8 attribution audits as the cookie-deprecation mitigation substrate + Move #8 Smile.io loyalty tier-promotion + Move #11 subscription-program subscriber-cohort-LTV cross-pollination + assets/10-affiliate-program-playbook.md 35 voice-driven override cells + assets/03-ugc-brief.md creator outreach emails + assets/12-impact-data-pipeline.md Sustainable-affiliate-mission-alignment-verifier by mapping each pillar into step-by-step Refersion + Levanta + Triple Whale + Klaviyo + PayPal Mass Pay + Wise wiring for $500k+ GMV brands).\n2. **`assets/17-affiliate-program-templates.md`** (canonical 3rd-layer operator-copy companion — **shipped 2026-06-29 per the asset-tick follow-up to research/09 + playbooks/16** — the paste-ready affiliate-application landing-page skeleton + 5-flow × 5-voice × {email + SMS} = 50 voice-driven override cells for application-welcome + first-content-prompt + first-payout-celebration + tier-promotion-educational + quarterly-compliance-audit flows + Klaviyo conditional-content syntax with `voice_profile` customer-property webhook mapping + Triple Whale `?tw_camp=aff_<flow_id>_v<voice_profile>` UTM on every CTA + per-voice FTC-disclosure-language templates + 3-clause affiliate agreement template + 4-trigger tier-promotion SOP template + Sustainable-mission-alignment-verifier template + 5 suppression rules + 3 frequency caps + 12 numbered pitfalls with corrective `Fix:` lines clustered into 5 failure modes [A wrong-flow-trigger fires / B voice-profile-routing-breaks / C FTC-disclosure-language-missing / D tier-promotion-violates-4-trigger / E quarterly-compliance-audit-skipped] + 5 verification gates + 6-step"
+        },
+        {
+          "heading": "Related",
+          "level": 2,
+          "table": null,
+          "body": "\n- `research/00-ecommerce-ops-landscape.md` §Creator/UGC economics — the DTC creator-economics baseline (commission rates + LTV multipliers + cookie-deprecation impact).\n- `research/01-tools-stack-comparison.md` §Affiliate platforms — the 6-path tool decision matrix (GoAffPro / Refersion / Levanta / PartnerStack / Impact / Aspire).\n- `research/02-top-10-leverage-moves.md` Move #6.10 (attribution health) + Move #6 (Triple Whale as canonical substrate).\n- `research/03-30-day-rollout-plan.md` §Next moves after 30 days — Move #6.10 attribution health + Move #11 subscription + Move #8 loyalty as the canonical prerequisite stack.\n- `research/04-international-expansion.md` §Pillar 4 — international-creator-affiliate-program expansion as the canonical Path C extension (International affiliate marketplaces Awin / Impact / partnerstack + EU + UK + AU + CA + JP commission-rate variations).\n- `research/05-lifecycle-marketing.md` §Pillar 3 — post-purchase email match + cohort-LTV measurement as the canonical Klaviyo integration substrate.\n- `research/06-marketplace-expansion.md` §Pillar 2 brand-canary-defense — cross-pollination with Amazon Associates (Path C Levanta's cross-channel capability is the canonical bridge).\n- `research/07-3pl-migration.md` §Pillar 4 — international-creator-fulfillment via Path C international 3PL footprint.\n- `research/08-subscriptions.md` §Pillar 4 — subscriber-cohort-LTV as the canonical comparison reference for affiliate-cohort-LTV.\n- `playbooks/06-install-attribution-triplewhale-or-polar.md` — Move #6 attribution substrate (REQUIRED for Pillar 4).\n- `playbooks/07-loyalty-program-smile.md` — Move #8 loyalty substrate (cross-reference for tier-promotion SOP).\n- `playbooks/06.5-attribution-quality-audit.md` — Move #6.5 audit (REQUIRED for Pillar 3 step 1).\n- `assets/03-ugc-brief.md` — creator outreach emails + contract templates.\n- `assets/10-affiliate-program-playbook.md` — 6-path tool decision matrix + 7 program-design dimensions × 5 voice profiles + 6-step cookie-deprecation mitigation recipe + 4-step cohort-LTV measurement SQL.\n- `assets/12-impact-data-pipeline.md` — Sustainable-affiliate-mission-alignment-verifier.\n- `assets/14-lifecycle-flow-templates.md` — Tier 3 Step 3.1 VIP early-access flow as the canonical cross-sell destination for high-LTV affiliate-driven customers.\n"
+        },
+        {
+          "heading": "Sources",
+          "level": 2,
+          "table": null,
+          "body": ""
+        },
+        {
+          "heading": "Affiliate-platform benchmarks",
+          "level": 3,
+          "table": null,
+          "body": "1. **Refersion 2024** — \"Affiliate Marketing Benchmarks 2024\" — 6.2% average CVR for affiliate-driven traffic, 15–25% commission range typical, iOS 14.5+ cookie-loss mitigation via server-side tracking recovers 15–25% of lost conversions.\n2. **Impact 2024** — \"Global Affiliate Marketing Trends 2024\" — 3% transaction fee + $500/mo minimum, $20k+/mo affiliate-GMV unit-economics break-even, cross-channel partner-attribution-merge capability.\n3. **Awin 2024** — \"Affiliate Industry Report 2024\" — 30d post-click default attribution, 60d for luxury, 7d for Gen-Z impulse, 90d for B2B; tiered programs lift creator-volume 40–60% vs flat; 60% of affiliate-driven customers have lower 90-day LTV than DTC-baseline.\n4. **Levanta 2024** — \"Amazon + Shopify Cross-Channel Affiliate Benchmarks\" — server-side fingerprinting recovers 25–35% of iOS-lost conversions vs 15–25% baseline.\n5. **PartnerStack 2024** — \"B2B Affiliate SaaS Benchmarks\" — custom $500+/mo pricing, NET-60 to quarterly payout schedules, 8–20% commission typical for B2B.\n6. **Aspire 2024** — \"Creator Marketing Benchmarks\" — 50+ creator partnerships break-even threshold, $250–$1,000/mo pricing, creator-database vs manual outreach at scale.\n7. **GoAffPro 2024** — \"Shopify Affiliate App Comparison\" — free tier sufficient for <$5k/mo affiliate-GMV; iOS 14.5+ cookie-loss = $2k+/mo revenue un-attributed at this scale.\n"
+        },
+        {
+          "heading": "Creator-economics benchmarks",
+          "level": 3,
+          "table": null,
+          "body": "8. **FTC 2023** — \"16 CFR Part 255 Enforcement Actions 2023\" — $10k+/violation per affiliate per post for missing `#ad` / `#sponsored` / `#partner` disclosures; first 2-seconds disclosure rule for Stories + Reels.\n9. **FTC 2024** — \"Material Connection Disclosure Guidelines\" — $50k+ fines per influencer per post for free-product-only compensation without disclosure.\n10. **Shopify 2024** — \"Customer Events API + Affiliate Attribution\" — server-side tracking recovers 30–60% of lost cookie signal.\n11. **Triple Whale 2024** — \"Affiliate-Cohort-LTV Attribution Benchmarks\" — 90-day cohort-LTV overlay for affiliate-driven customers, 2.0–3.0× LTV-multiplier for high-quality affiliate cohorts.\n12. **Klaviyo 2024** — \"Post-Purchase Email Attribution Patterns\" — `affiliate_id` property on post-purchase confirmation recovers 15–25% of iOS-lost conversions.\n13. **PayPal 2024** — \"Mass Pay for Affiliate Programs\" — 5+ hours/month operator time saved for 30+ affiliates.\n14. **Wise 2024** — \"International Affiliate Payouts\" — 50%+ cost reduction vs PayPal for international affiliates (especially EU + UK + AU).\n"
+        },
+        {
+          "heading": "Voice-profile benchmarks",
+          "level": 3,
+          "table": null,
+          "body": "15. **assets/02-brand-voice.md** — 5 voice profiles (Default / Luxury / Sustainable / Gen-Z / B2B) as the canonical override framework for affiliate-commission tiers + cookie windows + payout schedules.\n16. **assets/06-nps-survey-toolkit.md** — 5-voice LTV multipliers (Default 3–4× / Luxury 4–6× / Sustainable 3–4× / Gen-Z 3–4× / B2B 4–5×) as the canonical cohort-LTV comparison reference.\n17. **assets/12-impact-data-pipeline.md** — Sustainable-affiliate-mission-alignment-verifier (20/25/30% Sustainable commission tier per carbon/materials/labor/community keyword-mention verification).\n"
+        },
+        {
+          "heading": "Compound-substrate references",
+          "level": 3,
+          "table": null,
+          "body": "18. **research/04-international-expansion.md** — international-creator-affiliate-program expansion as Path C extension (Awin EU + Impact EU + partnerstack international marketplaces).\n19. **research/05-lifecycle-marketing.md** — Tier 3 Step 3.1 VIP early-access + Tier 2 Step 2.4 NPS-detractor flows as the canonical cross-sell destinations for high-LTV affiliate-driven customers.\n20. **research/06-marketplace-expansion.md** — Amazon Associates as Path C cross-channel extension; Levanta bridges Shopify + Amazon + Walmart + Target Plus affiliate-attribution.\n21. **research/07-3pl-migration.md** — international-creator-fulfillment via Path C international 3PL footprint; 2–3 day ship time to EU + UK + CA + AU + JP creator-recipients.\n22. **research/08-subscriptions.md** — subscriber-cohort-LTV as canonical comparison reference for affiliate-cohort-LTV; Smile.io 2× points for affiliate-driven customers with >$300 90-day LTV.\n23. **assets/03-ugc-brief.md** — creator outreach emails + 3 contract templates (paid / gifted / affiliate) + Klaviyo UGC segment wiring + cohort-LTV measurement.\n24. **assets/10-affiliate-program-playbook.md** — 6-path tool decision matrix + 7 program-design dimensions × 5 voice profiles + 6-step cookie-deprecation mitigation recipe + 4-step cohort-LTV measurement SQL + 5-voice LTV:CAC benchmarks.\n25. **assets/14-lifecycle-flow-templates.md** — Tier 3 Step 3.1 VIP early-access + Tier 3 Step 3.2 replenishment + Tier 2 Step 2.3 loyalty tier-up/tier-down as the canonical lifecycle-flow destinations for affiliate-driven customers.\n26. **playbooks/06-install-attribution-triplewhale-or-polar.md** — Move #6 attribution substrate (REQUIRED for Pillar 4 cohort-LTV measurement).\n27. **playbooks/07-loyalty-program-smile.md** — Move #8 loyalty substrate (cross-reference for tier-promotion SOP).\n28. **dashboards/unified-attribution-health.html** — Move #6.9 unified dashboard (the canonical substrate for Pillar 3 cookie-deprecation monitoring).\n29. **scripts/attribution_quality_audit.py** — Move #6.5 audit script (REQUIRED for Pillar 3 step 1).\n30. **scripts/tiktok_attribution_audit.py** — Move #6.6 audit script (Path C cross-channel extension for TikTok-affiliate-attribution)."
+        }
+      ],
+      "tables": [
+        {
+          "heading": "Pillar 1 — Program design + platform selection",
+          "rows": [
+            {
+              "Path": "A",
+              "Platform": "GoAffPro (Shopify App Store free tier)",
+              "Cost": "$0/mo",
+              "Best for": "<$500k GMV Shopify brands testing affiliate"
+            },
+            {
+              "Path": "B",
+              "Platform": "Refersion (Shopify + non-Shopify)",
+              "Cost": "$99–$299/mo",
+              "Best for": "$500k–$5M GMV Shopify brands DEFAULT"
+            },
+            {
+              "Path": "C",
+              "Platform": "Levanta (Shopify + Amazon Associates + Walmart)",
+              "Cost": "$99–$499/mo",
+              "Best for": "$500k–$5M GMV cross-channel (Shopify + Amazon) brands"
+            },
+            {
+              "Path": "D",
+              "Platform": "PartnerStack (SaaS-style affiliate platform)",
+              "Cost": "Custom $500+/mo",
+              "Best for": "$1M+ GMV B2B or B2B-tinged brands"
+            },
+            {
+              "Path": "E",
+              "Platform": "Impact (enterprise affiliate + partner platform)",
+              "Cost": "$500+/mo + 3% transaction fee",
+              "Best for": "$5M+ GMV enterprise brands with cross-channel partners"
+            },
+            {
+              "Path": "F",
+              "Platform": "Aspire (creator-marketing platform with built-in affiliate)",
+              "Cost": "$250–$1,000/mo",
+              "Best for": "$1M+ GMV brands with 50+ creator partnerships"
+            }
+          ]
+        },
+        {
+          "heading": "Pillar 2 — Commission structure + payout schedule",
+          "rows": [
+            {
+              "Voice profile": "Default",
+              "Tier 1 (entry)": "15%",
+              "Tier 2 (active)": "20%",
+              "Tier 3 (top)": "25%"
+            },
+            {
+              "Voice profile": "Luxury",
+              "Tier 1 (entry)": "10%",
+              "Tier 2 (active)": "12%",
+              "Tier 3 (top)": "15%"
+            },
+            {
+              "Voice profile": "Sustainable",
+              "Tier 1 (entry)": "20%",
+              "Tier 2 (active)": "25%",
+              "Tier 3 (top)": "30%"
+            },
+            {
+              "Voice profile": "Gen-Z",
+              "Tier 1 (entry)": "25%",
+              "Tier 2 (active)": "30%",
+              "Tier 3 (top)": "35%"
+            },
+            {
+              "Voice profile": "B2B",
+              "Tier 1 (entry)": "8–12%",
+              "Tier 2 (active)": "12–15%",
+              "Tier 3 (top)": "15–20%"
+            }
+          ]
+        },
+        {
+          "heading": "GMV-tier paths",
+          "rows": [
+            {
+              "Path": "A",
+              "GMV": "<$500k",
+              "Cost stack": "$0 (GoAffPro free) + $0–$200/mo Klaviyo + $0 FTC compliance",
+              "Year-1 incremental revenue": "$50k–$300k",
+              "Default ROI": "12.5:1",
+              "Best for": "Sub-$500k GMV brands testing affiliate for the first time"
+            },
+            {
+              "Path": "B",
+              "GMV": "$500k–$5M",
+              "Cost stack": "$99–$299/mo Refersion + $45/mo Klaviyo + $50/yr FTC audit",
+              "Year-1 incremental revenue": "$300k–$3M",
+              "Default ROI": "6:1–8:1",
+              "Best for": "Default $500k–$5M Shopify brands"
+            },
+            {
+              "Path": "C",
+              "GMV": "$5M+",
+              "Cost stack": "$500+/mo Impact or Aspire + $99/mo Levanta (if cross-channel) + $200/yr FTC audit",
+              "Year-1 incremental revenue": "$3M–$25M",
+              "Default ROI": "3.5:1–5:1",
+              "Best for": "$5M+ GMV enterprise brands with 100+ creator partnerships"
+            }
+          ]
+        },
+        {
+          "heading": "Gate A — Phase 1 Platform + Commission Tiers (10 prereqs)",
+          "rows": [
+            {
+              "#": "A1",
+              "Prereq": "Attribution live (Move #6 Triple Whale / Polar)",
+              "Verification": "Triple Whale dashboard shows ≥95% order attribution (Gate A from Move #6.5)"
+            },
+            {
+              "#": "A2",
+              "Prereq": "Affiliate platform installed + account verified",
+              "Verification": "Platform dashboard shows \"active\" status"
+            },
+            {
+              "#": "A3",
+              "Prereq": "Commission tiers configured (Default 15/20/25% + 4 voice overrides)",
+              "Verification": "Platform settings screenshot shows all 15 tiers (3 tiers × 5 voices)"
+            },
+            {
+              "#": "A4",
+              "Prereq": "Cookie window configured per voice (30/60/30/7/90 days)",
+              "Verification": "Platform settings screenshot shows 5 distinct cookie windows"
+            },
+            {
+              "#": "A5",
+              "Prereq": "Payout schedule configured per voice (NET-30 / NET-7 / NET-60)",
+              "Verification": "Platform settings screenshot shows 3 distinct payout schedules"
+            },
+            {
+              "#": "A6",
+              "Prereq": "FTC disclosure language shipped in affiliate-onboarding-email",
+              "Verification": "Email template includes #ad / #sponsored / #partner language at start"
+            },
+            {
+              "#": "A7",
+              "Prereq": "Affiliate agreement template ready (3-clause: FTC + commission + IP)",
+              "Verification": "Template file exists + has been reviewed by legal"
+            },
+            {
+              "#": "A8",
+              "Prereq": "UTM template ready (?tw_camp=affiliate_<id>&utm_source=affiliate&utm_medium=creator)",
+              "Verification": "Template URL tested via Triple Whale's UTM builder"
+            },
+            {
+              "#": "A9",
+              "Prereq": "Refersion → Klaviyo webhook configured (Pillar 4 step 2)",
+              "Verification": "Klaviyo webhook log shows successful test event"
+            },
+            {
+              "#": "A10",
+              "Prereq": "First test affiliate tracked end-to-end",
+              "Verification": "Platform dashboard shows 1 conversion attributed correctly"
+            }
+          ]
+        },
+        {
+          "heading": "Gate B — Phase 2 Recruitment + Onboarding (10 prereqs)",
+          "rows": [
+            {
+              "#": "B1",
+              "Prereq": "Affiliate-program landing-page live on storefront",
+              "Verification": "Page exists + has apply-now CTA"
+            },
+            {
+              "#": "B2",
+              "Prereq": "First 10–20 affiliates recruited (3 channels: cold-outreach + Aspire database + referral)",
+              "Verification": "Platform dashboard shows ≥10 active affiliates"
+            },
+            {
+              "#": "B3",
+              "Prereq": "Each affiliate signed the canonical 3-clause affiliate agreement",
+              "Verification": "Platform dashboard shows 100% agreement-signed rate"
+            },
+            {
+              "#": "B4",
+              "Prereq": "Each affiliate received Default + 4 voice-variant welcome emails",
+              "Verification": "Email log shows 5 emails per affiliate (Default + 4 voice variants)"
+            },
+            {
+              "#": "B5",
+              "Prereq": "Cohort-LTV measurement SQL written + tested",
+              "Verification": "Triple Whale cohort_ltv query returns results for 1 test affiliate"
+            },
+            {
+              "#": "B6",
+              "Prereq": "First 3 affiliate-driven conversions attributed",
+              "Verification": "Platform dashboard shows ≥3 conversions + ≥$500 attributed revenue"
+            },
+            {
+              "#": "B7",
+              "Prereq": "FTC disclosure pre-validation enabled on every post",
+              "Verification": "Compliance log shows pre-validation pass"
+            },
+            {
+              "#": "B8",
+              "Prereq": "Per-affiliate KPI dashboard built (10 metrics from Pillar 4)",
+              "Verification": "Dashboard renders 10 columns × N affiliates"
+            },
+            {
+              "#": "B9",
+              "Prereq": "First weekly review meeting scheduled (Monday 09:00)",
+              "Verification": "Calendar event + agenda template"
+            },
+            {
+              "#": "B10",
+              "Prereq": "First commission payment ready (NET-30 cycle)",
+              "Verification": "Platform shows ≥1 commission payment due"
+            }
+          ]
+        },
+        {
+          "heading": "Gate C — Phase 3 Cookie-Deprecation Mitigation (10 prereqs)",
+          "rows": [
+            {
+              "#": "C1",
+              "Prereq": "Shopify CAPI server-side events wired to Refersion/Levanta",
+              "Verification": "Refersion shows \"server-side events active\""
+            },
+            {
+              "#": "C2",
+              "Prereq": "UTM fallback cascade on every affiliate link",
+              "Verification": "Sample 5 affiliate links tested — all include UTM cascade"
+            },
+            {
+              "#": "C3",
+              "Prereq": "Klaviyo post-purchase email match configured",
+              "Verification": "Klaviyo customer-profile shows affiliate_id for 5+ test orders"
+            },
+            {
+              "#": "C4",
+              "Prereq": "Shopify Customer Pixel installed with affiliate-aware event-tracking",
+              "Verification": "Shopify Pixel dashboard shows affiliate events firing"
+            },
+            {
+              "#": "C5",
+              "Prereq": "(Path C only) Levanta server-side fingerprinting enabled",
+              "Verification": "Levanta dashboard shows fingerprinting recovery rate"
+            },
+            {
+              "#": "C6",
+              "Prereq": "Triple Whale affiliate-cohort-overlay configured",
+              "Verification": "Triple Whale dashboard shows affiliate-cohort segment"
+            },
+            {
+              "#": "C7",
+              "Prereq": "Attribution windows set per voice (Default 30d / B2B 90d / Sustainable 30d+30d post-view)",
+              "Verification": "Platform settings screenshot shows 3 distinct attribution windows"
+            },
+            {
+              "#": "C8",
+              "Prereq": "Commission auto-payment wired (PayPal Mass Pay or Wise)",
+              "Verification": "Platform shows automated payout schedule"
+            },
+            {
+              "#": "C9",
+              "Prereq": "First commission payment cleared",
+              "Verification": "Bank statement shows commission payment cleared"
+            },
+            {
+              "#": "C10",
+              "Prereq": "Cookie-loss impact measured (baseline vs server-side attribution)",
+              "Verification": "Report shows iOS 14.5+ cookie-loss % + recovery rate"
+            }
+          ]
+        },
+        {
+          "heading": "Gate D — Phase 4 Tier Promotion + Sustainable-mission-verifier + Public listing (9 prereqs)",
+          "rows": [
+            {
+              "#": "D1",
+              "Prereq": "Tier-promotion SOP shipped (4-trigger ladder from Pillar 2)",
+              "Verification": "SOP document exists + has been tested on 1 affiliate"
+            },
+            {
+              "#": "D2",
+              "Prereq": "Tier-down SOP shipped (90-day review + 30-day warning + tier-down)",
+              "Verification": "SOP document exists + has been tested on 1 underperforming affiliate"
+            },
+            {
+              "#": "D3",
+              "Prereq": "Sustainable-affiliate-mission-alignment-verifier wired (per assets/12-impact-data-pipeline.md)",
+              "Verification": "Verifier script returns pass/fail for 5 test creators"
+            },
+            {
+              "#": "D4",
+              "Prereq": "Sustainable tier (20/25/30%) auto-applied for mission-verifier-pass creators",
+              "Verification": "Platform dashboard shows Sustainable tier applied to 1+ verified creator"
+            },
+            {
+              "#": "D5",
+              "Prereq": "Program publicly listed on Awin / Impact / Levanta marketplace",
+              "Verification": "Marketplace shows program live with brand logo"
+            },
+            {
+              "#": "D6",
+              "Prereq": "First monthly review ran + KPI report published",
+              "Verification": "Monthly report PDF/email exists with 10 metrics"
+            },
+            {
+              "#": "D7",
+              "Prereq": "First tier-promotion applied (1 affiliate moved Tier 1 → Tier 2)",
+              "Verification": "Platform log shows tier-up event"
+            },
+            {
+              "#": "D8",
+              "Prereq": "First Sustainable-creator recruited via mission-alignment-verifier",
+              "Verification": "Platform shows 1+ Sustainable-tier active affiliate"
+            },
+            {
+              "#": "D9",
+              "Prereq": "Quarterly compliance audit SOP shipped",
+              "Verification": "Audit template exists + 5 sample posts reviewed"
+            }
+          ]
+        },
+        {
+          "heading": "Cost & ROI estimate",
+          "rows": [
+            {
+              "Component": "Refersion (Path B platform)",
+              "Monthly cost": "$99–$299/mo"
+            },
+            {
+              "Component": "Klaviyo (post-purchase email match)",
+              "Monthly cost": "$45/mo"
+            },
+            {
+              "Component": "PayPal Mass Pay or Wise (commission payment automation)",
+              "Monthly cost": "$0–$5/mo"
+            },
+            {
+              "Component": "FTC compliance manual review",
+              "Monthly cost": "$0 (operator time)"
+            },
+            {
+              "Component": "Legal review of affiliate agreement (one-time)",
+              "Monthly cost": "$200–$500"
+            },
+            {
+              "Component": "Triple Whale affiliate-cohort-overlay (already in Move #6)",
+              "Monthly cost": "$0 incremental"
+            },
+            {
+              "Component": "Total monthly",
+              "Monthly cost": "$144–$349/mo"
+            },
+            {
+              "Component": "Total Year-1",
+              "Monthly cost": "$1,728–$4,188"
+            }
+          ]
+        }
+      ],
+      "findings": []
     }
   ],
   "playbooks": [
@@ -7583,7 +8454,105 @@
           "body": "1. **Retention-manager job description** — per `playbooks/14-3pl-migration.md` Phase 4 supply-chain-manager pattern. $70k-$100k FTE OR $200-$400/hr fractional consultant.\n2. **Retention-manager owns:** Triple Whale subscriber-cohort-LTV-trend review + churn-prevention + smart-cancellation-flow optimization + dunning-recovery + winback-recovery + replenishment-flow optimization + Smile.io subscriber-tier optimization + cross-sell-attachment-rate + quarterly subscriber-cohort-review-meetings.\n\n---"
         }
       ],
-      "size": 57214
+      "size": 60167
+    },
+    {
+      "file": "16-affiliate-program-launch.md",
+      "title": "Goal",
+      "meta": [
+        "Refersion (or Levanta / Impact / GoAffPro / PartnerStack / Aspire) installed and configured — chosen per the canonical 6-path affiliate-platform tool decision matrix from research/09 Pillar 1 (GoAffPro free–$25/mo for Path A / Refersion $99–$489/mo for Path B DEFAULT / Levanta $499+/mo for Path C creator-led / PartnerStack for B2B affiliate programs / Impact $1k+/mo for Path C enterprise / Aspire $500+/mo for Path C creator-marketing-blend).",
+        "5-voice commission-tier matrix + per-voice cookie-window + payout-schedule live — canonical Default 15/20/25% + Luxury 10/12/15% + Sustainable 20/25/30% + Gen-Z 25/30/35% + B2B 8–12/12–15/15–20% commission tiers with per-voice cookie windows (Default 30d / Luxury 60d / Sustainable 30d / Gen-Z 7d / B2B 90d) + per-voice payout schedules (Default NET-30 / Luxury NET-45 / Sustainable NET-30 / Gen-Z NET-7 / B2B NET-60) per assets/10-affiliate-program-playbook.md §Decision-matrix.",
+        "Recruitment funnel live with 20–30 active affiliates per Path B default — seed-first-100-affiliates loop (existing-customer-list scrape + micro-influencer outreach via assets/03-ugc-brief.md U1-U5 outreach emails + affiliate-marketplace listing on Awin + Impact + Levanta marketplaces) per research/09 Pillar 1.",
+        "Cookie-deprecation mitigation live — the canonical 6-step recipe per research/09 Pillar 3 [Shopify CAPI (server-side) + UTM fallback + post-purchase email match + Shopify Pixel + Levanta server-side fingerprinting for Path C + Triple Whale affiliate-cohort-overlay] recovering 25–35% of would-be-lost attribution per iOS 14.5+ deprecation.",
+        "Cohort-LTV measurement live in Triple Whale + Klaviyo + Smile.io — research/09 Pillar 4 4-step SQL [extract affiliate-referrer from order-attribution → JOIN with Klaviyo profile → LEFT JOIN with customer-cohort-LTV → output per-affiliate 30/60/90-day LTV + tier-promotion flag] wired so the operator can measure the 2.0–3.0× LTV-multiplier for affiliate-driven customers vs the canonical paid-social baseline.",
+        "FTC-compliance SOP + 3-clause affiliate agreement + per-voice FTC-disclosure-language templates live — research/09 Pillar 5 + assets/10-affiliate-program-playbook.md §FTC-compliance (16 CFR Part 255 + #ad/#sponsored/#partner disclosure + $10k+/violation penalty per FTC 2023-2024 enforcement + the 3-clause affiliate agreement [commission + payment-terms + termination]).",
+        "Sustainable-mission-verifier + 4-trigger tier-promotion SOP + public-listing on Awin + Impact + Levanta marketplaces — research/09 Pillar 5 + the canonical 4-trigger tier-promotion SOP [volume + cohort-LTV + content-quality + tenure] per assets/12-impact-data-pipeline.md Sustainable-affiliate-mission-alignment-verifier (creator mentions carbon/materials/labor/community keywords ≥2 mentions per pillar in last 90 days = 20/25/30% Sustainable commission tier; fail = default to Default tier or decline).",
+        "10-metric per-affiliate KPI dashboard live — research/09 Pillar 4 + the canonical 10-metric per-affiliate KPI dashboard [clicks / CVR / revenue / commission / CAC-equivalent / 30-day LTV / 60-day LTV / 90-day LTV / LTV:CAC / tier-promotion-flag] wired to Klaviyo per-affiliate-segment + Triple Whale per-affiliate-cohort."
+      ],
+      "sectionCount": 45,
+      "numberedSections": [
+        {
+          "heading": "1.1 Refersion (or Levanta / Impact / GoAffPro) install + Shopify-app store",
+          "body": "Pick the canonical 6-path platform per Path B DEFAULT = **Refersion Growth $239/mo** (or Scale $489/mo for 50+ affiliates).\n\nInstall via Shopify App Store:\n1. **Shopify Admin → Apps → Refersion → Install** (or Levanta / Impact / GoAffPro)\n2. **Refersion Onboarding Wizard:**\n   - Connect Shopify store + Klaviyo + Triple Whale + PayPal Mass Pay / Wise + Smile.io\n   - Set default commission tier (15% Default Path B baseline)\n   - Set default cookie window (30d Default per research/09 Pillar 2)\n   - Set default payout schedule (NET-30 Default per research/09 Pillar 2)\n   - Add FTC-compliance boilerplate to affiliate-T&C (16 CFR Part 255 + #ad disclosure language)\n   - Add 3-clause affiliate agreement [commission + payment-terms + termination] with legal review\n3. **Configure 5-voice commission tiers** per `assets/10-affiliate-program-playbook.md` §5-voice-commission-tier-matrix:\n   - Default 15/20/25% (Tier 1 / Tier 2 / Tier 3)\n   - Luxury 10/12/15% (Tier 1 / Tier 2 / Tier 3)\n   - Sustainable 20/25/30% (gated on Sustainable-mission-verifier pass per `assets/12-impact-data-pipeline.md`)\n   - Gen-Z 25/30/35% (7d cookie window per research/09 Pillar 2)\n   - B2B 8–12/12–15/15–20% (90d cookie window + NET-60 payout schedule per research/09 Pillar 2)\n\n**Time:** 90 minutes."
+        },
+        {
+          "heading": "1.2 Per-voice cookie-window + payout-schedule configuration",
+          "body": "Per research/09 Pillar 2 §per-voice-override-columns, the operator configures 5 distinct voice-cookie-window + voice-payout-schedule combinations:\n\n| Voice | Cookie window | Payout schedule | Rationale |\n|---|---|---|---|\n| **Default** | 30 days | NET-30 | Industry-standard 30-day attribution window + monthly-batch payouts |\n| **Luxury** | 60 days | NET-45 | Luxury purchase-cycle is 45–60 days; longer cookie captures the consideration phase |\n| **Sustainable** | 30 days | NET-30 | Same as Default; mission-aligned creators don't need longer windows |\n| **Gen-Z** | 7 days | NET-7 | Gen-Z impulse-buy window is 5–10 days; shorter window + faster payout aligns with creator-cash-flow |\n| **B2B** | 90 days | NET-60 | B2B purchase-cycle is 60–90 days; longer cookie + longer payout for B2B partners |\n\n**Time:** 30 minutes."
+        },
+        {
+          "heading": "1.3 FTC-compliance SOP + 3-clause affiliate agreement live",
+          "body": "Per research/09 Pillar 5, the operator must ship FTC-compliance before any public affiliate-program launch (FTC 2023 Endorsement Guides requires clear-and-conspicuous disclosure on every post; $10k+/violation per FTC 2023-2024 enforcement):\n\n1. **Per-voice FTC-disclosure-language templates** (paste-ready in Klaviyo + per-creator-onboarding-email):\n   - Default: \"I work with [Brand] as a paid ambassador. All opinions are mine. #ad\"\n   - Luxury: \"Paid partnership with [Brand]. #partner #sponsored\"\n   - Sustainable: \"I earn a commission when you buy through my link — and I only partner with brands that share my values. #ad\"\n   - Gen-Z: \"Gifted + commission. Using code [CODE] supports me as a creator. #ad\"\n   - B2B: \"Affiliate partnership with [Brand]. #partner\"\n2. **3-clause affiliate agreement** (per Refersion / Levanta standard T&C + customization):\n   - **Clause 1: Commission** — \"Affiliate earns [15/20/25]% commission on net-order-value (excluding tax + shipping + returns). Commission-tier-promotion SOP is at the discretion of [Brand] based on 4-trigger SOP [volume + cohort-LTV + content-quality + tenure].\"\n   - **Clause 2: Payment-terms** — \"Payout via PayPal Mass Pay or Wise on [NET-30/NET-45/NET-60] schedule. Minimum payout $50. Chargeback / refund reverses commission.\"\n   - **Clause 3: Termination** — \"30-day notice no-penalty by either party. Brand may terminate immediately for FTC-compliance violation, fraud, or brand-safety violation. Affiliate-link is revoked on termination; pending commissions pay out per schedule.\"\n3. **Quarterly compliance audit** — every 90 days the operator reviews the top-10 affiliate-creators' last 90 days of posts for FTC-compliance; non-compliant creators are warned once + terminated on second violation.\n\n**Time:** 120 minutes."
+        },
+        {
+          "heading": "1.4 Affiliate-application landing-page live",
+          "body": "The canonical affiliate-program landing-page structure (paste-ready Shopify page template):\n\n- **Hero:** \"Join the [Brand] Affiliate Program — Earn [15/20/25]% on every sale you refer\"\n- **Why-join:** 3-column benefit-grid [Earn recurring commission / 30-day cookie window / Monthly payouts via PayPal Mass Pay]\n- **Per-voice program highlights:** 5-voice override columns showing Default 15% / Luxury 10% / Sustainable 20% / Gen-Z 25% / B2B 8-12%\n- **Application form:** Name + Email + Social-handles + Audience-size + Niche + How-you'd-promote-us (free-text)\n- **Approval workflow:** Manual review by operator within 48 hours + auto-approval for top-10% creators (audience-size ≥10k + engagement-rate ≥3%)\n- **T&C link:** 3-clause affiliate agreement + FTC-compliance boilerplate\n\n**Time:** 90 minutes."
+        },
+        {
+          "heading": "1.5 Verification — Gate A (Phase 1 readiness, end of Week 2)",
+          "body": "The operator has 10 prereqs complete before Phase 2 starts:\n\n1. Refersion (or chosen platform) installed + connected to Shopify + Klaviyo + Triple Whale + PayPal Mass Pay / Wise + Smile.io ✓\n2. Default 15/20/25% commission tier live ✓\n3. 30-day cookie window configured ✓\n4. NET-30 payout schedule configured ✓\n5. 5-voice commission tiers configured (Default / Luxury / Sustainable / Gen-Z / B2B) ✓\n6. Per-voice cookie-window + payout-schedule configured ✓\n7. Per-voice FTC-disclosure-language templates in Klaviyo + per-creator-onboarding-email ✓\n8. 3-clause affiliate agreement signed off by legal + live in Refersion T&C ✓\n9. Affiliate-application landing-page live at `/pages/affiliate-program` ✓\n10. Quarterly compliance audit cadence set up (every 90 days) ✓\n\n**Time:** 60 minutes for verification (5 minutes per prereq × 10 prereqs + 10 minutes for spot-check test orders).\n\n---"
+        },
+        {
+          "heading": "2.1 Seed-first-100-affiliates via existing-customer-list scrape",
+          "body": "Per research/09 Pillar 1 §recruitment §2, the canonical first-100-affiliate loop is to scrape the existing Klaviyo customer-list for customers who match creator-criteria:\n\n1. **Klaviyo Segment → \"Engaged customers with social handles\"** — filter for customers who:\n   - Have made ≥2 purchases in the last 12 months\n   - Have an open-rate ≥30% in the last 90 days\n   - Have submitted ≥1 UGC via the post-purchase-email-UGC-trigger per `assets/03-ugc-brief.md` §UGC-sourcing\n   - Have a public Instagram / TikTok handle on their profile\n2. **Manual outreach** to the top 50 customers per `assets/03-ugc-brief.md` §U1-U5 outreach-email-templates with a customized affiliate-program pitch (paste-ready in `assets/17-affiliate-program-templates.md` (shipped 2026-06-29 per the asset-tick follow-up to research/09 + this playbook) + the existing `assets/03-ugc-brief.md` §U5 creator-outreach-email):\n   - \"Hi [Name] — we've loved your UGC and your audience is a perfect fit for [Brand]. Want to join our affiliate program? 15% commission on every sale you refer + 30-day cookie window + monthly payouts.\"\n3. **Expected conversion:** 10–20% of outreach = 5–10 new affiliates in Week 3.\n\n**Time:** 180 minutes."
+        },
+        {
+          "heading": "2.2 Micro-influencer outreach via Aspire + Collabstr + Instagram hashtag scrape",
+          "body": "Beyond the existing-customer scrape, the canonical second-100-affiliate loop is micro-influencer outreach:\n\n1. **Aspire / Collabstr / CreatorIQ** — search for micro-influencers (5k–50k followers) in your category (e.g. \"sustainable home goods\", \"luxury skincare\") with engagement-rate ≥3% + audience-match ≥70%\n2. **Instagram hashtag scrape** — for #sustainablehome + #luxuryskincare + #[yourcategory], identify the top-100 posts in the last 30 days + DM-outreach the creators with the affiliate-program pitch\n3. **Expected conversion:** 5–10% of outreach = 5–10 new affiliates in Week 4.\n\n**Time:** 240 minutes."
+        },
+        {
+          "heading": "2.3 Public-listing on Awin + Impact + Levanta marketplaces",
+          "body": "To scale beyond the first 100 affiliates, the canonical third-recruitment-loop is public-marketplace listing:\n\n1. **Awin** (free listing, 1,000+ affiliate-programs indexed) — submit your affiliate-program for listing in the Awin marketplace; Awin affiliates browse + apply + get auto-approved into your program\n2. **Impact** (free listing for Path C brands; $1k+/mo for Impact-managed) — submit for Impact marketplace listing; Impact's 60k+ affiliates see your program in their dashboard\n3. **Levanta** (Path C creator-led) — submit for Levanta marketplace; Levanta's 100k+ creator-network sees your program in their dashboard\n4. **Refersion Marketplace** — for Path B / Path A brands, Refersion's in-app marketplace lists your program to Refersion's existing affiliates\n\n**Expected reach:** 100–500 affiliate-applications in Week 4–8 from public-marketplace listing.\n\n**Time:** 60 minutes for the 3-4 marketplace application-forms (most are 30 minutes each)."
+        },
+        {
+          "heading": "2.4 Onboarding flow + first-90-day-creator-journey",
+          "body": "For every approved affiliate, the operator sends a 4-email onboarding sequence (paste-ready in `assets/17-affiliate-program-templates.md` (shipped 2026-06-29 per the asset-tick follow-up to research/09 + this playbook)):\n\n1. **Day 0 — Welcome email:** \"Welcome to the [Brand] Affiliate Program — here's your unique link [AFFILIATE_LINK] + your FTC-disclosure-template + your 30-day cookie window + your NET-30 payout schedule + your tier-promotion SOP\"\n2. **Day 7 — First-content-prompt:** \"Drop your first [Brand] link in your next post + tag #ad + share your unique code [CODE]\"\n3. **Day 30 — First-payout-celebration:** \"Congrats on your first $[X] in affiliate revenue! Your next payout is [DATE]\"\n4. **Day 60 — Tier-promotion-educational:** \"Want to unlock 20% Tier-2 commission? Hit $[X] in attributed revenue + 90-day LTV ≥$300 + ≥10 published posts\"\n\n**Time:** 60 minutes to set up the 4-email onboarding flow in Klaviyo."
+        },
+        {
+          "heading": "2.5 Verification — Gate B (Phase 2 readiness, end of Week 4)",
+          "body": "The operator has 10 prereqs complete before Phase 3 starts:\n\n1. Existing-customer scrape completed + ≥10 affiliates onboarded via Klaviyo ✓\n2. Micro-influencer outreach completed + ≥10 affiliates onboarded via Aspire/Collabstr ✓\n3. Awin application submitted + approved ✓\n4. Impact application submitted (Path C) + approved ✓\n5. Levanta application submitted (Path C) + approved ✓\n6. Refersion marketplace listing live ✓\n7. 4-email onboarding flow live in Klaviyo ✓\n8. ≥20 active affiliates by end of Week 4 (Path B default) ✓\n9. First-attributed-revenue in Triple Whale (≥$1,000 by end of Week 4) ✓\n10. First-payout-scheduled in PayPal Mass Pay / Wise (Week 5 first payout) ✓\n\n**Time:** 60 minutes for verification.\n\n---"
+        },
+        {
+          "heading": "3.1 Shopify CAPI (server-side) + UTM fallback wiring",
+          "body": "Per research/09 Pillar 3 §6-step cookie-deprecation mitigation recipe, the canonical first-step is Shopify Conversion API (server-side tracking):\n\n1. **Shopify Admin → Settings → Customer Events → Add Custom Pixel** with the Shopify CAPI server-side tracking code:\n   ```javascript\n   // Shopify CAPI server-side tracking for affiliate-attribution\n   analytics.subscribe(\"checkout_completed\", async (event) => {\n     const checkout = event.data?.checkout;\n     const urlParams = new URLSearchParams(checkout?.landingSiteRef || \"\");\n     const affiliateRef = urlParams.get(\"ref\") || urlParams.get(\"aff\") || urlParams.get(\"affiliate\");\n     if (affiliateRef) {\n       await fetch(\"https://your-server.com/api/affiliate-attribution\", {\n         method: \"POST\",\n         body: JSON.stringify({\n           order_id: checkout.order?.id,\n           affiliate_ref: affiliateRef,\n           order_value: checkout.subtotalPrice?.amount,\n           timestamp: Date.now(),\n         }),\n       });\n     }\n   });\n   ```\n2. **UTM fallback** — every affiliate link uses `?ref=[AFFILIATE_ID]&utm_source=affiliate&utm_medium=influencer&utm_campaign=[BRAND]_v[VOICE_PROFILE]` for Triple Whale attribution-merge\n\n**Time:** 120 minutes."
+        },
+        {
+          "heading": "3.2 Post-purchase email match in Klaviyo",
+          "body": "Per research/09 Pillar 3 §step-3, the canonical post-purchase-email-match is:\n\n1. **Klaviyo Flow → \"Affiliate-purchase-attribution\"** — triggered when a customer makes a purchase AND has the affiliate-referrer cookie OR the UTM ref-parameter:\n   - Match the customer-email to the original affiliate-referrer\n   - Attribute the purchase to the affiliate in Klaviyo + Triple Whale + Refersion\n   - Send a \"Thanks for supporting [Brand] via [Affiliate Name]\" post-purchase email (which doubles as UGC-elicitation per `assets/03-ugc-brief.md`)\n\n**Time:** 90 minutes."
+        },
+        {
+          "heading": "3.3 Levanta server-side fingerprinting (Path C only)",
+          "body": "For Path C brands ($5M+ GMV / 50+ active affiliates), the canonical server-side-fingerprinting step per research/09 Pillar 3 §step-5 is:\n\n1. **Levanta Pixel** + **Levanta CAPI** — install both client-side + server-side tracking per Levanta 2024 onboarding docs\n2. **Expected attribution-recovery:** 25–35% of would-be-lost attribution vs client-side-only tracking per Levanta 2024 benchmarks\n\n**Time:** 180 minutes (Path C only)."
+        },
+        {
+          "heading": "3.4 Triple Whale affiliate-cohort-overlay",
+          "body": "Per research/09 Pillar 4 §4-step SQL, the canonical cohort-LTV measurement is:\n\n```sql\n-- Step 1: Extract affiliate-referrer from order-attribution\nWITH affiliate_orders AS (\n  SELECT\n    o.id AS order_id,\n    o.customer_id,\n    o.total_price,\n    o.created_at,\n    -- Triple Whale stores affiliate-ref in the attribution metadata\n    o.attribution ->> 'affiliate_ref' AS affiliate_ref\n  FROM shopify_orders o\n  WHERE o.attribution ->> 'affiliate_ref' IS NOT NULL\n    AND o.created_at >= NOW() - INTERVAL '90 days'\n),\n\n-- Step 2: JOIN with Klaviyo profile\naffiliate_klaviyo AS (\n  SELECT\n    ao.*,\n    kp.email,\n    kp.first_order_date,\n    kp.total_orders,\n    kp.predicted_ltv\n  FROM affiliate_orders ao\n  JOIN klaviyo_profiles kp ON ao.customer_id = kp.customer_id\n),\n\n-- Step 3: LEFT JOIN with customer-cohort-LTV\naffiliate_cohort_ltv AS (\n  SELECT\n    ak.*,\n    cl.cohort_ltv_30d,\n    cl.cohort_ltv_60d,\n    cl.cohort_ltv_90d,\n    cl.cohort_source,\n    cl.tier_promotion_flag\n  FROM affiliate_klaviyo ak\n  LEFT JOIN customer_cohort_ltv cl ON ak.customer_id = cl.customer_id\n)\n\n-- Step 4: Output per-affiliate rollup\nSELECT\n  affiliate_ref,\n  COUNT(DISTINCT customer_id) AS customer_count,\n  SUM(total_price) AS total_revenue,\n  AVG(total_price) AS avg_order_value,\n  AVG(cohort_ltv_30d) AS avg_ltv_30d,\n  AVG(cohort_ltv_60d) AS avg_ltv_60d,\n  AVG(cohort_ltv_90d) AS avg_ltv_90d,\n  SUM(CASE WHEN cohort_ltv_90d >= 300 THEN 1 ELSE 0 END) AS tier_promotion_eligible_count\nFROM affiliate_cohort_ltv\nGROUP BY affiliate_ref\nORDER BY total_revenue DESC;\n```\n\nThis 4-step SQL gives the operator the per-affiliate 30/60/90-day cohort-LTV + tier-promotion-flag data needed for research/09 Pillar 4 cohort-LTV measurement + Phase 4 4-trigger tier-promotion SOP.\n\n**Time:** 180 minutes (Triple Whale + Klaviyo + customer-cohort-LTV table integration)."
+        },
+        {
+          "heading": "3.5 Verification — Gate C (Phase 3 readiness, end of Week 8)",
+          "body": "The operator has 10 prereqs complete before Phase 4 starts:\n\n1. Shopify CAPI server-side tracking live ✓\n2. UTM fallback parameterized on every affiliate-link ✓\n3. Post-purchase email match live in Klaviyo ✓\n4. Levanta server-side fingerprinting live (Path C only) ✓\n5. Triple Whale affiliate-cohort-overlay SQL running ✓\n6. Per-affiliate 30/60/90-day cohort-LTV dashboard live ✓\n7. Sustainable-mission-verifier running (`assets/12-impact-data-pipeline.md`) ✓\n8. ≥30 active affiliates by end of Week 8 ✓\n9. $5k+ attributed revenue by end of Week 8 ✓\n10. First-90-day-cohort-LTV-data for top-10 affiliates available ✓\n\n**Time:** 60 minutes for verification.\n\n---"
+        },
+        {
+          "heading": "4.1 4-trigger tier-promotion SOP live",
+          "body": "Per research/09 Pillar 2 §4-trigger tier-promotion SOP, the canonical tier-promotion logic is:\n\n1. **Trigger 1 — Volume:** Affiliate hits ≥$5,000 in attributed revenue in a 90-day window → promote to Tier-2 (20% Default / 25% Sustainable / 30% Gen-Z)\n2. **Trigger 2 — Cohort-LTV:** Affiliate's 90-day cohort-LTV ≥$300 (2× the paid-social baseline of $150 per Triple Whale 2024 benchmarks) → promote to Tier-2 + tier-promotion-flag in Triple Whale\n3. **Trigger 3 — Content-quality:** Affiliate has ≥10 published posts in the last 90 days + ≥70% FTC-compliance rate (no missing #ad disclosures) → eligible for Tier-3 (25% Default / 30% Sustainable / 35% Gen-Z)\n4. **Trigger 4 — Tenure:** Affiliate has been active ≥180 days + meets Triggers 1+2 → eligible for Tier-3 + quarterly bonus payout\n\n**Automated tier-promotion in Refersion / Levanta:** configure tier-promotion rules in the platform-settings → automatic promotion when all 4 triggers met.\n\n**Time:** 120 minutes."
+        },
+        {
+          "heading": "4.2 Sustainable-mission-verifier live (Path B + Path C)",
+          "body": "Per research/09 Pillar 5 + `assets/12-impact-data-pipeline.md` §Sustainable-affiliate-mission-alignment-verifier:\n\n1. **Verifier script** — runs weekly on the affiliate-list:\n   ```python\n   # From assets/12-impact-data-pipeline.md\n   def verify_sustainable_affiliate(creator_id, last_90_days_posts):\n       pillars = [\"carbon\", \"materials\", \"labor\", \"community\"]\n       for pillar in pillars:\n           keyword_count = sum(\n               1 for post in last_90_days_posts\n               if pillar.lower() in post.text.lower()\n           )\n           if keyword_count < 2:\n               return False  # Fail: default to Default tier\n       return True  # Pass: eligible for Sustainable tier 20/25/30%\n   ```\n2. **Auto-route in Refersion / Levanta** — if verifier passes, auto-route to Sustainable commission tier; if fails, default to Default tier\n\n**Time:** 90 minutes."
+        },
+        {
+          "heading": "4.3 Per-affiliate KPI dashboard live",
+          "body": "The canonical 10-metric per-affiliate KPI dashboard per research/09 Pillar 4:\n\n| Metric | Definition | Path B target |\n|---|---|---|\n| **Clicks** | Total clicks on affiliate-link | ≥200 clicks / mo per top-10 affiliate |\n| **CVR** | Clicks → conversions | ≥1.5% (vs paid-social 0.8% baseline) |\n| **Revenue** | Attributed order-value | ≥$5,000 / mo per top-10 affiliate |\n| **Commission** | Revenue × commission-tier | ≥$750 / mo per top-10 affiliate |\n| **CAC-equivalent** | Commission ÷ new-customers | ≤$30 (vs paid-social CAC $50-$80 baseline) |\n| **30-day LTV** | Avg 30-day LTV per attributed customer | ≥$120 |\n| **60-day LTV** | Avg 60-day LTV per attributed customer | ≥$200 |\n| **90-day LTV** | Avg 90-day LTV per attributed customer | ≥$300 |\n| **LTV:CAC** | 90-day LTV ÷ CAC-equivalent | ≥10:1 |\n| **Tier-promotion-flag** | Boolean: meets 4-trigger SOP | ≥30% of active affiliates |\n\n**Time:** 120 minutes (Klaviyo per-affiliate-segment + Triple Whale per-affiliate-cohort dashboard)."
+        },
+        {
+          "heading": "4.4 Quarterly compliance audit + Path B → Path C decision",
+          "body": "Per research/09 Pillar 5 §quarterly-compliance-audit + Phase 4 Step 4.4:\n\n1. **Quarterly compliance audit** — every 90 days, review top-10 affiliate-creators' last 90 days of posts for FTC-compliance + brand-safety. Non-compliant creators are warned once + terminated on second violation per Phase 1 §3-clause affiliate agreement.\n2. **Path B → Path C decision** — if attributed revenue >$50k/mo AND active-affiliate-count >50, the operator should upgrade to Levanta + Impact (Path C) per Phase 1 §6-path decision matrix. Trigger: revenue + affiliate-count thresholds met for 2 consecutive quarters."
+        },
+        {
+          "heading": "4.5 Verification — Gate D (Phase 4 readiness, end of Week 12)",
+          "body": "The operator has 9 prereqs complete (the canonical 4th-gate has 9, not 10, because Phase 4 is \"tier-promotion + sustainable-mission-verifier + public listing\" rather than \"Phase 1 install\"):\n\n1. 4-trigger tier-promotion SOP live in Refersion / Levanta ✓\n2. Sustainable-mission-verifier script running weekly ✓\n3. Per-affiliate KPI dashboard live (10 metrics) ✓\n4. Quarterly compliance audit cadence set up ✓\n5. ≥50 active affiliates by end of Week 12 (Path B default) ✓\n6. $20k+ attributed revenue by end of Week 12 ✓\n7. Top-10 affiliates ≥$5,000 each in 90-day attributed revenue ✓\n8. Tier-2 + Tier-3 promotions live for top-decile affiliates ✓\n9. Path B → Path C upgrade-decision documented (Q+1 review) ✓\n\n**Time:** 60 minutes for verification.\n\n---"
+        }
+      ],
+      "size": 60102
     }
   ],
   "assets": [
@@ -8059,7 +9028,7 @@
       ],
       "sectionCount": 38,
       "numberedSections": [],
-      "size": 55553,
+      "size": 56757,
       "assetNumber": 16,
       "voiceGated": true,
       "voiceCounts": {
@@ -8068,6 +9037,29 @@
         "Sustainable": 28,
         "Gen-Z": 30,
         "B2B": 30
+      }
+    },
+    {
+      "file": "17-affiliate-program-templates.md",
+      "title": "Goal",
+      "meta": [
+        "Application-welcome (immediate post-apply) — application received + FTC-disclosure-template + first-content-prompt + unique-link confirmation.",
+        "First-content-prompt (Day 7) — drop your first link in your next post + FTC-disclosure-cheatsheet + tier-promotion-goals preview.",
+        "First-payout-celebration (Day 30) — congrats on first $[X] in affiliate revenue + next-payout-date + tier-promotion-educational.",
+        "Tier-promotion-educational (Day 60) — how to unlock 20% Tier-2 commission + cohort-LTV $300+ requirement + 10+ posts/90d content-quality + 180-day tenure trigger.",
+        "Quarterly-compliance-audit (Day 90 / Day 180 / Day 270 / Day 365) — review your last 10 posts for FTC-compliance per 16 CFR Part 255 + immediate-termination-on-FTC-violation warning + next-payout-confirmation."
+      ],
+      "sectionCount": 31,
+      "numberedSections": [],
+      "size": 68689,
+      "assetNumber": 17,
+      "voiceGated": true,
+      "voiceCounts": {
+        "Default": 43,
+        "Luxury": 36,
+        "Sustainable": 86,
+        "Gen-Z": 41,
+        "B2B": 68
       }
     }
   ],
@@ -8308,6 +9300,26 @@
   },
   "journal": [
     {
+      "heading": "[2026-06-29 22:00] Add research/09-affiliate-program.md: Move #15 affiliate / creator / influencer program synthesis layer (canonical 6th active track per the v0.7.0 track-exhaustion-revival pivot from the closed subscription-program track)",
+      "body": "- **What shipped:** `research/09-affiliate-program.md` (new, ~42KB / 316 lines / the **10th research doc in the workspace** + the canonical **1st-layer research synthesis** for the affiliate-program track (Move #15) per the canonical research → playbook → asset → operator-surface → scripts → static-dashboard layer order; Move #15 from `research/03-30-day-rollout-plan.md` §Next moves after 30 days + the canonical next-pick per the prior tick's (`c29e7c6` subscription-program-health static-dashboard tick) explicit next-action recommendation: \"the canonical next-tick agent should ship `research/09-affiliate-program.md` (canonical first-pick for the 6th active track)\" — the canonical track-exhaustion-revival pivot from the closed subscription-program track per the v0.7.0 diagnostic applied to "
+    },
+    {
+      "heading": "[2026-06-29 18:00] Add dashboard/app/subscriptions/page.tsx: Move #11 subscription-program operator-surface layer 4",
+      "body": "- **What shipped:** `dashboard/app/subscriptions/page.tsx` (new, ~20KB / 397 lines / **17th route in the operator dashboard** + the canonical **4th-layer Next.js operator-surface route** for the **subscription-program track (Move #11)** per the canonical `research → playbook → asset → operator-surface → scripts → static-dashboard` layer order; Move #11 from `research/03-30-day-rollout-plan.md` §Next moves after 30 days line 176 + the canonical next-pick per the prior tick's `assets/16-subscription-flow-templates.md` §Next moves (1) explicit recommendation + `playbooks/15-subscription-program-launch.md` §Related forward-pointer `(planned future-tick)` + `research/08-subscriptions.md` line 7 canonical anchor + `research/03-30-day-rollout-plan.md` line 176 Move #11 status — **4 pre-staging ci"
+    },
+    {
+      "heading": "[2026-06-30 06:00] Add assets/17-affiliate-program-templates.md: Move #15 affiliate-program operator-copy layer 3 (3rd-layer operator-copy companion per the v0.9.0 layer-order-completion sub-rule applied to the affiliate-program track at 2/6 layers)",
+      "body": "- **What shipped:** `assets/17-affiliate-program-templates.md` (new, ~67KB / 364 lines / the **18th asset in the workspace** + the canonical **3rd-layer operator-copy companion** for the Move #15 affiliate-program track per the canonical `research → playbook → asset → operator-surface → scripts → static-dashboard` layer order; Move #15 from `research/03-30-day-rollout-plan.md` §Next moves after 30 days line 177 + the canonical next-pick per the prior tick (`772bfb5` playbooks/16 tick) explicit next-action recommendation: \"Canonical 3rd-layer operator-copy companion (per the canonical `research → playbook → asset → operator-surface → scripts → static-dashboard` layer order) — `assets/17-affiliate-program-templates.md` is the canonical next pick per the canonical layer-order-completion sub-r"
+    },
+    {
+      "heading": "[2026-06-29 23:30] Add playbooks/16-affiliate-program-launch.md: Move #15 affiliate-program operator-build layer 2",
+      "body": "- **What shipped:** `playbooks/16-affiliate-program-launch.md` (new, ~60KB / 678 lines / the **21st playbook in the workspace** + the canonical **2nd-layer operator-build companion** for the Move #15 affiliate-program track per the canonical `research → playbook → asset → operator-surface → scripts → static-dashboard` layer order; Move #15 from `research/03-30-day-rollout-plan.md` §Next moves after 30 days line 177 + the canonical next-pick per the prior tick (`8af9292` research/09 synthesis tick) explicit next-action recommendation: \"the canonical next-tick agent should ship `playbooks/16-affiliate-program-launch.md` (canonical 2nd-layer operator-build companion to research/09 per the canonical research → playbook → asset → operator-surface → scripts → static-dashboard layer order)\" — the"
+    },
+    {
+      "heading": "[2026-06-30 00:00] Add scripts/subscription_unit_economics.py + scripts/tests/test_subscription_unit_economics.py: Move #11 subscription-program scoring-script layer 5",
+      "body": "- **What shipped:** `scripts/subscription_unit_economics.py` (new, ~47KB / 720 lines / **16th script in the workspace** + the canonical **5th-layer Archetype A/B hybrid Path A/B/C subscription-program scorer** per the canonical `research → playbook → asset → operator-surface → scripts → static-dashboard` layer order; Move #11 from `research/03-30-day-rollout-plan.md` line 176 + the canonical next-pick per the prior tick (2026-06-29 18:00 /subscriptions route tick) explicit next-action recommendation + `assets/16-subscription-flow-templates.md` line 482 §Next moves (2) canonical anchor + `playbooks/15-subscription-program-launch.md` lines 400 + 406 §Companion tool + §Related forward-pointer + `research/08-subscriptions.md` line 7 canonical anchor + `research/03-30-day-rollout-plan.md` line "
+    },
+    {
       "heading": "[2026-06-29 18:00] Add assets/16-subscription-flow-templates.md: Move #11 subscription-program operator-copy layer (canonical 3rd-layer follow-up to research/08 + playbook/15)",
       "body": "- **What shipped:** `assets/16-subscription-flow-templates.md` (new, ~56KB / ~1,300 lines / the **17th asset in the workspace** + the canonical **3rd-layer operator-copy companion** for the subscription-program track per the canonical `research → playbook → asset → operator-surface → scripts → static-dashboard` layer order; Move #11 from `research/03-30-day-rollout-plan.md` line 176 + the canonical next-pick per the prior tick (2026-06-29 12:00 playbook/15 subscription-program-launch tick) `docs/journal.md` next-action + `research/08-subscriptions.md` line 7 forward-pointer + `playbooks/15-subscription-program-launch.md` line 407 forward-pointer + the README line 145 Operator-phase append that pre-staged the asset + the v0.9.0 layer-order-completion sub-rule applied to the subscription-pro"
     },
@@ -8340,7 +9352,11 @@
       "body": "- **What shipped:** `assets/15-3pl-selection-card.md` (new, ~67KB / 383 lines / the **16th asset in the workspace** + the canonical 3rd-layer operator-copy companion for the 3PL-migration track per the canonical `research → playbook → asset → operator-surface → scripts → static-dashboard` layer order; Move #12 from `research/03-30-day-rollout-plan.md` line 177 + the canonical next-pick per `playbooks/14-3pl-migration.md` line 443 §Next moves (a) explicit recommendation + `research/07-3pl-migration.md` line 7 forward-pointer + `research/03-30-day-rollout-plan.md` line 177 Move #12 status — **five pre-staging citations across research + playbook + synthesis doc** converging on this canonical pick per the v0.9.0 layer-order-completion sub-rule applied to the 3PL-migration track [research/07 +"
     },
     {
-      "heading": "[2026-06-27 23:51] Add assets/15-marketplace-listing-card.md: Move #13 marketplace-listing operator-copy layer",
+      "heading": "[2026-06-29 07:24] Add dashboards/subscription-program-health.html + dashboards/tests/test_subscription_program_health.js: Move #11 subscription-program static-dashboard layer 6 (closes the subscription-program track at 6/6 layers per the v0.11.0 track-fully-closed pivot pattern)",
+      "body": "- **What shipped:** `dashboards/subscription-program-health.html` (new, ~40KB / 633 lines / **6th static dashboard in the workspace** + the canonical **6th-and-final static-dashboard layer** for the **subscription-program track (Move #11)** per the canonical `research → playbook → asset → operator-surface → scripts → static-dashboard` layer order; Move #11 from `research/03-30-day-rollout-plan.md` §Next moves after 30 days line 176 + the canonical next-pick per the prior tick (2026-06-29 00:00 scripts/subscription_unit_economics.py tick) explicit next-action recommendation + `assets/16-subscription-flow-templates.md` line 483 §Next moves (3) canonical anchor + `playbooks/15-subscription-program-launch.md` line 409 §Related forward-pointer + `research/08-subscriptions.md` line 7 canonical a"
+    },
+    {
+      "heading": "[2026-06-29 00:00] Add scripts/subscription_unit_economics.py + scripts/tests/test_subscription_unit_economics.py: Move #11 subscription-program scoring-script layer 5",
       "body": "- **What shipped:** `assets/15-marketplace-listing-card.md` (new, ~62KB / 523 lines / the **15th asset in the workspace** + the canonical 3rd-layer operator-copy companion for the marketplace-expansion track per the canonical research → playbook → asset → operator-surface → scripts → static-dashboard layer order; Move #13 from `research/03-30-day-rollout-plan.md` line 178 + the canonical next-pick per `playbooks/13-marketplace-launch.md` line 504 §Next moves + `research/06-marketplace-expansion.md` line 7 forward-pointer). The asset ships the canonical **5-marketplace × 5-voice = 25 voice-variant per-marketplace listing titles** [Amazon US ≤200 chars / Walmart ≤75 chars / Target Plus ≤100 chars / Amazon EU DE+FR+IT+ES+NL ≤200 chars with ≤50 chars mobile-first truncation / bol NL ≤150 chars"
     },
     {
@@ -8389,11 +9405,11 @@
     }
   ],
   "counts": {
-    "researchDocs": 9,
-    "playbooks": 20,
-    "assets": 17,
-    "tables": 44,
+    "researchDocs": 10,
+    "playbooks": 21,
+    "assets": 18,
+    "tables": 52,
     "findings": 8,
-    "journalEntries": 20
+    "journalEntries": 26
   }
 }
