@@ -19,6 +19,7 @@ const NAV = [
   { href: "/lifecycle", label: "Lifecycle" },
   { href: "/3pl", label: "3PL" },
   { href: "/marketplace", label: "Marketplace" },
+  { href: "/subscriptions", label: "Subscriptions" },
   { href: "/journal", label: "Journal" },
 ];
 
