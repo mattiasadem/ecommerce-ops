@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Affiliate Program Health — ecommerce-ops</title>
+  <!--
+    Affiliate Program Health dashboard — static operator surface for the
+    affiliate-program track (research/09 + playbook 16 + asset 17 +
+    dashboard/app/affiliates/page.tsx + scripts/affiliate_unit_economics.py).
+
+    Renders 6 sections end-to-end:
+      1. Summary stats (Path tier default ROI + Year-1 attributed revenue + LTV multiplier + cookie-deprecation recovery + cost stack)
+      2. Per-flow readiness cards (5 canonical affiliate-facing flows × launch status + voice-density)
+      3. Per-path Year-1 attributed revenue bar chart (Path A / B / C)
+      4. Per-phase verification gate scoring (Phase 1 platform + commission tiers + Phase 2 recruitment + onboarding + Phase 3 cookie-deprecation mitigation + Phase 4 tier-promotion + sustainable-mission-verifier + public listing)
+      5. Per-flow detail table (5 flows × 6 columns: Flow / Voice density / Status / Cookie-recovery contribution / Cohort-LTV contribution / FTC-compliance contribution)
+      6. Recommended next action (which phase to ship next + which flow to build first)
+
+    Demo data is hardcoded to the canonical Path B default ($2M US DTC base, 20-30 active affiliates,
+    30-day cookie window, 15/20/25% Default commission tiers, 4 hr/wk operator capacity).
+    Live data sources (override via URL params):
+      ?path=A | B | C               (default B)
+      ?us_gmv=2000000               (default $2M)
+      ?demo=1                       force demo mode (no fetches; uses SAMPLE_ defaults)
+
+    Architecture: NO build step, NO npm deps, single inline CSS + vanilla JS.
+    Companion artifacts:
+      research/09-affiliate-program.md                (the 5-pillar framework + 3 GMV-tier paths + 15 pitfalls)
+      playbooks/16-affiliate-program-launch.md        (4-phase Recruit → Onboard → Cookie-mitigate → Tier-promote operator build)
+      assets/17-affiliate-program-templates.md        (5 flows × 5 voices = 50 voice-driven affiliate-facing templates)
+      dashboard/app/affiliates/page.tsx               (Next.js operator route, 18th route)
+      scripts/affiliate_unit_economics.py             (Archetype A/B hybrid Path A/B/C scorer, 93 TDD tests)
+
+    All canonical constants (PATH_A/B/C_FLOOR, PATH_COSTS, PATH_ATTRIBUTED_REVENUE_SHARE_PCT,
+    PATH_LTV_MULTIPLIER, COOKIE_DEPRECATION_RECOVERY_PCT, SUSTAINABLE_MISSION_ALIGN_SCORE,
+    PATH_ROI, COMMISSION_TIER_MATRIX) mirror scripts/affiliate_unit_economics.py exactly. Per the
+    v0.11.0 static-dashboard-tick recipe, this dashboard uses self-contained inline CSS + vanilla
+    JS, no Chart.js / no npm / no build step. Pure-Node smoke tests live in
+    dashboards/tests/test_affiliate_program_health.js (≥70 tests across 26 categories per the
+    v0.11.0 recipe).
+  -->
+  <style>
+    :root {
+      --bg: #0f1115;
+      --panel: #161922;
+      --panel-2: #1d2230;
+      --border: #2a2f3d;
+      --text: #e8eaf0;
+      --text-dim: #9097a8;
+      --accent: #58a6ff;
+      --ok: #4ec9b0;
+      --warn: #e0af68;
+      --fail: #f06a6a;
+      --violet: #b48ead;
+      --code-bg: #0a0c10;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    header {
+      padding: 24px 32px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    header .subtitle {
+      color: var(--text-dim);
+      font-size: 13px;
+    }
+    .mode-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+    }
+    .mode-badge.demo { color: var(--warn); border-color: var(--warn); }
+    .mode-badge.live { color: var(--accent); border-color: var(--accent); }
+    main {
+      padding: 24px 32px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    section { margin-bottom: 28px; }
+    h2 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+      margin: 0 0 14px 0;
+      font-weight: 600;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .stat {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .stat .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+    }
+    .stat .value {
+      font-size: 22px;
+      font-weight: 600;
+      margin-top: 4px;
+      font-variant-numeric: tabular-nums;
+    }
+    .stat .sub {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+    .stat .value.ok { color: var(--ok); }
+    .stat .value.warn { color: var(--warn); }
+    .stat .value.fail { color: var(--fail); }
+    .stat .value.path-tag { color: var(--violet); }
+    .flow-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .flow-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      position: relative;
+    }
+    .flow-card .tier {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      font-size: 10px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      letter-spacing: 0.06em;
+    }
+    .flow-card .name {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .flow-card .status {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-top: 8px;
+      border: 1px solid;
+    }
+    .status.live { color: var(--ok); border-color: var(--ok); }
+    .status.draft { color: var(--violet); border-color: var(--violet); }
+    .status.staging { color: var(--warn); border-color: var(--warn); }
+    .status.not-started { color: var(--text-dim); border-color: var(--text-dim); }
+    .flow-card .voice-density {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-top: 6px;
+    }
+    .flow-card .gate-score {
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+    .bar-chart {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+    }
+    .bar-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .bar-row .label {
+      width: 60px;
+      font-size: 12px;
+      color: var(--text-dim);
+      font-weight: 600;
+    }
+    .bar-row .track {
+      flex: 1;
+      background: var(--panel-2);
+      border-radius: 3px;
+      height: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+    .bar-row .fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 3px;
+      transition: width 0.4s ease-out;
+    }
+    .bar-row .fill.path-a { background: var(--warn); }
+    .bar-row .fill.path-b { background: var(--ok); }
+    .bar-row .fill.path-c { background: var(--violet); }
+    .bar-row .amount {
+      width: 140px;
+      font-size: 12px;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+    .gate-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+    }
+    .gate-card .head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+    .gate-card .head .label {
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .gate-card .head .progress {
+      font-size: 11px;
+      color: var(--text-dim);
+      font-variant-numeric: tabular-nums;
+    }
+    .gate-card .head .progress .ok-count { color: var(--ok); font-weight: 600; }
+    .gate-card .head .progress .warn-count { color: var(--warn); font-weight: 600; }
+    .gate-card .head .progress .fail-count { color: var(--fail); font-weight: 600; }
+    .gate-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 12px;
+    }
+    .gate-list li {
+      padding: 3px 0;
+      display: flex;
+      gap: 8px;
+      align-items: baseline;
+    }
+    .gate-list .g-id {
+      color: var(--text-dim);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      width: 32px;
+      flex-shrink: 0;
+    }
+    .gate-list .g-status {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 1px 6px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+    .gate-list .g-status.ok { color: var(--ok); border: 1px solid var(--ok); }
+    .gate-list .g-status.warn { color: var(--warn); border: 1px solid var(--warn); }
+    .gate-list .g-status.fail { color: var(--fail); border: 1px solid var(--fail); }
+    .gate-list .g-status.draft { color: var(--text-dim); border: 1px solid var(--text-dim); }
+    .gate-list .g-status.live { color: var(--ok); border: 1px solid var(--ok); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    th {
+      text-align: left;
+      padding: 8px 12px;
+      background: var(--panel-2);
+      color: var(--text-dim);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 600;
+      border-bottom: 1px solid var(--border);
+    }
+    td {
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border);
+      font-variant-numeric: tabular-nums;
+    }
+    tr:last-child td { border-bottom: none; }
+    .next-action {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 6px;
+      padding: 14px 16px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .next-action .next-step {
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    footer {
+      padding: 16px 32px 24px;
+      color: var(--text-dim);
+      font-size: 11px;
+      border-top: 1px solid var(--border);
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    footer code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      background: var(--code-bg);
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-size: 11px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Affiliate Program Health</h1>
+      <div class="subtitle">Affiliate / creator / influencer program operator surface · Move #15 (canonical 6th-and-final layer of the affiliate-program track)</div>
+    </div>
+    <div>
+      <span id="mode-badge" class="mode-badge demo">Demo</span>
+    </div>
+  </header>
+  <main>
+    <section id="summary-section">
+      <h2>1 · Summary</h2>
+      <div class="stats" id="summary-stats"></div>
+    </section>
+    <section id="flow-section">
+      <h2>2 · Per-Flow Readiness</h2>
+      <div class="flow-grid" id="flow-cards"></div>
+    </section>
+    <section id="path-chart-section">
+      <h2>3 · Per-Path Year-1 Attributed Revenue</h2>
+      <div class="bar-chart" id="path-chart"></div>
+    </section>
+    <section id="phase-gates-section">
+      <h2>4 · Per-Phase Verification Gates</h2>
+      <div id="phase-gates"></div>
+    </section>
+    <section id="flow-table-section">
+      <h2>5 · Per-Flow Detail</h2>
+      <table id="flow-table">
+        <thead>
+          <tr>
+            <th>Flow</th>
+            <th>Voice density</th>
+            <th>Status</th>
+            <th>Cookie-recovery contribution</th>
+            <th>Cohort-LTV contribution</th>
+            <th>FTC-compliance contribution</th>
+          </tr>
+        </thead>
+        <tbody id="flow-table-body"></tbody>
+      </table>
+    </section>
+    <section id="next-action-section">
+      <h2>6 · Recommended Next Action</h2>
+      <div class="next-action" id="next-action"></div>
+    </section>
+  </main>
+  <footer>
+    Self-contained static dashboard · no build step · no external deps.
+    Mirrors <code>scripts/affiliate_unit_economics.py</code> canonical constants (PATH_A_FLOOR=100000, PATH_B_FLOOR=500000, PATH_C_FLOOR=5000000, PATH_COSTS, PATH_ATTRIBUTED_REVENUE_SHARE_PCT, PATH_LTV_MULTIPLIER, COOKIE_DEPRECATION_RECOVERY_PCT, SUSTAINABLE_MISSION_ALIGN_SCORE, PATH_ROI, COMMISSION_TIER_MATRIX).
+    Companion: <code>research/09-affiliate-program.md</code> + <code>playbooks/16-affiliate-program-launch.md</code> + <code>assets/17-affiliate-program-templates.md</code> + <code>dashboard/app/affiliates/page.tsx</code> + <code>scripts/affiliate_unit_economics.py</code>.
+    URL params: <code>?path=A|B|C</code> · <code>?us_gmv=N</code> · <code>?demo=1</code>.
+  </footer>
+
+  <script>
+    // ---- Canonical data structures (mirror scripts/affiliate_unit_economics.py) ----
+    // 5 canonical affiliate-facing flows (per asset 17 §5-flow × 5-voice × {email + SMS} = 50 voice-driven cells).
+    var FLOWS = [
+      { id: 'application_welcome', name: 'Application-welcome',              tier: 'Path A+B+C', pillar: 'Pillar 1 platform',         defaultDiscountTier: 'n/a (commission)', voiceCells: 10, cookieContributionPct: 0,  cohortLtvContributionPct: 0,  ftcComplianceContributionPct: 30, status: 'live' },
+      { id: 'first_content_prompt', name: 'First-content-prompt',             tier: 'Path A+B+C', pillar: 'Pillar 3 cookie-deprecation', defaultDiscountTier: 'n/a (commission)', voiceCells: 10, cookieContributionPct: 30, cohortLtvContributionPct: 0,  ftcComplianceContributionPct: 20, status: 'live' },
+      { id: 'first_payout_celebration', name: 'First-payout-celebration',   tier: 'Path B+C',   pillar: 'Pillar 4 cohort-LTV',         defaultDiscountTier: 'n/a (commission)', voiceCells: 10, cookieContributionPct: 0,  cohortLtvContributionPct: 30, ftcComplianceContributionPct: 0,  status: 'staging' },
+      { id: 'tier_promotion_educational', name: 'Tier-promotion-educational', tier: 'Path B+C',   pillar: 'Pillar 2 4-trigger-SOP',       defaultDiscountTier: 'Tier-3 30%', voiceCells: 10, cookieContributionPct: 0,  cohortLtvContributionPct: 50, ftcComplianceContributionPct: 0,  status: 'staging' },
+      { id: 'quarterly_compliance_audit', name: 'Quarterly-compliance-audit', tier: 'Path A+B+C', pillar: 'Pillar 5 FTC-compliance',     defaultDiscountTier: 'n/a (audit)', voiceCells: 10, cookieContributionPct: 0,  cohortLtvContributionPct: 0,  ftcComplianceContributionPct: 100,status: 'draft' }
+    ];
+
+    // Path-tier table (mirrors scripts/affiliate_unit_economics.py PATH_COSTS / PATH_ATTRIBUTED_REVENUE_SHARE_PCT / PATH_LTV_MULTIPLIER / COOKIE_DEPRECATION_RECOVERY_PCT / SUSTAINABLE_MISSION_ALIGN_SCORE / PATH_ROI).
+    // Tuple values: cost one-time low/high, cost recurring low/high, attributed-revenue share % low/high, LTV multiplier low/high, cookie-deprecation recovery % low/high, sustainable-mission-align score low/high, ROI low/high, scope label.
+    var PATH_TABLE = {
+      A: { gmvMin: 100000,    gmvMax: 499999,    costOneTimeLow: 0,      costOneTimeHigh: 500,    costRecurLow: 0,     costRecurHigh: 25,     shareLow: 8,  shareHigh: 20, ltvMultLow: 1.5, ltvMultHigh: 2.0, cookLow: 5,  cookHigh: 15, susLow: 40, susHigh: 65, roiLow: 8.0, roiHigh: 12.5, scope: 'GoAffPro free (Shopify app)',                       label: 'Path A — GoAffPro free (<$500k GMV, 12.5:1 ROI default)' },
+      B: { gmvMin: 500000,    gmvMax: 4999999,   costOneTimeLow: 500,    costOneTimeHigh: 2500,   costRecurLow: 239,   costRecurHigh: 489,   shareLow: 20, shareHigh: 40, ltvMultLow: 2.0, ltvMultHigh: 3.0, cookLow: 25, cookHigh: 35, susLow: 60, susHigh: 85, roiLow: 3.7, roiHigh: 8.0, scope: 'Refersion Growth ($239/mo) DEFAULT',                  label: 'Path B — Refersion Growth ($500k–$5M DEFAULT, 6:1 Year-1 ROI default)' },
+      C: { gmvMin: 5000000,   gmvMax: 99999999,  costOneTimeLow: 5000,   costOneTimeHigh: 15000,  costRecurLow: 1500,  costRecurHigh: 4000,  shareLow: 30, shareHigh: 50, ltvMultLow: 2.5, ltvMultHigh: 3.5, cookLow: 40, cookHigh: 60, susLow: 70, susHigh: 95, roiLow: 3.5, roiHigh: 5.0, scope: 'Impact Enterprise + Levanta + Aspire + PartnerStack', label: 'Path C — Impact + Levanta ($5M+, 4:1 Year-1 ROI default)' }
+    };
+
+    // Phase gates (mirrors playbook 16 §Phase 1+2+3+4 verification gates = 10/10/10/9 prereqs).
+    var PHASE_GATES = [
+      { id: 'A', label: 'Phase 1 — Platform + commission tiers + FTC compliance + 3-clause agreement ~6hr Weeks 1–2', total: 10,
+        gates: [
+          { id: 'A1',  criterion: 'Move #6 Triple Whale attribution live + Move #6.5/6.6/6.7/6.8 attribution audits shipped (5 prerequisites)', status: 'ok' },
+          { id: 'A2',  criterion: 'Move #8 Smile.io loyalty live (canonical 2× points-for-affiliate-driven-customers substrate per research/09 Pillar 4)', status: 'ok' },
+          { id: 'A3',  criterion: 'Refersion Growth ($239/mo) OR Levanta Growth ($499/mo) account created + 5-voice commission tiers configured (Default 15/20/25% / Luxury 10/12/15% / Sustainable 20/25/30% / Gen-Z 25/30/35% / B2B 8-12/12-15/15-20%)', status: 'ok' },
+          { id: 'A4',  criterion: 'Per-voice cookie windows configured (Default 30d / Luxury 60d / Sustainable 30d / Gen-Z 7d / B2B 90d) per research/09 Pillar 2 commission', status: 'ok' },
+          { id: 'A5',  criterion: 'Per-voice payout schedules configured (Default NET-30 / Luxury NET-45 / Sustainable NET-30 / Gen-Z NET-7 / B2B NET-60) per research/09 Pillar 2 commission', status: 'ok' },
+          { id: 'A6',  criterion: 'FTC-compliance SOP live: 16 CFR Part 255 + #ad/#sponsored/#partner disclosure templates per voice (Default/Luxury/Sustainable/Gen-Z/B2B) + quarterly audit cadence (every 90 days) + $10k+/violation penalty awareness', status: 'ok' },
+          { id: 'A7',  criterion: '3-clause affiliate agreement template live with legal review: commission + payment-terms + termination (30-day notice no-penalty + immediate-termination-on-FTC-violation) per playbook 16 §Phase 1 Step 1.3', status: 'ok' },
+          { id: 'A8',  criterion: 'Affiliate-application landing page live at /affiliates/apply with form fields + FTC-disclosure acknowledgement + payout-method dropdown (PayPal Mass Pay / Wise / direct-deposit) per asset 17 §landing-page-skeleton', status: 'warn' },
+          { id: 'A9',  criterion: 'PayPal Mass Pay OR Wise configured for bulk affiliate payouts (NET-30 cadence) + 1099-NEC tracking for US-affiliates earning $600+/yr per playbook 16 §Phase 1 Step 1.5', status: 'warn' },
+          { id: 'A10', criterion: 'Operator capacity ≥4 hr/wk sustained for 2 weeks (canonical playbook 16 §Prerequisite #8)', status: 'ok' }
+        ]
+      },
+      { id: 'B', label: 'Phase 2 — Recruitment + onboarding + agreement signing + first-attributed-revenue ~10hr Weeks 3–4', total: 10,
+        gates: [
+          { id: 'B1',  criterion: 'Phase 1 10/10 prereqs complete (steady-state Week 2+ with platform configured + commission tiers + cookie windows + payout schedules live)', status: 'ok' },
+          { id: 'B2',  criterion: 'Existing-customer-list scrape via Klaviyo "Engaged customers with social handles" segment (target ≥10 micro-influencer candidates) per playbook 16 §Phase 2 Step 2.1', status: 'ok' },
+          { id: 'B3',  criterion: 'Micro-influencer outreach ≥10 via Aspire + Collabstr + Instagram hashtag scrape + Refersion marketplace + Levanta marketplace (4-email outreach sequence per asset 17 §Outreach templates) per playbook 16 §Phase 2 Step 2.2', status: 'warn' },
+          { id: 'B4',  criterion: 'Public-listing on Awin + Impact + Levanta + Refersion marketplaces (canonical 4-marketplace listing per playbook 16 §Phase 2 Step 2.3) per research/09 §Prerequisites', status: 'warn' },
+          { id: 'B5',  criterion: '4-email onboarding sequence live: Day 0 welcome + Day 7 first-content-prompt + Day 30 first-payout-celebration + Day 60 tier-promotion-educational per asset 17 §4-email onboarding', status: 'ok' },
+          { id: 'B6',  criterion: 'Application-welcome flow live with 5-voice override cells (Default/Luxury/Sustainable/Gen-Z/B2B × {email + SMS} = 50 voice-driven cells) per asset 17 §Flow 1 application-welcome', status: 'ok' },
+          { id: 'B7',  criterion: 'First-content-prompt flow live with per-voice cookie-window + payout-schedule reminders per asset 17 §Flow 2 first-content-prompt + research/09 Pillar 2', status: 'ok' },
+          { id: 'B8',  criterion: '≥20 active affiliates onboarded with signed 3-clause agreement + FTC-compliance acknowledgement per playbook 16 §Phase 2 Step 2.6', status: 'warn' },
+          { id: 'B9',  criterion: 'First-attributed-revenue wired: Triple Whale ?tw_camp=aff_<affiliate_id>_v<voice_profile> UTM on every CTA per asset 17 §Triple Whale UTM', status: 'ok' },
+          { id: 'B10', criterion: 'First-payout-scheduled: PayPal Mass Pay OR Wise scheduled at NET-30 cadence with 1099-NEC tracking per playbook 16 §Phase 2 Step 2.7', status: 'ok' }
+        ]
+      },
+      { id: 'C', label: 'Phase 3 — Cookie-deprecation mitigation + Triple Whale cohort-LTV wiring + Levanta server-side fingerprinting for Path C ~12hr Weeks 5–8', total: 10,
+        gates: [
+          { id: 'C1',  criterion: 'Phase 2 10/10 prereqs complete (steady-state Week 4+ with ≥20 active affiliates + first-attributed-revenue + first-payout-scheduled)', status: 'draft' },
+          { id: 'C2',  criterion: 'Shopify CAPI server-side conversion API live (Move #6.5 Meta CAPI + Move #6.6 TikTok EAPI + Move #6.7 Snap/Pinterest EM already shipped) per research/09 Pillar 3 Step 1', status: 'draft' },
+          { id: 'C3',  criterion: 'UTM fallback wiring: every affiliate CTA carries ?tw_camp=aff_<id>_v<voice> per asset 17 §UTM template + Klaviyo UTM triple-tag per research/09 Pillar 3 Step 2', status: 'draft' },
+          { id: 'C4',  criterion: 'Klaviyo post-purchase-email-match live: matches affiliate-driven customers via Klaviyo "Marketplace Purchaser (last 30 days)" segment + post-purchase email UTM triple-tag per research/09 Pillar 3 Step 3 + asset 17 §Flow 5 quarterly-compliance-audit reminder', status: 'draft' },
+          { id: 'C5',  criterion: 'Levanta server-side fingerprinting installed (Path C only; downgrade to Path B without Levanta per scripts/affiliate_unit_economics.py Levanta-deferral gate) per research/09 Pillar 3 Step 5', status: 'draft' },
+          { id: 'C6',  criterion: 'Triple Whale affiliate-cohort-overlay SQL live: extract affiliate-referrer from order-attribution → JOIN with Klaviyo profile → LEFT JOIN with customer-cohort-LTV per research/09 Pillar 4 + playbook 16 §Phase 3 Step 3.4', status: 'draft' },
+          { id: 'C7',  criterion: 'Per-affiliate KPI dashboard live: clicks / CVR / revenue / commission / CAC-equivalent / 30-day LTV / 60-day LTV / 90-day LTV / LTV:CAC / tier-promotion-flag per playbook 16 §Phase 3 Step 3.5 + asset 17 §Per-affiliate KPI', status: 'draft' },
+          { id: 'C8',  criterion: 'Sustainable-mission-alignment-verifier live (Path C Sustainable tier only): creator mentions carbon/materials/labor/community keywords ≥2 mentions per pillar in last 90 days = 20/25/30% Sustainable commission tier per assets/12-impact-data-pipeline.md + asset 17 §Sustainable-verifier', status: 'draft' },
+          { id: 'C9',  criterion: '≥30 active affiliates + $5k+ attributed revenue + first-90-day-cohort-LTV-data wired per playbook 16 §Phase 3 Step 3.6', status: 'draft' },
+          { id: 'C10', criterion: 'Cookie-deprecation recovery 25-35% Path B (Shopify CAPI + UTM fallback + post-purchase email match + Shopify Pixel) OR 40-60% Path C (Levanta server-side fingerprinting + Triple Whale cohort-overlay) measured via Triple Whale per research/09 Pillar 3', status: 'draft' }
+        ]
+      },
+      { id: 'D', label: 'Phase 4 — Tier-promotion + sustainable-mission-verifier + public listing + 4-trigger SOP ~10hr Weeks 9–12 + 1–4 hr/wk ongoing', total: 9,
+        gates: [
+          { id: 'D1', criterion: 'Phase 3 10/10 prereqs complete (steady-state Week 8+ with cookie-deprecation-recovery ≥25% Path B + ≥40% Path C + Triple Whale cohort-LTV wired + ≥30 active affiliates + $5k+ attributed revenue)', status: 'draft' },
+          { id: 'D2', criterion: '4-trigger tier-promotion SOP live: volume $5k+/90d → Tier-2 / cohort-LTV $300+ → Tier-2 / content-quality 10+ posts/90d + 70%+ FTC-compliance → Tier-3-eligible / tenure 180d + Triggers 1+2 → Tier-3 per playbook 16 §Phase 4 Step 4.1', status: 'draft' },
+          { id: 'D3', criterion: 'Sustainable-mission-alignment-verifier live: creator carbon/materials/labor/community keyword mentions ≥2 per pillar in last 90 days = Tier-3 30% Sustainable commission rate per assets/12-impact-data-pipeline.md + research/09 Pillar 5', status: 'draft' },
+          { id: 'D4', criterion: 'Per-affiliate KPI dashboard live (Phase 3 C7 already shipped) with auto-tier-promotion-flag + 4-trigger SOP review queue per playbook 16 §Phase 4 Step 4.2', status: 'draft' },
+          { id: 'D5', criterion: 'Quarterly compliance audit live (every 90 days): review top-10 affiliate-creators\' last 90 days of posts for FTC-compliance + brand-safety per research/09 Pillar 5 + asset 17 §Flow 5 quarterly-compliance-audit', status: 'draft' },
+          { id: 'D6', criterion: '≥50 active affiliates + $20k+ attributed revenue + top-10 affiliates ≥$5k each per playbook 16 §Phase 4 Step 4.5', status: 'draft' },
+          { id: 'D7', criterion: 'Tier-2 / Tier-3 auto-promotion live with per-voice cookie-window + payout-schedule overrides per playbook 16 §Phase 4 Step 4.1 + asset 17 §4-trigger SOP', status: 'draft' },
+          { id: 'D8', criterion: 'Path B → Path C decision documented at attributed-revenue >$50k/mo + active-affiliates >50 for 2 consecutive quarters per playbook 16 §Phase 4 Step 4.4', status: 'draft' },
+          { id: 'D9', criterion: 'Operator capacity ≥4 hr/wk sustained for 4 weeks + dedicated FTE hired if attributed-revenue crosses $50k/mo (canonical Path C operator time per playbook 16 §Prerequisite #8)', status: 'draft' }
+        ]
+      }
+    ];
+
+    // 5-voice commission-tier matrix (mirrors scripts/affiliate_unit_economics.py COMMISSION_TIER_MATRIX + per-voice cookie windows + per-voice payout schedules).
+    var COMMISSION_TIER_MATRIX = [
+      { voice: 'Default',     tier1: '15%', tier2: '20%', tier3: '25%', cookieWindow: '30d', payoutSchedule: 'NET-30', notes: 'canonical balanced program per Awin 2024' },
+      { voice: 'Luxury',      tier1: '10%', tier2: '12%', tier3: '15%', cookieWindow: '60d', payoutSchedule: 'NET-45', notes: 'lower commission + longer cookie window 60d' },
+      { voice: 'Sustainable', tier1: '20%', tier2: '25%', tier3: '30%', cookieWindow: '30d', payoutSchedule: 'NET-30', notes: 'higher commission to attract mission-aligned creators per assets/12-impact-data-pipeline.md' },
+      { voice: 'Gen-Z',       tier1: '25%', tier2: '30%', tier3: '35%', cookieWindow: '7d',  payoutSchedule: 'NET-7',  notes: 'highest commission + shortest cookie window 7d for impulse buys' },
+      { voice: 'B2B',         tier1: '8-12%', tier2: '12-15%', tier3: '15-20%', cookieWindow: '90d', payoutSchedule: 'NET-60', notes: 'lower base + longer cookie 90d + NET-60 payout per B2B sales-cycle' }
+    ];
+
+    // SAMPLE_INPUTS — canonical Path B default reference profile.
+    // Mirrors scripts/affiliate_unit_economics.py SAMPLE_INPUTS canonical defaults ($2M US DTC base / Path B default).
+    var SAMPLE_INPUTS = {
+      path: 'B',
+      us_gmv: 2000000,
+      expected_affiliate_count: 25,
+      commission_tier: 20,
+      voice_profile: 'default',
+      has_triple_whale: true,
+      has_klaviyo_post_purchase: true,
+      has_smile_loyalty: false,
+      has_levanta: false,
+      has_impact: false,
+      iq_zone: 'mid',
+      operator_capacity_hours_per_week: 4,
+      flows: {
+        application_welcome:           { status: 'live',        notes: 'Refersion 5-voice welcome live; FTC-disclosure acknowledgement' },
+        first_content_prompt:          { status: 'live',        notes: 'Refersion Day-7 prompt live with cookie-window reminder' },
+        first_payout_celebration:      { status: 'staging',     notes: 'Day-30 celebration email wired; first-payout cohort-LTV overlay pending' },
+        tier_promotion_educational:    { status: 'staging',     notes: 'Day-60 Tier-2/3 educational live; 4-trigger SOP review queue pending' },
+        quarterly_compliance_audit:    { status: 'draft',       notes: '90-day cadence scheduled; top-10 affiliate FTC-compliance review template' }
+      }
+    };
+
+    // ---- Pure helper functions (mirror scripts/affiliate_unit_economics.py) ----
+    function tierForGmv(usGmv) {
+      if (usGmv >= PATH_TABLE.C.gmvMin) return 'C';
+      if (usGmv >= PATH_TABLE.B.gmvMin) return 'B';
+      return 'A';
+    }
+
+    function year1RevenueLow(usGmv, p) {
+      return usGmv * (PATH_TABLE[p].shareLow / 100);
+    }
+    function year1RevenueHigh(usGmv, p) {
+      return usGmv * (PATH_TABLE[p].shareHigh / 100);
+    }
+    function year1CostLow(p) {
+      return PATH_TABLE[p].costOneTimeLow + PATH_TABLE[p].costRecurLow * 12;
+    }
+    function year1CostHigh(p) {
+      return PATH_TABLE[p].costOneTimeHigh + PATH_TABLE[p].costRecurHigh * 12;
+    }
+    function ltvMultiplierMid(p) {
+      return (PATH_TABLE[p].ltvMultLow + PATH_TABLE[p].ltvMultHigh) / 2;
+    }
+    function cookieRecoveryMid(p) {
+      return (PATH_TABLE[p].cookLow + PATH_TABLE[p].cookHigh) / 2;
+    }
+    function sustainableMissionAlignMid(p) {
+      return Math.round((PATH_TABLE[p].susLow + PATH_TABLE[p].susHigh) / 2);
+    }
+    function roiMid(p) {
+      // Use mid-attributed revenue / mid-cost.
+      var midShare = (PATH_TABLE[p].shareLow + PATH_TABLE[p].shareHigh) / 2;
+      var midCost  = (year1CostLow(p) + year1CostHigh(p)) / 2;
+      return midShare / 100 * 1000000 / midCost; // ratio for $1M GMV input
+    }
+
+    function gateStatusCounts(gates) {
+      var counts = { ok: 0, warn: 0, fail: 0, draft: 0, live: 0 };
+      for (var i = 0; i < gates.length; i++) {
+        var s = gates[i].status;
+        if (counts[s] !== undefined) counts[s]++;
+      }
+      return counts;
+    }
+
+    function gateStatusBadge(p) {
+      // Map a phase gate to an overall status string.
+      var counts = gateStatusCounts(p.gates);
+      var total = p.total || (p.gates ? p.gates.length : 0);
+      if (counts.fail > 0) return 'fail';
+      if (counts.warn >= 4) return 'warn';
+      if (total > 0 && counts.draft >= total * 0.5) return 'draft';
+      if (total > 0 && counts.ok + counts.live >= total * 0.6) return 'ok';
+      // For tests with all-draft gates (no total), check if all are draft.
+      if (counts.draft > 0 && counts.ok === 0 && counts.warn === 0 && counts.fail === 0 && counts.live === 0) return 'draft';
+      if (counts.ok > 0 && counts.warn === 0 && counts.fail === 0 && counts.draft === 0 && counts.live === 0) return 'ok';
+      return 'warn';
+    }
+
+    function fmtMoney(n) {
+      if (n >= 1000000) return '$' + (n / 1000000).toFixed(2) + 'M';
+      if (n >= 1000)    return '$' + Math.round(n / 1000) + 'k';
+      return '$' + Math.round(n);
+    }
+
+    function fmtPct(n) {
+      return n.toFixed(1) + '%';
+    }
+
+    // ---- Render functions ----
+    function renderSummary(inputs) {
+      var p = inputs.path;
+      var pt = PATH_TABLE[p];
+      var revLow = year1RevenueLow(inputs.us_gmv, p);
+      var revHigh = year1RevenueHigh(inputs.us_gmv, p);
+      var costLow = year1CostLow(p);
+      var costHigh = year1CostHigh(p);
+      var ltvMid = ltvMultiplierMid(p);
+      var cookMid = cookieRecoveryMid(p);
+      var susMid = sustainableMissionAlignMid(p);
+      var roiLow = pt.roiLow;
+      var roiHigh = pt.roiHigh;
+
+      var stats = [
+        { label: 'Path', value: 'Path ' + p, sub: pt.label, klass: 'path-tag' },
+        { label: 'Year-1 attributed revenue', value: fmtMoney(revLow) + '–' + fmtMoney(revHigh), sub: 'at $' + (inputs.us_gmv / 1000000).toFixed(1) + 'M US DTC GMV', klass: 'ok' },
+        { label: 'LTV multiplier', value: ltvMid.toFixed(1) + '×', sub: pt.ltvMultLow.toFixed(1) + '–' + pt.ltvMultHigh.toFixed(1) + '× range', klass: '' },
+        { label: 'Cookie-deprecation recovery', value: cookMid.toFixed(0) + '%', sub: pt.cookLow + '–' + pt.cookHigh + '% range', klass: 'warn' },
+        { label: 'Year-1 ROI', value: roiLow.toFixed(1) + ':1–' + roiHigh.toFixed(1) + ':1', sub: pt.roiLow.toFixed(1) + ':1 default', klass: 'ok' },
+        { label: 'Year-1 cost stack', value: fmtMoney(costLow) + '–' + fmtMoney(costHigh), sub: 'one-time + recurring×12', klass: '' },
+        { label: 'Sustainable-mission-align', value: susMid, sub: '0-100 scale (Tier-3 unlock ≥60)', klass: susMid >= 60 ? 'ok' : 'warn' }
+      ];
+
+      var html = '';
+      for (var i = 0; i < stats.length; i++) {
+        var s = stats[i];
+        html += '<div class="stat">';
+        html += '<div class="label">' + s.label + '</div>';
+        html += '<div class="value ' + s.klass + '">' + s.value + '</div>';
+        html += '<div class="sub">' + s.sub + '</div>';
+        html += '</div>';
+      }
+      document.getElementById('summary-stats').innerHTML = html;
+    }
+
+    function renderFlowCards(inputs) {
+      var html = '';
+      for (var i = 0; i < FLOWS.length; i++) {
+        var f = FLOWS[i];
+        var fStatus = inputs.flows[f.id] ? inputs.flows[f.id].status : 'not-started';
+        var notes = inputs.flows[f.id] ? inputs.flows[f.id].notes : 'Not yet configured';
+        html += '<div class="flow-card">';
+        html += '<div class="tier">' + f.tier + '</div>';
+        html += '<div class="name">' + f.name + '</div>';
+        html += '<div class="status ' + fStatus + '">' + fStatus + '</div>';
+        html += '<div class="voice-density">5 voices × {email + SMS} = ' + f.voiceCells + ' voice-driven cells · Default ' + fStatus + '</div>';
+        html += '<div class="gate-score">' + f.pillar + '</div>';
+        html += '<div class="gate-score" style="margin-top:4px;color:var(--text-dim);font-size:11px">' + notes + '</div>';
+        html += '</div>';
+      }
+      document.getElementById('flow-cards').innerHTML = html;
+    }
+
+    function renderPathChart(inputs) {
+      var maxRev = 0;
+      var rows = [];
+      for (var p in PATH_TABLE) {
+        var revLow = year1RevenueLow(inputs.us_gmv, p);
+        var revHigh = year1RevenueHigh(inputs.us_gmv, p);
+        var mid = (revLow + revHigh) / 2;
+        if (mid > maxRev) maxRev = mid;
+        rows.push({ p: p, revLow: revLow, revHigh: revHigh, mid: mid, label: PATH_TABLE[p].label });
+      }
+
+      var html = '';
+      for (var i = 0; i < rows.length; i++) {
+        var r = rows[i];
+        var pct = maxRev > 0 ? (r.mid / maxRev * 100) : 0;
+        html += '<div class="bar-row">';
+        html += '<div class="label">Path ' + r.p + '</div>';
+        html += '<div class="track"><div class="fill path-' + r.p.toLowerCase() + '" style="width:' + pct.toFixed(1) + '%"></div></div>';
+        html += '<div class="amount">' + fmtMoney(r.revLow) + '–' + fmtMoney(r.revHigh) + '</div>';
+        html += '</div>';
+      }
+      document.getElementById('path-chart').innerHTML = html;
+    }
+
+    function renderPhaseGates() {
+      var html = '';
+      for (var i = 0; i < PHASE_GATES.length; i++) {
+        var pg = PHASE_GATES[i];
+        var c = gateStatusCounts(pg.gates);
+        var overall = gateStatusBadge(pg);
+        html += '<div class="gate-card">';
+        html += '<div class="head">';
+        html += '<div class="label">' + pg.label + '</div>';
+        html += '<div class="progress">';
+        html += '<span class="ok-count">' + (c.ok + c.live) + '</span>/' + pg.total + ' OK';
+        if (c.warn > 0) html += ' · <span class="warn-count">' + c.warn + '</span> warn';
+        if (c.fail > 0) html += ' · <span class="fail-count">' + c.fail + '</span> fail';
+        if (c.draft > 0) html += ' · ' + c.draft + ' pending';
+        html += '</div>';
+        html += '</div>';
+        html += '<ul class="gate-list">';
+        for (var j = 0; j < pg.gates.length; j++) {
+          var g = pg.gates[j];
+          html += '<li>';
+          html += '<span class="g-id">' + g.id + '</span>';
+          html += '<span class="g-status ' + g.status + '">' + g.status + '</span>';
+          html += '<span>' + g.criterion + '</span>';
+          html += '</li>';
+        }
+        html += '</ul>';
+        html += '</div>';
+      }
+      document.getElementById('phase-gates').innerHTML = html;
+    }
+
+    function renderFlowTable(inputs) {
+      var html = '';
+      for (var i = 0; i < FLOWS.length; i++) {
+        var f = FLOWS[i];
+        var fStatus = inputs.flows[f.id] ? inputs.flows[f.id].status : 'not-started';
+        var cookiePct = f.cookieContributionPct + '%';
+        var ltvPct = f.cohortLtvContributionPct + '%';
+        var ftcPct = f.ftcComplianceContributionPct + '%';
+        html += '<tr>';
+        html += '<td>' + f.name + '</td>';
+        html += '<td>5 voices × 2 channels = ' + f.voiceCells + ' cells</td>';
+        html += '<td><span class="status ' + fStatus + '">' + fStatus + '</span></td>';
+        html += '<td>' + cookiePct + '</td>';
+        html += '<td>' + ltvPct + '</td>';
+        html += '<td>' + ftcPct + '</td>';
+        html += '</tr>';
+      }
+      document.getElementById('flow-table-body').innerHTML = html;
+    }
+
+    function renderNextAction(inputs) {
+      var p = inputs.path;
+      var pt = PATH_TABLE[p];
+      var phaseWithWarn = null;
+      var phaseWithMostDraft = null;
+      var mostDraftCount = -1;
+      for (var i = 0; i < PHASE_GATES.length; i++) {
+        var pg = PHASE_GATES[i];
+        var c = gateStatusCounts(pg.gates);
+        if (phaseWithWarn === null && c.warn >= 2 && c.ok + c.live >= pg.total * 0.5) phaseWithWarn = pg;
+        if (c.draft > mostDraftCount) { mostDraftCount = c.draft; phaseWithMostDraft = pg; }
+      }
+
+      var html = '';
+      html += '<div class="next-step">Recommended next step:</div>';
+      if (phaseWithWarn) {
+        html += 'Finish Phase ' + phaseWithWarn.id + ' (' + phaseWithWarn.label.split(' — ')[1] + ') — close the ' + gateStatusCounts(phaseWithWarn.gates).warn + ' warn gates before moving forward.<br>';
+        html += '<strong>Affiliated-program track:</strong> ' + (phaseWithWarn.label) + '.<br>';
+      } else {
+        html += 'Ship Phase ' + phaseWithMostDraft.id + ' (' + phaseWithMostDraft.label.split(' — ')[1] + ') — currently ' + gateStatusCounts(phaseWithMostDraft.gates).draft + ' of ' + phaseWithMostDraft.total + ' prereqs pending.<br>';
+      }
+      html += '<strong>Path ' + p + ' scope:</strong> ' + pt.scope + '.<br>';
+      html += '<strong>Default platform pick:</strong> ' + (p === 'A' ? 'GoAffPro free' : p === 'B' ? 'Refersion Growth ($239/mo)' : 'Impact Enterprise + Levanta ($1k-$4k/mo)') + ' per scripts/affiliate_unit_economics.py.<br>';
+      html += '<strong>Year-1 outcome band:</strong> ' + fmtMoney(year1RevenueLow(inputs.us_gmv, p)) + '–' + fmtMoney(year1RevenueHigh(inputs.us_gmv, p)) + ' attributed revenue · ' + pt.roiLow.toFixed(1) + ':1–' + pt.roiHigh.toFixed(1) + ':1 Year-1 ROI · ' + ltvMultiplierMid(p).toFixed(1) + '× LTV multiplier · ' + cookieRecoveryMid(p).toFixed(0) + '% cookie-deprecation recovery.';
+      document.getElementById('next-action').innerHTML = html;
+    }
+
+    function renderAll(inputs) {
+      renderSummary(inputs);
+      renderFlowCards(inputs);
+      renderPathChart(inputs);
+      renderPhaseGates();
+      renderFlowTable(inputs);
+      renderNextAction(inputs);
+    }
+
+    // ---- URL param parsing ----
+    function parseParams() {
+      var q = window.location.search.replace(/^\?/, '');
+      if (!q) return null;
+      var params = {};
+      var parts = q.split('&');
+      for (var i = 0; i < parts.length; i++) {
+        var kv = parts[i].split('=');
+        params[decodeURIComponent(kv[0])] = decodeURIComponent(kv[1] || '');
+      }
+      return params;
+    }
+
+    function applyParams(params) {
+      if (!params) return SAMPLE_INPUTS;
+      var inputs = JSON.parse(JSON.stringify(SAMPLE_INPUTS));
+      if (params.path) inputs.path = params.path.toUpperCase();
+      if (params.us_gmv) inputs.us_gmv = parseInt(params.us_gmv, 10) || inputs.us_gmv;
+      // Recompute path from us_gmv if us_gmv was given.
+      if (params.us_gmv) inputs.path = tierForGmv(inputs.us_gmv);
+      return inputs;
+    }
+
+    // ---- Bootstrap ----
+    (function bootstrap() {
+      var params = parseParams();
+      var isDemo = !params || params.demo === '1';
+      var inputs = applyParams(params);
+      if (!isDemo) {
+        // Live mode marker; we don't actually fetch (the dashboard is hermetic — no Refersion/Levanta API access required).
+        document.getElementById('mode-badge').textContent = 'Live';
+        document.getElementById('mode-badge').classList.remove('demo');
+        document.getElementById('mode-badge').classList.add('live');
+      }
+      renderAll(inputs);
+    })();
+  </script>
+</body>
+</html>
