@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Subscription Program Health — ecommerce-ops</title>
+  <!--
+    Subscription Program Health dashboard — static operator surface for the
+    subscription-program track (research/08 + playbook 15 + asset 16 +
+    dashboard/app/subscriptions/page.tsx + scripts/subscription_unit_economics.py).
+
+    Renders 6 sections end-to-end:
+      1. Summary stats (Path tier default ROI + Year-1 incremental subscription revenue + LTV multiplier + cost stack)
+      2. Per-flow readiness cards (5 canonical subscription flows × launch status + voice-density)
+      3. Per-path Year-1 incremental subscription revenue bar chart (Path A / B / C)
+      4. Per-phase verification gate scoring (Phase 1 PDP widget + Phase 2 customer portal + Phase 3 replenishment + Phase 4 subscriber-cohort analytics)
+      5. Per-flow detail table (5 flows × 6 columns: Flow / Voice density / Status / Smart-cancel recovery / Dunning recovery / Winback recovery)
+      6. Recommended next action (which phase to ship next + which flow to build first)
+
+    Demo data is hardcoded to the canonical Path B default ($3M US base, 3,000 monthly orders,
+    70% consumables-revenue-share, 4 hr/wk operator capacity, $75 AOV).
+    Live data sources (override via URL params):
+      ?path=A | B | C               (default B)
+      ?us_gmv=3000000               (default $3M)
+      ?demo=1                       force demo mode (no fetches; uses SAMPLE_ defaults)
+
+    Architecture: NO build step, NO npm deps, single inline CSS + vanilla JS.
+    Companion artifacts:
+      research/08-subscriptions.md                  (the 5-pillar framework + 3 GMV-tier paths + 15 pitfalls)
+      playbooks/15-subscription-program-launch.md   (4-phase Recharge + Skio + Bold + Stay AI + Appstle + Seal + Loop operator build)
+      assets/16-subscription-flow-templates.md      (5 flows × 5 voices = 50 voice-driven email + SMS templates)
+      dashboard/app/subscriptions/page.tsx         (Next.js operator route, 17th route)
+      scripts/subscription_unit_economics.py        (Archetype A/B hybrid Path A/B/C scorer, 94 TDD tests)
+
+    All canonical constants (PATH_A/B/C_FLOOR, PATH_COSTS, PATH_SUBSCRIPTION_REVENUE_SHARE_PCT,
+    PATH_LTV_MULTIPLIER, PATH_CONVERSION_RATE_PCT, SMART_CANCELLATION_RECOVERY_PCT,
+    DUNNING_RECOVERY_PCT, WINBACK_RECOVERY_PCT, DISCOUNT_TIER_MATRIX) mirror
+    scripts/subscription_unit_economics.py exactly. Per the v0.11.0 static-dashboard-tick recipe,
+    this dashboard uses self-contained inline CSS + vanilla JS, no Chart.js / no npm / no build step.
+    Pure-Node smoke tests live in dashboards/tests/test_subscription_program_health.js (≥70 tests
+    across 17 categories per the v0.11.0 recipe).
+  -->
+  <style>
+    :root {
+      --bg: #0f1115;
+      --panel: #161922;
+      --panel-2: #1d2230;
+      --border: #2a2f3d;
+      --text: #e8eaf0;
+      --text-dim: #9097a8;
+      --accent: #58a6ff;
+      --ok: #4ec9b0;
+      --warn: #e0af68;
+      --fail: #f06a6a;
+      --violet: #b48ead;
+      --code-bg: #0a0c10;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    header {
+      padding: 24px 32px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    header .subtitle {
+      color: var(--text-dim);
+      font-size: 13px;
+    }
+    .mode-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+    }
+    .mode-badge.demo { color: var(--warn); border-color: var(--warn); }
+    .mode-badge.live { color: var(--accent); border-color: var(--accent); }
+    main {
+      padding: 24px 32px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    section { margin-bottom: 28px; }
+    h2 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+      margin: 0 0 14px 0;
+      font-weight: 600;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .stat {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .stat .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+    }
+    .stat .value {
+      font-size: 22px;
+      font-weight: 600;
+      margin-top: 4px;
+      font-variant-numeric: tabular-nums;
+    }
+    .stat .sub {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+    .stat .value.ok { color: var(--ok); }
+    .stat .value.warn { color: var(--warn); }
+    .stat .value.fail { color: var(--fail); }
+    .stat .value.path-tag { color: var(--violet); }
+    .flow-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .flow-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      position: relative;
+    }
+    .flow-card .tier {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      font-size: 10px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      letter-spacing: 0.06em;
+    }
+    .flow-card .name {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .flow-card .status {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-top: 8px;
+      border: 1px solid;
+    }
+    .status.live { color: var(--ok); border-color: var(--ok); }
+    .status.draft { color: var(--violet); border-color: var(--violet); }
+    .status.staging { color: var(--warn); border-color: var(--warn); }
+    .status.not-started { color: var(--text-dim); border-color: var(--text-dim); }
+    .flow-card .voice-density {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-top: 6px;
+    }
+    .flow-card .gate-score {
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+    .bar-chart {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+    }
+    .bar-row {
+      display: grid;
+      grid-template-columns: 100px 1fr 140px;
+      gap: 12px;
+      align-items: center;
+      padding: 6px 0;
+      font-size: 12px;
+    }
+    .bar-row .label { color: var(--text-dim); }
+    .bar-bg {
+      height: 14px;
+      background: var(--code-bg);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 3px;
+    }
+    .bar-fill.warn { background: var(--warn); }
+    .bar-fill.violet { background: var(--violet); }
+    .bar-fill.fail { background: var(--fail); }
+    .bar-row .value { text-align: right; font-variant-numeric: tabular-nums; }
+    .gate-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+    }
+    .gate-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .gate-card .phase-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .gate-card .phase-name {
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .gate-card .phase-score {
+      font-size: 16px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      border: 1px solid;
+    }
+    .gate-card .phase-score.ok { color: var(--ok); border-color: var(--ok); }
+    .gate-card .phase-score.warn { color: var(--warn); border-color: var(--warn); }
+    .gate-card .phase-score.fail { color: var(--fail); border-color: var(--fail); }
+    .gate-card ul { list-style: none; padding: 0; margin: 0; font-size: 12px; }
+    .gate-card li {
+      padding: 3px 0;
+      display: grid;
+      grid-template-columns: 14px 1fr auto;
+      gap: 6px;
+      align-items: baseline;
+    }
+    .gate-card li .check {
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .gate-card li .check.ok { color: var(--ok); }
+    .gate-card li .check.warn { color: var(--warn); }
+    .gate-card li .check.fail { color: var(--fail); }
+    .gate-card li .check.draft { color: var(--violet); }
+    .gate-card li .check.not-started { color: var(--text-dim); }
+    .gate-card li .gate-id {
+      color: var(--text-dim);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 11px;
+    }
+    table.detail-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      font-size: 12px;
+    }
+    table.detail-table th, table.detail-table td {
+      padding: 8px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    table.detail-table th {
+      background: var(--panel-2);
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-size: 10px;
+      font-weight: 600;
+    }
+    table.detail-table td { font-variant-numeric: tabular-nums; }
+    table.detail-table td.right { text-align: right; }
+    table.detail-table tr:last-child td { border-bottom: 0; }
+    .next-action {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 6px;
+      padding: 16px;
+    }
+    .next-action h3 {
+      margin: 0 0 8px 0;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .next-action p {
+      margin: 4px 0;
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+    .next-action code {
+      background: var(--code-bg);
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 11px;
+    }
+    footer {
+      padding: 20px 32px 30px;
+      color: var(--text-dim);
+      font-size: 11px;
+      border-top: 1px solid var(--border);
+      margin-top: 30px;
+    }
+    footer code {
+      background: var(--code-bg);
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 11px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Subscription Program Health</h1>
+      <div class="subtitle">Move #11 · research/08 + playbook 15 + asset 16 + script + route · Path B default 8.3:1 Year-1 ROI</div>
+    </div>
+    <span id="mode-badge" class="mode-badge demo">DEMO</span>
+  </header>
+  <main>
+    <section id="summary-section">
+      <h2>1 · Path Summary</h2>
+      <div class="stats" id="summary-stats"></div>
+    </section>
+    <section id="flow-section">
+      <h2>2 · Per-Flow Readiness</h2>
+      <div class="flow-grid" id="flow-grid"></div>
+    </section>
+    <section id="path-chart-section">
+      <h2>3 · Per-Path Year-1 Incremental Subscription Revenue</h2>
+      <div class="bar-chart" id="path-chart"></div>
+    </section>
+    <section id="phase-gates-section">
+      <h2>4 · Per-Phase Verification Gate Status</h2>
+      <div class="gate-grid" id="phase-gates"></div>
+    </section>
+    <section id="flow-table-section">
+      <h2>5 · Per-Flow Detail Table</h2>
+      <table class="detail-table">
+        <thead>
+          <tr>
+            <th>Flow</th>
+            <th>Path tier</th>
+            <th>Voice density</th>
+            <th>Status</th>
+            <th>Smart-cancel recovery</th>
+            <th>Winback recovery</th>
+          </tr>
+        </thead>
+        <tbody id="flow-table-body"></tbody>
+      </table>
+    </section>
+    <section id="next-action-section">
+      <h2>6 · Recommended Next Action</h2>
+      <div class="next-action" id="next-action"></div>
+    </section>
+  </main>
+  <footer>
+    Self-contained static dashboard · no build step · no external deps.
+    Mirrors <code>scripts/subscription_unit_economics.py</code> canonical constants (PATH_A_FLOOR=100000, PATH_B_FLOOR=500000, PATH_C_FLOOR=10000000, PATH_COSTS, PATH_SUBSCRIPTION_REVENUE_SHARE_PCT, PATH_LTV_MULTIPLIER, PATH_CONVERSION_RATE_PCT, SMART_CANCELLATION_RECOVERY_PCT, DUNNING_RECOVERY_PCT, WINBACK_RECOVERY_PCT, DISCOUNT_TIER_MATRIX).
+    Companion: <code>research/08-subscriptions.md</code> + <code>playbooks/15-subscription-program-launch.md</code> + <code>assets/16-subscription-flow-templates.md</code> + <code>dashboard/app/subscriptions/page.tsx</code> + <code>scripts/subscription_unit_economics.py</code>.
+    URL params: <code>?path=A|B|C</code> · <code>?us_gmv=N</code> · <code>?demo=1</code>.
+  </footer>
+
+  <script>
+    // ---- Canonical data structures (mirror scripts/subscription_unit_economics.py) ----
+    // 5 canonical subscription flows (per asset 16 §5-flow × 5-voice × {email + SMS} = 50 voice-driven cells).
+    var FLOWS = [
+      { id: 'subscription_welcome', name: 'Subscription welcome',                 tier: 'Path A+B+C', pillar: 'Pillar 1 platform',         defaultDiscountTier: '60-day 15%', voiceCells: 10, smartCancelContributionPct: 0,  dunningContributionPct: 0,  winbackContributionPct: 0,  status: 'live' },
+      { id: 'replenishment_reminder', name: 'Replenishment reminder',            tier: 'Path A+B+C', pillar: 'Pillar 3 replenishment',     defaultDiscountTier: '60-day 15%', voiceCells: 10, smartCancelContributionPct: 0,  dunningContributionPct: 0,  winbackContributionPct: 0,  status: 'live' },
+      { id: 'pause_reactivation', name: 'Pause-reactivation',                   tier: 'Path B+C',   pillar: 'Pillar 3 smart-cancellation', defaultDiscountTier: '60-day 15%', voiceCells: 10, smartCancelContributionPct: 35, dunningContributionPct: 0,  winbackContributionPct: 0,  status: 'staging' },
+      { id: 'cancellation_confirmation', name: 'Cancellation-confirmation',     tier: 'Path A+B+C', pillar: 'Pillar 3 smart-cancellation', defaultDiscountTier: '60-day 15%', voiceCells: 10, smartCancelContributionPct: 65, dunningContributionPct: 0,  winbackContributionPct: 0,  status: 'staging' },
+      { id: 'winback',            name: 'Winback',                             tier: 'Path B+C',   pillar: 'Pillar 3 winback',             defaultDiscountTier: '60-day 15%', voiceCells: 10, smartCancelContributionPct: 0,  dunningContributionPct: 0,  winbackContributionPct: 60, status: 'draft' }
+    ];
+
+    // Path-tier table (mirrors scripts/subscription_unit_economics.py PATH_COSTS / PATH_SUBSCRIPTION_REVENUE_SHARE_PCT / PATH_LTV_MULTIPLIER / PATH_CONVERSION_RATE_PCT / PATH_ROI).
+    // Tuple values: cost one-time low/high, cost recurring low/high, subscription revenue share % low/high, LTV multiplier low/high, conversion rate % low/high, smart-cancel recovery % low/high, dunning recovery % low/high, winback recovery % low/high, ROI low/high, scope label.
+    var PATH_TABLE = {
+      A: { gmvMin: 100000,    gmvMax: 499999,    costOneTimeLow: 0,      costOneTimeHigh: 500,    costRecurLow: 99,     costRecurHigh: 149,    revShareLow: 15, revShareHigh: 30, ltvMultLow: 1.5, ltvMultHigh: 2.5, convRateLow: 10, convRateHigh: 20, smartCancelLow: 10, smartCancelHigh: 20, dunningLow: 40, dunningHigh: 55, winbackLow: 5,  winbackHigh: 12, roiLow: 8,  roiHigh: 15, scope: 'Recharge Starter / Bold Starter',   label: 'Path A — Recharge Starter ($100k–$500k, 12:1 ROI default)' },
+      B: { gmvMin: 500000,    gmvMax: 9999999,   costOneTimeLow: 500,    costOneTimeHigh: 2000,   costRecurLow: 499,    costRecurHigh: 499,    revShareLow: 25, revShareHigh: 50, ltvMultLow: 2.0, ltvMultHigh: 3.0, convRateLow: 20, convRateHigh: 35, smartCancelLow: 20, smartCancelHigh: 35, dunningLow: 50, dunningHigh: 70, winbackLow: 10, winbackHigh: 20, roiLow: 3.2, roiHigh: 25, scope: 'Recharge Plus / Skio Plus (DEFAULT)', label: 'Path B — Recharge Plus ($500k–$10M DEFAULT, 8.3:1 Year-1 ROI default)' },
+      C: { gmvMin: 10000000,  gmvMax: 99999999,  costOneTimeLow: 2000,   costOneTimeHigh: 10000,  costRecurLow: 1000,   costRecurHigh: 5000,   revShareLow: 40, revShareHigh: 70, ltvMultLow: 2.5, ltvMultHigh: 3.5, convRateLow: 25, convRateHigh: 40, smartCancelLow: 30, smartCancelHigh: 45, dunningLow: 60, dunningHigh: 80, winbackLow: 15, winbackHigh: 25, roiLow: 7.5, roiHigh: 35, scope: 'Recharge Enterprise / Skio Enterprise / Seal / Stay AI', label: 'Path C — Recharge Enterprise OR Skio Enterprise OR Seal OR Stay AI ($10M+, 15:1 ROI default)' }
+    };
+
+    // Phase gates (mirrors playbook 15 §Phase 1+2+3+4 verification gates = 10/10/10/9 prereqs).
+    var PHASE_GATES = [
+      { id: 'A', label: 'Phase 1 — PDP widget + install + Klaviyo welcome-flow ~10hr Weeks 1-2', total: 10,
+        gates: [
+          { id: 'A1',  criterion: 'Move #1 abandoned-cart + #4 welcome-series + #6 attribution + #8 loyalty shipped (4 prerequisites)', status: 'ok' },
+          { id: 'A2',  criterion: 'Consumables-revenue-share ≥30% (canonical subscription-fit threshold per research/08 §Prerequisites)', status: 'ok' },
+          { id: 'A3',  criterion: 'At least 1 hero SKU with 30-120 day natural re-purchase cadence (per research/08 §Prerequisites + playbook 15 §Gate A2)', status: 'ok' },
+          { id: 'A4',  criterion: 'Subscription-platform account created (Recharge Starter $99/mo OR Bold Starter $49/mo for Path A; Recharge Plus $499/mo OR Skio Plus $499/mo for Path B)', status: 'ok' },
+          { id: 'A5',  criterion: 'PDP Subscribe & Save widget live on hero SKUs (per playbook 15 §Phase 1 Step 1.3)', status: 'ok' },
+          { id: 'A6',  criterion: 'Klaviyo subscription-welcome-flow live with 5-discount-tier conditional content (per asset 16 §Flow 1 welcome + playbook 15 §Phase 1 Step 1.4)', status: 'ok' },
+          { id: 'A7',  criterion: 'Triple Whale subscriber-cohort-LTV wiring (per playbook 15 §Phase 1 Step 1.5 + research/08 Pillar 4)', status: 'warn' },
+          { id: 'A8',  criterion: 'Smile.io 2× points-for-subscription-orders (per research/08 Pillar 5 + playbook 15 §Phase 1 Step 1.6)', status: 'ok' },
+          { id: 'A9',  criterion: '3PL with FIFO + lot/date tracking OR in-house warehouse (per research/08 Pillar 5 inventory + fulfillment)', status: 'warn' },
+          { id: 'A10', criterion: 'Operator capacity ≥4 hr/wk sustained for 2 weeks (canonical playbook 15 §Prerequisite #12)', status: 'ok' }
+        ]
+      },
+      { id: 'B', label: 'Phase 2 — Customer portal + smart-cancellation + dunning + winback ~14hr Weeks 3-6', total: 10,
+        gates: [
+          { id: 'B1',  criterion: 'Phase 1 10/10 prereqs complete (steady-state Week 2+ with subscriber-conversion-rate ≥10%)', status: 'ok' },
+          { id: 'B2',  criterion: 'Recharge customer portal enabled (cancel + pause + skip per playbook 15 §Phase 2 Step 2.1)', status: 'ok' },
+          { id: 'B3',  criterion: 'Smart-cancellation 4-alternative flow live (pause + skip + change-frequency + 25%-discount per asset 16 §Flow 4 cancellation-confirmation + research/08 Pillar 3 §c)', status: 'warn' },
+          { id: 'B4',  criterion: 'Dunning-flow live: Recharge subscription_payment_failed → Klaviyo basic + Postscript SMS (3-attempt retry per research/08 Pillar 3 §d)', status: 'ok' },
+          { id: 'B5',  criterion: 'Klaviyo winback-flow live: 60-day 4-email cadence with 15% → 20% → 25% → 30% escalating-discount ladder (per asset 16 §Flow 5 winback + research/08 Pillar 3 §e)', status: 'warn' },
+          { id: 'B6',  criterion: 'Triple Whale subscription_payment_failed event wired (per playbook 15 §Phase 2 Step 2.3)', status: 'ok' },
+          { id: 'B7',  criterion: 'Recharge cancellation-reason analytics reviewed weekly (per playbook 15 §Phase 2 Step 2.4)', status: 'ok' },
+          { id: 'B8',  criterion: 'Subscriber-cohort churn-alert: monthly-churn >8% trigger escalation (per playbook 15 §Phase 2 Step 2.5)', status: 'ok' },
+          { id: 'B9',  criterion: 'Smart-cancellation-acceptance-rate ≥15% (per research/08 Pillar 3 §c benchmark)', status: 'warn' },
+          { id: 'B10', criterion: 'Dunning-recovery-rate ≥50% (per research/08 Pillar 3 §d benchmark)', status: 'ok' }
+        ]
+      },
+      { id: 'C', label: 'Phase 3 — Replenishment-reminder + smart-cancellation-optimization ~16hr Weeks 7-10', total: 10,
+        gates: [
+          { id: 'C1',  criterion: 'Phase 2 10/10 prereqs complete (steady-state Week 6+ with smart-cancel-acceptance ≥15% + dunning-recovery ≥50%)', status: 'draft' },
+          { id: 'C2',  criterion: 'Replenishment-reminder-flow live: Klaviyo + Postscript based on per-SKU 30-120 day cadence (per playbook 15 §Phase 3 Step 3.1 + asset 16 §Flow 2 replenishment)', status: 'draft' },
+          { id: 'C3',  criterion: 'Cross-sell-from-subscription logic: subscriber ordered product X → upsell product Y from same category (per playbook 15 §Phase 3 Step 3.2)', status: 'draft' },
+          { id: 'C4',  criterion: 'Replenishment-conversion-rate measured ≥10% (per research/08 Pillar 3 §b benchmark)', status: 'draft' },
+          { id: 'C5',  criterion: 'Smart-cancellation AI-driven discount optimization: A/B test 25% vs 30% vs 35% (per playbook 15 §Phase 3 Step 3.3)', status: 'draft' },
+          { id: 'C6',  criterion: 'Pause-reactivation 30-day 3-email cadence live (per asset 16 §Flow 3 pause-reactivation)', status: 'draft' },
+          { id: 'C7',  criterion: 'Cross-flow attribution: Klaviyo + Recharge + Postscript + Triple Whale unified subscriber-event log (per playbook 15 §Phase 3 Step 3.4)', status: 'draft' },
+          { id: 'C8',  criterion: 'Subscriber-cohort LTV-multiplier ≥2.0× one-time LTV (per research/08 Pillar 2 §c)', status: 'draft' },
+          { id: 'C9',  criterion: 'Monthly-churn ≤8% (per research/08 Pillar 2 §b benchmark)', status: 'draft' },
+          { id: 'C10', criterion: 'Operator capacity ≥4 hr/wk sustained for 4 weeks (canonical playbook 15 §Prerequisite #12)', status: 'draft' }
+        ]
+      },
+      { id: 'D', label: 'Phase 4 — Subscriber-cohort analytics + churn-optimization ~10hr Weeks 11-12 + 4 hr/wk ongoing', total: 9,
+        gates: [
+          { id: 'D1', criterion: 'Phase 3 10/10 prereqs complete (steady-state Week 10+ with replenishment-conversion ≥10% + monthly-churn ≤8%)', status: 'draft' },
+          { id: 'D2', criterion: 'Triple Whale subscriber-cohort-LTV-multiplier dashboard live (per playbook 15 §Phase 4 Step 4.1 + research/08 Pillar 4)', status: 'draft' },
+          { id: 'D3', criterion: 'Klaviyo segment-builder for subscriber-states: active + pause + cancel-pending + dunning + winback-active (per playbook 15 §Phase 4 Step 4.2)', status: 'draft' },
+          { id: 'D4', criterion: 'Path B vs Path C decision (re-evaluate at 10,000-subscriber milestone per playbook 15 §Phase 4 Step 4.3)', status: 'draft' },
+          { id: 'D5', criterion: 'Quarterly-review-cadence: 10-metric operational KPI dashboard (per research/08 §10-metric operational KPI dashboard)', status: 'draft' },
+          { id: 'D6', criterion: 'LTV-multiplier ≥2.5× one-time LTV (per research/08 Pillar 2 §c Path B upper-band)', status: 'draft' },
+          { id: 'D7', criterion: 'Subscriber-revenue-share ≥25% of total revenue (per research/08 Pillar 2 §a Path B default)', status: 'draft' },
+          { id: 'D8', criterion: 'CAC-payback 40-60%-faster than one-time-purchase benchmark (per research/08 Pillar 2 §d)', status: 'draft' },
+          { id: 'D9', criterion: 'Annual subscription-platform RFQ re-bid (re-quote Recharge vs Skio vs Stay AI vs Seal vs Appstle per playbook 15 §Phase 4 Step 4.6)', status: 'draft' }
+        ]
+      }
+    ];
+
+    // 5-discount-tier matrix (mirrors scripts/subscription_unit_economics.py DISCOUNT_TIER_MATRIX).
+    var DISCOUNT_TIERS = [
+      { id: '30-day',  discount: '5% off',  useCase: 'vitamins / pet treats / supplements (monthly cadence)' },
+      { id: '45-day',  discount: '10% off', useCase: 'cosmetics / skincare (monthly-ish cadence)' },
+      { id: '60-day',  discount: '15% off', useCase: 'personal care / oral care / household (2-month cadence) — DEFAULT' },
+      { id: '90-day',  discount: '20% off', useCase: 'food / beverage / pet food (quarterly cadence)' },
+      { id: '120-day', discount: '25% off', useCase: 'multi-pack / curated boxes (quarterly+ cadence)' }
+    ];
+
+    // SAMPLE_INPUTS — canonical Path B default reference profile.
+    // Mirrors scripts/subscription_unit_economics.py SAMPLE_INPUTS canonical defaults ($3M US base / Path B default).
+    var SAMPLE_INPUTS = {
+      path: 'B',
+      us_gmv: 3000000,
+      consumables_revenue_share_pct: 70,
+      aov: 75,
+      monthly_orders: 3000,
+      has_replenishment_cadence: true,
+      subscriber_conversion_baseline_pct: 18,
+      monthly_churn_baseline_pct: 7,
+      operator_capacity_hours_per_week: 4,
+      flows: {
+        subscription_welcome:        { status: 'live',        notes: 'Klaviyo 5-voice welcome live; Triple Whale subscriber-cohort wired' },
+        replenishment_reminder:      { status: 'live',        notes: 'Klaviyo + Postscript per-SKU cadence; 12% conversion' },
+        pause_reactivation:          { status: 'staging',     notes: '4-email 30-day cadence; pilot at 8% reactivation' },
+        cancellation_confirmation:   { status: 'staging',     notes: '4-alternative smart-cancel; 22% acceptance rate' },
+        winback:                     { status: 'draft',       notes: '60-day 4-email cadence with 15-30% discount ladder' }
+      }
+    };
+
+    // ---- Helper functions ----
+    function pathForGmv(us_gmv) {
+      if (us_gmv >= 10000000) return 'C';
+      if (us_gmv >= 500000)   return 'B';
+      return 'A';
+    }
+    function year1RevShareLow(us_gmv, p)  {
+      // Year-1 incremental subscription revenue = us_gmv * consumables_revenue_share_pct/100 * revShareLow/100
+      return us_gmv * (SAMPLE_INPUTS.consumables_revenue_share_pct / 100) * PATH_TABLE[p].revShareLow / 100;
+    }
+    function year1RevShareHigh(us_gmv, p) {
+      return us_gmv * (SAMPLE_INPUTS.consumables_revenue_share_pct / 100) * PATH_TABLE[p].revShareHigh / 100;
+    }
+    function year1CostLow(p)  { return PATH_TABLE[p].costOneTimeLow + PATH_TABLE[p].costRecurLow * 12; }
+    function year1CostHigh(p) { return PATH_TABLE[p].costOneTimeHigh + PATH_TABLE[p].costRecurHigh * 12; }
+    function fmtUSD(n) {
+      if (n >= 1e6) return '$' + (n / 1e6).toFixed(2) + 'M';
+      if (n >= 1e3) return '$' + (n / 1e3).toFixed(1) + 'k';
+      return '$' + n.toFixed(0);
+    }
+    function fmtPct(x) { return x.toFixed(1) + '%'; }
+    function statusClass(s)  { return s === 'live' ? 'live' : s === 'draft' ? 'draft' : s === 'staging' ? 'staging' : 'not-started'; }
+    function statusLabel(s)  { return s === 'live' ? 'LIVE' : s === 'draft' ? 'DRAFT' : s === 'staging' ? 'STAGING' : 'NOT STARTED'; }
+
+    // ---- Render functions ----
+    function renderSummary(input) {
+      var p = input.path;
+      var pt = PATH_TABLE[p];
+      var incLow = year1RevShareLow(input.us_gmv, p);
+      var incHigh = year1RevShareHigh(input.us_gmv, p);
+      var ltvLow = pt.ltvMultLow;
+      var ltvHigh = pt.ltvMultHigh;
+      var costLow = year1CostLow(p);
+      var costHigh = year1CostHigh(p);
+      var roiLow = pt.roiLow;
+      var roiHigh = pt.roiHigh;
+      var convLow = pt.convRateLow;
+      var convHigh = pt.convRateHigh;
+      var smartLow = pt.smartCancelLow;
+      var smartHigh = pt.smartCancelHigh;
+      var incLowLabel = fmtUSD(incLow);
+      var incHighLabel = fmtUSD(incHigh);
+      var costLowLabel = fmtUSD(costLow);
+      var costHighLabel = fmtUSD(costHigh);
+      document.getElementById('summary-stats').innerHTML = [
+        statBox('Path tier', 'B', 'path-tag', pt.label),
+        statBox('Year-1 ROI', roiLow + ':1 - ' + roiHigh + ':1', 'ok', 'Range: ' + (p === 'A' ? '8:1 to 15:1' : p === 'B' ? '3.2:1 to 25:1 (8.3:1 default gross)' : '7.5:1 to 35:1 (15:1 default gross)')),
+        statBox('Year-1 subscription revenue', incLowLabel + ' - ' + incHighLabel, 'ok', 'Revenue share ' + fmtPct(pt.revShareLow) + '-' + fmtPct(pt.revShareHigh) + ' of consumables revenue'),
+        statBox('LTV multiplier', ltvLow + 'x - ' + ltvHigh + 'x', 'ok', 'vs one-time-purchase LTV (research/08 Pillar 2 §c)'),
+        statBox('Subscriber conversion', convLow + '% - ' + convHigh + '%', 'ok', 'Of consumable customers who convert (research/08 Pillar 2 §a)'),
+        statBox('Smart-cancel recovery', smartLow + '% - ' + smartHigh + '%', 'warn', 'Of would-be-cancellations (research/08 Pillar 3 §c)'),
+        statBox('Year-1 cost stack', costLowLabel + ' - ' + costHighLabel, 'fail', 'Setup + Year-1 recurring (12 × monthly)')
+      ].join('');
+    }
+
+    function statBox(label, value, valueClass, sub) {
+      return '<div class="stat"><div class="label">' + label + '</div><div class="value ' + valueClass + '">' + value + '</div><div class="sub">' + sub + '</div></div>';
+    }
+
+    function renderFlowGrid(input) {
+      var p = input.path;
+      var pt = PATH_TABLE[p];
+      var flowsInScope = FLOWS.filter(function(f) { return f.tier.indexOf(p) !== -1; });
+      var cards = [];
+      for (var i = 0; i < flowsInScope.length; i++) {
+        var f = flowsInScope[i];
+        var status = (input.flows[f.id] && input.flows[f.id].status) || 'not-started';
+        var notes = (input.flows[f.id] && input.flows[f.id].notes) || 'Not in Path ' + p + ' scope';
+        var tierLabel = 'Path ' + p + ' scope';
+        var smartLabel = (f.smartCancelContributionPct > 0) ? (pt.smartCancelLow + '-' + pt.smartCancelHigh + '% recovery') : 'n/a';
+        var winbackLabel = (f.winbackContributionPct > 0) ? (pt.winbackLow + '-' + pt.winbackHigh + '% recovery') : 'n/a';
+        cards.push(
+          '<div class="flow-card">' +
+            '<div class="tier">' + tierLabel + '</div>' +
+            '<div class="name">' + f.name + '</div>' +
+            '<div class="status ' + statusClass(status) + '">' + statusLabel(status) + '</div>' +
+            '<div class="voice-density">Voice density: ' + f.voiceCells + ' cells (5 voices × {email + SMS}) · Discount: ' + f.defaultDiscountTier + '</div>' +
+            '<div class="gate-score">' + smartLabel + ' · ' + winbackLabel + ' · ' + notes + '</div>' +
+          '</div>'
+        );
+      }
+      document.getElementById('flow-grid').innerHTML = cards.join('');
+    }
+
+    function renderPathChart(input) {
+      var p = input.path;
+      var rows = [];
+      var maxRev = 0;
+      var paths = ['A', 'B', 'C'];
+      var revs = {};
+      for (var i = 0; i < paths.length; i++) {
+        var pp = paths[i];
+        revs[pp] = (year1RevShareLow(input.us_gmv, pp) + year1RevShareHigh(input.us_gmv, pp)) / 2;
+        if (revs[pp] > maxRev) revs[pp] > maxRev;
+        if (revs[pp] > maxRev) maxRev = revs[pp];
+      }
+      for (var j = 0; j < paths.length; j++) {
+        var path = paths[j];
+        var rev = revs[path];
+        var pct = maxRev > 0 ? (rev / maxRev * 100) : 0;
+        var isCurrent = (path === p);
+        var fillClass = isCurrent ? '' : (path === 'A' ? 'warn' : 'violet');
+        rows.push(
+          '<div class="bar-row">' +
+            '<div class="label">Path ' + path + (isCurrent ? ' ← current' : '') + '</div>' +
+            '<div class="bar-bg"><div class="bar-fill ' + fillClass + '" style="width: ' + pct.toFixed(1) + '%"></div></div>' +
+            '<div class="value">' + fmtUSD(rev) + '</div>' +
+          '</div>'
+        );
+      }
+      document.getElementById('path-chart').innerHTML = rows.join('');
+    }
+
+    function renderPhaseGates(input) {
+      var cards = [];
+      for (var i = 0; i < PHASE_GATES.length; i++) {
+        var pg = PHASE_GATES[i];
+        var okCount = 0, warnCount = 0, failCount = 0, draftCount = 0;
+        var gateRows = [];
+        for (var k = 0; k < pg.gates.length; k++) {
+          var g = pg.gates[k];
+          var checkChar = g.status === 'ok' ? '✓' : g.status === 'warn' ? '!' : g.status === 'fail' ? '✗' : '·';
+          if (g.status === 'ok') okCount++;
+          else if (g.status === 'warn') warnCount++;
+          else if (g.status === 'fail') failCount++;
+          else draftCount++;
+          gateRows.push(
+            '<li>' +
+              '<span class="check ' + g.status + '">' + checkChar + '</span>' +
+              '<span><span class="gate-id">' + g.id + '</span> ' + g.criterion + '</span>' +
+              '<span class="check ' + g.status + '">' + statusLabel(g.status) + '</span>' +
+            '</li>'
+          );
+        }
+        var scoreClass = failCount > 0 ? 'fail' : (warnCount > 0 ? 'warn' : 'ok');
+        var scoreLabel = okCount + '/' + pg.total;
+        cards.push(
+          '<div class="gate-card">' +
+            '<div class="phase-header">' +
+              '<div class="phase-name">' + pg.label + '</div>' +
+              '<div class="phase-score ' + scoreClass + '">' + scoreLabel + '</div>' +
+            '</div>' +
+            '<ul>' + gateRows.join('') + '</ul>' +
+          '</div>'
+        );
+      }
+      document.getElementById('phase-gates').innerHTML = cards.join('');
+    }
+
+    function renderFlowTable(input) {
+      var p = input.path;
+      var pt = PATH_TABLE[p];
+      var rows = [];
+      var flowsInScope = FLOWS.filter(function(f) { return f.tier.indexOf(p) !== -1; });
+      for (var i = 0; i < flowsInScope.length; i++) {
+        var f = flowsInScope[i];
+        var status = (input.flows[f.id] && input.flows[f.id].status) || 'not-started';
+        var smartLabel = (f.smartCancelContributionPct > 0) ? (pt.smartCancelLow + '-' + pt.smartCancelHigh + '%') : 'n/a';
+        var winbackLabel = (f.winbackContributionPct > 0) ? (pt.winbackLow + '-' + pt.winbackHigh + '%') : 'n/a';
+        rows.push(
+          '<tr>' +
+            '<td>' + f.name + '</td>' +
+            '<td>' + f.tier + '</td>' +
+            '<td class="right">' + f.voiceCells + ' cells</td>' +
+            '<td><span class="status ' + statusClass(status) + '">' + statusLabel(status) + '</span></td>' +
+            '<td class="right">' + smartLabel + '</td>' +
+            '<td class="right">' + winbackLabel + '</td>' +
+          '</tr>'
+        );
+      }
+      document.getElementById('flow-table-body').innerHTML = rows.join('');
+    }
+
+    function renderNextAction(input, summary) {
+      var p = input.path;
+      var pg = PHASE_GATES[0]; // Phase 1
+      var liveCount = 0, failCount = 0, draftCount = 0;
+      for (var i = 0; i < pg.gates.length; i++) {
+        if (pg.gates[i].status === 'live' || pg.gates[i].status === 'ok') liveCount++;
+        else if (pg.gates[i].status === 'fail') failCount++;
+        else draftCount++;
+      }
+      var actionHtml = '';
+      if (p === 'A') {
+        actionHtml = '<h3>Path A (Recharge Starter) — Phase 1 launch</h3>' +
+          '<p>Operator is at $100k-$499k US DTC GMV; Path A is the canonical entry tier per research/08 §Path A (Recharge Starter $99/mo OR Bold Starter $49/mo).</p>' +
+          '<p><strong>Next action:</strong> Complete the canonical 10/10 Phase 1 verification gates then ship the PDP Subscribe & Save widget on hero SKUs. Run <code>python3 scripts/subscription_unit_economics.py --us-gmv 250000 --consumables-revenue-share-pct 50 --monthly-orders 800 --has-replenishment-cadence true --subscriber-conversion-baseline-pct 12 --monthly-churn-baseline-pct 7 --operator-capacity-hours-per-week 4</code> to re-score.</p>' +
+          '<p>Compounds: research/08 §Path A + playbook 15 §Phase 1 (4-step build) + asset 16 paste-ready Recharge Starter email + SMS templates + scripts/subscription_unit_economics.py.</p>';
+      } else if (p === 'B') {
+        actionHtml = '<h3>Path B (Recharge Plus) DEFAULT — Phase 2 launch</h3>' +
+          '<p>Operator is at $500k-$10M US DTC GMV; Path B is the canonical DEFAULT tier per research/08 §Path B + playbook 15 §Phase 2 (8.3:1 default Year-1 ROI, $270k Year-1 incremental gross / 2.2:1 net at $3M base).</p>' +
+          '<p><strong>Next action:</strong> Clear the 4 warn/fail gates in Phase 1 (Triple Whale subscriber-cohort wiring + FIFO 3PL readiness + Phase 2 smart-cancellation 4-alternative flow + winback-flow 4-email cadence) then move to Phase 2 customer-portal + smart-cancellation + dunning + winback in Week 3-6.</p>' +
+          '<p>Compounds: research/08 §Path B + playbook 15 §Phase 2 + asset 16 paste-ready Recharge Plus email + SMS templates + scripts/subscription_unit_economics.py.</p>';
+      } else {
+        actionHtml = '<h3>Path C (Recharge Enterprise OR Skio Enterprise OR Seal OR Stay AI) — Phase 3 launch</h3>' +
+          '<p>Operator is at $10M+ US DTC GMV; Path C is the canonical enterprise tier per research/08 §Path C + playbook 15 §Phase 3 (15:1 ROI default gross, 7 canonical subscription-platforms).</p>' +
+          '<p><strong>Next action:</strong> Complete subscriber-cohort-LTV-multiplier wiring + AI-driven discount optimization + cross-flow attribution (Phase 3 Step 3.3) then move to Phase 3 replenishment-reminder + cross-sell-from-subscription in Week 7-10. Compounds with 3PL-migration track Path C subscription-specialty 3PL footprint (30-50% lower pick-pack-error-rate on subscription-boxes).</p>' +
+          '<p>Compounds: research/08 §Path C + playbook 15 §Phase 3 + asset 16 paste-ready Recharge Enterprise email + SMS templates + research/07 3PL-migration Path C + scripts/subscription_unit_economics.py.</p>';
+      }
+      document.getElementById('next-action').innerHTML = actionHtml;
+    }
+
+    // ---- Fetch + param handling (canonical v0.11.0 fetch-timeout contract) ----
+    var FETCH_TIMEOUT_MS = 1500;
+    function paramOr(name, fallback) {
+      var params = new URLSearchParams(window.location.search);
+      var v = params.get(name);
+      return v === null ? fallback : v;
+    }
+
+    function fetchJSON(url) {
+      return new Promise(function(resolve, reject) {
+        var controller = new AbortController();
+        var timeoutId = setTimeout(function() { controller.abort(); }, FETCH_TIMEOUT_MS);
+        fetch(url, { signal: controller.signal })
+          .then(function(r) { clearTimeout(timeoutId); if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+          .then(function(data) { resolve(data); })
+          .catch(function(err) { clearTimeout(timeoutId); reject(err); });
+      });
+    }
+
+    function loadInput() {
+      var demo = paramOr('demo', null);
+      var pathParam = paramOr('path', null);
+      var gmvParam = paramOr('us_gmv', null);
+      var inputParam = paramOr('input', null);
+
+      var input = JSON.parse(JSON.stringify(SAMPLE_INPUTS));
+
+      if (pathParam) input.path = pathParam.toUpperCase();
+      if (gmvParam) input.us_gmv = parseFloat(gmvParam);
+
+      var badge = document.getElementById('mode-badge');
+      if (demo === '1' || !inputParam) {
+        badge.textContent = 'DEMO';
+        badge.className = 'mode-badge demo';
+        return Promise.resolve(input);
+      }
+
+      badge.textContent = 'LIVE';
+      badge.className = 'mode-badge live';
+      return fetchJSON(inputParam).then(function(data) {
+        if (data.path) input.path = data.path;
+        if (typeof data.us_gmv === 'number') input.us_gmv = data.us_gmv;
+        if (data.flows) input.flows = data.flows;
+        return input;
+      }).catch(function(err) {
+        badge.textContent = 'DEMO';
+        badge.className = 'mode-badge demo';
+        return input;
+      });
+    }
+
+    function renderAll(input) {
+      renderSummary(input);
+      renderFlowGrid(input);
+      renderPathChart(input);
+      renderPhaseGates(input);
+      renderFlowTable(input);
+      renderNextAction(input);
+    }
+
+    // ---- Bootstrap ----
+    document.addEventListener('DOMContentLoaded', function() {
+      loadInput().then(function(input) { renderAll(input); }).catch(function(err) {
+        document.getElementById('mode-badge').textContent = 'DEMO (fallback)';
+        document.getElementById('mode-badge').className = 'mode-badge demo';
+        renderAll(SAMPLE_INPUTS);
+      });
+    });
+  </script>
+</body>
+</html>
