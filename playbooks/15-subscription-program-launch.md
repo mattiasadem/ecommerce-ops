@@ -404,7 +404,7 @@ Operators can pre-flight their cost-vs-revenue via the upcoming `scripts/subscri
 ## Companion tool / Future-tick companions
 
 - **`scripts/subscription_unit_economics.py`** *(planned future-tick)* — Archetype A/B hybrid Path A/B/C subscription-program scorer (canonical 5th-layer scoring script for the subscription-program track). Takes consumables-revenue-share + sku-purchase-cadence + LTV-baseline + churn-baseline + subscriber-conversion-rate → outputs Path A/B/C recommendation with cost-stack + Year-1 incremental + LTV-multiplier. Per v0.9.0 layer-order-completion sub-rule: ships AFTER `assets/16-subscription-flow-templates.md` + `dashboard/app/subscriptions/page.tsx`.
-- **`assets/16-subscription-flow-templates.md`** *(planned future-tick)* — paste-ready per-flow email + SMS subscription templates × 5 voice profiles × 5 key flows (welcome / replenishment-reminder / pause-reactivation / cancellation-confirmation / winback).
+- **`assets/16-subscription-flow-templates.md`** *(shipped 2026-06-29 per this tick)* — paste-ready per-flow email + SMS subscription templates × 5 voice profiles × 5 key flows (welcome / replenishment-reminder / pause-reactivation / cancellation-confirmation / winback).
 - **`dashboard/app/subscriptions/page.tsx`** *(planned future-tick)* — Next.js operator-surface route rendering research/08 + playbook 15 + asset 16 as a unified subscription-launch readiness heat-map.
 - **`dashboards/subscription-program-health.html`** *(planned future-tick)* — canonical 6th-and-final static-dashboard layer per the v0.11.0 extended layer order research → playbook → asset → operator-surface-route → script → static-dashboard.
 
