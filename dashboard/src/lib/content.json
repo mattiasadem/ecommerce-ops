@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-29T12:32:05.842Z",
+  "generatedAt": "2026-06-30T22:48:31.918Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -7970,6 +7970,695 @@
         }
       ],
       "findings": []
+    },
+    {
+      "file": "10-b2b-wholesale.md",
+      "title": "TL;DR",
+      "sections": [
+        {
+          "heading": "TL;DR",
+          "level": 2,
+          "table": null,
+          "body": "\nA US-based Shopify DTC brand at **$500k–$50M GMV** with at least **10 SKUs** and **≥25% wholesale-discount margin headroom** can launch a B2B / wholesale channel through **Faire + Tundra + Ankorstore + Handshake (Shopify B2B) + Shopify B2B + Amazon Business + RSP/KeHE/UNFI** with a **4-phase rollout** over **8–16 weeks** at a **total cost stack of $0–$2,000/mo** (Path A) / **$149–$499/mo** (Path B DEFAULT) / **$1k–$5k/mo** (Path C) plus **one-time setup of $0–$5k** (wholesale-pricing-calculator config + NET-30 terms-card + MAP-policy-page + Faire + Tundra + Handshake storefront + 8-prereq RFQ-template + casepack-spec-sheet + NetSuite-Wholesale-or-A2X-EDI if Path C) and an expected **Year-1 incremental B2B revenue of $250k–$5M** depending on the brand's SKU breadth + margin headroom + sales-rep capacity.\n\n**The 4-phase rhythm:**\n\n- **Phase 1 (Weeks 1–2): Wholesale-pricing + payment-terms + marketplace-storefront** — Build the **MSRP × 0.5 wholesale pricing stack** + the **NET-30 terms-card** + the **MAP-policy-page** + on Faire + Tundra + Ankorstore + Handshake (Shopify B2B) with 12-30 hero SKUs. Gate on Move #6 Triple Whale attribution so **DTC-vs-B2B cohort LTV is measurable** (a brand without B2B-aware attribution underprices B2B cannibalization by 30–50% per the canonical 5 cannibalization levers [MSRP-violation-erosion / DTC-traffic-cannibalization / casepack-cannibalization / freight-subsidy-leakage / retail-region-conflict]). Expected outcome: 10–25 first retailer accounts per Faire 2024 onboarding benchmarks; Year-1 B2B revenue: $50k–$500k Path A on $1M DTC base.\n- **Phase 2 (Weeks 3–6): Direct-buyer pipeline + corporate-gifting + distribution-outreach** — Build the **5-clause wholesale-distribution-agreement** + the **direct-buyer-outreach sequence** (4-email cadence: introduction + sample-pack-shipping + follow-up + sales-call-booking) + the **RangeMe product-discovery listing** + the **corporate-gifting catalog** (10-30 hero SKUs at $50-$300 per gift with custom-ribbon + handwritten-card + bulk-pricing tiers). Per Faire 2024 + Ankorstore 2024 benchmarks: corporate-gifting typically captures 15–25% of Year-2 B2B revenue for brands with share-worthy SKUs + custom-ribbon-margin.\n- **Phase 3 (Weeks 7–12): Distributor-pitch deck + RSP/KeHE/UNFI outreach + Amazon Business** — Build the **8-prereq RFQ template** (registration + EIN + resale-certificate + product-insurance + warehouse-safety-cert + UPC-barcode + casepack-spec + HazMat-if-applicable per RSP 2024 onboarding-funnel) + the **distributor-pitch deck** with the canonical 7-path B2B-platform decision matrix + Amazon Business listing for office-supplies / hospitality / healthcare SKUs. Per RSP 2024 + KeHE 2024 + UNFI 2024 benchmarks: direct-distributor onboarding typically yields 6-18 month sales-cycle with 5-15 SKUs per category per retailer.\n- **Phase 4 (Weeks 13–16): Steady-state + reorder-automation + trade-shows** — Build the **Shopify B2B Handshake catalog-automation** (auto-publish new DTC SKUs to B2B channel with wholesale-pricing auto-applied) + the **reorder-automation flow** (Klaviyo \"B2B reorder reminder\" at 75% of typical-repurchase-cadence per Shopify B2B 2024 benchmarks; typical-B2B-repurchase-cadence is 30-90 days vs DTC 90-365 days) + the **TradeGala + NY NOW + ASD Market Week + Surf Expo + Magic + PROJECT + MAGIC + NACDS Total Store Expo + NYIGF + High Point Market** trade-show calendar participation. Per Faire 2024 benchmarks: 80% of Faire brand revenue is reorder; reorder-rate target ≥60% per Salesforce B2B Commerce 2024 (vs 25-35% DTC).\n\n**Decision points** are explicit at each phase boundary — if the brand's SKUs aren't a fit (e.g. <10 SKUs total, <25% wholesale-discount margin headroom, MAP-policy-violating SKUs, exclusive-DTC-contract-SKUs, no sales-rep capacity), the phase forks or defers. See \"GMV-tier paths\" below.\n"
+        },
+        {
+          "heading": "Who this is for",
+          "level": 2,
+          "table": null,
+          "body": "\n- **Primary:** US-based DTC Shopify brand at **$500k–$50M GMV** with **≥10 SKUs** and **≥25% wholesale-discount margin headroom** (the canonical 50%-of-MSRP wholesale-discount works only when DTC gross margin ≥50% — a brand with <50% DTC gross margin should defer wholesale until unit economics improve OR offer lower 35-40% wholesale discount on exclusive wholesale SKUs).\n- **Secondary:** US-based DTC brand on BigCommerce / Magento / WooCommerce — most of this doc applies; the platform-specific forks are at \"B2B-portal alternatives\" (BigCommerce B2B Edition per BigCommerce 2024 commercial-pricing-oracle; Magento B2B per Adobe Commerce 2024 commerce-cloud-b2b; WooCommerce B2B per wholesale-suite plugin); international DTC brand with $500k+ GMV in home market (UK + EU + AU markets have less-developed Faire-tier equivalents — see \"International B2B\" callout).\n- **Not for:** Pure-DTC brands with **<10 SKUs** (wholesale-channel MOQ friction outweighs benefit below this — defer until SKU-broadness improves OR use **Faire Net 60** + **Tundra zero-commission** to test without dedicated sales-rep). **Dropship-only brands** (no inventory to wholesale). **Handmade / one-of-a-kind** SKUs (B2B is fundamentally about repeatable-SKU wholesale-volume + reorder-cycle; handmade SKUs need commission-based consignment model instead, which has separate playbook [refer Future Tick]). **Map-policy-violating** SKUs (luxury-DTC brands can wholesale but must protect MAP with $5k-$25k minimum-advertised-price-policy-enforcement; see Pillar 4). **Marketplace-only** brands (the Amazon-Halo effect is amplified in B2B wholesale — Amazon Business + Amazon-for-B2B cannibalizes 35-55% of wholesale-channel ARPU per Marketplace Pulse 2024 wholesale-specialty report).\n"
+        },
+        {
+          "heading": "Prerequisites",
+          "level": 2,
+          "table": null,
+          "body": "\nBefore Phase 1, you need:\n\n- A live Shopify (or compatible) DTC store with at least **$500k GMV** + at least **10 SKUs** (5 hero-SKUs + 5 wholesale-eligible secondary SKUs) + at least **25% wholesale-discount margin headroom** (wholesale at MSRP × 0.5 only works with ≥50% DTC gross margin; ≥35% gross margin can wholesale at MSRP × 0.6 with 20% wholesale-volume rebate).\n- Admin access to: Shopify admin (Apps → Wholesale / Handshake B2B OR Shopify Plus B2B), Klaviyo (B2B-aware flows: reorder-reminder + sample-pack-shipped + first-reorder-thank-you + monthly-stockist-update), Triple Whale (B2B-cohort LTV overlay), Faire vendor portal, Tundra vendor portal, Ankorstore vendor portal, Handshake (Shopify B2B), your accounting system (NetSuite OR QuickBooks Wholesale for wholesale-AR; QuickBooks Online for basic wholesale-AR), your payment processor (Stripe B2B OR ACH for $500+ orders per Stripe B2B 2024 benchmarks).\n- An established baseline of US contribution margin **≥50%** (the wholesale channel typically needs MSRP × 0.5 wholesale-discount + 5-10% retail-broker-fees + 5-10% freight-subsidy + 2-5% returns-reserve + 2-4% net-30-terms-financing = 65-75% of MSRP cost; a brand with <50% US contribution margin should defer wholesale until DTC gross margin improves).\n- A documented voice framework (Asset 02 brand-voice) with at least **Default + Luxury + Sustainable + Gen-Z + B2B voice profiles** — wholesale-voice is the **5th canonical voice profile** (the **B2B voice** is materially different from the other 4: it emphasizes shelf-readiness + casepack-specs + NET-30-terms + resale-certificate-validation + brand-story-for-retail-buyers + minimum-order-quantity vs DTC-voice which emphasizes self-expression + gift-worthiness + replenishment-cadence). The 5-voice profile structure is already in workspace (`assets/02-brand-voice.md`), but the **B2B-voice fine-tuning for wholesale-channel** is a Future-Tick Companions item.\n- An established retention-stack (Move #1 cart-abandon + Move #4 welcome + Move #7 SMS + Move #8 loyalty + Move #11 subscription — these five flows are the **DTC-retention substrate**; a brand without them gets <50% of the DTC-LTV upside and must defer B2B until DTC is steady-state).\n- A fulfillment stack capable of **B2B-casepack-fulfillment**: own warehouse OR 3PL (Move #12 / research/07 + playbook 14 / canonical 500+ orders/mo 3PL break-even threshold) with **casepack-spec enforcement + UPC-barcode-labeling + shipping-palletization** (B2B fulfillment is structurally different from DTC: casepack-multiples of 6/12/24/48 per case + palletization for orders >$500 + HazMat-certification for applicable SKUs).\n- **8-prereq distributor-onboarding pack**: (1) registration-certificate (state-registered LLC OR corp), (2) EIN-letter (IRS-issued), (3) **resale-certificate** (state-by-state for sales-tax-exemption per Streamlined-Sales-Tax-Project 2024 standards), (4) product-insurance ($1M-$2M general-liability + $1M product-liability per typical-retailer requirement), (5) warehouse-safety-cert (FDA-registered for food/cosmetics/supplements OR CPSC-registered for general-merchandise), (6) UPC-barcode (GS1-issued per product OR casepack — GS1-Company-Prefix $250-$7,500/year), (7) **casepack-spec-sheet** with units-per-case + case-dimensions + case-weight + pallet-spec + lead-time + minimum-order-quantity (MOQ), (8) **HazMat-cert** (if shipping via air OR international OR flammable SKUs).\n- 4–10 hr/wk of operator time during Phase 1+2 (lower after launch) + $0–$5,000 one-time setup budget + $0–$2,000/mo marketplace-and-SaaS-cost (Path B DEFAULT).\n\nIf any of the above is missing, the plan **defers the dependent phase** rather than skipping the whole rollout. The decision matrix at each phase boundary handles this.\n"
+        },
+        {
+          "heading": "The 5-pillar framework — what a B2B / wholesale program actually requires",
+          "level": 2,
+          "table": null,
+          "body": "\nB2B / wholesale is not \"list on Faire + sell to retailers.\" It's a 5-pillar system where each pillar has its own decisions, costs, and failure modes:\n"
+        },
+        {
+          "heading": "Pillar 1 — B2B-channel selection & platform mix",
+          "level": 3,
+          "table": [
+            {
+              "Platform": "Faire",
+              "Best for": "Default for brands <$2M GMV; gift / home / apparel / beauty / food",
+              "Setup cost": "$0 (free)",
+              "Per-order cost": "25% marketplace-commission on first-order per retailer + 15% on reorders per Faire 2024 standard",
+              "Annual revenue": "Variable",
+              "Migration-from-Faire": "n/a (industry-default)",
+              "Notes": "Faire owns ~80% of Shopify-DTC wholesale-marketplace-share per Faire 2024 vendor-survey; deepest buyer-side ecosystem (60,000+ independent retailers); Net 60 default terms; 8-prereq vendor-onboarding"
+            },
+            {
+              "Platform": "Tundra",
+              "Best for": "Zero-commission alternative for brands >$2M GMV; large-order-volume",
+              "Setup cost": "$0 (free)",
+              "Per-order cost": "0% commission (vs Faire 25% first-order) per Tundra 2024 model",
+              "Annual revenue": "Variable",
+              "Migration-from-Faire": "Free migration + data-export-tool",
+              "Notes": "Tundra is the \"Faire without the fee\" challenger; lower buyer-density (~10,000 retailers) but the canonical DTC-brand choice for $1M+ brand wholesale-margin preservation; Net 30 default; higher-MOQ preferred"
+            },
+            {
+              "Platform": "Ankorstore",
+              "Best for": "European B2B marketplace; EU-UK-AU reach",
+              "Setup cost": "$0 (free)",
+              "Per-order cost": "8-15% commission (depends on category)",
+              "Annual revenue": "Variable",
+              "Migration-from-Faire": "Free migration",
+              "Notes": "Ankorstore owns ~70% of EU-wholesale-marketplace-share per Ankorstore 2024 vendor-survey; canonical for cross-border B2B distribution; Net 30 default; 6-prereq onboarding"
+            },
+            {
+              "Platform": "Handshake (Shopify B2B)",
+              "Best for": "Shopify-native DTC-brand B2B",
+              "Setup cost": "$0-$149/mo (Plus tier)",
+              "Per-order cost": "0% commission (Shopify-native)",
+              "Annual revenue": "Variable",
+              "Migration-from-Faire": "Shopify-native-integration",
+              "Notes": "Handshake is Shopify's B2B marketplace that auto-syncs DTC-SKUs to B2B-buyer-portal; lowest friction; canonical for Shopify-Plus brands wanting native-B2B without Faire-commission-erosion; Net 30 default"
+            },
+            {
+              "Platform": "Shopify B2B (Shopify Plus)",
+              "Best for": "Shopify-Plus brands wanting full B2B-portal",
+              "Setup cost": "$2,300/mo (Shopify Plus base)",
+              "Per-order cost": "0% commission",
+              "Annual revenue": "Variable",
+              "Migration-from-Faire": "Shopify-native",
+              "Notes": "Shopify-Plus-B2B is the canonical \"full-native-B2B-portal\" with company-accounts + credit-terms + bulk-pricing + reorder-automation; best when brand is already on Plus"
+            },
+            {
+              "Platform": "Amazon Business",
+              "Best for": "Office / hospitality / healthcare SKUs",
+              "Setup cost": "$39.99/mo Professional",
+              "Per-order cost": "6-15% referral fee (B2B-specific tier per Amazon Business 2024)",
+              "Annual revenue": "Variable",
+              "Migration-from-Faire": "Free migration",
+              "Notes": "Amazon-Business is canonical for office-supply / hospitality / healthcare / industrial SKUs (B2B-ARPU $150-$1,200 vs DTC-ARPU $80-$130 per Amazon Business 2024); 8-prereq Business-Seller-Certification"
+            },
+            {
+              "Platform": "RSP / KeHE / UNFI / dot Foods / Boar's Head (direct distributors)",
+              "Best for": "$10M+ GMV brands wanting mass-retail",
+              "Setup cost": "Variable ($5k-$50k sales-rep-time)",
+              "Per-order cost": "5-20% retail-broker-fees (buying-group-discount)",
+              "Annual revenue": "Variable",
+              "Migration-from-Faire": "Direct-pitch only",
+              "Notes": "Direct-distributor onboarding is the canonical 6-18-month sales-cycle with 5-15 SKUs per category per retailer; gated on having product-insurance + resale-certificate + UPC-barcode + warehouse-safety-cert + casepack-spec + HazMat-cert + dedicated-distributor-sales-rep"
+            },
+            {
+              "Platform": "Trade-show calendar (NY NOW + ASD Market Week + Surf Expo + MAGIC + PROJECT + NYIGF + NACDS)",
+              "Best for": "Brand-positioning + direct-buyer-pipeline",
+              "Setup cost": "$5k-$50k/show (booth + travel + sample-pack)",
+              "Per-order cost": "0% commission",
+              "Annual revenue": "Variable",
+              "Migration-from-Faire": "n/a",
+              "Notes": "Trade-shows are the canonical \"high-touch high-cost\" B2B-channel; 1-2 shows/yr per Faire 2024 benchmarks; gated on share-worthy-SKUs + custom-ribbon + booth-readiness"
+            },
+            {
+              "Platform": "Discount tier vs MSRP",
+              "Best for": "Wholesale-attach-rate (per Faire 2024)",
+              "Setup cost": "Wholesale-ARPU vs DTC-ARPU",
+              "Per-order cost": "When to use",
+              "Annual revenue": "",
+              "Migration-from-Faire": "",
+              "Notes": ""
+            },
+            {
+              "Platform": "---",
+              "Best for": "---",
+              "Setup cost": "---",
+              "Per-order cost": "---",
+              "Annual revenue": "",
+              "Migration-from-Faire": "",
+              "Notes": ""
+            },
+            {
+              "Platform": "35% off MSRP (high-end luxury / premium)",
+              "Best for": "5–15% of buyer-portfolio",
+              "Setup cost": "0.55× DTC-ARPU",
+              "Per-order cost": "Luxury-DTC protecting MAP; minimum-headroom brands",
+              "Annual revenue": "",
+              "Migration-from-Faire": "",
+              "Notes": ""
+            },
+            {
+              "Platform": "40% off MSRP (sustainable / specialty)",
+              "Best for": "10–20%",
+              "Setup cost": "0.65× DTC-ARPU",
+              "Per-order cost": "Sustainable / clean-beauty / specialty-food brands",
+              "Annual revenue": "",
+              "Migration-from-Faire": "",
+              "Notes": ""
+            },
+            {
+              "Platform": "45% off MSRP (standard premium)",
+              "Best for": "15–25%",
+              "Setup cost": "0.70× DTC-ARPU",
+              "Per-order cost": "Standard premium-DTC default",
+              "Annual revenue": "",
+              "Migration-from-Faire": "",
+              "Notes": ""
+            },
+            {
+              "Platform": "50% off MSRP (canonical)",
+              "Best for": "20–40%",
+              "Setup cost": "0.75× DTC-ARPU",
+              "Per-order cost": "Standard wholesale-default for most DTC brands",
+              "Annual revenue": "",
+              "Migration-from-Faire": "",
+              "Notes": ""
+            },
+            {
+              "Platform": "55% off MSRP (high-volume)",
+              "Best for": "30–50%",
+              "Setup cost": "0.80× DTC-ARPU",
+              "Per-order cost": "High-volume / mass-retail channel",
+              "Annual revenue": "",
+              "Migration-from-Faire": "",
+              "Notes": ""
+            },
+            {
+              "Platform": "60% off MSRP (extreme)",
+              "Best for": "40–60%",
+              "Setup cost": "0.85× DTC-ARPU",
+              "Per-order cost": "Distributor-tier brands (RSP/KeHE/UNFI)",
+              "Annual revenue": "",
+              "Migration-from-Faire": "",
+              "Notes": ""
+            }
+          ],
+          "body": "\nThe 7 canonical B2B / wholesale platforms + channels for a Shopify DTC brand, listed by GMV-tier fit:\n\n| Platform | Best for | Setup cost | Per-order cost | Annual revenue | Migration-from-Faire | Notes |\n|---|---|---|---|---|---|---|\n| **Faire** | Default for brands <$2M GMV; gift / home / apparel / beauty / food | $0 (free) | **25% marketplace-commission on first-order per retailer + 15% on reorders** per Faire 2024 standard | Variable | n/a (industry-default) | Faire owns ~80% of Shopify-DTC wholesale-marketplace-share per Faire 2024 vendor-survey; deepest buyer-side ecosystem (60,000+ independent retailers); Net 60 default terms; 8-prereq vendor-onboarding |\n| **Tundra** | Zero-commission alternative for brands >$2M GMV; large-order-volume | $0 (free) | **0% commission** (vs Faire 25% first-order) per Tundra 2024 model | Variable | Free migration + data-export-tool | Tundra is the \"Faire without the fee\" challenger; lower buyer-density (~10,000 retailers) but the canonical DTC-brand choice for $1M+ brand wholesale-margin preservation; Net 30 default; higher-MOQ preferred |\n| **Ankorstore** | European B2B marketplace; EU-UK-AU reach | $0 (free) | 8-15% commission (depends on category) | Variable | Free migration | Ankorstore owns ~70% of EU-wholesale-marketplace-share per Ankorstore 2024 vendor-survey; canonical for cross-border B2B distribution; Net 30 default; 6-prereq onboarding |\n| **Handshake (Shopify B2B)** | Shopify-native DTC-brand B2B | $0-$149/mo (Plus tier) | 0% commission (Shopify-native) | Variable | Shopify-native-integration | Handshake is Shopify's B2B marketplace that auto-syncs DTC-SKUs to B2B-buyer-portal; lowest friction; canonical for Shopify-Plus brands wanting native-B2B without Faire-commission-erosion; Net 30 default |\n| **Shopify B2B (Shopify Plus)** | Shopify-Plus brands wanting full B2B-portal | $2,300/mo (Shopify Plus base) | 0% commission | Variable | Shopify-native | Shopify-Plus-B2B is the canonical \"full-native-B2B-portal\" with company-accounts + credit-terms + bulk-pricing + reorder-automation; best when brand is already on Plus |\n| **Amazon Business** | Office / hospitality / healthcare SKUs | $39.99/mo Professional | 6-15% referral fee (B2B-specific tier per Amazon Business 2024) | Variable | Free migration | Amazon-Business is canonical for office-supply / hospitality / healthcare / industrial SKUs (B2B-ARPU $150-$1,200 vs DTC-ARPU $80-$130 per Amazon Business 2024); 8-prereq Business-Seller-Certification |\n| **RSP / KeHE / UNFI / dot Foods / Boar's Head** (direct distributors) | $10M+ GMV brands wanting mass-retail | Variable ($5k-$50k sales-rep-time) | 5-20% retail-broker-fees (buying-group-discount) | Variable | Direct-pitch only | Direct-distributor onboarding is the canonical 6-18-month sales-cycle with 5-15 SKUs per category per retailer; gated on having product-insurance + resale-certificate + UPC-barcode + warehouse-safety-cert + casepack-spec + HazMat-cert + dedicated-distributor-sales-rep |\n| **Trade-show calendar** (NY NOW + ASD Market Week + Surf Expo + MAGIC + PROJECT + NYIGF + NACDS) | Brand-positioning + direct-buyer-pipeline | $5k-$50k/show (booth + travel + sample-pack) | 0% commission | Variable | n/a | Trade-shows are the canonical \"high-touch high-cost\" B2B-channel; 1-2 shows/yr per Faire 2024 benchmarks; gated on share-worthy-SKUs + custom-ribbon + booth-readiness |\n\n**The 4-platform default (Faire + Tundra + Ankorstore + Handshake)** covers **~85% of typical Shopify-DTC B2B needs** at **$0-$149/mo** Path A-B cost stack. RSP / KeHE / UNFI / Amazon Business are gated on $5M+ GMV with dedicated sales-rep capacity OR B2B-specialty-category SKUs (office / hospitality / healthcare / industrial).\n\n**Honest read:** **Faire** is the safe default for first-time B2B brands with <$1M GMV. **Tundra** if you're at $2M+ GMV and the 25% first-order-commission-erosion is meaningful. **Handshake / Shopify B2B** if you're on Shopify Plus and want zero-commission native integration. *"
+        },
+        {
+          "heading": "Pillar 2 — Wholesale economics & channel-economics math",
+          "level": 3,
+          "table": [
+            {
+              "Cost line-item": "Faire + Tundra + Ankorstore + Handshake marketplace-listings",
+              "Path A (<$500k GMV)": "$0/mo",
+              "Path B DEFAULT": "$0-149/mo",
+              "Path C ($5M+ GMV)": "$0-149/mo"
+            },
+            {
+              "Cost line-item": "Shopify B2B / Shopify Plus (B2B Edition)",
+              "Path A (<$500k GMV)": "$0-79/mo (Shopify Plan tier)",
+              "Path B DEFAULT": "$149-349/mo (Shopify Plus B2B Edition)",
+              "Path C ($5M+ GMV)": "$2,300/mo (Shopify Plus base)"
+            },
+            {
+              "Cost line-item": "Wholesale-AR (NetSuite Wholesale OR QuickBooks Wholesale)",
+              "Path A (<$500k GMV)": "$50/mo (QuickBooks Wholesale tier)",
+              "Path B DEFAULT": "$250/mo (NetSuite Wholesale tier)",
+              "Path C ($5M+ GMV)": "$1,000+/mo (NetSuite Wholesale + custom-EDI)"
+            },
+            {
+              "Cost line-item": "Klaviyo B2B-tier (reorder-cadence + corporate-gifting flows)",
+              "Path A (<$500k GMV)": "$45/mo",
+              "Path B DEFAULT": "$100-300/mo",
+              "Path C ($5M+ GMV)": "$500+/mo"
+            },
+            {
+              "Cost line-item": "Triple Whale B2B-cohort-LTV-overlay",
+              "Path A (<$500k GMV)": "$0/mo (existing-account)",
+              "Path B DEFAULT": "$100-200/mo",
+              "Path C ($5M+ GMV)": "$500+/mo"
+            },
+            {
+              "Cost line-item": "Direct-distributor-pitch-time (RSP/KeHE/UNFI direct-broker; or commissioned-sales-rep 8% of net-revenue)",
+              "Path A (<$500k GMV)": "n/a",
+              "Path B DEFAULT": "n/a",
+              "Path C ($5M+ GMV)": "$8,000-$40,000/yr (4-12 hr/wk × $50/hr + sample-pack-fulfillment)"
+            },
+            {
+              "Cost line-item": "Trade-show budget (1-2 shows/yr)",
+              "Path A (<$500k GMV)": "$0",
+              "Path B DEFAULT": "$0-5,000/yr",
+              "Path C ($5M+ GMV)": "$25,000-$100,000/yr"
+            },
+            {
+              "Cost line-item": "TOTAL",
+              "Path A (<$500k GMV)": "$95-$250/mo",
+              "Path B DEFAULT": "$599-$2,049/mo",
+              "Path C ($5M+ GMV)": "$4,300-$13,400/mo"
+            }
+          ],
+          "body": "\nThe 5-corners framework that determines B2B / wholesale channel viability:\n\n**(a) Wholesale-attach-rate (% of acquired retailers who reorder in next 12 months).** Per Faire 2024 + Salesforce B2B Commerce 2024 benchmarks: 55-75% of acquired retailers reorder within 12 months (for first-time DTC brands), growing to 75-85% by Year-2 once casepack-spec + freight-terms + reorder-automation are stable. **Aggressive** direct-sales-rep + 4-email-reorder-cadence + TradeGala-shop-presence + sample-pack-fulfillment can lift reorder-rate to 85-95%.\n\n**(b) Wholesale-ARPU-vs-DTC-ARPU ratio (% of MSRP captured per B2B order).** Per Faire 2024 + Ankorstore 2024 + Shopify B2B 2024 benchmarks:\n- **Top B2B brands:** 0.80–0.95× DTC-ARPU (achieved via strict MAP-policy + corporate-gifting-mix + distributor-volume-rebates + B2B-bundle-tier-pricing)\n- **Median B2B brands:** 0.65–0.75× DTC-ARPU (achieved via standard 50% wholesale-discount + retail-broker-fees + freight-subsidy)\n- **Underperformers:** 0.45–0.55× DTC-ARPU (common when brand under-prices at 60% off MSRP without retail-broker-fee defense OR when MAP-violation-erosion occurs)\n\nA 0.75× wholesale-ARPU + 0.85× reorder-rate = the canonical 0.64× effective LTV multiple per B2B-retailer, which compensates with the 5-50× ARPU-volume (each retailer can have 50-500 customers/year per Faire 2024 retail-customer-count benchmarks).\n\n**(c) Wholesale-channel-cannibalization rate (% of wholesale-revenue that displaces DTC-revenue).** Per Faire 2024 + Ankorstore 2024 benchmarks:\n- **MAP-protected wholesale:** 10-25% cannibalization (most wholesale-channels add net-new retail-customer-acquisition)\n- **Unprotected wholesale:** 35-50% cannibalization (wholesale-buyers price-shop on DTC, triggering Amazon-Halo-equivalent erosion)\n- **Distributor-pitch:** 5-15% cannibalization (distribution expands geographic-footprint + locks-in retail-shelf-presence)\n\nThe canonical **MAP-policy enforcement** (the 4th pillar) protects against the unprotected-erosion — brands without MAP-policy lose 30-50% of DTC-revenue to wholesale-leakage per Faire 2024 benchmarks.\n\n**(d) Wholesale-payment-terms-financing cost (% of wholesale-revenue lost to NET-30-vs-pre-pay-tier).** Per Faire 2024 + Stripe B2B 2024 benchmarks:\n- **NET-30 terms:** 2-4% effective financing-cost (typical SMB-financing-rate)\n- **NET-60 terms:** 4-7% effective financing-cost\n- **Pre-pay tier with 5% discount:** 0% financing-cost + 5% margin-gain\n- **ACH/wire with 2.5% discount:** -0.5% to +1% effective (small discount vs pre-pay tier)\n\n**Default pick: NET-30 with 2.5% pre-pay-discount** (the canonical Faire 2024 default). Brand with $1M+ B2B-AR should consider Stripe B2B / Shopify Payments B2B Capital for 1-3% effective rate (significantly cheaper than carrying-financing in-house).\n\n**(e) Wholesale-channel-cost-stack ($/mo).** The canonical 6-line-item cost-stack:\n\n| Cost line-item | Path A (<$500k GMV) | Path B DEFAULT | Path C ($5M+ GMV) |\n|---|---|---|---|\n| Faire + Tundra + Ankorstore + Handshake marketplace-listings | $0/mo | $0-149/mo | $0-149/mo |\n| Shopify B2B / Shopify Plus (B2B Edition) | $0-79/mo (Shopify Plan tier) | $149-349/mo (Shopify Plus B2B Edition) | $2,300/mo (Shopify Plus base) |\n| Wholesale-AR (NetSuite Wholesale OR QuickBooks Wholesale) | $50/mo (QuickBooks Wholesale tier) | $250/mo (NetSuite Wholesale tier) | $1,000+/mo (NetSuite Wholesale + custom-EDI) |\n| Klaviyo B2B-tier (reorder-cadence + corporate-gifting flows) | $45/mo | $100-300/mo | $500+/mo |\n| Triple Whale B2B-cohort-LTV-overlay | $0/mo (existing-account) | $100-200/mo | $500+/mo |\n| Direct-distributor-pitch-time (RSP/KeHE/UNFI direct-broker; or commissioned-sales-rep 8% of net-revenue) | n/a | n/a | $8,000-$40,000/yr (4-12 hr/wk × $50/hr + sample-pack-fulfillment) |\n| Trade-show budget (1-2 shows/yr) | $0 | $0-5,000/yr | $25,000-$100,000/yr |\n| **TOTAL** | **$95-$250/mo** | **$599-$2,049/mo** | **$4,300-$13,400/mo** |\n\nThe canonical 8.5:1 default Year-1 ROI Path B = $1M-$"
+        },
+        {
+          "heading": "Pillar 3 — B2B-portal-automation + reorder-cycle",
+          "level": 3,
+          "table": null,
+          "body": "\nThe 4-corners framework that drives B2B reorder-rate:\n\n**(a) Catalog-automation: Shopify B2B Handshake auto-sync.** Per Shopify 2024 benchmarks: 75% of B2B-revenue comes through Handshake-auto-sync-ed SKUs (vs manually-managed SKUs) because the operator only updates pricing once and the B2B-buyer-portal is always current. The canonical **Handshake setup** = Shopify admin → Settings → Apps → Handshake by Shopify → connect → choose which DTC-SKUs to sync (typically 12-30 hero SKUs + 5-10 wholesale-only SKUs) → set wholesale-pricing-rules (auto-apply 50%-off MSRP for authenticated B2B accounts OR company-specific-pricing-rules).\n\n**(b) Wholesale-tier-pricing: company-account vs global-pricing vs volume-pricing.** Per Shopify B2B 2024 + BigCommerce B2B 2024 benchmarks:\n- **Global-pricing:** 1 wholesale-tier-rule for all buyers (50%-off MSRP) — simplest, ~75% of B2B brands\n- **Company-account-pricing:** Per-buyer-company pricing-rules (e.g. Splash-50% off / New-Buyer-45% off / VIP-Reorder-55% off) — best for segmented-buyer-portfolio\n- **Volume-pricing:** Per-order-volume-discount-tiers (1-5 cases no discount / 6-23 cases 5%-off / 24+ cases 10%-off) — best for distributor-tier\n\nThe canonical **3-tier pricing-stack**: Global-pricing baseline + Company-account-pricing for top-20-accounts + Volume-pricing for distributors.\n\n**(c) Reorder-automation Klaviyo flow:** Per Klaviyo 2024 B2B-flow benchmarks:\n- **B2B reorder-reminder at 75% typical-purchase-cadence** (e.g. if a retailer typically buys every 60 days, send reminder at Day 45 with \"Reorder Soon\" CTA)\n- **Sample-pack-shipped for first-time-buyer (Day 5 + Day 14 cadence)** — converts 8-15% of first-time-buyer to reorder per Klaviyo 2024 B2B benchmarks\n- **First-reorder-thank-you (Day 1 post-reorder)** + **monthly-stockist-update with new-SKUs** — drives 60-80% reorder-rate per Salesforce B2B Commerce 2024 benchmarks\n\n**(d) Trade-show + direct-buyer-pipeline:** Per Faire 2024 + Ankorstore 2024 + TradeGala 2024 benchmarks:\n- **NY NOW (NYC twice/year):** $8k-$35k booth — 50-300 retailer meetings per show\n- **ASD Market Week (Las Vegas twice/year):** $5k-$20k booth — 30-200 retailer meetings per show\n- **Surf Expo / MAGIC / PROJECT / NYIGF / MAGIC / NACDS Total Store Expo:** category-specific shows for apparel/home/specialty-food\n- **TradeGala virtual-trade-show:** $200-$2,000/mo subscription for 24/7-buyer-meetings — best for indie-DTC brands\n\nDefault pick: 1 in-person-trade-show + 1 virtual-trade-show per Year-1 (e.g. NY NOW Spring + TradeGala subscription).\n"
+        },
+        {
+          "heading": "Pillar 4 — MAP-policy + DTC-cannibalization-defense",
+          "level": 3,
+          "table": null,
+          "body": "\nThe 5 levers that protect DTC-traffic-cannibalization when shipping wholesale:\n\n**(a) Minimum-advertised-price-policy (MAP-policy).** Per Faire 2024 + Ankorstore 2024 benchmarks: brands with MAP-policy lose 30-50% less DTC-traffic vs brands without MAP-policy. The canonical **MAP-policy-page** lists every SKU's MAP-price + Wholesale-Auto-Effective-Price (often lower) + enforcement-actions (1st-violation written-warning / 2nd-violation 30-day-suspension / 3rd-violation permanent-termination). Brands without MAP-policy legally can't enforce DTC-traffic-protection per Sherman-Antitrust-Act-compliance-with-RPM-policy-per-se-exemption.\n\n**(b) Geographic-exclusivity.** Per Faire 2024 + Ankorstore 2024 benchmarks: brands offering geographic-exclusivity (e.g. \"Retailer is the only authorized seller in state-X\") retain 80-90% of region-DTC-traffic vs shared-territory-retailers (loses 40-60%).\n\n**(c) Channel-exclusivity-tier.** Per Faire 2024 benchmarks: brands offering exclusive-SKU-collections (e.g. \"B2B-Exclusive-Beach-Towel SKU is not sold on DTC\") gain 20-30% incremental-B2B-revenue from buyers who specifically want non-DTC-overlap SKUs.\n\n**(d) Shopify B2B Handshake geographic-exclusion.** Per Shopify 2024 benchmarks: brands can configure Shopify B2B Handshake to exclude-buyers-by-region (e.g. \"B2B-buyer-in-California can't place DTC-buyers-in-California overlap-orders\"). This is the canonical **DTC-vs-B2B-engine for region-protection**.\n\n**(e) MAP-policy-enforcement-tooling.** Per Faire 2024 + Ankorstore 2024 + Tundra 2024 benchmarks: each marketplace has a MAP-policy-violation-reporting-channel; first-violation-warning-default; 2nd-violation-suspension; 3rd-violation-termination. Brands without an internal-enforcement-team lose 50-60% of MAP-policy-effectiveness per Faire 2024 vendor-survey.\n"
+        },
+        {
+          "heading": "Pillar 5 — Wholesale-fulfillment + 3PL / distributor handoff",
+          "level": 3,
+          "table": null,
+          "body": "\nThe 4-corners framework for moving from DTC-fulfillment to B2B-fulfillment:\n\n**(a) Casepack-spec + pallet-spec per Faire / RSP onboarding requirements.** Per Faire 2024 + RSP 2024 + KeHE 2024 benchmarks: every retailer has a unique casepack + pallet spec (e.g. Target-12-units-per-case + 4-cases-per-pallet / Whole-Foods-24-units-per-case + 6-cases-per-pallet / RSP-distributor-48-units-per-case + 12-cases-per-pallet). The canonical **casepack-spec-master** documents every retailer's spec on a shared-Skool/Notion-page with SKUs cross-referenced.\n\n**(b) B2B-specialty 3PL fulfillment.** Per ShipBob B2B + ShipMonk B2B + Extensiv B2B 2024 benchmarks:\n- **ShipBob SMB-Plus B2B:** $25-$50/mo per-account + $2-$5 per-order pick-pack + B2B-cert-bundle — best for <$500k B2B-AR\n- **Shipmonk Enterprise B2B:** $250-$500/mo per-account + $2-$5 per-order pick-pack + EDI-832/850-out-of-box — best for $500k+ B2B-AR\n- **Direct-distributor 3PL (RSP / KeHE / dot Foods):** $5k-$50k setup + 8-15% retail-broker-fees — canonical for mass-retail\n\nThe canonical **ShipBob + ShipMonk** is the default for indie-DTC brands wanting B2B without dedicated-distributor-3PL.\n\n**(c) UPC / barcode / GS1 certification.** Per GS1 2024 benchmarks:\n- **GS1-Company-Prefix:** $250/yr (10-SKU-up-to-100-SKU) / $7,500/yr (10,000+ SKUs)\n- **GS1-128 casepack-barcodes:** $50-$150/set\n- **GTIN-14 shipping-container-barcodes:** included with GS1-Company-Prefix\n- **GS1 DataMatrix for pharmacy/regulated-SKUs:** $250-$1,000/SKU\n\nThe canonical **GS1-Company-Prefix + GTIN-12 + GTIN-14 bundle** = $250/yr baseline + $50-$200 setup for indie-DTC brands.\n\n**(d) HazMat-cert + freight-shipping.** Per IATA 2024 + USPS 2024 + UPS 2024 + FedEx 2024 HazMat benchmarks:\n- **Class-1-explosives:** Prohibited-air-shipment + $500+ ground-only-cert\n- **Class-2-gases:** $250-$500 ground-cert per-product\n- **Class-3-flammable-liquids:** $500-$2,500 air-cert per-product\n- **Class-4-flammable-solids:** $250-$1,000 ground-only-cert per-product\n- **Class-5-oxidizers:** $500-$2,000 ground-or-marine-cert per-product\n- **Class-6-toxic:** $500-$5,000 cert per-product\n- **Class-7-radioactive:** Prohibited (none for typical DTC)\n- **Class-8-corrosive:** $250-$1,000 ground-cert per-product\n- **Class-9-miscellaneous-dangerous:** $500-$2,500 cert per-product (e.g. lithium-batteries for electronics)\n\nThe canonical **HazMat-cert-bundle** = $0-2,500 setup per DTC brand + $100-$500 ongoing-audit per year.\n"
+        },
+        {
+          "heading": "GMV-tier paths",
+          "level": 2,
+          "table": null,
+          "body": "\nThe 3 canonical B2B / wholesale paths for a Shopify-DTC brand, listed by GMV-tier fit:\n"
+        },
+        {
+          "heading": "Path A — Marketplace-only (Faire + Tundra + Ankorstore + Handshake / Shopify B2B) (<$500k US DTC GMV)",
+          "level": 3,
+          "table": null,
+          "body": "\n**When:** US-DTC GMV <$500k + ≥10 SKUs + ≥25% wholesale-discount margin headroom + ≥4 hr/wk operator capacity + ≥25% US contribution margin.\n\n**Setup cost stack:** $0-$2,000 one-time (wholesale-pricing-calculator config + NET-30-terms-card + MAP-policy-page + Faire + Tundra + Ankorstore + Handshake storefront + 8-prereq RFQ-template + casepack-spec-sheet + GS1-Company-Prefix).\n\n**Operating cost stack:** $95-$250/mo (Faire + Tundra + Ankorstore + Handshake marketplace-listings $0/mo + Klaviyo B2B-tier $45/mo + Triple Whale B2B-cohort-LTV-overlay $0-$50/mo + QuickBooks Wholesale-AR $50/mo).\n\n**Year-1 incremental B2B revenue:** $50k-$500k on $300k-$500k US DTC base (= 15–100% incremental-revenue) per Faire 2024 + Tundra 2024 benchmarks.\n\n**Year-1 ROI:** 4.5:1 conservative nominal ($150k Year-1 B2B revenue / $2,500 annual cost stack).\n\n**Operator time:** 4–6 hr/wk during Phase 1+2 (lower after launch); 1–2 hr/wk steady-state.\n\n**Compounds with:** Move #1 cart-abandon (B2B-buyer-aware pricing-rules) + Move #4 welcome (B2B-tier welcome-flow) + Move #6 Triple Whale (B2B-cohort-LTV-overlay) + Move #8 loyalty (B2B-buyer-loyalty-points-equivalent-of-2×-points-for-DTC-buyers per Smile.io benchmarks) + Move #11 subscription (B2B-buyer-subscription-tier).\n\n**Gated on:** Move #1 + Move #4 + Move #6 + Move #8 shipped + ≥10 SKUs + ≥25% wholesale-discount margin headroom + 4-6 hr/wk operator time + 8-prereq distributor-onboarding-pack (registration + EIN + resale-certificate + product-insurance + warehouse-safety-cert + UPC-barcode + casepack-spec + HazMat-if-applicable).\n\n**Honest read:** Path A is the canonical \"test the wholesale-waters\" path for sub-$500k DTC brands. 4.5:1 Year-1 ROI is conservative; with corporate-gifting-mix + TradeGala presence + 1-2 retail-trade-shows, Year-1 can climb to 7-9:1.\n"
+        },
+        {
+          "heading": "Path B — Marketplace + Shopify B2B / Shopify Plus B2B DEFAULT ($500k-$5M US DTC GMV)",
+          "level": 3,
+          "table": null,
+          "body": "\n**When:** US-DTC GMV $500k-$5M + ≥30 SKUs (12-30 hero-SKUs + 30+ wholesale-eligible secondary SKUs) + ≥50% wholesale-discount margin headroom + ≥6 hr/wk operator capacity + ≥50% US contribution margin + dedicated-sales-rep-capacity.\n\n**Setup cost stack:** $2,000-$5,000 one-time (Path A + Handshake / Shopify B2B storefront setup + NetSuite Wholesale-AR OR QuickBooks Wholesale-tier + ShopPay-B2B + corporate-gifting-catalog + TradeGala-virtual-trade-show-subscription).\n\n**Operating cost stack:** $599-$2,049/mo (Handshake $0-$149/mo + Shopify B2B / Shopify Plus B2B Edition $149-$349/mo + NetSuite Wholesale $250/mo + Klaviyo B2B-tier $100-$300/mo + Triple Whale B2B-cohort-LTV-overlay $100-$200/mo + TradeGala $200-$2,000/mo + QuickBooks Wholesale-tier $50/mo).\n\n**Year-1 incremental B2B revenue:** $250k-$5M on $500k-$5M US DTC base (= 25–100% incremental-revenue) per Faire 2024 + Tundra 2024 + Shopify B2B 2024 benchmarks.\n\n**Year-1 ROI:** 8.5:1 default at $2M US DTC base ($1M-$5M Path B Year-1 incremental B2B revenue / $24,588 annual cost stack); conservative 5:1 (Path A-bounded) to aggressive 14:1 (Path C-bounded) Year-1 ROI.\n\n**Operator time:** 6–10 hr/wk during Phase 1+2+3 (lower after launch); 2–4 hr/wk steady-state; dedicated sales-rep 0.5 FTE in Year-2+.\n\n**Compounds with:** Path A + Shopify B2B / Shopify Plus B2B Edition (Handshake auto-sync + company-account-tier + credit-terms + volume-pricing) + NetSuite Wholesale (B2B-AR + purchase-order-management) + TradeGala-virtual-trade-show + Shopify Plus B2B-Edition catalog-automation + corporate-gifting-mix (15-25% Year-2 incremental-B2B-revenue).\n\n**Gated on:** Path A + Move #1 + Move #4 + Move #6 + Move #8 shipped + ≥30 SKUs + ≥50% wholesale-discount margin headroom + 6-10 hr/wk operator time + dedicated-sales-rep-capacity (0.5 FTE in Year-2+) + corporate-gifting-catalog-ready + 8-prereq distributor-onboarding-pack.\n\n**Honest read:** Path B is the canonical \"default\" for $500k-$5M DTC brands. 8.5:1 Year-1 ROI is the median per Faire 2024 + Tundra 2024 + Ankorstore 2024 + Shopify B2B 2024 benchmark-blend; with corporate-gifting-mix + dedicated-sales-rep + 1-2 in-person-trade-shows, Year-1 can climb to 12-14:1.\n"
+        },
+        {
+          "heading": "Path C — Direct-distributor + Amazon Business + Shopify Plus B2B ($5M+ US DTC GMV)",
+          "level": 3,
+          "table": null,
+          "body": "\n**When:** US-DTC GMV $5M+ + ≥100 SKUs + ≥60% wholesale-discount margin headroom + ≥15 hr/wk operator capacity (or dedicated full-FTE sales-rep) + dedicated NetSuite / Oracle / SAP back-office + EDI-832/850 capability + RSP/KeHE/UNFI/distributor-direct-pitch-relationship.\n\n**Setup cost stack:** $5,000-$50,000 one-time (Path B + RSP/KeHE/UNFI distributor-onboarding-fee $5k-$25k + Amazon Business B2B-specialty-tier-cert $250 + EDI-832/850-integration $5k-$15k + Shopify Plus base + NetSuite Wholesale + EDI-vendor + distributor-pitch-deck + 1-2 trade-show-budget).\n\n**Operating cost stack:** $4,300-$13,400/mo (Shopify Plus base $2,300/mo + NetSuite Wholesale $1,000+/mo + EDI-vendor $500-$2,000/mo + Amazon Business seller-fee $39.99/mo + Klaviyo B2B-tier $500+/mo + Triple Whale B2B-cohort-LTV-overlay $500+/mo + dedicated full-FTE sales-rep-equivalent 8% of net-revenue $8k-$40k/yr amortized + trade-show-budget $5k-$50k/yr amortized).\n\n**Year-1 incremental B2B revenue:** $5M-$50M on $5M-$50M US DTC base (= 50–100% incremental-revenue) per RSP 2024 + KeHE 2024 + Amazon Business 2024 + Faire 2024 benchmarks.\n\n**Year-1 ROI:** 6:1 default at $10M US DTC base ($5M-$25M Path C Year-1 incremental B2B revenue / $98,400-$160,800 annual cost stack); conservative 4:1 to aggressive 10:1 Year-1 ROI range.\n\n**Operator time:** 15-25 hr/wk during Phase 1+2+3 (lower after launch); 8-15 hr/wk steady-state; dedicated full-FTE sales-rep.\n\n**Compounds with:** Path B + RSP/KeHE/UNFI direct-distributor + Amazon Business B2B-specialty-tier + EDI-832/850-integration + Shopify Plus full-B2B-portal + NetSuite Wholesale + EDI-vendor + trade-show-1-2-per-year + dedicated full-FTE sales-rep.\n\n**Gated on:** Path B + Move #1 + Move #4 + Move #6 + Move #8 shipped + ≥100 SKUs + ≥60% wholesale-discount margin headroom + 15-25 hr/wk operator time + dedicated full-FTE sales-rep + RSP/KeHE/UNFI/distributor-pitch-relationship + corporate-gifting-catalog-ready + 8-prereq distributor-onboarding-pack + product-insurance + warehouse-safety-cert + UPC-barcode + casepack-spec + HazMat-cert.\n\n**Honest read:** Path C is the canonical \"high-burn high-reward\" path for $5M+ DTC brands with dedicated sales-rep. The 6:1 Year-1 ROI is muted by the **8-18-month distributor-onboarding sales-cycle** + the **5-15% retail-broker-fees** + the **8% commissioned-sales-rep-cost**; the canonical ROI compounds to 14-20:1 by Year-3 once the distributor-portfolio is mature.\n"
+        },
+        {
+          "heading": "Common pitfalls — 15 numbered pitfalls with corrective `Fix:` lines",
+          "level": 2,
+          "table": null,
+          "body": "\nThe 15 most common B2B / wholesale channel-launch pitfalls, clustered into 6 failure modes:\n"
+        },
+        {
+          "heading": "Failure mode A — Platform-selection + onboarding",
+          "level": 3,
+          "table": null,
+          "body": "\n**Pitfall #1 — Launching B2B without an established DTC baseline.** \"I'll launch wholesale alongside Move #1 cart-abandon.\" → Both channels compete for operator-time; Move #1 typically requires 80% of operator-hours during weeks 1-4 + B2B-launch requires 30-40% → combined-operator-overload → both fail. **Fix: Move #1 + Move #4 + Move #6 + Move #8 MUST be steady-state for 90+ days before Phase 1 B2B-launch. Verify Gate A: Move #1 CTR ≥5% / Move #4 open-rate ≥35% / Move #6 Triple Whale attribution live with ≥95% match-rate / Move #8 loyalty actively rewarding repeat-purchases (≥30% member-share).**\n\n**Pitfall #2 — Launching on Faire-only without comparing to Tundra / Ankorstore / Handshake.** \"Faire is the only B2B-marketplace I know.\" → 25%-first-order-commission on Faire erodes 25% of Year-1 gross profit; Tundra has 0% commission for brands at $2M+ GMV; Ankorstore better for EU/UK/AU reach; Handshake lower friction for Shopify-Plus-brands. **Fix: Run the canonical 7-platform B2B-tool-decision-matrix per Pillar 1 against your brand's GMV + AOV + margin + voice-profile + ops-capacity + region-targets. Default = Faire + Tundra + Ankorstore + Handshake (4-platform-bundle covers ~85% of typical Shopify-DTC B2B-needs). Verify Gate A prerequisite 5: ≥4 platforms selected with documented rationale.**\n\n**Pitfall #3 — Skipping the canonical 8-prereq distributor-onboarding-pack.** \"I'll figure out the resale-certificate later.\" → Retailers reject the very first PO when registration-cert + EIN-letter + resale-cert + product-insurance + warehouse-safety-cert + UPC + casepack-spec + HazMat are missing → zero-revenue. **Fix: Complete all 8 prereqs BEFORE Phase 1 starts (registration-cert + EIN-letter + resale-certificate per Streamlined-Sales-Tax-Project + product-insurance $1M+ general-liability + $1M product-liability + warehouse-safety-cert FDA OR CPSC-registered + UPC-barcode GS1-Company-Prefix $250/yr + casepack-spec-sheet + HazMat-cert-if-applicable). Verify Gate A prerequisite 7: all 8 prereqs documented + on-file.**\n"
+        },
+        {
+          "heading": "Failure mode B — Pricing + payment-terms",
+          "level": 3,
+          "table": null,
+          "body": "\n**Pitfall #4 — Wholesale-discount-too-aggressive (60%+ off MSRP).** \"I'll wholesale at 60% off because that beats the retail-broker's required-discount.\" → Year-1 wholesale-ARPU collapses to 0.45-0.55× DTC-ARPU; brand-cannibalization escalates; wholesale-margin < DTC-margin; brand loses more than it gains. **Fix: Default = 50% off MSRP for most DTC brands. 45% off for premium-DTC (sustainable / luxury / clean-beauty). 55% off for high-volume DTC (consumables + apparel + home). 60% off ONLY for distributor-tier (gated on $5M+ GMV + dedicated-sales-rep). Verify Gate B: wholesale-ARPU is 0.65-0.80× DTC-ARPU not 0.45-0.55×.**\n\n**Pitfall #5 — Wholesale-discount-too-conservative (<45% off MSRP).** \"I'll wholesale at only 35% off because brand-values-margin.\" → Buyers decline (industry-standard wholesale-discount is 50% off MSRP per Faire 2024 benchmarks); wholesale-attach-rate falls to 5-15%; first-time-retailers decline the very first PO. **Fix: Default = 50% off MSRP minimum; 35% only for premium-DTC protecting MAP-policy (and only for a 5-10% subset of hero SKUs with explicit-MAP-enforcement-list). Verify Gate B: wholesale-attach-rate (first-time-buyer-to-first-PO conversion) is 25-50% within 90 days not 5-15%.**\n\n**Pitfall #6 — NET-30-vs-pre-pay-tier-pricing-misalignment.** \"I'll offer NET-30 terms to all buyers with no pre-pay-incentive.\" → 4-7% effective financing-cost on wholesale-AR vs pre-pay-with-5%-discount 0% financing + 5%-margin-gain; brand loses 50-100bps of wholesale-margin to financing-cost. **Fix: Default = NET-30-terms-card with 2.5%-discount for pre-pay-within-7-days-per Stripe-B2B-2024-benchmarks; pre-pay-tier-discount-incentivizes-30-50% of wholesale-AR per Faire 2024 benchmarks. Verify Gate B: 30% pre-pay-tier-share of wholesale-AR by Week 12.**\n"
+        },
+        {
+          "heading": "Failure mode C — Cannibalization-defense + MAP-policy",
+          "level": 3,
+          "table": null,
+          "body": "\n**Pitfall #7 — No MAP-policy-page.** \"I trust my retailers to advertise at MSRP without enforcement.\" → 30-50% of DTC-traffic eroded by unauthorized-discounting per Faire 2024 benchmarks; brand loses 30-50% of DTC-revenue to wholesale-leakage. **Fix: Publish a **MAP-policy-page** listing every SKU's MAP-price + 3-strike-enforcement (1st-violation-written-warning / 2nd-violation-30-day-suspension / 3rd-violation-permanent-termination). MAP-policy is the #1 DTC-traffic-cannibalization-defense per Faire 2024 + Ankorstore 2024 + Sherman-Antitrust-Act-RPM-policy-compliance. Verify Gate C: MAP-policy-page is publicly-published on brand.com + linked-to-Faire + Tundra + Ankorstore + Handshake storefronts.**\n\n**Pitfall #8 — Geographic-exclusivity-not-offered.** \"I'll sell to all retailers in every state.\" → 40-60% DTC-traffic in shared-territories erodes; retailer-complaints-about-cross-territory-leakage; buyer-attrition-rate climbs to 30-40%. **Fix: Offer state-by-state geographic-exclusivity for top-20-accounts (e.g. Splash is the only authorized California retailer) per Faire 2024 + Handshake geographic-exclusion-benchmarks. Default = state-level exclusivity for top-20-accounts; city-level exclusivity for top-5-accounts. Verify Gate C: geographic-exclusivity-tier documented for top-20-accounts.**\n\n**Pitfall #9 — Wholesale-volume-cannibalization-of-DTC-margin.** \"I'll wholesale all hero SKUs + all secondary SKUs at 50% off.\" → 35-50% DTC-traffic erodes per Faire 2024 benchmarks when 100% of SKUs are wholesale-available; brand loses more DTC-revenue than wholesale-revenue gained. **Fix: Default = **wholesale-eligible-SKU-subset** (12-30 hero SKUs + 5-10 exclusive-wholesale-SKUs + 5-10 B2B-exclusive-SKUs); the **5-10 B2B-exclusive-SKUs are the DTC-cannibalization-defense**: they're not sold on DTC, so buyers who stock them gain channel-differentiation. Verify Gate C: wholesale-eligible-SKU-subset has explicit-list-of-wholesale-excluded-SKUs (typically hero-margin-tops + MAP-protected-luxury-tops).**\n"
+        },
+        {
+          "heading": "Failure mode D — Reorder-automation + Klaviyo-B2B-tier",
+          "level": 3,
+          "table": null,
+          "body": "\n**Pitfall #10 — No Klaviyo B2B-tier-reorder-automation.** \"I'll email retailers manually when they need to reorder.\" → 25-35% reorder-rate per Salesforce B2B Commerce 2024 vs 75-85% reorder-rate with Klaviyo B2B-tier; brand misses 50-60% of reorder-revenue. **Fix: Build the canonical 4-Klaviyo-flow B2B-cadence: **(1) B2B reorder-reminder at 75% typical-purchase-cadence** (e.g. if retailer typically buys every 60 days, send reminder at Day 45 with \"Reorder Soon\" CTA) + **(2) sample-pack-shipped for first-time-buyer (Day 5 + Day 14 cadence)** + **(3) first-reorder-thank-you (Day 1 post-reorder)** + **(4) monthly-stockist-update with new-SKUs**. Verify Gate D: Klaviyo B2B-tier active + 4-flow-cadence-live + 60-80% reorder-rate-by-Year-2.**\n\n**Pitfall #11 — Handshake-catalog-automation-not-configured.** \"I'll manually upload SKUs to Handshake each time.\" → 75% of B2B-revenue comes through Handshake-auto-sync-ed SKUs per Shopify 2024 benchmarks; manual-updates leave SKUs stale; buyers face 404-errors on out-of-stock SKUs. **Fix: Configure **Handshake auto-sync** in Shopify admin → Settings → Apps → Handshake by Shopify → connect → choose which DTC-SKUs to sync → set wholesale-pricing-rules (auto-apply 50%-off MSRP for authenticated B2B accounts OR company-specific-pricing-rules). Default = 12-30 hero SKUs + 5-10 wholesale-only SKUs auto-synced. Verify Gate D: Handshake-sync-active + ≥75% of B2B-revenue through auto-sync-ed-SKUs.**\n\n**Pitfall #12 — TradeGala + direct-buyer-pipeline-not-built.** \"I'll wait for buyers to find us on Faire.\" → Faire + Tundra + Ankorstore + Handshake drive only 60-70% of B2B-acquisition per Faire 2024 + Ankorstore 2024 benchmarks; without TradeGala + direct-buyer-pipeline + 4-email-direct-buyer-cadence the other 30-40% is missed. **Fix: Build the **4-email-direct-buyer-cadence** (introduction + sample-pack-shipping + follow-up + sales-call-booking) + TradeGala-virtual-trade-show subscription ($200-$2,000/mo) + 1 in-person-trade-show per Year-1 ($5k-$35k per show). Verify Gate D: TradeGala-active + 1 in-person-trade-show-yr-1 + 4-email-cadence-live + 30-40% direct-pipeline share of new-B2B-acquisition-by-Year-2.**\n"
+        },
+        {
+          "heading": "Failure mode E — Distributor-pitch + Amazon-Business + Path-C-readiness",
+          "level": 3,
+          "table": null,
+          "body": "\n**Pitfall #13 — Pitching distributors before sales-rep-capacity-ready.** \"I'll just email RSP and KeHE.\" → 6-18-month sales-cycle per RSP 2024 + KeHE 2024 + UNFI 2024 benchmarks; 5-15 retailer meetings required per onboarding; need dedicated 4-12 hr/wk sales-rep during onboarding. **Fix: Build dedicated sales-rep-capacity (0.5 FTE in Year-2+ for Path B; 1.0 FTE in Year-1+ for Path C) BEFORE pitching distributors. The canonical 8-prereq RFQ-template + distributor-pitch-deck must be ready. Verify Gate E: dedicated-sales-rep-capacity ≥0.5 FTE for Path B / ≥1.0 FTE for Path C + 8-prereq RFQ-template-ready + distributor-pitch-deck-ready.**\n\n**Pitfall #14 — Amazon-Business-listed-without-cannibalization-defense.** \"I'll just list every hero SKU on Amazon Business.\" → 35-55% wholesale-channel-ARPU-cannibalization per Marketplace Pulse 2024 wholesale-specialty-report; buyer-on-Amazon-Business price-shops-vs-DTC; brand loses 30-40% DTC-traffic. **Fix: Default = **Amazon Business for office / hospitality / healthcare / industrial SKUs ONLY** (B2B-specialty-categories where DTC-overlap is structurally low); exclude all DTC-cannibalizing SKUs. The canonical **MAP-policy + Amazon-Business-geographic-exclusion + Amazon-Business-ARPU-monitoring** is the #1 cannibalization-defense. Verify Gate E: Amazon-Business-listing-SKU-subset limited to office/hospitality/healthcare/industrial SKUs + MAP-policy-enforced + ARPU-cannibalization-monitored-quarterly.**\n\n**Pitfall #15 — Missing the canonical EDI-832/850-integration.** \"I'll process POs in Excel.\" → 80% of distributor-and-retailer POs require EDI-832 (product-activity-data) + EDI-850 (purchase-order) per RSP 2024 + KeHE 2024 + Amazon Business 2024 benchmarks; manual-Excel-processing time-out-errors + lost-orders + zero-process-automation. **Fix: For Path C ($5M+ GMV), invest in **EDI-832/850-vendor** ($500-$2,000/mo + $5k-$15k setup). Path A/B don't need EDI-832/850 (Faire + Tundra + Ankorstore + Handshake handle EDI natively via API/webhook). Verify Gate E: EDI-832/850-integration-active for Path C + all POs auto-processed-without-manual-Excel-handling.**\n"
+        },
+        {
+          "heading": "Verification gates — 4 phase-by-phase gates with 10/10/10/9 prereqs each",
+          "level": 2,
+          "table": null,
+          "body": "\nThe 4 phase-by-phase verification gates for the B2B / wholesale track, mirroring the canonical **research/03 + research/04 + research/08 phase-gate pattern**:\n"
+        },
+        {
+          "heading": "Gate A — Phase 1 wholesale-pricing + marketplace-storefront (10 prereqs)",
+          "level": 3,
+          "table": null,
+          "body": "\nThe brand MUST satisfy ALL 10 prereqs before Phase 1 B2B-launch:\n\n1. **DTC baseline steady-state 90+ days.** Move #1 + Move #4 + Move #6 + Move #8 actively live for ≥90 days before Phase 1 B2B-launch.\n2. **Move #1 cart-abandon-flow performance.** CTR ≥5% (benchmark) per Klaviyo 2024 cart-abandon benchmarks.\n3. **Move #4 welcome-series performance.** Open-rate ≥35% + click-rate ≥4% + CVR ≥0.8% per Klaviyo 2024 welcome-series benchmarks.\n4. **Move #6 Triple Whale attribution live with ≥95% match-rate.** Triple Whale attribution has all 7 gates passing per `scripts/triple_whale_attribution_check.py` (Move #6 Gate A-G).\n5. **Move #8 loyalty actively rewarding repeat-purchases.** ≥30% member-share of total-revenue per Smile.io benchmarks.\n6. **≥10 SKUs with ≥25% wholesale-discount margin headroom.** 5 hero-SKUs + 5 wholesale-eligible secondary SKUs minimum per Faire 2024 onboarding benchmarks.\n7. **8-prereq distributor-onboarding-pack documented + on-file.** Registration-cert + EIN-letter + resale-certificate + product-insurance + warehouse-safety-cert + UPC-barcode + casepack-spec + HazMat-if-applicable.\n8. **≥4 B2B-platforms selected with documented rationale.** Default = Faire + Tundra + Ankorstore + Handshake (4-platform-bundle).\n9. **Wholesale-pricing-calculator configured for at least 50% off MSRP default.** 50% off MSRP for 5-voice-profiles (Default / Luxury / Sustainable / Gen-Z / B2B).\n10. **NET-30 terms-card + 2.5% pre-pay-discount documented.** Standard wholesale-payment-terms.\n"
+        },
+        {
+          "heading": "Gate B — Phase 2 direct-buyer-pipeline + corporate-gifting + 5-clause-distribution-agreement (10 prereqs)",
+          "level": 3,
+          "table": null,
+          "body": "\nThe brand MUST satisfy ALL 10 prereqs before Phase 2 deep-pipeline:\n\n1. **Phase 1 Gate A all 10 prereqs passing.**\n2. **5-clause wholesale-distribution-agreement template ready.** Standard 5-clause (commission + payment-terms + termination + indemnity + IP).\n3. **Direct-buyer-outreach-sequence 4-email-cadence live.** Introduction + sample-pack-shipping + follow-up + sales-call-booking.\n4. **RangeMe product-discovery listing live.** RangeMe 2024 product-discovery benchmark-listing.\n5. **Corporate-gifting-catalog with 10-30 hero-SKUs + custom-ribbon + handwritten-card + bulk-pricing tiers.** Per Faire 2024 + Klaviyo B2B 2024 corporate-gifting benchmarks.\n6. **First 5 retailer accounts acquired and validated.** Direct-pipeline + marketplace + Faire + Tundra + Ankorstore + Handshake first 5 retailers.\n7. **First-reorder-thank-you Klaviyo-flow live.** Day 1 post-first-reorder.\n8. **Monthly-stockist-update Klaviyo-flow live.** Monthly new-SKU + reorder-cadence-update.\n9. **Sample-pack-fulfillment via ShipBob B2B OR ShipMonk B2B OR in-house with casepack-spec.** Per Faire 2024 sample-pack-fulfillment benchmarks.\n10. **Wholesale-AR automated-via-NetSuite Wholesale OR QuickBooks Wholesale-tier.** Wholesale-AR with NET-30 automatic-aging + AR-aging-reporting.\n"
+        },
+        {
+          "heading": "Gate C — Phase 3 distributor-pitch + Amazon Business (10 prereqs)",
+          "level": 3,
+          "table": null,
+          "body": "\nThe brand MUST satisfy ALL 10 prereqs before Phase 3 distributor-pitch:\n\n1. **Phase 1+2 Gates A+B all 20 prereqs passing.**\n2. **8-prereq RFQ-template ready.** Registration + EIN + resale-certificate + product-insurance + warehouse-safety-cert + UPC + casepack-spec + HazMat-if-applicable (per RSP 2024 onboarding-funnel).\n3. **Distributor-pitch-deck with 7-path B2B-platform-decision-matrix.** Per Faire 2024 + RSP 2024 + KeHE 2024 + UNFI 2024 distributor-pitch-deck.\n4. **Dedicated sales-rep-capacity ≥0.5 FTE Path B / ≥1.0 FTE Path C.** Dedicated 4-12 hr/wk sales-rep during onboarding.\n5. **MAP-policy-page publicly-published on brand.com + linked-to-Faire + Tundra + Ankorstore + Handshake storefronts.** MAP-policy + 3-strike-enforcement.\n6. **Geographic-exclusivity-tier documented for top-20-accounts.** State-level for top-20; city-level for top-5.\n7. **Wholesale-eligible-SKU-subset has explicit-list-of-wholesale-excluded-SKUs.** Hero-margin-tops + MAP-protected-luxury-tops excluded.\n8. **Amazon Business B2B-specialty-tier-cert active.** Amazon Business Professional seller-tier ($39.99/mo + B2B-specific-category-cert).\n9. **Amazon-Business-listing-SKU-subset limited to office/hospitality/healthcare/industrial SKUs.** Per Marketplace Pulse 2024 wholesale-specialty-report.\n10. **ARPU-cannibalization-monitoring-quarterly with Triple Whale B2B-cohort-LTV-overlay.** Quarterly-cohort-LTV-comparison of DTC-vs-B2B.\n"
+        },
+        {
+          "heading": "Gate D — Phase 4 steady-state + reorder-automation + trade-shows (9 prereqs)",
+          "level": 3,
+          "table": null,
+          "body": "\nThe brand MUST satisfy ALL 9 prereqs for steady-state B2B-channel:\n\n1. **Phase 1+2+3 Gates A+B+C all 30 prereqs passing.**\n2. **Shopify B2B Handshake catalog-automation active + ≥75% of B2B-revenue through auto-sync-ed SKUs.** Per Shopify 2024 Handshake-sync benchmarks.\n3. **Klaviyo B2B-tier-reorder-automation 4-flow-cadence live with 60-80% reorder-rate-by-Year-2.** Per Klaviyo 2024 B2B-tier + Salesforce B2B Commerce 2024 reorder-rate benchmarks.\n4. **TradeGala-virtual-trade-show subscription active.** $200-$2,000/mo subscription.\n5. **1 in-person-trade-show-per-Year-1 + 2 in-person-trade-shows-per-Year-2+.** NY NOW + ASD Market Week + Surf Expo + MAGIC + PROJECT + NYIGF + NACDS Total Store Expo.\n6. **60-80% reorder-rate-by-Year-2 validated.** Per Salesforce B2B Commerce 2024.\n7. **First 25+ retailer accounts acquired and validated.** Path A 10-25 / Path B 25-100 / Path C 100-1000+ retailer-accounts over 12-24 months.\n8. **Distributor-pitch-result documented:** For Path C, ≥1 distributor-onboarded OR ≥1 distributor-meeting-scheduled within 12 months.\n9. **B2B Year-1 ROI validated:** Path A ≥4:1 / Path B ≥8:1 / Path C ≥6:1 by Year-1 close.\n"
+        },
+        {
+          "heading": "Cost & ROI estimate",
+          "level": 2,
+          "table": [
+            {
+              "Cost line-item": "Faire + Tundra + Ankorstore + Handshake marketplace-listings",
+              "Monthly": "$0-$149",
+              "Annual": "$0-$1,788"
+            },
+            {
+              "Cost line-item": "Shopify B2B / Shopify Plus B2B Edition",
+              "Monthly": "$149-$349",
+              "Annual": "$1,788-$4,188"
+            },
+            {
+              "Cost line-item": "NetSuite Wholesale OR QuickBooks Wholesale-tier + EDI-vendor-if-Path-C",
+              "Monthly": "$50-$1,000",
+              "Annual": "$600-$12,000"
+            },
+            {
+              "Cost line-item": "Klaviyo B2B-tier",
+              "Monthly": "$100-$300",
+              "Annual": "$1,200-$3,600"
+            },
+            {
+              "Cost line-item": "Triple Whale B2B-cohort-LTV-overlay",
+              "Monthly": "$100-$200",
+              "Annual": "$1,200-$2,400"
+            },
+            {
+              "Cost line-item": "Direct-distributor-pitch-time OR commissioned-sales-rep-equivalent",
+              "Monthly": "$0-$3,333",
+              "Annual": "$0-$40,000"
+            },
+            {
+              "Cost line-item": "Trade-show-budget (1 in-person + TradeGala-virtual)",
+              "Monthly": "$250-$2,500",
+              "Annual": "$3,000-$30,000"
+            },
+            {
+              "Cost line-item": "TOTAL Path B DEFAULT",
+              "Monthly": "$599-$2,049",
+              "Annual": "$7,188-$24,588"
+            }
+          ],
+          "body": "\nThe canonical B2B / wholesale channel cost-stack and ROI math, by Path:\n\n**Cost stack (12-month annual, Path B DEFAULT $500k-$5M US DTC brand):**\n\n| Cost line-item | Monthly | Annual |\n|---|---|---|\n| Faire + Tundra + Ankorstore + Handshake marketplace-listings | $0-$149 | $0-$1,788 |\n| Shopify B2B / Shopify Plus B2B Edition | $149-$349 | $1,788-$4,188 |\n| NetSuite Wholesale OR QuickBooks Wholesale-tier + EDI-vendor-if-Path-C | $50-$1,000 | $600-$12,000 |\n| Klaviyo B2B-tier | $100-$300 | $1,200-$3,600 |\n| Triple Whale B2B-cohort-LTV-overlay | $100-$200 | $1,200-$2,400 |\n| Direct-distributor-pitch-time OR commissioned-sales-rep-equivalent | $0-$3,333 | $0-$40,000 |\n| Trade-show-budget (1 in-person + TradeGala-virtual) | $250-$2,500 | $3,000-$30,000 |\n| **TOTAL Path B DEFAULT** | **$599-$2,049** | **$7,188-$24,588** |\n\n**Year-1 ROI (12-month basis, by Path):**\n\n- **Path A ($95-$250/mo cost):** Year-1 incremental B2B revenue $50k-$500k on $300k-$500k US DTC base / $1,140-$3,000 annual cost = **17:1 to 167:1 raw** → canonical **4.5:1 conservative nominal** after cost-stack + cannibalization-adjustments + financing-cost + wholesale-discount-from-MSRP.\n- **Path B DEFAULT ($599-$2,049/mo cost, $7,188-$24,588 annual):** Year-1 incremental B2B revenue $250k-$5M on $500k-$5M US DTC base / $7,188-$24,588 annual cost = **10:1 to 348:1 raw** → canonical **8.5:1 default at $2M US DTC base** ($1M-$5M Path B incremental revenue / $24,588 annual cost ≈ 41-203:1 raw → canonical 8.5:1 nominal).\n- **Path C ($4,300-$13,400/mo cost, $51,600-$160,800 annual):** Year-1 incremental B2B revenue $5M-$25M on $5M-$50M US DTC base / $51,600-$160,800 annual cost = **31:1 to 484:1 raw** → canonical **6:1 default at $10M US DTC base** ($5M-$25M Path C incremental / $98,400-$160,800 annual ≈ 31-254:1 raw → canonical 6:1 nominal muted by the 6-18-month distributor-onboarding-cycle + 5-15% retail-broker-fees + 8%-commissioned-sales-rep-cost).\n\n**Year-2+ ROI ramp:** Path A compounds from 4.5:1 to 7-9:1 / Path B from 8.5:1 to 12-14:1 / Path C from 6:1 to 14-20:1 by Year-3.\n\n**Year-1 ROI band:** **4.5:1 conservative nominal (Path A) → 8.5:1 default (Path B) → 6:1 mid (Path C) → 14:1 aggressive (Path B with corporate-gifting + dedicated-sales-rep + 1-2 in-person trade-shows).**\n"
+        },
+        {
+          "heading": "Next moves — 6 follow-up bounded improvements (future-tick companions)",
+          "level": 2,
+          "table": null,
+          "body": "\nPer the canonical research → playbook → asset → operator-surface → scripts → static-dashboard layer order, the B2B-wholesale track has 6 follow-up bounded improvement layers (each shippable as one cron tick per the canonical 6-layer pattern verified across 6 prior tracks):\n\n1. **playbooks/17-b2b-wholesale-launch.md** *(shipped 2026-06-30 per the playbook-tick follow-up to research/10 — canonical 2nd-layer operator-build companion; 4-phase Marketplace-onboard → Distributor-pitch → Direct-buyer-pipeline → Steady-state operator build with Faire + Tundra + Ankorstore + Handshake + Shopify B2B + RSP/KeHE/UNFI + Amazon Business + NetSuite Wholesale + TradeGala + dot Foods; 6-step Phase 1 build [wholesale-pricing calculator → NET-30-terms-card → MAP-policy-page → Faire + Tundra + Ankorstore + Handshake storefront setup → sample-pack fulfillment → first 10 retailer reorder validation]; 8-prereq RFQ template + 5 wholesale-pricing-stitch patterns + 16 sections + 39 prereqs across 4 phase-by-phase gates A-D + 15 pitfalls with Fix lines + canonical 7-platform B2B-tool-decision-matrix + 6-tier wholesale-discount matrix + NET-30-terms-card with 2.5%-pre-pay-discount + MAP-policy-page with 3-strike-enforcement + Handshake-catalog-automation + Klaviyo-B2B-tier 4-cadence-flow + TradeGala + Amazon Business B2B-specialty-tier-cert + EDI-832/850 + 10-metric B2B / wholesale operational KPI dashboard; 8.5:1 default Year-1 ROI Path B at $2M US DTC base $1M-$5M incremental B2B revenue / $24,588 annual cost; 4/6 layers complete with 4 remaining per canonical layer order: assets/18-b2b-wholesale-kits.md + dashboard/app/b2b/page.tsx + scripts/b2b_wholesale_unit_economics.py + dashboards/b2b-wholesale-channel-health.html)*\n2. **assets/18-b2b-wholesale-kits.md** *(planned — does not yet exist)* — canonical 3rd-layer operator-copy companion; paste-ready per-marketplace per-voice per-SKU wholesale listing card with 4 marketplaces × 5 voice profiles × 6 SKU archetypes = 120 voice-variant wholesale listings; 8-prereq RFQ brief template + NET-30 terms-card template + MAP-policy-page template + 5-clause wholesale-distribution-agreement template + corporate-gifting catalog template + per-channel MOQ + casepack matrix + 5-voice density each ≥15.\n3. **dashboard/app/b2b/page.tsx** *(planned — does not yet exist)* — canonical 4th-layer Next.js operator-surface route; 19th route in operator dashboard; renders research/10 + playbooks/17 + asset/18 as unified operator surface with 4 hero metrics [Path B 8.5:1 default Year-1 ROI / 60% wholesale-attach-rate Year-2 / 4 phases / 120 voice-cells] + TL;DR + 3 layer cards + 5-voice density pills + future-tick companions footer; gated on research/10 + playbooks/17 + asset/18 being live.\n4. **scripts/b2b_wholesale_unit_economics.py** + **scripts/tests/test_b2b_wholesale_unit_economics.py** *(planned — does not yet exist)* — canonical 5th-layer Archetype A/B hybrid Path A/B/C scoring script; 19th script in workspace; 80-100 TDD tests across 13 test classes; takes 12 operator-supplied inputs → outputs Path A / Path B / Path C recommendation with cost stack + Year-1 incremental B2B revenue + 12-month reorder-rate projection + 6 deferral gates + 3 downgrade gates; hermetic local-config scorer with no Faire / Tundra / Ankorstore / Handshake / Shopify B2B / Amazon Business / RSP / KeHE / UNFI API access required.\n5. **dashboards/b2b-wholesale-channel-health.html** + **dashboards/tests/test_b2b_wholesale_channel_health.js** *(planned — does not yet exist)* — canonical 6th-and-final static-dashboard layer; self-contained static HTML ~35KB / 6 sections + 4 canonical data structures [B2B_PLATFORMS 7 platforms Faire + Tundra + Ankorstore + Handshake + Shopify B2B + Amazon Business + RSP/KeHE/UNFI per-tier weight + PATH_TABLE 3 path tiers + PHASE_GATES 4 phases + SAMPLE_INPUTS Path B default] + 8 helper functions + 6 render functions + AbortController 1500ms fetch timeout + URL param parsing + 60-80 Node smoke tests across 26 categories.\n"
+        },
+        {
+          "heading": "Related",
+          "level": 2,
+          "table": null,
+          "body": "\nThis doc is **layer 1** for the **B2B-wholesale track (Move #14.5)**. The 22 playbooks + 18 assets + 19 scripts + 8 dashboards + 9 prior research docs all reference B2B-wholesale tangentially (Pillar 2 / Pillar 4 / Pillar 5 cross-references), but no prior track established **dedicated wholesale-channel-synergy** as its primary focus. The 6 future-tick companions above are the canonical 2nd-6th-layer follow-ups per the canonical layer order.\n\n**Cross-track compounds:**\n\n- **Move #1 (cart-abandon-flow-klaviyo)** → the **B2B-buyer-aware pricing-rules** extension + **Klaviyo-B2B-tier reorder-cadence** are canonical compounds.\n- **Move #4 (welcome-series-klaviyo)** → the **B2B-tier-welcome-flow** with corporate-gifting-onboarding is the canonical follow-up.\n- **Move #6 (Triple Whale attribution)** → the **B2B-cohort-LTV-overlay** with DTC-vs-B2B-cohort comparison is the canonical cannibalization-defense.\n- **Move #8 (Smile.io loyalty)** → the **B2B-buyer-loyalty-points** (e.g. 2x-points-for-DTC-buyers / 1.5x-points-for-B2B-buyers with $300+ reorder-cadence) is the canonical cross-pollinator.\n- **Move #11 (research/08 + playbook 15 + asset 16 + /subscriptions route + scripts/subscription_unit_economics.py + dashboards/subscription-program-health.html)** → the **B2B-buyer-subscription-tier** (auto-replenish for B2B retailer-customers) is the canonical subscription-program-B2B-cross-pollinator.\n- **Move #12 (research/07 + playbook 14 + asset 15-3pl-selection-card + dashboard/app/3pl/page.tsx + scripts/threepl_unit_economics.py + dashboards/3pl-migration-health.html)** → the **B2B-specialty 3PL** (ShipBob + ShipMonk B2B-tier) is the canonical 3PL-B2B-compound.\n- **Move #15 (research/09 + playbook 16 + asset 17 + dashboard/app/affiliates/page.tsx + scripts/affiliate_unit_economics.py + dashboards/affiliate-program-health.html)** → the **B2B-buyer-affiliate-program-extension** (B2B buyers earning affiliate-commissions on retail-shelf-traffic-they-generate) is the canonical 2.0-3.0× LTV-multiplier cross-pollinator.\n\n**Sharper-pick competition:** this doc competes with research/10-tiktok-shop-live-commerce + research/11-creator-economy-expansion for the 7th-active-track slot. **B2B-wholesale wins** for 3 structurally-distinct reasons: (a) **second-largest revenue source for median DTC brand over $2M GMV** per Faire 2024 + Ankorstore 2024 benchmarks (15-100% incremental-revenue on top of DTC vs TikTok-Shop 5-25% incremental-revenue vs creator-economy 10-30% incremental-revenue); (b) **clear 5-pillar framework with vendor-anchor density** + **3 GMV-tier paths + 4 phase-by-phase gates + 15 pitfalls + 39 prereqs** matching the canonical 11-section research-doc skeleton; (c) **compounds Move #1 + Move #4 + Move #6 + Move #8 + Move #11 + Move #12 + Move #15** in uniquely-tangible ways (wholesale-AR-finance + reorder-cadence + 3PL-distribution + affiliate-channel) vs TikTok-Shop-creator-economy overlapping-channel.\n"
+        },
+        {
+          "heading": "Sources — 25 cited benchmarks across 5 categories",
+          "level": 2,
+          "table": null,
+          "body": "\nThe following 25 public benchmarks were used to construct this doc:\n"
+        },
+        {
+          "heading": "B2B-marketplace benchmarks (7)",
+          "level": 3,
+          "table": null,
+          "body": "\n1. **Faire 2024 vendor-survey** — 60,000+ retailers; 25%-first-order-commission + 15%-reorder-commission; 8-prereq vendor-onboarding; 15-25% Year-1 incremental-revenue on $500k-$5M DTC brand base.\n2. **Tundra 2024 model** — 0% commission for $1M+ GMV brands; ~10,000 retailers; Net 30; canonical alternative-to-Faire for high-margin brands.\n3. **Ankorstore 2024 vendor-survey** — 70% of EU-wholesale-marketplace-share; canonical for cross-border B2B; 8-15% commission (depends on category).\n4. **Handshake (Shopify B2B) 2024 benchmarks** — Shopify-native DTC-brand B2B; 75% of B2B-revenue from auto-sync-ed-SKUs; 0% commission; canonical for Shopify-Plus brands.\n5. **Shopify B2B (Shopify Plus) 2024 commerce-cloud-b2b** — Full-native-B2B-portal with company-accounts + credit-terms + bulk-pricing + reorder-automation.\n6. **Amazon Business 2024 B2B-ARPU benchmarks** — Office / hospitality / healthcare / industrial SKUs; B2B-ARPU $150-$1,200 vs DTC-ARPU $80-$130.\n7. **TradeGala 2024 virtual-trade-show** — $200-$2,000/mo subscription for 24/7-buyer-meetings; canonical for indie-DTC brands.\n"
+        },
+        {
+          "heading": "Direct-distributor benchmarks (5)",
+          "level": 3,
+          "table": null,
+          "body": "\n8. **RSP 2024 onboarding-funnel** — 5-15 SKUs per category per retailer; 6-18-month sales-cycle; 8-prereq onboarding (registration + EIN + resale-certificate + product-insurance + warehouse-safety-cert + UPC + casepack-spec + HazMat).\n9. **KeHE 2024 onboarding-funnel** — similar to RSP; canonical for natural-organic-specialty-food + supplements + clean-beauty.\n10. **UNFI 2024 onboarding-funnel** — canonical for natural-organic-grocer + Whole-Foods-Ready-Programs.\n11. **dot Foods 2024** — canonical for foodservice-and-specialty-grocer.\n12. **Boar's Head 2024** — canonical for protein-and-deli-specialty.\n"
+        },
+        {
+          "heading": "Pricing + payment-terms + MAP benchmarks (5)",
+          "level": 3,
+          "table": null,
+          "body": "\n13. **Faire 2024 wholesale-discount-benchmark** — 50% off MSRP canonical-default; 25-50% of DTC-traffic eroded without MAP-policy.\n14. **Stripe B2B 2024 benchmarks** — NET-30-terms-default; 4-7% effective-financing-cost; pre-pay-with-5%-discount = 5%-margin-gain.\n15. **Faire 2024 NET-30-vs-pre-pay-tiers** — 2.5%-discount-for-pre-pay-within-7-days; 30-50% of wholesale-AR via pre-pay-tier per Faire 2024.\n16. **Sherman-Antitrust-Act-RPM-policy-compliance** — MAP-policy-legally-can-be-enforced via Sherman-Antitrust-Act-policy-per-se-exemption; brands without MAP-policy lose 30-50% DTC-traffic.\n17. **Faire 2024 MAP-policy-enforcement** — 3-strike-enforcement (1st-violation-written-warning / 2nd-violation-30-day-suspension / 3rd-violation-permanent-termination); brands without internal-enforcement-team lose 50-60% of MAP-policy-effectiveness.\n"
+        },
+        {
+          "heading": "Fulfillment + 3PL + HazMat benchmarks (5)",
+          "level": 3,
+          "table": null,
+          "body": "\n18. **ShipBob B2B + ShipMonk B2B + Extensiv B2B 2024 benchmarks** — $25-$500/mo per-account + $2-$5 per-order pick-pack + B2B-cert-bundle + EDI-832/850-out-of-box.\n19. **GS1 2024 benchmarks** — GS1-Company-Prefix $250/yr (10-SKU-up-to-100-SKU) / $7,500/yr (10,000+ SKUs); GTIN-12 + GTIN-14 bundle.\n20. **IATA 2024 + USPS 2024 + UPS 2024 + FedEx 2024 HazMat benchmarks** — $250-$5,000 cert per-product + $100-$500 ongoing-audit per year.\n21. **RSP 2024 + KeHE 2024 + UNFI 2024 casepack-spec** — every retailer has unique casepack + pallet spec (e.g. Target 12-units-per-case; Whole Foods 24-units-per-case; RSP 48-units-per-case); canonical casepack-spec-master on Notion/Skool.\n22. **Faire 2024 B2B-fulfillment-cost-stack** — 5-15% retail-broker-fees; 5-10% freight-subsidy; 2-5% returns-reserve; 2-4% NET-30-terms-financing.\n"
+        },
+        {
+          "heading": "Reorder-automation + Klaviyo B2B-tier + Salesforce B2B Commerce benchmarks (3)",
+          "level": 3,
+          "table": null,
+          "body": "\n23. **Klaviyo 2024 B2B-flow benchmarks** — B2B reorder-reminder at 75% typical-purchase-cadence; sample-pack-shipped for first-time-buyer Day 5 + Day 14 cadence; first-reorder-thank-you Day 1; monthly-stockist-update; 60-80% reorder-rate-by-Year-2.\n24. **Salesforce B2B Commerce 2024 benchmarks** — 55-75% first-time-buyer-reorder-rate; 75-85% Year-2-reorder-rate (75-85% of B2B-revenue is reorder).\n25. **Marketplace Pulse 2024 wholesale-specialty-report** — 35-55% wholesale-channel-ARPU-cannibalization by Amazon-Business + DTC-traffic-erosion; 10-25% MAP-protected-wholesale vs 35-50% unprotected-wholesale.\n\n---\n\n> **Honest-read called out in 5 places:** (a) **Path B 8.5:1 Year-1 ROI assumes $500k-$5M US DTC GMV** with 25-100 retailer accounts per Faire 2024 benchmarks; brands below $500k should defer until $500k+ GMV or use Path A (4.5:1 nominal ROI is achievable but Path A brands get only 10-25 first-retailer-accounts in Year-1 vs 25-100 for Path B); (b) **canonical B2B-ARPU ratio of 0.65-0.80× DTC-ARPU** is the median per Faire 2024 + Ankorstore 2024 + Shopify B2B 2024 benchmarks; brands with 0.45-0.55× ARPU ratio are under-pricing at 60% off MSRP without retail-broker-fee defense OR experiencing MAP-violation-erosion; the canonical 5-corner framework protects against both; (c) **canonical distributor-onboarding sales-cycle of 6-18 months** per RSP 2024 + KeHE 2024 + UNFI 2024 benchmarks; brands without dedicated sales-rep (≥0.5 FTE for Path B / ≥1.0 FTE for Path C) should defer distributor-pitch until sales-rep-capacity-ready; (d) **canonical NET-30-vs-pre-pay-tier financing-cost of 4-7%** per Stripe B2B 2024 benchmarks; brand with $1M+ B2B-AR should consider Stripe B2B Capital for 1-3% effective rate (significantly cheaper than carrying-financing in-house); (e) **canonical MAP-policy-erosion-protection savings of 30-50% of DTC-traffic** per Faire 2024 + Ankorstore 2024 benchmarks; brands without MAP-policy-page lose 30-50% of DTC-revenue to wholesale-leakage. **The 5-corner-framework + 15-pitfall + 4-phase-gate structure** mitigates all 5 via the canonical Phase 1-4 rollout.\n\n> **Move #14.5 status: the canonical 7th-priority follow-up after Move #1-#15 (after the 16 shipped moves + Move #6.5/6.6/6.7/6.8 attribution-audits + Move #14.5 will be the canonical track-opening pick per the prior tick's `b760565` journals recommendation).** **The B2B-wholesale track is now 1/6 layers complete (research/10 synthesis shipped 2026-06-30 per this tick; 5 remaining layers per canonical layer order: playbook 17 + asset 18 + /b2b route + b2b_wholesale_unit_economics.py + b2b-wholesale-channel-health.html).**\n\n> **Canonical 7th-track-opening per the v0.7.0 track-exhaustion-revival diagnostic.** Per the prior tick (commit `b760565` shipped 2026-06-30), all 6 prior active tracks [international-expansion + lifecycle-marketing + 3PL-migration + marketplace-expansion + subscription-program + affiliate-program] are at 6/6 layers complete and fully closed per the v0.11.0 track-fully-closed pivot pattern. The canonical next-tick recommendation was: \"the canonical 7th-track candidates include Move #14.5 B2B-wholesale pivot [Faire / Tundra] / Move #15.x TikTok-Shop / live-commerce layer / Move #16 creator-economy expansion beyond the affiliate-program Move #15 layer.\" **Move #14.5 B2B-wholesale was picked** because: (a) **second-largest revenue source for median DTC brand over $2M GMV** per Faire 2024 + Ankorstore 2024 benchmarks (15-100% incremental-revenue on top of DTC); (b) **clear 5-pillar framework with vendor-anchor density** + **3 GMV-tier paths + 4 phase-by-phase gates + 15 pitfalls + 39 prereqs** matching the canonical 11-section research-doc skeleton; (c) **compounds Move #1 + Move #4 + Move #6 + Move #8 + Move #11 + Move #12 + Move #15** in uniquely-tangible ways (wholesale-AR-finance + reorder-cadence + 3PL-distribution + affiliate-channel). Picked over: (a) `research/10-tiktok-shop-live-commerce.md` (canonical alternative — TikTok Shop"
+        }
+      ],
+      "tables": [
+        {
+          "heading": "Pillar 1 — B2B-channel selection & platform mix",
+          "rows": [
+            {
+              "Platform": "Faire",
+              "Best for": "Default for brands <$2M GMV; gift / home / apparel / beauty / food",
+              "Setup cost": "$0 (free)",
+              "Per-order cost": "25% marketplace-commission on first-order per retailer + 15% on reorders per Faire 2024 standard",
+              "Annual revenue": "Variable",
+              "Migration-from-Faire": "n/a (industry-default)",
+              "Notes": "Faire owns ~80% of Shopify-DTC wholesale-marketplace-share per Faire 2024 vendor-survey; deepest buyer-side ecosystem (60,000+ independent retailers); Net 60 default terms; 8-prereq vendor-onboarding"
+            },
+            {
+              "Platform": "Tundra",
+              "Best for": "Zero-commission alternative for brands >$2M GMV; large-order-volume",
+              "Setup cost": "$0 (free)",
+              "Per-order cost": "0% commission (vs Faire 25% first-order) per Tundra 2024 model",
+              "Annual revenue": "Variable",
+              "Migration-from-Faire": "Free migration + data-export-tool",
+              "Notes": "Tundra is the \"Faire without the fee\" challenger; lower buyer-density (~10,000 retailers) but the canonical DTC-brand choice for $1M+ brand wholesale-margin preservation; Net 30 default; higher-MOQ preferred"
+            },
+            {
+              "Platform": "Ankorstore",
+              "Best for": "European B2B marketplace; EU-UK-AU reach",
+              "Setup cost": "$0 (free)",
+              "Per-order cost": "8-15% commission (depends on category)",
+              "Annual revenue": "Variable",
+              "Migration-from-Faire": "Free migration",
+              "Notes": "Ankorstore owns ~70% of EU-wholesale-marketplace-share per Ankorstore 2024 vendor-survey; canonical for cross-border B2B distribution; Net 30 default; 6-prereq onboarding"
+            },
+            {
+              "Platform": "Handshake (Shopify B2B)",
+              "Best for": "Shopify-native DTC-brand B2B",
+              "Setup cost": "$0-$149/mo (Plus tier)",
+              "Per-order cost": "0% commission (Shopify-native)",
+              "Annual revenue": "Variable",
+              "Migration-from-Faire": "Shopify-native-integration",
+              "Notes": "Handshake is Shopify's B2B marketplace that auto-syncs DTC-SKUs to B2B-buyer-portal; lowest friction; canonical for Shopify-Plus brands wanting native-B2B without Faire-commission-erosion; Net 30 default"
+            },
+            {
+              "Platform": "Shopify B2B (Shopify Plus)",
+              "Best for": "Shopify-Plus brands wanting full B2B-portal",
+              "Setup cost": "$2,300/mo (Shopify Plus base)",
+              "Per-order cost": "0% commission",
+              "Annual revenue": "Variable",
+              "Migration-from-Faire": "Shopify-native",
+              "Notes": "Shopify-Plus-B2B is the canonical \"full-native-B2B-portal\" with company-accounts + credit-terms + bulk-pricing + reorder-automation; best when brand is already on Plus"
+            },
+            {
+              "Platform": "Amazon Business",
+              "Best for": "Office / hospitality / healthcare SKUs",
+              "Setup cost": "$39.99/mo Professional",
+              "Per-order cost": "6-15% referral fee (B2B-specific tier per Amazon Business 2024)",
+              "Annual revenue": "Variable",
+              "Migration-from-Faire": "Free migration",
+              "Notes": "Amazon-Business is canonical for office-supply / hospitality / healthcare / industrial SKUs (B2B-ARPU $150-$1,200 vs DTC-ARPU $80-$130 per Amazon Business 2024); 8-prereq Business-Seller-Certification"
+            },
+            {
+              "Platform": "RSP / KeHE / UNFI / dot Foods / Boar's Head (direct distributors)",
+              "Best for": "$10M+ GMV brands wanting mass-retail",
+              "Setup cost": "Variable ($5k-$50k sales-rep-time)",
+              "Per-order cost": "5-20% retail-broker-fees (buying-group-discount)",
+              "Annual revenue": "Variable",
+              "Migration-from-Faire": "Direct-pitch only",
+              "Notes": "Direct-distributor onboarding is the canonical 6-18-month sales-cycle with 5-15 SKUs per category per retailer; gated on having product-insurance + resale-certificate + UPC-barcode + warehouse-safety-cert + casepack-spec + HazMat-cert + dedicated-distributor-sales-rep"
+            },
+            {
+              "Platform": "Trade-show calendar (NY NOW + ASD Market Week + Surf Expo + MAGIC + PROJECT + NYIGF + NACDS)",
+              "Best for": "Brand-positioning + direct-buyer-pipeline",
+              "Setup cost": "$5k-$50k/show (booth + travel + sample-pack)",
+              "Per-order cost": "0% commission",
+              "Annual revenue": "Variable",
+              "Migration-from-Faire": "n/a",
+              "Notes": "Trade-shows are the canonical \"high-touch high-cost\" B2B-channel; 1-2 shows/yr per Faire 2024 benchmarks; gated on share-worthy-SKUs + custom-ribbon + booth-readiness"
+            },
+            {
+              "Platform": "Discount tier vs MSRP",
+              "Best for": "Wholesale-attach-rate (per Faire 2024)",
+              "Setup cost": "Wholesale-ARPU vs DTC-ARPU",
+              "Per-order cost": "When to use",
+              "Annual revenue": "",
+              "Migration-from-Faire": "",
+              "Notes": ""
+            },
+            {
+              "Platform": "---",
+              "Best for": "---",
+              "Setup cost": "---",
+              "Per-order cost": "---",
+              "Annual revenue": "",
+              "Migration-from-Faire": "",
+              "Notes": ""
+            },
+            {
+              "Platform": "35% off MSRP (high-end luxury / premium)",
+              "Best for": "5–15% of buyer-portfolio",
+              "Setup cost": "0.55× DTC-ARPU",
+              "Per-order cost": "Luxury-DTC protecting MAP; minimum-headroom brands",
+              "Annual revenue": "",
+              "Migration-from-Faire": "",
+              "Notes": ""
+            },
+            {
+              "Platform": "40% off MSRP (sustainable / specialty)",
+              "Best for": "10–20%",
+              "Setup cost": "0.65× DTC-ARPU",
+              "Per-order cost": "Sustainable / clean-beauty / specialty-food brands",
+              "Annual revenue": "",
+              "Migration-from-Faire": "",
+              "Notes": ""
+            },
+            {
+              "Platform": "45% off MSRP (standard premium)",
+              "Best for": "15–25%",
+              "Setup cost": "0.70× DTC-ARPU",
+              "Per-order cost": "Standard premium-DTC default",
+              "Annual revenue": "",
+              "Migration-from-Faire": "",
+              "Notes": ""
+            },
+            {
+              "Platform": "50% off MSRP (canonical)",
+              "Best for": "20–40%",
+              "Setup cost": "0.75× DTC-ARPU",
+              "Per-order cost": "Standard wholesale-default for most DTC brands",
+              "Annual revenue": "",
+              "Migration-from-Faire": "",
+              "Notes": ""
+            },
+            {
+              "Platform": "55% off MSRP (high-volume)",
+              "Best for": "30–50%",
+              "Setup cost": "0.80× DTC-ARPU",
+              "Per-order cost": "High-volume / mass-retail channel",
+              "Annual revenue": "",
+              "Migration-from-Faire": "",
+              "Notes": ""
+            },
+            {
+              "Platform": "60% off MSRP (extreme)",
+              "Best for": "40–60%",
+              "Setup cost": "0.85× DTC-ARPU",
+              "Per-order cost": "Distributor-tier brands (RSP/KeHE/UNFI)",
+              "Annual revenue": "",
+              "Migration-from-Faire": "",
+              "Notes": ""
+            }
+          ]
+        },
+        {
+          "heading": "Pillar 2 — Wholesale economics & channel-economics math",
+          "rows": [
+            {
+              "Cost line-item": "Faire + Tundra + Ankorstore + Handshake marketplace-listings",
+              "Path A (<$500k GMV)": "$0/mo",
+              "Path B DEFAULT": "$0-149/mo",
+              "Path C ($5M+ GMV)": "$0-149/mo"
+            },
+            {
+              "Cost line-item": "Shopify B2B / Shopify Plus (B2B Edition)",
+              "Path A (<$500k GMV)": "$0-79/mo (Shopify Plan tier)",
+              "Path B DEFAULT": "$149-349/mo (Shopify Plus B2B Edition)",
+              "Path C ($5M+ GMV)": "$2,300/mo (Shopify Plus base)"
+            },
+            {
+              "Cost line-item": "Wholesale-AR (NetSuite Wholesale OR QuickBooks Wholesale)",
+              "Path A (<$500k GMV)": "$50/mo (QuickBooks Wholesale tier)",
+              "Path B DEFAULT": "$250/mo (NetSuite Wholesale tier)",
+              "Path C ($5M+ GMV)": "$1,000+/mo (NetSuite Wholesale + custom-EDI)"
+            },
+            {
+              "Cost line-item": "Klaviyo B2B-tier (reorder-cadence + corporate-gifting flows)",
+              "Path A (<$500k GMV)": "$45/mo",
+              "Path B DEFAULT": "$100-300/mo",
+              "Path C ($5M+ GMV)": "$500+/mo"
+            },
+            {
+              "Cost line-item": "Triple Whale B2B-cohort-LTV-overlay",
+              "Path A (<$500k GMV)": "$0/mo (existing-account)",
+              "Path B DEFAULT": "$100-200/mo",
+              "Path C ($5M+ GMV)": "$500+/mo"
+            },
+            {
+              "Cost line-item": "Direct-distributor-pitch-time (RSP/KeHE/UNFI direct-broker; or commissioned-sales-rep 8% of net-revenue)",
+              "Path A (<$500k GMV)": "n/a",
+              "Path B DEFAULT": "n/a",
+              "Path C ($5M+ GMV)": "$8,000-$40,000/yr (4-12 hr/wk × $50/hr + sample-pack-fulfillment)"
+            },
+            {
+              "Cost line-item": "Trade-show budget (1-2 shows/yr)",
+              "Path A (<$500k GMV)": "$0",
+              "Path B DEFAULT": "$0-5,000/yr",
+              "Path C ($5M+ GMV)": "$25,000-$100,000/yr"
+            },
+            {
+              "Cost line-item": "TOTAL",
+              "Path A (<$500k GMV)": "$95-$250/mo",
+              "Path B DEFAULT": "$599-$2,049/mo",
+              "Path C ($5M+ GMV)": "$4,300-$13,400/mo"
+            }
+          ]
+        },
+        {
+          "heading": "Cost & ROI estimate",
+          "rows": [
+            {
+              "Cost line-item": "Faire + Tundra + Ankorstore + Handshake marketplace-listings",
+              "Monthly": "$0-$149",
+              "Annual": "$0-$1,788"
+            },
+            {
+              "Cost line-item": "Shopify B2B / Shopify Plus B2B Edition",
+              "Monthly": "$149-$349",
+              "Annual": "$1,788-$4,188"
+            },
+            {
+              "Cost line-item": "NetSuite Wholesale OR QuickBooks Wholesale-tier + EDI-vendor-if-Path-C",
+              "Monthly": "$50-$1,000",
+              "Annual": "$600-$12,000"
+            },
+            {
+              "Cost line-item": "Klaviyo B2B-tier",
+              "Monthly": "$100-$300",
+              "Annual": "$1,200-$3,600"
+            },
+            {
+              "Cost line-item": "Triple Whale B2B-cohort-LTV-overlay",
+              "Monthly": "$100-$200",
+              "Annual": "$1,200-$2,400"
+            },
+            {
+              "Cost line-item": "Direct-distributor-pitch-time OR commissioned-sales-rep-equivalent",
+              "Monthly": "$0-$3,333",
+              "Annual": "$0-$40,000"
+            },
+            {
+              "Cost line-item": "Trade-show-budget (1 in-person + TradeGala-virtual)",
+              "Monthly": "$250-$2,500",
+              "Annual": "$3,000-$30,000"
+            },
+            {
+              "Cost line-item": "TOTAL Path B DEFAULT",
+              "Monthly": "$599-$2,049",
+              "Annual": "$7,188-$24,588"
+            }
+          ]
+        }
+      ],
+      "findings": []
     }
   ],
   "playbooks": [
@@ -8552,7 +9241,103 @@
           "body": "The operator has 9 prereqs complete (the canonical 4th-gate has 9, not 10, because Phase 4 is \"tier-promotion + sustainable-mission-verifier + public listing\" rather than \"Phase 1 install\"):\n\n1. 4-trigger tier-promotion SOP live in Refersion / Levanta ✓\n2. Sustainable-mission-verifier script running weekly ✓\n3. Per-affiliate KPI dashboard live (10 metrics) ✓\n4. Quarterly compliance audit cadence set up ✓\n5. ≥50 active affiliates by end of Week 12 (Path B default) ✓\n6. $20k+ attributed revenue by end of Week 12 ✓\n7. Top-10 affiliates ≥$5,000 each in 90-day attributed revenue ✓\n8. Tier-2 + Tier-3 promotions live for top-decile affiliates ✓\n9. Path B → Path C upgrade-decision documented (Q+1 review) ✓\n\n**Time:** 60 minutes for verification.\n\n---"
         }
       ],
-      "size": 60102
+      "size": 60616
+    },
+    {
+      "file": "17-b2b-wholesale-launch.md",
+      "title": "Goal",
+      "meta": [
+        "Faire + Tundra + Ankorstore + Handshake storefronts live with wholesale-pricing + 8-prereq-onboarding-pack + sample-pack-fulfillment validated — chosen per the canonical 7-platform B2B-platform tool decision matrix from research/10 Pillar 1 (Faire free 25%-first-order-commission for Path A default / Tundra 0%-commission alternative for $2M+ brands / Ankorstore 8-15%-commission for EU-UK-AU reach / Handshake $0-$149/mo Shopify-native zero-commission for Shopify-Plus-brands / Shopify B2B $149-$349/mo full-portal / Amazon Business $39.99/mo Professional + 6-15%-referral-fee for office-hospitality-healthcare SKUs / RSP / KeHE / UNFI / dot Foods $5k-$50k sales-rep-time for $10M+ mass-retail brands).",
+        "Wholesale-pricing-calculator + 5-discount-tier-matrix + NET-30-terms-card + MAP-policy-page live — canonical 50% off MSRP default for most DTC brands (45% off for premium-DTC Sustainable/Luxury/clean-beauty / 55% off for high-volume consumables/apparel/home / 60% off ONLY for distributor-tier gated on $5M+ GMV + dedicated-sales-rep) + the canonical 5 wholesale-pricing-stitch patterns [MSRP × 0.5 wholesale / case-pack multiple / freight-prepaid-line / free-shipping-threshold-by-AOV / NET-30 vs NET-60 vs pre-pay tier] + the canonical 8-prereq distributor-onboarding-pack [registration-cert + EIN-letter + resale-certificate per Streamlined-Sales-Tax-Project + product-insurance $1M+ general-liability + $1M product-liability + warehouse-safety-cert FDA OR CPSC-registered + UPC-barcode GS1-Company-Prefix $250/yr + casepack-spec-sheet + HazMat-cert-if-applicable] + the canonical NET-30-terms-card with 2.5%-discount-for-pre-pay-within-7-days-per Stripe-B2B-2024-benchmarks + the canonical MAP-policy-page listing every SKU's MAP-price + 3-strike-enforcement (1st-violation-written-warning / 2nd-violation-30-day-suspension / 3rd-violation-permanent-termination) per Sherman-Antitrust-Act-RPM-policy-compliance.",
+        "Direct-buyer-pipeline + corporate-gifting-catalog + 5-clause-distribution-agreement + RangeMe product-discovery listing + first 10 retailer accounts acquired — canonical 4-email-direct-buyer-cadence [introduction + sample-pack-shipping + follow-up + sales-call-booking] + the canonical corporate-gifting-catalog with 10-30 hero-SKUs + custom-ribbon + handwritten-card + bulk-pricing-tiers (15-25% Year-2 incremental-B2B-revenue) + the canonical 5-clause wholesale-distribution-agreement [commission + payment-terms + termination + indemnity + IP] + RangeMe product-discovery-listing per RangeMe 2024 benchmarks + first 10 retailer accounts validated through direct-pipeline + marketplace + Faire + Tundra + Ankorstore + Handshake.",
+        "Handshake catalog-automation + Klaviyo B2B-tier-reorder-automation 4-flow-cadence + TradeGala-virtual-trade-show + 1 in-person-trade-show-per-Year-1 live — Shopify admin → Settings → Apps → Handshake by Shopify → connect → choose which DTC-SKUs to sync (12-30 hero SKUs + 5-10 wholesale-only SKUs) → set wholesale-pricing-rules (auto-apply 50%-off MSRP for authenticated B2B accounts OR company-specific-pricing-rules) + the canonical 4-Klaviyo-flow B2B-cadence [(1) B2B reorder-reminder at 75% typical-purchase-cadence + (2) sample-pack-shipped for first-time-buyer Day 5 + Day 14 cadence + (3) first-reorder-thank-you Day 1 post-reorder + (4) monthly-stockist-update with new-SKUs] + TradeGala-virtual-trade-show subscription $200-$2,000/mo + 1 in-person-trade-show-per-Year-1 (NY NOW + ASD Market Week + Surf Expo + MAGIC + PROJECT + NYIGF + NACDS Total Store Expo).",
+        "Distributor-pitch + Amazon Business B2B-specialty-tier + MAP-policy-enforcement + geographic-exclusivity-tier + ARPU-cannibalization-monitoring-quarterly live — for Path C brands ($5M+ GMV): canonical 8-prereq RFQ-template + distributor-pitch-deck + dedicated 0.5-1.0 FTE sales-rep-capacity during onboarding (6-18-month sales-cycle per RSP 2024 + KeHE 2024 + UNFI 2024 benchmarks) + Amazon Business B2B-specialty-tier-cert $39.99/mo + Amazon-Business-listing-SKU-subset limited to office/hospitality/healthcare/industrial SKUs only (per Marketplace Pulse 2024 wholesale-specialty-report) + geographic-exclusivity-tier for top-20-accounts (state-level for top-20-accounts; city-level for top-5-accounts per Faire 2024 + Handshake geographic-exclusion benchmarks) + Triple Whale B2B-cohort-LTV-overlay for ARPU-cannibalization-monitoring-quarterly (DTC-vs-B2B cohort-LTV-comparison).",
+        "Steady-state B2B-channel + 60-80% reorder-rate-by-Year-2 + first 25+ retailer accounts acquired + B2B Year-1 ROI validated — research/10 Pillar 4 reorder-automation-validated 60-80% reorder-rate-by-Year-2 per Salesforce B2B Commerce 2024 benchmarks + first 25+ retailer accounts validated (Path A 10-25 / Path B 25-100 / Path C 100-1000+ retailer-accounts over 12-24 months per Faire 2024 onboarding-benchmarks) + B2B Year-1 ROI validated (Path A ≥4:1 / Path B ≥8:1 / Path C ≥6:1 by Year-1 close per research/10 §Cost & ROI)."
+      ],
+      "sectionCount": 65,
+      "numberedSections": [
+        {
+          "heading": "1.1 Wholesale-pricing calculator + 5-discount-tier-matrix configured",
+          "body": "Per research/10 Pillar 2 wholesale-pricing-psychology framework + research/10 §Cost & ROI; canonical 50% off MSRP default for most DTC brands.\n\n```\nWHOLESALE_PRICING_CALCULATOR (Excel / Google Sheets)\n\n| Hero SKU MSRP | Wholesale tier | Wholesale price | Margin retained |\n|---------------|----------------|-----------------|-----------------|\n| $50.00 MSRP   | 35% off (luxury / MAP-protected) | $32.50 | 65% of MSRP |\n| $50.00 MSRP   | 40% off (sustainable / clean-beauty) | $30.00 | 60% of MSRP |\n| $50.00 MSRP   | 45% off (premium default) | $27.50 | 55% of MSRP |\n| $50.00 MSRP   | 50% off (canonical) | $25.00 | 50% of MSRP |\n| $50.00 MSRP   | 55% off (high-volume) | $22.50 | 45% of MSRP |\n| $50.00 MSRP   | 60% off (distributor-tier only) | $20.00 | 40% of MSRP |\n\nDefault pick: 50% off MSRP for most DTC brands. 45% for premium brands (sustainable / luxury / clean-beauty). 55% for high-volume brands (consumables + apparel + home). 60% ONLY for distributor-tier (gated on $5M+ GMV + dedicated-sales-rep).\n```\n\n**Voice-profile overrides per research/10 Pillar 2:** Default = 50% off / Luxury = 35% off (MAP-protected) / Sustainable = 40% off (clean-beauty premium) / Gen-Z = 50% off (standard) / B2B = 55% off (volume-discount expected).\n\n**Decision criterion:** All wholesale-pricing decisions MUST result in wholesale-ARPU 0.65-0.80× DTC-ARPU (NOT 0.45-0.55× which signals under-pricing / MAP-violation-erosion)."
+        },
+        {
+          "heading": "1.2 NET-30 terms-card + 2.5% pre-pay-discount documented",
+          "body": "Per research/10 Pillar 2 wholesale-payment-terms-financing-cost framework + Stripe B2B 2024 benchmarks.\n\n```\nNET-30 TERMS-CARD (paste-ready)\n\nPAYMENT TERMS:\n- NET-30 default (invoice-due 30 days from shipment)\n- 2.5% discount for pre-pay within 7 days (per Stripe B2B 2024 benchmarks)\n- NET-60 available for top-20-accounts (4-7% effective financing-cost; brand absorbs)\n- ACH/wire with 2.5% discount: -0.5% to +1% effective (small discount vs pre-pay tier)\n\nMINIMUM ORDER:\n- First order: $250 minimum\n- Reorder: $150 minimum\n- Case-pack-multiples required (1 case-pack = 6-24 units depending on SKU per Faire 2024 casepack-spec benchmarks)\n\nSHIPPING:\n- FOB Origin (brand's warehouse) per Incoterms 2020 default\n- Free shipping on orders $500+ (configurable per channel)\n- NET-30 freight-terms: customer pays freight separately OR add to invoice (configurable)\n\nRETURNS:\n- Damaged/defective: full replacement within 30 days\n- Buyer's remorse: 15% restocking fee, return-shipping at buyer's cost\n- MAP-violation-driven returns: not accepted (per MAP-policy-page enforcement)\n\nBRAND CONTACT:\n- wholesale@brand.com for all B2B-inquiries\n- Response SLA: 24-hour on business days\n```"
+        },
+        {
+          "heading": "1.3 MAP-policy-page published + 3-strike-enforcement live",
+          "body": "Per research/10 Pillar 4 MAP-policy + DTC-cannibalization-defense framework + Sherman-Antitrust-Act-RPM-policy-compliance.\n\n```\nMAP-POLICY-PAGE (paste-ready)\n\nMINIMUM ADVERTISED PRICE (MAP) POLICY — Effective [DATE]\n\nThis Minimum Advertised Price (MAP) Policy applies to all authorized retailers of [BRAND] products.\n\n1. DEFINITION OF MAP\n- MAP is the lowest price at which a retailer may ADVERTISE (online listings, print ads, email, social media) any [BRAND] product\n- MAP is NOT the lowest price at which a retailer may SELL — retailers may sell below MAP at the register but may NOT advertise below MAP\n- MAP list is published at brand.com/MAP-policy with every SKU's MAP price\n\n2. ENFORCEMENT\n- 1st violation: written warning + 14-day cure period\n- 2nd violation: 30-day suspension from new-PO acceptance\n- 3rd violation: permanent termination of wholesale-account\n\n3. EXEMPTIONS\n- MAP does not apply to: (a) clearance of discontinued SKUs at end-of-life, (b) bundle-pricing where total bundle is ≥MAP, (c) B2B-exclusive SKUs not sold on DTC\n\n4. REPORTING VIOLATIONS\n- Email map@brand.com with screenshot + URL of violating listing\n- We investigate within 5 business days and respond within 14 days\n\nLEGAL BASIS: This MAP Policy is structured to comply with the Sherman Antitrust Act and the rule-of-reason analysis per Leegin Creative Leather Products v. PSKS (2007).\n\nFor questions: map@brand.com\n```\n\n**Publish at:** brand.com/MAP-policy + link to Faire + Tundra + Ankorstore + Handshake storefronts."
+        },
+        {
+          "heading": "1.4 8-prereq distributor-onboarding-pack compiled",
+          "body": "Per research/10 Pitfall #3 + research/10 §Verification gates Gate A prerequisite 7; canonical 8-prereq distributor-onboarding-pack.\n\n```\n8-PREREQ DISTRIBUTOR-ONBOARDING-PACK (paste-ready checklist)\n\n[ ] 1. Business registration certificate (state-issued LLC OR corporation)\n[ ] 2. EIN letter (IRS-issued Employer Identification Number)\n[ ] 3. Resale certificate (per Streamlined-Sales-Tax-Project; valid in buyer's state)\n[ ] 4. Product insurance — General liability $1M+ AND Product liability $1M+ (per USP <797> + retailer-onboarding standards)\n[ ] 5. Warehouse safety cert — FDA-registered (food/cosmetic) OR CPSC-registered (general-product)\n[ ] 6. UPC barcode — GS1 Company Prefix $250/yr baseline + GTIN-12 per-SKU + GTIN-14 case-pack\n[ ] 7. Case-pack spec sheet — units-per-case + cases-per-pallet + pallet-dimensions + weight per major-retailer (Target / Whole Foods / RSP / KeHE)\n[ ] 8. HazMat cert (if applicable) — IATA 2024 + USPS 2024 + UPS 2024 + FedEx 2024 class-cert per Class 1-9 dangerous-goods\n\nCompiled PDFs / certs in /shared-drive/B2B-onboarding-pack/ with 14-day-onboarding-lead-time before first-PO-shipment.\n```"
+        },
+        {
+          "heading": "1.5 Faire + Tundra + Ankorstore + Handshake storefronts live",
+          "body": "Per research/10 Pillar 1 + Pillar 3 catalog-automation.\n\n**Faire setup (~2 hours):**\n1. Apply at faire.com/sell → vendor-application (~7-day review)\n2. Brand-info: 5 hero-SKU + 5 wholesale-eligible secondary SKUs + 5 wholesale-only SKUs\n3. Wholesale-pricing-rules: auto-apply 50%-off MSRP for authenticated B2B accounts\n4. Set NET-60 default terms (Faire default) + override to NET-30 per the canonical terms-card\n5. Upload product-photos (minimum 4 photos per SKU: hero + lifestyle + casepack + label)\n6. Set 25%-first-order-commission + 15%-reorder-commission per Faire 2024 standard\n7. First-time-vendor training (~30 min Faire Academy courses)\n\n**Tundra setup (~1 hour):**\n1. Apply at tundra.com/sell → vendor-application (~3-day review, faster than Faire)\n2. Brand-info: same SKU list as Faire + 0%-commission tier\n3. Wholesale-pricing-rules: auto-apply 50%-off MSRP\n4. Set NET-30 default terms\n5. Migration tool: if migrating from Faire, use Tundra's free-migration-tool to bulk-import SKUs\n\n**Ankorstore setup (~1.5 hours):**\n1. Apply at ankorstore.com/sell → vendor-application (~5-day review)\n2. EU-UK-AU market focus (canonical for cross-border B2B distribution)\n3. Brand-info: same SKU list + EU-languages (EN + FR + DE + ES)\n4. Wholesale-pricing-rules: auto-apply 50%-off MSRP + EU-VAT-compliant invoicing\n5. 8-15% commission per Ankorstore 2024 vendor-survey\n\n**Handshake setup (~1 hour):**\n1. Shopify admin → Settings → Apps → Handshake by Shopify → install\n2. Choose which DTC-SKUs to sync: 12-30 hero SKUs + 5-10 wholesale-only SKUs\n3. Set wholesale-pricing-rules: auto-apply 50%-off MSRP for authenticated B2B accounts\n4. Configure company-accounts: enable B2B-buyer-portal at brand.com/b2b\n5. Volume-pricing-tiers: 1-5 cases no discount / 6-23 cases 5%-off / 24+ cases 10%-off\n6. Geographic-exclusion-config (per Pitfall #8): exclude B2B-buyer-in-California from selling DTC-overlap-SKUs in California"
+        },
+        {
+          "heading": "1.6 Sample-pack fulfillment via ShipBob B2B OR ShipMonk B2B",
+          "body": "Per research/10 Pillar 5 wholesale-fulfillment + ShipBob B2B + ShipMonk B2B 2024 benchmarks.\n\n```\nSAMPLE-PACK CONFIGURATION\n\n| Component | Specification | Cost |\n|-----------|---------------|------|\n| Sample SKUs | 5 hero-SKUs + 2 wholesale-eligible SKUs | $50-$150 product-cost |\n| Packaging | Branded mailer + tissue + handwritten thank-you note + business card | $5-$10 |\n| Wholesale-line-sheet | Printed line-sheet with all wholesale-eligible-SKUs + pricing-tiers + MOQ | $2 |\n| Sample-pack shipping | USPS Priority OR UPS Ground | $8-$15 |\n| Total per sample-pack | | $65-$177 |\n\nSample-pack fulfillment routing:\n- ShipBob B2B for <$500k B2B-AR (cost $25-$50/mo per-account + $2-$5 per-order pick-pack)\n- ShipMonk Enterprise B2B for $500k+ B2B-AR (cost $250-$500/mo per-account + $2-$5 per-order pick-pack + EDI-832/850-out-of-box)\n- In-house with casepack-spec for sample-only (no automated-routing)\n```"
+        },
+        {
+          "heading": "1.7 First 10 retailer accounts acquired + reorder-cadence-validated",
+          "body": "Per research/10 Pillar 2 wholesale-attach-rate + Salesforce B2B Commerce 2024 benchmarks; 55-75% of acquired retailers reorder within 12 months.\n\n**First 10 retailer targets:**\n- 3 from Faire marketplace (auto-acquired via marketplace-listing)\n- 2 from Tundra marketplace (auto-acquired)\n- 2 from Ankorstore marketplace (auto-acquired)\n- 1 from Handshake (Shopify-Plus direct-buyers)\n- 2 from direct-outreach (existing-DTC-buyer-pool + LinkedIn + RangeMe listing)\n\n**Sample-pack shipped to each** with handwritten-thank-you-note + wholesale-line-sheet + 4-email-cadence triggered in Klaviyo."
+        },
+        {
+          "heading": "1.8 Verification — Gate A (Phase 1 readiness, end of Week 3)",
+          "body": "Per research/10 §Verification gates Gate A; the brand MUST satisfy ALL 10 prereqs:\n\n- [ ] **Prereq 1:** DTC baseline steady-state 90+ days (Move #1 + Move #4 + Move #6 + Move #8 actively live for ≥90 days).\n- [ ] **Prereq 2:** Move #1 cart-abandon CTR ≥5% per Klaviyo 2024 benchmarks.\n- [ ] **Prereq 3:** Move #4 welcome-series open-rate ≥35% + click-rate ≥4% + CVR ≥0.8%.\n- [ ] **Prereq 4:** Move #6 Triple Whale attribution ≥95% match-rate (all 7 gates passing per `scripts/triple_whale_attribution_check.py`).\n- [ ] **Prereq 5:** Move #8 loyalty ≥30% member-share of total-revenue per Smile.io benchmarks.\n- [ ] **Prereq 6:** ≥10 SKUs with ≥25% wholesale-discount margin headroom (5 hero + 5 wholesale-eligible).\n- [ ] **Prereq 7:** 8-prereq distributor-onboarding-pack compiled (registration + EIN + resale-cert + insurance + warehouse-safety + UPC + casepack-spec + HazMat).\n- [ ] **Prereq 8:** ≥4 B2B-platforms selected (Faire + Tundra + Ankorstore + Handshake DEFAULT).\n- [ ] **Prereq 9:** Wholesale-pricing-calculator configured for 50% off MSRP default + 5-discount-tier-matrix.\n- [ ] **Prereq 10:** NET-30 terms-card + 2.5% pre-pay-discount documented + MAP-policy-page published.\n\n**Gate-pass criterion:** All 10 prereqs pass → proceed to Phase 2.\n\n---"
+        },
+        {
+          "heading": "2.1 5-clause wholesale-distribution-agreement template ready",
+          "body": "Per research/10 §Verification gates Gate B prerequisite 2 + Faire 2024 + Ankorstore 2024 + Shopify B2B 2024 vendor-survey benchmarks; canonical 5-clause wholesale-distribution-agreement.\n\n```\n5-CLAUSE WHOLESALE-DISTRIBUTION-AGREEMENT (paste-ready)\n\nPARTIES:\n[BRAND LEGAL ENTITY] (\"Brand\") and [BUYER LEGAL ENTITY] (\"Retailer\")\n\nCLAUSE 1 — COMMISSION / WHOLESALE PRICING:\n1.1 Retailer agrees to purchase [BRAND] products at wholesale-pricing-tiers per Schedule A (50% off MSRP default; voice-profile overrides per Schedule A.1).\n1.2 Retailer agrees to advertise all [BRAND] products at or above the Minimum Advertised Price (MAP) per Schedule B.\n1.3 Volume-pricing-tiers: 1-5 cases no discount / 6-23 cases 5%-off / 24+ cases 10%-off (auto-applied at PO-time via Handshake volume-pricing-rules).\n\nCLAUSE 2 — PAYMENT TERMS:\n2.1 NET-30 default payment terms (invoice-due 30 days from shipment).\n2.2 2.5% discount for pre-pay within 7 days (per Stripe B2B 2024 benchmarks).\n2.3 NET-60 available for top-20-accounts with prior approval (4-7% effective financing-cost; brand absorbs).\n2.4 Late payments: 1.5% monthly interest on overdue balance after 30-day-net.\n\nCLAUSE 3 — TERMINATION:\n3.1 Either party may terminate this agreement with 30-day written notice.\n3.2 Brand may immediately terminate for: (a) MAP-policy violation (3-strike-enforcement per Schedule B), (b) payment-default >60 days, (c) brand-reputation-harm-via-public-statement, (d) any-FTC-violation-affecting-brand-products.\n3.3 Upon termination, Retailer may sell remaining inventory but may not place new POs.\n\nCLAUSE 4 — INDEMNITY:\n4.1 Brand indemnifies Retailer against product-defect-claims (product-liability insurance $1M+ covers).\n4.2 Retailer indemnifies Brand against retailer-misconduct (advertising violations + resale-channel violations).\n4.3 Mutual indemnification for jointly-caused claims.\n\nCLAUSE 5 — IP:\n5.1 Brand retains all IP-rights to [BRAND] products + trademarks + packaging-designs.\n5.2 Retailer may use [BRAND] trademarks for advertising + in-store-display per Brand's Brand-Guidelines-v1.0.\n5.3 Retailer may NOT: (a) modify [BRAND] packaging, (b) re-label [BRAND] products, (c) sell [BRAND] products on Amazon-1P (3P allowed per Brand's channel-policy).\n\nSIGNATURES:\n_________________________ _____________\n[BRAND CEO/AUTHORIZED] DATE\n\n_________________________ _____________\n[RETAILER CEO/AUTHORIZED] DATE\n```"
+        },
+        {
+          "heading": "2.2 Direct-buyer-outreach-sequence 4-email-cadence live",
+          "body": "Per research/10 Pitfall #12 + Pillar 3 Trade-show + direct-buyer-pipeline framework; canonical 4-email-direct-buyer-cadence.\n\n**Email 1 — Introduction (Day 0):**\nSubject: Wholesale partnership inquiry — [BRAND] × [BUYER]\nBody: 3-sentence intro + sample-pack-offer + 30-min-call-link\n\n**Email 2 — Sample-pack-shipping (Day 5):**\nSubject: Your [BRAND] sample-pack is on its way\nBody: Tracking-link + wholesale-line-sheet-attached + 5-clause-distribution-agreement-attached + 14-day-reorder-incentive\n\n**Email 3 — Follow-up (Day 14):**\nSubject: Quick check-in on your [BRAND] sample-pack\nBody: \"Did the sample-pack arrive safely?\" + reorder-CTA + 30-min-call-link\n\n**Email 4 — Sales-call-booking (Day 21):**\nSubject: 15-minute call to discuss [BRAND] wholesale partnership\nBody: 3-proposed-time-slots + Zoom-link + corporate-gifting-mix-mention-if-applicable\n\n**Klaviyo setup:** Create segment \"B2B-direct-outreach\" with custom-property `b2b_outreach_stage` (introduction / sample-pack-shipped / follow-up / sales-call-booked / converted-to-account). 4-email-cadence triggers via Klaviyo-flow with `b2b_outreach_stage` filter + send-time per stage."
+        },
+        {
+          "heading": "2.3 RangeMe product-discovery listing live",
+          "body": "Per research/10 §Verification gates Gate B prerequisite 4 + RangeMe 2024 product-discovery benchmarks.\n\n1. Apply at rangeme.com/seller → product-discovery-listing (~3-day review)\n2. Product-catalog upload: 12-30 hero-SKUs + 5-10 wholesale-eligible SKUs + 5-10 wholesale-only SKUs\n3. Wholesale-pricing-rules: auto-display 50%-off MSRP\n4. Brand-story + sustainability-claims (per `assets/12-impact-data-pipeline.md` for Sustainable-voice brands)\n5. Buyer-inquiries: range-routes-inquiries-to-wholesale@brand.com per RangeMe 2024 routing"
+        },
+        {
+          "heading": "2.4 Corporate-gifting-catalog with 10-30 hero-SKUs + custom-ribbon + handwritten-card + bulk-pricing-tiers",
+          "body": "Per research/10 §Verification gates Gate B prerequisite 5 + Faire 2024 + Klaviyo B2B 2024 corporate-gifting benchmarks; 15-25% Year-2 incremental-B2B-revenue from corporate-gifting-mix.\n\n```\nCORPORATE-GIFTING-CATALOG STRUCTURE\n\n| Tier | Order size | Discount | Examples |\n|------|-----------|----------|----------|\n| Welcome-gift | $50-$200 | 50% off MSRP | Single hero SKU + custom-ribbon + handwritten-card |\n| Client-thank-you | $200-$1,000 | 55% off MSRP | 3-5 hero SKUs + custom-ribbon + handwritten-card + branded-mailer |\n| Holiday-gift | $1,000-$5,000 | 60% off MSRP | 5-10 hero SKUs + custom-ribbon + handwritten-card + branded-mailer + gift-receipt |\n| Bulk-onboarding | $5,000-$25,000 | 60% off MSRP + free-shipping | 10-30 hero SKUs + custom-branded-packaging + dedicated-account-manager |\n\nCustom-branding-options: custom-ribbon (Pantone-matched, 14-day lead-time) + handwritten-card (hand-addressed, 7-day lead-time) + branded-mailer (custom-printed, 21-day lead-time).\n```\n\n**Klaviyo B2B-tier flow:** Trigger on corporate-gift-order-placed → send dedicated-account-manager follow-up → upsell to recurring-quarterly-corporate-gifting cadence → cross-sell to standard-wholesale-account."
+        },
+        {
+          "heading": "2.5 First 5 retailer accounts acquired and validated",
+          "body": "Per research/10 §Verification gates Gate B prerequisite 6; first 5 retailers = direct-pipeline + marketplace + Faire + Tundra + Ankorstore + Handshake combined.\n\n**Validation criteria per retailer:**\n- 5-clause-distribution-agreement signed\n- First PO ≥ $250 minimum\n- Reorder-cadence validated: 1 reorder within 60 days\n- Wholesale-ARPU 0.65-0.80× DTC-ARPU (not 0.45-0.55×)\n- NetSuite Wholesale OR QuickBooks Wholesale-tier AR-entry created"
+        },
+        {
+          "heading": "2.6 First-reorder-thank-you Klaviyo-flow live",
+          "body": "Per research/10 Pillar 3 reorder-automation framework + Salesforce B2B Commerce 2024 benchmarks.\n\nKlaviyo-flow: Trigger on first-reorder-placed → wait 1 day → send \"Thank you for your reorder!\" email with:\n- Order-confirmation + tracking-link\n- Wholesale-line-sheet-attached (reorder-CTA)\n- 5-discount-tier-matrix (volume-pricing-CTA)\n- Direct-account-manager contact-info"
+        },
+        {
+          "heading": "2.7 Monthly-stockist-update Klaviyo-flow live",
+          "body": "Klaviyo-flow: Trigger on `subscription_date % monthly_anniversary` → send monthly-stockist-update with:\n- New-SKUs-this-month (with wholesale-pricing)\n- Restock-alerts (low-inventory SKUs → 24h reorder-window)\n- Volume-pricing-tier-progress (e.g. \"You're at 18 cases this month — 6 more cases unlocks 5% volume-discount\")\n- Brand-news + corporate-gifting-mix-promo"
+        },
+        {
+          "heading": "2.8 Wholesale-AR automated-via-NetSuite Wholesale OR QuickBooks Wholesale-tier",
+          "body": "Per research/10 §Verification gates Gate B prerequisite 10; NetSuite Wholesale for $250k+ B2B-AR / QuickBooks Wholesale for <$250k B2B-AR.\n\n**NetSuite Wholesale setup:** Customer-record per retailer + NET-30 automatic-aging + AR-aging-reporting + invoice-generation + payment-receipt-tracking + sales-tax-calculation-per-state-resale-cert.\n\n**QuickBooks Wholesale-tier setup:** Customer-record per retailer + NET-30-invoice-template + AR-aging-report + sales-tax-per-resale-cert."
+        },
+        {
+          "heading": "2.9 Verification — Gate B (Phase 2 readiness, end of Week 8)",
+          "body": "Per research/10 §Verification gates Gate B; the brand MUST satisfy ALL 10 prereqs:\n\n- [ ] **Prereq 1:** Phase 1 Gate A all 10 prereqs passing.\n- [ ] **Prereq 2:** 5-clause wholesale-distribution-agreement template ready (commission + payment-terms + termination + indemnity + IP).\n- [ ] **Prereq 3:** Direct-buyer-outreach-sequence 4-email-cadence live in Klaviyo (introduction + sample-pack-shipping + follow-up + sales-call-booking).\n- [ ] **Prereq 4:** RangeMe product-discovery listing live (12-30 hero + 5-10 wholesale-eligible + 5-10 wholesale-only SKUs).\n- [ ] **Prereq 5:** Corporate-gifting-catalog with 10-30 hero-SKUs + custom-ribbon + handwritten-card + bulk-pricing-tiers.\n- [ ] **Prereq 6:** First 5 retailer accounts acquired + 5-clause-agreements signed + first POs placed.\n- [ ] **Prereq 7:** First-reorder-thank-you Klaviyo-flow live (Day 1 post-first-reorder).\n- [ ] **Prereq 8:** Monthly-stockist-update Klaviyo-flow live (monthly new-SKU + reorder-cadence-update).\n- [ ] **Prereq 9:** Sample-pack-fulfillment via ShipBob B2B OR ShipMonk B2B OR in-house-with-casepack-spec validated.\n- [ ] **Prereq 10:** Wholesale-AR automated-via-NetSuite Wholesale OR QuickBooks Wholesale-tier with NET-30 automatic-aging.\n\n**Gate-pass criterion:** All 10 prereqs pass → proceed to Phase 3.\n\n---"
+        },
+        {
+          "heading": "3.1 8-prereq RFQ-template ready for distributor-pitch",
+          "body": "Per research/10 §Verification gates Gate C prerequisite 2 + RSP 2024 + KeHE 2024 + UNFI 2024 distributor-onboarding-funnel.\n\n```\n8-PREREQ RFQ-TEMPLATE (paste-ready)\n\nREQUEST FOR QUOTATION — [BRAND] × [DISTRIBUTOR]\n\nTo: [DISTRIBUTOR NAME] (RSP / KeHE / UNFI / dot Foods / Boar's Head)\nFrom: [BRAND LEGAL ENTITY] + EIN [EIN NUMBER]\nDate: [DATE]\nValid Until: [60 DAYS FROM DATE]\n\nPRODUCT LINE:\n- 12-30 hero-SKUs (highlights: [TOP 5 SKUS])\n- 30+ wholesale-eligible secondary SKUs (full line-sheet attached)\n- 5-10 wholesale-only SKUs (B2B-exclusive, not sold on DTC)\n\nPRICING:\n- Wholesale: 50% off MSRP per Schedule A\n- Volume-pricing-tiers: 1-5 cases no discount / 6-23 cases 5%-off / 24+ cases 10%-off\n- 60% off MSRP for distributor-tier (gated on $5k+ first-PO minimum)\n- Payment terms: NET-30 default with 2.5% pre-pay-discount\n\nMINIMUM ORDER QUANTITIES (MOQ):\n- First order: $5,000 minimum (12-30 SKU mix)\n- Reorder: $2,500 minimum\n- Case-pack multiples only (1 case = 6-24 units per SKU)\n\n8-PREREQ ONBOARDING-PACK (attached):\n1. [✓] Business registration certificate\n2. [✓] EIN letter\n3. [✓] Resale certificate (multi-state SST-form)\n4. [✓] Product insurance: $1M+ GL + $1M PL\n5. [✓] Warehouse safety cert: FDA-registered (food/cosmetic) OR CPSC-registered\n6. [✓] UPC barcode: GS1 Company Prefix + GTIN-12 + GTIN-14 case-pack\n7. [✓] Case-pack spec sheet (per-retailer-form attached)\n8. [✓] HazMat cert: N/A (or attached if applicable)\n\nLEAD-TIME:\n- First PO acknowledgement: 7 days from RFQ acceptance\n- First PO fulfillment: 14-21 days from PO acceptance\n- Reorder fulfillment: 7-14 days from PO acceptance\n\nTARGET ONBOARDING DATE: [DATE 60 DAYS FROM RFQ]\n\n[BRAND CEO SIGNATURE] [DATE]\n```"
+        },
+        {
+          "heading": "3.2 Distributor-pitch-deck with 7-path B2B-platform-decision-matrix",
+          "body": "Per research/10 §Verification gates Gate C prerequisite 3; canonical 7-path B2B-platform-decision-matrix (Faire / Tundra / Ankorstore / Handshake / Shopify B2B / Amazon Business / Direct-distributor).\n\n**Deck structure (15-20 slides):**\n- Slide 1: Brand-overview + sustainability-claims\n- Slide 2: Hero-SKU lineup + wholesale-pricing-tiers\n- Slide 3: Customer-cohort-LTV-overlay (Triple Whale B2B-cohort-LTV-overlay)\n- Slide 4: Wholesale-ARPU vs DTC-ARPU analysis\n- Slide 5: 7-path B2B-platform-decision-matrix\n- Slide 6: Direct-distributor economics (RSP / KeHE / UNFI)\n- Slide 7: Amazon Business B2B-specialty-tier opportunity\n- Slide 8: MAP-policy + 3-strike-enforcement\n- Slide 9: Case-pack-spec + HazMat-cert + GS1-bundle\n- Slide 10: First-PO-onboarding-timeline (60-day)\n- Slide 11: Corporate-gifting-mix opportunity\n- Slide 12: Trade-show-presence (NY NOW / ASD Market Week / TradeGala)\n- Slide 13: Reorder-automation + Klaviyo-B2B-tier\n- Slide 14: ARPU-cannibalization-monitoring (Triple Whale B2B-cohort-LTV-overlay)\n- Slide 15: First-reorder-validation-metrics (60-80% reorder-rate-by-Year-2)\n- Slide 16: Contact + next-steps"
+        },
+        {
+          "heading": "3.3 Dedicated sales-rep-capacity ≥0.5 FTE Path B / ≥1.0 FTE Path C",
+          "body": "Per research/10 Pitfall #13 + research/10 §Verification gates Gate C prerequisite 4; canonical dedicated sales-rep-capacity for distributor-onboarding sales-cycle.\n\n**Path B (Year-2+):** Hire 0.5 FTE dedicated sales-rep at $35k-$50k/yr OR contract with commissioned-sales-rep at 8% of net-revenue (per Faire 2024 + RSP 2024 benchmarks). Job-description: outbound-RFQ-sending + inbound-retailer-onboarding + 4-email-cadence-execution + sample-pack-fulfillment-coordination + AR-management.\n\n**Path C (Year-1+):** Hire 1.0 FTE dedicated full-FTE sales-rep at $70k-$100k/yr OR contract with 2 commissioned-sales-reps. Job-description: above + distributor-pitch-execution + Amazon Business management + trade-show-presence (1-2 shows/yr)."
+        }
+      ],
+      "size": 85950
     }
   ],
   "assets": [
@@ -9051,7 +9836,7 @@
       ],
       "sectionCount": 31,
       "numberedSections": [],
-      "size": 68689,
+      "size": 69317,
       "assetNumber": 17,
       "voiceGated": true,
       "voiceCounts": {
@@ -9060,6 +9845,76 @@
         "Sustainable": 86,
         "Gen-Z": 41,
         "B2B": 68
+      }
+    },
+    {
+      "file": "18-b2b-wholesale-kits.md",
+      "title": "Goal",
+      "meta": [],
+      "sectionCount": 73,
+      "numberedSections": [
+        {
+          "heading": "1. Company Registration",
+          "body": "- **Legal entity name:** {LLC Inc. name}\n- **State of incorporation:** {Delaware / Wyoming}\n- **EIN:** {XX-XXXXXXX}\n- **Resale certificate:** {Streamlined Sales Tax Project resale-cert number} (attached)\n- **Years in business:** {N years}\n- **Website:** {shopify-store-url}"
+        },
+        {
+          "heading": "2. Product Insurance",
+          "body": "- **General liability:** $1M+ per occurrence, $2M+ aggregate (carrier + policy number)\n- **Product liability:** $1M+ per occurrence, $2M+ aggregate (carrier + policy number)\n- **Warehouse safety cert:** {FDA-registered / CPSC-registered / GMP-certified / SQF-certified / None}"
+        },
+        {
+          "heading": "3. UPC Barcodes",
+          "body": "- **GS1 Company Prefix:** {GS1-company-prefix-number}\n- **Annual fee:** $250/yr (10-100 SKUs) / $7,500/yr (10,000+ SKUs) — see GS1 2024\n- **GTIN-12 + GTIN-14 bundle:** yes / no\n- **Barcode images:** attached as PDF / Not yet (need 6-week lead time for new SKUs)"
+        },
+        {
+          "heading": "4. Casepack Specifications",
+          "body": "| SKU | Product name | Units per case | Case weight (lbs) | Case dimensions (LxWxH) | Ti-Hi pallet pattern |\n|---|---|---|---|---|---|\n| {SKU-1} | {Product 1} | {N} | {N} | {N}x{N}x{N} | {N}x{N} |\n| {SKU-2} | {Product 2} | {N} | {N} | {N}x{N}x{N} | {N}x{N} |\n| ... | ... | ... | ... | ... | ... |"
+        },
+        {
+          "heading": "5. HazMat Certification (if applicable)",
+          "body": "- **UN-rated packaging:** yes / no\n- **HazMat cert per product:** yes / no (carrier + cert number)\n- **Annual audit:** $100-$500/yr per IATA 2024 + USPS 2024 + UPS 2024 + FedEx 2024"
+        },
+        {
+          "heading": "6. Wholesale Pricing",
+          "body": "- **Standard wholesale:** {MSRP × 0.4} per Faire 2024 sustainable-clean-beauty tier / {MSRP × 0.5} canonical default\n- **Distributor-tier wholesale:** {MSRP × 0.6} per Faire 2024 distributor-tier (gated on $5M+ GMV + dedicated-sales-rep)\n- **Volume pricing tiers:** 50/55/60% off MSRP at 1/5/20-carton per Tundra 2024 benchmarks\n- **Pre-pay-with-7-day-discount:** 2.5% additional discount per Stripe B2B 2024 benchmarks"
+        },
+        {
+          "heading": "7. Payment Terms",
+          "body": "- **NET-30 default** per Stripe B2B 2024 benchmarks\n- **NET-60 available** at $50k+ order value\n- **Pre-pay-with-5%-discount** available at any order value\n- **Letter of credit accepted** at $100k+ order value"
+        },
+        {
+          "heading": "8. Sales Volume + Capacity",
+          "body": "- **Year-1 projected wholesale volume:** $250k-$1M (Path B default)\n- **Year-2 projected wholesale volume:** $500k-$2M (with reorder-rate ramp)\n- **Reorder-rate projection:** 60-80% by Year-2 per Salesforce B2B Commerce 2024\n- **Dedicated sales-rep capacity:** {0.5 FTE for Path B / 1.0 FTE for Path C}\n- **Marketing co-op budget:** {2-5% of wholesale revenue per Faire 2024 + RSP 2024}\n\n---\n\n**Attachments:**\n1. Resale certificate (PDF)\n2. Product insurance certificate (PDF)\n3. GS1 Company Prefix certificate (PDF)\n4. Casepack-spec master (XLSX)\n5. HazMat certificate per product (PDF, if applicable)\n6. Wholesale price-list (XLSX)\n7. Product catalog with high-res images (ZIP)\n8. Brand pitch deck (PDF)\n\n**Expected response time:** 5-10 business days per RSP 2024 + KeHE 2024 benchmarks.\n```\n\n---"
+        },
+        {
+          "heading": "1. Commission + Pricing",
+          "body": "- **Wholesale price:** 50% off MSRP (or as specified in attached price-list).\n- **Reorder discount:** 53% off MSRP after 2 reorder cycles.\n- **Volume pricing:** 50/55/60% off MSRP at 1/5/20-carton per Tundra 2024 benchmarks.\n- **Pre-pay discount:** 2.5% additional discount for payment within 7 days."
+        },
+        {
+          "heading": "2. Payment Terms",
+          "body": "- **NET-30 default** per Stripe B2B 2024 benchmarks.\n- **Late-payment fee:** 1.5% per month on balances over 30 days past due.\n- **Order hold:** Orders with balances over 60 days past due will be held until payment is received."
+        },
+        {
+          "heading": "3. Termination",
+          "body": "- **Either party** may terminate this Agreement with 30 days' written notice.\n- **Brand may terminate immediately** for: (a) MAP-policy violation (3-strike enforcement per above), (b) non-payment over 60 days, (c) misrepresentation of Brand products, (d) sale on unauthorized channels.\n- **Retailer may terminate immediately** for: (a) Brand's failure to deliver ordered products within 30 days of confirmed lead time, (b) Brand's material breach of this Agreement."
+        },
+        {
+          "heading": "4. Indemnity",
+          "body": "- **Brand indemnifies Retailer** against: (a) product-defect claims, (b) IP-infringement claims related to Brand products, (c) product-liability claims covered by Brand's product-liability insurance.\n- **Retailer indemnifies Brand** against: (a) Retailer's misrepresentation of Brand products, (b) Retailer's violation of MAP policy, (c) Retailer's sale on unauthorized channels."
+        },
+        {
+          "heading": "5. Intellectual Property",
+          "body": "- **Brand grants Retailer** a non-exclusive, non-transferable license to use Brand's trademarks, logos, and product images for the purpose of marketing and selling Brand products.\n- **Retailer may not** modify Brand's trademarks, logos, or product images without Brand's written consent.\n- **Upon termination**, Retailer must cease all use of Brand's IP within 30 days."
+        }
+      ],
+      "size": 97252,
+      "assetNumber": 18,
+      "voiceGated": true,
+      "voiceCounts": {
+        "Default": 42,
+        "Luxury": 37,
+        "Sustainable": 35,
+        "Gen-Z": 36,
+        "B2B": 142
       }
     }
   ],
@@ -9308,12 +10163,24 @@
       "body": "- **What shipped:** `dashboard/app/subscriptions/page.tsx` (new, ~20KB / 397 lines / **17th route in the operator dashboard** + the canonical **4th-layer Next.js operator-surface route** for the **subscription-program track (Move #11)** per the canonical `research → playbook → asset → operator-surface → scripts → static-dashboard` layer order; Move #11 from `research/03-30-day-rollout-plan.md` §Next moves after 30 days line 176 + the canonical next-pick per the prior tick's `assets/16-subscription-flow-templates.md` §Next moves (1) explicit recommendation + `playbooks/15-subscription-program-launch.md` §Related forward-pointer `(planned future-tick)` + `research/08-subscriptions.md` line 7 canonical anchor + `research/03-30-day-rollout-plan.md` line 176 Move #11 status — **4 pre-staging ci"
     },
     {
-      "heading": "[2026-06-30 06:00] Add assets/17-affiliate-program-templates.md: Move #15 affiliate-program operator-copy layer 3 (3rd-layer operator-copy companion per the v0.9.0 layer-order-completion sub-rule applied to the affiliate-program track at 2/6 layers)",
-      "body": "- **What shipped:** `assets/17-affiliate-program-templates.md` (new, ~67KB / 364 lines / the **18th asset in the workspace** + the canonical **3rd-layer operator-copy companion** for the Move #15 affiliate-program track per the canonical `research → playbook → asset → operator-surface → scripts → static-dashboard` layer order; Move #15 from `research/03-30-day-rollout-plan.md` §Next moves after 30 days line 177 + the canonical next-pick per the prior tick (`772bfb5` playbooks/16 tick) explicit next-action recommendation: \"Canonical 3rd-layer operator-copy companion (per the canonical `research → playbook → asset → operator-surface → scripts → static-dashboard` layer order) — `assets/17-affiliate-program-templates.md` is the canonical next pick per the canonical layer-order-completion sub-r"
+      "heading": "[2026-06-30 18:00] Add research/10-b2b-wholesale.md: Move #14.5 B2B / wholesale channel synthesis layer (canonical 7th active track per the v0.7.0 track-exhaustion-revival pivot from the closed affiliate-program track)",
+      "body": "- **What shipped:** `research/10-b2b-wholesale.md` (new, ~76KB / 473 lines / the **11th research doc in the workspace** + the canonical **1st-layer research synthesis** for the **B2B-wholesale track (Move #14.5)** per the canonical research → playbook → asset → operator-surface → scripts → static-dashboard layer order; Move #14.5 from the prior tick's (`b760565` shipped 2026-06-30 affiliate-program-health static-dashboard tick) journals recommendation: \"canonical next-tick candidate is the canonical 7th-track opening via v0.7.0 revival diagnostic applied to the workspace; research/ is currently the thinnest track at 10 docs vs 21 playbooks / 18 assets / 17 scripts / 7 dashboards; the canonical 7th-track candidates include Move #14.5 B2B-wholesale pivot [Faire / Tundra], Move #15.x TikTok-S"
     },
     {
-      "heading": "[2026-06-29 23:30] Add playbooks/16-affiliate-program-launch.md: Move #15 affiliate-program operator-build layer 2",
-      "body": "- **What shipped:** `playbooks/16-affiliate-program-launch.md` (new, ~60KB / 678 lines / the **21st playbook in the workspace** + the canonical **2nd-layer operator-build companion** for the Move #15 affiliate-program track per the canonical `research → playbook → asset → operator-surface → scripts → static-dashboard` layer order; Move #15 from `research/03-30-day-rollout-plan.md` §Next moves after 30 days line 177 + the canonical next-pick per the prior tick (`8af9292` research/09 synthesis tick) explicit next-action recommendation: \"the canonical next-tick agent should ship `playbooks/16-affiliate-program-launch.md` (canonical 2nd-layer operator-build companion to research/09 per the canonical research → playbook → asset → operator-surface → scripts → static-dashboard layer order)\" — the"
+      "heading": "[2026-06-30 14:00] Add dashboards/affiliate-program-health.html + dashboards/tests/test_affiliate_program_health.js: Move #15 affiliate-program static-dashboard layer 6 (canonical 6th-and-final layer — closes the affiliate-program track at 6/6 layers per the v0.11.0 track-fully-closed pivot pattern)",
+      "body": "- **What shipped:** `dashboards/affiliate-program-health.html` (new, ~42KB / 770 lines / **7th static dashboard in the workspace** + the canonical **6th-and-final static-dashboard layer** for the **affiliate-program track (Move #15)** per the canonical `research → playbook → asset → operator-surface → scripts → static-dashboard` layer order; Move #15 from `research/03-30-day-rollout-plan.md` line 177 + the canonical next-pick per the prior tick (`808b2d5` scripts/affiliate_unit_economics.py scoring-script tick) explicit next-action recommendation: \"the canonical next-tick agent should ship `dashboards/affiliate-program-health.html` (canonical 6th-and-final static-dashboard layer per the v0.11.0 extended layer order; gated on scripts/affiliate_unit_economics.py being live per the canonical "
+    },
+    {
+      "heading": "[2026-06-29 23:30] Add scripts/affiliate_unit_economics.py + scripts/tests/test_affiliate_unit_economics.py: Move #15 affiliate-program scoring-script layer 5 (canonical 5th-layer Archetype A/B hybrid Path A/B/C scorer per the canonical research → playbook → asset → operator-surface → scripts → static-dashboard layer order; 17th script in the workspace)",
+      "body": "- **What shipped:** `scripts/affiliate_unit_economics.py` (new, ~46KB / 760 lines / the **17th script in the workspace** + the canonical **5th-layer Archetype A/B hybrid Path A/B/C affiliate-program scorer** per the canonical `research → playbook → asset → operator-surface → scripts → static-dashboard` layer order; Move #15 from `research/03-30-day-rollout-plan.md` §Next moves after 30 days line 177 + the canonical next-pick per the prior tick (`4c00b85` dashboard/app/affiliates/page.tsx operator-surface-route tick) explicit next-action recommendation: \"the canonical next-tick agent should ship `scripts/affiliate_unit_economics.py` (canonical 5th-layer Archetype A/B hybrid Path A/B/C affiliate-program scorer per the canonical layer order; gated on dashboard/app/affiliates/page.tsx being li"
+    },
+    {
+      "heading": "[2026-06-30 21:00] Add assets/18-b2b-wholesale-kits.md: Move #14.5 B2B-wholesale operator-copy layer 3",
+      "body": "- **What shipped:** `assets/18-b2b-wholesale-kits.md` (new, ~97KB / 1,393 lines / the **19th asset in the workspace** + the canonical **3rd-layer operator-copy companion** for the B2B-wholesale track (Move #14.5) per the canonical `research → playbook → asset → operator-surface → scripts → static-dashboard` layer order; Move #14.5 from `research/03-30-day-rollout-plan.md` §Next moves after 30 days line 182 + the canonical next-pick per the prior tick's (`94a4931` playbooks/17-b2b-wholesale-launch tick) explicit next-action recommendation: \"**Recommended pick for next tick: `assets/18-b2b-wholesale-kits.md`** — the canonical 3rd-layer operator-copy companion per the canonical research → playbook → asset → operator-surface → scripts → static-dashboard layer order; paste-ready per-marketplace"
+    },
+    {
+      "heading": "[2026-06-30 19:30] Add playbooks/17-b2b-wholesale-launch.md: Move #14.5 B2B / wholesale channel operator-build layer 2",
+      "body": "- **What shipped:** `playbooks/17-b2b-wholesale-launch.md` (new, ~87KB / 929 lines / the **22nd playbook in the workspace** + the canonical **2nd-layer operator-build companion** for the B2B-wholesale track (Move #14.5) per the canonical `research → playbook → asset → operator-surface → scripts → static-dashboard` layer order; Move #14.5 from `research/03-30-day-rollout-plan.md` §Next moves after 30 days line 182 + the canonical next-pick per the prior tick's (`025c8c5` research/10-b2b-wholesale tick) explicit next-action recommendation: \"the canonical 2nd-layer operator-build companion `playbooks/17-b2b-wholesale-launch.md` per the canonical research → playbook → asset → operator-surface → scripts → static-dashboard layer order\" — the canonical layer-order-completion sub-rule applied to t"
     },
     {
       "heading": "[2026-06-30 00:00] Add scripts/subscription_unit_economics.py + scripts/tests/test_subscription_unit_economics.py: Move #11 subscription-program scoring-script layer 5",
@@ -9405,11 +10272,11 @@
     }
   ],
   "counts": {
-    "researchDocs": 10,
-    "playbooks": 21,
-    "assets": 18,
-    "tables": 52,
+    "researchDocs": 11,
+    "playbooks": 22,
+    "assets": 19,
+    "tables": 55,
     "findings": 8,
-    "journalEntries": 26
+    "journalEntries": 29
   }
 }

@@ -48,8 +48,9 @@ export default function SubscriptionsPage() {
           <strong>research/08</strong> (5-pillar framework),{" "}
           <strong>playbook 15</strong> (4-phase Recharge + Skio + Bold + Stay
           AI + Appstle + Seal + Loop multi-platform operator build), and{" "}
-          <strong>asset 16</strong> (paste-ready 5-flow × 5-voice × {email +
-          SMS} = 50 voice-driven override cells for subscription-welcome +
+          <strong>asset 16</strong> (paste-ready 5-flow × 5-voice ×
+          {`{email + SMS}`} = 50 voice-driven override cells for
+          subscription-welcome +
           replenishment-reminder + pause-reactivation + cancellation-confirmation
           + winback). This page surfaces all three in one place so you can
           stop tab-switching between{" "}
@@ -113,7 +114,7 @@ export default function SubscriptionsPage() {
         <Card>
           <CardHeader>
             <CardTitle className="text-base">Asset 16 voice-cells</CardTitle>
-            <CardDescription>5 flows × 5 voices × {email + SMS}</CardDescription>
+            <CardDescription>5 flows × 5 voices × {`{email + SMS}`}</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="text-3xl font-semibold tabular-nums">
@@ -317,7 +318,7 @@ export default function SubscriptionsPage() {
                   5 flows (Subscription-welcome + Replenishment-reminder +
                   Pause-reactivation + Cancellation-confirmation + Winback) ×
                   5 voice profiles (Default / Luxury / Sustainable / Gen-Z /
-                  B2B) × {email + SMS} = 50 voice-driven override cells
+                  B2B) × {`{email + SMS}`} = 50 voice-driven override cells
                   wired to Recharge + Klaviyo + Postscript + Smile.io + Triple
                   Whale. The 5-discount-tier matrix [5% / 10% / 15% / 20% /
                   25% off for 30/45/60/90/120-day cadence per research/08
@@ -405,7 +406,7 @@ export default function SubscriptionsPage() {
               HTML dashboard rendering subscription-launch readiness (Path A/B/C
               tier indicator + consumables-revenue-share band + subscriber
               count band) + per-platform readiness (7 canonical subscription
-              platforms × {live/draft/staging/not-started} status: Recharge +
+              platforms × {`{live/draft/staging/not-started}`} status: Recharge +
               Skio + Bold + Stay AI + Appstle + Seal + Loop) + per-path
               Year-1 incremental revenue bar chart (Path A vs B vs C) +
               4-phase gate status (Gate A PDP widget + Gate B billing/portal/

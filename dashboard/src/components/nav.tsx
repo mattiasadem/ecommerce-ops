@@ -21,6 +21,7 @@ const NAV = [
   { href: "/marketplace", label: "Marketplace" },
   { href: "/subscriptions", label: "Subscriptions" },
   { href: "/affiliates", label: "Affiliates" },
+  { href: "/b2b", label: "B2B / Wholesale" },
   { href: "/journal", label: "Journal" },
 ];
 
