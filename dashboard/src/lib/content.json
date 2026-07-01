@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-01T06:27:31.813Z",
+  "generatedAt": "2026-07-01T07:42:40.008Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -10157,6 +10157,30 @@
         "Gen-Z": 37,
         "B2B": 148
       }
+    },
+    {
+      "file": "19-tiktok-shop-creator-briefs.md",
+      "title": "Goal",
+      "meta": [
+        "30 voice-variant creator-briefs (5 voices × 6 SKU archetypes) — the canonical per-voice per-SKU-archetype creator-brief template the operator ships to TikTok-Shop-Creator-Marketplace + Aspire + Collabstr + Instagram-hashtag-scrape outreach.",
+        "LIVE-show-runner-script-template — the canonical 5-segment-LIVE-show-runner-script (Segment 1 product-intro + Segment 2 demo + Segment 3 Q&A + Segment 4 creator-guest-takeover + Segment 5 closing-limited-time-offer) with 4-hour-week-cadence scheduling + teleprompter-prompt-card-format + LIVE-segment-timer-30-second-warning-system.",
+        "Creator-payout-contract-template — the canonical 5-payout creator-affiliate-structures contract-template [CPM $10-$30/1000-views / CPS 10-25%-of-GMV / flat-fee $200-$2k/creator/post / hybrid 5%-of-GMV + $200-base-fee / product-seeding-only $0 + free-product] with FTC-compliance-clause + IP-license-clause + exclusivity-clause + payment-terms-clause + termination-clause.",
+        "TikTok-Shop-product-listing-optimization-checklist — the canonical 100-char-title + 5-bullet-200-char-each + product-photo-9-image-grid + video-1-min-product-demo + A+-content-equivalent + Shop-Score-baseline-targets checklist per the canonical 13 TikTok-Shop-product-feed categories.",
+        "Shop-Score-4.8+-audit-template — the canonical 5-metric Shop-Score-audit-process [positive-review-rate ≥95% + ship-on-time-rate ≥95% + return-rate ≤5% + chat-response-rate ≥90% + chat-response-time ≤5-min] with weekly-audit-cadence + red-flag-trigger-rules + algorithmic-distribution-bonus-mechanics.",
+        "FTC-compliance-disclosure-language templates — the canonical 16 CFR Part 255 + FTC-Endorsement-Guides 2024 § disclosure-language [paid-partnership + gifted-product + affiliate-link + TikTok-Shop-affiliate-creator] templates per the canonical 3-disclosure-types with TikTok-Shop-specific #ad + #tiktokshoppartner + #gifted tags + $10k+/violation penalty disclosure."
+      ],
+      "sectionCount": 46,
+      "numberedSections": [],
+      "size": 85284,
+      "assetNumber": 19,
+      "voiceGated": true,
+      "voiceCounts": {
+        "Default": 39,
+        "Luxury": 44,
+        "Sustainable": 48,
+        "Gen-Z": 48,
+        "B2B": 52
+      }
     }
   ],
   "top10": {
@@ -10408,6 +10432,10 @@
       "body": "- **What shipped:** `research/10-b2b-wholesale.md` (new, ~76KB / 473 lines / the **11th research doc in the workspace** + the canonical **1st-layer research synthesis** for the **B2B-wholesale track (Move #14.5)** per the canonical research → playbook → asset → operator-surface → scripts → static-dashboard layer order; Move #14.5 from the prior tick's (`b760565` shipped 2026-06-30 affiliate-program-health static-dashboard tick) journals recommendation: \"canonical next-tick candidate is the canonical 7th-track opening via v0.7.0 revival diagnostic applied to the workspace; research/ is currently the thinnest track at 10 docs vs 21 playbooks / 18 assets / 17 scripts / 7 dashboards; the canonical 7th-track candidates include Move #14.5 B2B-wholesale pivot [Faire / Tundra], Move #15.x TikTok-S"
     },
     {
+      "heading": "[2026-07-01 12:00] Add playbooks/18-tiktok-shop-live-launch.md: Move #15.x TikTok-Shop / live-commerce operator-build layer 2 (canonical 2nd-layer playbook follow-up to research/11 per the v0.9.0 layer-order-completion sub-rule applied to the 8th-active-track at 1/6 layers; Pattern B recovery from the prior research-tick's complete-but-uncommitted playbook-tick atom)",
+      "body": "- **What shipped:** `playbooks/18-tiktok-shop-live-launch.md` (new, ~74KB / 753 lines / **23rd playbook in the workspace** + the canonical **2nd-layer operator-build companion** for the **TikTok-Shop / live-commerce track (Move #15.x)** per the canonical research → playbook → asset → operator-surface → scripts → static-dashboard layer order; Move #15.x from `research/03-30-day-rollout-plan.md` §Next moves after 30 days line 181 + the canonical next-pick per the prior tick's (`01dae45` research/11-tiktok-shop-live-commerce tick) explicit next-action recommendation: \"Recommended pick for next tick: `playbooks/18-tiktok-shop-live-launch.md` — the canonical 2nd-layer operator-build playbook\" — the canonical 2nd-layer follow-up to research/11 per the v0.9.0 layer-order-completion sub-rule appli"
+    },
+    {
       "heading": "[2026-07-01 06:00] Add research/11-tiktok-shop-live-commerce.md: Move #15.x TikTok Shop / live-commerce synthesis layer (canonical 8th active track per the v0.7.0 track-exhaustion-revival pivot from the closed B2B-wholesale track per the prior tick's `f085e55` journals recommendation)",
       "body": "- **What shipped:** `research/11-tiktok-shop-live-commerce.md` (new, ~67KB / 325 lines / the **12th research doc in the workspace** + the canonical **1st-layer research synthesis** for the **TikTok-Shop / live-commerce track (Move #15.x)** per the canonical research → playbook → asset → operator-surface → scripts → static-dashboard layer order; Move #15.x from `research/03-30-day-rollout-plan.md` §Next moves after 30 days line 181 + the canonical next-pick per the prior tick's (`f085e55` dashboards/b2b-wholesale-channel-health tick) explicit next-action recommendation: \"the canonical next-tick recommendation: track-exhaustion-revival via thinnest-track pivot per the v0.7.0 recipe — all 7 prior active tracks [international-expansion + lifecycle-marketing + 3PL-migration + marketplace-expans"
     },
@@ -10527,9 +10555,9 @@
   "counts": {
     "researchDocs": 12,
     "playbooks": 23,
-    "assets": 19,
+    "assets": 20,
     "tables": 55,
     "findings": 8,
-    "journalEntries": 32
+    "journalEntries": 33
   }
 }
