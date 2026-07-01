@@ -23,6 +23,7 @@ const NAV = [
   { href: "/affiliates", label: "Affiliates" },
   { href: "/b2b", label: "B2B / Wholesale" },
   { href: "/tiktok", label: "TikTok Shop" },
+  { href: "/creators", label: "Creator Economy" },
   { href: "/journal", label: "Journal" },
 ];
 

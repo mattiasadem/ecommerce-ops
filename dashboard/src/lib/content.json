@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-01T16:22:40.100Z",
+  "generatedAt": "2026-07-01T19:49:17.600Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -9815,7 +9815,7 @@
           "body": "Per research/12 §Verification gates Gate D prerequisite 8-9 + research/12 §Cost & ROI estimate.\n\n```\nYEAR-1-CREATOR-ECONOMY-REVENUE-VERIFICATION (paste-ready checklist)\n\n[ ] 1. Compute Year-1 incremental creator-economy-revenue via Triple-Whale-creator-economy-cohort-overlay:\n     - Sum of all creator-driven-attributed-revenue (across all active creators) for Year-1\n     - Target: $200k-$1M Path B at $500k-$5M US DTC base per research/12 §Cost & ROI\n[ ] 2. Compute Year-1 total creator-economy-cost-stack:\n     - Platform-fees (Aspire + GRIN/CreatorIQ + Triple-Whale + Klaviyo + content-licensing-template-legal-fees + whitelisting-ads-template-legal-fees)\n     - Creator-payouts (product-seeding + creator-payouts + content-licensing + whitelisting-ads + macro-flagship-campaigns)\n     - Dedicated-creator-economy-manager-cost (0.25-0.5 FTE Year-2+ if Path B → Path C upgrade)\n[ ] 3. Compute Year-1 ROI: creator-economy-revenue / creator-economy-cost-stack\n[ ] 4. Target: 8:1 default Year-1 ROI Path B at $2M US DTC base ($500k Path B median incremental creator-economy-revenue / $30k median annual cost = 16.7:1 gross; conservative-muted = 8:1 conservative nominal)\n[ ] 5. Compute 2-4× LTV-multiplier vs no-creator-economy-program:\n     - Compare creator-economy-cohort-LTV at 90-day windows vs organic-DTC-cohort-LTV at 90-day windows\n     - Target: creator-economy-cohort-LTV ≥2× organic-DTC-cohort-LTV per Tubular Labs 2024 + Aspire 2024 benchmarks\n[ ] 6. Document Year-1-creator-economy-revenue + ROI + LTV-multiplier in /shared-drive/creator-economy-year-1-summary/\n[ ] 7. Expected-outcome: Year-1 incremental creator-economy-revenue $200k-$1M Path B + 8:1 default Year-1 ROI + 2-4× LTV-multiplier vs no-creator-economy-program verified\n```"
         }
       ],
-      "size": 77247
+      "size": 77266
     }
   ],
   "assets": [
@@ -10418,6 +10418,30 @@
         "Gen-Z": 48,
         "B2B": 52
       }
+    },
+    {
+      "file": "20-creator-discovery-templates.md",
+      "title": "Goal",
+      "meta": [
+        "30 voice-variant creator-discovery-outreach templates (5 voices × 6 SKU archetypes) — the canonical per-voice per-SKU-archetype creator-discovery-outreach-template the operator ships to Aspire + Collabstr + GRIN + CreatorIQ + Tagger + Instagram-hashtag-scrape outreach.",
+        "5-payout creator-economy-structures contract-template — the canonical 5-payout creator-economy-structures contract-template [product-seeding-only $0 + free-product / micro-CPS 15-30%-of-GMV / mid-tier-CPS 20-30%-of-GMV + $100-base-fee + content-licensing-rights / macro-flat-fee $500-$5k/creator/campaign + content-licensing + whitelisting-rights / enterprise-hybrid 5%-of-GMV + $1k-base-fee + content-licensing + whitelisting-rights] with FTC-compliance-clause + content-licensing-clause + whitelisting-ads-clause + IP-license-clause + exclusivity-clause + payment-terms-clause + termination-clause.",
+        "Content-licensing-template — the canonical 3-clause content-licensing-template [perpetual-organic-usage + 90-day-paid-amplification + creator-attribution-required] with per-voice override [Default / Luxury / Sustainable / Gen-Z / B2B] + per-voice-content-licensing-fee-table + per-voice-licensing-renewal-cadence.",
+        "Whitelisting-ads-template — the canonical whitelisting-ads-template [creator-grants-brand-permission-to-run-creator-content-as-brand-paid-ads] with Meta-Brand-Collabs-Manager 2024 + TikTok-Creator-Marketplace-2024 + YouTube-Shorts-Paid-Discovery-2024 + Pinterest-Creator-Reveal-2024 channel-specific wire-up.",
+        "Triple-Whale-creator-cohort-overlay-Wire-spec — the canonical Triple-Whale-creator-cohort-LTV-overlay-Wire-spec with creator-cohort-segmentation-rules + creator-cohort-attribution-merge-rules + 5-way-comparison-cycle-data-warehouse-schema.",
+        "Klaviyo-creator-content-flow-templates — the canonical 5-flow Klaviyo-creator-content-flow library [creator-content-welcome + creator-driven-cart-abandon + creator-driven-post-purchase + creator-tier-promotion-educational + 90-day-content-licensing-renewal-or-sunset-decision] with per-voice 5-flow × 5-voice × {email + SMS} = 50 voice-driven cells."
+      ],
+      "sectionCount": 62,
+      "numberedSections": [],
+      "size": 96444,
+      "assetNumber": 20,
+      "voiceGated": true,
+      "voiceCounts": {
+        "Default": 62,
+        "Luxury": 63,
+        "Sustainable": 64,
+        "Gen-Z": 71,
+        "B2B": 89
+      }
     }
   ],
   "top10": {
@@ -10669,8 +10693,8 @@
       "body": "- **What shipped:** `research/10-b2b-wholesale.md` (new, ~76KB / 473 lines / the **11th research doc in the workspace** + the canonical **1st-layer research synthesis** for the **B2B-wholesale track (Move #14.5)** per the canonical research → playbook → asset → operator-surface → scripts → static-dashboard layer order; Move #14.5 from the prior tick's (`b760565` shipped 2026-06-30 affiliate-program-health static-dashboard tick) journals recommendation: \"canonical next-tick candidate is the canonical 7th-track opening via v0.7.0 revival diagnostic applied to the workspace; research/ is currently the thinnest track at 10 docs vs 21 playbooks / 18 assets / 17 scripts / 7 dashboards; the canonical 7th-track candidates include Move #14.5 B2B-wholesale pivot [Faire / Tundra], Move #15.x TikTok-S"
     },
     {
-      "heading": "[2026-07-04 06:00] Add playbooks/19-creator-economy-launch.md: Move #16 creator-economy-expansion operator-build layer 2 (canonical 2nd-layer follow-up to research/12 per the canonical research → playbook → asset → operator-surface → scripts → static-dashboard layer order)",
-      "body": "- **What shipped:** `playbooks/19-creator-economy-launch.md` (new, ~78KB / 696 lines / the **24th playbook in the workspace** + the canonical **2nd-layer operator-build companion** for the **creator-economy-expansion track (Move #16)** per the canonical research → playbook → asset → operator-surface → scripts → static-dashboard layer order; canonical 9th-active-track follow-up per the prior tick's `2140495` `research/12-creator-economy-expansion.md` journals recommendation: \"canonical next-tick agent should ship the canonical 2nd-layer operator-build companion playbooks/19-creator-economy-launch.md per the v0.9.0 layer-order-completion sub-rule applied to the creator-economy-expansion track at 1/6 layers\"). The playbook ships the canonical **16-section operator-build runbook** [Title + Sou"
+      "heading": "[2026-07-04 12:00] Add assets/20-creator-discovery-templates.md: Move #16 creator-economy-expansion operator-copy layer 3 (canonical 3rd-layer follow-up to research/12 + playbooks/19 per the canonical research → playbook → asset → operator-surface → scripts → static-dashboard layer order)",
+      "body": "- **What shipped:** `assets/20-creator-discovery-templates.md` (new, ~97KB / 629 lines / the **20th asset in the workspace** + the canonical **3rd-layer operator-copy companion** for the **creator-economy-expansion track (Move #16)** per the canonical research → playbook → asset → operator-surface → scripts → static-dashboard layer order; canonical 9th-active-track follow-up per the prior tick's `b935df5b` `playbooks/19-creator-economy-launch.md` journals recommendation: \"canonical next-tick agent should ship the canonical 3rd-layer operator-copy companion `assets/20-creator-discovery-templates.md` per the v0.9.0 layer-order-completion sub-rule applied to the creator-economy-expansion track at 2/6 layers\"). The asset ships the canonical **11 paste-ready artifacts** for the **Move #16 cross"
     },
     {
       "heading": "[2026-07-03 04:00] Add research/12-creator-economy-expansion.md: Move #16 creator-economy-expansion synthesis layer (canonical 9th active track per the v0.7.0 track-exhaustion-revival pivot from the fully-closed TikTok-Shop / live-commerce track)",
@@ -10816,7 +10840,7 @@
   "counts": {
     "researchDocs": 13,
     "playbooks": 24,
-    "assets": 20,
+    "assets": 21,
     "tables": 55,
     "findings": 8,
     "journalEntries": 39
