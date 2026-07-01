@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TikTok Shop / Live-Commerce Health — ecommerce-ops</title>
+  <!--
+    TikTok Shop / Live-Commerce Health dashboard — static operator surface for the
+    TikTok-Shop / live-commerce track (Move #15.x).
+
+    Renders 6 sections end-to-end:
+      1. Summary stats (Path tier default ROI + Year-1 incremental TikTok-Shop GMV + LIVE-cohort-LTV multiplier + Spark-Ads ROAS + Year-1 cost stack + Year-2+ ramp)
+      2. Per-flow readiness cards (5 canonical TikTok-Shop flows × launch status + voice-density + creator-affiliate-pool-size)
+      3. Per-path Year-1 incremental TikTok-Shop GMV bar chart (Path A / B / C)
+      4. Per-phase verification gate scoring (Phase 1 onboarding + Phase 2 shoppable-video-ads + Phase 3 LIVE-shopping + Phase 4 steady-state)
+      5. Per-flow detail table (5 flows × 6 columns: Flow / Voice density / Status / Creator-affiliate-pool contribution / LIVE-cohort-LTV multiplier / Shop-Score algorithmic-bonus)
+      6. Recommended next action (which phase to ship next + which flow to build first)
+
+    Demo data is hardcoded to the canonical Path B default ($2M US DTC base, 35 SKUs, 50% gross margin,
+    creator-affiliate-pool baseline ≥20, 4 hr/wk LIVE-cadence capacity, Shop-Score baseline 4.5+).
+    Live data sources (override via URL params):
+      ?path=A | B | C               (default B)
+      ?us_dtc_gmv=2000000           (default $2M)
+      ?demo=1                       force demo mode (no fetches; uses SAMPLE_ defaults)
+
+    Architecture: NO build step, NO npm deps, single inline CSS + vanilla JS.
+    Companion artifacts:
+      research/11-tiktok-shop-live-commerce.md          (the 5-pillar framework + 3 GMV-tier paths + 15 pitfalls)
+      playbooks/18-tiktok-shop-live-launch.md           (4-phase onboarding → shoppable-video-ads → LIVE-shopping → steady-state operator build)
+      assets/19-tiktok-shop-creator-briefs.md           (30 voice-variant creator-briefs = 5 voices × 6 SKU archetypes + 5-segment LIVE-show-runner-script + Shop-Score-4.8+-audit)
+      dashboard/app/tiktok/page.tsx                     (Next.js operator route, 20th route)
+      scripts/tiktok_shop_unit_economics.py             (Archetype A/B hybrid Path A/B/C scorer, 73 TDD tests)
+
+    All canonical constants (PATH_A/B/C_FLOOR, MIN_SKU_COUNT, MIN_GROSS_MARGIN_PCT, LIVE_CAPACITY_GATE_HR_WK,
+    MIN_CREATOR_AFFILIATE_POOL_SIZE, PATH_COSTS, PATH_INCREMENTAL_GMV_SHARE_PCT, LIVE_COHORT_LTV_MULTIPLIER,
+    SPARK_ADS_ROAS_BANDS, PATH_ROI, CREATOR_AFFILIATE_PAYOUT_MATRIX) mirror
+    scripts/tiktok_shop_unit_economics.py exactly.
+    Per the v0.11.0 static-dashboard-tick recipe, this dashboard uses self-contained inline CSS +
+    vanilla JS, no Chart.js / no npm / no build step. Pure-Node smoke tests live in
+    dashboards/tests/test_tiktok_shop_live_commerce_health.js (≥70 tests across 26 categories per
+    the v0.11.0 recipe).
+  -->
+  <style>
+    :root {
+      --bg: #0f1115;
+      --panel: #161922;
+      --panel-2: #1d2230;
+      --border: #2a2f3d;
+      --text: #e8eaf0;
+      --text-dim: #9097a8;
+      --accent: #58a6ff;
+      --ok: #4ec9b0;
+      --warn: #e0af68;
+      --fail: #f06a6a;
+      --violet: #b48ead;
+      --code-bg: #0a0c10;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    header {
+      padding: 24px 32px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    header .subtitle {
+      color: var(--text-dim);
+      font-size: 13px;
+    }
+    .mode-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+    }
+    .mode-badge.demo { color: var(--warn); border-color: var(--warn); }
+    .mode-badge.live { color: var(--accent); border-color: var(--accent); }
+    main {
+      padding: 24px 32px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    section { margin-bottom: 28px; }
+    h2 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+      margin: 0 0 14px 0;
+      font-weight: 600;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .stat {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .stat .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+    }
+    .stat .value {
+      font-size: 22px;
+      font-weight: 600;
+      margin-top: 4px;
+      font-variant-numeric: tabular-nums;
+    }
+    .stat .sub {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+    .stat .value.ok { color: var(--ok); }
+    .stat .value.warn { color: var(--warn); }
+    .stat .value.fail { color: var(--fail); }
+    .stat .value.path-tag { color: var(--violet); }
+    .flow-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .flow-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      position: relative;
+    }
+    .flow-card .tier {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      font-size: 10px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      letter-spacing: 0.06em;
+    }
+    .flow-card .name {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .flow-card .status {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-top: 8px;
+      border: 1px solid;
+    }
+    .status.live { color: var(--ok); border-color: var(--ok); background: rgba(78, 201, 176, 0.08); }
+    .status.staging { color: var(--warn); border-color: var(--warn); background: rgba(224, 175, 104, 0.08); }
+    .status.draft { color: var(--fail); border-color: var(--fail); background: rgba(240, 106, 106, 0.08); }
+    .flow-card .meta {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 6px;
+    }
+    .flow-card .discount {
+      font-size: 11px;
+      color: var(--accent);
+      margin-top: 4px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    .chart-bar {
+      display: flex;
+      align-items: flex-end;
+      gap: 14px;
+      padding: 14px 4px;
+      border-bottom: 1px solid var(--border);
+      height: 200px;
+    }
+    .chart-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+    .chart-col .bar {
+      width: 60%;
+      background: var(--accent);
+      border-radius: 4px 4px 0 0;
+      transition: height 0.3s ease;
+      position: relative;
+    }
+    .chart-col .bar.b { background: var(--ok); }
+    .chart-col .bar.c { background: var(--violet); }
+    .chart-col .bar-value {
+      position: absolute;
+      top: -22px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+    }
+    .chart-col .label {
+      font-size: 11px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-top: 4px;
+    }
+    .phase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 12px;
+    }
+    .phase-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .phase-card .head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 10px;
+    }
+    .phase-card .name {
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .phase-card .progress {
+      font-size: 11px;
+      color: var(--text-dim);
+      font-variant-numeric: tabular-nums;
+    }
+    .gate {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      padding: 4px 0;
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+    .gate .icon {
+      flex: 0 0 14px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 11px;
+    }
+    .gate .text { flex: 1; line-height: 1.4; }
+    .gate.ok { color: var(--ok); }
+    .gate.warn { color: var(--warn); }
+    .gate.draft { color: var(--text-dim); }
+    .gate.ok .icon { color: var(--ok); }
+    .gate.warn .icon { color: var(--warn); }
+    .gate.draft .icon { color: var(--text-dim); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    th, td {
+      padding: 8px 10px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    th {
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-size: 10px;
+      color: var(--text-dim);
+    }
+    td { color: var(--text); }
+    .voice-density-pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      background: rgba(88, 166, 255, 0.12);
+      color: var(--accent);
+      border: 1px solid var(--accent);
+    }
+    .next-action {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--ok);
+      border-radius: 6px;
+      padding: 16px 20px;
+    }
+    .next-action .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+    }
+    .next-action ol {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .next-action li {
+      margin-bottom: 6px;
+      font-size: 13px;
+    }
+    footer {
+      padding: 16px 32px 24px;
+      color: var(--text-dim);
+      font-size: 11px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    footer code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      background: var(--code-bg);
+      padding: 1px 4px;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>TikTok Shop / Live-Commerce Health</h1>
+      <div class="subtitle">Move #15.x · TikTok-Shop-Seller-Center + Shopify-TikTok-Channel + Klaviyo-TikTok-channel + Triple-Whale-TikTok-attribution + LIVE-shopping-studio</div>
+    </div>
+    <div>
+      <span class="mode-badge demo" id="mode-badge">Demo</span>
+    </div>
+  </header>
+
+  <main>
+    <section id="summary-section">
+      <h2>1 · Path B Default Summary</h2>
+      <div class="stats" id="summary-stats"></div>
+    </section>
+
+    <section id="flow-section">
+      <h2>2 · Per-flow Readiness · 6 canonical TikTok-Shop flows (Pillars 1-5)</h2>
+      <div class="flow-grid" id="flow-grid"></div>
+    </section>
+
+    <section id="path-chart-section">
+      <h2>3 · Per-path Year-1 Incremental TikTok-Shop GMV (Path A vs B vs C)</h2>
+      <div class="chart-bar" id="path-chart"></div>
+    </section>
+
+    <section id="phase-gates-section">
+      <h2>4 · Per-phase Verification Gate Scoring</h2>
+      <div class="phase-grid" id="phase-grid"></div>
+    </section>
+
+    <section id="flow-table-section">
+      <h2>5 · Per-flow Detail Table</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Flow</th>
+            <th>Voice density</th>
+            <th>Status</th>
+            <th>Creator-affiliate-pool contribution</th>
+            <th>LIVE-cohort-LTV multiplier</th>
+            <th>Shop-Score algorithmic-bonus</th>
+          </tr>
+        </thead>
+        <tbody id="flow-table-body"></tbody>
+      </table>
+    </section>
+
+    <section id="next-action-section">
+      <h2>6 · Recommended Next Action</h2>
+      <div class="next-action" id="next-action"></div>
+    </section>
+  </main>
+
+  <footer>
+    Self-contained static dashboard · no build step · no external deps.
+    Mirrors <code>scripts/tiktok_shop_unit_economics.py</code> canonical constants (PATH_A_FLOOR=100000, PATH_B_FLOOR=500000, PATH_C_FLOOR=5000000, MIN_SKU_COUNT=10, MIN_GROSS_MARGIN_PCT=25.0, LIVE_CAPACITY_GATE_HR_WK=4, MIN_CREATOR_AFFILIATE_POOL_SIZE=10, PATH_COSTS, PATH_INCREMENTAL_GMV_SHARE_PCT, LIVE_COHORT_LTV_MULTIPLIER, SPARK_ADS_ROAS_BANDS, PATH_ROI, CREATOR_AFFILIATE_PAYOUT_MATRIX).
+    Companion: <code>research/11-tiktok-shop-live-commerce.md</code> + <code>playbooks/18-tiktok-shop-live-launch.md</code> + <code>assets/19-tiktok-shop-creator-briefs.md</code> + <code>dashboard/app/tiktok/page.tsx</code> + <code>scripts/tiktok_shop_unit_economics.py</code>.
+    URL params: <code>?path=A|B|C</code> · <code>?us_dtc_gmv=N</code> · <code>?demo=1</code>.
+  </footer>
+
+  <script>
+    // ---- Canonical data structures (mirror scripts/tiktok_shop_unit_economics.py) ----
+    // 6 canonical TikTok-Shop flows (per asset 19 §paste-ready templates: 5 voices × 6 SKU archetypes = 30 voice-variant creator-briefs + 5-segment LIVE-show-runner-script + TikTok-Shop-product-listing-optimization-checklist + creator-payout-contract-template + Shop-Score-4.8+-audit-template + Triple-Whale-TikTok-cohort-overlay).
+    var FLOWS = [
+      { id: 'tiktok_business_account',         name: 'TikTok-Business-Account + category-approval-application',           tier: 'Path A+B+C', pillar: 'Pillar 1 platform-selection',     defaultDiscountTier: 'CPS 15-25% canonical', voiceCells: 0,  creatorContributionPct: 0,  liveLtvContributionPct: 0,  shopScoreBonusPct: 0,  status: 'live' },
+      { id: 'tiktok_shop_seller_center',       name: 'TikTok-Shop-Seller-Center + product-feed-optimization',             tier: 'Path A+B+C', pillar: 'Pillar 1 product-feed',          defaultDiscountTier: 'CPS 15-25% canonical', voiceCells: 30, creatorContributionPct: 0,  liveLtvContributionPct: 0,  shopScoreBonusPct: 30, status: 'live' },
+      { id: 'shoppable_video_ads_launch',      name: 'Spark-Ads-boost + In-Feed-Ads-with-Product-Module + Top-View-Ads',  tier: 'Path A+B+C', pillar: 'Pillar 3 shoppable-video-ads',  defaultDiscountTier: 'ROAS 2-4× canonical',  voiceCells: 0,  creatorContributionPct: 0,  liveLtvContributionPct: 0,  shopScoreBonusPct: 10, status: 'staging' },
+      { id: 'creator_affiliate_pool_build',    name: '20-50 creator-affiliate onboarding + 5-payout-structures',         tier: 'Path A+B+C', pillar: 'Pillar 2 creator-affiliate',     defaultDiscountTier: 'CPS tier Default 15/20/25%', voiceCells: 30, creatorContributionPct: 80, liveLtvContributionPct: 0, shopScoreBonusPct: 0, status: 'staging' },
+      { id: 'triple_whale_tiktok_attribution',  name: 'Triple-Whale-TikTok-cohort-overlay + Shop-Score-4.8+-audit',       tier: 'Path B+C',   pillar: 'Pillar 5 attribution-measurement', defaultDiscountTier: 'CPS canonical tier', voiceCells: 0,  creatorContributionPct: 0,  liveLtvContributionPct: 0,  shopScoreBonusPct: 30, status: 'live' },
+      { id: 'live_shopping_studio_build',      name: 'LIVE-shopping-studio + 4-hour-week-cadence + 5-segment-runner',   tier: 'Path B+C',   pillar: 'Pillar 4 LIVE-shopping',        defaultDiscountTier: 'CVR 5-15% canonical',  voiceCells: 0,  creatorContributionPct: 20, liveLtvContributionPct: 80, shopScoreBonusPct: 50, status: 'draft' }
+    ];
+
+    // Path-tier table (mirrors scripts/tiktok_shop_unit_economics.py PATH_COSTS / PATH_INCREMENTAL_GMV_SHARE_PCT / LIVE_COHORT_LTV_MULTIPLIER / SPARK_ADS_ROAS_BANDS / PATH_ROI).
+    // Tuple values: cost one-time low/high, cost recurring low/high, incremental-GMV share % low/high, LIVE-cohort-LTV multiplier low/high, Spark-Ads ROAS low/high, ROI low/high, scope label.
+    var PATH_TABLE = {
+      A: { gmvMin: 100000,    gmvMax: 499999,    costOneTimeLow: 0,      costOneTimeHigh: 1000,   costRecurLow: 0,    costRecurHigh: 200,   incShareLow: 5,  incShareHigh: 25,  liveLtvLow: 1.0, liveLtvHigh: 1.5, sparkRoasLow: 1.5, sparkRoasHigh: 2.5, roiLow: 3.0, roiHigh: 6.0,  scope: 'Creator-affiliate-only + shoppable-video-ads ($0/mo Path A baseline)',          label: 'Path A — Creator-affiliate-only + shoppable-video-ads (<$500k GMV, 4.5:1 conservative)' },
+      B: { gmvMin: 500000,    gmvMax: 4999999,   costOneTimeLow: 500,    costOneTimeHigh: 2000,   costRecurLow: 200,  costRecurHigh: 2000,  incShareLow: 25, incShareHigh: 50,  liveLtvLow: 3.0, liveLtvHigh: 5.0, sparkRoasLow: 2.0, sparkRoasHigh: 4.0, roiLow: 6.0, roiHigh: 12.0, scope: 'Creator-affiliate + shoppable-video-ads + LIVE-shopping 4-hour-week ($0-$2k/mo DEFAULT)', label: 'Path B — Creator-affiliate + Shoppable-video-ads + LIVE-shopping ($500k-$5M DEFAULT, 8.5:1 Year-1 ROI)' },
+      C: { gmvMin: 5000000,   gmvMax: 99999999,  costOneTimeLow: 2000,   costOneTimeHigh: 5000,   costRecurLow: 2000, costRecurHigh: 10000, incShareLow: 15, incShareHigh: 30,  liveLtvLow: 4.0, liveLtvHigh: 7.0, sparkRoasLow: 3.0, sparkRoasHigh: 5.0, roiLow: 4.0, roiHigh: 8.0,  scope: 'Full TikTok-Shop-orchestration including daily-LIVE-cadence + TikTok-Shop-affiliate-program + Klaviyo-TikTok-channel-full-integration + Triple-Whale-Pro', label: 'Path C — Full TikTok-Shop-orchestration ($5M+, 6:1 ROI default)' }
+    };
+
+    // Phase gates (mirrors playbook 18 §Phase 1+2+3+4 verification gates = 10/10/10/9 prereqs).
+    var PHASE_GATES = [
+      { id: 'A', label: 'Phase 1 — TikTok-Shop-Seller-Center-onboarding + category-approval + first-50-creator-affiliate-onboarding ~12hr Weeks 1–2', total: 10,
+        gates: [
+          { id: 'A1',  criterion: 'DTC baseline steady-state 90+ days (Move #1 + Move #4 + Move #6 + Move #7 + Move #8 + Move #11 active) per research/11 Gate A prerequisite 1', status: 'ok' },
+          { id: 'A2',  criterion: 'Move #6 Triple Whale attribution live + TikTok-cohort-overlay-wire configured per research/11 Gate A prerequisite 2', status: 'ok' },
+          { id: 'A3',  criterion: '8-prereq TikTok-Shop-onboarding-pack assembled (TikTok-Business-Account + category-approval + Shop-Score-baseline-audit + creator-affiliate-pool-baseline ≥20 + LIVE-shopping-studio-build + product-feed-optimization + Klaviyo-TikTok-channel + Triple-Whale-TikTok-attribution) per research/11 Gate A prerequisite 7', status: 'ok' },
+          { id: 'A4',  criterion: 'TikTok-Shop-Seller-Category-approval received for top-SKU category (Beauty / Fashion-Accessories / Home / Food / Pet / Baby / Health / Outdoor / Toys / Electronics) per playbook 18 §Step 1.1 + research/11 Pillar 1', status: 'ok' },
+          { id: 'A5',  criterion: 'TikTok-Shop-product-feed-optimized for ≥10 hero-SKUs (100-char-title + 1:1-square-image ≥800px + 5-bullet-200-char-each + 9-image-grid + 1-min-video) per playbook 18 §Step 1.1 + research/11 Pillar 1', status: 'ok' },
+          { id: 'A6',  criterion: 'Shop-Score-baseline-audit run on existing-DTC-store 30 days pre-launch (positive-review-rate ≥95% + ship-on-time-rate ≥95% + return-rate ≤5% + chat-response-rate ≥90% + chat-response-time ≤5-min) per playbook 18 §Step 1.2', status: 'ok' },
+          { id: 'A7',  criterion: '20-50 creator-affiliates onboarded via TikTok-Shop-Creator-Marketplace + Aspire + Collabstr + Instagram-hashtag-scrape per playbook 18 §Step 1.5 + research/11 Pillar 2', status: 'warn' },
+          { id: 'A8',  criterion: '5-payout creator-affiliate-structures contract-template published (CPM $10-$30/1000-views + CPS 10-25%-of-GMV + flat-fee $200-$2k/creator/post + hybrid 5%-of-GMV + $200-base-fee + product-seeding-only) per playbook 18 §Step 1.5 + asset 19', status: 'warn' },
+          { id: 'A9',  criterion: 'Klaviyo-TikTok-channel-integration live ($0 with Klaviyo-Standard or $45/mo with Klaviyo-Email-and-SMS) for TikTok-Shop-cart-abandon + TikTok-Shop-welcome-flow per playbook 18 §Step 1.6', status: 'ok' },
+          { id: 'A10', criterion: 'Operator capacity ≥4 hr/wk sustained for 2 weeks (canonical playbook 18 §8-prereq Gate A prerequisite 5 = LIVE_CAPACITY_GATE_HR_WK) per research/11 Pillar 4', status: 'ok' }
+        ]
+      },
+      { id: 'B', label: 'Phase 2 — Shoppable-video-ads-launch + creator-affiliate-cohort-LTV-measurement + Triple-Whale-TikTok-attribution-wire ~16hr Weeks 3–6', total: 10,
+        gates: [
+          { id: 'B1',  criterion: 'Phase 1 Gate A all 10 prereqs passing (steady-state Week 2+ with TikTok-Shop-Seller-Center live + category-approval + 20-50 creator-affiliates)', status: 'ok' },
+          { id: 'B2',  criterion: 'Spark-Ads-boost launched (boost top-5-performing organic-creator-content from Phase 1; $50-$500/day per audience-segment) per playbook 18 §Step 2.1 + research/11 Pillar 3', status: 'ok' },
+          { id: 'B3',  criterion: 'In-Feed-Ads-with-Product-Module live (TikTok-Shop-product-card in-feed with 2-4× ROAS vs In-Feed-ads-without-Product-Module per eMarketer 2024) per playbook 18 §Step 2.2 + research/11 Pillar 3', status: 'ok' },
+          { id: 'B4',  criterion: 'Top-View-Ads-launched for hero-product-launches ($50k-$200k/day for major-product-launches-and-pr-events; canonical Path C-only-lever) per playbook 18 §Step 2.3 + research/11 Pillar 3', status: 'warn' },
+          { id: 'B5',  criterion: 'Triple-Whale-TikTok-attribution-wire configured for cohort-LTV-overlay (TikTok-Shop-driven-cohort vs organic-DTC-cohort vs paid-Meta-cohort at 30/60/90-day windows) per playbook 18 §Step 2.4 + research/11 Pillar 5', status: 'warn' },
+          { id: 'B6',  criterion: 'Creator-affiliate-cohort-LTV measurement active (per-affiliate 30/60/90-day LTV + LTV:CAC ratio + tier-promotion-flag per canonical 10-metric per-affiliate KPI dashboard) per playbook 18 §Step 2.5 + asset 19', status: 'warn' },
+          { id: 'B7',  criterion: 'Weekly-Shop-Score-update running (target 4.5+ by end of Phase 2; Shop-Score-4.8+ algorithmic-distribution-bonus = 30-50% higher organic-TikTok-Shop-distribution) per playbook 18 §Step 2.6 + research/11 Pillar 5', status: 'staging' },
+          { id: 'B8',  criterion: 'Spark-Ads-ROAS tracking live (target 2-4× canonical Path B per research/11 Pillar 3 SPARK_ADS_ROAS_BANDS Path B = 2.0-4.0) per playbook 18 §Step 2.7', status: 'staging' },
+          { id: 'B9',  criterion: 'Target $25k-$100k TikTok-Shop-driven-GMV by end of Phase 2 (Weeks 3-6) (Path B default $50k-$250k TikTok-Shop-driven-GMV by end of Phase 2) per playbook 18 §Phase 2 metric', status: 'warn' },
+          { id: 'B10', criterion: 'Operator capacity ≥4 hr/wk sustained for 4 weeks + LIVE-cadence-baseline set per playbook 18 §Prerequisite #8', status: 'ok' }
+        ]
+      },
+      { id: 'C', label: 'Phase 3 — LIVE-shopping-launch + TikTok-Shop-affiliate-program-launch + 5-segment-LIVE-show-runner-script ~24hr Weeks 7–12', total: 10,
+        gates: [
+          { id: 'C1',  criterion: 'Phase 2 Gate B all 10 prereqs passing (steady-state Week 6+ with Spark-Ads + In-Feed-Ads-with-Product-Module + Triple-Whale-cohort-LTV-overlay)', status: 'draft' },
+          { id: 'C2',  criterion: 'LIVE-shopping-studio-built ($500-$2k one-time: Ring-light + iPhone-15-Pro + tripod + lavalier-mic + 1080p-webcam + backdrop + teleprompter-app + Streamlabs-OBS-or-TikTok-LIVE-Studio $0/mo) per playbook 18 §Step 3.1 + research/11 Pillar 4', status: 'draft' },
+          { id: 'C3',  criterion: '4-hour-week-LIVE-cadence launched (1-LIVE-session-per-week 60-90-minutes-per-session per TikTok-LIVE-2024-benchmarks) per playbook 18 §Step 3.2 + research/11 Pillar 4', status: 'draft' },
+          { id: 'C4',  criterion: '5-segment-LIVE-show-runner-script-tested (Segment-1 product-intro + Segment-2 demo + Segment-3 Q&A + Segment-4 creator-guest-takeover + Segment-5 closing-limited-time-offer) per playbook 18 §Step 3.3 + asset 19', status: 'draft' },
+          { id: 'C5',  criterion: 'TikTok-Shop-affiliate-program-launched (separate from creator-affiliate-onboarding in Phase 1; 20-30%-of-GMV commission + 30-day-cookie-window per Move #15-affiliate-program-Playbook-16-benchmarks) per playbook 18 §Step 3.4', status: 'draft' },
+          { id: 'C6',  criterion: 'FTC-compliance-disclosure-language-audit (16-CFR-Part-255 + #ad / #sponsored / #partner disclosures on every TikTok-Shop-creator-brief per Move #15-affiliate-program-Playbook-16) per playbook 18 §Step 3.5 + research/11 Pillar 2', status: 'draft' },
+          { id: 'C7',  criterion: 'Triple-Whale-cohort-LTV-overlay-iteration active (weekly review of TikTok-Shop-driven-cohort-LTV vs organic-DTC-cohort-LTV + paid-Meta-cohort-LTV) per playbook 18 §Step 3.6 + research/11 Pillar 5', status: 'draft' },
+          { id: 'C8',  criterion: 'Target $250k-$1M TikTok-Shop-driven-GMV by end of Phase 3 (Weeks 7-12) (Path B default with LIVE-shopping 5-15% CVR vs 1-3% in-feed) per playbook 18 §Phase 3 metric', status: 'draft' },
+          { id: 'C9',  criterion: 'Target Shop-Score 4.5+ by end of Phase 3 (Shop-Score 4.8+ target by end of Phase 4) per playbook 18 §Phase 3 metric + research/11 Pillar 5', status: 'draft' },
+          { id: 'C10', criterion: 'Operator capacity ≥4 hr/wk LIVE-cadence sustained for 6 weeks + 0.25-0.5 FTE creator-affiliate-manager hired in Year-2+ per playbook 18 §Prerequisite #8', status: 'draft' }
+        ]
+      },
+      { id: 'D', label: 'Phase 4 — Steady-state + Shop-Score-4.8+ + LIVE-cadence-optimization + Triple-Whale-cohort-LTV-iteration-cycle ~16hr + 4-8 hr/wk ongoing Weeks 13–16', total: 9,
+        gates: [
+          { id: 'D1',  criterion: 'Phase 3 Gate C all 10 prereqs passing (steady-state Week 12+ with LIVE-shopping-launch + TikTok-Shop-affiliate-program + 5-segment-runner-script)', status: 'draft' },
+          { id: 'D2',  criterion: 'Shop-Score-4.8+-audit-process running + Shop-Score-baseline ≥4.5 (target 4.8+ by end of Phase 4; Shop-Score-4.8+ algorithmic-distribution-bonus = 30-50% higher organic-TikTok-Shop-distribution) per playbook 18 §Step 4.1 + research/11 Pillar 5', status: 'draft' },
+          { id: 'D3',  criterion: 'LIVE-cadence-optimization-flow active (A/B-test 1 vs 2 vs 3 LIVE-sessions/week with same creator + same product + same time-slot; measure GMV-per-hour-LIVE) per playbook 18 §Step 4.2 + research/11 Pillar 4', status: 'draft' },
+          { id: 'D4',  criterion: 'Triple-Whale-cohort-LTV-iteration-cycle-weekly active (review TikTok-Shop-driven-cohort-LTV vs organic-DTC-cohort-LTV + paid-Meta-cohort-LTV + iterate creator-affiliate-payout-structure) per playbook 18 §Step 4.3 + research/11 Pillar 5', status: 'draft' },
+          { id: 'D5',  criterion: '5-payout creator-affiliate-structures optimization per-cohort-LTV (CPM / CPS / flat-fee / hybrid / product-seeding-only) per playbook 18 §Step 4.4 + asset 19', status: 'draft' },
+          { id: 'D6',  criterion: 'Top-View-Ads-launched for major-product-launches-and-pr-events ($50k-$200k/day Path C-only-lever per research/11 Pillar 3) per playbook 18 §Step 4.5', status: 'draft' },
+          { id: 'D7',  criterion: 'Year-2+ ramp from 8.5:1 Path B default to 12-14:1 Path B with LIVE-cohort-LTV-multiplier-optimization + Spark-Ads-ROAS-optimization + algorithmic-distribution-bonus live per research/11 §Cost & ROI estimate', status: 'draft' },
+          { id: 'D8',  criterion: 'Path B → Path C decision documented at attributed-revenue >$50k/mo + LIVE-cadence-daily-active for 2 consecutive quarters per playbook 18 §Phase 4 Step 4.7', status: 'draft' },
+          { id: 'D9',  criterion: 'Operator capacity ≥4 hr/wk LIVE-cadence sustained for 4 weeks + 0.5 FTE dedicated-creator-affiliate-manager hired in Year-2+ per playbook 18 §Prerequisite #8', status: 'draft' }
+        ]
+      }
+    ];
+
+    // 5-payout creator-affiliate-structures matrix (mirrors scripts/tiktok_shop_unit_economics.py CREATOR_AFFILIATE_PAYOUT_MATRIX + per-voice CPS payout bands).
+    var CREATOR_AFFILIATE_PAYOUT_MATRIX = [
+      { voice: 'Default',     tier1: '15% CPS baseline',  tier2: '20% CPS mid-tier',  tier3: '25% CPS top-tier',  notes: 'CPS 15-25% canonical TikTok-Shop baseline; matches affiliate-program Move #15 default' },
+      { voice: 'Luxury',      tier1: '10% CPS MAP-guarded', tier2: '12% CPS MAP-guarded mid', tier3: '15% CPS MAP-guarded top', notes: 'lower CPS to protect MAP-policy-pricing; Path B brand with luxury-SKU-mix' },
+      { voice: 'Sustainable', tier1: '20% CPS mission-driven', tier2: '25% CPS mission-driven mid', tier3: '30% CPS mission-driven top', notes: 'premium CPS for sustainable-mission-aligned creators; Path B Sustainable-voice brands' },
+      { voice: 'Gen-Z',       tier1: '25% CPS Gen-Z premium', tier2: '30% CPS Gen-Z premium mid', tier3: '35% CPS Gen-Z premium top', notes: 'highest CPS — Gen-Z audience commands premium; Path B Gen-Z-voice brands (canonical TikTok-Shop-voice)' },
+      { voice: 'B2B',         tier1: '8-12% CPS tiered-volume', tier2: '12-15% CPS tiered-volume mid', tier3: '15-20% CPS tiered-volume top', notes: 'tiered-volume — wholesale-cannibalization-guarded; Path C B2B-voice brands only' }
+    ];
+
+    // SAMPLE_INPUTS — canonical Path B default reference profile.
+    // Mirrors scripts/tiktok_shop_unit_economics.py SAMPLE_INPUTS canonical defaults ($2M US DTC base / Path B default / 35 SKUs / 50% gross margin / creator-affiliate-pool ≥20 / 4 hr/wk LIVE-cadence / Shop-Score baseline 4.5+).
+    var SAMPLE_INPUTS = {
+      path: 'B',
+      us_dtc_gmv: 2000000,
+      sku_count: 35,
+      sku_archetype_distribution: 'mixed (10 Beauty + 6 Fashion-Accessories + 8 Home + 5 Food-and-Beverage + 4 Pet + 2 Health)',
+      gross_margin_pct: 50,
+      has_tiktok_business_account: true,
+      has_tiktok_shop_seller_center: true,
+      has_shopify_tiktok_channel: true,
+      has_klaviyo_tiktok_channel: true,
+      has_triple_whale_tiktok_attribution: true,
+      creator_affiliate_pool_size: 25,
+      voice_profile: 'gen_z',
+      has_live_shopping_studio_capacity_hours_per_week: 4,
+      flows: {
+        tiktok_business_account:         { status: 'live',    notes: 'TikTok-Business-Account + Beauty / Fashion-Accessories category-approval received 2026-07-01' },
+        tiktok_shop_seller_center:       { status: 'live',    notes: 'TikTok-Shop-Seller-Center live + 30 voice-variant product-feed listings (5 voices × 6 SKU archetypes per asset 19)' },
+        shoppable_video_ads_launch:      { status: 'staging', notes: 'Spark-Ads-boost launched 2026-07-01; In-Feed-Ads-with-Product-Module + Top-View-Ads pending Phase 2 ramp' },
+        creator_affiliate_pool_build:    { status: 'staging', notes: '20-50 creator-affiliate onboarding in progress; 25 onboarded via TikTok-Shop-Creator-Marketplace + Aspire + Collabstr' },
+        triple_whale_tiktok_attribution:  { status: 'live',    notes: 'Triple-Whale-TikTok-cohort-overlay-wire configured 2026-07-01; 30/60/90-day cohort-LTV measurement active; Shop-Score-4.8+-audit running' },
+        live_shopping_studio_build:      { status: 'draft',   notes: 'LIVE-shopping-studio-build scheduled for Phase 3 Weeks 7-12; canonical $500-$2k one-time + 4-hour-week-cadence' }
+      }
+    };
+
+    // ---- Pure helper functions (mirror scripts/tiktok_shop_unit_economics.py) ----
+    function tierForGmv(usDtcGmv) {
+      if (usDtcGmv >= PATH_TABLE.C.gmvMin) return 'C';
+      if (usDtcGmv >= PATH_TABLE.B.gmvMin) return 'B';
+      return 'A';
+    }
+
+    function year1IncrementalGmvLow(usDtcGmv, p) {
+      return usDtcGmv * (PATH_TABLE[p].incShareLow / 100);
+    }
+    function year1IncrementalGmvHigh(usDtcGmv, p) {
+      return usDtcGmv * (PATH_TABLE[p].incShareHigh / 100);
+    }
+    function year1CostLow(p) {
+      return PATH_TABLE[p].costOneTimeLow + PATH_TABLE[p].costRecurLow * 12;
+    }
+    function year1CostHigh(p) {
+      return PATH_TABLE[p].costOneTimeHigh + PATH_TABLE[p].costRecurHigh * 12;
+    }
+    function liveLtvMid(p) {
+      return (PATH_TABLE[p].liveLtvLow + PATH_TABLE[p].liveLtvHigh) / 2;
+    }
+    function sparkRoasMid(p) {
+      return (PATH_TABLE[p].sparkRoasLow + PATH_TABLE[p].sparkRoasHigh) / 2;
+    }
+    function creatorAffiliatePoolMid(p) {
+      // Path A: 20 affiliates baseline, Path B: 50, Path C: 100 (creator-affiliate-pool-baseline per research/11 Pillar 2)
+      var poolMap = { A: 20, B: 50, C: 100 };
+      return poolMap[p];
+    }
+    function shopScoreAlgorithmicBonusMid(p) {
+      // Path A: 10% baseline, Path B: 30%, Path C: 50% (Shop-Score-4.8+ algorithmic-distribution-bonus per research/11 Pillar 5)
+      var bonusMap = { A: 10, B: 30, C: 50 };
+      return bonusMap[p];
+    }
+
+    // ---- Render functions ----
+    function renderSummary(inputs) {
+      var p = inputs.path;
+      var pt = PATH_TABLE[p];
+      var revLow = year1IncrementalGmvLow(inputs.us_dtc_gmv, p);
+      var revHigh = year1IncrementalGmvHigh(inputs.us_dtc_gmv, p);
+      var costLow = year1CostLow(p);
+      var costHigh = year1CostHigh(p);
+      var ltvMid = liveLtvMid(p);
+      var roasMid = sparkRoasMid(p);
+
+      var items = [
+        { label: 'Default Path', value: pt.label.split(' — ')[0], sub: 'Path ' + p + ' canonical', cls: 'path-tag' },
+        { label: 'Year-1 ROI', value: pt.roiLow.toFixed(1) + ':1 – ' + pt.roiHigh.toFixed(1) + ':1', sub: 'canonical research/11 §Cost & ROI', cls: 'ok' },
+        { label: 'Year-1 Incremental GMV', value: '$' + Math.round(revLow/1000) + 'K – $' + Math.round(revHigh/1000) + 'K', sub: '$' + inputs.us_dtc_gmv.toLocaleString() + ' US DTC base × ' + pt.incShareLow + '-' + pt.incShareHigh + '%', cls: 'ok' },
+        { label: 'LIVE-Cohort-LTV Multiplier', value: pt.liveLtvLow.toFixed(1) + '× – ' + pt.liveLtvHigh.toFixed(1) + '×', sub: 'canonical research/11 Pillar 4 LIVE_COHORT_LTV_MULTIPLIER', cls: 'ok' },
+        { label: 'Spark-Ads ROAS', value: pt.sparkRoasLow.toFixed(1) + '× – ' + pt.sparkRoasHigh.toFixed(1) + '×', sub: 'canonical research/11 Pillar 3 SPARK_ADS_ROAS_BANDS', cls: 'ok' },
+        { label: 'Year-1 Cost Stack', value: '$' + costLow.toLocaleString() + ' – $' + costHigh.toLocaleString(), sub: 'one-time + recurring × 12', cls: 'warn' },
+        { label: 'Creator-Affiliate Pool', value: creatorAffiliatePoolMid(p) + ' affiliates', sub: 'Path ' + p + ' baseline (research/11 Pillar 2)', cls: 'ok' },
+        { label: 'Shop-Score Bonus', value: '+' + shopScoreAlgorithmicBonusMid(p) + '% organic-distribution', sub: 'Shop-Score 4.8+ canonical algorithmic-bonus', cls: 'ok' }
+      ];
+
+      var html = '';
+      for (var i = 0; i < items.length; i++) {
+        var it = items[i];
+        html += '<div class="stat"><div class="label">' + it.label + '</div><div class="value ' + it.cls + '">' + it.value + '</div><div class="sub">' + it.sub + '</div></div>';
+      }
+      document.getElementById('summary-stats').innerHTML = html;
+    }
+
+    function renderFlowCards(inputs) {
+      var html = '';
+      for (var i = 0; i < FLOWS.length; i++) {
+        var f = FLOWS[i];
+        var status = (inputs.flows[f.id] && inputs.flows[f.id].status) || f.status;
+        html += '<div class="flow-card">';
+        html += '<div class="tier">' + f.tier + '</div>';
+        html += '<div class="name">' + f.name + '</div>';
+        html += '<div class="status ' + status + '">' + status + '</div>';
+        if (f.voiceCells > 0) {
+          html += '<div class="meta">' + f.voiceCells + ' voice-driven cells</div>';
+        }
+        html += '<div class="discount">' + f.defaultDiscountTier + '</div>';
+        html += '</div>';
+      }
+      document.getElementById('flow-grid').innerHTML = html;
+    }
+
+    function renderPathChart(inputs) {
+      var maxHigh = 0;
+      var revs = {};
+      for (var p in PATH_TABLE) {
+        revs[p] = {
+          low: year1IncrementalGmvLow(inputs.us_dtc_gmv, p),
+          high: year1IncrementalGmvHigh(inputs.us_dtc_gmv, p)
+        };
+        if (revs[p].high > maxHigh) maxHigh = revs[p].high;
+      }
+
+      var html = '';
+      var paths = ['A', 'B', 'C'];
+      for (var i = 0; i < paths.length; i++) {
+        var p = paths[i];
+        var pct = maxHigh > 0 ? (revs[p].high / maxHigh * 100) : 0;
+        var mid = (revs[p].low + revs[p].high) / 2;
+        var cls = p === 'A' ? 'a' : (p === 'B' ? 'b' : 'c');
+        html += '<div class="chart-col">';
+        html += '<div class="bar ' + cls + '" style="height: ' + Math.max(pct, 4) + '%">';
+        html += '<div class="bar-value">$' + Math.round(mid/1000) + 'K</div>';
+        html += '</div>';
+        html += '<div class="label">Path ' + p + '</div>';
+        html += '</div>';
+      }
+      document.getElementById('path-chart').innerHTML = html;
+    }
+
+    function renderPhaseGates() {
+      var html = '';
+      for (var i = 0; i < PHASE_GATES.length; i++) {
+        var pg = PHASE_GATES[i];
+        var ok = 0, warn = 0, draft = 0;
+        for (var j = 0; j < pg.gates.length; j++) {
+          var s = pg.gates[j].status;
+          if (s === 'ok') ok++;
+          else if (s === 'warn') warn++;
+          else draft++;
+        }
+
+        html += '<div class="phase-card">';
+        html += '<div class="head">';
+        html += '<div class="name">Gate ' + pg.id + ' — ' + pg.label + '</div>';
+        html += '<div class="progress">' + ok + '/' + pg.total + ' pass · ' + warn + ' warn · ' + draft + ' draft</div>';
+        html += '</div>';
+
+        for (var k = 0; k < pg.gates.length; k++) {
+          var g = pg.gates[k];
+          var icon = g.status === 'ok' ? '✓' : (g.status === 'warn' ? '!' : '·');
+          html += '<div class="gate ' + g.status + '"><div class="icon">' + icon + '</div><div class="text">' + g.id + ': ' + g.criterion + '</div></div>';
+        }
+        html += '</div>';
+      }
+      document.getElementById('phase-grid').innerHTML = html;
+    }
+
+    function renderFlowTable(inputs) {
+      var html = '';
+      for (var i = 0; i < FLOWS.length; i++) {
+        var f = FLOWS[i];
+        var status = (inputs.flows[f.id] && inputs.flows[f.id].status) || f.status;
+        html += '<tr>';
+        html += '<td>' + f.name + '</td>';
+        html += '<td>';
+        if (f.voiceCells > 0) {
+          html += '<span class="voice-density-pill">' + f.voiceCells + ' cells</span>';
+        } else {
+          html += '<span style="color:var(--text-dim)">n/a</span>';
+        }
+        html += '</td>';
+        html += '<td><span class="status ' + status + '">' + status + '</span></td>';
+        html += '<td>' + f.creatorContributionPct + '%</td>';
+        html += '<td>' + f.liveLtvContributionPct + '%</td>';
+        html += '<td>' + f.shopScoreBonusPct + '%</td>';
+        html += '</tr>';
+      }
+      document.getElementById('flow-table-body').innerHTML = html;
+    }
+
+    function renderNextAction(inputs) {
+      var p = inputs.path;
+      var pt = PATH_TABLE[p];
+      var html = '<div class="label">Recommended for Path ' + p + ' (' + pt.label.split(' — ')[1] + ')</div>';
+      html += '<ol>';
+
+      if (p === 'A') {
+        html += '<li><strong>Wire TikTok-Business-Account + category-approval-application</strong> for top-SKU category (Beauty / Fashion-Accessories / Home / Food / Pet / Baby / Health / Outdoor / Toys / Electronics per research/11 Pillar 1)</li>';
+        html += '<li><strong>Configure TikTok-Shop-product-feed-optimization</strong> for ≥10 hero-SKUs (100-char-title + 1:1-square-image ≥800px + 5-bullet-200-char-each + 9-image-grid + 1-min-video)</li>';
+        html += '<li><strong>Onboard 20-50 creator-affiliates</strong> via TikTok-Shop-Creator-Marketplace + Aspire + Collabstr + Instagram-hashtag-scrape with 5-payout-structures contract-template</li>';
+        html += '<li><strong>Launch Spark-Ads-boost</strong> on top-performing organic-creator-content ($50-$500/day per audience-segment; target Spark-Ads-ROAS 1.5-2.5× per research/11 Pillar 3)</li>';
+        html += '<li><strong>Path A → Path B decision at $500k+ GMV</strong> + LIVE-cadence-capacity ≥4 hr/wk ready → Gate A passes → Path B ready</li>';
+      } else if (p === 'B') {
+        html += '<li><strong>Build LIVE-shopping-studio</strong> ($500-$2k one-time: Ring-light + iPhone-15-Pro + tripod + lavalier-mic + 1080p-webcam + backdrop + teleprompter-app + Streamlabs-OBS-or-TikTok-LIVE-Studio) per playbook 18 §Step 3.1</li>';
+        html += '<li><strong>Launch 4-hour-week-LIVE-cadence</strong> (1-LIVE-session-per-week 60-90-minutes-per-session per TikTok-LIVE-2024-benchmarks; target LIVE-cohort-LTV 3-5× per research/11 Pillar 4)</li>';
+        html += '<li><strong>Configure 5-segment-LIVE-show-runner-script-template</strong> (Segment-1 product-intro + Segment-2 demo + Segment-3 Q&A + Segment-4 creator-guest-takeover + Segment-5 closing-limited-time-offer) per playbook 18 §Step 3.3 + asset 19</li>';
+        html += '<li><strong>Launch TikTok-Shop-affiliate-program</strong> (separate from creator-affiliate-onboarding in Phase 1; 20-30%-of-GMV commission + 30-day-cookie-window per Move #15-affiliate-program-Playbook-16-benchmarks)</li>';
+        html += '<li><strong>Path B → Path C decision at $5M+ GMV</strong> + attributed-revenue >$50k/mo + LIVE-cadence-daily-active for 2 consecutive quarters → Gate C passes → Path C ready</li>';
+      } else {
+        html += '<li><strong>Full TikTok-Shop-orchestration-build</strong> (daily-LIVE-cadence + TikTok-Shop-affiliate-program-orchestration + Klaviyo-TikTok-channel-full-integration + Triple-Whale-Pro + dedicated-creator-affiliate-manager $4k-$6k/mo) per research/11 Pillar 1-5 + Path C scope</li>';
+        html += '<li><strong>Launch Top-View-Ads</strong> for major-product-launches-and-pr-events ($50k-$200k/day Path C-only-lever per research/11 Pillar 3)</li>';
+        html += '<li><strong>Wire Triple-Whale-Pro + TikTok-Shop-Analytics-Pro</strong> for full-funnel TikTok-Shop-cohort-LTV-overlay + daily-LIVE-cadence-optimization</li>';
+        html += '<li><strong>Hire dedicated-creator-affiliate-manager 0.5-1.0 FTE</strong> + 16+ hr/wk operator capacity for daily-LIVE + Path-C-orchestration</li>';
+        html += '<li><strong>Path C steady-state</strong> + 6:1 Year-1 ROI muted by 6-12-month LIVE-cadence-build-cycle + creator-affiliate-churn-rate → Gate D passes</li>';
+      }
+
+      html += '</ol>';
+      document.getElementById('next-action').innerHTML = html;
+    }
+
+    // ---- URL param parsing (per v0.11.0 static-dashboard recipe) ----
+    function parseParams() {
+      var params = {};
+      if (typeof window === 'undefined' || !window.location || !window.location.search) {
+        return params;
+      }
+      var usp = new URLSearchParams(window.location.search);
+      if (usp.has('path')) params.path = usp.get('path');
+      if (usp.has('us_dtc_gmv')) params.us_dtc_gmv = parseFloat(usp.get('us_dtc_gmv'));
+      if (usp.has('demo')) params.demo = usp.get('demo') === '1';
+      return params;
+    }
+
+    function applyParams(params) {
+      if (!params) return SAMPLE_INPUTS;
+      var inputs = JSON.parse(JSON.stringify(SAMPLE_INPUTS));
+      if (params.path && PATH_TABLE[params.path]) inputs.path = params.path;
+      if (typeof params.us_dtc_gmv === 'number' && params.us_dtc_gmv > 0) inputs.us_dtc_gmv = params.us_dtc_gmv;
+      return inputs;
+    }
+
+    function updateModeBadge(params) {
+      var badge = document.getElementById('mode-badge');
+      if (params.demo) {
+        badge.textContent = 'Demo (forced)';
+        badge.className = 'mode-badge demo';
+      } else if (Object.keys(params).length > 0) {
+        badge.textContent = 'Live (URL params)';
+        badge.className = 'mode-badge live';
+      } else {
+        badge.textContent = 'Demo (defaults)';
+        badge.className = 'mode-badge demo';
+      }
+    }
+
+    function bootstrap() {
+      var params = parseParams();
+      updateModeBadge(params);
+      var inputs = applyParams(params);
+      // Reclassify tier from US DTC GMV if not explicitly set
+      var canonicalTier = tierForGmv(inputs.us_dtc_gmv);
+      if (!params.path) inputs.path = canonicalTier;
+
+      renderSummary(inputs);
+      renderFlowCards(inputs);
+      renderPathChart(inputs);
+      renderPhaseGates();
+      renderFlowTable(inputs);
+      renderNextAction(inputs);
+    }
+
+    // ---- Run on load ----
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', bootstrap);
+    } else {
+      bootstrap();
+    }
+  </script>
+</body>
+</html>
