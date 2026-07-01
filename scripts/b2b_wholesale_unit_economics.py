@@ -8,6 +8,7 @@ Companion to:
 - /playbooks/17-b2b-wholesale-launch.md (4-phase Marketplace-onboard → Distributor-pitch → Direct-buyer-pipeline → Steady-state operator build)
 - /assets/18-b2b-wholesale-kits.md (paste-ready per-marketplace per-voice per-SKU wholesale listing cards)
 - /dashboard/app/b2b/page.tsx (19th operator-surface route rendering research/10 + playbook 17 + asset 18 as a unified surface)
+- /dashboards/b2b-wholesale-channel-health.html (8th static dashboard, shipped 2026-07-01; canonical 6th-and-final static-dashboard layer for the B2B-wholesale track per the v0.11.0 extended layer order research → playbook → asset → operator-surface → scripts → static-dashboard; self-contained static HTML ~43KB / 6 sections + 4 canonical data structures [FLOWS 8 canonical B2B-channel flows + PATH_TABLE 3 path tiers + WHOLESALE_DISCOUNT_MATRIX 6-tier matrix + PHASE_GATES 4 phases with 10/10/10/9 prereqs each] + 8 helper functions + 6 render functions + URL param parsing + 115 Node smoke tests across 26 categories; the canonical 1-click B2B-launch readiness heat-map for $500k-$5M GMV brands with the canonical 6.0:1 to 11.0:1 Year-1 ROI band + Faire 2024 + Ankorstore 2024 + Shopify B2B 2024 + RSP 2024 + KeHE 2024 + UNFI 2024 benchmarks)
 
 This script takes a brand's current B2B-wholesale-fit inputs
 (us_dtc_gmv / sku_count / sku_archetype_distribution / gross_margin_pct /

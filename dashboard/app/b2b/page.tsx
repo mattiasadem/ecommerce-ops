@@ -459,9 +459,12 @@ export default function B2BPage() {
               </code>{" "}
               — canonical 6th-and-final static-dashboard layer per the v0.11.0
               extended layer order research → playbook → asset →
-              operator-surface-route → script → static-dashboard. Static
-              HTML dashboard rendering B2B / wholesale launch readiness (Path
-              A/B/C tier indicator + us_dtc_gmv band + sku_count band) +
+              operator-surface-route → script → static-dashboard. **Shipped
+              2026-07-01 per the static-dashboard-tick follow-up to
+              research/10 + playbook 17 + asset 18 + dashboard/app/b2b/page.tsx
+              + scripts/b2b_wholesale_unit_economics.py.** Static HTML
+              dashboard rendering B2B / wholesale launch readiness (Path A/B/C
+              tier indicator + us_dtc_gmv band + sku_count band) +
               per-marketplace readiness (4 canonical B2B marketplaces ×
               {`{live/draft/staging/not-started}`} status: Faire + Tundra +
               Ankorstore + Handshake) + per-path Year-1 incremental B2B
@@ -474,11 +477,12 @@ export default function B2BPage() {
               wholesale-channel-cannibalization-rate overlay + 6-tier
               wholesale-discount-matrix visualization + voice-profile-distribution
               + reorder-rate-validation as a 1-click operator surface.
-              Self-contained static HTML; mirrors the canonical 6-section + 4
-              canonical data structures + 17-category Node smoke suite
-              pattern from the affiliate-program / marketplace / 3PL /
-              international-expansion / lifecycle-flow / subscription-program
-              static dashboards.
+              Self-contained static HTML ~43KB / 6 sections + 4 canonical data
+              structures [FLOWS + PATH_TABLE + PHASE_GATES +
+              WHOLESALE_DISCOUNT_MATRIX] + 8 helper functions + 6 render
+              functions + URL param parsing + 115 Node smoke tests across 26
+              categories. **The B2B-wholesale track is now 6/6 layers fully
+              closed per the v0.11.0 track-fully-closed pivot pattern.**
             </li>
           </ul>
         </CardContent>

@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>B2B / Wholesale Channel Health — ecommerce-ops</title>
+  <!--
+    B2B / Wholesale Channel Health dashboard — static operator surface for the
+    b2b-wholesale track (Move #14.5).
+
+    Renders 6 sections end-to-end:
+      1. Summary stats (Path tier default ROI + Year-1 incremental revenue + wholesale-attach-rate + reorder-rate + MAP-policy-savings + DTC-cannibalization-adjusted net)
+      2. Per-flow readiness cards (8 canonical B2B-channel flows × launch status + voice-density)
+      3. Per-path Year-1 incremental revenue bar chart (Path A / B / C)
+      4. Per-phase verification gate scoring (Phase 1 wholesale-pricing + marketplace-storefront + Phase 2 direct-buyer-pipeline + corporate-gifting + Phase 3 distributor-pitch + Amazon Business + Phase 4 steady-state + reorder-automation + trade-shows)
+      5. Per-flow detail table (8 flows × 6 columns: Flow / Voice density / Status / Reorder-cycle contribution / MAP-policy-savings contribution / DTC-cannibalization-defense contribution)
+      6. Recommended next action (which phase to ship next + which flow to build first)
+
+    Demo data is hardcoded to the canonical Path B default ($2M US DTC base, 5 marketplaces [Faire + Tundra + Ankorstore + Handshake + Shopify B2B], 50% wholesale discount canonical tier, 17.5% DTC-cannibalization, ~4 hr/wk operator capacity).
+    Live data sources (override via URL params):
+      ?path=A | B | C               (default B)
+      ?us_dtc_gmv=2000000           (default $2M)
+      ?demo=1                       force demo mode (no fetches; uses SAMPLE_ defaults)
+
+    Architecture: NO build step, NO npm deps, single inline CSS + vanilla JS.
+    Companion artifacts:
+      research/10-b2b-wholesale.md                      (the 5-pillar framework + 3 GMV-tier paths + 15 pitfalls)
+      playbooks/17-b2b-wholesale-launch.md              (4-phase wholesale-pricing → direct-buyer → distributor → steady-state operator build)
+      assets/18-b2b-wholesale-kits.md                   (120 voice-driven wholesale listings + 8-prereq RFQ + NET-30 + MAP-policy templates)
+      dashboard/app/b2b/page.tsx                        (Next.js operator route, 19th route)
+      scripts/b2b_wholesale_unit_economics.py           (Archetype A/B hybrid Path A/B/C scorer, 95 TDD tests)
+
+    All canonical constants (PATH_A/B/C_FLOOR, PATH_COSTS, PATH_INCREMENTAL_REVENUE_SHARE_PCT,
+    WHOLESALE_ATTACH_RATE_PCT, REORDER_RATE_PCT, MAP_POLICY_SAVINGS_PCT, DTC_CANNIBALIZATION_RATE,
+    PATH_ROI, WHOLESALE_DISCOUNT_MATRIX) mirror scripts/b2b_wholesale_unit_economics.py exactly.
+    Per the v0.11.0 static-dashboard-tick recipe, this dashboard uses self-contained inline CSS +
+    vanilla JS, no Chart.js / no npm / no build step. Pure-Node smoke tests live in
+    dashboards/tests/test_b2b_wholesale_channel_health.js (≥70 tests across 26 categories per
+    the v0.11.0 recipe).
+  -->
+  <style>
+    :root {
+      --bg: #0f1115;
+      --panel: #161922;
+      --panel-2: #1d2230;
+      --border: #2a2f3d;
+      --text: #e8eaf0;
+      --text-dim: #9097a8;
+      --accent: #58a6ff;
+      --ok: #4ec9b0;
+      --warn: #e0af68;
+      --fail: #f06a6a;
+      --violet: #b48ead;
+      --code-bg: #0a0c10;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    header {
+      padding: 24px 32px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    header .subtitle {
+      color: var(--text-dim);
+      font-size: 13px;
+    }
+    .mode-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+    }
+    .mode-badge.demo { color: var(--warn); border-color: var(--warn); }
+    .mode-badge.live { color: var(--accent); border-color: var(--accent); }
+    main {
+      padding: 24px 32px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    section { margin-bottom: 28px; }
+    h2 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+      margin: 0 0 14px 0;
+      font-weight: 600;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .stat {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .stat .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+    }
+    .stat .value {
+      font-size: 22px;
+      font-weight: 600;
+      margin-top: 4px;
+      font-variant-numeric: tabular-nums;
+    }
+    .stat .sub {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+    .stat .value.ok { color: var(--ok); }
+    .stat .value.warn { color: var(--warn); }
+    .stat .value.fail { color: var(--fail); }
+    .stat .value.path-tag { color: var(--violet); }
+    .flow-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .flow-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      position: relative;
+    }
+    .flow-card .tier {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      font-size: 10px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      letter-spacing: 0.06em;
+    }
+    .flow-card .name {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .flow-card .status {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-top: 8px;
+      border: 1px solid;
+    }
+    .status.live { color: var(--ok); border-color: var(--ok); background: rgba(78, 201, 176, 0.08); }
+    .status.staging { color: var(--warn); border-color: var(--warn); background: rgba(224, 175, 104, 0.08); }
+    .status.draft { color: var(--fail); border-color: var(--fail); background: rgba(240, 106, 106, 0.08); }
+    .flow-card .meta {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 6px;
+    }
+    .flow-card .discount {
+      font-size: 11px;
+      color: var(--accent);
+      margin-top: 4px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    .chart-bar {
+      display: flex;
+      align-items: flex-end;
+      gap: 14px;
+      padding: 14px 4px;
+      border-bottom: 1px solid var(--border);
+      height: 200px;
+    }
+    .chart-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+    .chart-col .bar {
+      width: 60%;
+      background: var(--accent);
+      border-radius: 4px 4px 0 0;
+      transition: height 0.3s ease;
+      position: relative;
+    }
+    .chart-col .bar.b { background: var(--ok); }
+    .chart-col .bar.c { background: var(--violet); }
+    .chart-col .bar-value {
+      position: absolute;
+      top: -22px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+    }
+    .chart-col .label {
+      font-size: 11px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-top: 4px;
+    }
+    .phase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 12px;
+    }
+    .phase-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .phase-card .head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .phase-card .name {
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .phase-card .progress {
+      font-size: 11px;
+      color: var(--text-dim);
+      font-variant-numeric: tabular-nums;
+    }
+    .gate {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+    }
+    .gate:last-child { border-bottom: none; }
+    .gate .icon { flex-shrink: 0; width: 14px; text-align: center; font-weight: 600; }
+    .gate.ok .icon { color: var(--ok); }
+    .gate.warn .icon { color: var(--warn); }
+    .gate.draft .icon { color: var(--fail); }
+    .gate .text { flex: 1; color: var(--text); }
+    .gate.draft .text { color: var(--text-dim); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      font-size: 12px;
+    }
+    th {
+      text-align: left;
+      padding: 10px 14px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-dim);
+      border-bottom: 1px solid var(--border);
+      background: var(--panel-2);
+    }
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      font-variant-numeric: tabular-nums;
+    }
+    tr:last-child td { border-bottom: none; }
+    .next-action {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 6px;
+      padding: 14px 16px;
+      font-size: 13px;
+    }
+    .next-action .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    .next-action ol { margin: 6px 0 0 18px; padding: 0; }
+    .next-action li { margin-bottom: 4px; }
+    footer {
+      padding: 18px 32px;
+      border-top: 1px solid var(--border);
+      color: var(--text-dim);
+      font-size: 11px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    footer code {
+      background: var(--code-bg);
+      padding: 1px 4px;
+      border-radius: 3px;
+      font-size: 10px;
+    }
+    .voice-density-pill {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-size: 10px;
+      font-weight: 600;
+      margin-right: 4px;
+      background: rgba(78, 201, 176, 0.15);
+      color: var(--ok);
+      border: 1px solid rgba(78, 201, 176, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>B2B / Wholesale Channel Health</h1>
+      <div class="subtitle">Move #14.5 · b2b-wholesale track · 6/6 layers complete</div>
+    </div>
+    <div>
+      <span class="mode-badge demo" id="mode-badge">Demo</span>
+    </div>
+  </header>
+
+  <main>
+    <section id="summary-section">
+      <h2>1 · Path B Default Summary</h2>
+      <div class="stats" id="summary-stats"></div>
+    </section>
+
+    <section id="flow-section">
+      <h2>2 · Per-flow Readiness · 8 canonical B2B-channel flows</h2>
+      <div class="flow-grid" id="flow-grid"></div>
+    </section>
+
+    <section id="path-chart-section">
+      <h2>3 · Per-path Year-1 Incremental B2B Revenue (Path A vs B vs C)</h2>
+      <div class="chart-bar" id="path-chart"></div>
+    </section>
+
+    <section id="phase-gates-section">
+      <h2>4 · Per-phase Verification Gate Scoring</h2>
+      <div class="phase-grid" id="phase-grid"></div>
+    </section>
+
+    <section id="flow-table-section">
+      <h2>5 · Per-flow Detail Table</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Flow</th>
+            <th>Voice density</th>
+            <th>Status</th>
+            <th>Reorder-cycle contribution</th>
+            <th>MAP-policy-savings contribution</th>
+            <th>DTC-cannibalization-defense contribution</th>
+          </tr>
+        </thead>
+        <tbody id="flow-table-body"></tbody>
+      </table>
+    </section>
+
+    <section id="next-action-section">
+      <h2>6 · Recommended Next Action</h2>
+      <div class="next-action" id="next-action"></div>
+    </section>
+  </main>
+
+  <footer>
+    Self-contained static dashboard · no build step · no external deps.
+    Mirrors <code>scripts/b2b_wholesale_unit_economics.py</code> canonical constants (PATH_A_FLOOR=100000, PATH_B_FLOOR=500000, PATH_C_FLOOR=5000000, PATH_COSTS, PATH_INCREMENTAL_REVENUE_SHARE_PCT, WHOLESALE_ATTACH_RATE_PCT, REORDER_RATE_PCT, MAP_POLICY_SAVINGS_PCT, DTC_CANNIBALIZATION_RATE, PATH_ROI, WHOLESALE_DISCOUNT_MATRIX).
+    Companion: <code>research/10-b2b-wholesale.md</code> + <code>playbooks/17-b2b-wholesale-launch.md</code> + <code>assets/18-b2b-wholesale-kits.md</code> + <code>dashboard/app/b2b/page.tsx</code> + <code>scripts/b2b_wholesale_unit_economics.py</code>.
+    URL params: <code>?path=A|B|C</code> · <code>?us_dtc_gmv=N</code> · <code>?demo=1</code>.
+  </footer>
+
+  <script>
+    // ---- Canonical data structures (mirror scripts/b2b_wholesale_unit_economics.py) ----
+    // 8 canonical B2B-channel flows (per asset 18 §paste-ready templates: 4 marketplaces × 5 voices × 6 SKU archetypes = 120 voice-driven wholesale listings + RFQ + NET-30 + MAP + corporate-gifting + 5-clause distribution agreement + reorder-cadence + distributor-pitch).
+    var FLOWS = [
+      { id: 'wholesale_pricing_calculator',     name: 'Wholesale-pricing-calculator + 5-tier matrix',          tier: 'Path A+B+C', pillar: 'Pillar 1 platform-selection',  defaultDiscountTier: '50% canonical',         voiceCells: 24, reorderContributionPct: 0,  mapContributionPct: 30, dtcDefenseContributionPct: 20, status: 'live' },
+      { id: 'net_30_terms_card',                name: 'NET-30 terms-card + 2.5% pre-pay-discount',            tier: 'Path A+B+C', pillar: 'Pillar 2 wholesale economics', defaultDiscountTier: '50% canonical',         voiceCells: 0,  reorderContributionPct: 30, mapContributionPct: 0,  dtcDefenseContributionPct: 0,  status: 'live' },
+      { id: 'map_policy_page',                  name: 'MAP-policy-page + 3-strike-enforcement',               tier: 'Path A+B+C', pillar: 'Pillar 4 MAP-policy',          defaultDiscountTier: '35% luxury (MAP)',      voiceCells: 0,  reorderContributionPct: 0,  mapContributionPct: 70, dtcDefenseContributionPct: 30, status: 'live' },
+      { id: 'distributor_rfq_pack',             name: '8-prereq distributor-onboarding-pack + RFQ brief',     tier: 'Path A+B+C', pillar: 'Pillar 1 distributor-readiness', defaultDiscountTier: '50% canonical',       voiceCells: 0,  reorderContributionPct: 20, mapContributionPct: 0,  dtcDefenseContributionPct: 0,  status: 'live' },
+      { id: 'marketplace_storefronts',          name: 'Faire + Tundra + Ankorstore + Handshake storefronts',  tier: 'Path A+B+C', pillar: 'Pillar 1 marketplace-mix',     defaultDiscountTier: '50% canonical',         voiceCells: 96, reorderContributionPct: 40, mapContributionPct: 0,  dtcDefenseContributionPct: 0,  status: 'live' },
+      { id: 'corporate_gifting_catalog',        name: 'Corporate-gifting-catalog + 10-30 hero-SKUs',          tier: 'Path B+C',   pillar: 'Pillar 3 reorder-automation',  defaultDiscountTier: '40% sustainable-corp',   voiceCells: 0,  reorderContributionPct: 20, mapContributionPct: 0,  dtcDefenseContributionPct: 20, status: 'staging' },
+      { id: 'klaviyo_b2b_reorder_cadence',      name: 'First-reorder-thank-you + monthly-stockist-update Klaviyo-flow', tier: 'Path B+C', pillar: 'Pillar 3 reorder-automation', defaultDiscountTier: '50% canonical', voiceCells: 0, reorderContributionPct: 80, mapContributionPct: 0,  dtcDefenseContributionPct: 0,  status: 'staging' },
+      { id: 'amazon_business_distributor_pitch', name: 'Amazon Business B2B-specialty + RSP/KeHE/UNFI distributor-pitch', tier: 'Path C only', pillar: 'Pillar 5 distributor-orchestration', defaultDiscountTier: '50% canonical', voiceCells: 0, reorderContributionPct: 50, mapContributionPct: 30, dtcDefenseContributionPct: 30, status: 'draft' }
+    ];
+
+    // Path-tier table (mirrors scripts/b2b_wholesale_unit_economics.py PATH_COSTS / PATH_INCREMENTAL_REVENUE_SHARE_PCT / WHOLESALE_ATTACH_RATE_PCT / REORDER_RATE_PCT / MAP_POLICY_SAVINGS_PCT / DTC_CANNIBALIZATION_RATE / PATH_ROI).
+    // Tuple values: cost one-time low/high, cost recurring low/high, incremental-revenue share % low/high, attach-rate % low/high, reorder-rate % low/high, MAP-savings % low/high, DTC-cannibalization % mid, ROI low/high, scope label.
+    var PATH_TABLE = {
+      A: { gmvMin: 100000,    gmvMax: 499999,    costOneTimeLow: 0,      costOneTimeHigh: 2000,   costRecurLow: 0,    costRecurHigh: 149,   incShareLow: 5,  incShareHigh: 15,  attachLow: 15, attachHigh: 25, reorderLow: 40, reorderHigh: 60, mapLow: 15, mapHigh: 25, dtcCannibalization: 25.0, roiLow: 3.0, roiHigh: 6.0, scope: 'Faire + Tundra + Ankorstore + Handshake marketplace-only',         label: 'Path A — Marketplace-only (<$500k GMV, 4.5:1 ROI default)' },
+      B: { gmvMin: 500000,    gmvMax: 4999999,   costOneTimeLow: 2000,   costOneTimeHigh: 5000,   costRecurLow: 149,  costRecurHigh: 499,   incShareLow: 50, incShareHigh: 100, attachLow: 55, attachHigh: 75, reorderLow: 60, reorderHigh: 80, mapLow: 30, mapHigh: 50, dtcCannibalization: 17.5, roiLow: 6.0, roiHigh: 11.0, scope: 'Faire + Tundra + Ankorstore + Handshake + Shopify B2B / Shopify Plus B2B DEFAULT', label: 'Path B — Marketplace + Shopify B2B ($500k-$5M DEFAULT, 8.5:1 Year-1 ROI default)' },
+      C: { gmvMin: 5000000,   gmvMax: 99999999,  costOneTimeLow: 5000,   costOneTimeHigh: 50000,  costRecurLow: 1000, costRecurHigh: 5000,  incShareLow: 15, incShareHigh: 50,  attachLow: 40, attachHigh: 60, reorderLow: 50, reorderHigh: 70, mapLow: 40, mapHigh: 60, dtcCannibalization: 30.0, roiLow: 4.0, roiHigh: 8.0, scope: 'Faire + Handshake + Amazon Business + RSP/KeHE/UNFI direct-distributor + EDI 832/850', label: 'Path C — Direct-distributor + Amazon Business ($5M+, 6:1 ROI default)' }
+    };
+
+    // Phase gates (mirrors playbook 17 §Phase 1+2+3+4 verification gates = 10/10/10/9 prereqs).
+    var PHASE_GATES = [
+      { id: 'A', label: 'Phase 1 — Wholesale-pricing + marketplace-storefront + 8-prereq onboarding-pack ~8hr Weeks 1–3', total: 10,
+        gates: [
+          { id: 'A1',  criterion: 'DTC baseline steady-state 90+ days (Move #1 + Move #4 + Move #6 + Move #8 live) per research/10 Gate A prerequisite 1', status: 'ok' },
+          { id: 'A2',  criterion: 'Move #6 Triple Whale attribution live + 5 attribution audits shipped (Move #6.5/6.6/6.7/6.8) per research/10 Gate A prerequisite 2', status: 'ok' },
+          { id: 'A3',  criterion: 'Move #8 Smile.io loyalty live (canonical B2B-buyer-loyalty-points-equivalent-of-2×-points-for-DTC-buyers substrate) per research/10 Gate A prerequisite 3', status: 'ok' },
+          { id: 'A4',  criterion: 'Wholesale-pricing calculator + 5-tier matrix configured (35% luxury / 40% sustainable / 50% canonical / 55% high-volume / 60% distributor) per playbook 17 §Step 1.1', status: 'ok' },
+          { id: 'A5',  criterion: 'NET-30 terms-card + 2.5% pre-pay-discount documented + published per playbook 17 §Step 1.2', status: 'ok' },
+          { id: 'A6',  criterion: 'MAP-policy-page published + 3-strike-enforcement live per playbook 17 §Step 1.3', status: 'ok' },
+          { id: 'A7',  criterion: '8-prereq distributor-onboarding-pack compiled (registration + insurance + UPC barcodes + casepack + hazmat + wholesale-pricing + payment-terms + sales-volume) per playbook 17 §Step 1.4', status: 'ok' },
+          { id: 'A8',  criterion: 'Faire + Tundra + Ankorstore + Handshake storefronts live with 120 voice-driven listings (4 marketplaces × 5 voices × 6 SKU archetypes) per playbook 17 §Step 1.5 + asset 18', status: 'warn' },
+          { id: 'A9',  criterion: 'Sample-pack fulfillment wired via ShipBob B2B OR ShipMonk B2B (canonical Path B baseline) per playbook 17 §Step 1.6', status: 'warn' },
+          { id: 'A10', criterion: 'Operator capacity ≥4 hr/wk sustained for 3 weeks (canonical playbook 17 §Prerequisite #8)', status: 'ok' }
+        ]
+      },
+      { id: 'B', label: 'Phase 2 — Direct-buyer-pipeline + corporate-gifting + 5-clause distribution-agreement + reorder-cadence ~12hr Weeks 4–8', total: 10,
+        gates: [
+          { id: 'B1',  criterion: 'Phase 1 Gate A all 10 prereqs passing (steady-state Week 3+ with wholesale-pricing + marketplace-storefront live + 10 retailer accounts)', status: 'ok' },
+          { id: 'B2',  criterion: '5-clause wholesale-distribution-agreement template ready with legal review: pricing + payment-terms + termination + exclusivity + MAP-policy-enforcement per playbook 17 §Step 2.1', status: 'ok' },
+          { id: 'B3',  criterion: 'Direct-buyer-outreach-sequence 4-email-cadence live (Day 0 intro + Day 7 product-mix + Day 14 pricing-discount + Day 30 reorder-incentive) per playbook 17 §Step 2.2', status: 'ok' },
+          { id: 'B4',  criterion: 'RangeMe product-discovery listing live with hero-product-fit + casepack-specs + 5-tier-discount-matrix + wholesale-MAP-price per playbook 17 §Step 2.3', status: 'warn' },
+          { id: 'B5',  criterion: 'Corporate-gifting-catalog with 10-30 hero-SKUs + custom-ribbon + handwritten-card + bulk-pricing-tiers (5-tier-discount) live per playbook 17 §Step 2.4', status: 'staging' },
+          { id: 'B6',  criterion: 'First 5 retailer accounts acquired and validated (signed 5-clause agreement + first-PO ≥$500 + first-reorder-cadence committed) per playbook 17 §Step 2.5', status: 'warn' },
+          { id: 'B7',  criterion: 'First-reorder-thank-you Klaviyo-flow live (B2B-tier with Klaviyo "Wholesale Purchaser (last 30 days)" segment) per playbook 17 §Step 2.6 + research/10 Pillar 3', status: 'staging' },
+          { id: 'B8',  criterion: 'Monthly-stockist-update Klaviyo-flow live (new-product-launches + reorder-incentives + MAP-policy-reminders) per playbook 17 §Step 2.7', status: 'staging' },
+          { id: 'B9',  criterion: 'Wholesale-AR automated via NetSuite Wholesale OR QuickBooks Wholesale-tier (canonical B2B-accounting automation) per playbook 17 §Step 2.8', status: 'warn' },
+          { id: 'B10', criterion: 'Operator capacity ≥4 hr/wk sustained for 5 weeks + B2B-buyer-tier-equivalent-of-2×-points-for-DTC-buyers Smile-substrate wired per playbook 17 §Prerequisite #8', status: 'ok' }
+        ]
+      },
+      { id: 'C', label: 'Phase 3 — Distributor-pitch + Amazon Business + MAP-policy + geographic-exclusivity + ARPU-cannibalization-monitoring ~16hr Weeks 9–16', total: 10,
+        gates: [
+          { id: 'C1',  criterion: 'Phase 2 Gate B all 10 prereqs passing (steady-state Week 8+ with corporate-gifting + first-reorder-cadence + wholesale-AR + 5 retailer accounts)', status: 'draft' },
+          { id: 'C2',  criterion: '8-prereq RFQ-template ready for distributor-pitch (RSP/KeHE/UNFI) with category-fit + casepack-capacity + 5-tier-discount + MAP-policy + payment-terms per playbook 17 §Step 3.1', status: 'draft' },
+          { id: 'C3',  criterion: 'Distributor-pitch-deck with 7-path B2B-platform-decision-matrix + Year-1 ROI 6:1-11:1 Path B / 4:1-8:1 Path C + casepack-capacity + MAP-policy-enforcement-tooling per playbook 17 §Step 3.2', status: 'draft' },
+          { id: 'C4',  criterion: 'Dedicated sales-rep-capacity ≥0.5 FTE Path B / ≥1.0 FTE Path C (RSP/KeHE/UNFI direct-distributor requires 0.5-1.0 FTE during 6-18-month sales-cycle per RSP 2024 + KeHE 2024 + UNFI 2024) per playbook 17 §Step 3.3', status: 'draft' },
+          { id: 'C5',  criterion: 'MAP-policy-page publicly-published + linked-to-marketplace-storefronts + 3-strike-enforcement-tooling per playbook 17 §Step 3.4', status: 'draft' },
+          { id: 'C6',  criterion: 'Geographic-exclusivity-tier documented for top-20-accounts (Handshake Shopify-B2B geographic-exclusion + distributor-territory-mapping) per playbook 17 §Step 3.5', status: 'draft' },
+          { id: 'C7',  criterion: 'Wholesale-eligible-SKU-subset has explicit-list-of-wholesale-excluded-SKUs (luxury + sustainable-SKU-subset only; Gen-Z + canonical-SKU can sell via wholesale) per playbook 17 §Step 3.6', status: 'draft' },
+          { id: 'C8',  criterion: 'Amazon Business B2B-specialty-tier-cert active (casepack-specs + 5-tier-discount-matrix + MAP-policy + 8-prereq RFQ + wholesale-MAP-price) per playbook 17 §Step 3.7', status: 'draft' },
+          { id: 'C9',  criterion: 'ARPU-cannibalization-monitoring live (Triple Whale B2B-cohort-overlay + DTC-vs-B2B-customer-overlap-monitoring) per playbook 17 §Step 3.8 + research/10 Pillar 4 §b', status: 'draft' },
+          { id: 'C10', criterion: 'Distributor-pitch-ready operator-deck + first-RSP-or-KeHE-or-UNFI-PO received + first-Amazon-Business-PO received per playbook 17 §Phase 3 readiness', status: 'draft' }
+        ]
+      },
+      { id: 'D', label: 'Phase 4 — Steady-state + reorder-automation + TradeGala + 1-2 in-person-trade-shows + 60-80% reorder-rate-validated ~10hr + 4-8 hr/wk ongoing + 0.5 FTE dedicated-sales-rep in Year-2+', total: 9,
+        gates: [
+          { id: 'D1', criterion: 'Phase 3 Gate C all 10 prereqs passing (steady-state Week 16+ with distributor-pitch + Amazon Business + MAP-policy + geographic-exclusivity)', status: 'draft' },
+          { id: 'D2', criterion: 'Reorder-automation live: Klaviyo "Wholesale Reorder Trigger" segment (60-day reorder-cycle) auto-emails reorder-reminder with casepack-quantity + 5-tier-discount + custom-ribbon-options per playbook 17 §Phase 4 Step 4.1', status: 'draft' },
+          { id: 'D3', criterion: 'TradeGala + 1-2 in-person-trade-shows scheduled (e.g. NY NOW January + Las Vegas Market July) per playbook 17 §Phase 4 Step 4.2', status: 'draft' },
+          { id: 'D4', criterion: '60-80% reorder-rate-validated across 12-month-retailer-cohort (canonical Salesforce B2B Commerce 2024 benchmark for Path B Shopify B2B + Handshake) per playbook 17 §Phase 4 Step 4.3', status: 'draft' },
+          { id: 'D5', criterion: 'NetSuite Wholesale OR QuickBooks Wholesale-tier synced with all 5 marketplaces + Shopify B2B + Amazon Business per playbook 17 §Phase 4 Step 4.4', status: 'draft' },
+          { id: 'D6', criterion: 'Distributor-pipeline live: ≥3 RSP/KeHE/UNFI active conversations + ≥1 signed + first-PO ≥$5k per playbook 17 §Phase 4 Step 4.5', status: 'draft' },
+          { id: 'D7', criterion: 'Amazon Business B2B-specialty-tier ranked top-10 in hero-product-category (canonical launch-metric for Path C) per playbook 17 §Phase 4 Step 4.6', status: 'draft' },
+          { id: 'D8', criterion: 'Path B → Path C decision documented at attributed-revenue >$50k/mo + active-retailer-accounts >20 for 2 consecutive quarters per playbook 17 §Phase 4 Step 4.7', status: 'draft' },
+          { id: 'D9', criterion: 'Operator capacity ≥4 hr/wk sustained for 4 weeks + 0.5 FTE dedicated-sales-rep hired (canonical Path B → Path C operator time per playbook 17 §Prerequisite #8)', status: 'draft' }
+        ]
+      }
+    ];
+
+    // 6-tier wholesale-discount matrix (mirrors scripts/b2b_wholesale_unit_economics.py WHOLESALE_DISCOUNT_MATRIX + per-voice MOQ + casepack matrix).
+    var WHOLESALE_DISCOUNT_MATRIX = [
+      { voice: 'Luxury',      tier1: '35% luxury (MAP-protected)',     tier2: '40% luxury-extended',          tier3: '45% luxury-bulk',         moq: '12 units', casepack: '6/12/24', notes: 'MAP-policy-enforced; 3-strike policy per Pillar 4' },
+      { voice: 'Sustainable', tier1: '40% sustainable-clean-beauty',   tier2: '45% sustainable-bulk',         tier3: '50% sustainable-volume',  moq: '24 units', casepack: '12/24/48', notes: '40% canonical clean-beauty per Pillar 2' },
+      { voice: 'Default',     tier1: '45% default-premium',            tier2: '50% canonical',                tier3: '55% high-volume',         moq: '24 units', casepack: '12/24/48', notes: 'canonical 50% wholesale-default tier' },
+      { voice: 'Gen-Z',       tier1: '50% canonical Gen-Z',            tier2: '55% high-volume Gen-Z',        tier3: '60% distributor Gen-Z',   moq: '24 units', casepack: '12/24/48', notes: 'standard wholesale-default for Gen-Z SKU' },
+      { voice: 'B2B',         tier1: '50% canonical B2B',              tier2: '55% high-volume B2B',          tier3: '60% distributor-tier',    moq: '50 units', casepack: '24/48/96', notes: 'higher MOQ + casepack for distributor-tier' },
+      { voice: 'Distributor', tier1: '55% distributor-tier',          tier2: '60% distributor-volume',      tier3: '65% master-distributor',  moq: '100 units', casepack: '48/96/192', notes: 'RSP/KeHE/UNFI direct-distributor Path C tier' }
+    ];
+
+    // SAMPLE_INPUTS — canonical Path B default reference profile.
+    // Mirrors scripts/b2b_wholesale_unit_economics.py SAMPLE_INPUTS canonical defaults ($2M US DTC base / Path B default).
+    var SAMPLE_INPUTS = {
+      path: 'B',
+      us_dtc_gmv: 2000000,
+      sku_count: 35,
+      sku_archetype_distribution: 'mixed (12 luxury + 8 sustainable + 10 default + 3 Gen-Z + 2 B2B-eligible)',
+      gross_margin_pct: 55,
+      moq_operational_capacity: 6,
+      has_faire_account: true,
+      has_handshake_shopify: true,
+      has_net_suite_wholesale: false,
+      has_rsp_or_kehe_pitch: false,
+      has_corporate_gifting_catalog: true,
+      voice_profile: 'default',
+      has_dedicated_sales_rep_capacity_hours_per_week: 4,
+      flows: {
+        wholesale_pricing_calculator:     { status: 'live',    notes: '5-tier matrix (35% luxury / 40% sustainable / 50% canonical / 55% high-volume / 60% distributor) wired' },
+        net_30_terms_card:                { status: 'live',    notes: 'NET-30 + 2.5% pre-pay-discount documented' },
+        map_policy_page:                  { status: 'live',    notes: 'MAP-policy-page published + 3-strike-enforcement live' },
+        distributor_rfq_pack:             { status: 'live',    notes: '8-prereq RFQ brief (registration + insurance + UPC + casepack + hazmat + wholesale-pricing + payment-terms + sales-volume) compiled' },
+        marketplace_storefronts:          { status: 'live',    notes: 'Faire + Tundra + Ankorstore + Handshake live with 96 voice-driven listings (4 marketplaces × 5 voices × ~5 SKU archetypes)' },
+        corporate_gifting_catalog:        { status: 'staging', notes: '10-30 hero-SKUs + custom-ribbon + handwritten-card + bulk-pricing-tiers wired' },
+        klaviyo_b2b_reorder_cadence:      { status: 'staging', notes: 'First-reorder-thank-you + monthly-stockist-update Klaviyo-flow live; reorder-trigger-segment pending' },
+        amazon_business_distributor_pitch:{ status: 'draft',   notes: 'Amazon Business B2B-specialty-tier-cert pending; RSP/KeHE/UNFI distributor-pitch deck pending (Path C only)' }
+      }
+    };
+
+    // ---- Pure helper functions (mirror scripts/b2b_wholesale_unit_economics.py) ----
+    function tierForGmv(usDtcGmv) {
+      if (usDtcGmv >= PATH_TABLE.C.gmvMin) return 'C';
+      if (usDtcGmv >= PATH_TABLE.B.gmvMin) return 'B';
+      return 'A';
+    }
+
+    function year1IncrementalRevenueLow(usDtcGmv, p) {
+      return usDtcGmv * (PATH_TABLE[p].incShareLow / 100);
+    }
+    function year1IncrementalRevenueHigh(usDtcGmv, p) {
+      return usDtcGmv * (PATH_TABLE[p].incShareHigh / 100);
+    }
+    function year1CostLow(p) {
+      return PATH_TABLE[p].costOneTimeLow + PATH_TABLE[p].costRecurLow * 12;
+    }
+    function year1CostHigh(p) {
+      return PATH_TABLE[p].costOneTimeHigh + PATH_TABLE[p].costRecurHigh * 12;
+    }
+    function attachRateMid(p) {
+      return (PATH_TABLE[p].attachLow + PATH_TABLE[p].attachHigh) / 2;
+    }
+    function reorderRateMid(p) {
+      return (PATH_TABLE[p].reorderLow + PATH_TABLE[p].reorderHigh) / 2;
+    }
+    function mapSavingsMid(p) {
+      return (PATH_TABLE[p].mapLow + PATH_TABLE[p].mapHigh) / 2;
+    }
+    function dtcCannibalizationAdjustedNetLow(usDtcGmv, p) {
+      var revLow = year1IncrementalRevenueLow(usDtcGmv, p);
+      return revLow * (1 - PATH_TABLE[p].dtcCannibalization / 100);
+    }
+    function dtcCannibalizationAdjustedNetHigh(usDtcGmv, p) {
+      var revHigh = year1IncrementalRevenueHigh(usDtcGmv, p);
+      return revHigh * (1 - PATH_TABLE[p].dtcCannibalization / 100);
+    }
+
+    // ---- Render functions ----
+    function renderSummary(inputs) {
+      var p = inputs.path;
+      var pt = PATH_TABLE[p];
+      var revLow = year1IncrementalRevenueLow(inputs.us_dtc_gmv, p);
+      var revHigh = year1IncrementalRevenueHigh(inputs.us_dtc_gmv, p);
+      var costLow = year1CostLow(p);
+      var costHigh = year1CostHigh(p);
+      var netLow = dtcCannibalizationAdjustedNetLow(inputs.us_dtc_gmv, p);
+      var netHigh = dtcCannibalizationAdjustedNetHigh(inputs.us_dtc_gmv, p);
+
+      var items = [
+        { label: 'Default Path', value: pt.label.split(' — ')[0], sub: 'Path ' + p + ' canonical', cls: 'path-tag' },
+        { label: 'Year-1 ROI', value: pt.roiLow.toFixed(1) + ':1 – ' + pt.roiHigh.toFixed(1) + ':1', sub: 'canonical research/10 §Cost & ROI', cls: 'ok' },
+        { label: 'Year-1 Incremental Revenue', value: '$' + Math.round(revLow/1000) + 'K – $' + Math.round(revHigh/1000) + 'K', sub: '$' + inputs.us_dtc_gmv.toLocaleString() + ' US DTC base × ' + pt.incShareLow + '-' + pt.incShareHigh + '%', cls: 'ok' },
+        { label: 'DTC-Cannibalization-Adj Net', value: '$' + Math.round(netLow/1000) + 'K – $' + Math.round(netHigh/1000) + 'K', sub: 'after ' + pt.dtcCannibalization + '% DTC-cannibalization', cls: 'ok' },
+        { label: 'Year-1 Cost', value: '$' + costLow.toLocaleString() + ' – $' + costHigh.toLocaleString(), sub: 'one-time + recurring × 12', cls: 'warn' },
+        { label: 'Wholesale-Attach-Rate Yr2+', value: pt.attachLow + '% – ' + pt.attachHigh + '%', sub: 'canonical research/10 Pillar 2', cls: 'ok' },
+        { label: 'Reorder-Rate', value: pt.reorderLow + '% – ' + pt.reorderHigh + '%', sub: 'canonical Salesforce B2B 2024', cls: 'ok' },
+        { label: 'MAP-Policy-Savings', value: pt.mapLow + '% – ' + pt.mapHigh + '%', sub: 'DTC-traffic-leakage-prevented', cls: 'ok' }
+      ];
+
+      var html = '';
+      for (var i = 0; i < items.length; i++) {
+        var it = items[i];
+        html += '<div class="stat"><div class="label">' + it.label + '</div><div class="value ' + it.cls + '">' + it.value + '</div><div class="sub">' + it.sub + '</div></div>';
+      }
+      document.getElementById('summary-stats').innerHTML = html;
+    }
+
+    function renderFlowCards(inputs) {
+      var html = '';
+      for (var i = 0; i < FLOWS.length; i++) {
+        var f = FLOWS[i];
+        var status = (inputs.flows[f.id] && inputs.flows[f.id].status) || f.status;
+        html += '<div class="flow-card">';
+        html += '<div class="tier">' + f.tier + '</div>';
+        html += '<div class="name">' + f.name + '</div>';
+        html += '<div class="status ' + status + '">' + status + '</div>';
+        if (f.voiceCells > 0) {
+          html += '<div class="meta">' + f.voiceCells + ' voice-driven cells</div>';
+        }
+        html += '<div class="discount">' + f.defaultDiscountTier + '</div>';
+        html += '</div>';
+      }
+      document.getElementById('flow-grid').innerHTML = html;
+    }
+
+    function renderPathChart(inputs) {
+      var maxHigh = 0;
+      var revs = {};
+      for (var p in PATH_TABLE) {
+        revs[p] = {
+          low: year1IncrementalRevenueLow(inputs.us_dtc_gmv, p),
+          high: year1IncrementalRevenueHigh(inputs.us_dtc_gmv, p)
+        };
+        if (revs[p].high > maxHigh) maxHigh = revs[p].high;
+      }
+
+      var html = '';
+      var paths = ['A', 'B', 'C'];
+      for (var i = 0; i < paths.length; i++) {
+        var p = paths[i];
+        var pct = maxHigh > 0 ? (revs[p].high / maxHigh * 100) : 0;
+        var mid = (revs[p].low + revs[p].high) / 2;
+        var cls = p === 'A' ? 'a' : (p === 'B' ? 'b' : 'c');
+        html += '<div class="chart-col">';
+        html += '<div class="bar ' + cls + '" style="height: ' + Math.max(pct, 4) + '%">';
+        html += '<div class="bar-value">$' + Math.round(mid/1000) + 'K</div>';
+        html += '</div>';
+        html += '<div class="label">Path ' + p + '</div>';
+        html += '</div>';
+      }
+      document.getElementById('path-chart').innerHTML = html;
+    }
+
+    function renderPhaseGates() {
+      var html = '';
+      for (var i = 0; i < PHASE_GATES.length; i++) {
+        var pg = PHASE_GATES[i];
+        var ok = 0, warn = 0, draft = 0;
+        for (var j = 0; j < pg.gates.length; j++) {
+          var s = pg.gates[j].status;
+          if (s === 'ok') ok++;
+          else if (s === 'warn') warn++;
+          else draft++;
+        }
+
+        html += '<div class="phase-card">';
+        html += '<div class="head">';
+        html += '<div class="name">Gate ' + pg.id + ' — ' + pg.label + '</div>';
+        html += '<div class="progress">' + ok + '/' + pg.total + ' pass · ' + warn + ' warn · ' + draft + ' draft</div>';
+        html += '</div>';
+
+        for (var k = 0; k < pg.gates.length; k++) {
+          var g = pg.gates[k];
+          var icon = g.status === 'ok' ? '✓' : (g.status === 'warn' ? '!' : '·');
+          html += '<div class="gate ' + g.status + '"><div class="icon">' + icon + '</div><div class="text">' + g.id + ': ' + g.criterion + '</div></div>';
+        }
+        html += '</div>';
+      }
+      document.getElementById('phase-grid').innerHTML = html;
+    }
+
+    function renderFlowTable(inputs) {
+      var html = '';
+      for (var i = 0; i < FLOWS.length; i++) {
+        var f = FLOWS[i];
+        var status = (inputs.flows[f.id] && inputs.flows[f.id].status) || f.status;
+        html += '<tr>';
+        html += '<td>' + f.name + '</td>';
+        html += '<td>';
+        if (f.voiceCells > 0) {
+          html += '<span class="voice-density-pill">' + f.voiceCells + ' cells</span>';
+        } else {
+          html += '<span style="color:var(--text-dim)">n/a</span>';
+        }
+        html += '</td>';
+        html += '<td><span class="status ' + status + '">' + status + '</span></td>';
+        html += '<td>' + f.reorderContributionPct + '%</td>';
+        html += '<td>' + f.mapContributionPct + '%</td>';
+        html += '<td>' + f.dtcDefenseContributionPct + '%</td>';
+        html += '</tr>';
+      }
+      document.getElementById('flow-table-body').innerHTML = html;
+    }
+
+    function renderNextAction(inputs) {
+      var p = inputs.path;
+      var pt = PATH_TABLE[p];
+      var html = '<div class="label">Recommended for Path ' + p + ' (' + pt.label.split(' — ')[1] + ')</div>';
+      html += '<ol>';
+
+      if (p === 'A') {
+        html += '<li><strong>Wire Faire + Tundra + Ankorstore + Handshake storefronts</strong> — canonical 4-marketplace + 120 voice-driven listings (asset 18)</li>';
+        html += '<li><strong>Configure 5-tier wholesale-discount matrix</strong> — 35% luxury / 40% sustainable / 50% canonical / 55% high-volume / 60% distributor</li>';
+        html += '<li><strong>Wire NET-30 terms-card + 2.5% pre-pay-discount</strong> + MAP-policy-page + 3-strike-enforcement</li>';
+        html += '<li><strong>Compile 8-prereq distributor-onboarding-pack</strong> for Path C-readiness</li>';
+        html += '<li><strong>Acquires first 10 retailer accounts</strong> + reorder-cadence validated → Gate A passes → Path B ready</li>';
+      } else if (p === 'B') {
+        html += '<li><strong>Wire Shopify B2B / Shopify Plus B2B storefront</strong> (canonical Path B differentiation vs Path A marketplace-only)</li>';
+        html += '<li><strong>Configure corporate-gifting catalog</strong> with 10-30 hero-SKUs + custom-ribbon + handwritten-card + bulk-pricing-tiers</li>';
+        html += '<li><strong>Wire first-reorder-thank-you Klaviyo-flow</strong> with B2B-tier segment + monthly-stockist-update flow</li>';
+        html += '<li><strong>Wholesale-AR automation</strong> via NetSuite Wholesale OR QuickBooks Wholesale-tier</li>';
+        html += '<li><strong>Path B → Path C decision at $50k+/mo + 20+ retailer accounts</strong> for 2 consecutive quarters (per playbook 17 §Phase 4)</li>';
+      } else {
+        html += '<li><strong>8-prereq RFQ-template ready</strong> + distributor-pitch-deck with 7-path B2B-platform-decision-matrix</li>';
+        html += '<li><strong>Dedicated sales-rep ≥1.0 FTE Path C</strong> (RSP/KeHE/UNFI direct-distributor onboarding requires 0.5-1.0 FTE during 6-18-month sales-cycle)</li>';
+        html += '<li><strong>MAP-policy-page publicly-published + 3-strike-enforcement</strong> + geographic-exclusivity-tier for top-20-accounts</li>';
+        html += '<li><strong>Amazon Business B2B-specialty-tier-cert</strong> active + RSP/KeHE/UNFI distributor-pipeline ≥3 active conversations</li>';
+        html += '<li><strong>Path C 6-18-month distributor-onboarding-cycle</strong> — first-RSP/KeHE/UNFI-PO + first-Amazon-Business-PO received → Gate C passes</li>';
+      }
+
+      html += '</ol>';
+      document.getElementById('next-action').innerHTML = html;
+    }
+
+    // ---- URL param parsing (per v0.11.0 static-dashboard recipe) ----
+    function parseParams() {
+      var params = {};
+      if (typeof window === 'undefined' || !window.location || !window.location.search) {
+        return params;
+      }
+      var usp = new URLSearchParams(window.location.search);
+      if (usp.has('path')) params.path = usp.get('path');
+      if (usp.has('us_dtc_gmv')) params.us_dtc_gmv = parseFloat(usp.get('us_dtc_gmv'));
+      if (usp.has('demo')) params.demo = usp.get('demo') === '1';
+      return params;
+    }
+
+    function applyParams(params) {
+      if (!params) return SAMPLE_INPUTS;
+      var inputs = JSON.parse(JSON.stringify(SAMPLE_INPUTS));
+      if (params.path && PATH_TABLE[params.path]) inputs.path = params.path;
+      if (typeof params.us_dtc_gmv === 'number' && params.us_dtc_gmv > 0) inputs.us_dtc_gmv = params.us_dtc_gmv;
+      return inputs;
+    }
+
+    function updateModeBadge(params) {
+      var badge = document.getElementById('mode-badge');
+      if (params.demo) {
+        badge.textContent = 'Demo (forced)';
+        badge.className = 'mode-badge demo';
+      } else if (Object.keys(params).length > 0) {
+        badge.textContent = 'Live (URL params)';
+        badge.className = 'mode-badge live';
+      } else {
+        badge.textContent = 'Demo (defaults)';
+        badge.className = 'mode-badge demo';
+      }
+    }
+
+    function bootstrap() {
+      var params = parseParams();
+      updateModeBadge(params);
+      var inputs = applyParams(params);
+      // Reclassify tier from US DTC GMV if not explicitly set
+      var canonicalTier = tierForGmv(inputs.us_dtc_gmv);
+      if (!params.path) inputs.path = canonicalTier;
+
+      renderSummary(inputs);
+      renderFlowCards(inputs);
+      renderPathChart(inputs);
+      renderPhaseGates();
+      renderFlowTable(inputs);
+      renderNextAction(inputs);
+    }
+
+    // ---- Run on load ----
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', bootstrap);
+    } else {
+      bootstrap();
+    }
+  </script>
+</body>
+</html>
