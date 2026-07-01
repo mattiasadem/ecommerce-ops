@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-01T07:42:40.008Z",
+  "generatedAt": "2026-07-01T08:51:28.408Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -10432,6 +10432,10 @@
       "body": "- **What shipped:** `research/10-b2b-wholesale.md` (new, ~76KB / 473 lines / the **11th research doc in the workspace** + the canonical **1st-layer research synthesis** for the **B2B-wholesale track (Move #14.5)** per the canonical research → playbook → asset → operator-surface → scripts → static-dashboard layer order; Move #14.5 from the prior tick's (`b760565` shipped 2026-06-30 affiliate-program-health static-dashboard tick) journals recommendation: \"canonical next-tick candidate is the canonical 7th-track opening via v0.7.0 revival diagnostic applied to the workspace; research/ is currently the thinnest track at 10 docs vs 21 playbooks / 18 assets / 17 scripts / 7 dashboards; the canonical 7th-track candidates include Move #14.5 B2B-wholesale pivot [Faire / Tundra], Move #15.x TikTok-S"
     },
     {
+      "heading": "[2026-07-01 18:00] Add assets/19-tiktok-shop-creator-briefs.md: Move #15.x TikTok-Shop / live-commerce operator-copy layer 3 (canonical 3rd-layer operator-copy companion per the v0.9.0 layer-order-completion sub-rule applied to the 8th-active-track at 2/6 layers — picks the canonical 30 voice-variant creator-briefs = 5 voices × 6 SKU archetypes paste-ready library that maps research/11 5-pillar framework + playbooks/18 4-phase operator-build into the actual paste-ready creator-briefs + LIVE-show-runner-script + creator-payout-contract-template + TikTok-Shop-product-listing-optimization-checklist + Shop-Score-4.8+-audit-template + FTC-compliance-disclosure-language templates the playbook scopes but doesn't write)",
+      "body": "- **What shipped:** `assets/19-tiktok-shop-creator-briefs.md` (new, ~85KB / 499 lines / **20th asset in the workspace** + the canonical **3rd-layer operator-copy companion** for the **TikTok-Shop / live-commerce track (Move #15.x)** per the canonical research → playbook → asset → operator-surface → scripts → static-dashboard layer order; Move #15.x from `research/03-30-day-rollout-plan.md` §Next moves after 30 days line 184 + the canonical next-pick per the prior tick's (`c3d0b39` playbooks/18-tiktok-shop-live-launch tick) explicit next-action recommendation: \"Recommended pick for next tick: `assets/19-tiktok-shop-creator-briefs.md` — the canonical 3rd-layer operator-copy companion\" — the canonical 3rd-layer follow-up to research/11 + playbooks/18 per the v0.9.0 layer-order-completion sub-"
+    },
+    {
       "heading": "[2026-07-01 12:00] Add playbooks/18-tiktok-shop-live-launch.md: Move #15.x TikTok-Shop / live-commerce operator-build layer 2 (canonical 2nd-layer playbook follow-up to research/11 per the v0.9.0 layer-order-completion sub-rule applied to the 8th-active-track at 1/6 layers; Pattern B recovery from the prior research-tick's complete-but-uncommitted playbook-tick atom)",
       "body": "- **What shipped:** `playbooks/18-tiktok-shop-live-launch.md` (new, ~74KB / 753 lines / **23rd playbook in the workspace** + the canonical **2nd-layer operator-build companion** for the **TikTok-Shop / live-commerce track (Move #15.x)** per the canonical research → playbook → asset → operator-surface → scripts → static-dashboard layer order; Move #15.x from `research/03-30-day-rollout-plan.md` §Next moves after 30 days line 181 + the canonical next-pick per the prior tick's (`01dae45` research/11-tiktok-shop-live-commerce tick) explicit next-action recommendation: \"Recommended pick for next tick: `playbooks/18-tiktok-shop-live-launch.md` — the canonical 2nd-layer operator-build playbook\" — the canonical 2nd-layer follow-up to research/11 per the v0.9.0 layer-order-completion sub-rule appli"
     },
@@ -10558,6 +10562,6 @@
     "assets": 20,
     "tables": 55,
     "findings": 8,
-    "journalEntries": 33
+    "journalEntries": 34
   }
 }
