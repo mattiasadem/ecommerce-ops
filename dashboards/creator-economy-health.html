@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creator Economy Health — ecommerce-ops</title>
+  <!--
+    Creator Economy Health dashboard — static operator surface for the
+    creator-economy-expansion track (research/12 + playbook 19 + asset 20 +
+    dashboard/app/creators/page.tsx + scripts/creator_economy_unit_economics.py).
+
+    Renders 6 sections end-to-end:
+      1. Summary stats (Path tier default ROI + Year-1 incremental creator-economy-revenue + LTV multiplier + content-licensing 2-4× uplift + 5-way-comparison correction + cost stack + active-creator count)
+      2. Per-flow readiness cards (6 canonical creator-economy flows × launch status + voice-density)
+      3. Per-path Year-1 incremental creator-economy-revenue bar chart (Path A / B / C)
+      4. Per-phase verification gate scoring (Phase 1 creator-discovery-platform-onboard + Phase 2 mid-tier-creator-onboarding + content-licensing-launch + Phase 3 macro-creator-flagship-campaign + Phase 4 steady-state + tier-promotion + Triple-Whale-iteration)
+      5. Per-flow detail table (6 flows × 6 columns: Flow / Voice density / Status / Content-licensing contribution / Cohort-LTV contribution / 5-way-comparison contribution)
+      6. Recommended next action (which phase to ship next + which flow to build first)
+
+    Demo data is hardcoded to the canonical Path B default ($2M US DTC base, 35 SKUs,
+    50% gross margin, Gen-Z voice, 6 hr/wk operator capacity, 5-payout creator-economy
+    structures live, content-licensing + whitelisting templates live, Triple-Whale
+    creator-cohort-overlay wired).
+    Live data sources (override via URL params):
+      ?path=A | B | C               (default B)
+      ?us_dtc_gmv=2000000           (default $2M)
+      ?demo=1                       force demo mode (no fetches; uses SAMPLE_ defaults)
+
+    Architecture: NO build step, NO npm deps, single inline CSS + vanilla JS.
+    Companion artifacts:
+      research/12-creator-economy-expansion.md            (5-pillar framework + 3 GMV-tier paths + 15 pitfalls)
+      playbooks/19-creator-economy-launch.md              (4-phase Creator-discovery-onboard → Mid-tier → Macro-flagship → Steady-state operator build)
+      assets/20-creator-discovery-templates.md            (11 paste-ready artifacts: 30 voice-variant creator-discovery outreach + 5-payout contract + content-licensing + whitelisting + Klaviyo creator-content flows + Triple-Whale-creator-cohort-overlay Wire + creator-discovery-platform onboarding + creator-tier-mix + FTC-compliance templates + tier-promotion-SOP + 90-day-content-licensing-renewal-cadence)
+      dashboard/app/creators/page.tsx                     (Next.js operator route, 21st route)
+      scripts/creator_economy_unit_economics.py           (Archetype A/B hybrid Path A/B/C scorer, 97 TDD tests)
+
+    All canonical constants (PATH_A/B/C_FLOOR, PATH_COSTS, PATH_INCREMENTAL_REVENUE_SHARE_PCT,
+    PATH_LTV_MULTIPLIER, PATH_CONTENT_LICENSING_UPLIFT, PATH_5WAY_COMPARISON_CORRECTION_PCT,
+    PATH_ROI, ACTIVE_CREATOR_COUNTS, PAYOUT_STRUCTURE_MATRIX) mirror scripts/creator_economy_unit_economics.py exactly.
+    Per the v0.11.0 static-dashboard-tick recipe, this dashboard uses self-contained inline CSS + vanilla
+    JS, no Chart.js / no npm / no build step. Pure-Node smoke tests live in
+    dashboards/tests/test_creator_economy_health.js (≥70 tests across 26 categories per the
+    v0.11.0 recipe).
+  -->
+  <style>
+    :root {
+      --bg: #0f1115;
+      --panel: #161922;
+      --panel-2: #1d2230;
+      --border: #2a2f3d;
+      --text: #e8eaf0;
+      --text-dim: #9097a8;
+      --accent: #58a6ff;
+      --ok: #4ec9b0;
+      --warn: #e0af68;
+      --fail: #f06a6a;
+      --violet: #b48ead;
+      --code-bg: #0a0c10;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    header {
+      padding: 24px 32px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    header .subtitle {
+      color: var(--text-dim);
+      font-size: 13px;
+    }
+    .mode-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+    }
+    .mode-badge.demo { color: var(--warn); border-color: var(--warn); }
+    .mode-badge.live { color: var(--accent); border-color: var(--accent); }
+    main {
+      padding: 24px 32px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    section { margin-bottom: 28px; }
+    h2 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+      margin: 0 0 14px 0;
+      font-weight: 600;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .stat {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .stat .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+    }
+    .stat .value {
+      font-size: 22px;
+      font-weight: 600;
+      margin-top: 4px;
+      font-variant-numeric: tabular-nums;
+    }
+    .stat .sub {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+    .stat .value.ok { color: var(--ok); }
+    .stat .value.warn { color: var(--warn); }
+    .stat .value.fail { color: var(--fail); }
+    .stat .value.path-tag { color: var(--violet); }
+    .flow-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .flow-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      position: relative;
+    }
+    .flow-card .tier {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      font-size: 10px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      letter-spacing: 0.06em;
+    }
+    .flow-card .name {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .flow-card .status {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-top: 8px;
+      border: 1px solid;
+    }
+    .status.live { color: var(--ok); border-color: var(--ok); }
+    .status.draft { color: var(--violet); border-color: var(--violet); }
+    .status.staging { color: var(--warn); border-color: var(--warn); }
+    .status.not-started { color: var(--text-dim); border-color: var(--text-dim); }
+    .flow-card .voice-density {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-top: 6px;
+    }
+    .flow-card .gate-score {
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+    .bar-chart {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+    }
+    .bar-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .bar-row .label {
+      width: 60px;
+      font-size: 12px;
+      color: var(--text-dim);
+      font-weight: 600;
+    }
+    .bar-row .track {
+      flex: 1;
+      background: var(--panel-2);
+      border-radius: 3px;
+      height: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+    .bar-row .fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 3px;
+      transition: width 0.4s ease-out;
+    }
+    .bar-row .fill.path-a { background: var(--warn); }
+    .bar-row .fill.path-b { background: var(--ok); }
+    .bar-row .fill.path-c { background: var(--violet); }
+    .bar-row .amount {
+      width: 140px;
+      font-size: 12px;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+    .gate-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+    }
+    .gate-card .head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+    .gate-card .head .label {
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .gate-card .head .progress {
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+    .gate-card .ok-count { color: var(--ok); }
+    .gate-card .warn-count { color: var(--warn); }
+    .gate-card .fail-count { color: var(--fail); }
+    .gate-card ul.gate-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .gate-card ul.gate-list li {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      padding: 4px 0;
+      font-size: 12px;
+      color: var(--text);
+    }
+    .gate-card ul.gate-list li .g-id {
+      color: var(--text-dim);
+      font-family: monospace;
+      min-width: 32px;
+    }
+    .gate-card ul.gate-list li .g-status {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      border: 1px solid;
+    }
+    .g-status.ok { color: var(--ok); border-color: var(--ok); }
+    .g-status.warn { color: var(--warn); border-color: var(--warn); }
+    .g-status.fail { color: var(--fail); border-color: var(--fail); }
+    .g-status.draft { color: var(--violet); border-color: var(--violet); }
+    .g-status.live { color: var(--accent); border-color: var(--accent); }
+    table.flow-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    table.flow-table th {
+      text-align: left;
+      padding: 10px 12px;
+      background: var(--panel-2);
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-size: 10px;
+      font-weight: 600;
+    }
+    table.flow-table td {
+      padding: 10px 12px;
+      border-top: 1px solid var(--border);
+      color: var(--text);
+    }
+    .next-step {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .next-step .next-step {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Creator Economy Health</h1>
+      <div class="subtitle">Move #16 creator-economy-expansion static-dashboard layer 6 — Path B DEFAULT 8:1 Year-1 ROI · 2-4× LTV multiplier · 10-30% incremental revenue</div>
+    </div>
+    <span id="mode-badge" class="mode-badge demo">Demo Mode</span>
+  </header>
+  <main>
+    <section id="summary-section">
+      <h2>Path B Summary</h2>
+      <div class="stats" id="summary-stats"></div>
+    </section>
+
+    <section id="flow-section">
+      <h2>Per-flow readiness</h2>
+      <div class="flow-grid" id="flow-cards"></div>
+    </section>
+
+    <section id="path-chart-section">
+      <h2>Per-path Year-1 incremental creator-economy-revenue</h2>
+      <div class="bar-chart" id="path-chart"></div>
+    </section>
+
+    <section id="phase-gates-section">
+      <h2>Per-phase verification gate status</h2>
+      <div id="phase-gates"></div>
+    </section>
+
+    <section id="flow-table-section">
+      <h2>Per-flow detail table</h2>
+      <table class="flow-table">
+        <thead>
+          <tr>
+            <th>Flow</th>
+            <th>Voice density</th>
+            <th>Status</th>
+            <th>Content-licensing contribution</th>
+            <th>Cohort-LTV contribution</th>
+            <th>5-way-comparison correction</th>
+          </tr>
+        </thead>
+        <tbody id="flow-table-body"></tbody>
+      </table>
+    </section>
+
+    <section id="next-action-section">
+      <h2>Recommended next action</h2>
+      <div class="next-step" id="next-action"></div>
+    </section>
+  </main>
+
+  <script>
+    // ----- 6 canonical creator-economy flows (research/12 §Pillar 1+2+3+4+5 + playbook 19 §Phase 1+2+3+4 + asset 20 §11 paste-ready artifacts) -----
+    // Tuple values: tier (Path A/B/C applicability), pillar, default-payout-structure, voiceCells,
+    //               contentLicensingContributionPct, cohortLtvContributionPct, fiveWayComparisonCorrectionPct, status.
+    var FLOWS = [
+      { id: 'creator_discovery_platform_onboard', name: 'Creator-discovery-platform-onboard (Aspire + Collabstr + GRIN + CreatorIQ + Tagger)', tier: 'Path A+B+C', pillar: 'Pillar 1 creator-discovery-platform-selection', defaultPayoutStructure: 'product-seeding-only / micro-CPS / mid-tier-CPS / macro-flat-fee / enterprise-hybrid', voiceCells: 30, contentLicensingContributionPct: 0,  cohortLtvContributionPct: 0,  fiveWayComparisonCorrectionPct: 0,  status: 'live' },
+      { id: 'first_50_micro_creator_outreach', name: 'First-50-micro-creator-UGC-outreach via Collabstr + Aspire', tier: 'Path A+B+C', pillar: 'Pillar 2 creator-outreach + 5-payout-structures', defaultPayoutStructure: 'product-seeding-only $0 OR micro-CPS 15-30%-of-GMV', voiceCells: 30, contentLicensingContributionPct: 0,  cohortLtvContributionPct: 20, fiveWayComparisonCorrectionPct: 20, status: 'live' },
+      { id: 'content_licensing_template_execution', name: 'Content-licensing-template-execution + 4-channel whitelisting-ads-template', tier: 'Path B+C', pillar: 'Pillar 3 content-licensing + whitelisting', defaultPayoutStructure: 'content-licensing-rights included in mid-tier/macro/enterprise payouts', voiceCells: 30, contentLicensingContributionPct: 100,cohortLtvContributionPct: 0,  fiveWayComparisonCorrectionPct: 0,  status: 'staging' },
+      { id: 'first_5_15_macro_creator_flagship_campaign', name: 'First-5-15-macro-creator-flagship-campaign + creator-affiliate-program-bridge', tier: 'Path B+C', pillar: 'Pillar 2 creator-outreach + Pillar 4 tier-promotion', defaultPayoutStructure: 'macro-flat-fee $500-$5k/creator/campaign OR enterprise-hybrid 5%-of-GMV + $1k-base-fee', voiceCells: 30, contentLicensingContributionPct: 50, cohortLtvContributionPct: 30, fiveWayComparisonCorrectionPct: 10, status: 'staging' },
+      { id: 'triple_whale_creator_cohort_overlay_wire', name: 'Triple-Whale creator-cohort-LTV-Wire + 5-way-comparison-cycle', tier: 'Path A+B+C', pillar: 'Pillar 5 attribution-measurement + 5-way-comparison', defaultPayoutStructure: 'attribution-substrate (no direct payout)', voiceCells: 0,  contentLicensingContributionPct: 0,  cohortLtvContributionPct: 100,fiveWayComparisonCorrectionPct: 100,status: 'live' },
+      { id: 'ftc_compliance_disclosure_language_audit', name: 'FTC-compliance-disclosure-language-audit + quarterly-creator-content-compliance-review', tier: 'Path A+B+C', pillar: 'Pillar 2 FTC-compliance-disclosure-language', defaultPayoutStructure: 'compliance-audit (no direct payout)', voiceCells: 30, contentLicensingContributionPct: 0,  cohortLtvContributionPct: 0,  fiveWayComparisonCorrectionPct: 0,  status: 'draft' }
+    ];
+
+    // Path-tier table (mirrors scripts/creator_economy_unit_economics.py PATH_COSTS / PATH_INCREMENTAL_REVENUE_SHARE_PCT / PATH_LTV_MULTIPLIER / PATH_CONTENT_LICENSING_UPLIFT / PATH_5WAY_COMPARISON_CORRECTION_PCT / PATH_ROI).
+    // Tuple values: cost one-time low/high, cost recurring low/high, incremental-revenue share % low/high,
+    //               LTV multiplier low/high, content-licensing uplift low/high, 5-way-comparison correction % low/high,
+    //               ROI low/high, active-creator count low/high, scope label.
+    var PATH_TABLE = {
+      A: { gmvMin: 100000,    gmvMax: 499999,    costOneTimeLow: 0,      costOneTimeHigh: 500,    costRecurLow: 0,     costRecurHigh: 50,     shareLow: 5,   shareHigh: 12.5, ltvMultLow: 1.5, ltvMultHigh: 2.0, licLow: 1.0, licHigh: 1.5, fiveWayLow: 10, fiveWayHigh: 20, roiLow: 6.0, roiHigh: 6.0, creatorsLow: 30, creatorsHigh: 50,  scope: 'Collabstr free + Aspire SaaS-free-tier (product-seeding-only)',                                  label: 'Path A — Micro-creator-UGC-product-seeding-only (<$500k GMV, 6:1 ROI default)' },
+      B: { gmvMin: 500000,    gmvMax: 4999999,   costOneTimeLow: 1000,   costOneTimeHigh: 5000,   costRecurLow: 500,   costRecurHigh: 3000,  shareLow: 10,  shareHigh: 30,   ltvMultLow: 2.0, ltvMultHigh: 4.0, licLow: 2.0, licHigh: 4.0, fiveWayLow: 30, fiveWayHigh: 50, roiLow: 8.0, roiHigh: 16.7,creatorsLow: 50, creatorsHigh: 100, scope: 'Aspire SaaS $500-$2k/mo OR agency $500-$2k/mo + content-licensing + whitelisting DEFAULT',  label: 'Path B — Creator-mix-micro+mid+macro + content-licensing + whitelisting ($500k–$5M DEFAULT, 8:1 Year-1 ROI default)' },
+      C: { gmvMin: 5000000,   gmvMax: 99999999,  costOneTimeLow: 10000,  costOneTimeHigh: 25000,  costRecurLow: 3000,  costRecurHigh: 15000, shareLow: 15,  shareHigh: 30,   ltvMultLow: 2.5, ltvMultHigh: 4.0, licLow: 3.0, licHigh: 4.0, fiveWayLow: 40, fiveWayHigh: 50, roiLow: 6.0, roiHigh: 6.0, creatorsLow: 100,creatorsHigh: 200, scope: 'Path B + GRIN $2.5k+/mo OR CreatorIQ $2.5k+/mo + dedicated-creator-economy-manager $4k-$6k/mo', label: 'Path C — Enterprise-creator-relationship-management GRIN/CreatorIQ ($5M+, 6:1 ROI default muted by 6-12-month build-cycle + churn-rate)' }
+    };
+
+    // Phase gates (mirrors playbook 19 §Phase 1+2+3+4 verification gates = 10/10/10/9 prereqs).
+    var PHASE_GATES = [
+      { id: 'A', label: 'Phase 1 — Creator-discovery-platform-onboard + first-50-micro-creator-UGC-outreach + Triple-Whale creator-cohort-LTV-Wire ~12hr Weeks 1–4', total: 10,
+        gates: [
+          { id: 'A1',  criterion: 'Move #1 + #4 + #6 + #8 + #11 + #15 + #15.x live (DTC baseline steady-state 90+ days)', status: 'ok' },
+          { id: 'A2',  criterion: 'Move #6 Triple Whale attribution live + creator-cohort-LTV-Wire configured (canonical research/12 Gate A prereq 2)', status: 'ok' },
+          { id: 'A3',  criterion: 'Creator-discovery-platform selected + admin-access verified (Aspire OR Collabstr OR GRIN OR CreatorIQ OR Tagger per research/12 Pillar 1)', status: 'ok' },
+          { id: 'A4',  criterion: 'Creator-tier-mix-baseline audit complete (60%-micro + 30%-mid-tier + 10%-macro; creator-pool-baseline ≥30 micro-creators per asset 20 §creator-tier-mix-baseline)', status: 'ok' },
+          { id: 'A5',  criterion: 'Creator-content-budget-baseline set (15-30% creator-payouts + content-licensing + whitelisting + Triple-Whale-cohort-overlay)', status: 'ok' },
+          { id: 'A6',  criterion: '8-prereq creator-economy-onboarding-pack compiled (creator-discovery-platform + tier-mix + content-budget + content-licensing-template + whitelisting-ads-template + FTC-compliance + Triple-Whale-creator-cohort-Wire + creator-economy-attribution-platform-setup) per playbook 19 §1.3', status: 'warn' },
+          { id: 'A7',  criterion: 'First-50-micro-creator-UGC-outreach via Collabstr + Aspire (4-email outreach sequence + 30 voice-variant creator-discovery templates per asset 20 §creator-discovery-outreach-templates)', status: 'ok' },
+          { id: 'A8',  criterion: 'FTC-compliance-disclosure-language SOP live: 16 CFR Part 255 + #ad/#sponsored/#partner disclosure templates per voice (Default/Luxury/Sustainable/Gen-Z/B2B) + $10k+/violation penalty awareness per research/12 Pillar 2', status: 'warn' },
+          { id: 'A9',  criterion: 'Triple-Whale creator-cohort-LTV-Wire live: extract creator-referrer from order-attribution → JOIN with Klaviyo profile → LEFT JOIN with customer-cohort-LTV per research/12 Pillar 5 + playbook 19 §1.5', status: 'ok' },
+          { id: 'A10', criterion: 'Klaviyo-creator-content-flows live: creator-content-welcome + creator-driven-cart-abandon + creator-driven-post-purchase per playbook 19 §1.6 + asset 20 §Klaviyo-creator-content-flow-templates', status: 'ok' }
+        ]
+      },
+      { id: 'B', label: 'Phase 2 — Mid-tier-creator-onboarding + content-licensing-launch + Triple-Whale creator-content-cohort-LTV-measurement ~16hr Weeks 5–10', total: 10,
+        gates: [
+          { id: 'B1',  criterion: 'Phase 1 10/10 prereqs complete (steady-state Week 4+ with creator-discovery-platform live + first-50-micro-creator-UGC-outreach + Triple-Whale-creator-cohort-LTV-Wire wired)', status: 'ok' },
+          { id: 'B2',  criterion: 'First-20-mid-tier-creator-onboarding via Aspire (4-email onboarding sequence + creator-brief-templates per asset 20 §creator-brief-templates)', status: 'warn' },
+          { id: 'B3',  criterion: 'Content-licensing-template drafted with legal counsel: 3-clause template [perpetual-organic-usage + 90-day-paid-amplification + creator-attribution-required per Awin 2024 + Impact 2024] per asset 20 §content-licensing-template + research/12 Pillar 3', status: 'warn' },
+          { id: 'B4',  criterion: 'Whitelisting-ads-template drafted with legal counsel (4-channel: Meta-Brand-Collabs-Manager 2024 + TikTok-Creator-Marketplace-2024 + YouTube-Shorts-Paid-Discovery-2024 + Pinterest-Creator-Reveal-2024) per asset 20 §whitelisting-ads-template', status: 'warn' },
+          { id: 'B5',  criterion: 'Content-licensing-template execution + whitelisting-ads-template-execution: signed by first-20-mid-tier-creators + creator-attribution-required enforced per playbook 19 §2.2', status: 'draft' },
+          { id: 'B6',  criterion: 'Triple-Whale creator-content-cohort-LTV-measurement wired: 5-way-comparison-cycle [creator-economy vs organic-DTC vs paid-Meta vs affiliate-program vs TikTok-Shop at 30/60/90-day windows] per playbook 19 §2.3 + asset 20 §Triple-Whale-creator-cohort-overlay-Wire-spec', status: 'ok' },
+          { id: 'B7',  criterion: 'First-100-creator-content-posts live + FTC-compliance-disclosure-language-verified across all 5 voices (Default + Luxury + Sustainable + Gen-Z + B2B) per playbook 19 §2.4', status: 'warn' },
+          { id: 'B8',  criterion: 'Klaviyo-creator-content-flows-extended: creator-content-newsletter + creator-driven-replenishment + creator-driven-subscription-bridge per playbook 19 §2.5 + asset 20 §Klaviyo-creator-content-flow-templates-extended', status: 'draft' },
+          { id: 'B9',  criterion: 'Per-creator KPI dashboard live: clicks / CVR / revenue / commission-equivalent / 30/60/90-day LTV / LTV:CAC / tier-promotion-flag per playbook 19 §Phase 2 + asset 20 §per-creator-KPI', status: 'warn' },
+          { id: 'B10', criterion: 'Operator capacity ≥4-8 hr/wk sustained for 6 weeks (canonical playbook 19 §Prerequisite #8 — 4 hr/wk minimum for Path B)', status: 'ok' }
+        ]
+      },
+      { id: 'C', label: 'Phase 3 — Macro-creator-flagship-campaign + creator-affiliate-program-bridge + GRIN-or-CreatorIQ-enterprise-CRM ~24hr Weeks 11–18', total: 10,
+        gates: [
+          { id: 'C1',  criterion: 'Phase 2 10/10 prereqs complete (steady-state Week 10+ with content-licensing-template-execution + first-100-creator-content-posts + Triple-Whale-creator-content-cohort-LTV wired)', status: 'draft' },
+          { id: 'C2',  criterion: 'First-5-15-macro-creator-flagship-campaign-onboarding via Aspire + GRIN/CreatorIQ (macro-flat-fee $500-$5k/creator/campaign) per playbook 19 §3.1 + research/12 Pillar 2 macro-flat-fee-structure', status: 'draft' },
+          { id: 'C3',  criterion: 'Creator-affiliate-program-bridge live: creator-economy-creators can opt into affiliate-program [Move #15] + Refersion tracking (cross-program-creator-CPS) per playbook 19 §3.2', status: 'draft' },
+          { id: 'C4',  criterion: 'GRIN OR CreatorIQ enterprise-CRM live for Path C brands ($5M+ GMV); for Path B brands: deferred to Phase 4 per research/12 Pillar 1', status: 'draft' },
+          { id: 'C5',  criterion: 'First-4-macro-creator-flagship-campaigns-completed + creator-tier-promotion-SOP-live (4-trigger: volume + cohort-LTV + content-quality + tenure) per playbook 19 §3.4 + asset 20 §tier-promotion-SOP', status: 'draft' },
+          { id: 'C6',  criterion: 'Whitelisting-ads-template-execution at scale (paid-amplification-budget-allocation: 50-70% of creator-content-amplification-budget to top-performing-creator-content) per research/12 Pillar 3 paid-amplification', status: 'draft' },
+          { id: 'C7',  criterion: 'FTC-compliance quarterly-creator-content-compliance-review scheduled (every 90 days): review top-10 creator-creators\' last 90 days of posts for FTC-compliance + brand-safety per research/12 Pillar 2', status: 'draft' },
+          { id: 'C8',  criterion: 'Creator-economy-vs-affiliate-program-vs-TikTok-Shop-creator-affiliate-pool-distinction enforced: cross-platform-creator-discovery (Aspire + Collabstr + GRIN + CreatorIQ + Tagger) vs publisher-affiliate-relationships (Refersion + Levanta + Impact) vs in-platform-TikTok-creators (TikTok-Shop-Creator-Marketplace) per research/12 §Pillar 1', status: 'draft' },
+          { id: 'C9',  criterion: 'Creator-tier-promotion auto-flag live: per-creator KPI dashboard auto-flags Tier-2/3-eligible creators based on 4-trigger SOP per playbook 19 §3.4 + asset 20 §tier-promotion-SOP', status: 'draft' },
+          { id: 'C10', criterion: 'Creator-churn-rate-baseline tracked: micro-creators 30-50%-annual / mid-tier-creators 15-25%-annual / macro-creators 5-10%-annual per Awin 2024 + Impact 2024 + Aspire 2024 benchmarks', status: 'draft' }
+        ]
+      },
+      { id: 'D', label: 'Phase 4 — Steady-state + creator-tier-promotion-SOP + Triple-Whale creator-economy-cohort-LTV-iteration + content-licensing-renewal-cadence ~16hr + 4-8 hr/wk ongoing', total: 9,
+        gates: [
+          { id: 'D1', criterion: 'Phase 3 10/10 prereqs complete (steady-state Week 18+ with macro-creator-flagship-campaign + creator-affiliate-program-bridge + creator-tier-promotion-SOP live)', status: 'draft' },
+          { id: 'D2', criterion: 'Creator-tier-promotion-SOP-steady-state: 4-trigger auto-promotion live [volume $5k+/90d → Tier-2 / cohort-LTV $300+ → Tier-2 / content-quality 10+ posts/90d + 70%+ FTC-compliance → Tier-3-eligible / tenure 180d + Triggers 1+2 → Tier-3] per playbook 19 §4.1', status: 'draft' },
+          { id: 'D3', criterion: 'Content-licensing-renewal-cadence-steady-state: 90-day-renewal-or-sunset-decision per content-piece-level-ROI-data from Triple-Whale-creator-cohort-overlay [sunset creator-content-licensing with <0.5× average-creator-content-ROI; renew creator-content-licensing with ≥2× average-creator-content-ROI] per playbook 19 §4.2 + asset 20 §90-day-content-licensing-renewal-cadence', status: 'draft' },
+          { id: 'D4', criterion: 'Triple-Whale creator-economy-cohort-LTV-iteration-cycle-weekly: extract creator-referrer → JOIN with Klaviyo profile → LEFT JOIN with customer-cohort-LTV → 5-way-comparison-cycle-data-warehouse-schema per playbook 19 §4.3 + asset 20 §Triple-Whale-creator-cohort-overlay-Wire-spec', status: 'draft' },
+          { id: 'D5', criterion: 'Year-1-creator-economy-revenue + 8:1-default-Year-1-ROI-Path-B-verified: at $2M US DTC base, $200k-$600k incremental creator-economy-revenue = 13:1 conservative / 16.7:1 gross per playbook 19 §4.4 + research/12 §Cost & ROI estimate', status: 'draft' },
+          { id: 'D6', criterion: 'Per-creator KPI dashboard with tier-promotion-flag (Phase 3 C9 already shipped) + 4-trigger SOP review queue + creator-tier-promotion-log per playbook 19 §4.1 + asset 20 §tier-promotion-SOP', status: 'draft' },
+          { id: 'D7', criterion: 'Quarterly compliance audit live (every 90 days): review top-10 creator-creators\' last 90 days of posts for FTC-compliance + brand-safety + 16 CFR Part 255 + #ad/#sponsored/#partner disclosure + $10k+/violation penalty enforcement per research/12 Pillar 2', status: 'draft' },
+          { id: 'D8', criterion: 'Path B → Path C decision documented at attributed-revenue >$50k/mo + active-creators >100 for 2 consecutive quarters per playbook 19 §4.4 + research/12 §Path B → Path C criteria', status: 'draft' },
+          { id: 'D9', criterion: 'Operator capacity ≥4-8 hr/wk sustained for 6 weeks + dedicated FTE hired if active-creators crosses 100 (canonical Path C operator time per playbook 19 §Prerequisite #8)', status: 'draft' }
+        ]
+      }
+    ];
+
+    // 5-payout creator-economy-structures matrix (mirrors scripts/creator_economy_unit_economics.py PATH_PLATFORMS + PAYOUT_STRUCTURE_MATRIX).
+    var PAYOUT_STRUCTURE_MATRIX = [
+      { voice: 'Default',     productSeeding: 'free-product',              microCps: '15-20%-of-GMV',       midTierCps: '20-25%-of-GMV + $100-base-fee + content-licensing',  macroFlatFee: '$500-$2k/creator/campaign + content-licensing + whitelisting',  enterpriseHybrid: '5%-of-GMV + $1k-base-fee + content-licensing + whitelisting', notes: 'canonical balanced program per Awin 2024' },
+      { voice: 'Luxury',      productSeeding: 'free-product (no whitelisting)', microCps: '10-15%-of-GMV',       midTierCps: '15-20%-of-GMV + $200-base-fee + content-licensing + MAP-guardrail',  macroFlatFee: '$1k-$5k/creator/campaign + content-licensing + MAP-guardrail',  enterpriseHybrid: '5%-of-GMV + $2k-base-fee + content-licensing + MAP-guardrail', notes: 'MAP-policy-guardrail per luxury-voice benchmarks (lower base + MAP-required)' },
+      { voice: 'Sustainable', productSeeding: 'free-product + mission-alignment', microCps: '20-25%-of-GMV',       midTierCps: '25-30%-of-GMV + $100-base-fee + content-licensing + mission-disclosure',  macroFlatFee: '$500-$3k/creator/campaign + content-licensing + mission-disclosure',  enterpriseHybrid: '5%-of-GMV + $1k-base-fee + content-licensing + mission-disclosure', notes: 'higher commission + mission-alignment-verifier per assets/12-impact-data-pipeline.md' },
+      { voice: 'Gen-Z',       productSeeding: 'free-product',              microCps: '25-30%-of-GMV',       midTierCps: '30-35%-of-GMV + $100-base-fee + content-licensing + short-form-paid-amplification',  macroFlatFee: '$500-$5k/creator/campaign + content-licensing + whitelisting',  enterpriseHybrid: '5%-of-GMV + $1k-base-fee + content-licensing + whitelisting', notes: 'highest base + short-form-paid-amplification-rights per Tubular Labs 2024' },
+      { voice: 'B2B',         productSeeding: 'n/a (B2B rarely product-seed)', microCps: '8-12%-of-GMV',         midTierCps: '12-15%-of-GMV + $300-base-fee + content-licensing + 90d-cookie',  macroFlatFee: '$1k-$5k/creator/campaign + content-licensing + 90d-cookie',  enterpriseHybrid: '5%-of-GMV + $2k-base-fee + content-licensing + 90d-cookie', notes: 'B2B sales-cycle (lower base + 90d-cookie + dedicated-account-management)' }
+    ];
+
+    // SAMPLE_INPUTS — canonical Path B default reference profile.
+    // Mirrors scripts/creator_economy_unit_economics.py PATH_B_DEFAULTS canonical defaults ($2M US DTC base / Path B default).
+    var SAMPLE_INPUTS = {
+      path: 'B',
+      us_dtc_gmv: 2000000,
+      sku_count: 35,
+      gross_margin_pct: 50,
+      voice_profile: 'gen_z',
+      has_aspire_or_collabstr_account: true,
+      has_grin_or_creatoriq_account: false,
+      has_creator_tier_mix_baseline: true,
+      has_content_licensing_template: true,
+      has_whitelisting_ads_template: true,
+      has_triple_whale_creator_cohort_overlay: true,
+      has_dedicated_creator_economy_manager_capacity_hours_per_week: 6,
+      flows: {
+        creator_discovery_platform_onboard:           { status: 'live',        notes: 'Aspire SaaS + Collabstr live; admin-access verified' },
+        first_50_micro_creator_outreach:              { status: 'live',        notes: 'First-50-micro-creator-UGC-outreach complete; Collabstr outreach live' },
+        content_licensing_template_execution:         { status: 'staging',     notes: 'Content-licensing-template drafted; whitelisting-ads-template execution pending' },
+        first_5_15_macro_creator_flagship_campaign:   { status: 'staging',     notes: 'First-5-macro-creator-flagship-campaigns scheduled' },
+        triple_whale_creator_cohort_overlay_wire:     { status: 'live',        notes: 'Triple-Whale-creator-cohort-LTV-Wire + 5-way-comparison-cycle live' },
+        ftc_compliance_disclosure_language_audit:     { status: 'draft',       notes: 'FTC-compliance-disclosure-language audit scheduled; quarterly-creator-content-compliance-review pending' }
+      }
+    };
+
+    // ---- Pure helper functions (mirror scripts/creator_economy_unit_economics.py) ----
+    function tierForGmv(usGmv) {
+      if (usGmv >= PATH_TABLE.C.gmvMin) return 'C';
+      if (usGmv >= PATH_TABLE.B.gmvMin) return 'B';
+      return 'A';
+    }
+
+    function year1RevenueLow(usGmv, p) {
+      return usGmv * (PATH_TABLE[p].shareLow / 100);
+    }
+    function year1RevenueHigh(usGmv, p) {
+      return usGmv * (PATH_TABLE[p].shareHigh / 100);
+    }
+    function year1CostLow(p) {
+      return PATH_TABLE[p].costOneTimeLow + PATH_TABLE[p].costRecurLow * 12;
+    }
+    function year1CostHigh(p) {
+      return PATH_TABLE[p].costOneTimeHigh + PATH_TABLE[p].costRecurHigh * 12;
+    }
+    function ltvMultiplierMid(p) {
+      return (PATH_TABLE[p].ltvMultLow + PATH_TABLE[p].ltvMultHigh) / 2;
+    }
+    function contentLicensingUpliftMid(p) {
+      return (PATH_TABLE[p].licLow + PATH_TABLE[p].licHigh) / 2;
+    }
+    function fiveWayComparisonMid(p) {
+      return (PATH_TABLE[p].fiveWayLow + PATH_TABLE[p].fiveWayHigh) / 2;
+    }
+    function activeCreatorCountMid(p) {
+      return Math.round((PATH_TABLE[p].creatorsLow + PATH_TABLE[p].creatorsHigh) / 2);
+    }
+    function roiMid(p) {
+      // Use mid-attributed revenue / mid-cost.
+      var midShare = (PATH_TABLE[p].shareLow + PATH_TABLE[p].shareHigh) / 2;
+      var midCost  = (year1CostLow(p) + year1CostHigh(p)) / 2;
+      return midShare / 100 * 1000000 / midCost; // ratio for $1M GMV input
+    }
+
+    function gateStatusCounts(gates) {
+      var counts = { ok: 0, warn: 0, fail: 0, draft: 0, live: 0 };
+      for (var i = 0; i < gates.length; i++) {
+        var s = gates[i].status;
+        if (counts[s] !== undefined) counts[s]++;
+      }
+      return counts;
+    }
+
+    function gateStatusBadge(p) {
+      // Map a phase gate to an overall status string.
+      var counts = gateStatusCounts(p.gates);
+      var total = p.total || (p.gates ? p.gates.length : 0);
+      if (counts.fail > 0) return 'fail';
+      if (counts.warn >= 4) return 'warn';
+      if (total > 0 && counts.draft >= total * 0.5) return 'draft';
+      if (total > 0 && counts.ok + counts.live >= total * 0.6) return 'ok';
+      // For tests with all-draft gates (no total), check if all are draft.
+      if (counts.draft > 0 && counts.ok === 0 && counts.warn === 0 && counts.fail === 0 && counts.live === 0) return 'draft';
+      if (counts.ok > 0 && counts.warn === 0 && counts.fail === 0 && counts.draft === 0 && counts.live === 0) return 'ok';
+      return 'warn';
+    }
+
+    function fmtMoney(n) {
+      if (n >= 1000000) return '$' + (n / 1000000).toFixed(2) + 'M';
+      if (n >= 1000)    return '$' + Math.round(n / 1000) + 'k';
+      return '$' + Math.round(n);
+    }
+
+    function fmtPct(n) {
+      return n.toFixed(1) + '%';
+    }
+
+    // ---- Render functions ----
+    function renderSummary(inputs) {
+      var p = inputs.path;
+      var pt = PATH_TABLE[p];
+      var revLow = year1RevenueLow(inputs.us_dtc_gmv, p);
+      var revHigh = year1RevenueHigh(inputs.us_dtc_gmv, p);
+      var costLow = year1CostLow(p);
+      var costHigh = year1CostHigh(p);
+      var ltvMid = ltvMultiplierMid(p);
+      var licMid = contentLicensingUpliftMid(p);
+      var fiveWayMid = fiveWayComparisonMid(p);
+      var creatorsMid = activeCreatorCountMid(p);
+      var roiLow = pt.roiLow;
+      var roiHigh = pt.roiHigh;
+
+      var stats = [
+        { label: 'Path', value: 'Path ' + p, sub: pt.label, klass: 'path-tag' },
+        { label: 'Year-1 incremental creator-economy-revenue', value: fmtMoney(revLow) + '–' + fmtMoney(revHigh), sub: 'at $' + (inputs.us_dtc_gmv / 1000000).toFixed(1) + 'M US DTC GMV', klass: 'ok' },
+        { label: 'LTV multiplier', value: ltvMid.toFixed(1) + '×', sub: pt.ltvMultLow.toFixed(1) + '–' + pt.ltvMultHigh.toFixed(1) + '× range', klass: '' },
+        { label: 'Content-licensing uplift', value: licMid.toFixed(1) + '×', sub: pt.licLow.toFixed(1) + '–' + pt.licHigh.toFixed(1) + '× range', klass: '' },
+        { label: '5-way-comparison correction', value: fiveWayMid.toFixed(0) + '%', sub: pt.fiveWayLow + '–' + pt.fiveWayHigh + '% range', klass: 'warn' },
+        { label: 'Year-1 ROI', value: roiLow.toFixed(1) + ':1–' + roiHigh.toFixed(1) + ':1', sub: pt.roiLow.toFixed(1) + ':1 default', klass: 'ok' },
+        { label: 'Year-1 cost stack', value: fmtMoney(costLow) + '–' + fmtMoney(costHigh), sub: 'one-time + recurring×12', klass: '' },
+        { label: 'Active creator count', value: creatorsMid + '', sub: pt.creatorsLow + '–' + pt.creatorsHigh + ' creators', klass: '' }
+      ];
+
+      var html = '';
+      for (var i = 0; i < stats.length; i++) {
+        var s = stats[i];
+        html += '<div class="stat">';
+        html += '<div class="label">' + s.label + '</div>';
+        html += '<div class="value ' + s.klass + '">' + s.value + '</div>';
+        html += '<div class="sub">' + s.sub + '</div>';
+        html += '</div>';
+      }
+      document.getElementById('summary-stats').innerHTML = html;
+    }
+
+    function renderFlowCards(inputs) {
+      var html = '';
+      for (var i = 0; i < FLOWS.length; i++) {
+        var f = FLOWS[i];
+        var fStatus = inputs.flows[f.id] ? inputs.flows[f.id].status : 'not-started';
+        var notes = inputs.flows[f.id] ? inputs.flows[f.id].notes : 'Not yet configured';
+        html += '<div class="flow-card">';
+        html += '<div class="tier">' + f.tier + '</div>';
+        html += '<div class="name">' + f.name + '</div>';
+        html += '<div class="status ' + fStatus + '">' + fStatus + '</div>';
+        html += '<div class="voice-density">5 voices × {email + SMS + outreach + landing} = ' + f.voiceCells + ' voice-driven cells · Default ' + fStatus + '</div>';
+        html += '<div class="gate-score">' + f.pillar + '</div>';
+        html += '<div class="gate-score" style="margin-top:4px;color:var(--text-dim);font-size:11px">' + notes + '</div>';
+        html += '</div>';
+      }
+      document.getElementById('flow-cards').innerHTML = html;
+    }
+
+    function renderPathChart(inputs) {
+      var maxRev = 0;
+      var rows = [];
+      for (var p in PATH_TABLE) {
+        var revLow = year1RevenueLow(inputs.us_dtc_gmv, p);
+        var revHigh = year1RevenueHigh(inputs.us_dtc_gmv, p);
+        var mid = (revLow + revHigh) / 2;
+        if (mid > maxRev) maxRev = mid;
+        rows.push({ p: p, revLow: revLow, revHigh: revHigh, mid: mid, label: PATH_TABLE[p].label });
+      }
+
+      var html = '';
+      for (var i = 0; i < rows.length; i++) {
+        var r = rows[i];
+        var pct = maxRev > 0 ? (r.mid / maxRev * 100) : 0;
+        html += '<div class="bar-row">';
+        html += '<div class="label">Path ' + r.p + '</div>';
+        html += '<div class="track"><div class="fill path-' + r.p.toLowerCase() + '" style="width:' + pct.toFixed(1) + '%"></div></div>';
+        html += '<div class="amount">' + fmtMoney(r.revLow) + '–' + fmtMoney(r.revHigh) + '</div>';
+        html += '</div>';
+      }
+      document.getElementById('path-chart').innerHTML = html;
+    }
+
+    function renderPhaseGates() {
+      var html = '';
+      for (var i = 0; i < PHASE_GATES.length; i++) {
+        var pg = PHASE_GATES[i];
+        var c = gateStatusCounts(pg.gates);
+        var overall = gateStatusBadge(pg);
+        html += '<div class="gate-card">';
+        html += '<div class="head">';
+        html += '<div class="label">' + pg.label + '</div>';
+        html += '<div class="progress">';
+        html += '<span class="ok-count">' + (c.ok + c.live) + '</span>/' + pg.total + ' OK';
+        if (c.warn > 0) html += ' · <span class="warn-count">' + c.warn + '</span> warn';
+        if (c.fail > 0) html += ' · <span class="fail-count">' + c.fail + '</span> fail';
+        if (c.draft > 0) html += ' · ' + c.draft + ' pending';
+        html += '</div>';
+        html += '</div>';
+        html += '<ul class="gate-list">';
+        for (var j = 0; j < pg.gates.length; j++) {
+          var g = pg.gates[j];
+          html += '<li>';
+          html += '<span class="g-id">' + g.id + '</span>';
+          html += '<span class="g-status ' + g.status + '">' + g.status + '</span>';
+          html += '<span>' + g.criterion + '</span>';
+          html += '</li>';
+        }
+        html += '</ul>';
+        html += '</div>';
+      }
+      document.getElementById('phase-gates').innerHTML = html;
+    }
+
+    function renderFlowTable(inputs) {
+      var html = '';
+      for (var i = 0; i < FLOWS.length; i++) {
+        var f = FLOWS[i];
+        var fStatus = inputs.flows[f.id] ? inputs.flows[f.id].status : 'not-started';
+        var licPct = f.contentLicensingContributionPct + '%';
+        var ltvPct = f.cohortLtvContributionPct + '%';
+        var fivePct = f.fiveWayComparisonCorrectionPct + '%';
+        html += '<tr>';
+        html += '<td>' + f.name + '</td>';
+        html += '<td>5 voices × 4 channels = ' + f.voiceCells + ' cells</td>';
+        html += '<td><span class="status ' + fStatus + '">' + fStatus + '</span></td>';
+        html += '<td>' + licPct + '</td>';
+        html += '<td>' + ltvPct + '</td>';
+        html += '<td>' + fivePct + '</td>';
+        html += '</tr>';
+      }
+      document.getElementById('flow-table-body').innerHTML = html;
+    }
+
+    function renderNextAction(inputs) {
+      var p = inputs.path;
+      var pt = PATH_TABLE[p];
+      var phaseWithWarn = null;
+      var phaseWithMostDraft = null;
+      var mostDraftCount = -1;
+      for (var i = 0; i < PHASE_GATES.length; i++) {
+        var pg = PHASE_GATES[i];
+        var c = gateStatusCounts(pg.gates);
+        if (phaseWithWarn === null && c.warn >= 2 && c.ok + c.live >= pg.total * 0.5) phaseWithWarn = pg;
+        if (c.draft > mostDraftCount) { mostDraftCount = c.draft; phaseWithMostDraft = pg; }
+      }
+
+      var html = '';
+      html += '<div class="next-step">Recommended next step:</div>';
+      if (phaseWithWarn) {
+        html += 'Finish Phase ' + phaseWithWarn.id + ' (' + phaseWithWarn.label.split(' — ')[1] + ') — close the ' + gateStatusCounts(phaseWithWarn.gates).warn + ' warn gates before moving forward.<br>';
+        html += '<strong>Creator-economy track:</strong> ' + (phaseWithWarn.label) + '.<br>';
+      } else {
+        html += 'Ship Phase ' + phaseWithMostDraft.id + ' (' + phaseWithMostDraft.label.split(' — ')[1] + ') — currently ' + gateStatusCounts(phaseWithMostDraft.gates).draft + ' of ' + phaseWithMostDraft.total + ' prereqs pending.<br>';
+      }
+      html += '<strong>Path ' + p + ' scope:</strong> ' + pt.scope + '.<br>';
+      html += '<strong>Default platform pick:</strong> ' + (p === 'A' ? 'Collabstr free + Aspire SaaS-free-tier' : p === 'B' ? 'Aspire SaaS $500-$2k/mo DEFAULT' : 'Path B + GRIN $2.5k+/mo OR CreatorIQ $2.5k+/mo') + ' per scripts/creator_economy_unit_economics.py.<br>';
+      html += '<strong>Year-1 outcome band:</strong> ' + fmtMoney(year1RevenueLow(inputs.us_dtc_gmv, p)) + '–' + fmtMoney(year1RevenueHigh(inputs.us_dtc_gmv, p)) + ' incremental creator-economy-revenue · ' + pt.roiLow.toFixed(1) + ':1–' + pt.roiHigh.toFixed(1) + ':1 Year-1 ROI · ' + ltvMultiplierMid(p).toFixed(1) + '× LTV multiplier · ' + contentLicensingUpliftMid(p).toFixed(1) + '× content-licensing uplift · ' + fiveWayComparisonMid(p).toFixed(0) + '% 5-way-comparison correction · ' + activeCreatorCountMid(p) + ' active creators.';
+      document.getElementById('next-action').innerHTML = html;
+    }
+
+    function renderAll(inputs) {
+      renderSummary(inputs);
+      renderFlowCards(inputs);
+      renderPathChart(inputs);
+      renderPhaseGates();
+      renderFlowTable(inputs);
+      renderNextAction(inputs);
+    }
+
+    // ---- URL param parsing ----
+    function parseParams() {
+      var q = window.location.search.replace(/^\?/, '');
+      if (!q) return null;
+      var params = {};
+      var parts = q.split('&');
+      for (var i = 0; i < parts.length; i++) {
+        var kv = parts[i].split('=');
+        params[decodeURIComponent(kv[0])] = decodeURIComponent(kv[1] || '');
+      }
+      return params;
+    }
+
+    function applyParams(params) {
+      if (!params) return SAMPLE_INPUTS;
+      var inputs = JSON.parse(JSON.stringify(SAMPLE_INPUTS));
+      if (params.path) inputs.path = params.path.toUpperCase();
+      if (params.us_dtc_gmv) inputs.us_dtc_gmv = parseInt(params.us_dtc_gmv, 10) || inputs.us_dtc_gmv;
+      // Recompute path from us_dtc_gmv if us_dtc_gmv was given.
+      if (params.us_dtc_gmv) inputs.path = tierForGmv(inputs.us_dtc_gmv);
+      return inputs;
+    }
+
+    // ---- Bootstrap ----
+    (function bootstrap() {
+      var params = parseParams();
+      var isDemo = !params || params.demo === '1';
+      var inputs = applyParams(params);
+      var badge = document.getElementById('mode-badge');
+      badge.textContent = isDemo ? 'Demo Mode' : 'Live Mode';
+      badge.className = 'mode-badge ' + (isDemo ? 'demo' : 'live');
+      renderAll(inputs);
+      // Expose for tests.
+      window.__creatorEconomyHealth__ = { inputs: inputs, renderAll: renderAll, FLOWS: FLOWS, PATH_TABLE: PATH_TABLE, PHASE_GATES: PHASE_GATES, PAYOUT_STRUCTURE_MATRIX: PAYOUT_STRUCTURE_MATRIX, SAMPLE_INPUTS: SAMPLE_INPUTS };
+    })();
+  </script>
+</body>
+</html>
