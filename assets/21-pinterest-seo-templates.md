@@ -549,7 +549,7 @@ The Pinterest-SEO monthly-cohort-LTV-iteration-template is the canonical Triple-
 
 **Future-tick companions (per canonical research → playbook → asset → operator-surface → scripts → static-dashboard layer order):**
 
-- `dashboard/app/pinterest-seo/page.tsx` — the canonical 4th-layer Next.js operator-surface route (gated on this asset shipping first per canonical layer order)
+- `dashboard/app/pinterest-seo/page.tsx` *(shipped 2026-07-05 per the operator-surface-route-tick follow-up)* — the canonical 4th-layer Next.js operator-surface route; the canonical 4th-layer follow-up to this 3rd-layer asset per the canonical layer order
 - `scripts/pinterest_seo_unit_economics.py` — the canonical 5th-layer Archetype A/B hybrid Path A/B/C scoring script (gated on the route shipping first)
 - `dashboards/pinterest-seo-discovery-health.html` — the canonical 6th-and-final static-dashboard (gated on the script shipping first)
 
