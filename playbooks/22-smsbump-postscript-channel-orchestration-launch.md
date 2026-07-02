@@ -493,8 +493,8 @@ These 4 future-tick companions (asset 23 + /smsbump-postscript-channel-orchestra
 
 - Layer 1 (research synthesis): `research/15-smsbump-postscript-channel-orchestration.md` shipped 2026-07-08 per the prior tick's `291ae5a` journals entry.
 - Layer 2 (operator-build companion): `playbooks/22-smsbump-postscript-channel-orchestration-launch.md` shipped 2026-07-08 per this tick.
-- Layer 3 (operator-copy companion): `assets/23-smsbump-postscript-channel-orchestration-templates.md` *(planned — does not yet exist)*.
-- Layer 4 (operator-surface route): `dashboard/app/smsbump-postscript-channel-orchestration/page.tsx` *(planned — does not yet exist)*.
+- Layer 3 (operator-copy companion): `assets/23-smsbump-postscript-channel-orchestration-templates.md` **shipped 2026-07-08 per the prior tick's `2ec85c6` asset-tick follow-up** (canonical 3rd-layer operator-copy companion; 23rd asset in the workspace; ~109KB / 720 lines / 23 canonical sections / 25 voice-variant SMS-orchestration-templates).
+- Layer 4 (operator-surface route): `dashboard/app/smsbump-postscript-channel-orchestration/page.tsx` **shipped 2026-07-08 per this tick** (canonical 4th-layer Next.js operator-surface route; 24th route in the dashboard; renders research/15 + playbooks/22 + assets/23 as a unified operator surface with 4 hero metrics + TL;DR + 3 layer cards + 5-voice density pills all ≥15 + future-tick companions footer).
 - Layer 5 (scoring script): `scripts/smsbump_postscript_channel_orchestration_unit_economics.py` + `scripts/tests/test_smsbump_postscript_channel_orchestration_unit_economics.py` *(planned — does not yet exist)*.
 - Layer 6 (static-dashboard): `dashboards/smsbump-postscript-channel-orchestration-health.html` + `dashboards/tests/test_smsbump_postscript_channel_orchestration_health.js` *(planned — does not yet exist)*.
 
