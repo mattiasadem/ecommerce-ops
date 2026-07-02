@@ -6,6 +6,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ResearchTable } from "@/components/research-table";
+import { CheckoutAudit } from "@/components/checkout-audit";
 import { content, findTable } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -73,6 +74,18 @@ export default function CroPage() {
           </CardContent>
         </Card>
       </div>
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-base">Baymard checkout audit — score your store in 2 minutes</CardTitle>
+          <CardDescription>
+            24 guidelines, severity-weighted scoring, instant fix-list. State auto-saved to your browser.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <CheckoutAudit />
+        </CardContent>
+      </Card>
 
       <Card>
         <CardHeader>

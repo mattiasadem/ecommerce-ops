@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-02T11:15:34.261Z",
+  "generatedAt": "2026-07-02T11:33:25.835Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -11124,6 +11124,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-07-02 18:00] dashboard-improver: per-asset freshness badge + Copy ID button on /assets",
+      "body": "- **What shipped:** Rolled out the same per-card freshness badge (fresh <14d / aging 14-60d / stale >60d) + 1-click \"Copy ID\" button affordance from `/playbooks` (last tick) onto `/assets`. Parser (`scripts/parse-content.mjs::parseAssets`) now captures `lastTouched` via filesystem mtime → YYYY-MM-DD; the existing `freshnessLabel()` + `freshnessTier()` helpers in `src/lib/content.ts` are reused unchanged. Header strip aggregates \"22 fresh · 0 aging · 0 stale\" today; as assets age past 14d/60d the per-card badge will turn amber/rose automatically without further code changes.\n- **Why this move:** Last tick's explicit next-action: \"Same freshness + Copy ID affordance should roll out to `/assets` (22 voice-gated operator-copy assets, most of which carry a 14d+ mtime and would benefit more visi"
+    },
+    {
       "heading": "[2026-07-02 11:00] dashboard-improver: per-playbook freshness badge + Copy ID button on /playbooks",
       "body": "- **What shipped:** Per-playbook \"freshness badge\" (fresh <14d / aging 14-60d / stale >60d) on every card of `/playbooks`, plus a 1-click \"Copy ID\" button that copies the playbook's file stem (e.g. `01-abandoned-cart-flow-klaviyo`) to the clipboard with a 1.5s \"Copied\" confirmation. Header strip aggregates totals: 21 fresh / 4 aging / 0 stale today. Parser (`scripts/parse-content.mjs`) now records `lastTouched` (filesystem mtime → YYYY-MM-DD) for every playbook; helper functions `freshnessLabel()` and `freshnessTier()` live in `src/lib/content.ts` so other routes (assets, research) can adopt the same affordance cheaply.\n- **Why this move:** The cron-template's canonical example tick: *\"Add a status badge to a stale playbook row (Last touched 14 days ago)\"* — addresses the real operator pai"
     },
@@ -11310,6 +11314,6 @@
     "assets": 22,
     "tables": 56,
     "findings": 8,
-    "journalEntries": 45
+    "journalEntries": 46
   }
 }
