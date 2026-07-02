@@ -53,13 +53,13 @@ export default function PlaybooksPage() {
                   ))}
                 </ul>
               )}
-              {p.numberedSections.length > 0 && (
+              {(p.numberedSections ?? []).length > 0 && (
                 <details className="rounded-lg border border-border p-3">
                   <summary className="cursor-pointer text-xs font-medium">
-                    Section preview ({p.numberedSections.length})
+                    Section preview ({(p.numberedSections ?? []).length})
                   </summary>
                   <ol className="mt-2 space-y-1 text-[11px] text-muted-foreground list-decimal pl-5">
-                    {p.numberedSections.slice(0, 12).map((s, k) => (
+                    {(p.numberedSections ?? []).slice(0, 12).map((s, k) => (
                       <li key={k}>
                         <span className="text-foreground">{s.heading}</span>
                         {s.body && (

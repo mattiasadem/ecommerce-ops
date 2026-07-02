@@ -121,7 +121,7 @@ export default function AssetsPage() {
               )}
               {a.voiceGated && a.voiceCounts && (
                 <div className="flex flex-wrap gap-2 text-[10px] font-mono">
-                  {Object.entries(a.voiceCounts).map(([voice, count]) => (
+                  {Object.entries(a.voiceCounts ?? {}).map(([voice, count]) => (
                     <span
                       key={voice}
                       className={
@@ -135,13 +135,13 @@ export default function AssetsPage() {
                   ))}
                 </div>
               )}
-              {a.numberedSections.length > 0 && (
+              {(a.numberedSections ?? []).length > 0 && (
                 <details className="rounded-lg border border-border p-3">
                   <summary className="cursor-pointer text-xs font-medium">
-                    Section preview ({a.numberedSections.length})
+                    Section preview ({(a.numberedSections ?? []).length})
                   </summary>
                   <ol className="mt-2 space-y-1 text-[11px] text-muted-foreground list-decimal pl-5">
-                    {a.numberedSections.slice(0, 12).map((s, k) => (
+                    {(a.numberedSections ?? []).slice(0, 12).map((s, k) => (
                       <li key={k}>
                         <span className="text-foreground">{s.heading}</span>
                         {s.body && (

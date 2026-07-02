@@ -479,7 +479,7 @@ export default function CreatorsPage() {
                   ))}
                 </ul>
                 <div className="flex flex-wrap gap-2 text-[10px] font-mono">
-                  {Object.entries(a20.voiceCounts).map(([voice, count]) => (
+                  {Object.entries(a20.voiceCounts ?? {}).map(([voice, count]) => (
                     <span
                       key={voice}
                       className={

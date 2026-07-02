@@ -290,7 +290,7 @@ export default function LifecyclePage() {
                   ))}
                 </ul>
                 <div className="flex flex-wrap gap-2 text-[10px] font-mono">
-                  {Object.entries(a14.voiceCounts).map(([voice, count]) => (
+                  {Object.entries(a14.voiceCounts ?? {}).map(([voice, count]) => (
                     <span
                       key={voice}
                       className={

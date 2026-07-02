@@ -340,7 +340,7 @@ export default function SubscriptionsPage() {
                   ))}
                 </ul>
                 <div className="flex flex-wrap gap-2 text-[10px] font-mono">
-                  {Object.entries(a16.voiceCounts).map(([voice, count]) => (
+                  {Object.entries(a16.voiceCounts ?? {}).map(([voice, count]) => (
                     <span
                       key={voice}
                       className={

@@ -394,7 +394,7 @@ export default function B2BPage() {
                   ))}
                 </ul>
                 <div className="flex flex-wrap gap-2 text-[10px] font-mono">
-                  {Object.entries(a18.voiceCounts).map(([voice, count]) => (
+                  {Object.entries(a18.voiceCounts ?? {}).map(([voice, count]) => (
                     <span
                       key={voice}
                       className={

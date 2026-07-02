@@ -36,11 +36,11 @@ export interface Asset {
   title: string;
   meta: string[];
   sectionCount: number;
-  numberedSections: { heading: string; body: string }[];
   size: number;
-  assetNumber: number | null;
-  voiceGated: boolean;
-  voiceCounts: { [voice: string]: number };
+  numberedSections?: { heading: string; body: string }[];
+  assetNumber?: number;
+  voiceGated?: boolean;
+  voiceCounts?: Record<string, number>;
 }
 
 export interface Top10Status {
@@ -74,7 +74,7 @@ export interface Content {
   };
 }
 
-export const content: Content = contentJson as Content;
+export const content: Content = contentJson as unknown as Content;
 
 // Helpers used across pages.
 export function findTable(rows: ResearchDoc[], headingMatch: RegExp): TableRow[] {

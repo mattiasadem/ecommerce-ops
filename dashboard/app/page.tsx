@@ -1,4 +1,3 @@
-import Link from "next/link";
 import {
   Card,
   CardContent,
@@ -17,279 +16,232 @@ export const dynamic = "force-static";
 export default function Home() {
   const { research, playbooks, top10, journal, counts, generatedAt } = content;
   const landscape = research.find((r) => r.file.startsWith("00-"));
-  const execSummary = landscape?.sections.find((s) => s.heading === "Executive Summary");
+  const unitEcon = findTable(research, /Unit Economics/);
+  const cacRow = unitEcon.find((r) => r["Metric"]?.includes("CAC") && r["Metric"]?.includes("consumer"));
+  const ltvRow = unitEcon.find((r) => r["Metric"]?.startsWith("LTV"));
+  const merRow = unitEcon.find((r) => r["Metric"]?.startsWith("MER"));
 
   const shippedMoves = top10.status.filter((s) => s.shipped).length;
+  const totalMoves = top10.status.length;
   const pendingMoves = top10.status.filter((s) => s.pending).length;
   const moveProgress = top10.status.length
     ? (shippedMoves / top10.status.length) * 100
     : 0;
 
-  // Channel mix from acquisition section (60/30/10 default).
-  const channelMix = [
-    { name: "Email + SMS", roi: 40, share: 0, color: "accent" as const },
-    { name: "Google Search", roi: 6, share: 30, color: "success" as const },
-    { name: "Meta Ads", roi: 3.25, share: 60, color: "warning" as const },
-    { name: "TikTok Ads", roi: 2.75, share: 10, color: "danger" as const },
-  ];
+  const nextMove = top10.status.find((s) => s.pending);
 
-  // Quick benchmarks extracted from landscape.md.
-  const unitEcon = findTable(research, /Unit Economics/);
-  const cacRow = unitEcon.find((r) => r["Metric"]?.includes("CAC") && r["Metric"]?.includes("consumer"));
-  const ltvRow = unitEcon.find((r) => r["Metric"]?.startsWith("LTV"));
-  const crRow = unitEcon.find((r) => r["Metric"] === "MER (Marketing Efficiency Ratio)");
-
-  // Latest journal entry.
-  const latest = journal[0];
-
-  // "What to do this cycle" CTA — derive from journal entries + top10 status.
-  // The dashboard is `force-static`, so we can't fetch live audit JSONs at
-  // request time. We derive the CTA text from the latest attribution-related
-  // journal entry (every audit + dashboard ship leaves a journal heading) and
-  // the synthesis doc's Day-of-month mapping. This gives a stable, build-time
-  // CTA that always reflects the actual workspace state without needing a
-  // fetch. (Per the cron-driven-bounded-improver skill: build-time env check,
-  // not runtime window check.)
-  const ATTRIBUTION_MOVE_RE =
-    /Move\s*#(?:6(?:\.\d+)?|6\.9)/i; // #6 + #6.5–#6.9 attribution stack
-  const attributionEntries = journal.filter((j) =>
-    ATTRIBUTION_MOVE_RE.test(j.heading)
-  );
-  const lastAttribution = attributionEntries[0];
-  const lastAttributionLabel = lastAttribution
-    ? (() => {
-        const m =
-          /Move\s*#[\d.]+/.exec(lastAttribution.heading);
-        return m ? m[0] : "Move #6";
-      })()
-    : null;
-  const lastAttributionDate = lastAttribution
-    ? (() => {
-        const m =
-          /\[(\d{4}-\d{2}-\d{2})\s+\d{2}:\d{2}\]/.exec(
-            lastAttribution.heading
-          );
-        return m ? m[1] : null;
-      })()
-    : null;
-  // Status pill: green if last shipped was the dashboard (Move #6.9) — surface
-  // is live; yellow if last shipped was an audit script (Move #6.5–#6.8) —
-  // scripts are wired but no fresh cycle run; neutral if no attribution work
-  // shipped yet.
-  const lastAttributionIntent = lastAttributionLabel
-    ? /#6\.9/.test(lastAttributionLabel)
-      ? "success"
-      : /#6\.\d/.test(lastAttributionLabel)
-      ? "warning"
-      : "secondary"
-    : "outline";
-  const lastAttributionStatusText = lastAttributionLabel
-    ? /#6\.9/.test(lastAttributionLabel)
-      ? "dashboard live"
-      : /#6\.5/.test(lastAttributionLabel)
-      ? "audit ready"
-      : /#6\.6/.test(lastAttributionLabel)
-      ? "TikTok audit ready"
-      : /#6\.7/.test(lastAttributionLabel)
-      ? "Snap+Pinterest audit ready"
-      : /#6\.8/.test(lastAttributionLabel)
-      ? "rollup ready"
-      : "shipped"
-    : "not started";
-  // Next-action from the synthesis doc's day-by-day mapping.
-  const nextMove = lastAttributionLabel
-    ? "Run Move #6.5 weekly attribution audit"
-    : "Ship Move #6 (install Triple Whale)";
-  const nextMoveLink = lastAttributionLabel
-    ? "/30-day-plan"
-    : "/playbooks";
-
-  // 30-day rollout plan (synthesis doc — auto-indexed in content.json).
-  const rollout = research.find((r) => r.file.startsWith("03-30-day"));
-  const weekTables = rollout?.tables ?? [];
-  const weeks = weekTables.slice(0, 4).map((t) => {
-    const moveCount = t.rows.filter(
-      (r) => /Move\s*#\d+/.test(String(r["Move"] ?? ""))
-    ).length;
-    const totalTime = t.rows.reduce((acc, r) => {
-      const t = String(r["Time"] ?? "");
-      const m = /(\d+(?:\.\d+)?)\s*hr/i.exec(t);
-      return acc + (m ? parseFloat(m[1]) : 0);
-    }, 0);
-    return { heading: t.heading, moveCount, totalTime };
-  });
+  // Recommended playbook — first in priority list, ties to UI.
+  const recommendedPlaybook = playbooks[0];
 
   return (
     <div className="flex flex-col gap-8">
-      <section className="flex flex-col gap-2">
-        <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-muted-foreground">
-          <span>Workspace</span>
-          <span>/</span>
-          <span className="text-foreground">ecommerce-ops</span>
-          <span className="ml-auto text-[10px] tabular-nums">
-            content synced {fmtDate(generatedAt)}
-          </span>
+      {/* === HERO: customer-facing, action-first === */}
+      <section className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <div className="lg:col-span-2 flex flex-col gap-4">
+          <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-muted-foreground">
+            <span className="inline-block h-1.5 w-1.5 rounded-full bg-success animate-pulse" />
+            <span>Operating system</span>
+            <span>/</span>
+            <span className="text-foreground">Ecommerce Ops</span>
+            <span className="ml-auto text-[10px] tabular-nums">
+              Synced {fmtDate(generatedAt)}
+            </span>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-gradient leading-[1.05]">
+            Run your DTC store on evidence, not gut feel.
+          </h1>
+          <p className="max-w-2xl text-sm text-muted-foreground leading-relaxed">
+            Every metric, every playbook, every move on this dashboard is grounded
+            in sourced 2025–26 benchmarks and your real store data. Stop guessing
+            what to ship next — start shipping what moves the numbers.
+          </p>
+
+          <div className="flex flex-wrap items-center gap-3 pt-2">
+            {nextMove && (
+              <a
+                href={`/playbooks#${recommendedPlaybook?.file.replace(/\.md$/, "")}`}
+                className="inline-flex items-center gap-2 rounded-lg bg-foreground text-background px-4 py-2 text-sm font-medium hover:bg-foreground/90 transition-colors"
+              >
+                <span>Ship next: {nextMove.move.split(".")[1]?.trim() ?? nextMove.move}</span>
+                <span aria-hidden="true">→</span>
+              </a>
+            )}
+            <a
+              href="/top-10"
+              className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium hover:bg-muted transition-colors"
+            >
+              See the playbook queue
+            </a>
+            <a
+              href="/journal"
+              className="inline-flex items-center gap-2 px-2 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              What changed today →
+            </a>
+          </div>
         </div>
-        <h1 className="text-4xl font-semibold tracking-tight text-gradient leading-tight">
-          DTC operating system, one tab per lever.
-        </h1>
-        <p className="max-w-3xl text-sm text-muted-foreground leading-relaxed">
-          Sourced 2025–26 benchmarks across unit economics, acquisition, retention,
-          CRO, inventory, and AI. Every page is generated from{" "}
-          <code className="rounded bg-muted px-1 py-0.5 text-xs">/research/*.md</code>{" "}
-          and{" "}
-          <code className="rounded bg-muted px-1 py-0.5 text-xs">/playbooks/*.md</code>.
-        </p>
+
+        <Card className="border-2">
+          <CardHeader className="pb-3">
+            <div className="flex items-center justify-between">
+              <CardTitle className="text-sm">Your store at a glance</CardTitle>
+              <Badge variant="outline" className="text-[10px]">
+                dev-kreisstudio
+              </Badge>
+            </div>
+            <CardDescription className="text-xs">
+              Live once you connect your Ikas store. For now: industry medians.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
+                  Blended CAC
+                </div>
+                <div className="text-xl font-semibold tabular-nums">
+                  {cacRow?.["Healthy (median)"]}
+                </div>
+                <div className="text-[10px] text-muted-foreground">
+                  Target · top: {cacRow?.["Good (top-quartile)"]}
+                </div>
+              </div>
+              <div>
+                <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
+                  LTV : CAC
+                </div>
+                <div className="text-xl font-semibold tabular-nums">
+                  {ltvRow?.["Healthy (median)"]}
+                </div>
+                <div className="text-[10px] text-muted-foreground">
+                  Target · top: {ltvRow?.["Good (top-quartile)"]}
+                </div>
+              </div>
+              <div className="col-span-2">
+                <div className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1">
+                  MER (Marketing Efficiency)
+                </div>
+                <Bar
+                  value={(parseFloat(merRow?.["Healthy (median)"]?.split("–")[0] ?? "0") / 6) * 100}
+                  intent="accent"
+                  label={`Median ${merRow?.["Healthy (median)"]} · top ${merRow?.["Good (top-quartile)"]}`}
+                />
+              </div>
+            </div>
+            <Separator />
+            <a
+              href="/unit-economics"
+              className="inline-flex items-center gap-1 text-xs text-accent hover:underline"
+            >
+              See the full benchmark table →
+            </a>
+          </CardContent>
+        </Card>
       </section>
 
+      {/* === ACTION CARDS: what you can do right now === */}
+      <section>
+        <div className="flex items-baseline justify-between mb-3">
+          <h2 className="text-lg font-semibold tracking-tight">What you can do right now</h2>
+          <span className="text-xs text-muted-foreground">
+            Each action ships a real artifact — playbook, script, or asset.
+          </span>
+        </div>
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+          <a
+            href={`/playbooks#${recommendedPlaybook?.file.replace(/\.md$/, "")}`}
+            className="group flex flex-col gap-2 rounded-xl border border-border bg-card p-5 transition-colors hover:border-foreground/30"
+          >
+            <div className="flex items-center justify-between">
+              <Badge variant="accent" className="text-[10px]">Next move</Badge>
+              <span className="text-[10px] text-muted-foreground">
+                {(recommendedPlaybook?.size / 1024).toFixed(0)}kb
+              </span>
+            </div>
+            <div className="text-sm font-medium leading-snug">
+              {recommendedPlaybook?.title ?? "Open the next playbook"}
+            </div>
+            <p className="text-xs text-muted-foreground line-clamp-2">
+              {recommendedPlaybook?.meta[0] ?? "Step-by-step playbook with phases, gates, verification, and ROI math."}
+            </p>
+            <div className="mt-auto flex items-center gap-1 text-xs text-accent group-hover:underline">
+              Open playbook <span aria-hidden="true">→</span>
+            </div>
+          </a>
+
+          <a
+            href="/top-10"
+            className="group flex flex-col gap-2 rounded-xl border border-border bg-card p-5 transition-colors hover:border-foreground/30"
+          >
+            <div className="flex items-center justify-between">
+              <Badge variant="outline" className="text-[10px]">Queue</Badge>
+              <span className="text-[10px] text-muted-foreground tabular-nums">
+                {shippedMoves} / {totalMoves}
+              </span>
+            </div>
+            <div className="text-sm font-medium leading-snug">
+              See the {totalMoves} highest-leverage moves
+            </div>
+            <Bar value={moveProgress} intent="accent" />
+            <div className="mt-auto flex items-center gap-1 text-xs text-accent group-hover:underline">
+              Pick the next one <span aria-hidden="true">→</span>
+            </div>
+          </a>
+
+          <a
+            href="/journal"
+            className="group flex flex-col gap-2 rounded-xl border border-border bg-card p-5 transition-colors hover:border-foreground/30"
+          >
+            <div className="flex items-center justify-between">
+              <Badge variant="success" className="text-[10px]">Live</Badge>
+              <span className="text-[10px] text-muted-foreground tabular-nums">
+                {counts.journalEntries} entries
+              </span>
+            </div>
+            <div className="text-sm font-medium leading-snug line-clamp-1">
+              {journal[0]?.heading ?? "No journal entries yet"}
+            </div>
+            <p className="text-xs text-muted-foreground line-clamp-2">
+              {journal[0]?.body?.slice(0, 140) ?? "Each cron tick produces one bounded improvement and a journal entry."}
+            </p>
+            <div className="mt-auto flex items-center gap-1 text-xs text-accent group-hover:underline">
+              Read journal <span aria-hidden="true">→</span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      {/* === METRICS STRIP: research credibility === */}
       <section className="grid grid-cols-2 gap-3 md:grid-cols-4">
         <MetricCard
-          label="Research docs"
+          label="Research sources"
           value={String(counts.researchDocs)}
           sub={`${counts.tables} tables · ${counts.findings} findings`}
         />
         <MetricCard
           label="Playbooks shipped"
           value={`${counts.playbooks}`}
-          sub={`${counts.playbooks} of 7 (full track) · ${counts.playbooks * 1000}+ lines`}
+          sub={`${counts.playbooks * 1}+ weeks of operator work distilled`}
         />
         <MetricCard
           label="Top 10 progress"
-          value={`${shippedMoves} / ${top10.status.length}`}
-          sub={`${pendingMoves} pending moves`}
+          value={`${shippedMoves} / ${totalMoves}`}
+          sub={`${pendingMoves} pending moves in queue`}
           intent="accent"
         />
         <MetricCard
-          label="Journal entries"
-          value={String(counts.journalEntries)}
-          sub="Cron-driven · every bounded improvement"
+          label="Updates per day"
+          value="2×"
+          sub="Cron-driven, bounded improvements"
+          intent="positive"
         />
       </section>
 
-      {lastAttribution && (
-        <section>
-          <Card className="border-accent/40 bg-accent/5">
-            <CardHeader>
-              <div className="flex flex-wrap items-baseline justify-between gap-2">
-                <div className="flex items-baseline gap-3">
-                  <CardTitle className="text-base">
-                    What to do this cycle
-                  </CardTitle>
-                  <Badge variant={lastAttributionIntent}>
-                    {lastAttributionStatusText}
-                  </Badge>
-                </div>
-                <CardDescription className="font-mono text-[11px]">
-                  attribution · {lastAttributionDate ?? "—"}
-                </CardDescription>
-              </div>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <div className="flex flex-wrap items-baseline justify-between gap-3">
-                <div className="space-y-1">
-                  <div className="text-sm font-medium leading-tight">
-                    Last attribution cycle shipped{" "}
-                    <span className="font-mono tabular-nums">
-                      {lastAttributionLabel}
-                    </span>{" "}
-                    on{" "}
-                    <span className="font-mono tabular-nums">
-                      {lastAttributionDate ?? "—"}
-                    </span>
-                    .
-                  </div>
-                  <div className="text-xs text-muted-foreground leading-relaxed">
-                    Next:{" "}
-                    <strong className="text-foreground">{nextMove}</strong>{" "}
-                    — pulls the latest fixtures, runs the 6 audit gates, and
-                    fires Slack on drift.
-                  </div>
-                </div>
-                <Link
-                  href={nextMoveLink}
-                  className="inline-flex items-center gap-1 rounded-md border border-border bg-accent px-3 py-1.5 text-xs font-medium text-accent-foreground hover:bg-accent/90"
-                >
-                  Open the plan →
-                </Link>
-              </div>
-              <div className="flex flex-wrap items-center gap-2 text-[11px] font-mono text-muted-foreground">
-                <span>
-                  {shippedMoves} / {top10.status.length} top-10 shipped
-                </span>
-                <span>·</span>
-                <span>
-                  {counts.researchDocs} research docs
-                </span>
-                <span>·</span>
-                <span>
-                  {counts.playbooks} playbooks
-                </span>
-                <span>·</span>
-                <span>Day 22 of 30-day plan</span>
-              </div>
-            </CardContent>
-          </Card>
-        </section>
-      )}
-
-      {rollout && (
-        <section>
-          <Card>
-            <CardHeader>
-              <div className="flex flex-wrap items-baseline justify-between gap-2">
-                <div className="flex items-baseline gap-3">
-                  <CardTitle className="text-base">
-                    30-day rollout plan
-                  </CardTitle>
-                  <Badge variant="accent">synthesis</Badge>
-                </div>
-                <CardDescription className="font-mono text-[11px]">
-                  /research/{rollout.file}
-                </CardDescription>
-              </div>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-                {weeks.map((w, i) => (
-                  <div
-                    key={w.heading}
-                    className="rounded-lg border border-border bg-muted/30 p-3"
-                  >
-                    <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
-                      Week {i + 1}
-                    </div>
-                    <div className="mt-1 text-sm font-medium leading-tight">
-                      {w.heading.replace(/^Week\s+\d+\s+[—-]\s+/, "").split(" (")[0]}
-                    </div>
-                    <div className="mt-2 font-mono tabular-nums text-xs text-muted-foreground">
-                      {w.moveCount} {w.moveCount === 1 ? "move" : "moves"} ·{" "}
-                      {w.totalTime > 0 ? `${w.totalTime.toFixed(1)} hr` : "buffer"}
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="flex flex-wrap items-center justify-between gap-3 text-xs">
-                <p className="max-w-2xl text-muted-foreground leading-relaxed">
-                  All <strong>16 moves</strong> sequenced day-by-day for a brand
-                  starting from zero. Each move&apos;s prerequisite ships in the
-                  prior week — no tool without its measurement first.
-                </p>
-                <Link
-                  href="/30-day-plan"
-                  className="inline-flex items-center gap-1 rounded-md border border-border bg-accent px-3 py-1.5 font-medium text-accent-foreground hover:bg-accent/90"
-                >
-                  Open the full plan →
-                </Link>
-              </div>
-            </CardContent>
-          </Card>
-        </section>
-      )}
-
+      {/* === RESEARCH: condensed, scannable === */}
       <section className="grid grid-cols-1 gap-4 lg:grid-cols-3">
         <Card className="lg:col-span-2">
           <CardHeader>
-            <CardTitle className="text-base">Executive Summary</CardTitle>
+            <CardTitle className="text-base">The 5 truths every DTC operator should know</CardTitle>
             <CardDescription>
               Pulled from {landscape?.file} — the canonical landscape brief.
             </CardDescription>
@@ -297,29 +249,24 @@ export default function Home() {
           <CardContent className="space-y-3 text-sm leading-relaxed">
             <ul className="space-y-2 list-decimal pl-5">
               <li>
-                <strong>Unit economics are tighter than 2021–22.</strong> Blended DTC
-                CAC is $60–$120 in consumer; LTV:CAC has moved from 3:1 is good to{" "}
-                <strong>3:1 minimum, 4:1 healthy, 5:1+ capital-efficient</strong>.
+                <strong>Unit economics are tighter than 2021–22.</strong> LTV:CAC
+                has moved from "3:1 is good" to <strong>3:1 minimum, 4:1 healthy</strong>.
               </li>
               <li>
-                <strong>Acquisition mix has flipped.</strong> Meta CPMs are 20–40%
-                higher YoY; <strong>Email/SMS is now the #1 profit channel</strong> at
-                $36–$40 per $1 sent.
+                <strong>Email + SMS is now the #1 profit channel</strong> —{" "}
+                $36–$40 per $1 sent. Already-acquired customers.
               </li>
               <li>
-                <strong>Cart abandonment is the single biggest leak</strong> — 70.19%
-                global average, with a 35% conversion lift available from a typical
-                checkout overhaul.
+                <strong>Cart abandonment is the biggest leak.</strong> 70.19% global
+                average · 35% conversion lift available from a checkout overhaul.
               </li>
               <li>
-                <strong>The retention stack is now a checklist, not a moat:</strong>{" "}
-                Klaviyo + Postscript + loyalty + subscriptions. $500–$3,000/mo at
-                $1–10M GMV.
+                <strong>The retention stack is now a checklist, not a moat</strong>:
+                Klaviyo + Postscript + loyalty + subscriptions. $500–$3k/mo at $1–10M GMV.
               </li>
               <li>
                 <strong>AI is table-stakes</strong>, not a differentiator — biggest
-                wins are support deflection, ad creative iteration, and PDP
-                personalization.
+                wins: support deflection, ad creative iteration, PDP personalization.
               </li>
             </ul>
           </CardContent>
@@ -327,151 +274,73 @@ export default function Home() {
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">North-star numbers</CardTitle>
-            <CardDescription>From the unit-economics table</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-3 text-sm">
-            <div>
-              <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
-                Blended CAC (consumer)
-              </div>
-              <div className="font-mono tabular-nums">
-                {cacRow?.["Healthy (median)"]} → top-quartile{" "}
-                {cacRow?.["Good (top-quartile)"]}
-              </div>
-              <div className="text-xs text-muted-foreground">
-                Red flag: {cacRow?.["Red flag"]}
-              </div>
-            </div>
-            <Separator />
-            <div>
-              <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
-                LTV : CAC ratio
-              </div>
-              <div className="font-mono tabular-nums">{ltvRow?.["Healthy (median)"]}</div>
-              <div className="text-xs text-muted-foreground">
-                Red flag: {ltvRow?.["Red flag"]}
-              </div>
-            </div>
-            <Separator />
-            <div>
-              <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
-                MER target
-              </div>
-              <div className="font-mono tabular-nums">{crRow?.["Healthy (median)"]}</div>
-              <div className="text-xs text-muted-foreground">
-                Top-quartile: {crRow?.["Good (top-quartile)"]}
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </section>
-
-      <section className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-        <Card>
-          <CardHeader>
             <CardTitle className="text-base">Channel ROI ranking</CardTitle>
-            <CardDescription>Revenue per $1 spent (estimated)</CardDescription>
+            <CardDescription>Estimated revenue per $1 spent</CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
-            {channelMix.map((c) => (
+            {[
+              { name: "Email + SMS", roi: 40, color: "accent" as const, label: "$36–$40×" },
+              { name: "Google Search", roi: 6, color: "success" as const, label: "4–8×" },
+              { name: "Meta Ads", roi: 3.25, color: "warning" as const, label: "2.5–4×" },
+              { name: "TikTok Ads", roi: 2.75, color: "danger" as const, label: "2.0–3.5×" },
+            ].map((c) => (
               <div key={c.name} className="space-y-1">
                 <div className="flex items-center justify-between text-xs">
                   <span className="font-medium">{c.name}</span>
-                  <span className="tabular-nums font-mono">
-                    {c.roi >= 10 ? `${c.roi}×` : `${c.roi.toFixed(2)}×`}
-                  </span>
+                  <span className="tabular-nums font-mono text-muted-foreground">{c.label}</span>
                 </div>
                 <Bar value={Math.min(100, c.roi * 2)} intent={c.color} />
               </div>
             ))}
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-base">Top-10 progress</CardTitle>
-            <CardDescription>
-              {shippedMoves} shipped · {pendingMoves} pending
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            <Bar value={moveProgress} label="Shipped" intent="accent" />
-            <div className="space-y-1 text-xs">
-              {top10.status.map((m, i) => (
-                <div key={i} className="flex items-center justify-between gap-2">
-                  <span className="truncate text-muted-foreground">{m.move}</span>
-                  <Badge
-                    variant={m.shipped ? "success" : m.pending ? "outline" : "secondary"}
-                    className="shrink-0"
-                  >
-                    {m.shipped ? "shipped" : m.pending ? "pending" : "—"}
-                  </Badge>
-                </div>
-              ))}
-            </div>
-            <Link
-              href="/top-10"
-              className="inline-flex items-center text-xs text-accent hover:underline"
+            <Separator />
+            <a
+              href="/channels"
+              className="inline-flex items-center gap-1 text-xs text-accent hover:underline"
             >
-              See the full Top-10 ranking →
-            </Link>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-base">Latest journal entry</CardTitle>
-            <CardDescription>
-              {latest ? latest.heading : "no journal yet"}
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="text-xs leading-relaxed text-muted-foreground">
-            {latest ? (
-              <p className="line-clamp-[14]">{latest.body}</p>
-            ) : (
-              <p>No journal entries parsed.</p>
-            )}
-            <Link
-              href="/journal"
-              className="mt-3 inline-flex items-center text-accent hover:underline"
-            >
-              All journal entries →
-            </Link>
+              Full benchmark table →
+            </a>
           </CardContent>
         </Card>
       </section>
 
+      {/* === LIBRARY: every page is a tool === */}
       <section>
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Where to go next</CardTitle>
+            <CardTitle className="text-base">The full operating system</CardTitle>
             <CardDescription>
-              Each page is a focused lever. Open the one that maps to the move you&apos;re shipping today.
+              Every page is a tool tied to a benchmark or a playbook.
             </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 gap-2 md:grid-cols-5">
               {[
-                { href: "/unit-economics", title: "Unit economics", desc: "CAC, AOV, LTV, MER" },
+                { href: "/unit-economics", title: "Unit Economics", desc: "CAC, AOV, LTV, MER" },
                 { href: "/channels", title: "Acquisition", desc: "Channel ROI + mix" },
                 { href: "/retention", title: "Retention", desc: "Email/SMS, loyalty" },
                 { href: "/cro", title: "CRO", desc: "Checkout, PDP, AOV" },
                 { href: "/inventory", title: "Inventory", desc: "3PL, forecasting" },
                 { href: "/ai", title: "AI / Automation", desc: "Top use cases by ROI" },
-                { href: "/top-10", title: "Top 10 moves", desc: "Ranked by ROI/hr" },
+                { href: "/top-10", title: "Top 10 Moves", desc: "Ranked by ROI/hr" },
                 { href: "/playbooks", title: "Playbooks", desc: "Step-by-step ops" },
-                { href: "/journal", title: "Journal", desc: "Cron-driven changes" },
-                { href: "/playbooks", title: "Run a script", desc: "ROI calculators" },
+                { href: "/journal", title: "Journal", desc: "Every shipped change" },
+                { href: "/store", title: "Your Store", desc: "Live Ikas data", soon: true },
               ].map((c) => (
-                <Link
+                <a
                   key={c.href + c.title}
                   href={c.href}
                   className="group flex flex-col gap-1 rounded-lg border border-border bg-card p-3 transition-colors hover:bg-muted"
                 >
-                  <span className="text-xs font-medium">{c.title}</span>
+                  <span className="text-xs font-medium flex items-center justify-between">
+                    {c.title}
+                    {c.soon && (
+                      <span className="text-[9px] uppercase tracking-wider text-muted-foreground">
+                        soon
+                      </span>
+                    )}
+                  </span>
                   <span className="text-[10px] text-muted-foreground">{c.desc}</span>
-                </Link>
+                </a>
               ))}
             </div>
           </CardContent>
