@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amazon-DSP / Amazon-Attribution-Audit Health — ecommerce-ops</title>
+  <!--
+    Amazon-DSP + Amazon-Attribution-Audit dashboard — static operator surface for the
+    amazon-dsp + amazon-attribution-audit track (research/14 + playbook 21 + asset 22 +
+    dashboard/app/amazon-dsp-amazon-attribution-audit/page.tsx + scripts/amazon_dsp_amazon_attribution_audit_unit_economics.py).
+
+    Renders 6 sections end-to-end:
+      1. Summary stats (Path tier default ROI + Year-1 incremental Halo-defense-revenue + CAC vs paid-social + brand-search-volume-lift + AMC-cohort-overlay-resolution-lift + Halo-defense-rate + Halo-attribution-modeling-maturity + cost stack)
+      2. Per-flow readiness cards (6 canonical Amazon-DSP flows × launch status + voice-density)
+      3. Per-path Year-1 incremental Halo-defense-revenue bar chart (Path A / B / C)
+      4. Per-phase verification gate scoring (Phase 1 Amazon-DSP-account-onboard + Halo-defense-creative-assets-onboard / Phase 2 Amazon-DSP-omnichannel-campaigns + Amazon-Audiences-Insights-engaged-shoppers-expand + AMC-cohort-overlay / Phase 3 Amazon-Attribution-post-purchase-email-merge-recipe + Halo-vs-direct-incremental-ACoS-measurement / Phase 4 steady-state + Brand-search-volume-lift-attribution + Halo-defense-steady-state)
+      5. Per-flow detail table (6 flows × 6 columns: Flow / Voice density / Status / Brand-search-volume-lift contribution / Halo-defense-rate contribution / Halo-vs-direct-ACoS-measurement contribution)
+      6. Recommended next action (which phase to ship next + which flow to build first)
+
+    Demo data is hardcoded to the canonical Path B default ($5M US DTC + $10M Amazon base, 30 SKUs,
+    8 hero SKUs, 50% gross margin, default voice, 6 hr/wk operator capacity, all 8 Amazon-DSP-onboarding-pack
+    prereqs wired, Amazon-Ads-Console + Brand-Registry + AMC-cohort-overlay + Amazon-Attribution-Pro
+    + Triple-Whale + Klaviyo-Amazon-source-segment all live, Halo-defense-creative-assets-baseline 5+
+    assets built).
+    Live data sources (override via URL params):
+      ?path=A | B | C               (default B)
+      ?us_dtc_gmv=5000000           (default $5M)
+      ?marketplace_gmv_pct=200      (default 200% — i.e., Amazon base is 2× DTC base)
+      ?voice=default | luxury | sustainable | gen_z | b2b  (default default)
+      ?demo=1                       force demo mode (no fetches; uses SAMPLE_ defaults)
+
+    Architecture: NO build step, NO npm deps, single inline CSS + vanilla JS.
+    Companion artifacts:
+      research/14-amazon-dsp-amazon-attribution-audit.md      (5-pillar framework + 3 GMV-tier paths + 15 pitfalls)
+      playbooks/21-amazon-dsp-amazon-attribution-audit-launch.md  (4-phase Amazon-DSP-account-onboard → Halo-defense → AMC-cohort-overlay → Amazon-Attribution-merge → steady-state operator build)
+      assets/22-amazon-dsp-amazon-attribution-audit-templates.md    (13 paste-ready artifacts: 30 voice-variant Halo-defense-creative-asset brief templates + 5-path tools decision matrix + Amazon-DSP-bid-strategy cookbook + AMC-cohort-overlay-Wire-spec + Triple-Whale-Amazon-cohort-overlay-Wire-spec + Klaviyo-Amazon-source-segment-integration + Amazon-Attribution-post-purchase-email-merge-recipe + Brand-search-volume-lift-attribution-flow + 3rd-party-Amazon-DSP-manager-decision-recipe + 4-trigger-Halo-defense-tier-promotion-SOP + 90-day-Halo-defense-creative-asset-iteration-cadence)
+      dashboard/app/amazon-dsp-amazon-attribution-audit/page.tsx   (Next.js operator route, 23rd route)
+      scripts/amazon_dsp_amazon_attribution_audit_unit_economics.py  (Archetype A/B hybrid Path A/B/C scorer, 105 TDD tests)
+
+    All canonical constants (PATH_A/B/C_FLOOR, PATH_COSTS, PATH_INCREMENTAL_HALO_DEFENSE_REVENUE_SHARE_PCT,
+    PATH_CAC_VS_PAID_SOCIAL_MULTIPLIER, PATH_BRAND_SEARCH_VOLUME_LIFT_MULTIPLE,
+    PATH_AMC_COHORT_OVERLAY_RESOLUTION_LIFT_MULTIPLE, PATH_HALO_DEFENSE_RATE_PCT,
+    PATH_HALO_ATTRIBUTION_MODELING_MATURITY_MONTHS, PATH_ROI, AMAZON_DSP_PILLAR_MATRIX,
+    ACTIVE_DSP_FLOWS) mirror scripts/amazon_dsp_amazon_attribution_audit_unit_economics.py exactly.
+    Per the v0.11.0 static-dashboard-tick recipe, this dashboard uses self-contained inline CSS + vanilla
+    JS, no Chart.js / no npm / no build step. Pure-Node smoke tests live in
+    dashboards/tests/test_amazon_dsp_amazon_attribution_audit_health.js (≥100 tests across 26 categories per the
+    v0.11.0 recipe).
+  -->
+  <style>
+    :root {
+      --bg: #0f1115;
+      --panel: #161922;
+      --panel-2: #1d2230;
+      --border: #2a2f3d;
+      --text: #e8eaf0;
+      --text-dim: #9097a8;
+      --accent: #58a6ff;
+      --ok: #4ec9b0;
+      --warn: #e0af68;
+      --fail: #f06a6a;
+      --violet: #b48ead;
+      --code-bg: #0a0c10;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    header {
+      padding: 24px 32px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    header .subtitle {
+      color: var(--text-dim);
+      font-size: 13px;
+    }
+    .mode-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+    }
+    .mode-badge.demo { color: var(--warn); border-color: var(--warn); }
+    .mode-badge.live { color: var(--accent); border-color: var(--accent); }
+    main {
+      padding: 16px 32px 60px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    section { margin-bottom: 32px; }
+    section > h2 {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+      margin: 0 0 16px 0;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+    .stat {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .stat .label {
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 6px;
+    }
+    .stat .value {
+      font-size: 22px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+    .stat .value.ok { color: var(--ok); }
+    .stat .value.warn { color: var(--warn); }
+    .stat .value.fail { color: var(--fail); }
+    .stat .sub {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+    .flow-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px;
+    }
+    .flow-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      position: relative;
+    }
+    .flow-card .tier {
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 6px;
+    }
+    .flow-card .name {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .flow-card .status {
+      display: inline-block;
+      padding: 1px 7px;
+      border-radius: 3px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: 1px solid;
+      margin-bottom: 8px;
+    }
+    .flow-card .status.live { color: var(--accent); border-color: var(--accent); }
+    .flow-card .status.draft { color: var(--violet); border-color: var(--violet); }
+    .flow-card .status.staging { color: var(--warn); border-color: var(--warn); }
+    .flow-card .status.ok { color: var(--ok); border-color: var(--ok); }
+    .flow-card .status.warn { color: var(--warn); border-color: var(--warn); }
+    .flow-card .status.fail { color: var(--fail); border-color: var(--fail); }
+    .flow-card .voice-density {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-bottom: 4px;
+    }
+    .flow-card .gate-score {
+      font-size: 11px;
+      color: var(--text);
+    }
+    .bar-chart {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+    }
+    .bar-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .bar-row .label {
+      width: 60px;
+      font-size: 12px;
+      color: var(--text-dim);
+      font-weight: 600;
+    }
+    .bar-row .track {
+      flex: 1;
+      background: var(--panel-2);
+      border-radius: 3px;
+      height: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+    .bar-row .fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 3px;
+      transition: width 0.4s ease-out;
+    }
+    .bar-row .fill.path-a { background: var(--warn); }
+    .bar-row .fill.path-b { background: var(--ok); }
+    .bar-row .fill.path-c { background: var(--violet); }
+    .bar-row .amount {
+      width: 180px;
+      font-size: 12px;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+    .gate-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+    }
+    .gate-card .head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+    .gate-card .head .label {
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .gate-card .head .progress {
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+    .gate-card .ok-count { color: var(--ok); }
+    .gate-card .warn-count { color: var(--warn); }
+    .gate-card .fail-count { color: var(--fail); }
+    .gate-card ul.gate-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .gate-card ul.gate-list li {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      padding: 4px 0;
+      font-size: 12px;
+      color: var(--text);
+    }
+    .gate-card ul.gate-list li .g-id {
+      color: var(--text-dim);
+      font-family: monospace;
+      min-width: 32px;
+    }
+    .gate-card ul.gate-list li .g-status {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      border: 1px solid;
+    }
+    .g-status.ok { color: var(--ok); border-color: var(--ok); }
+    .g-status.warn { color: var(--warn); border-color: var(--warn); }
+    .g-status.fail { color: var(--fail); border-color: var(--fail); }
+    .g-status.draft { color: var(--violet); border-color: var(--violet); }
+    .g-status.live { color: var(--accent); border-color: var(--accent); }
+    table.flow-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    table.flow-table th {
+      text-align: left;
+      padding: 10px 12px;
+      background: var(--panel-2);
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-size: 10px;
+      font-weight: 600;
+    }
+    table.flow-table td {
+      padding: 10px 12px;
+      border-top: 1px solid var(--border);
+      color: var(--text);
+    }
+    .next-step {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .next-step .next-step-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Amazon-DSP / Amazon-Attribution-Audit Health</h1>
+      <div class="subtitle">Move #18 amazon-dsp + amazon-attribution-audit static-dashboard layer 6 — Path B DEFAULT 3:1 Year-1 ROI · $300k–$3M Halo-defense-revenue · 5–30% Year-1 incremental revenue</div>
+    </div>
+    <span id="mode-badge" class="mode-badge demo">Demo Mode</span>
+  </header>
+  <main>
+    <section id="summary-section">
+      <h2>Path B Summary</h2>
+      <div class="stats" id="summary-stats"></div>
+    </section>
+
+    <section id="flow-section">
+      <h2>Per-flow readiness</h2>
+      <div class="flow-grid" id="flow-cards"></div>
+    </section>
+
+    <section id="path-chart-section">
+      <h2>Per-path Year-1 incremental Halo-defense-revenue</h2>
+      <div class="bar-chart" id="path-chart"></div>
+    </section>
+
+    <section id="phase-gates-section">
+      <h2>Per-phase verification gate status</h2>
+      <div id="phase-gates"></div>
+    </section>
+
+    <section id="flow-table-section">
+      <h2>Per-flow detail table</h2>
+      <table class="flow-table">
+        <thead>
+          <tr>
+            <th>Flow</th>
+            <th>Voice density</th>
+            <th>Status</th>
+            <th>Brand-search-volume-lift contribution</th>
+            <th>Halo-defense-rate contribution</th>
+            <th>Halo-vs-direct-ACoS-measurement contribution</th>
+          </tr>
+        </thead>
+        <tbody id="flow-table-body"></tbody>
+      </table>
+    </section>
+
+    <section id="next-action-section">
+      <h2>Recommended next action</h2>
+      <div class="next-step" id="next-action"></div>
+    </section>
+  </main>
+
+  <script>
+    // ----- 6 canonical Amazon-DSP flows (research/14 §5-pillar framework + playbook 21 §Phase 1+2+3+4 + asset 22 §13 paste-ready artifacts) -----
+    // Tuple values: tier (Path A/B/C applicability), pillar, voiceCells (5 voices × 6 voice-cell slots = 30),
+    //               brandSearchLiftContributionPct, haloDefenseRateContributionPct, haloVsDirectAcosContributionPct, status.
+    var FLOWS = [
+      { id: 'amazon_ads_console_brand_registry_onboard', name: 'Amazon-Ads-Console + Amazon-Brand-Registry-trademark + Halo-defense-creative-assets-baseline (5 specs × 3 pattern categories)', tier: 'Path A+B+C', pillar: 'Pillar 1 Amazon-Ads-Console-onboard + Brand-Registry-trademark-defensive-levers', defaultPlatformPick: 'Amazon-Ads-Console-self-serve-OR-Pacvue-OR-Tinuiti-OR-Helium-10-OR-Perpetua-managed-service $0 self-serve-OR-$2k-$10k/mo-managed-service', voiceCells: 30, brandSearchLiftContributionPct: 30, haloDefenseRateContributionPct: 80, haloVsDirectAcosContributionPct: 0,  status: 'live' },
+      { id: 'amazon_dsp_in_market_shoppers_audience_segment_launch', name: 'Amazon-DSP-in-market-shoppers-audience-segment-launch + Amazon-Audiences-Insights-engaged-shoppers-expand + Amazon-DSP-bid-strategy', tier: 'Path B+C', pillar: 'Pillar 2 Amazon-DSP-in-market-shoppers-audience-segment-launch', defaultPlatformPick: 'Amazon-Audiences-Insights-engaged-shoppers-recent-30-day + lifestyle-contextual + competitor-product-targeting + brand-defense + lookalike-audience (5 canonical segments) + dynamic-CPM-with-50th-percentile-bid', voiceCells: 30, brandSearchLiftContributionPct: 50, haloDefenseRateContributionPct: 20, haloVsDirectAcosContributionPct: 0,  status: 'live' },
+      { id: 'amc_cohort_overlay_instrumentation_wire', name: 'Amazon-Marketing-Cloud (AMC) cohort-overlay-instrumentation + 5-canonical-cohort-queries + AMC-API-connection', tier: 'Path B+C', pillar: 'Pillar 3 Amazon-Marketing-Cloud-cohort-overlay-launch', defaultPlatformPick: 'AMC-API-connection + 5-canonical-cohort-queries [Amazon-DSP-impression-cohort + Amazon-DSP-click-cohort + Amazon-DSP-engaged-shoppers-cohort + Halo-defense-impression-cohort + Halo-defense-click-cohort]', voiceCells: 30, brandSearchLiftContributionPct: 20, haloDefenseRateContributionPct: 0,  haloVsDirectAcosContributionPct: 40, status: 'live' },
+      { id: 'amazon_attribution_post_purchase_email_merge_recipe', name: 'Amazon-Attribution-Pro-or-advanced-tools-OR-AMC-license + post-purchase-survey-instrumentation + Triple-Whale-Amazon-cohort-overlay + Klaviyo-Amazon-source-segment-integration', tier: 'Path B+C', pillar: 'Pillar 4 Amazon-Attribution-post-purchase-email-merge-recipe-launch + Halo-vs-direct-incremental-ACoS-measurement', defaultPlatformPick: 'Amazon-Attribution-Pro-$600/mo-OR-AMC-license-direct-OR-Tinuiti-OR-Pacvue-OR-Helium-10-OR-Perpetua-Enterprise ($2k-$10k/mo) — Beta-deprecation-August-2025-migration', voiceCells: 30, brandSearchLiftContributionPct: 0,  haloDefenseRateContributionPct: 0,  haloVsDirectAcosContributionPct: 100,status: 'live' },
+      { id: 'halo_defense_creative_asset_iteration_cycle', name: 'Halo-defense-creative-asset-iteration-cycle-quarterly + Brand-search-volume-lift-attribution-flow + 50+-Halo-defense-creative-assets-pipelined-across-5-pillars', tier: 'Path B+C', pillar: 'Pillar 5 Halo-defense-creative-asset-iteration-cycle + Brand-search-volume-lift-attribution', defaultPlatformPick: 'Amazon-Creative-Assets-baseline-build per Amazon-Creative-Assets-2024 + 50+-Halo-defense-creative-assets-pipelined-across-5-pillars-Halo-defense-creative-pattern-categories [lifestyle-contextual + competitor-product-targeting + brand-defense + sponsored-brands-video + sponsored-display-product]', voiceCells: 30, brandSearchLiftContributionPct: 100,haloDefenseRateContributionPct: 100,haloVsDirectAcosContributionPct: 60, status: 'staging' },
+      { id: 'third_party_dsp_manager_decision_recipe', name: '3rd-party-Amazon-DSP-manager-or-in-house-team-or-fully-managed-service-decision-recipe (Tier 1 / 2 / 3)', tier: 'Path B+C', pillar: 'Pillar 5 steady-state + 3rd-party-Amazon-DSP-manager-decision-recipe', defaultPlatformPick: 'Tier 1 managed-service-Tinuiti-OR-Pacvue-OR-Helium-10-OR-Perpetua $2k-$10k/mo OR Tier 2 in-house-team $10k-$25k/mo OR Tier 3 fully-managed-service-Pacvue-Enterprise-OR-Helium-10-Enterprise $5k-$25k/mo', voiceCells: 30, brandSearchLiftContributionPct: 0,  haloDefenseRateContributionPct: 0,  haloVsDirectAcosContributionPct: 0,  status: 'draft' }
+    ];
+
+    // Path-tier table (mirrors scripts/amazon_dsp_amazon_attribution_audit_unit_economics.py PATH_COSTS / PATH_INCREMENTAL_HALO_DEFENSE_REVENUE_SHARE_PCT / PATH_CAC_VS_PAID_SOCIAL_MULTIPLIER / PATH_BRAND_SEARCH_VOLUME_LIFT_MULTIPLE / PATH_AMC_COHORT_OVERLAY_RESOLUTION_LIFT_MULTIPLE / PATH_HALO_DEFENSE_RATE_PCT / PATH_HALO_ATTRIBUTION_MODELING_MATURITY_MONTHS / PATH_ROI).
+    // Tuple values: cost one-time low/high, cost recurring low/high, incremental-Halo-defense-revenue share % low/high,
+    //               CAC vs paid-social low/high, brand-search-volume-lift low/high, AMC-cohort-overlay-resolution-lift low/high,
+    //               Halo-defense-rate % low/high, Halo-attribution-modeling-maturity months low/high,
+    //               ROI low/high, scope label.
+    var PATH_TABLE = {
+      A: { gmvMin: 100000,    gmvMax: 4999999,   costOneTimeLow: 0,      costOneTimeHigh: 2000,   costRecurLow: 500,   costRecurHigh: 1000,  shareLow: 1.0, shareHigh: 4.0,   cacLow: 0.7, cacHigh: 1.0, brandSearchLow: 1.5, brandSearchHigh: 3.0, amcCohortLow: 1.0, amcCohortHigh: 1.5, haloDefenseRateLow: 15.0, haloDefenseRateHigh: 25.0, haloMaturityLow: 0,  haloMaturityHigh: 6,  roiLow: 3.0, roiHigh: 4.0, scope: 'Sponsored-Products + Brand-Registry + Halo-defense-via-Brand-Registry-only $500-$1k/mo (pre-DSP ramp-up)',                                                label: 'Path A — Sponsored-Products-only + Halo-defense-via-Brand-Registry-only (<$5M DTC+Amazon GMV, 4:1 conservative nominal ROI)' },
+      B: { gmvMin: 5000000,   gmvMax: 24999999,  costOneTimeLow: 2000,   costOneTimeHigh: 25000,  costRecurLow: 1000,  costRecurHigh: 5000,  shareLow: 2.0, shareHigh: 30.0,  cacLow: 0.5, cacHigh: 0.7, brandSearchLow: 5.0, brandSearchHigh: 10.0,amcCohortLow: 2.0, amcCohortHigh: 3.0, haloDefenseRateLow: 25.0, haloDefenseRateHigh: 40.0, haloMaturityLow: 6,  haloMaturityHigh: 12, roiLow: 3.5, roiHigh: 35.0,scope: 'Amazon-DSP + Halo-defense-programmatic-display + AMC-cohort-overlay + Amazon-Attribution-post-purchase-email-merge $1k-$5k/mo DEFAULT',                            label: 'Path B — Amazon-DSP + Halo-defense + AMC-cohort-overlay + Amazon-Attribution-merge ($5M–$25M DTC+Amazon DEFAULT, 3:1 default Year-1 ROI)' },
+      C: { gmvMin: 25000000,  gmvMax: 99999999,  costOneTimeLow: 10000,  costOneTimeHigh: 50000,  costRecurLow: 5000,  costRecurHigh: 25000, shareLow: 5.0, shareHigh: 30.0,  cacLow: 0.4, cacHigh: 0.6, brandSearchLow: 8.0, brandSearchHigh: 15.0,amcCohortLow: 3.0, amcCohortHigh: 5.0, haloDefenseRateLow: 30.0, haloDefenseRateHigh: 45.0, haloMaturityLow: 12, haloMaturityHigh: 24,roiLow: 2.0, roiHigh: 3.0, scope: 'Full-Amazon-DSP-omnichannel + AMC-Enterprise + Amazon-Attribution-Enterprise + dedicated-in-house-DSP-marketing-team-or-fully-managed-service-Enterprise $5k-$25k/mo', label: 'Path C — Full-Amazon-DSP-omnichannel + AMC-Enterprise + Amazon-Attribution-Enterprise ($25M+, 2.5:1 ROI muted by 6-12-month DSP-build-out-cycle + Halo-attribution-modeling-maturity)' }
+    };
+
+    // Phase gates (mirrors playbook 21 §Phase 1+2+3+4 verification gates = 10/10/10/9 prereqs).
+    var PHASE_GATES = [
+      { id: 'A', label: 'Phase 1 — Amazon-DSP-account-onboard + Halo-defense-creative-assets-onboard + first-Amazon-DSP-in-market-shoppers-launch (~12hr Weeks 1–6)', total: 10,
+        gates: [
+          { id: 'A1',  criterion: 'Move #1 + #4 + #6 + #7 + #8 + #11 + #13 + #14.5 + #15 + #15.x + #16 + #17 live for ≥90 days (canonical 11-track substrate per research/14 §Verification gates Gate A prerequisite 1; Move #13 marketplace-expansion Amazon-Seller-Central is the canonical prerequisite for Move #18)', status: 'ok' },
+          { id: 'A2',  criterion: 'Amazon-Seller-Central-account-active-with-5+-listed-SKUs + Brand-Registry-trademark-registered + Buy-Box-ownership-on-hero-SKUs-≥90% per Amazon-Ad-Business-2024 + Amazon-Brand-Registry-2024', status: 'ok' },
+          { id: 'A3',  criterion: 'Amazon-Ads-Console-account-created-self-serve-or-3rd-party-managed-service-onboarded-and-active ($0 self-serve-OR-$2k-$10k/mo-managed-service-Tier-1)', status: 'ok' },
+          { id: 'A4',  criterion: 'Amazon-Brand-Registry-trademark-registered-with-USPTO-or-equivalent ($50-$500/SKU) + Amazon-Brand-Analytics-access-wired + Halo-defense-defensive-levers-enabled per Amazon-Brand-Registry-2024-canonical-protective-mechanism', status: 'ok' },
+          { id: 'A5',  criterion: 'Amazon-Creative-Assets-baseline-built per Amazon-Creative-Assets-2024-canonical-5-specs [5-second-static-banner + 5-second-video-9:16-1:1-16:9 + 3-Halo-defense-creative-pattern-categories [lifestyle-contextual + competitor-product-targeting + brand-defense]]', status: 'ok' },
+          { id: 'A6',  criterion: 'Amazon-Audiences-Insights-engaged-shoppers-baseline-audit + Amazon-brand-keyword-rank + competitor-Amazon-keyword-rank baseline + Brand-Analytics-engaged-daily-visitors-lift-baseline per Amazon-Audiences-Insights-2024-canonical-launch-prerequisite', status: 'warn' },
+          { id: 'A7',  criterion: 'Amazon-Attribution-Pro-or-advanced-tools-OR-AMC-OR-3rd-party-attribution-provider-license-active-and-wired ($600/mo-Pro-OR-AMC-license-direct-OR-Tinuiti-OR-Pacvue-OR-Helium-10-OR-Perpetua-Enterprise $2k-$10k/mo per Amazon-Attribution-2024-Beta-to-GA-migration-guide)', status: 'warn' },
+          { id: 'A8',  criterion: 'Triple-Whale-Amazon-cohort-overlay-wire + post-purchase-survey-with-Amazon-source-tracking-active (Triple-Whale-Starter-or-Pro $179/mo-Starter-or-$1,290/mo-Pro)', status: 'ok' },
+          { id: 'A9',  criterion: 'Klaviyo-Amazon-source-segment-integration-wired-for-Amazon-source-cart-abandon + Amazon-source-welcome-flow + Amazon-source-cohort-LTV ($0-$45/mo for Klaviyo-Standard-with-Amazon-source-segment)', status: 'ok' },
+          { id: 'A10', criterion: 'DSP-marketing-team-capacity-OR-managed-service-onboard-Tinuiti-OR-Pacvue-OR-Helium-10-OR-Perpetua-Enterprise + first-Amazon-DSP-in-market-shoppers-campaign-launched-with-$1k-$5k+/mo-budget-fixed-CPM-bid-strategy per Amazon-Ads-Console-2024-canonical-launch-prerequisite', status: 'ok' }
+        ]
+      },
+      { id: 'B', label: 'Phase 2 — Amazon-DSP-omnichannel-campaigns-launch + Amazon-Audiences-Insights-engaged-shoppers-expand + Amazon-Marketing-Cloud-cohort-overlay-launch (~24hr Weeks 7–24)', total: 10,
+        gates: [
+          { id: 'B1',  criterion: 'Phase 1 10/10 prereqs complete (steady-state Week 6+ with Amazon-DSP-account-active + Halo-defense-creative-assets-baseline + first-Amazon-DSP-in-market-shoppers-campaign-launched)', status: 'ok' },
+          { id: 'B2',  criterion: 'Amazon-DSP-omnichannel-campaigns-launched [Amazon-Display-Amazon-OWP + Amazon-Display-Amazon-Twitch + Amazon-Display-Amazon-Alexa + Amazon-Display-3rd-party-DSP-exchange + programmatic-display-display-network-publishers-exchange] per Amazon-DSP-2024-canonical-omnichannel-bundle', status: 'ok' },
+          { id: 'B3',  criterion: 'Amazon-Audiences-Insights-engaged-shoppers-expanded [brand-defensive-audience-on-brand-keywords + competitor-product-targeting-audience-top-3-Amazon-competitors + in-market-shoppers-audience-on-keyword-categories + lifestyle-contextual-audience-on-brand-vertical-keywords + lookalike-audience-on-existing-Amazon-brands-customers] — 5-canonical-Amazon-DSP-audience-segments baseline per Amazon-DSP-2024', status: 'ok' },
+          { id: 'B4',  criterion: 'Amazon-DSP-bid-optimization-monthly-with-50th-percentile-bid-per-Audience-Insights-engaged-shoppers-per-brand-vertical-keyword-set per Amazon-Ads-Console-2024 + Amazon-DSP-2024-bid-strategy-benchmarks', status: 'warn' },
+          { id: 'B5',  criterion: 'Amazon-Marketing-Cloud-API-connection-or-Pacvue-or-Helium-10-or-Tinuiti-Enterprise-onboarding-active (AMC-license-$1k-$5k/mo-Enterprise OR Pacvue-Enterprise-OR-Tinuiti-Enterprise-OR-Helium-10-Enterprise-OR-Perpetua-Enterprise $5k-$10k/mo)', status: 'warn' },
+          { id: 'B6',  criterion: '5-canonical-cohort-queries-built-or-imported [Amazon-DSP-impression-cohort + Amazon-DSP-click-cohort + Amazon-DSP-engaged-shoppers-cohort + Halo-defense-impression-cohort + Halo-defense-click-cohort] per Amazon-Marketing-Cloud-2024 + Seller-Snap-2024-canonical-5-cohort-queries', status: 'ok' },
+          { id: 'B7',  criterion: 'AMC-cohort-overlay-instrumentation-wired-to-Triple-Whale-Amazon-cohort-LTV-overlay + paid-Meta-cohort-LTV-vs-Amazon-DSP-cohort-LTV-vs-paid-Google-cohort-LTV at 30/60/90/180-day windows per Amazon-Marketing-Cloud-2024 + Triple-Whale-2024 + Seller-Snap-2024 benchmarks', status: 'ok' },
+          { id: 'B8',  criterion: 'AMC-cohort-overlay-iteration-cycle-monthly-or-quarterly-with-Pacvue-or-Tinuiti-or-Helium-10-or-Seller-Snap-Amazon-Marketing-Cloud-cohort-overlay-wiring-tools per Amazon-Marketing-Cloud-2024-Enterprise-cohort-overlay-instrumentation', status: 'draft' },
+          { id: 'B9',  criterion: 'Brand-Analytics-engaged-daily-visitors-lift-baseline-90-day-baseline-active per Amazon-Brand-Analytics-2024-canonical-Halo-defense-measurement-recipe', status: 'warn' },
+          { id: 'B10', criterion: 'Brand-search-volume-baseline-active-via-Amazon-Marketing-Cloud-cohort-overlay + Brand-Analytics-engaged-daily-visitors + Helium-10-brand-search-volume-tracking per Amazon-Marketing-Cloud-2024 + Pacvue-2024 + Helium-10-2024', status: 'draft' }
+        ]
+      },
+      { id: 'C', label: 'Phase 3 — Amazon-Attribution-post-purchase-email-merge-recipe-launch + Halo-vs-direct-incremental-ACoS-measurement-launch + Halo-defense-creative-iteration-cycle (~16hr Weeks 25–48)', total: 10,
+        gates: [
+          { id: 'C1',  criterion: 'Phase 2 10/10 prereqs complete (steady-state Week 24+ with Amazon-DSP-omnichannel-campaigns + AMC-cohort-overlay-instrumentation + AMC-cohort-iteration-cycle)', status: 'draft' },
+          { id: 'C2',  criterion: 'Post-purchase-survey-instrumentation-wired [Triple-Whale-or-Pacvue-or-Helium-10-post-purchase-survey-with-Amazon-source-tracking] per Amazon-Attribution-2024-canonical-post-purchase-survey-recipe', status: 'draft' },
+          { id: 'C3',  criterion: 'Amazon-Attribution-post-purchase-email-merge-instrumentation-wired-to-Triple-Whale-or-Pacvue-or-Helium-10-or-Tinuiti-or-Perpetua-or-AMC-direct per Amazon-Attribution-2024-Beta-to-GA-migration-guide', status: 'draft' },
+          { id: 'C4',  criterion: 'Klaviyo-Amazon-source-segment-integration-live-for-Amazon-source-cart-abandon + Amazon-source-welcome-flow + Amazon-source-cohort-LTV per Klaviyo-Amazon-source-segment-canonical-integration-recipe', status: 'draft' },
+          { id: 'C5',  criterion: 'Halo-vs-direct-incremental-ACoS-measurement-flow-built-or-imported-per-Amazon-Marketing-Cloud-2024-canonical-cohort-overlay-instrumentation (Bayesian-incremental-measurement at scale per Amazon-Marketing-Cloud-Enterprise)', status: 'draft' },
+          { id: 'C6',  criterion: 'Halo-defense-creative-asset-iteration-cadence-active-quarterly-refresh-of-top-5-creative-assets-per-Amazon-Creative-Assets-2024 + Pacvue-2024 + Helium-10-2024 + Tinuiti-2024 (90-day-refresh-cadence + 50+-Halo-defense-creative-assets-pipelined-across-5-pillars)', status: 'draft' },
+          { id: 'C7',  criterion: 'Amazon-Marketing-Cloud-cohort-overlay-iteration-cycle-monthly-active-with-Bayesian-incremental-measurement per Amazon-Marketing-Cloud-Enterprise-2024', status: 'draft' },
+          { id: 'C8',  criterion: 'Brand-search-volume-lift-tracking-via-Amazon-Marketing-Cloud-cohort-overlay + Brand-Analytics-engaged-daily-visitors + Helium-10-brand-search-volume-tracking per Amazon-Marketing-Cloud-2024 + Pacvue-2024 + Helium-10-2024', status: 'draft' },
+          { id: 'C9',  criterion: 'Halo-vs-direct-incremental-ACoS-measurement-typically-identifies-20-40% Halo-vs-direct-cohort-LTV-difference (Tinuiti-2024-Halo-effect-cohort-study benchmark)', status: 'draft' },
+          { id: 'C10', criterion: 'Triple-Whale-Amazon-cohort-LTV-overlay-wired-and-iterating-Amazon-DSP-cohort-LTV-vs-paid-Meta-cohort-LTV-vs-paid-Google-cohort-LTV at 30/60/90/180-day windows per Triple-Whale-2024 + Seller-Snap-2024 + Amazon-Marketing-Cloud-2024 canonical-5-way-comparison-cycle', status: 'draft' }
+        ]
+      },
+      { id: 'D', label: 'Phase 4 — Steady-state + Brand-search-volume-lift-attribution + Halo-defense-steady-state + 3rd-party-Amazon-DSP-manager-decision-recipe (~12hr Weeks 49–72)', total: 9,
+        gates: [
+          { id: 'D1', criterion: 'Phase 3 10/10 prereqs complete (steady-state Week 48+ with Amazon-Attribution-post-purchase-email-merge-recipe + Halo-vs-direct-incremental-ACoS-measurement + Halo-defense-creative-iteration-cycle-quarterly)', status: 'draft' },
+          { id: 'D2', criterion: 'Brand-search-volume-lift-attribution-flow-active [compares-quarterly-brand-search-volume-from-Amazon-DSP-exposure vs control-set-of-no-DSP-exposure] per Amazon-Marketing-Cloud-2024 + Brand-Analytics-2024 + Helium-10-2024-canonical-Halo-defense-measurement', status: 'draft' },
+          { id: 'D3', criterion: 'Halo-defense-steady-state-creative-asset-library-built [50+-Halo-defense-creative-assets-pipelined-across-5-pillars-Halo-defense-creative-pattern-categories [lifestyle-contextual + competitor-product-targeting + brand-defense + sponsored-brands-video + sponsored-display-product + sponsored-brands-product]] per Amazon-Creative-Assets-2024-canonical-5-specs', status: 'draft' },
+          { id: 'D4', criterion: 'Halo-defense-steady-state-creative-asset-library-refresh-cadence-active-quarterly-or-monthly-per-Amazon-Creative-Assets-2024 + Pacvue-2024 + Helium-10-2024 (canonical 90-day-refresh-cadence baseline)', status: 'draft' },
+          { id: 'D5', criterion: 'Halo-defense-rate-measurement-active-quarterly [typically-achieves-25-40% Halo-defense-rate-per-Amazon-Brand-Registry-2024 at $5M US DTC + $10M Amazon base]', status: 'draft' },
+          { id: 'D6', criterion: '3rd-party-Amazon-DSP-manager-or-in-house-team-or-fully-managed-service-decision-recipe-evaluated [Tier 1 managed-service-Tinuiti-OR-Pacvue-OR-Helium-10-OR-Perpetua $2k-$10k/mo; Tier 2 in-house-team $10k-$25k/mo; Tier 3 fully-managed-service-Pacvue-Enterprise-OR-Helium-10-Enterprise $5k-$25k/mo] per research/14 §Pillar 5 GMV-tier decision matrix', status: 'draft' },
+          { id: 'D7', criterion: 'Brand-Analytics-engaged-daily-visitors-lift-monitoring-active-quarterly per Amazon-Brand-Analytics-2024-canonical-Halo-defense-measurement-recipe', status: 'draft' },
+          { id: 'D8', criterion: 'AMC-cohort-overlay-iteration-cycle-quarterly-with-Bayesian-incremental-measurement (Path C only; Path B stays on monthly cycle) per Amazon-Marketing-Cloud-Enterprise-2024', status: 'draft' },
+          { id: 'D9', criterion: '12-24-month-Halo-defense-effective-rate-steady-state-typically-achieves-5-10× lower-CAC-year-2+ vs paid-social per Amazon-DSP-2024-canonical-3-way-comparison-cycle [Amazon-DSP-Halo-defense-cohort-LTV vs paid-social-Meta-cohort-LTV vs paid-Google-cohort-LTV at 30/60/90/180-day windows]', status: 'draft' }
+        ]
+      }
+    ];
+
+    // 5-pillar Amazon-DSP framework matrix (mirrors scripts/amazon_dsp_amazon_attribution_audit_unit_economics.py AMAZON_DSP_PILLAR_MATRIX — Default voice excerpt).
+    var AMAZON_DSP_PILLAR_MATRIX = [
+      { pillar: 'Pillar 1 — Amazon-Ads-Console-onboard + Brand-Registry-trademark + Amazon-DSP-account-onboard', default: 'Amazon-Ads-Console-self-serve + Brand-Registry-trademark-registered + Amazon-Creative-Assets-baseline-build per-Amazon-Creative-Assets-2024-canonical-5-specs + Amazon-Audiences-Insights-engaged-shoppers-baseline-audit', luxury: 'Amazon-Ads-Console-self-serve-OR-managed-service + Brand-Registry-trademark-registered-with-elevated-E-E-A-T-signals + Amazon-Creative-Assets-baseline-with-luxury-keyword-spacing', sustainable: 'Amazon-Ads-Console-self-serve-OR-managed-service + Brand-Registry-trademark-registered + Amazon-Creative-Assets-baseline-with-sustainable-keyword-universe', genZ: 'Amazon-Ads-Console-self-serve-OR-managed-service + Brand-Registry-trademark-registered + Amazon-Creative-Assets-baseline-with-Gen-Z-trend-driven-cadence', b2b: 'Amazon-Ads-Console-self-serve-OR-managed-service + Brand-Registry-trademark-registered + Amazon-Creative-Assets-baseline-with-B2B-case-study-format' },
+      { pillar: 'Pillar 2 — Amazon-DSP-in-market-shoppers-audience-segment + Amazon-Audiences-Insights-engaged-shoppers-expand + Amazon-DSP-bid-strategy', default: '5-canonical-Amazon-DSP-audience-segments [in-market-shoppers + lifestyle-contextual + competitor-product-targeting + brand-defense + lookalike-audience] + fixed-CPM-with-$0.50-$5.00-CPM-band + dynamic-CPM-with-50th-percentile-bid', luxury: '5-canonical-Amazon-DSP-audience-segments + luxury-keyword-spacing + dynamic-CPM-with-50th-percentile-bid + organic-disclosure-consistency', sustainable: '5-canonical-Amazon-DSP-audience-segments + sustainable-keyword-universe + dynamic-CPM-with-50th-percentile-bid + mission-disclosure', genZ: '5-canonical-Amazon-DSP-audience-segments + Gen-Z-keyword-vertical + dynamic-CPM-with-50th-percentile-bid + Gen-Z-trend-driven-amplifier', b2b: '5-canonical-Amazon-DSP-audience-segments + B2B-keyword-cluster + dynamic-CPM-with-50th-percentile-bid + B2B-case-study-format' },
+      { pillar: 'Pillar 3 — Amazon-Marketing-Cloud-cohort-overlay + AMC-API-connection + Amazon-Attribution-Pro-or-advanced-tools', default: 'AMC-API-connection-wire + 5-canonical-cohort-queries-build + Amazon-Attribution-Pro-or-advanced-tools-or-3rd-party-attribution-provider-migration-Beta-deprecation-August-2025', luxury: 'AMC-API-connection-wire + 5-canonical-cohort-queries + Amazon-Attribution-Pro-or-advanced-tools-OR-Tinuiti-Enterprise + luxury-keyword-cluster-cohort-overlay', sustainable: 'AMC-API-connection-wire + 5-canonical-cohort-queries + Amazon-Attribution-Pro-or-advanced-tools-OR-Pacvue-Enterprise + sustainable-keyword-cohort-overlay', genZ: 'AMC-API-connection-wire + 5-canonical-cohort-queries + Amazon-Attribution-Pro-or-advanced-tools-OR-Helium-10-Enterprise + Gen-Z-keyword-cohort-overlay', b2b: 'AMC-API-connection-wire + 5-canonical-cohort-queries + Amazon-Attribution-Enterprise-OR-Tinuiti-Enterprise-OR-Pacvue-Enterprise-OR-Helium-10-Enterprise-OR-Perpetua-Enterprise + B2B-keyword-cluster-cohort-overlay' },
+      { pillar: 'Pillar 4 — Amazon-Attribution-post-purchase-email-merge-recipe + Halo-vs-direct-incremental-ACoS-measurement', default: 'Post-purchase-survey-instrumentation-wire-Triple-Whale-Postscript-merge-or-Pacvue-or-Helium-10-post-purchase-survey-with-Amazon-source-tracking + Amazon-Attribution-post-purchase-email-merge-instrumentation + Klaviyo-Amazon-source-segment-integration + Halo-vs-direct-incremental-ACoS-measurement-flow-build', luxury: 'Post-purchase-survey-instrumentation-wire + Amazon-Attribution-post-purchase-email-merge-instrumentation + Klaviyo-Amazon-source-segment-integration + Halo-vs-direct-incremental-ACoS-measurement-flow-with-elevated-E-E-A-T-signals', sustainable: 'Post-purchase-survey-instrumentation-wire + Amazon-Attribution-post-purchase-email-merge-instrumentation + Klaviyo-Amazon-source-segment-integration + Halo-vs-direct-incremental-ACoS-measurement-flow-with-sustainable-claims-verification', genZ: 'Post-purchase-survey-instrumentation-wire + Amazon-Attribution-post-purchase-email-merge-instrumentation + Klaviyo-Amazon-source-segment-integration + Halo-vs-direct-incremental-ACoS-measurement-flow-with-Gen-Z-trend-driven-amplifier', b2b: 'Post-purchase-survey-instrumentation-wire + Amazon-Attribution-Enterprise-OR-3rd-party-attribution-provider + Klaviyo-Amazon-source-segment-integration + Halo-vs-direct-incremental-ACoS-measurement-flow-with-B2B-case-study-format' },
+      { pillar: 'Pillar 5 — Halo-defense-creative-asset-iteration-cycle + Brand-search-volume-lift-attribution + 3rd-party-Amazon-DSP-manager-decision-recipe', default: 'Halo-defense-creative-asset-iteration-cycle-quarterly + Brand-search-volume-lift-attribution-flow-build + Halo-defense-steady-state-creative-asset-library-50+-Halo-defense-creative-assets-pipelined-across-5-pillars + 3rd-party-Amazon-DSP-manager-decision-recipe', luxury: 'Halo-defense-creative-asset-iteration-cycle-quarterly-with-elevated-E-E-A-T-signals + Brand-search-volume-lift-attribution-flow-with-luxury-keyword-spacing + Halo-defense-steady-state-creative-asset-library', sustainable: 'Halo-defense-creative-asset-iteration-cycle-quarterly-with-sustainable-claims-verification + Brand-search-volume-lift-attribution-flow-with-sustainable-keyword-universe + Halo-defense-steady-state-creative-asset-library', genZ: 'Halo-defense-creative-asset-iteration-cycle-quarterly-with-Gen-Z-trend-driven-amplifier + Brand-search-volume-lift-attribution-flow-with-Gen-Z-keyword-vertical + Halo-defense-steady-state-creative-asset-library', b2b: 'Halo-defense-creative-asset-iteration-cycle-quarterly-with-B2B-case-study-format + Brand-search-volume-lift-attribution-flow-with-B2B-keyword-cluster + Halo-defense-steady-state-creative-asset-library + 3rd-party-Amazon-DSP-manager-decision-recipe-with-Tinuiti-Enterprise-OR-Pacvue-Enterprise-OR-Helium-10-Enterprise-OR-Perpetua-Enterprise' }
+    ];
+
+    // SAMPLE_INPUTS — canonical Path B default reference profile.
+    // Mirrors scripts/amazon_dsp_amazon_attribution_audit_unit_economics.py PATH_B_DEFAULTS canonical defaults ($5M US DTC base + $10M Amazon base = 200% marketplace_gmv_pct / Path B default).
+    var SAMPLE_INPUTS = {
+      path: 'B',
+      us_dtc_gmv: 5000000,
+      marketplace_gmv_pct: 200,
+      sku_count: 30,
+      hero_sku_count: 8,
+      gross_margin_pct: 50,
+      voice_profile: 'default',
+      has_amazon_seller_central_account: true,
+      has_brand_registry_trademark: true,
+      has_amazon_attribution_pro_or_advanced_tools: true,
+      has_dsp_managed_service_or_self_serve_account: true,
+      has_dedicated_amazon_dsp_marketing_team_capacity_hours_per_week: 6,
+      has_halo_defense_creative_assets: true,
+      flows: {
+        amazon_ads_console_brand_registry_onboard:           { status: 'live',    notes: 'Amazon-Ads-Console self-serve + Brand-Registry-trademark-registered + Amazon-Creative-Assets-baseline-built per Amazon-Creative-Assets-2024' },
+        amazon_dsp_in_market_shoppers_audience_segment_launch: { status: 'live',  notes: 'First-Amazon-DSP-in-market-shoppers-campaign-launched; 5-canonical-Amazon-DSP-audience-segments baseline' },
+        amc_cohort_overlay_instrumentation_wire:               { status: 'live',  notes: 'AMC-API-connection-wire + 5-canonical-cohort-queries-build + AMC-cohort-overlay-instrumentation-live' },
+        amazon_attribution_post_purchase_email_merge_recipe:   { status: 'live',  notes: 'Amazon-Attribution-Pro + Triple-Whale-Amazon-cohort-overlay + Klaviyo-Amazon-source-segment-integration all wired' },
+        halo_defense_creative_asset_iteration_cycle:           { status: 'staging',notes: 'Halo-defense-creative-asset-iteration-cycle-quarterly in staging; 50+-Halo-defense-creative-assets-pipelined-across-5-pillars baseline-build pending' },
+        third_party_dsp_manager_decision_recipe:               { status: 'draft', notes: '3rd-party-Amazon-DSP-manager-or-in-house-team-or-fully-managed-service-decision-recipe Tier-1-Tier-2-Tier-3 evaluation pending' }
+      }
+    };
+
+    // ---- Pure helper functions (mirror scripts/amazon_dsp_amazon_attribution_audit_unit_economics.py) ----
+    function tierForGmv(usGmv) {
+      if (usGmv >= PATH_TABLE.C.gmvMin) return 'C';
+      if (usGmv >= PATH_TABLE.B.gmvMin) return 'B';
+      return 'A';
+    }
+
+    function totalGmvBase(usGmv, marketplacePct) {
+      return usGmv * (1.0 + (marketplacePct / 100.0));
+    }
+    function year1HaloDefenseRevenueLow(usGmv, marketplacePct, p) {
+      return totalGmvBase(usGmv, marketplacePct) * (PATH_TABLE[p].shareLow / 100);
+    }
+    function year1HaloDefenseRevenueHigh(usGmv, marketplacePct, p) {
+      return totalGmvBase(usGmv, marketplacePct) * (PATH_TABLE[p].shareHigh / 100);
+    }
+    function year1CostLow(p) {
+      return PATH_TABLE[p].costOneTimeLow + PATH_TABLE[p].costRecurLow * 12;
+    }
+    function year1CostHigh(p) {
+      return PATH_TABLE[p].costOneTimeHigh + PATH_TABLE[p].costRecurHigh * 12;
+    }
+    function cacVsPaidSocialMid(p) {
+      return (PATH_TABLE[p].cacLow + PATH_TABLE[p].cacHigh) / 2;
+    }
+    function brandSearchLiftMid(p) {
+      return (PATH_TABLE[p].brandSearchLow + PATH_TABLE[p].brandSearchHigh) / 2;
+    }
+    function amcCohortOverlayResolutionLiftMid(p) {
+      return (PATH_TABLE[p].amcCohortLow + PATH_TABLE[p].amcCohortHigh) / 2;
+    }
+    function haloDefenseRateMid(p) {
+      return (PATH_TABLE[p].haloDefenseRateLow + PATH_TABLE[p].haloDefenseRateHigh) / 2;
+    }
+    function haloAttributionModelingMaturityMid(p) {
+      return Math.round((PATH_TABLE[p].haloMaturityLow + PATH_TABLE[p].haloMaturityHigh) / 2);
+    }
+    function roiMid(p) {
+      return (PATH_TABLE[p].roiLow + PATH_TABLE[p].roiHigh) / 2;
+    }
+
+    function gateStatusCounts(gates) {
+      var counts = { ok: 0, warn: 0, fail: 0, draft: 0, live: 0 };
+      for (var i = 0; i < gates.length; i++) {
+        var s = gates[i].status;
+        if (counts[s] !== undefined) counts[s]++;
+      }
+      return counts;
+    }
+
+    function gateStatusBadge(p) {
+      var counts = gateStatusCounts(p.gates);
+      var total = p.total || (p.gates ? p.gates.length : 0);
+      if (counts.fail > 0) return 'fail';
+      if (counts.warn >= 4) return 'warn';
+      if (total > 0 && counts.draft >= total * 0.5) return 'draft';
+      if (total > 0 && counts.ok + counts.live >= total * 0.6) return 'ok';
+      if (counts.draft > 0 && counts.ok === 0 && counts.warn === 0 && counts.fail === 0 && counts.live === 0) return 'draft';
+      if (counts.ok > 0 && counts.warn === 0 && counts.fail === 0 && counts.draft === 0 && counts.live === 0) return 'ok';
+      return 'warn';
+    }
+
+    function fmtMoney(n) {
+      if (n >= 1000000) return '$' + (n / 1000000).toFixed(2) + 'M';
+      if (n >= 1000)    return '$' + Math.round(n / 1000) + 'k';
+      return '$' + Math.round(n);
+    }
+
+    function fmtPct(n) {
+      return n.toFixed(1) + '%';
+    }
+
+    function fmtMult(n) {
+      return n.toFixed(2) + '×';
+    }
+
+    // ---- Render functions ----
+    function renderSummary(inputs) {
+      var p = inputs.path;
+      var pt = PATH_TABLE[p];
+      var revLow = year1HaloDefenseRevenueLow(inputs.us_dtc_gmv, inputs.marketplace_gmv_pct, p);
+      var revHigh = year1HaloDefenseRevenueHigh(inputs.us_dtc_gmv, inputs.marketplace_gmv_pct, p);
+      var costLow = year1CostLow(p);
+      var costHigh = year1CostHigh(p);
+      var cacMid = cacVsPaidSocialMid(p);
+      var brandSearchMid = brandSearchLiftMid(p);
+      var amcCohortMid = amcCohortOverlayResolutionLiftMid(p);
+      var haloDefenseRateMidVal = haloDefenseRateMid(p);
+      var haloMaturityMid = haloAttributionModelingMaturityMid(p);
+      var roiLow = pt.roiLow;
+      var roiHigh = pt.roiHigh;
+
+      var stats = [
+        { label: 'Path', value: 'Path ' + p, sub: pt.label, klass: 'path-tag' },
+        { label: 'Year-1 incremental Halo-defense-revenue', value: fmtMoney(revLow) + '–' + fmtMoney(revHigh), sub: 'at $' + (inputs.us_dtc_gmv / 1000000).toFixed(1) + 'M US DTC + ' + (inputs.us_dtc_gmv * inputs.marketplace_gmv_pct / 100 / 1000000).toFixed(1) + 'M Amazon base', klass: 'ok' },
+        { label: 'CAC vs paid-social multiplier', value: cacMid.toFixed(2) + '×', sub: pt.cacLow.toFixed(2) + '–' + pt.cacHigh.toFixed(2) + '× range', klass: 'ok' },
+        { label: 'Brand-search-volume-lift multiple', value: brandSearchMid.toFixed(1) + '×', sub: pt.brandSearchLow.toFixed(1) + '–' + pt.brandSearchHigh.toFixed(1) + '× range', klass: 'ok' },
+        { label: 'AMC-cohort-overlay-resolution-lift', value: amcCohortMid.toFixed(1) + '×', sub: pt.amcCohortLow.toFixed(1) + '–' + pt.amcCohortHigh.toFixed(1) + '× range', klass: '' },
+        { label: 'Halo-defense-rate', value: haloDefenseRateMidVal.toFixed(0) + '%', sub: pt.haloDefenseRateLow + '–' + pt.haloDefenseRateHigh + '% range', klass: 'warn' },
+        { label: 'Halo-attribution-modeling-maturity', value: haloMaturityMid + ' months', sub: pt.haloMaturityLow + '–' + pt.haloMaturityHigh + ' month range', klass: 'warn' },
+        { label: 'Year-1 ROI', value: roiLow.toFixed(1) + ':1–' + roiHigh.toFixed(1) + ':1', sub: pt.roiLow.toFixed(1) + ':1 default', klass: 'ok' },
+        { label: 'Year-1 cost stack', value: fmtMoney(costLow) + '–' + fmtMoney(costHigh), sub: 'one-time + recurring×12', klass: '' }
+      ];
+
+      var html = '';
+      for (var i = 0; i < stats.length; i++) {
+        var s = stats[i];
+        html += '<div class="stat">';
+        html += '<div class="label">' + s.label + '</div>';
+        html += '<div class="value ' + s.klass + '">' + s.value + '</div>';
+        html += '<div class="sub">' + s.sub + '</div>';
+        html += '</div>';
+      }
+      document.getElementById('summary-stats').innerHTML = html;
+    }
+
+    function renderFlowCards(inputs) {
+      var html = '';
+      for (var i = 0; i < FLOWS.length; i++) {
+        var f = FLOWS[i];
+        var fStatus = inputs.flows[f.id] ? inputs.flows[f.id].status : 'not-started';
+        var notes = inputs.flows[f.id] ? inputs.flows[f.id].notes : 'Not yet configured';
+        html += '<div class="flow-card">';
+        html += '<div class="tier">' + f.tier + '</div>';
+        html += '<div class="name">' + f.name + '</div>';
+        html += '<div class="status ' + fStatus + '">' + fStatus + '</div>';
+        html += '<div class="voice-density">5 voices × {DSP-launch + DSP-attribution + Halo-defense-creative + Brand-Registry + DSP-bid-strategy + AMC-cohort} = ' + f.voiceCells + ' voice-driven cells · Default ' + fStatus + '</div>';
+        html += '<div class="gate-score">' + f.pillar + '</div>';
+        html += '<div class="gate-score" style="margin-top:4px;color:var(--text-dim);font-size:11px">' + notes + '</div>';
+        html += '</div>';
+      }
+      document.getElementById('flow-cards').innerHTML = html;
+    }
+
+    function renderPathChart(inputs) {
+      var maxRev = 0;
+      var rows = [];
+      for (var p in PATH_TABLE) {
+        var revLow = year1HaloDefenseRevenueLow(inputs.us_dtc_gmv, inputs.marketplace_gmv_pct, p);
+        var revHigh = year1HaloDefenseRevenueHigh(inputs.us_dtc_gmv, inputs.marketplace_gmv_pct, p);
+        var mid = (revLow + revHigh) / 2;
+        if (mid > maxRev) maxRev = mid;
+        rows.push({ p: p, revLow: revLow, revHigh: revHigh, mid: mid, label: PATH_TABLE[p].label });
+      }
+
+      var html = '';
+      for (var i = 0; i < rows.length; i++) {
+        var r = rows[i];
+        var pct = maxRev > 0 ? (r.mid / maxRev * 100) : 0;
+        html += '<div class="bar-row">';
+        html += '<div class="label">Path ' + r.p + '</div>';
+        html += '<div class="track"><div class="fill path-' + r.p.toLowerCase() + '" style="width:' + pct.toFixed(1) + '%"></div></div>';
+        html += '<div class="amount">' + fmtMoney(r.revLow) + '–' + fmtMoney(r.revHigh) + '</div>';
+        html += '</div>';
+      }
+      document.getElementById('path-chart').innerHTML = html;
+    }
+
+    function renderPhaseGates() {
+      var html = '';
+      for (var i = 0; i < PHASE_GATES.length; i++) {
+        var pg = PHASE_GATES[i];
+        var c = gateStatusCounts(pg.gates);
+        var overall = gateStatusBadge(pg);
+        html += '<div class="gate-card">';
+        html += '<div class="head">';
+        html += '<div class="label">' + pg.label + '</div>';
+        html += '<div class="progress">';
+        html += '<span class="ok-count">' + (c.ok + c.live) + '</span>/' + pg.total + ' OK';
+        if (c.warn > 0) html += ' · <span class="warn-count">' + c.warn + '</span> warn';
+        if (c.fail > 0) html += ' · <span class="fail-count">' + c.fail + '</span> fail';
+        if (c.draft > 0) html += ' · ' + c.draft + ' pending';
+        html += '</div>';
+        html += '</div>';
+        html += '<ul class="gate-list">';
+        for (var j = 0; j < pg.gates.length; j++) {
+          var g = pg.gates[j];
+          html += '<li>';
+          html += '<span class="g-id">' + g.id + '</span>';
+          html += '<span class="g-status ' + g.status + '">' + g.status + '</span>';
+          html += '<span>' + g.criterion + '</span>';
+          html += '</li>';
+        }
+        html += '</ul>';
+        html += '</div>';
+      }
+      document.getElementById('phase-gates').innerHTML = html;
+    }
+
+    function renderFlowTable(inputs) {
+      var html = '';
+      for (var i = 0; i < FLOWS.length; i++) {
+        var f = FLOWS[i];
+        var fStatus = inputs.flows[f.id] ? inputs.flows[f.id].status : 'not-started';
+        var brandSearchPct = f.brandSearchLiftContributionPct + '%';
+        var haloDefensePct = f.haloDefenseRateContributionPct + '%';
+        var acosPct = f.haloVsDirectAcosContributionPct + '%';
+        html += '<tr>';
+        html += '<td>' + f.name + '</td>';
+        html += '<td>5 voices × 6 cells = ' + f.voiceCells + ' cells</td>';
+        html += '<td><span class="status ' + fStatus + '">' + fStatus + '</span></td>';
+        html += '<td>' + brandSearchPct + '</td>';
+        html += '<td>' + haloDefensePct + '</td>';
+        html += '<td>' + acosPct + '</td>';
+        html += '</tr>';
+      }
+      document.getElementById('flow-table-body').innerHTML = html;
+    }
+
+    function renderNextAction(inputs) {
+      var p = inputs.path;
+      var pt = PATH_TABLE[p];
+      var phaseWithWarn = null;
+      var phaseWithMostDraft = null;
+      var mostDraftCount = -1;
+      for (var i = 0; i < PHASE_GATES.length; i++) {
+        var pg = PHASE_GATES[i];
+        var c = gateStatusCounts(pg.gates);
+        if (phaseWithWarn === null && c.warn >= 2 && c.ok + c.live >= pg.total * 0.5) phaseWithWarn = pg;
+        if (c.draft > mostDraftCount) { mostDraftCount = c.draft; phaseWithMostDraft = pg; }
+      }
+
+      var html = '';
+      html += '<div class="next-step-title">Recommended next step:</div>';
+      if (phaseWithWarn) {
+        html += 'Finish Phase ' + phaseWithWarn.id + ' (' + phaseWithWarn.label.split(' — ')[1] + ') — close the ' + gateStatusCounts(phaseWithWarn.gates).warn + ' warn gates before moving forward.<br>';
+        html += '<strong>Amazon-DSP + Amazon-Attribution-audit track:</strong> ' + (phaseWithWarn.label) + '.<br>';
+      } else {
+        html += 'Ship Phase ' + phaseWithMostDraft.id + ' (' + phaseWithMostDraft.label.split(' — ')[1] + ') — currently ' + gateStatusCounts(phaseWithMostDraft.gates).draft + ' of ' + phaseWithMostDraft.total + ' prereqs pending.<br>';
+      }
+      html += '<strong>Path ' + p + ' scope:</strong> ' + pt.scope + '.<br>';
+      html += '<strong>Default platform pick:</strong> ' + (p === 'A' ? 'Amazon-Ads-Console-self-serve-Sponsored-Products + Sponsored-Brands + Brand-Registry-trademark-registered + Amazon-Brand-Analytics-access-wire' : p === 'B' ? 'Amazon-Ads-Console-OR-Pacvue-OR-Tinuiti-OR-Helium-10-OR-Perpetua-managed-service + Amazon-Audiences-Insights-engaged-shoppers + Amazon-Marketing-Cloud-cohort-overlay + Amazon-Attribution-Pro-or-advanced-tools-or-AMC-or-3rd-party-attribution-provider DEFAULT' : 'Path B + Amazon-Marketing-Cloud-Enterprise-direct-license + Amazon-Attribution-Enterprise-OR-Tinuiti-Enterprise-OR-Pacvue-Enterprise-OR-Helium-10-Enterprise-OR-Perpetua-Enterprise + Triple-Whale-Pro + Halo-defense-creative-asset-iteration-cycle-quarterly 50+-Halo-defense-creative-assets-pipelined') + ' per scripts/amazon_dsp_amazon_attribution_audit_unit_economics.py.<br>';
+      html += '<strong>Year-1 outcome band:</strong> ' + fmtMoney(year1HaloDefenseRevenueLow(inputs.us_dtc_gmv, inputs.marketplace_gmv_pct, p)) + '–' + fmtMoney(year1HaloDefenseRevenueHigh(inputs.us_dtc_gmv, inputs.marketplace_gmv_pct, p)) + ' incremental Halo-defense-revenue · ' + pt.roiLow.toFixed(1) + ':1–' + pt.roiHigh.toFixed(1) + ':1 Year-1 ROI · ' + cacVsPaidSocialMid(p).toFixed(2) + '× CAC vs paid-social · ' + brandSearchLiftMid(p).toFixed(1) + '× brand-search-volume-lift · ' + amcCohortOverlayResolutionLiftMid(p).toFixed(1) + '× AMC-cohort-overlay-resolution-lift · ' + haloDefenseRateMid(p).toFixed(0) + '% Halo-defense-rate · ' + haloAttributionModelingMaturityMid(p) + '-month Halo-attribution-modeling-maturity.';
+      document.getElementById('next-action').innerHTML = html;
+    }
+
+    function renderAll(inputs) {
+      renderSummary(inputs);
+      renderFlowCards(inputs);
+      renderPathChart(inputs);
+      renderPhaseGates();
+      renderFlowTable(inputs);
+      renderNextAction(inputs);
+    }
+
+    // ---- URL param parsing ----
+    function parseParams() {
+      var q = window.location.search.replace(/^\?/, '');
+      if (!q) return null;
+      var params = {};
+      var parts = q.split('&');
+      for (var i = 0; i < parts.length; i++) {
+        var kv = parts[i].split('=');
+        params[decodeURIComponent(kv[0])] = decodeURIComponent(kv[1] || '');
+      }
+      return params;
+    }
+
+    function applyParams(params) {
+      if (!params) return SAMPLE_INPUTS;
+      var inputs = JSON.parse(JSON.stringify(SAMPLE_INPUTS));
+      if (params.path) inputs.path = params.path.toUpperCase();
+      if (params.us_dtc_gmv) inputs.us_dtc_gmv = parseInt(params.us_dtc_gmv, 10) || inputs.us_dtc_gmv;
+      if (params.marketplace_gmv_pct) inputs.marketplace_gmv_pct = parseInt(params.marketplace_gmv_pct, 10) || inputs.marketplace_gmv_pct;
+      if (params.voice) inputs.voice_profile = params.voice.toLowerCase();
+      // Recompute path from us_dtc_gmv if us_dtc_gmv was given.
+      if (params.us_dtc_gmv) inputs.path = tierForGmv(inputs.us_dtc_gmv);
+      return inputs;
+    }
+
+    // ---- Bootstrap ----
+    (function bootstrap() {
+      var params = parseParams();
+      var isDemo = !params || params.demo === '1';
+      var inputs = applyParams(params);
+      var badge = document.getElementById('mode-badge');
+      badge.textContent = isDemo ? 'Demo Mode' : 'Live Mode';
+      badge.className = 'mode-badge ' + (isDemo ? 'demo' : 'live');
+      renderAll(inputs);
+      // Expose for tests.
+      window.__amazonDspAmazonAttributionAuditHealth__ = { inputs: inputs, renderAll: renderAll, FLOWS: FLOWS, PATH_TABLE: PATH_TABLE, PHASE_GATES: PHASE_GATES, AMAZON_DSP_PILLAR_MATRIX: AMAZON_DSP_PILLAR_MATRIX, SAMPLE_INPUTS: SAMPLE_INPUTS, tierForGmv: tierForGmv, year1HaloDefenseRevenueLow: year1HaloDefenseRevenueLow, year1HaloDefenseRevenueHigh: year1HaloDefenseRevenueHigh, year1CostLow: year1CostLow, year1CostHigh: year1CostHigh, cacVsPaidSocialMid: cacVsPaidSocialMid, brandSearchLiftMid: brandSearchLiftMid, amcCohortOverlayResolutionLiftMid: amcCohortOverlayResolutionLiftMid, haloDefenseRateMid: haloDefenseRateMid, haloAttributionModelingMaturityMid: haloAttributionModelingMaturityMid, roiMid: roiMid, gateStatusBadge: gateStatusBadge, gateStatusCounts: gateStatusCounts, totalGmvBase: totalGmvBase };
+    })();
+  </script>
+</body>
+</html>
