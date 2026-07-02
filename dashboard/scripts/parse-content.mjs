@@ -208,6 +208,12 @@ async function parseAssets() {
     // Asset number (for the AS-NN badge)
     const numMatch = /^(\d+)-/.exec(f);
     const assetNumber = numMatch ? parseInt(numMatch[1], 10) : null;
+    // Last-touched mtime for freshness badge — ISO date (YYYY-MM-DD).
+    let lastTouched = null;
+    try {
+      const st = await stat(join(dir, f));
+      lastTouched = st.mtime.toISOString().slice(0, 10);
+    } catch {}
     assets.push({
       file: f,
       title,
@@ -218,6 +224,7 @@ async function parseAssets() {
       assetNumber,
       voiceGated,
       voiceCounts,
+      lastTouched,
     });
   }
   return assets;

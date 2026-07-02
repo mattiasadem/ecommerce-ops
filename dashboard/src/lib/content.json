@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-02T11:00:39.307Z",
+  "generatedAt": "2026-07-02T11:15:34.261Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -10237,7 +10237,8 @@
         "Sustainable": 0,
         "Gen-Z": 0,
         "B2B": 0
-      }
+      },
+      "lastTouched": "2026-06-26"
     },
     {
       "file": "02-brand-voice.md",
@@ -10261,7 +10262,8 @@
         "Sustainable": 16,
         "Gen-Z": 19,
         "B2B": 22
-      }
+      },
+      "lastTouched": "2026-06-26"
     },
     {
       "file": "03-ugc-brief.md",
@@ -10366,7 +10368,8 @@
         "Sustainable": 3,
         "Gen-Z": 3,
         "B2B": 4
-      }
+      },
+      "lastTouched": "2026-06-26"
     },
     {
       "file": "04-promo-calendar.md",
@@ -10390,7 +10393,8 @@
         "Sustainable": 50,
         "Gen-Z": 43,
         "B2B": 38
-      }
+      },
+      "lastTouched": "2026-06-26"
     },
     {
       "file": "05-retention-metrics.md",
@@ -10414,7 +10418,8 @@
         "Sustainable": 18,
         "Gen-Z": 29,
         "B2B": 29
-      }
+      },
+      "lastTouched": "2026-06-26"
     },
     {
       "file": "06-nps-survey-toolkit.md",
@@ -10437,7 +10442,8 @@
         "Sustainable": 33,
         "Gen-Z": 39,
         "B2B": 38
-      }
+      },
+      "lastTouched": "2026-06-26"
     },
     {
       "file": "07-competitive-teardown.md",
@@ -10460,7 +10466,8 @@
         "Sustainable": 25,
         "Gen-Z": 36,
         "B2B": 33
-      }
+      },
+      "lastTouched": "2026-06-26"
     },
     {
       "file": "08-cs-response-library.md",
@@ -10484,7 +10491,8 @@
         "Sustainable": 28,
         "Gen-Z": 26,
         "B2B": 31
-      }
+      },
+      "lastTouched": "2026-06-26"
     },
     {
       "file": "09-impact-reporting.md",
@@ -10507,7 +10515,8 @@
         "Sustainable": 20,
         "Gen-Z": 16,
         "B2B": 17
-      }
+      },
+      "lastTouched": "2026-06-26"
     },
     {
       "file": "10-affiliate-program-playbook.md",
@@ -10530,7 +10539,8 @@
         "Sustainable": 24,
         "Gen-Z": 26,
         "B2B": 25
-      }
+      },
+      "lastTouched": "2026-06-26"
     },
     {
       "file": "11-cs-training-program.md",
@@ -10554,7 +10564,8 @@
         "Sustainable": 34,
         "Gen-Z": 34,
         "B2B": 78
-      }
+      },
+      "lastTouched": "2026-06-27"
     },
     {
       "file": "12-impact-data-pipeline.md",
@@ -10578,7 +10589,8 @@
         "Sustainable": 40,
         "Gen-Z": 25,
         "B2B": 23
-      }
+      },
+      "lastTouched": "2026-06-27"
     },
     {
       "file": "13-international-pricing-card.md",
@@ -10602,7 +10614,8 @@
         "Sustainable": 53,
         "Gen-Z": 48,
         "B2B": 44
-      }
+      },
+      "lastTouched": "2026-06-27"
     },
     {
       "file": "14-lifecycle-flow-templates.md",
@@ -10626,7 +10639,8 @@
         "Sustainable": 47,
         "Gen-Z": 41,
         "B2B": 41
-      }
+      },
+      "lastTouched": "2026-06-27"
     },
     {
       "file": "15-3pl-selection-card.md",
@@ -10650,7 +10664,8 @@
         "Sustainable": 22,
         "Gen-Z": 16,
         "B2B": 32
-      }
+      },
+      "lastTouched": "2026-06-28"
     },
     {
       "file": "15-marketplace-listing-card.md",
@@ -10674,7 +10689,8 @@
         "Sustainable": 28,
         "Gen-Z": 25,
         "B2B": 25
-      }
+      },
+      "lastTouched": "2026-06-28"
     },
     {
       "file": "16-subscription-flow-templates.md",
@@ -10697,7 +10713,8 @@
         "Sustainable": 28,
         "Gen-Z": 30,
         "B2B": 30
-      }
+      },
+      "lastTouched": "2026-06-29"
     },
     {
       "file": "17-affiliate-program-templates.md",
@@ -10720,7 +10737,8 @@
         "Sustainable": 86,
         "Gen-Z": 41,
         "B2B": 68
-      }
+      },
+      "lastTouched": "2026-06-29"
     },
     {
       "file": "18-b2b-wholesale-kits.md",
@@ -10790,7 +10808,8 @@
         "Sustainable": 36,
         "Gen-Z": 37,
         "B2B": 148
-      }
+      },
+      "lastTouched": "2026-07-01"
     },
     {
       "file": "19-tiktok-shop-creator-briefs.md",
@@ -10814,7 +10833,8 @@
         "Sustainable": 48,
         "Gen-Z": 48,
         "B2B": 52
-      }
+      },
+      "lastTouched": "2026-07-01"
     },
     {
       "file": "20-creator-discovery-templates.md",
@@ -10838,7 +10858,8 @@
         "Sustainable": 65,
         "Gen-Z": 71,
         "B2B": 89
-      }
+      },
+      "lastTouched": "2026-07-01"
     },
     {
       "file": "21-pinterest-seo-templates.md",
@@ -10862,7 +10883,8 @@
         "Sustainable": 74,
         "Gen-Z": 86,
         "B2B": 74
-      }
+      },
+      "lastTouched": "2026-07-02"
     }
   ],
   "top10": {
@@ -11102,8 +11124,8 @@
   },
   "journal": [
     {
-      "heading": "[2026-07-06 12:00] Add dashboards/pinterest-seo-discovery-health.html + dashboards/tests/test_pinterest_seo_discovery_health.js: Move #17 pinterest-organic-discovery + SEO-content-engine static-dashboard layer 6",
-      "body": "- **What shipped:** `dashboards/pinterest-seo-discovery-health.html` (new, ~48KB / 48593 bytes / the 11th static dashboard in the workspace + the canonical 6th-and-final static-dashboard layer for the pinterest-organic-discovery + SEO-content-engine track Move #17 per the v0.11.0 track-fully-closed pivot pattern + the canonical v0.11.0 static-dashboard-tick recipe) + `dashboards/tests/test_pinterest_seo_discovery_health.js` (new, ~18KB / 100 Node smoke tests across 26 categories passing 100/100 zero regressions per the canonical v0.11.0 static-dashboard-tick recipe); self-contained static HTML with 6 canonical sections [Path B default summary + per-flow readiness + per-path Year-1 incremental Pinterest-SEO-traffic bar chart + per-phase verification gate scoring + per-flow detail table + re"
+      "heading": "[2026-07-02 11:00] dashboard-improver: per-playbook freshness badge + Copy ID button on /playbooks",
+      "body": "- **What shipped:** Per-playbook \"freshness badge\" (fresh <14d / aging 14-60d / stale >60d) on every card of `/playbooks`, plus a 1-click \"Copy ID\" button that copies the playbook's file stem (e.g. `01-abandoned-cart-flow-klaviyo`) to the clipboard with a 1.5s \"Copied\" confirmation. Header strip aggregates totals: 21 fresh / 4 aging / 0 stale today. Parser (`scripts/parse-content.mjs`) now records `lastTouched` (filesystem mtime → YYYY-MM-DD) for every playbook; helper functions `freshnessLabel()` and `freshnessTier()` live in `src/lib/content.ts` so other routes (assets, research) can adopt the same affordance cheaply.\n- **Why this move:** The cron-template's canonical example tick: *\"Add a status badge to a stale playbook row (Last touched 14 days ago)\"* — addresses the real operator pai"
     },
     {
       "heading": "[2026-07-06 00:00] Add dashboard/app/pinterest-seo/page.tsx: Move #17 pinterest-organic-discovery + SEO-content-engine operator-surface layer 4",

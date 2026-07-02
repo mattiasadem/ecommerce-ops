@@ -42,6 +42,7 @@ export interface Asset {
   assetNumber?: number;
   voiceGated?: boolean;
   voiceCounts?: Record<string, number>;
+  lastTouched?: string;
 }
 
 export interface Top10Status {
