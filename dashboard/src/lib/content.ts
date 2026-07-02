@@ -29,6 +29,7 @@ export interface Playbook {
   sectionCount: number;
   numberedSections: { heading: string; body: string }[];
   size: number;
+  lastTouched?: string;
 }
 
 export interface Asset {
@@ -102,4 +103,30 @@ export function fmtDate(iso: string): string {
   } catch {
     return iso;
   }
+}
+
+// Freshness label: "today" / "Nd ago" / "Nmo ago" / "Nyr ago" / null.
+// Used by playbooks/assets pages to show how stale a doc is.
+export function freshnessLabel(iso?: string, now: Date = new Date()): string | null {
+  if (!iso) return null;
+  const d = new Date(iso + "T00:00:00Z");
+  if (isNaN(d.getTime())) return null;
+  const days = Math.max(0, Math.floor((now.getTime() - d.getTime()) / 86400000));
+  if (days === 0) return "today";
+  if (days === 1) return "1d ago";
+  if (days < 30) return `${days}d ago`;
+  if (days < 365) return `${Math.floor(days / 30)}mo ago`;
+  return `${Math.floor(days / 365)}yr ago`;
+}
+
+// Stale tier: "fresh" (<14d) / "aging" (14-60d) / "stale" (>60d).
+// Drives badge color on the playbooks/assets cards.
+export function freshnessTier(iso?: string, now: Date = new Date()): "fresh" | "aging" | "stale" | "unknown" {
+  if (!iso) return "unknown";
+  const d = new Date(iso + "T00:00:00Z");
+  if (isNaN(d.getTime())) return "unknown";
+  const days = Math.max(0, Math.floor((now.getTime() - d.getTime()) / 86400000));
+  if (days < 14) return "fresh";
+  if (days < 60) return "aging";
+  return "stale";
 }

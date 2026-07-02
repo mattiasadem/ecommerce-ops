@@ -130,19 +130,31 @@ async function parseResearch() {
 
 async function parsePlaybooks() {
   const dir = join(ROOT, "playbooks");
-  const files = (await readdir(dir)).filter((f) => f.endsWith(".md")).sort();
+  let files = [];
+  try {
+    files = (await readdir(dir)).filter((f) => f.endsWith(".md")).sort();
+  } catch {
+    return [];
+  }
   const pbs = [];
   for (const f of files) {
     const md = await readFile(join(dir, f), "utf8");
     const sections = splitSections(md);
     const first = sections[0];
     const title = first?.heading ?? f.replace(/\.md$/, "");
+    // First section is "Goal" — pull its bullet list as meta.
     const meta = extractBullets(first?.body.join("\n") ?? "");
     // Pull top-level findings/notes (first ~30 numbered sections).
     const numbered = [];
     for (const s of sections) {
       if (/^\d+\./.test(s.heading)) numbered.push({ heading: s.heading, body: s.body.join("\n").trim() });
     }
+    // Last-touched mtime for freshness badge — ISO date (YYYY-MM-DD).
+    let lastTouched = null;
+    try {
+      const st = await stat(join(dir, f));
+      lastTouched = st.mtime.toISOString().slice(0, 10);
+    } catch {}
     pbs.push({
       file: f,
       title,
@@ -150,6 +162,7 @@ async function parsePlaybooks() {
       sectionCount: sections.length,
       numberedSections: numbered.slice(0, 20),
       size: md.length,
+      lastTouched,
     });
   }
   return pbs;

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-02T10:48:29.914Z",
+  "generatedAt": "2026-07-02T11:00:39.307Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -9264,7 +9264,8 @@
       ],
       "sectionCount": 18,
       "numberedSections": [],
-      "size": 16249
+      "size": 16249,
+      "lastTouched": "2026-06-23"
     },
     {
       "file": "02-post-purchase-upsell-reconvert.md",
@@ -9280,7 +9281,8 @@
       ],
       "sectionCount": 13,
       "numberedSections": [],
-      "size": 15552
+      "size": 15552,
+      "lastTouched": "2026-06-24"
     },
     {
       "file": "03-checkout-audit-baymard.md",
@@ -9317,7 +9319,8 @@
           "body": "Once the score is ≥ 75 and CVR lift is ≥ 10%, switch to monthly re-audits. New checkout patterns (Shopify adds 2–3 features per quarter) regress your score. The companion script's input file makes re-auditing a 15-minute job."
         }
       ],
-      "size": 17567
+      "size": 17567,
+      "lastTouched": "2026-06-24"
     },
     {
       "file": "04-welcome-series-klaviyo.md",
@@ -9333,7 +9336,8 @@
       ],
       "sectionCount": 25,
       "numberedSections": [],
-      "size": 23666
+      "size": 23666,
+      "lastTouched": "2026-06-24"
     },
     {
       "file": "05-migrate-to-klaviyo-postscript.md",
@@ -9347,7 +9351,8 @@
       ],
       "sectionCount": 16,
       "numberedSections": [],
-      "size": 31218
+      "size": 31218,
+      "lastTouched": "2026-06-24"
     },
     {
       "file": "06-install-attribution-triplewhale-or-polar.md",
@@ -9361,7 +9366,8 @@
       ],
       "sectionCount": 24,
       "numberedSections": [],
-      "size": 41672
+      "size": 41672,
+      "lastTouched": "2026-06-25"
     },
     {
       "file": "06-sms-welcome-and-cart-abandon.md",
@@ -9374,7 +9380,8 @@
       ],
       "sectionCount": 16,
       "numberedSections": [],
-      "size": 30679
+      "size": 30679,
+      "lastTouched": "2026-06-25"
     },
     {
       "file": "06.5-attribution-quality-audit.md",
@@ -9389,7 +9396,8 @@
       ],
       "sectionCount": 16,
       "numberedSections": [],
-      "size": 39842
+      "size": 39842,
+      "lastTouched": "2026-06-25"
     },
     {
       "file": "06.6-tiktok-attribution-quality-audit.md",
@@ -9402,7 +9410,8 @@
       ],
       "sectionCount": 19,
       "numberedSections": [],
-      "size": 30352
+      "size": 30352,
+      "lastTouched": "2026-06-25"
     },
     {
       "file": "06.7-snap-pinterest-attribution-quality-audit.md",
@@ -9419,7 +9428,8 @@
       ],
       "sectionCount": 19,
       "numberedSections": [],
-      "size": 38096
+      "size": 38096,
+      "lastTouched": "2026-06-25"
     },
     {
       "file": "06.8-cross-platform-attribution-drift-unification.md",
@@ -9433,7 +9443,8 @@
       ],
       "sectionCount": 18,
       "numberedSections": [],
-      "size": 30423
+      "size": 30423,
+      "lastTouched": "2026-06-25"
     },
     {
       "file": "07-loyalty-program-smile.md",
@@ -9448,7 +9459,8 @@
       ],
       "sectionCount": 21,
       "numberedSections": [],
-      "size": 43376
+      "size": 43376,
+      "lastTouched": "2026-06-25"
     },
     {
       "file": "09-mobile-pdp-redesign.md",
@@ -9462,7 +9474,8 @@
       ],
       "sectionCount": 24,
       "numberedSections": [],
-      "size": 36524
+      "size": 36524,
+      "lastTouched": "2026-06-25"
     },
     {
       "file": "09.5-pdp-ab-testing-program.md",
@@ -9477,7 +9490,8 @@
       ],
       "sectionCount": 16,
       "numberedSections": [],
-      "size": 34079
+      "size": 34079,
+      "lastTouched": "2026-06-25"
     },
     {
       "file": "10-ai-ad-creative-iteration.md",
@@ -9492,7 +9506,8 @@
       ],
       "sectionCount": 17,
       "numberedSections": [],
-      "size": 33551
+      "size": 33551,
+      "lastTouched": "2026-06-25"
     },
     {
       "file": "11-international-rollout.md",
@@ -9507,7 +9522,8 @@
       ],
       "sectionCount": 32,
       "numberedSections": [],
-      "size": 47564
+      "size": 47564,
+      "lastTouched": "2026-06-27"
     },
     {
       "file": "12-lifecycle-flow-library.md",
@@ -9524,7 +9540,8 @@
       ],
       "sectionCount": 47,
       "numberedSections": [],
-      "size": 61285
+      "size": 61285,
+      "lastTouched": "2026-06-27"
     },
     {
       "file": "13-marketplace-launch.md",
@@ -9540,7 +9557,8 @@
       ],
       "sectionCount": 50,
       "numberedSections": [],
-      "size": 79695
+      "size": 79695,
+      "lastTouched": "2026-06-28"
     },
     {
       "file": "14-3pl-migration.md",
@@ -9636,7 +9654,8 @@
           "body": "For Path C with B2B wholesale customers, add B2B-fulfillment:\n\n1. **EDI-856 ASN setup** — Advance Ship Notice for B2B customers (wholesale + retail). Most B2B customers require EDI-856 + EDI-940 (warehouse shipping order) + EDI-945 (warehouse shipping advice).\n2. **EDI integration platform** — use a managed-EDI provider (SPS Commerce OR TrueCommerce OR DiCentral). Budget $500–$2k/mo per B2B customer.\n3. **Bulk-pick-pack workflow** — for B2B orders (typically case-packs of 12-144 units), the 3PL picks in bulk + palletizes + ships via LTL freight. Different SLA than DTC (typically 5-10 business days for B2B vs 1-3 days for DTC).\n4. **B2B-specific return handling** — B2B returns typically involve damaged-in-transit claims + vendor RMAs. The 3PL handles grade-and-resell or return-to-vendor per the contract."
         }
       ],
-      "size": 68454
+      "size": 68454,
+      "lastTouched": "2026-06-28"
     },
     {
       "file": "15-subscription-program-launch.md",
@@ -9732,7 +9751,8 @@
           "body": "1. **Retention-manager job description** — per `playbooks/14-3pl-migration.md` Phase 4 supply-chain-manager pattern. $70k-$100k FTE OR $200-$400/hr fractional consultant.\n2. **Retention-manager owns:** Triple Whale subscriber-cohort-LTV-trend review + churn-prevention + smart-cancellation-flow optimization + dunning-recovery + winback-recovery + replenishment-flow optimization + Smile.io subscriber-tier optimization + cross-sell-attachment-rate + quarterly subscriber-cohort-review-meetings.\n\n---"
         }
       ],
-      "size": 60167
+      "size": 60167,
+      "lastTouched": "2026-06-29"
     },
     {
       "file": "16-affiliate-program-launch.md",
@@ -9830,7 +9850,8 @@
           "body": "The operator has 9 prereqs complete (the canonical 4th-gate has 9, not 10, because Phase 4 is \"tier-promotion + sustainable-mission-verifier + public listing\" rather than \"Phase 1 install\"):\n\n1. 4-trigger tier-promotion SOP live in Refersion / Levanta ✓\n2. Sustainable-mission-verifier script running weekly ✓\n3. Per-affiliate KPI dashboard live (10 metrics) ✓\n4. Quarterly compliance audit cadence set up ✓\n5. ≥50 active affiliates by end of Week 12 (Path B default) ✓\n6. $20k+ attributed revenue by end of Week 12 ✓\n7. Top-10 affiliates ≥$5,000 each in 90-day attributed revenue ✓\n8. Tier-2 + Tier-3 promotions live for top-decile affiliates ✓\n9. Path B → Path C upgrade-decision documented (Q+1 review) ✓\n\n**Time:** 60 minutes for verification.\n\n---"
         }
       ],
-      "size": 60616
+      "size": 60616,
+      "lastTouched": "2026-06-29"
     },
     {
       "file": "17-b2b-wholesale-launch.md",
@@ -9926,7 +9947,8 @@
           "body": "Per research/10 Pitfall #13 + research/10 §Verification gates Gate C prerequisite 4; canonical dedicated sales-rep-capacity for distributor-onboarding sales-cycle.\n\n**Path B (Year-2+):** Hire 0.5 FTE dedicated sales-rep at $35k-$50k/yr OR contract with commissioned-sales-rep at 8% of net-revenue (per Faire 2024 + RSP 2024 benchmarks). Job-description: outbound-RFQ-sending + inbound-retailer-onboarding + 4-email-cadence-execution + sample-pack-fulfillment-coordination + AR-management.\n\n**Path C (Year-1+):** Hire 1.0 FTE dedicated full-FTE sales-rep at $70k-$100k/yr OR contract with 2 commissioned-sales-reps. Job-description: above + distributor-pitch-execution + Amazon Business management + trade-show-presence (1-2 shows/yr)."
         }
       ],
-      "size": 87880
+      "size": 87880,
+      "lastTouched": "2026-07-01"
     },
     {
       "file": "18-tiktok-shop-live-launch.md",
@@ -10021,7 +10043,8 @@
           "body": "Per research/11 Pillar 5 cohort-LTV-iteration.\n\n**Triple-Whale-LIVE-cohort-LTV-overlay (~1 hour setup + 2 hours/week iteration):**\n1. Triple-Whale admin → Cohorts → LIVE-driven-cohort (visitors-during-LIVE-window)\n2. Wire LIVE-cohort-LTV-overlay vs organic-DTC-cohort-LTV vs paid-Meta-cohort-LTV at 30/60/90-day windows\n3. Weekly-iteration: identify top-decile-LIVE-cohorts + boost them with Spark-Ads + creator-affiliate-reinvestment\n4. Path B target: LIVE-cohort-LTV 1.2-1.5× organic-DTC-cohort-LTV per TikTok-LIVE-2024-benchmarks"
         }
       ],
-      "size": 74069
+      "size": 74069,
+      "lastTouched": "2026-07-01"
     },
     {
       "file": "19-creator-economy-launch.md",
@@ -10112,7 +10135,8 @@
           "body": "Per research/12 §Verification gates Gate D prerequisite 8-9 + research/12 §Cost & ROI estimate.\n\n```\nYEAR-1-CREATOR-ECONOMY-REVENUE-VERIFICATION (paste-ready checklist)\n\n[ ] 1. Compute Year-1 incremental creator-economy-revenue via Triple-Whale-creator-economy-cohort-overlay:\n     - Sum of all creator-driven-attributed-revenue (across all active creators) for Year-1\n     - Target: $200k-$1M Path B at $500k-$5M US DTC base per research/12 §Cost & ROI\n[ ] 2. Compute Year-1 total creator-economy-cost-stack:\n     - Platform-fees (Aspire + GRIN/CreatorIQ + Triple-Whale + Klaviyo + content-licensing-template-legal-fees + whitelisting-ads-template-legal-fees)\n     - Creator-payouts (product-seeding + creator-payouts + content-licensing + whitelisting-ads + macro-flagship-campaigns)\n     - Dedicated-creator-economy-manager-cost (0.25-0.5 FTE Year-2+ if Path B → Path C upgrade)\n[ ] 3. Compute Year-1 ROI: creator-economy-revenue / creator-economy-cost-stack\n[ ] 4. Target: 8:1 default Year-1 ROI Path B at $2M US DTC base ($500k Path B median incremental creator-economy-revenue / $30k median annual cost = 16.7:1 gross; conservative-muted = 8:1 conservative nominal)\n[ ] 5. Compute 2-4× LTV-multiplier vs no-creator-economy-program:\n     - Compare creator-economy-cohort-LTV at 90-day windows vs organic-DTC-cohort-LTV at 90-day windows\n     - Target: creator-economy-cohort-LTV ≥2× organic-DTC-cohort-LTV per Tubular Labs 2024 + Aspire 2024 benchmarks\n[ ] 6. Document Year-1-creator-economy-revenue + ROI + LTV-multiplier in /shared-drive/creator-economy-year-1-summary/\n[ ] 7. Expected-outcome: Year-1 incremental creator-economy-revenue $200k-$1M Path B + 8:1 default Year-1 ROI + 2-4× LTV-multiplier vs no-creator-economy-program verified\n```"
         }
       ],
-      "size": 78787
+      "size": 78787,
+      "lastTouched": "2026-07-01"
     },
     {
       "file": "20-pinterest-seo-launch.md",
@@ -10187,7 +10211,8 @@
           "body": "Per research/13 Pillar 5 + Pitfall #12 operational-cross-cutting.\n\n```\nTRIPLE-WHALE-ORGANIC-LTV-ITERATION-CYCLE-QUARTERLY (decision tree)\n\nFor all paths (Path A / B / C):\n  → Run Triple-Whale-organic-LTV-iteration-cycle-quarterly:\n    1. Pull Pinterest-organic-driven-cohort-LTV at 30/60/90/180/365-day windows (quarterly-window-expansion)\n    2. Pull SEO-organic-driven-cohort-LTV at 30/60/90/180/365-day windows (quarterly-window-expansion)\n    3. Pull paid-Meta-cohort-LTV + paid-Google-cohort-LTV + paid-TikTok-cohort-LTV at 30/60/90/180/365-day windows\n    4. Run 5-way-comparison-cycle-quarterly: compare Pinterest-organic vs SEO-organic vs paid-Meta vs paid-Google vs paid-TikTok\n    5. Iterate SEO-content-cluster + Pinterest-vertical-pillar + Idea-Pin-cadence based on canonical-5-way-comparison-cycle-quarterly\n  → Maintain 12-24-month compounding-traffic-curve:\n    1. Year-1: 6:1 ROI + 5-15% incremental-traffic-contribution + 0.6-0.85× CAC vs paid-social\n    2. Year-2: 12-25:1 ROI + 15-25% incremental-traffic-contribution + 0.5-0.7× CAC vs paid-social\n    3. Year-3: 25-50:1 ROI + 25-35% incremental-traffic-contribution + 0.4-0.6× CAC vs paid-social\n  → Per Ahrefs 2024 + Pinterest 2024 + SEMrush 2024 benchmarks: brands with 12-24-month-compounding-traffic-curve-maintenance achieve 5-10× lower-CAC-Year-2+ vs paid-social per the canonical-organic-traffic-compounding-curve-vs-paid-social-saturation-curve\n```\n\n---"
         }
       ],
-      "size": 82193
+      "size": 82193,
+      "lastTouched": "2026-07-02"
     }
   ],
   "assets": [
