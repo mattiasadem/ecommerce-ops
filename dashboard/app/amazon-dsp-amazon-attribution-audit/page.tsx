@@ -266,7 +266,7 @@ export default function AmazonDspAmazonAttributionAuditPage() {
               OR $2k-$10k/mo managed-service-with-Tinuiti-or-Pacvue-or-Helium-10-or-Perpetua
               + Amazon-Brand-Analytics-engaged-daily-visitors-lift-baseline + Amazon-Creative-Assets-baseline
               [5-second-static-banner + 5-second-video-9:16-1:1-16:9 + 3-pattern-categories
-              {lifestyle-contextual + competitor-product-targeting + brand-defense}] per
+              &#123;lifestyle-contextual + competitor-product-targeting + brand-defense&#125;] per
               Amazon Ad Business 2024 + Amazon-Brand-Registry 2024 benchmarks), Pillar 2
               (Amazon-DSP-in-market-shoppers-audience-segment-launch + Amazon-Audiences-Insights-engaged-shoppers-expand
               + Amazon-DSP-bid-strategy with the canonical 5-audience-segment-build
@@ -378,7 +378,7 @@ export default function AmazonDspAmazonAttributionAuditPage() {
                   AMC-cohort-overlay + Amazon-Attribution-post-purchase-email-merge
                   launch ladder with paste-ready Amazon-Ads-Console-or-Pacvue-or-Tinuiti-or-Helium-10-or-Perpetua
                   + canonical 5-path Amazon-DSP-launch-mode decision matrix [Path A Sponsored-Products-only
-                  + Halo-defense-via-Brand-Registry-only $500-$1k/mo <$5M DTC+Amazon GMV
+                  + Halo-defense-via-Brand-Registry-only $500-$1k/mo &lt;$5M DTC+Amazon GMV
                   4:1 ROI / Path B DEFAULT Amazon-DSP + Halo-defense-programmatic-display
                   + AMC-cohort-overlay + Amazon-Attribution-post-purchase-email-merge
                   $1k-$5k/mo $5M-$25M DTC+Amazon GMV 3:1 default Year-1 ROI / Path C
@@ -490,7 +490,7 @@ export default function AmazonDspAmazonAttributionAuditPage() {
                   + AMC-cohort-overlay-Wire-spec [5-canonical-cohort-queries] +
                   Triple-Whale-Amazon-cohort-overlay-Wire-spec [5-step wire spec] +
                   Klaviyo-Amazon-source-segment-integration templates [5-flow × 5-voice
-                  × {email + SMS} = 50 voice-driven cells] + Brand-search-volume-lift-attribution-flow
+                  × &#123;email + SMS&#125; = 50 voice-driven cells] + Brand-search-volume-lift-attribution-flow
                   [5-step recipe] + 3-tier 3rd-party-Amazon-DSP-manager-decision-recipe
                   [Tier 1 managed-service-Tinuiti-or-Pacvue-or-Helium-10 $2k-$10k/mo /
                   Tier 2 in-house-team $10k-$25k/mo / Tier 3 fully-managed-service-Pacvue-or-Helium-10-Enterprise
