@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-03T06:11:18.923Z",
+  "generatedAt": "2026-07-03T06:27:25.614Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -11892,6 +11892,10 @@
     {
       "heading": "2026-07-03 00:07 UTC — Interactive welcome-series ROI calculator on /playbooks",
       "body": "- **What shipped:** A second interactive browser-side ROI calculator on `/playbooks` (right below the abandoned-cart one from the previous tick) that ports `scripts/welcome_series_roi.py` math into React/TypeScript. Operator enters 12 inputs — monthly opt-ins, first-purchase CVR, AOV, gross margin, welcome discount, email count + delivery rate + cost, SMS count + opt-in rate + cost, and forecast horizon — and the panel forecasts first orders, gross revenue, gross margin, discount cost, net margin, email + SMS send costs, total send cost, net revenue, revenue per opt-in, and net-margin per $1 sent, with a 5-band health verdict (great ≥30× / good ≥10× / marginal ≥3× / weak / negative). Defaults match the Python CLI's 1k-optin baseline. State persists to localStorage (`ecom-ops:playbooks:ws-r"
+    },
+    {
+      "heading": "2026-07-03 06:13 UTC — Interactive post-purchase upsell ROI calculator on /playbooks",
+      "body": "- **What shipped:** A third interactive browser-side ROI calculator on `/playbooks` (between the abandoned-cart and welcome-series ones) that ports `scripts/post_purchase_upsell_roi.py` math into React/TypeScript. Operator enters 6 inputs — orders/month, base AOV, upsell acceptance rate, upsell AOV, upsell gross margin, and platform cost-per-order — and the panel forecasts upsell units accepted, incremental revenue, incremental margin, platform cost, net lift, blended AOV lift %, and ROI ratio (net lift per $1 platform cost), with a 4-band health verdict (great ≥30× / good ≥15× / marginal ≥5× / weak). Defaults match the Python CLI's 1k-order baseline (35.7:1 great band). State persists to localStorage (`ecom-ops:playbooks:ppu-roi:v1`). Copy-report emits a paste-ready 14-line markdown forec"
     }
   ],
   "counts": {
@@ -11900,6 +11904,6 @@
     "assets": 25,
     "tables": 56,
     "findings": 8,
-    "journalEntries": 64
+    "journalEntries": 65
   }
 }

@@ -36,6 +36,7 @@ const NAV_GROUPS = [
       { href: "/tiktok", label: "TikTok Shop" },
       { href: "/pinterest-seo", label: "Pinterest SEO" },
       { href: "/amazon-dsp-amazon-attribution-audit", label: "Amazon DSP" },
+      { href: "/attribution-health-alert-archive", label: "Attribution Alerts" },
       { href: "/smsbump-postscript-channel-orchestration", label: "SMSBump SMS" },
       { href: "/international", label: "International" },
       { href: "/3pl", label: "3PL" },
