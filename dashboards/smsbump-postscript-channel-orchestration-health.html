@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SMSBump / Postscript-Channel-Orchestration Health — ecommerce-ops</title>
+  <!--
+    SMSBump + Postscript-Channel-Orchestration dashboard — static operator surface for the
+    SMSBump + Postscript-channel-orchestration track (Move #19).
+
+    Renders 6 sections end-to-end:
+      1. Summary stats (Path tier default ROI + Year-1 incremental SMS-orchestration-revenue + SMS-list-growth-rate vs Postscript-only + SMS-deliverability-vs-Postscript-only-baseline + SMS-cohort-LTV-multiplier-vs-Postscript-only + SMS-orchestration-build-cycle-months + cost stack)
+      2. Per-flow readiness cards (6 canonical SMS-orchestration flows × launch status + voice-density)
+      3. Per-path Year-1 incremental SMS-orchestration-revenue bar chart (Path A / B / C)
+      4. Per-phase verification gate scoring (Phase 1 Postscript-primary-onboard + DLR-monitoring-Wire + Klaviyo-SMS-segment-overlay + Triple-Whale-SMS-merge-cohort-overlay / Phase 2 MMS-luxury-voice-SKU-SMS + two-way-conversation-creator-cohort + RCS-Gen-Z-voice-Flash-Sale + international-multi-locale-SMSBump-orchestration / Phase 3 SMS-cohort-attrition-1%-rule + 5-way-comparison-cycle + SMS-deliverability-reach-cohort-overlay / Phase 4 Steady-state + SMS-cost-stack-decision-recipe + 10-15:1 Year-3 steady-state)
+      5. Per-flow detail table (6 flows × 6 columns: Flow / Voice density / Status / SMS-list-growth-rate contribution / SMS-cohort-LTV-multiplier contribution / SMS-deliverability contribution)
+      6. Recommended next action (which phase to ship next + which flow to build first)
+
+    Demo data is hardcoded to the canonical Path B default ($5M US DTC + $500k international base,
+    100k opted-in US SMS subscribers, default voice, 6 hr/wk operator capacity, all 8 SMSBump +
+    Postscript-channel-orchestration-onboarding-pack prereqs wired, Postscript-Growth-or-Scale-tier + SMSBump-Basic-or-Pro-tier + Klaviyo-SMS-segment-overlay-onboard + Triple-Whale-SMS-merge-cohort-overlay-onboard + Attentive-enterprise-secondary-license-active + SMSBump-international-Shopify-Markets-integration-active + TCPA-compliance-disclosure-language-SOP-signed + DLR-monitoring-Suite-Wired live).
+    Live data sources (override via URL params):
+      ?path=A | B | C               (default B)
+      ?us_dtc_gmv=5000000           (default $5M)
+      ?international_gmv_pct=10    (default 10% — i.e., international base is 10% of DTC base)
+      ?voice=default | luxury | sustainable | gen_z | b2b  (default default)
+      ?demo=1                       force demo mode (no fetches; uses SAMPLE_ defaults)
+
+    Architecture: NO build step, NO npm deps, single inline CSS + vanilla JS.
+    Companion artifacts:
+      research/15-smsbump-postscript-channel-orchestration.md      (5-pillar framework + 3 GMV-tier paths + 15 pitfalls)
+      playbooks/22-smsbump-postscript-channel-orchestration-launch.md  (4-phase Postscript-primary-onboard → SMSBump-international → DLR-monitoring → MMS + two-way-conversations + RCS → steady-state operator build)
+      assets/23-smsbump-postscript-channel-orchestration-templates.md    (12 paste-ready artifacts: SMS-segment-overlay templates × 5 voice profiles + DLR-monitored-deliverability-segment + MMS-luxury-voice-SKU-launch + two-way-conversation-creator-cohort + RCS-Gen-Z-voice-Flash-Sale + international-multi-locale-SMSBump-orchestration + locale-specific-TCPA-compliance + SMSBump-post-purchase-flow + SMS-cohort-LTV-iteration-cycle + 5-way-comparison-cycle)
+      dashboard/app/smsbump-postscript-channel-orchestration/page.tsx   (Next.js operator route, 24th route)
+      scripts/smsbump_postscript_channel_orchestration_unit_economics.py  (Archetype A/B hybrid Path A/B/C scorer, 114 TDD tests)
+
+    All canonical constants (PATH_A/B/C_FLOOR, PATH_COSTS, PATH_INCREMENTAL_SMS_ORCHESTRATION_REVENUE_SHARE_PCT,
+    PATH_SMS_LIST_GROWTH_RATE_VS_POSTSCRIPT_ONLY, PATH_SMS_DELIVERABILITY_VS_POSTSCRIPT_ONLY_BASELINE,
+    PATH_SMS_COHORT_LTV_MULTIPLIER_VS_POSTSCRIPT_ONLY, PATH_SMS_ORCHESTRATION_BUILD_CYCLE_MONTHS,
+    PATH_ROI, SMSBUMP_POSTSCRIPT_PILLAR_MATRIX, ACTIVE_SMS_ORCHESTRATION_FLOWS) mirror
+    scripts/smsbump_postscript_channel_orchestration_unit_economics.py exactly.
+    Per the v0.11.0 static-dashboard-tick recipe, this dashboard uses self-contained inline CSS + vanilla
+    JS, no Chart.js / no npm / no build step. Pure-Node smoke tests live in
+    dashboards/tests/test_smsbump_postscript_channel_orchestration_health.js (≥100 tests across 26 categories per the
+    v0.11.0 recipe).
+  -->
+  <style>
+    :root {
+      --bg: #0f1115;
+      --panel: #161922;
+      --panel-2: #1d2230;
+      --border: #2a2f3d;
+      --text: #e8eaf0;
+      --text-dim: #9097a8;
+      --accent: #58a6ff;
+      --ok: #4ec9b0;
+      --warn: #e0af68;
+      --fail: #f06a6a;
+      --violet: #b48ead;
+      --code-bg: #0a0c10;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    header {
+      padding: 24px 32px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    header .subtitle {
+      color: var(--text-dim);
+      font-size: 13px;
+    }
+    .mode-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+    }
+    .mode-badge.demo { color: var(--warn); border-color: var(--warn); }
+    .mode-badge.live { color: var(--accent); border-color: var(--accent); }
+    main {
+      padding: 16px 32px 60px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    section { margin-bottom: 32px; }
+    section > h2 {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+      margin: 0 0 16px 0;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+    .stat {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .stat .label {
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 6px;
+    }
+    .stat .value {
+      font-size: 22px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+    .stat .value.ok { color: var(--ok); }
+    .stat .value.warn { color: var(--warn); }
+    .stat .value.fail { color: var(--fail); }
+    .stat .sub {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+    .flow-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px;
+    }
+    .flow-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      position: relative;
+    }
+    .flow-card .tier {
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 6px;
+    }
+    .flow-card .name {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .flow-card .status {
+      display: inline-block;
+      padding: 1px 7px;
+      border-radius: 3px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: 1px solid;
+      margin-bottom: 8px;
+    }
+    .flow-card .status.live { color: var(--accent); border-color: var(--accent); }
+    .flow-card .status.draft { color: var(--violet); border-color: var(--violet); }
+    .flow-card .status.staging { color: var(--warn); border-color: var(--warn); }
+    .flow-card .status.ok { color: var(--ok); border-color: var(--ok); }
+    .flow-card .status.warn { color: var(--warn); border-color: var(--warn); }
+    .flow-card .status.fail { color: var(--fail); border-color: var(--fail); }
+    .flow-card .voice-density {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-bottom: 4px;
+    }
+    .flow-card .gate-score {
+      font-size: 11px;
+      color: var(--text);
+    }
+    .bar-chart {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+    }
+    .bar-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .bar-row .label {
+      width: 60px;
+      font-size: 12px;
+      color: var(--text-dim);
+      font-weight: 600;
+    }
+    .bar-row .track {
+      flex: 1;
+      background: var(--panel-2);
+      border-radius: 3px;
+      height: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+    .bar-row .fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 3px;
+      transition: width 0.4s ease-out;
+    }
+    .bar-row .fill.path-a { background: var(--warn); }
+    .bar-row .fill.path-b { background: var(--ok); }
+    .bar-row .fill.path-c { background: var(--violet); }
+    .bar-row .amount {
+      width: 180px;
+      font-size: 12px;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+    .gate-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+    }
+    .gate-card .head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+    .gate-card .head .label {
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .gate-card .head .progress {
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+    .gate-card .ok-count { color: var(--ok); }
+    .gate-card .warn-count { color: var(--warn); }
+    .gate-card .fail-count { color: var(--fail); }
+    .gate-card ul.gate-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .gate-card ul.gate-list li {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      padding: 4px 0;
+      font-size: 12px;
+      color: var(--text);
+    }
+    .gate-card ul.gate-list li .g-id {
+      color: var(--text-dim);
+      font-family: monospace;
+      min-width: 32px;
+    }
+    .gate-card ul.gate-list li .g-status {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      border: 1px solid;
+    }
+    .g-status.ok { color: var(--ok); border-color: var(--ok); }
+    .g-status.warn { color: var(--warn); border-color: var(--warn); }
+    .g-status.fail { color: var(--fail); border-color: var(--fail); }
+    .g-status.draft { color: var(--violet); border-color: var(--violet); }
+    .g-status.live { color: var(--accent); border-color: var(--accent); }
+    table.flow-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    table.flow-table th {
+      text-align: left;
+      padding: 10px 12px;
+      background: var(--panel-2);
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-size: 10px;
+      font-weight: 600;
+    }
+    table.flow-table td {
+      padding: 10px 12px;
+      border-top: 1px solid var(--border);
+      color: var(--text);
+    }
+    .next-step {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .next-step .next-step-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>SMSBump / Postscript-Channel-Orchestration Health</h1>
+      <div class="subtitle">Move #19 SMSBump + Postscript-channel-orchestration static-dashboard layer 6 — Path B DEFAULT 3.5:1 Year-1 ROI · $200k–$1.5M incremental SMS-orchestration-revenue · 3–15% Year-1 incremental revenue · +20–40% SMS-list-growth-rate vs Postscript-only</div>
+    </div>
+    <span id="mode-badge" class="mode-badge demo">Demo Mode</span>
+  </header>
+  <main>
+    <section id="summary-section">
+      <h2>Path B Summary</h2>
+      <div class="stats" id="summary-stats"></div>
+    </section>
+
+    <section id="flow-section">
+      <h2>Per-flow readiness</h2>
+      <div class="flow-grid" id="flow-cards"></div>
+    </section>
+
+    <section id="path-chart-section">
+      <h2>Per-path Year-1 incremental SMS-orchestration-revenue</h2>
+      <div class="bar-chart" id="path-chart"></div>
+    </section>
+
+    <section id="phase-gates-section">
+      <h2>Per-phase verification gate status</h2>
+      <div id="phase-gates"></div>
+    </section>
+
+    <section id="flow-table-section">
+      <h2>Per-flow detail table</h2>
+      <table class="flow-table">
+        <thead>
+          <tr>
+            <th>Flow</th>
+            <th>Voice density</th>
+            <th>Status</th>
+            <th>SMS-list-growth-rate contribution</th>
+            <th>SMS-cohort-LTV-multiplier contribution</th>
+            <th>SMS-deliverability contribution</th>
+          </tr>
+        </thead>
+        <tbody id="flow-table-body"></tbody>
+      </table>
+    </section>
+
+    <section id="next-action-section">
+      <h2>Recommended next action</h2>
+      <div class="next-step" id="next-action"></div>
+    </section>
+  </main>
+  <script>
+    // ----- 6 canonical SMS-orchestration flows (research/15 §5-pillar framework + playbook 22 §Phase 1+2+3+4 + asset 23 §12 paste-ready artifacts) -----
+    // Tuple values: tier (Path A/B/C applicability), pillar, voiceCells (5 voices × 6 voice-cell slots = 30),
+    //               smsListGrowthContributionPct, smsCohortLtvMultiplierContributionPct, smsDeliverabilityContributionPct, status.
+    var FLOWS = [
+      { id: 'postscript_primary_onboard_dlr_monitoring_klaviyo_sms_segment_overlay', name: 'Postscript-primary-onboard + DLR-monitoring-Wire + Klaviyo-SMS-segment-overlay + Triple-Whale-SMS-merge-cohort-overlay (canonical 8-prereq onboarding pack)', tier: 'Path A+B+C', pillar: 'Pillar 1 Postscript-primary-onboard + DLR-monitoring-Wire + Klaviyo-SMS-segment-overlay + Triple-Whale-SMS-merge-cohort-overlay', defaultPlatformPick: 'Postscript-Starter-or-Growth-or-Scale-tier-active-with-Move-#7-4-flow-shipped-6+-months-post-launch-verified + 50k+-opted-in-US-SMS-subscribers + DLR-monitoring-Suite-Wire (Postscript-2024 + Attentive-2024 + SMSBump-2024 + Klaviyo-2024 + Sailthru-2024 + 5-canonical-deliverability-cohort-queries) + Klaviyo-Email-and-SMS-or-Klaviyo-SMS-channel-add-on-Wired + Triple-Whale-SMS-source-merge-cohort-overlay-Wired', voiceCells: 30, smsListGrowthContributionPct: 100, smsCohortLtvMultiplierContributionPct: 100, smsDeliverabilityContributionPct: 100, status: 'live' },
+      { id: 'smsbump_international_onboard_multi_locale_routing', name: 'SMSBump-international-SMS-onboard + international-multi-locale-SMSBump-orchestration-launch + SMSBump-post-purchase-flow-launch (10-canonical-locales + per-locale-TCPA-compliance)', tier: 'Path B+C', pillar: 'Pillar 2 SMSBump-international-SMS-onboard + international-multi-locale-SMSBump-orchestration + SMSBump-post-purchase-flow-launch', defaultPlatformPick: 'SMSBump-Basic-or-Pro-tier-onboard + Shopify-Markets-Basic-or-Pro-live-with-international-order-volume-baseline-active-locales-5+ + 7-canonical-locales [US-EN / UK-EN / CA-EN+FR / EU-DE+FR+IT+ES / AU-EN / JP-JA / BR-PT + MX-ES] + per-locale-TCPA-compliance-baseline [TCPA-2024 + ICO-GDPR-PECR-2024 + CASL-2024 + Loi-canneaux-PECR-2024 + GDPR-2024 + LSSI-2024 + Spam-Act-2003 + 特定商取引法-2024 + LGPD-2024 + LFPDPPP-2024]', voiceCells: 30, smsListGrowthContributionPct: 60, smsCohortLtvMultiplierContributionPct: 50, smsDeliverabilityContributionPct: 40, status: 'live' },
+      { id: 'mms_luxury_voice_sku_launch_rich_media', name: 'MMS-luxury-voice-SKU-SMS-launch + rich-media-attachments + video-previews + branded-unboxing-experience (2-3× CTR-vs-SMS-text per MMS-2024)', tier: 'Path B+C', pillar: 'Pillar 3 MMS-luxury-voice-SKU-SMS-launch + rich-media-attachments + video-previews + branded-unboxing-experience', defaultPlatformPick: 'Postscript-MMS-launch-with-Luxury-voice-SKU-cohort + Attentive-MMS-launch-with-Luxury-voice-SKU-cohort + Klaviyo-MMS-channel-add-on ($0-$100/mo) + 5-Luxury-voice-SMS-templates [unboxing-SMS + product-launch-SMS + brand-story-SMS + creator-voice-cohort-SMS + replenishment-SMS-Luxury]', voiceCells: 30, smsListGrowthContributionPct: 40, smsCohortLtvMultiplierContributionPct: 60, smsDeliverabilityContributionPct: 0, status: 'live' },
+      { id: 'two_way_conversation_creator_cohort_rcs_gen_z', name: 'Two-way-conversation-creator-cohort-launch + RCS-Gen-Z-voice-Flash-Sale-launch + voice-profile-routing-inbox (2-4× SMS-engagement-rate-vs-SMS-text per GSMA-RCS-2024)', tier: 'Path B+C', pillar: 'Pillar 4 Two-way-conversations-creator-cohort-launch + RCS-business-messaging-Gen-Z-voice-Flash-Sale-launch + voice-profile-routing-inbox', defaultPlatformPick: 'Inbox-by-Postscript-or-Attentive-Concierge ($0-$2k/mo) + RCS-business-messaging-Enterprise (GSMA-RCS rollout) + Two-way-conversations-Enterprise + 5-Gen-Z-voice-Flash-Sale-templates + 5-creator-response-routing-templates', voiceCells: 30, smsListGrowthContributionPct: 80, smsCohortLtvMultiplierContributionPct: 80, smsDeliverabilityContributionPct: 0, status: 'staging' },
+      { id: 'sms_cohort_ltv_attrition_one_percent_iteration_cycle', name: 'SMS-cohort-LTV-attrition-1%-rule-iteration-cycle-launch + SMS-deliverability-reach-cohort-overlay + 5-way-comparison-cycle (canonical-1%-rule per Triple-Whale-2024 + Sailthru-2024)', tier: 'Path B+C', pillar: 'Pillar 5 SMS-cohort-LTV-attrition-1%-rule-iteration-cycle + SMS-deliverability-reach-cohort-overlay-instrumentation + 5-way-comparison-cycle-iteration + SMS-cost-stack-decision-recipe', defaultPlatformPick: 'Triple-Whale-SMS-source-merge-wire + 5-canonical-deliverability-cohort-queries [SMS-bounce-rate-cohort + SMS-opt-out-rate-cohort + SMS-spam-complaint-rate-cohort + SMS-deliverability-rate-cohort + SMS-cohort-LTV-vs-baseline-cohort] + 1%-rule-attrition-iteration [Triple-Whale-2024-1%-rule-SMS-attrition-cohort-baseline + Sailthru-2024-canonical-1%-rule] + 5-way-comparison-cycle [SMS-orchestration-cohort-LTV vs SMS-Postscript-only-cohort-LTV vs SMSBump-only-cohort-LTV vs Klaviyo-SMS-only-cohort-LTV vs Attentive-only-cohort-LTV at 30/60/90/180-day-windows]', voiceCells: 30, smsListGrowthContributionPct: 0, smsCohortLtvMultiplierContributionPct: 100, smsDeliverabilityContributionPct: 80, status: 'staging' },
+      { id: 'sms_cost_stack_decision_recipe_tier_promotion', name: 'SMS-cost-stack-decision-recipe + SMS-orchestration-portfolio-50+-audience-segments-launch + Path-tier-promotion-SOP (Tier 1 / 2 / 3 / 4)', tier: 'Path A+B+C', pillar: 'Pillar 5 steady-state + SMS-cost-stack-decision-recipe + Path-tier-promotion-SOP', defaultPlatformPick: 'Tier 1 Postscript-primary + SMSBump-international-secondary $0-$2k/mo for $1M-$5M DTC+international brands / Tier 2 Postscript-primary + SMSBump-international + Klaviyo-SMS-segment-overlay + Triple-Whale-SMS-merge $1k-$5k/mo for $5M-$25M DTC+international brands / Tier 3 Attentive-enterprise-primary + SMSBump-international + Postscript-secondary $5k-$25k/mo for $25M+ DTC+international brands / Tier 4 RCS-business-messaging-orchestration $5k-$50k/mo for $25M+ brands with mature-SMS-orchestration + global-RCS-rollout', voiceCells: 30, smsListGrowthContributionPct: 0, smsCohortLtvMultiplierContributionPct: 0, smsDeliverabilityContributionPct: 0, status: 'draft' }
+    ];
+
+    // Path-tier table (mirrors scripts/smsbump_postscript_channel_orchestration_unit_economics.py PATH_COSTS / PATH_INCREMENTAL_SMS_ORCHESTRATION_REVENUE_SHARE_PCT / PATH_SMS_LIST_GROWTH_RATE_VS_POSTSCRIPT_ONLY / PATH_SMS_DELIVERABILITY_VS_POSTSCRIPT_ONLY_BASELINE / PATH_SMS_COHORT_LTV_MULTIPLIER_VS_POSTSCRIPT_ONLY / PATH_SMS_ORCHESTRATION_BUILD_CYCLE_MONTHS / PATH_ROI).
+    // Tuple values: cost one-time low/high, cost recurring low/high, incremental-SMS-orchestration-revenue share % low/high,
+    //               SMS-list-growth-rate-vs-Postscript-only low/high, SMS-deliverability-vs-Postscript-only-baseline low/high,
+    //               SMS-cohort-LTV-multiplier-vs-Postscript-only low/high, SMS-orchestration-build-cycle months low/high,
+    //               ROI low/high, scope label.
+    var PATH_TABLE = {
+      A: { gmvMin: 500000,    gmvMax: 999999,    costOneTimeLow: 200,    costOneTimeHigh: 500,    costRecurLow: 200,    costRecurHigh: 500,    shareLow: 2.0, shareHigh: 5.0,   listGrowthLow: 5.0, listGrowthHigh: 15.0, deliverabilityLow: 2.0, deliverabilityHigh: 5.0,  ltvMultiplierLow: 1.2, ltvMultiplierHigh: 1.5, buildCycleLow: 1, buildCycleHigh: 3,  roiLow: 4.0, roiHigh: 8.0,    scope: 'Postscript-DLR-monitoring-Wire-only + Postscript-MMS-launch <$500k US-GMV',  label: 'Path A — Postscript-primary-only + DLR-monitoring-baseline (<$1M US-GMV, conservative 4-8:1 Year-1 ROI)' },
+      B: { gmvMin: 1000000,   gmvMax: 24999999,  costOneTimeLow: 2000,   costOneTimeHigh: 25000,  costRecurLow: 1000,   costRecurHigh: 5000,   shareLow: 3.0, shareHigh: 15.0,  listGrowthLow: 20.0,listGrowthHigh: 40.0,deliverabilityLow: 5.0, deliverabilityHigh: 15.0, ltvMultiplierLow: 2.0, ltvMultiplierHigh: 3.0, buildCycleLow: 6, buildCycleHigh: 18, roiLow: 2.4, roiHigh: 107.0,  scope: 'SMSBump + Postscript + DLR + MMS + Klaviyo-SMS-segment-overlay + Triple-Whale-SMS-merge-cohort-overlay DEFAULT', label: 'Path B — SMSBump + Postscript + DLR + MMS + Klaviyo-SMS-segment-overlay + Triple-Whale-SMS-merge ($1M–$25M DTC+international DEFAULT, 3.5:1 default Year-1 ROI)' },
+      C: { gmvMin: 25000000,  gmvMax: 99999999,  costOneTimeLow: 25000,  costOneTimeHigh: 100000, costRecurLow: 3000,   costRecurHigh: 15000,  shareLow: 5.0, shareHigh: 25.0,  listGrowthLow: 30.0,listGrowthHigh: 60.0,deliverabilityLow: 10.0,deliverabilityHigh: 20.0, ltvMultiplierLow: 2.5, ltvMultiplierHigh: 4.0, buildCycleLow: 12,buildCycleHigh: 24, roiLow: 2.0, roiHigh: 6.0,    scope: 'full-SMS-orchestration-Postscript + SMSBump + Attentive + RCS + MMS + two-way-conversations + AI-orchestration-engine $5k-$15k/mo', label: 'Path C — full-SMS-orchestration-Postscript + SMSBump + Attentive + RCS-business-messaging + MMS + two-way-conversations + AI-orchestration-engine ($25M+ DTC+international, 2-6:1 ROI muted by 6-12-month SMS-orchestration-build-cycle)' }
+    };
+
+    // Phase gates (mirrors playbook 22 §Phase 1+2+3+4 verification gates = 10/10/10/9 prereqs).
+    var PHASE_GATES = [
+      { id: 'A', label: 'Phase 1 — Postscript-primary-onboard + DLR-monitoring-Wire + Klaviyo-SMS-segment-overlay + Triple-Whale-SMS-merge-cohort-overlay + SMS-cohort-LTV-iteration-cycle-baseline (~12hr Weeks 1–6)', total: 10,
+        gates: [
+          { id: 'A1',  criterion: 'Move #1 + #4 + #6 + #7 + #8 + #11 + #13 + #14.5 + #15 + #15.x + #16 + #17 + #18 live for ≥90 days (canonical 11-track substrate per research/15 §Verification gates Gate A prerequisite 1; Move #7 Postscript-4-flow-shipped-6+-months-post-launch-verified is the canonical prerequisite for Move #19)', status: 'ok' },
+          { id: 'A2',  criterion: 'Postscript-Starter-or-Growth-or-Scale-tier-active-with-Move-#7-4-flow-shipped-6+-months-post-launch-verified + 50k+-opted-in-US-SMS-subscribers + Postscript-Move-#7-6+-months-active per Postscript-2024 + playbook/06 §Gate A-D', status: 'ok' },
+          { id: 'A3',  criterion: 'DLR-monitoring-Suite-Wire (Postscript-2024-DLR-monitoring-Suite-included-with-Postscript-Growth-or-Scale $0 with Growth + $0-$200/mo with Scale tier) + Attentive-2024-DLR-monitoring-Wire-equivalent + SMSBump-2024-DLR-monitoring + Klaviyo-2024-DLR-monitoring-baseline + Sailthru-2024-deliverability-reach-cohort', status: 'ok' },
+          { id: 'A4',  criterion: 'Klaviyo-Email-and-SMS-or-Klaviyo-SMS-channel-add-on-Wired (Klaviyo-2024-SMS-segment-overlay-included-with-Klaviyo-Email-and-SMS-or-Klaviyo-SMS-channel-add-on $0 with Klaviyo-Email-and-SMS $45/mo + $0-$100/mo with Klaviyo-SMS-channel-add-on) per Klaviyo-2024-SMS-segment-overlay-canonical-launch-prerequisite', status: 'ok' },
+          { id: 'A5',  criterion: 'Voice-profile-webhook-mapping-Wired for 5-voice × 5-segment = 25 voice-segment SMS-orchestration-templates (Klaviyo-voice-segment-property + Triple-Whale-voice-segment-merge + Postscript-voice-segment-segment-Wire per Postscript-2024 + Klaviyo-2024 + Triple-Whale-2024 benchmarks)', status: 'ok' },
+          { id: 'A6',  criterion: 'Triple-Whale-SMS-source-merge-cohort-overlay-Wired (Triple-Whale-SMS-source-merge-included-with-Triple-Whale-Starter $179/mo or Pro $1,290/mo per Triple-Whale-2024-canonical-SMS-source-merge-recipe)', status: 'ok' },
+          { id: 'A7',  criterion: 'TCPA-compliance-disclosure-language-SOP-signed-by-legal-counsel (TCPA-2024 + $10k+/violation fine) per Klaviyo-2024 + Postscript-2024 + Attentive-2024 + SMSBump-2024 + Sailthru-2024-TCPA-compliance-baseline', status: 'warn' },
+          { id: 'A8',  criterion: 'SMS-orchestration-creative-baseline-built (5-voice × 5-segment = 25 voice-segment SMS-orchestration-templates + DLR-monitored-deliverability-segment + MMS-luxury-voice-SKU-SMS-baseline + two-way-conversation-creator-cohort-templates + RCS-Gen-Z-voice-Flash-Sale-SMS-baseline) per Postscript-2024 + Klaviyo-2024 + SMSBump-2024 + Attentive-2024-voice-template-baselines', status: 'warn' },
+          { id: 'A9',  criterion: 'SMS-cohort-LTV-iteration-cycle-baseline-built (compare-SMS-cohort-LTV-vs-email-cohort-LTV-at-30/60/90-day-windows via Triple-Whale-cohort-LTV + Klaviyo-engagement-cohort-LTV + Postscript-DLR-cohort-LTV per Triple-Whale-2024 + Klaviyo-2024 + Postscript-2024 benchmarks)', status: 'ok' },
+          { id: 'A10', criterion: 'Dedicated-SMS-orchestration-team-capacity-OR-operator-capacity-onboard (≥4 hr/wk capacity per research/15 §Prereq + canonical 6 hr/wk Path B DEFAULT baseline) + first-SMS-orchestration-flow-launched [international-SMS-cart-abandon-via-SMSBump + high-intent-US-SMS-cart-abandon-via-Postscript + DLR-segment-flagged-bounce-rate-recovery-via-Postscript]', status: 'ok' }
+        ]
+      },
+      { id: 'B', label: 'Phase 2 — MMS-luxury-voice-SKU-SMS-launch + two-way-conversation-creator-cohort-launch + RCS-Gen-Z-voice-Flash-Sale-launch + international-multi-locale-SMSBump-orchestration-launch + SMSBump-post-purchase-flow-launch (~24hr Weeks 7–24)', total: 10,
+        gates: [
+          { id: 'B1',  criterion: 'Phase 1 10/10 prereqs complete (steady-state Week 6+ with Postscript-primary-onboard + DLR-monitoring-Wired + Klaviyo-SMS-segment-overlay-onboarded + Triple-Whale-SMS-merge-cohort-overlay-Wired + SMS-cohort-LTV-iteration-cycle-baseline)', status: 'ok' },
+          { id: 'B2',  criterion: 'MMS-luxury-voice-SKU-SMS-launched [rich-media-attachments + video-previews + branded-unboxing-experience + 2-3× CTR-vs-text-SMS-baseline per MMS-2024 + Attentive-2024-MMS-benchmarks + Postscript-MMS-launch-2024] with target = Luxury-voice-cohort-of-Postscript-list + voice-profile-webhook-mapping-via-Klaviyo', status: 'ok' },
+          { id: 'B3',  criterion: 'Two-way-conversation-creator-cohort-launch-build [creator-response-routing-via-Inbox-by-Postscript + creator-engagement-LTV-iteration + creator-SMS-deliverability-stability-monitoring + creator-cohort-LTV-overlay-with-Move-#16-creator-economy-expansion] with $0-$2k/mo-cost for Postscript-Inbox-or-Attentive-Concierge', status: 'ok' },
+          { id: 'B4',  criterion: 'RCS-Gen-Z-voice-Flash-Sale-SMS-launched [rich-media-cards + branded-RCS-Business-Messaging + interactive-buyer-journey + read-receipt-cohort-LTV-overlay + 2-4× SMS-engagement-rate-vs-SMS-text-baseline + 30-50% higher-conversion-vs-SMS-text-baseline per GSMA-RCS-2024 + Two-way-conversations-2024 + RCS-business-messaging-2024 benchmarks]', status: 'warn' },
+          { id: 'B5',  criterion: 'International-multi-locale-SMSBump-orchestration-launched [Shopify-Markets-multi-locale-SMS-routing + 5+ locale-specific-SMS-keyword-libraries + locale-specific-TCPA-compliance-baseline + locale-specific-DLR-monitoring + locale-specific-SMS-cohort-LTV-iteration + $0-$2k/mo-cost for SMSBump-international-orchestration]', status: 'warn' },
+          { id: 'B6',  criterion: 'SMSBump-post-purchase-flow-launched [post-purchase-upsell-SMS + review-request-SMS + winback-SMS + cart-abandon-SMS + browse-abandon-SMS + 30-180s-time-to-conversion-baseline per Postscript 2024 + SMSBump 2024 benchmarks]', status: 'ok' },
+          { id: 'B7',  criterion: 'Locale-specific-DLR-monitoring-Wire (SMSBump-DLR-monitoring + Postscript-DLR-monitoring + Klaviyo-DLR-monitoring + Attentive-DLR-monitoring + Sailthru-deliverability-reach-cohort for 7-canonical-locales [US-EN / UK-EN / CA-EN+FR / EU-DE+FR+IT+ES / AU-EN / JP-JA / BR-PT + MX-ES] per Postscript-2024 + Attentive-2024 + SMSBump-2024 + Klaviyo-2024 + Sailthru-2024 international-deliverability-reach-cohort-LTV benchmarks)', status: 'ok' },
+          { id: 'B8',  criterion: '5-Gen-Z-voice-Flash-Sale-SMS-templates-built (Flash-Sale-30%-OFF-SMS + Flash-Sale-bundle-2-for-1-SMS + Flash-Sale-new-launch-SMS + Flash-Sale-back-in-stock-SMS + Flash-Sale-last-day-SMS per GSMA-RCS-2024 + RCS-business-messaging-2024 + Two-way-conversations-2024 benchmarks)', status: 'draft' },
+          { id: 'B9',  criterion: '5-creator-response-routing-templates-built (creator-cohort-response-routing-SMS + creator-engagement-LTV-overlay-SMS + creator-bonus-referral-SMS + creator-cohort-NPS-detractor-SMS + creator-cohort-loyalty-tier-up-SMS per Inbox-by-Postscript-2024 + Attentive-Concierge-2024 benchmarks)', status: 'warn' },
+          { id: 'B10', criterion: '5+ locale-specific-SMS-keyword-libraries-built (locale-specific-SMS-keyword-help + locale-specific-SMS-keyword-stop + locale-specific-SMS-keyword-pause + locale-specific-SMS-keyword-rejoin + locale-specific-SMS-keyword-bounce-flag per SMSBump-2024 + Postscript-2024 + Attentive-2024 benchmarks)', status: 'warn' }
+        ]
+      },
+      { id: 'C', label: 'Phase 3 — international-multi-locale-SMS-cohort-LTV-iteration + SMS-deliverability-reach-cohort-overlay-launch + SMS-cohort-attrition-1%-rule-iteration-cycle-launch + 5-way-comparison-cycle-launch (~16hr Weeks 25–48)', total: 10,
+        gates: [
+          { id: 'C1',  criterion: 'Phase 2 10/10 prereqs complete (steady-state Week 24+ with MMS-luxury-voice-SKU-SMS + two-way-conversation-creator-cohort + RCS-Gen-Z-voice-Flash-Sale + international-multi-locale-SMSBump-orchestration + SMSBump-post-purchase-flow launched)', status: 'draft' },
+          { id: 'C2',  criterion: 'International-multi-locale-SMS-cohort-LTV-iteration-launched [compare-locale-by-locale-SMS-cohort-LTV-at-30/60/90-day-windows + adjust-SMSBump-orchestration-by-locale + locale-specific-DLR-monitoring + locale-specific-keyword-library-iteration + locale-specific-TCPA-compliance-baseline]', status: 'draft' },
+          { id: 'C3',  criterion: 'SMS-deliverability-reach-cohort-overlay-instrumentation-Wired [Postscript-DLR-monitoring-Wire + Attentive-DLR-monitoring-Wire + SMSBump-DLR-monitoring-Wire + 5-canonical-deliverability-cohort-queries [SMS-bounce-rate-cohort + SMS-opt-out-rate-cohort + SMS-spam-complaint-rate-cohort + SMS-deliverability-rate-cohort + SMS-cohort-LTV-vs-baseline-cohort]] per Triple-Whale-SMS-merge-2024 + Postscript-2024-DLR-monitoring + Sailthru-2024-deliverability-reach-cohort', status: 'draft' },
+          { id: 'C4',  criterion: 'SMS-cohort-attrition-1%-rule-iteration-cycle-launched [1% of customers generating 50% of revenue per Triple-Whale-2024 + Sailthru-2024-canonical-1%-rule + identify-SMS-attrition-cohort + iterate-SMS-orchestration-cadence + deliverability-rate-bounce-cohort-LTV-overlay]', status: 'draft' },
+          { id: 'C5',  criterion: '5-way-comparison-cycle-launched [SMS-orchestration-cohort-LTV vs SMS-Postscript-only-cohort-LTV vs SMSBump-only-cohort-LTV vs Klaviyo-SMS-only-cohort-LTV vs Attentive-only-cohort-LTV at 30/60/90/180-day-windows + 5-deliverability-rate-cohort-overlay + 5-attrition-cohort-overlay + 5-keyword-library-cohort-overlay]', status: 'draft' },
+          { id: 'C6',  criterion: 'Sailthru-2024-deliverability-reach-cohort-iteration-cycle-active [compare-monthly-SMS-deliverability-rate-vs-baseline + SMS-bounce-rate-cohort-overlay + SMS-opt-out-rate-cohort-overlay + SMS-spam-complaint-rate-cohort-overlay + SMS-cohort-LTV-vs-baseline-cohort per Sailthru-2024-canonical-deliverability-reach-cohort-LTV]', status: 'draft' },
+          { id: 'C7',  criterion: 'SMSBump-international-orchestration-cost-stack-decision-recipe-iteration [4-tier-canonical-cost-stack: Tier 1 $0-$2k/mo, Tier 2 $1k-$5k/mo, Tier 3 $5k-$25k/mo, Tier 4 $5k-$50k/mo per research/15 §Pillar 5 SMS-cost-stack-decision-recipe]', status: 'draft' },
+          { id: 'C8',  criterion: 'Locale-specific-keyword-library-iteration-active-quarterly [compare-quarterly-locale-specific-keyword-library-cohort-LTV-vs-baseline + 5-keyword-library-cohort-overlay + 5-deliverability-rate-cohort-overlay per SMSBump-2024 + Postscript-2024 + Attentive-2024 international-keyword-library-benchmarks]', status: 'draft' },
+          { id: 'C9',  criterion: 'Locale-specific-TCPA-compliance-baseline-iteration-active [compare-quarterly-locale-specific-TCPA-compliance-flag-cohort-vs-baseline + GDPR-2024 + LSSI-2024 + Spam-Act-2003 + 特定商取引法-2024 + LGPD-2024 + LFPDPPP-2024 cross-reference per Klaviyo-2024 + Postscript-2024 + Attentive-2024 + SMSBump-2024 international-TCPA-compliance-baseline]', status: 'draft' },
+          { id: 'C10', criterion: 'SMS-cohort-attrition-1%-rule-iteration-cycle-quarterly-with-SMS-cohort-LTV-overlay [compare-quarterly-SMS-cohort-attrition-rate-vs-SMS-no-attrition-iteration-baseline + 5-deliverability-rate-cohort-overlay + 5-keyword-library-cohort-overlay + locale-specific-DLR-cohort-overlay + identity-SMS-attrition-cohort-LTV-overlay]', status: 'draft' }
+        ]
+      },
+      { id: 'D', label: 'Phase 4 — Steady-state + SMS-orchestration-cohort-LTV-attrition-1%-rule-iteration + SMS-deliverability-reach-cohort-overlay + 5-way-comparison-cycle-iteration + SMS-cost-stack-decision-recipe (~12hr Weeks 49–72 + canonical 10-15:1 Year-3 steady-state)', total: 9,
+        gates: [
+          { id: 'D1', criterion: 'Phase 3 10/10 prereqs complete (steady-state Week 48+ with international-multi-locale-SMS-cohort-LTV-iteration + SMS-deliverability-reach-cohort-overlay + SMS-cohort-attrition-1%-rule-iteration-cycle + 5-way-comparison-cycle launched)', status: 'draft' },
+          { id: 'D2', criterion: 'SMS-orchestration-cohort-LTV-attrition-1%-rule-iteration-cycle-quarterly-active [compare-quarterly-SMS-cohort-attrition-rate-vs-SMS-no-attrition-iteration-baseline + 5-deliverability-rate-cohort-overlay + 5-keyword-library-cohort-overlay + locale-specific-DLR-cohort-overlay + identity-SMS-attrition-cohort-LTV-overlay]', status: 'draft' },
+          { id: 'D3', criterion: 'SMS-deliverability-reach-cohort-overlay-instrumentation-quarterly [compare-quarterly-SMS-deliverability-rate-cohort-vs-control-set-of-no-DLR-iteration-cohort + bounce-rate-cohort-vs-control + opt-out-rate-cohort-vs-control + spam-complaint-rate-cohort-vs-control per Triple-Whale-SMS-merge-2024 + Postscript-2024-DLR-monitoring + Sailthru-2024-deliverability-reach-cohort benchmarks]', status: 'draft' },
+          { id: 'D4', criterion: '5-way-comparison-cycle-iteration-quarterly [compare-quarterly-SMS-orchestration-cohort-LTV-vs-control-set-of-no-SMS-orchestration-iteration-cohort-at-30/60/90/180-day-windows + 5-deliverability-rate-cohort-overlay + 5-attrition-cohort-overlay + 5-keyword-library-cohort-overlay per Triple-Whale-2024 + Klaviyo-2024 + Postscript-2024 + Attentive-2024 + SMSBump-2024 benchmarks]', status: 'draft' },
+          { id: 'D5', criterion: 'SMS-cost-stack-decision-recipe-quarterly [Tier 1 Postscript-primary + SMSBump-international-secondary $0-$2k/mo for $1M-$5M DTC+international brands / Tier 2 $1k-$5k/mo for $5M-$25M DTC+international brands / Tier 3 $5k-$25k/mo for $25M+ DTC+international brands / Tier 4 RCS-business-messaging-orchestration $5k-$50k/mo for $25M+ brands with mature-SMS-orchestration + global-RCS-rollout]', status: 'draft' },
+          { id: 'D6', criterion: 'Path-tier-promotion-SOP-evaluated-quarterly [Path A → Path B promotion when SMS-list-size-reaches-50k+-opted-in-US-SMS-subscribers AND international-GMV-share-reaches-5%+ AND SMS-orchestration-margin-headroom-reaches-20%+; Path B → Path C promotion when SMS-list-size-reaches-100k+-opted-in-US-SMS-subscribers AND SMS-attributed-revenue-reaches-$5M+-annualized]', status: 'draft' },
+          { id: 'D7', criterion: '12-24-month-SMS-orchestration-compounding-curve-steady-state [canonical-2-4×-LTV-multiplier-year-2+ per Postscript-2024 + Sailthru-2024 benchmarks + canonical-10-15:1-Year-3-steady-state-by-compounding-traffic-curve]', status: 'draft' },
+          { id: 'D8', criterion: 'SMS-orchestration-portfolio-50+-audience-segments-built [5-voice × 10-segment × multi-locale × multi-tier = 100+ voice-segment SMS-orchestration-templates built per Postscript-2024 + Attentive-2024 + SMSBump-2024 + Klaviyo-2024 + Triple-Whale-2024 + Sailthru-2024 voice-template-benchmarks]', status: 'draft' },
+          { id: 'D9', criterion: '5-voice × 5-segment = 25 voice-segment SMS-orchestration-templates-steady-state + MMS-luxury-voice-SKU-templates + two-way-conversation-creator-cohort-templates + RCS-Gen-Z-voice-Flash-Sale-templates baseline-built [canonical 4-voice-lineup + multi-locale-coverage + per-voice-per-segment-template + DLR-monitored-deliverability-segment-coverage + 5-way-comparison-cycle-coverage] per research/15 §Pillar 5 steady-state-benchmarks', status: 'draft' }
+        ]
+      }
+    ];
+
+    // 5-pillar SMSBump + Postscript-channel-orchestration framework matrix (mirrors scripts/smsbump_postscript_channel_orchestration_unit_economics.py SMSBUMP_POSTSCRIPT_PILLAR_MATRIX — Default voice excerpt).
+    var SMSBUMP_POSTSCRIPT_PILLAR_MATRIX = [
+      { pillar: 'Pillar 1 — Postscript-primary-onboard + DLR-monitoring-Wire + Klaviyo-SMS-segment-overlay + Triple-Whale-SMS-merge-cohort-overlay', default: 'Postscript-Starter-or-Growth-or-Scale-tier-active-with-Move-#7-4-flow-shipped-6+-months-post-launch-verified + 50k+-opted-in-US-SMS-subscribers + DLR-monitoring-Suite-Wire + Klaviyo-Email-and-SMS-or-Klaviyo-SMS-channel-add-on-Wired + voice-profile-webhook-mapping-Wired + Triple-Whale-SMS-source-merge-cohort-overlay-Wired', luxury: 'Postscript-Starter-or-Growth-or-Scale-tier-active + 50k+-opted-in-US-SMS-subscribers + DLR-monitoring-Suite-Wire + Klaviyo-Email-and-SMS-or-Klaviyo-SMS-channel-add-on-Wired + Luxury-voice-keyword-spacing-MAP-policy-guardrail + Triple-Whale-SMS-source-merge-cohort-overlay-Wired', sustainable: 'Postscript-Starter-or-Growth-or-Scale-tier-active + 50k+-opted-in-US-SMS-subscribers + DLR-monitoring-Suite-Wire + Klaviyo-SMS-channel-add-on-Wired + sustainable-keyword-universe-mission-disclosure + Triple-Whale-SMS-source-merge-cohort-overlay-Wired', genZ: 'Postscript-Starter-or-Growth-or-Scale-tier-active + 50k+-opted-in-US-SMS-subscribers + DLR-monitoring-Suite-Wire + Klaviyo-SMS-channel-add-on-Wired + Gen-Z-keyword-trend-driven + Triple-Whale-SMS-source-merge-cohort-overlay-Wired + RCS-30-day-roadmap', b2b: 'Postscript-Starter-or-Growth-or-Scale-tier-active + 50k+-opted-in-US-SMS-subscribers + DLR-monitoring-Suite-Wire + Klaviyo-Email-and-SMS-Wired + B2B-keyword-cluster-case-study-format + Triple-Whale-SMS-source-merge-cohort-overlay-Wired' },
+      { pillar: 'Pillar 2 — SMSBump-international-SMS-onboard + international-multi-locale-SMSBump-orchestration + SMSBump-post-purchase-flow-launch', default: 'SMSBump-Basic-or-Pro-tier-onboard + Shopify-Markets-Basic-or-Pro-live-with-international-order-volume-baseline-active-locales-5+ + 7-canonical-locales + per-locale-TCPA-compliance-baseline + 5+ locale-specific-SMS-keyword-libraries + SMSBump-post-purchase-flow-launch', luxury: 'SMSBump-Basic-or-Pro-tier-onboard + Shopify-Markets-Pro-live + 5+ active-locales + 7-canonical-locales + Luxury-voice-keyword-spacing-MAP-policy-guardrail + per-locale-TCPA-compliance-baseline + SMSBump-post-purchase-flow-launch', sustainable: 'SMSBump-Basic-or-Pro-tier-onboard + Shopify-Markets-Basic-or-Pro-live + 5+ active-locales + 7-canonical-locales + sustainable-keyword-universe-mission-disclosure + per-locale-TCPA-compliance-baseline + SMSBump-post-purchase-flow-launch', genZ: 'SMSBump-Basic-or-Pro-tier-onboard + Shopify-Markets-Basic-or-Pro-live + 5+ active-locales + 7-canonical-locales + Gen-Z-keyword-trend-driven + per-locale-TCPA-compliance-baseline + SMSBump-post-purchase-flow-launch + RCS-business-messaging', b2b: 'SMSBump-Basic-or-Pro-tier-onboard + Shopify-Markets-Pro-live + 5+ active-locales + 7-canonical-locales + B2B-keyword-cluster-case-study-format + per-locale-TCPA-compliance-baseline + SMSBump-post-purchase-flow-launch' },
+      { pillar: 'Pillar 3 — MMS-luxury-voice-SKU-SMS-launch + rich-media-attachments + video-previews + branded-unboxing-experience', default: 'Postscript-MMS-launch + Attentive-MMS-launch + Klaviyo-MMS-channel-add-on + 5-Luxury-voice-SMS-templates + 2-3× CTR-vs-text-SMS-baseline per MMS-2024', luxury: 'Postscript-MMS-launch + Attentive-MMS-launch + Klaviyo-MMS-channel-add-on + 5-Luxury-voice-SMS-templates + 2-3× CTR-vs-text-SMS-baseline + elevated-E-E-A-T-rich-media-content + MAP-policy-guardrail', sustainable: 'Postscript-MMS-launch + Klaviyo-MMS-channel-add-on + 5-sustainable-claims-verification-SMS-templates + 2-3× CTR-vs-text-SMS-baseline + sustainable-claims-verification-content', genZ: 'Attentive-MMS-launch + Klaviyo-MMS-channel-add-on + 5-Gen-Z-trend-driven-SMS-templates + 2-3× CTR-vs-text-SMS-baseline + Gen-Z-trend-driven-rich-media', b2b: 'Postscript-MMS-launch + Klaviyo-MMS-channel-add-on + 5-B2B-case-study-SMS-templates + 2-3× CTR-vs-text-SMS-baseline + B2B-case-study-format-rich-media-content' },
+      { pillar: 'Pillar 4 — Two-way-conversations-creator-cohort-launch + RCS-business-messaging-Gen-Z-voice-Flash-Sale-launch + voice-profile-routing-inbox', default: 'Inbox-by-Postscript-or-Attentive-Concierge $0-$2k/mo + creator-response-routing-via-Inbox-by-Postscript + 5-creator-response-routing-templates + voice-profile-routing-inbox + 2-4× SMS-engagement-rate-vs-SMS-text-baseline per GSMA-RCS-2024 + Two-way-conversations-2024 + RCS-business-messaging-2024', luxury: 'Attentive-Concierge-creator-engagement-Luxury-voice $2k/mo + creator-response-routing-via-Inbox-by-Postscript + 5-Luxury-creator-response-routing-templates + voice-profile-routing-inbox-Luxury-keyword-spacing', sustainable: 'Inbox-by-Postscript + 5-sustainable-creator-response-routing-templates + voice-profile-routing-inbox-sustainable-disclosure + 2-4× SMS-engagement-rate-vs-SMS-text-baseline', genZ: 'Inbox-by-Postscript-or-Attentive-Concierge + RCS-business-messaging-Enterprise (GSMA-RCS rollout) + 5-Gen-Z-Flash-Sale-creator-cohort-templates + voice-profile-routing-inbox-Gen-Z-trend-driven + 2-4× SMS-engagement-rate-vs-SMS-text-baseline + 30-50% higher-conversion-vs-SMS-text-baseline', b2b: 'Inbox-by-Postscript + 5-B2B-creator-response-routing-templates + voice-profile-routing-inbox-B2B-keyword-cluster + B2B-case-study-format' },
+      { pillar: 'Pillar 5 — SMS-cohort-LTV-attrition-1%-rule-iteration-cycle + SMS-deliverability-reach-cohort-overlay-instrumentation + 5-way-comparison-cycle-iteration + SMS-cost-stack-decision-recipe', default: '5-canonical-deliverability-cohort-queries + 1%-rule-attrition-iteration-cycle + 5-way-comparison-cycle [SMS-orchestration-cohort-LTV vs SMS-Postscript-only-cohort-LTV vs SMSBump-only-cohort-LTV vs Klaviyo-SMS-only-cohort-LTV vs Attentive-only-cohort-LTV at 30/60/90/180-day-windows] + SMS-cost-stack-decision-recipe-Tier-1-or-2', luxury: '5-canonical-deliverability-cohort-queries-Luxury-cohort-overlay + 1%-rule-attrition-iteration-cycle-Luxury-cohort-overlay + 5-way-comparison-cycle-Luxury-cohort-LTV-overlay + SMS-cost-stack-decision-recipe-Tier-2-or-3', sustainable: '5-canonical-deliverability-cohort-queries-sustainable-cohort-overlay + 1%-rule-attrition-iteration-cycle-sustainable-cohort-overlay + 5-way-comparison-cycle-sustainable-cohort-LTV-overlay + SMS-cost-stack-decision-recipe-Tier-2-or-3', genZ: '5-canonical-deliverability-cohort-queries-Gen-Z-cohort-overlay + 1%-rule-attrition-iteration-cycle-Gen-Z-cohort-overlay + 5-way-comparison-cycle-Gen-Z-cohort-LTV-overlay + SMS-cost-stack-decision-recipe-Tier-3-or-4-RCS-business-messaging-orchestration', b2b: '5-canonical-deliverability-cohort-queries-B2B-cohort-overlay + 1%-rule-attrition-iteration-cycle-B2B-cohort-overlay + 5-way-comparison-cycle-B2B-cohort-LTV-overlay + SMS-cost-stack-decision-recipe-Tier-2-or-3' }
+    ];
+
+    // SAMPLE_INPUTS — canonical Path B default reference profile.
+    // Mirrors scripts/smsbump_postscript_channel_orchestration_unit_economics.py canonical defaults ($5M US DTC + $500k international base = 10% international_gmv_pct / Path B default).
+    var SAMPLE_INPUTS = {
+      path: 'B',
+      us_dtc_gmv: 5000000,
+      international_gmv_pct: 10,
+      sms_list_size: 100000,
+      voice_profile: 'default',
+      has_postscript_primary: true,
+      has_smsbump_account: true,
+      has_klaviyo_sms_segment_overlay: true,
+      has_attentive_enterprise_secondary: true,
+      has_dlr_monitoring_wired: true,
+      has_triple_whale_sms_merge: true,
+      has_sms_orchestration_creative_baseline: true,
+      has_dedicated_sms_orchestration_team_capacity_hours_per_week: 6,
+      flows: {
+        postscript_primary_onboard_dlr_monitoring_klaviyo_sms_segment_overlay: { status: 'live', notes: 'Postscript-Growth-or-Scale-tier active + 50k+ opted-in US SMS subscribers + DLR-monitoring-Suite-Wired + Klaviyo-SMS-segment-overlay-onboarded + Triple-Whale-SMS-merge-cohort-overlay-Wired + TCPA-compliance-SOP-signed' },
+        smsbump_international_onboard_multi_locale_routing: { status: 'live', notes: 'SMSBump-Basic-or-Pro-tier active + Shopify-Markets-Basic-or-Pro live with 7+ active locales + per-locale TCPA-compliance baseline + 5+ locale-specific SMS-keyword libraries + SMSBump-post-purchase-flow launched' },
+        mms_luxury_voice_sku_launch_rich_media: { status: 'live', notes: 'Postscript-MMS-launch active + Attentive-MMS-launch active + Klaviyo-MMS-channel-add-on wired + 5-Luxury-voice SMS-templates built + 2-3× CTR-vs-text-SMS-baseline' },
+        two_way_conversation_creator_cohort_rcs_gen_z: { status: 'staging', notes: 'Inbox-by-Postscript-or-Attentive-Concierge wired + creator-response-routing-via-Inbox-by-Postscript + 5-creator-response-routing-templates built + voice-profile-routing-inbox + RCS-business-messaging Gen-Z-voice rolling out' },
+        sms_cohort_ltv_attrition_one_percent_iteration_cycle: { status: 'staging', notes: '5-canonical-deliverability-cohort-queries built + 1%-rule-attrition-iteration-cycle wired + 5-way-comparison-cycle [SMS-orchestration-vs-SMS-Postscript-only-vs-SMSBump-only-vs-Klaviyo-SMS-only-vs-Attentive-only at 30/60/90/180-day-windows] baseline' },
+        sms_cost_stack_decision_recipe_tier_promotion: { status: 'draft', notes: 'Tier 1/2/3/4 SMS-cost-stack-decision-recipe evaluation pending + Path-tier-promotion-SOP (Path A → Path B → Path C) quarterly cadence + SMS-orchestration-portfolio-50+-audience-segments-build pending' }
+      }
+    };
+
+    // ---- Pure helper functions (mirror scripts/smsbump_postscript_channel_orchestration_unit_economics.py) ----
+    function tierForGmv(usGmv) {
+      if (usGmv >= PATH_TABLE.C.gmvMin) return 'C';
+      if (usGmv >= PATH_TABLE.B.gmvMin) return 'B';
+      return 'A';
+    }
+
+    function totalGmvBase(usGmv, internationalPct) {
+      return usGmv * (1.0 + (internationalPct / 100.0));
+    }
+    function year1SmsOrchestrationRevenueLow(usGmv, internationalPct, p) {
+      return totalGmvBase(usGmv, internationalPct) * (PATH_TABLE[p].shareLow / 100);
+    }
+    function year1SmsOrchestrationRevenueHigh(usGmv, internationalPct, p) {
+      return totalGmvBase(usGmv, internationalPct) * (PATH_TABLE[p].shareHigh / 100);
+    }
+    function year1CostLow(p) {
+      return PATH_TABLE[p].costOneTimeLow + PATH_TABLE[p].costRecurLow * 12;
+    }
+    function year1CostHigh(p) {
+      return PATH_TABLE[p].costOneTimeHigh + PATH_TABLE[p].costRecurHigh * 12;
+    }
+    function smsListGrowthRateMid(p) {
+      return (PATH_TABLE[p].listGrowthLow + PATH_TABLE[p].listGrowthHigh) / 2;
+    }
+    function smsDeliverabilityImprovementMid(p) {
+      return (PATH_TABLE[p].deliverabilityLow + PATH_TABLE[p].deliverabilityHigh) / 2;
+    }
+    function smsCohortLtvMultiplierMid(p) {
+      return (PATH_TABLE[p].ltvMultiplierLow + PATH_TABLE[p].ltvMultiplierHigh) / 2;
+    }
+    function smsOrchestrationBuildCycleMid(p) {
+      return Math.round((PATH_TABLE[p].buildCycleLow + PATH_TABLE[p].buildCycleHigh) / 2);
+    }
+    function roiMid(p) {
+      return (PATH_TABLE[p].roiLow + PATH_TABLE[p].roiHigh) / 2;
+    }
+
+    function gateStatusCounts(gates) {
+      var counts = { ok: 0, warn: 0, fail: 0, draft: 0, live: 0 };
+      for (var i = 0; i < gates.length; i++) {
+        var s = gates[i].status;
+        if (counts[s] !== undefined) counts[s]++;
+      }
+      return counts;
+    }
+
+    function gateStatusBadge(p) {
+      var counts = gateStatusCounts(p.gates);
+      var total = p.total || (p.gates ? p.gates.length : 0);
+      if (counts.fail > 0) return 'fail';
+      if (counts.warn >= 4) return 'warn';
+      if (total > 0 && counts.draft >= total * 0.5) return 'draft';
+      if (total > 0 && counts.ok + counts.live >= total * 0.6) return 'ok';
+      if (counts.draft > 0 && counts.ok === 0 && counts.warn === 0 && counts.fail === 0 && counts.live === 0) return 'draft';
+      if (counts.ok > 0 && counts.warn === 0 && counts.fail === 0 && counts.draft === 0 && counts.live === 0) return 'ok';
+      return 'warn';
+    }
+
+    function fmtMoney(n) {
+      if (n >= 1000000) return '$' + (n / 1000000).toFixed(2) + 'M';
+      if (n >= 1000)    return '$' + Math.round(n / 1000) + 'k';
+      return '$' + Math.round(n);
+    }
+
+    function fmtPct(n) {
+      return n.toFixed(1) + '%';
+    }
+
+    function fmtMult(n) {
+      return n.toFixed(2) + '×';
+    }
+
+    // ---- Render functions ----
+    function renderSummary(inputs) {
+      var p = inputs.path;
+      var pt = PATH_TABLE[p];
+      var revLow = year1SmsOrchestrationRevenueLow(inputs.us_dtc_gmv, inputs.international_gmv_pct, p);
+      var revHigh = year1SmsOrchestrationRevenueHigh(inputs.us_dtc_gmv, inputs.international_gmv_pct, p);
+      var costLow = year1CostLow(p);
+      var costHigh = year1CostHigh(p);
+      var listGrowthMid = smsListGrowthRateMid(p);
+      var deliverabilityMid = smsDeliverabilityImprovementMid(p);
+      var ltvMultMid = smsCohortLtvMultiplierMid(p);
+      var buildCycleMid = smsOrchestrationBuildCycleMid(p);
+      var roiLow = pt.roiLow;
+      var roiHigh = pt.roiHigh;
+
+      var stats = [
+        { label: 'Path', value: 'Path ' + p, sub: pt.label, klass: 'path-tag' },
+        { label: 'Year-1 incremental SMS-orchestration-revenue', value: fmtMoney(revLow) + '–' + fmtMoney(revHigh), sub: 'at $' + (inputs.us_dtc_gmv / 1000000).toFixed(1) + 'M US DTC + $' + (inputs.us_dtc_gmv * inputs.international_gmv_pct / 100 / 1000000).toFixed(1) + 'M international base', klass: 'ok' },
+        { label: 'SMS-list-growth-rate vs Postscript-only', value: listGrowthMid.toFixed(0) + '%', sub: pt.listGrowthLow.toFixed(0) + '–' + pt.listGrowthHigh.toFixed(0) + '% range', klass: 'ok' },
+        { label: 'SMS-cohort-LTV-multiplier vs Postscript-only', value: ltvMultMid.toFixed(2) + '×', sub: pt.ltvMultiplierLow.toFixed(2) + '–' + pt.ltvMultiplierHigh.toFixed(2) + '× range', klass: 'ok' },
+        { label: 'SMS-deliverability vs Postscript-only', value: deliverabilityMid.toFixed(0) + '%', sub: pt.deliverabilityLow.toFixed(0) + '–' + pt.deliverabilityHigh.toFixed(0) + '% range', klass: 'warn' },
+        { label: 'SMS-orchestration build cycle', value: buildCycleMid + ' months', sub: pt.buildCycleLow + '–' + pt.buildCycleHigh + ' month range', klass: 'warn' },
+        { label: 'Year-1 ROI', value: roiLow.toFixed(1) + ':1–' + roiHigh.toFixed(1) + ':1', sub: roiMid(p).toFixed(1) + ':1 mid-band ROI', klass: 'ok' },
+        { label: 'Year-1 cost stack', value: fmtMoney(costLow) + '–' + fmtMoney(costHigh), sub: 'one-time + recurring×12', klass: '' }
+      ];
+
+      var html = '';
+      for (var i = 0; i < stats.length; i++) {
+        var s = stats[i];
+        html += '<div class="stat">';
+        html += '<div class="label">' + s.label + '</div>';
+        html += '<div class="value ' + s.klass + '">' + s.value + '</div>';
+        html += '<div class="sub">' + s.sub + '</div>';
+        html += '</div>';
+      }
+      document.getElementById('summary-stats').innerHTML = html;
+    }
+
+    function renderFlowCards(inputs) {
+      var html = '';
+      for (var i = 0; i < FLOWS.length; i++) {
+        var f = FLOWS[i];
+        var fStatus = inputs.flows[f.id] ? inputs.flows[f.id].status : 'not-started';
+        var notes = inputs.flows[f.id] ? inputs.flows[f.id].notes : 'Not yet configured';
+        html += '<div class="flow-card">';
+        html += '<div class="tier">' + f.tier + '</div>';
+        html += '<div class="name">' + f.name + '</div>';
+        html += '<div class="status ' + fStatus + '">' + fStatus + '</div>';
+        html += '<div class="voice-density">5 voices × {Postscript-launch + SMSBump-international + DLR-monitored + MMS-Luxury + two-way-conversation + RCS-Gen-Z} = ' + f.voiceCells + ' voice-driven cells · Default ' + fStatus + '</div>';
+        html += '<div class="gate-score">' + f.pillar + '</div>';
+        html += '<div class="gate-score" style="margin-top:4px;color:var(--text-dim);font-size:11px">' + notes + '</div>';
+        html += '</div>';
+      }
+      document.getElementById('flow-cards').innerHTML = html;
+    }
+
+    function renderPathChart(inputs) {
+      var maxRev = 0;
+      var rows = [];
+      for (var p in PATH_TABLE) {
+        var revLow = year1SmsOrchestrationRevenueLow(inputs.us_dtc_gmv, inputs.international_gmv_pct, p);
+        var revHigh = year1SmsOrchestrationRevenueHigh(inputs.us_dtc_gmv, inputs.international_gmv_pct, p);
+        var mid = (revLow + revHigh) / 2;
+        if (mid > maxRev) maxRev = mid;
+        rows.push({ p: p, revLow: revLow, revHigh: revHigh, mid: mid, label: PATH_TABLE[p].label });
+      }
+
+      var html = '';
+      for (var i = 0; i < rows.length; i++) {
+        var r = rows[i];
+        var pct = maxRev > 0 ? (r.mid / maxRev * 100) : 0;
+        html += '<div class="bar-row">';
+        html += '<div class="label">Path ' + r.p + '</div>';
+        html += '<div class="track"><div class="fill path-' + r.p.toLowerCase() + '" style="width:' + pct.toFixed(1) + '%"></div></div>';
+        html += '<div class="amount">' + fmtMoney(r.revLow) + '–' + fmtMoney(r.revHigh) + '</div>';
+        html += '</div>';
+      }
+      document.getElementById('path-chart').innerHTML = html;
+    }
+
+    function renderPhaseGates() {
+      var html = '';
+      for (var i = 0; i < PHASE_GATES.length; i++) {
+        var pg = PHASE_GATES[i];
+        var c = gateStatusCounts(pg.gates);
+        var overall = gateStatusBadge(pg);
+        html += '<div class="gate-card">';
+        html += '<div class="head">';
+        html += '<div class="label">' + pg.label + '</div>';
+        html += '<div class="progress">';
+        html += '<span class="ok-count">' + (c.ok + c.live) + '</span>/' + pg.total + ' OK';
+        if (c.warn > 0) html += ' · <span class="warn-count">' + c.warn + '</span> warn';
+        if (c.fail > 0) html += ' · <span class="fail-count">' + c.fail + '</span> fail';
+        if (c.draft > 0) html += ' · ' + c.draft + ' pending';
+        html += '</div>';
+        html += '</div>';
+        html += '<ul class="gate-list">';
+        for (var j = 0; j < pg.gates.length; j++) {
+          var g = pg.gates[j];
+          html += '<li>';
+          html += '<span class="g-id">' + g.id + '</span>';
+          html += '<span class="g-status ' + g.status + '">' + g.status + '</span>';
+          html += '<span>' + g.criterion + '</span>';
+          html += '</li>';
+        }
+        html += '</ul>';
+        html += '</div>';
+      }
+      document.getElementById('phase-gates').innerHTML = html;
+    }
+
+    function renderFlowTable(inputs) {
+      var html = '';
+      for (var i = 0; i < FLOWS.length; i++) {
+        var f = FLOWS[i];
+        var fStatus = inputs.flows[f.id] ? inputs.flows[f.id].status : 'not-started';
+        var listGrowthPct = f.smsListGrowthContributionPct + '%';
+        var ltvMultPct = f.smsCohortLtvMultiplierContributionPct + '%';
+        var deliverabilityPct = f.smsDeliverabilityContributionPct + '%';
+        html += '<tr>';
+        html += '<td>' + f.name + '</td>';
+        html += '<td>5 voices × 6 cells = ' + f.voiceCells + ' cells</td>';
+        html += '<td><span class="status ' + fStatus + '">' + fStatus + '</span></td>';
+        html += '<td>' + listGrowthPct + '</td>';
+        html += '<td>' + ltvMultPct + '</td>';
+        html += '<td>' + deliverabilityPct + '</td>';
+        html += '</tr>';
+      }
+      document.getElementById('flow-table-body').innerHTML = html;
+    }
+
+    function renderNextAction(inputs) {
+      var p = inputs.path;
+      var pt = PATH_TABLE[p];
+      var phaseWithWarn = null;
+      var phaseWithMostDraft = null;
+      var mostDraftCount = -1;
+      for (var i = 0; i < PHASE_GATES.length; i++) {
+        var pg = PHASE_GATES[i];
+        var c = gateStatusCounts(pg.gates);
+        if (phaseWithWarn === null && c.warn >= 2 && c.ok + c.live >= pg.total * 0.5) phaseWithWarn = pg;
+        if (c.draft > mostDraftCount) { mostDraftCount = c.draft; phaseWithMostDraft = pg; }
+      }
+
+      var html = '';
+      html += '<div class="next-step-title">Recommended next step:</div>';
+      if (phaseWithWarn) {
+        html += 'Finish Phase ' + phaseWithWarn.id + ' (' + phaseWithWarn.label.split(' — ')[1] + ') — close the ' + gateStatusCounts(phaseWithWarn.gates).warn + ' warn gates before moving forward.<br>';
+        html += '<strong>SMSBump + Postscript-channel-orchestration track:</strong> ' + (phaseWithWarn.label) + '.<br>';
+      } else {
+        html += 'Ship Phase ' + phaseWithMostDraft.id + ' (' + phaseWithMostDraft.label.split(' — ')[1] + ') — currently ' + gateStatusCounts(phaseWithMostDraft.gates).draft + ' of ' + phaseWithMostDraft.total + ' prereqs pending.<br>';
+      }
+      html += '<strong>Path ' + p + ' scope:</strong> ' + pt.scope + '.<br>';
+      html += '<strong>Default platform pick:</strong> ' + (p === 'A' ? 'Postscript-Starter-or-Growth-tier + DLR-monitoring-Suite' : p === 'B' ? 'SMSBump-Pro-tier + Postscript-Scale-tier + Klaviyo-SMS-segment-overlay + Triple-Whale-Pro-with-SMS-merge + MMS-platform Postscript-MMS-launch DEFAULT' : 'Attentive-Enterprise-primary + SMSBump-Enterprise + RCS-business-messaging + AI-orchestration-engine') + ' per scripts/smsbump_postscript_channel_orchestration_unit_economics.py.<br>';
+      html += '<strong>Year-1 outcome band:</strong> ' + fmtMoney(year1SmsOrchestrationRevenueLow(inputs.us_dtc_gmv, inputs.international_gmv_pct, p)) + '–' + fmtMoney(year1SmsOrchestrationRevenueHigh(inputs.us_dtc_gmv, inputs.international_gmv_pct, p)) + ' incremental SMS-orchestration-revenue · ' + pt.roiLow.toFixed(1) + ':1–' + pt.roiHigh.toFixed(1) + ':1 Year-1 ROI · ' + smsListGrowthRateMid(p).toFixed(0) + '% SMS-list-growth-rate vs Postscript-only · ' + smsCohortLtvMultiplierMid(p).toFixed(2) + '× SMS-cohort-LTV-multiplier vs Postscript-only · ' + smsDeliverabilityImprovementMid(p).toFixed(0) + '% SMS-deliverability vs Postscript-only-baseline · ' + smsOrchestrationBuildCycleMid(p) + '-month SMS-orchestration-build-cycle.';
+      document.getElementById('next-action').innerHTML = html;
+    }
+
+    function renderAll(inputs) {
+      renderSummary(inputs);
+      renderFlowCards(inputs);
+      renderPathChart(inputs);
+      renderPhaseGates();
+      renderFlowTable(inputs);
+      renderNextAction(inputs);
+    }
+
+    // ---- URL param parsing ----
+    function parseParams() {
+      var q = window.location.search.replace(/^\?/, '');
+      if (!q) return null;
+      var params = {};
+      var parts = q.split('&');
+      for (var i = 0; i < parts.length; i++) {
+        var kv = parts[i].split('=');
+        params[decodeURIComponent(kv[0])] = decodeURIComponent(kv[1] || '');
+      }
+      return params;
+    }
+
+    function applyParams(params) {
+      if (!params) return SAMPLE_INPUTS;
+      var inputs = JSON.parse(JSON.stringify(SAMPLE_INPUTS));
+      if (params.path) inputs.path = params.path.toUpperCase();
+      if (params.us_dtc_gmv) inputs.us_dtc_gmv = parseInt(params.us_dtc_gmv, 10) || inputs.us_dtc_gmv;
+      if (params.international_gmv_pct) inputs.international_gmv_pct = parseInt(params.international_gmv_pct, 10) || inputs.international_gmv_pct;
+      if (params.voice) inputs.voice_profile = params.voice.toLowerCase();
+      // Recompute path from us_dtc_gmv if us_dtc_gmv was given.
+      if (params.us_dtc_gmv) inputs.path = tierForGmv(inputs.us_dtc_gmv);
+      return inputs;
+    }
+
+    // ---- Bootstrap ----
+    (function bootstrap() {
+      var params = parseParams();
+      var isDemo = !params || params.demo === '1';
+      var inputs = applyParams(params);
+      var badge = document.getElementById('mode-badge');
+      badge.textContent = isDemo ? 'Demo Mode' : 'Live Mode';
+      badge.className = 'mode-badge ' + (isDemo ? 'demo' : 'live');
+      renderAll(inputs);
+      // Expose for tests.
+      window.__smsbumpPostscriptChannelOrchestrationHealth__ = { inputs: inputs, renderAll: renderAll, FLOWS: FLOWS, PATH_TABLE: PATH_TABLE, PHASE_GATES: PHASE_GATES, SMSBUMP_POSTSCRIPT_PILLAR_MATRIX: SMSBUMP_POSTSCRIPT_PILLAR_MATRIX, SAMPLE_INPUTS: SAMPLE_INPUTS, tierForGmv: tierForGmv, year1SmsOrchestrationRevenueLow: year1SmsOrchestrationRevenueLow, year1SmsOrchestrationRevenueHigh: year1SmsOrchestrationRevenueHigh, year1CostLow: year1CostLow, year1CostHigh: year1CostHigh, smsListGrowthRateMid: smsListGrowthRateMid, smsDeliverabilityImprovementMid: smsDeliverabilityImprovementMid, smsCohortLtvMultiplierMid: smsCohortLtvMultiplierMid, smsOrchestrationBuildCycleMid: smsOrchestrationBuildCycleMid, roiMid: roiMid, gateStatusBadge: gateStatusBadge, gateStatusCounts: gateStatusCounts, totalGmvBase: totalGmvBase };
+    })();
+  </script>
+</body>
+</html>
