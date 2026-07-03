@@ -119,8 +119,8 @@ export default function SmsbumpPostscriptChannelOrchestrationPage() {
           + 12-24-month-compounding-SMS-orchestration-steady-state operator
           build), and <strong>asset 23</strong> (the paste-ready 12 artifacts
           — 25 voice-variant SMS-orchestration-templates [5 voices × 5
-          SMS-orchestration-formats {cart-abandon + browse-abandon + winback +
-          replenishment + post-purchase}] + 5-path SMS-orchestration-tools
+          SMS-orchestration-formats &#123;cart-abandon + browse-abandon + winback +
+          replenishment + post-purchase&#125;] + 5-path SMS-orchestration-tools
           decision matrix [Path A Postscript-primary-only + DLR-monitoring-baseline
           / Path B DEFAULT SMSBump + Postscript + DLR + MMS +
           Klaviyo-SMS-segment-overlay + Triple-Whale-SMS-merge-cohort-overlay

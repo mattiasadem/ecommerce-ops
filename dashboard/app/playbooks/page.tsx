@@ -8,6 +8,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { CopyButton } from "@/components/copy-button";
 import { AbandonedCartROICalculator } from "@/components/abandoned-cart-roi";
+import { WelcomeSeriesROICalculator } from "@/components/welcome-series-roi";
 import { content, freshnessLabel, freshnessTier } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -61,6 +62,8 @@ export default function PlaybooksPage() {
       </header>
 
       <AbandonedCartROICalculator />
+
+      <WelcomeSeriesROICalculator />
 
       <div className="flex flex-col gap-3">
         {playbooks.map((p, i) => {

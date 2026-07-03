@@ -112,17 +112,6 @@ export function healthBandIntent(short: ReturnType<typeof healthBandShort>): "po
   }
 }
 
-export function formatUsd(value: number): string {
-  if (!Number.isFinite(value)) return "—";
-  return `$${value.toLocaleString(undefined, { maximumFractionDigits: 2, minimumFractionDigits: 2 })}`;
-}
-
-export function formatInt(value: number): string {
-  if (!Number.isFinite(value)) return "—";
-  return value.toLocaleString(undefined, { maximumFractionDigits: 0 });
-}
-
-export function formatRatio(value: number): string {
-  if (!Number.isFinite(value)) return "∞";
-  return `${value.toLocaleString(undefined, { maximumFractionDigits: 1 })}×`;
-}
+// Formatters moved to /lib/format.ts. Re-export for backwards compatibility
+// with existing imports (`import { formatUsd } from "@/lib/abandoned-cart-roi"`).
+export { formatUsd, formatInt, formatRatio } from "./format";

@@ -68,3 +68,4 @@ cd /data/workspace/ecommerce-ops && git log --oneline -5
 # Cron output (if delivered locally)
 ls /data/workspace/cron-reports/ | tail
 ```
+## 2026-07-03 00:07 UTC — Welcome-series ROI calculator on /playbooks (P0+P1 interactive-tool + state-persistence).
