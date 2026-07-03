@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Attribution-Health Alert Archive — ecommerce-ops</title>
+  <!--
+    Attribution-Health Alert Archive dashboard — static operator surface for the
+    Move #6.10 attribution-health alert webhook track.
+
+    Renders 6 sections end-to-end:
+      1. Path B Summary — headline metrics (60:1 to 150:1 canonical Path B net annual ROI,
+         1-2 Year-1 avoided incidents, $5k-$30k Year-1 incremental attribution-recovery,
+         $10/mo default cost stack, 3600s canonical cooldown, weekly Monday 09:05 cadence)
+      2. Per-path alert architecture — 5 Path tiers (A/B/C/D/E) with paid-spend floor,
+         platforms, alert-cadence, cooldown-seconds, Year-1 ROI band
+      3. Per-decision-rule engine status — 5 canonical webhook thresholds + 5-rule
+         decision engine (ANY per-platform fail / cross-platform drift / match-rate drift
+         > 3.0pp / coverage drift > 2.0pp / 3600s cooldown) per scripts/attribution_health_alert_webhook.py
+      4. Per-path cost-stack bar chart — annualized cost vs incremental attribution-recovery
+         per Path (Path A $0 / Path B $120 / Path C $1,440 / Path D $7,200 default)
+      5. Per-path alert-archive table — 7 canonical archive-entry rows (alert_id + timestamp +
+         severity + source + root_cause_hypothesis + remediation + status) for the 5 canonical
+         root-cause hypotheses + 2 baseline-fire patterns from Move #6.8 rollup
+      6. Recommended next action — context-aware next-step derived from Path tier + cadence +
+         on-call-rotation coverage
+
+    Demo data is hardcoded to the canonical Path B default ($25k-$50k/mo paid spend,
+    DEFAULT Slack-webhook + Linear-fallback, 3600s canonical cooldown, weekly Monday 09:05 cadence,
+    Move #6.8 cross-platform rollup substrate live + 5 per-platform audits all green + 1
+    cross-platform drift detected, dedicated-attribution-ops on-call rotation active).
+
+    Live data sources (override via URL params):
+      ?path=A | B | C | D | E         (default B)
+      ?paid_spend=25000               (default $25k/mo)
+      ?voice=default | luxury | sustainable | gen_z | b2b  (default default)
+      ?demo=1                          force demo mode (no fetches; uses SAMPLE_ defaults)
+      ?alerts_index=.alerts/index.json  (override alert-archive-index JSON path)
+
+    Architecture: NO build step, NO npm deps, single inline CSS + vanilla JS.
+    Companion artifacts:
+      scripts/attribution_health_alert_webhook.py                              (Archetype C/D-light hybrid wire script; ~555 lines)
+      scripts/attribution_health_alert_unit_economics.py                       (Archetype A/B hybrid Path A/B/C/D/E scoring script; 25th script in workspace; ~929 lines; 112 TDD tests)
+      playbooks/06.10-attribution-health-alert-webhook-launch.md               (4-phase operator-build playbook; shipped 2026-07-09)
+      assets/24-attribution-health-alert-payload-template.md                   (11 paste-ready artifacts; 25 voice-variant templates)
+      dashboard/app/attribution-health-alert-archive/page.tsx                  (4th-layer Next.js operator surface; 24th route)
+      research/06-attribution-audit.md + research/14-move-6.10-attribution-health-alert-webhook.md (cross-pollinated synthesis + 4-amulet cross-platform attribution-regression detection cookbook)
+
+    All canonical constants (PATH_E_FLOOR / PATH_A_FLOOR / PATH_B_FLOOR / PATH_C_FLOOR /
+    PATH_D_FLOOR / PATH_COSTS / PATH_AVOIDED_INCIDENTS / PATH_INCREMENTAL_ATTRIBUTION_RECOVERY_PER_INCIDENT /
+    PATH_ROI / PATH_ALERT_CADENCE / PATH_COOLDOWN_SECONDS / PATH_PLATFORMS /
+    ATTRIBUTION_ALERT_PILLAR_MATRIX) mirror scripts/attribution_health_alert_unit_economics.py
+    line-for-line.
+
+    Per the v0.11.0 static-dashboard-tick recipe, this dashboard uses self-contained inline CSS +
+    vanilla JS, no Chart.js / no npm / no build step. Pure-Node smoke tests live in
+    dashboards/tests/test_attribution_health_alert_archive.js (≥100 tests across 18 categories per the
+    v0.11.0 recipe).
+  -->
+  <style>
+    :root {
+      --bg: #0f1115;
+      --panel: #161922;
+      --panel-2: #1d2230;
+      --border: #2a2f3d;
+      --text: #e8eaf0;
+      --text-dim: #9097a8;
+      --accent: #58a6ff;
+      --ok: #4ec9b0;
+      --warn: #e0af68;
+      --fail: #f06a6a;
+      --violet: #b48ead;
+      --code-bg: #0a0c10;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    header {
+      padding: 24px 32px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    header .subtitle {
+      color: var(--text-dim);
+      font-size: 13px;
+    }
+    .mode-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .mode-badge.demo {
+      background: rgba(176, 142, 173, 0.15);
+      color: var(--violet);
+      border: 1px solid var(--violet);
+    }
+    .mode-badge.live {
+      background: rgba(78, 201, 176, 0.15);
+      color: var(--ok);
+      border: 1px solid var(--ok);
+    }
+    main {
+      padding: 24px 32px 64px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    section {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+    }
+    section h2 {
+      margin: 0 0 14px 0;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.005em;
+      color: var(--text);
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .stat-card {
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .stat-card .stat-label {
+      font-size: 11px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+    .stat-card .stat-value {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .stat-card .stat-value.path-b { color: var(--ok); }
+    .stat-card .stat-value.infinity { color: var(--violet); }
+    .stat-card .stat-detail {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+    .path-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px;
+    }
+    .path-card {
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      border-left: 4px solid var(--border);
+    }
+    .path-card.default { border-left-color: var(--ok); }
+    .path-card.tier-a { border-left-color: var(--text-dim); }
+    .path-card.tier-b { border-left-color: var(--ok); }
+    .path-card.tier-c { border-left-color: var(--warn); }
+    .path-card.tier-d { border-left-color: var(--fail); }
+    .path-card.tier-e { border-left-color: var(--violet); }
+    .path-card h3 {
+      margin: 0 0 8px 0;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: -0.005em;
+    }
+    .path-card .paid-spend-floor {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-bottom: 6px;
+    }
+    .path-card .alert-cadence {
+      font-size: 13px;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .path-card .cooldown {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-bottom: 6px;
+    }
+    .path-card .roi-band {
+      font-size: 13px;
+      color: var(--ok);
+      margin-bottom: 8px;
+    }
+    .path-card .platforms {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+    .path-card .platforms li {
+      padding: 2px 0;
+      border-bottom: 1px dotted var(--border);
+    }
+    .path-card .platforms li:last-child { border-bottom: none; }
+    .rule-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px;
+    }
+    .rule-card {
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      border-left: 4px solid var(--border);
+    }
+    .rule-card.ok { border-left-color: var(--ok); }
+    .rule-card.warn { border-left-color: var(--warn); }
+    .rule-card.fail { border-left-color: var(--fail); }
+    .rule-card h3 {
+      margin: 0 0 6px 0;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .rule-card .rule-id {
+      font-size: 11px;
+      color: var(--text-dim);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    .rule-card .rule-condition {
+      font-size: 13px;
+      color: var(--text);
+      margin: 6px 0;
+    }
+    .rule-card .rule-fired {
+      font-size: 12px;
+      color: var(--warn);
+      margin-top: 6px;
+    }
+    .rule-card .rule-fired.not-fired {
+      color: var(--ok);
+    }
+    .bar-chart {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .bar-row {
+      display: grid;
+      grid-template-columns: 70px 1fr 110px;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+    }
+    .bar-row .label {
+      font-weight: 500;
+      letter-spacing: -0.005em;
+    }
+    .bar-row .label.tier-a { color: var(--text-dim); }
+    .bar-row .label.tier-b { color: var(--ok); }
+    .bar-row .label.tier-c { color: var(--warn); }
+    .bar-row .label.tier-d { color: var(--fail); }
+    .bar-row .label.tier-e { color: var(--violet); }
+    .bar-row .bar-bg {
+      background: var(--panel-2);
+      height: 18px;
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
+    }
+    .bar-row .bar-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 3px;
+      transition: width 200ms ease;
+    }
+    .bar-row .bar-fill.tier-a { background: var(--text-dim); }
+    .bar-row .bar-fill.tier-b { background: var(--ok); }
+    .bar-row .bar-fill.tier-c { background: var(--warn); }
+    .bar-row .bar-fill.tier-d { background: var(--fail); }
+    .bar-row .bar-fill.tier-e { background: var(--violet); }
+    .bar-row .value {
+      color: var(--text-dim);
+      font-size: 12px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      text-align: right;
+    }
+    .bar-row .stacked-bar {
+      display: flex;
+      height: 100%;
+    }
+    .bar-row .stacked-bar .stacked-cost {
+      background: var(--fail);
+      opacity: 0.7;
+    }
+    .bar-row .stacked-bar .stacked-recovery {
+      background: var(--ok);
+    }
+    .archive-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    .archive-table th,
+    .archive-table td {
+      padding: 8px 10px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .archive-table th {
+      color: var(--text-dim);
+      font-weight: 500;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      background: var(--panel-2);
+    }
+    .archive-table td.alert-id {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      color: var(--accent);
+    }
+    .archive-table td.timestamp {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      color: var(--text-dim);
+      font-size: 11px;
+    }
+    .archive-table td.hypothesis-id {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      color: var(--violet);
+    }
+    .severity-pill {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .severity-pill.critical {
+      background: rgba(240, 106, 106, 0.2);
+      color: var(--fail);
+      border: 1px solid var(--fail);
+    }
+    .severity-pill.warn {
+      background: rgba(224, 175, 104, 0.2);
+      color: var(--warn);
+      border: 1px solid var(--warn);
+    }
+    .severity-pill.info {
+      background: rgba(88, 166, 255, 0.2);
+      color: var(--accent);
+      border: 1px solid var(--accent);
+    }
+    .severity-pill.archived {
+      background: rgba(144, 151, 168, 0.15);
+      color: var(--text-dim);
+      border: 1px solid var(--text-dim);
+    }
+    .next-step {
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px 20px;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .next-step ol {
+      margin: 8px 0;
+      padding-left: 22px;
+    }
+    .next-step ol li {
+      margin: 4px 0;
+    }
+    .next-step code {
+      background: var(--code-bg);
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 12px;
+      color: var(--accent);
+    }
+    .meta {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+    footer {
+      padding: 16px 32px 24px;
+      border-top: 1px solid var(--border);
+      font-size: 11px;
+      color: var(--text-dim);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Attribution-Health Alert Archive</h1>
+      <div class="subtitle">Move #6.10 attribution-health alert webhook static-dashboard layer 6 — Path B DEFAULT 60:1 to 150:1 net annual ROI · 1–2 Year-1 avoided incidents · $5k–$30k incremental attribution-recovery · weekly Monday 09:05 cadence · 3600s canonical cooldown</div>
+    </div>
+    <span id="mode-badge" class="mode-badge demo">Demo Mode</span>
+  </header>
+  <main>
+    <section id="summary-section">
+      <h2>Path B Summary</h2>
+      <div class="stats" id="summary-stats"></div>
+    </section>
+
+    <section id="path-section">
+      <h2>Per-path alert architecture</h2>
+      <div class="path-grid" id="path-cards"></div>
+    </section>
+
+    <section id="rules-section">
+      <h2>Per-decision-rule engine status</h2>
+      <div class="rule-grid" id="rule-cards"></div>
+    </section>
+
+    <section id="cost-section">
+      <h2>Per-path annualized cost-stack vs incremental attribution-recovery</h2>
+      <div class="bar-chart" id="cost-chart"></div>
+    </section>
+
+    <section id="archive-section">
+      <h2>Per-hypothesis alert-archive table</h2>
+      <table class="archive-table">
+        <thead>
+          <tr>
+            <th>alert_id</th>
+            <th>timestamp</th>
+            <th>severity</th>
+            <th>source</th>
+            <th>root_cause_hypothesis</th>
+            <th>remediation</th>
+            <th>status</th>
+          </tr>
+        </thead>
+        <tbody id="archive-table-body"></tbody>
+      </table>
+    </section>
+
+    <section id="next-action-section">
+      <h2>Recommended next action</h2>
+      <div class="next-step" id="next-action"></div>
+    </section>
+  </main>
+  <footer>
+    Move #6.10 attribution-health alert webhook · self-contained static dashboard · no build step · vanilla JS + CSS only
+  </footer>
+  <script>
+    // ----- 5 canonical Path tiers (mirrors scripts/attribution_health_alert_unit_economics.py PATH_COSTS / PATH_AVOIDED_INCIDENTS / PATH_INCREMENTAL_ATTRIBUTION_RECOVERY_PER_INCIDENT / PATH_ROI / PATH_ALERT_CADENCE / PATH_COOLDOWN_SECONDS / PATH_PLATFORMS) -----
+    // Tuple values: paid_spend_floor_min, paid_spend_floor_max, cost_one_time_low/high, cost_recurring_low/high,
+    //               avoided_incidents_low/high, incremental_recovery_per_incident_low/high, roi_low/high,
+    //               alert_cadence, cooldown_seconds, platforms[], label, default flag.
+    var PATH_TABLE = {
+      A:  { gmvMin: 500.0,    gmvMax: 5000.0,   costOneTimeLow: 0.0,   costOneTimeHigh: 0.0,    costRecurLow: 0.0,    costRecurHigh: 0.0,     avoidedLow: 0, avoidedHigh: 1, recoveryLow: 1000.0,  recoveryHigh: 5000.0,  roiLow: Infinity, roiHigh: Infinity, cadence: 'Weekly Monday 09:00 (hermetic-local-archive-only; no Slack dispatch)', cooldownSeconds: 604800, tierClass: 'tier-a', label: 'Path A — hermetic-local-archive-only ($500-$5k/mo paid, $0/mo, ∞ ROI, weekly archive)',  platforms: ['scripts/attribution_health_alert_webhook.py (hermetic-local-archive-only mode; --webhook-url omitted)', '.alerts/ directory (local filesystem; canonical archive path)'] },
+      B:  { gmvMin: 5000.0,   gmvMax: 50000.0,  costOneTimeLow: 2.0,   costOneTimeHigh: 50.0,   costRecurLow: 8.0,    costRecurHigh: 102.0,   avoidedLow: 1, avoidedHigh: 2, recoveryLow: 5000.0,  recoveryHigh: 15000.0, roiLow: 60.0,   roiHigh: 150.0,   cadence: 'Weekly Monday 09:05 (5 minutes after Move #6.8 09:00; Slack-webhook + Linear-fallback)', cooldownSeconds: 3600, tierClass: 'tier-b', label: 'Path B DEFAULT — Slack-webhook + Linear-fallback ($5k-$50k/mo paid, $10/mo, 60:1 to 150:1 canonical)',  platforms: ['Slack-Incoming-Webhooks ($0 with existing Slack plan; canonical Path B default)', 'Linear-fallback ticket-routing ($0 with existing Linear plan; canonical Path B 2nd-priority)', 'scripts/attribution_health_alert_webhook.py with --webhook-url + --cooldown-seconds 3600', '.alerts/ directory (local fallback; canonical Path B hermetic-fallback)'] },
+      C:  { gmvMin: 50000.0,  gmvMax: 250000.0, costOneTimeLow: 50.0,  costOneTimeHigh: 500.0,  costRecurLow: 35.0,   costRecurHigh: 250.0,   avoidedLow: 2, avoidedHigh: 4, recoveryLow: 15000.0, recoveryHigh: 50000.0, roiLow: 40.0,   roiHigh: 100.0,   cadence: 'Every-4-hours (06:00/10:00/14:00/18:00 UTC daily; Slack + Linear + PagerDuty-low-urgency)', cooldownSeconds: 600, tierClass: 'tier-c', label: 'Path C — Slack + Linear + PagerDuty-low + on-call-rotation ($50k-$250k/mo paid, $35-$250/mo, 40:1 to 100:1)',  platforms: ['Slack-Incoming-Webhooks (every-4-hours; canonical Path C)', 'Linear-ticket-routing ($0 with existing Linear plan; canonical Path C 2nd-priority)', 'PagerDuty-Events-API-v2 low-urgency (PagerDuty-Starter $0-$21/mo per seat)', 'scripts/attribution_health_alert_webhook.py with --cooldown-seconds 600', '.alerts/ directory (local fallback)'] },
+      D:  { gmvMin: 250000.0, gmvMax: Infinity, costOneTimeLow: 500.0, costOneTimeHigh: 5000.0, costRecurLow: 333.0,  costRecurHigh: 2000.0,  avoidedLow: 4, avoidedHigh: 8, recoveryLow: 50000.0, recoveryHigh: 200000.0, roiLow: 20.0,   roiHigh: 60.0,    cadence: 'Hourly (PagerDuty + Opsgenie + dedicated on-call; Move #6.10 + Move #6.8 daily cadence)', cooldownSeconds: 300, tierClass: 'tier-d', label: 'Path D — PagerDuty + Opsgenie + dedicated-on-call ($250k+/mo paid, $333-$2k/mo, 20:1 to 60:1)',  platforms: ['PagerDuty-Events-API-v2 high-urgency ($21-$41/mo per seat; canonical Path D primary)', 'Opsgenie-Enterprise ($8-$16/mo per seat; canonical Path D 2nd-priority for escalation)', 'Slack-Incoming-Webhooks (canonical Path D 3rd-priority; high-traffic channel)', 'Linear-ticket-routing (canonical Path D 4th-priority for ticket-tracking)', 'scripts/attribution_health_alert_webhook.py with --cooldown-seconds 300', '.alerts/ directory (audit fallback for compliance)'] },
+      E:  { gmvMin: 0.0,      gmvMax: 500.0,    costOneTimeLow: 0.0,   costOneTimeHigh: 0.0,    costRecurLow: 0.0,    costRecurHigh: 0.0,     avoidedLow: 0, avoidedHigh: 0, recoveryLow: 0.0,     recoveryHigh: 0.0,      roiLow: 0.0,    roiHigh: 0.0,     cadence: 'DEFER (no Move #6.10 install until paid-spend grows to $500+/mo)', cooldownSeconds: 0, tierClass: 'tier-e', label: 'Path E — pre-launch defer (<$500/mo paid, $0/mo, DEFER until paid-spend grows)',  platforms: ['(defer; no platforms wired until paid-spend grows to $500+/mo)'] }
+    };
+
+    // 5 canonical webhook thresholds — pinned by _canonical_thresholds_published() regression gate per scripts/attribution_health_alert_webhook.py
+    var WEBHOOK_THRESHOLDS = {
+      fire_on_any_per_platform_fail: true,
+      fire_on_cross_platform_drift: true,
+      fire_on_match_rate_drift_pp: 3.0,
+      fire_on_coverage_drift_pp: 2.0,
+      cooldown_seconds: 3600
+    };
+
+    // 13 canonical alert-payload fields — pinned by _canonical_alert_shape_published() regression gate per scripts/attribution_health_alert_webhook.py
+    var ALERT_PAYLOAD_FIELDS = [
+      'alert_id', 'timestamp', 'source', 'severity', 'title', 'summary',
+      'per_platform_breakdown', 'drift_summary', 'root_cause_hypothesis', 'remediation',
+      'overall_passed', 'thresholds_used', 'raw_rollup_path'
+    ];
+
+    // 5 canonical decision rules + 1 cooldown-suppression rule (5-rule engine per scripts/attribution_health_alert_webhook.py _decide_should_fire)
+    // Each rule: id, label, condition, fired (true/false), severity (critical/warn/info)
+    var DECISION_RULES = [
+      { id: 'R1', label: 'Rule 1 — ANY per-platform audit fails',       condition: 'Any of (Meta+Google+GA4 / TikTok / Snap+Pinterest) reports overall_passed=False',                          fired: false, severity: 'critical', firedToday: false },
+      { id: 'R2', label: 'Rule 2 — cross-platform drift detected',      condition: 'Move #6.8 rollup reports cross_platform_drift_detected=true (shared root-cause hypothesis matched)',    fired: true,  severity: 'critical', firedToday: true  },
+      { id: 'R3', label: 'Rule 3 — match-rate drift > 3.0pp',           condition: '|max match-rate drift across platforms| > 3.0pp',                                                            fired: true,  severity: 'critical', firedToday: true  },
+      { id: 'R4', label: 'Rule 4 — coverage drift > 2.0pp',             condition: '|max coverage drift across platforms| > 2.0pp',                                                              fired: false, severity: 'warn',     firedToday: false },
+      { id: 'R5', label: 'Rule 5 — cooldown suppression (3600s)',        condition: 'A fresh .alerts/<timestamp>-<severity>.json archive file exists within 3600s — suppress duplicate dispatch',  fired: false, severity: 'info',     firedToday: false }
+    ];
+
+    // 5 canonical root-cause hypotheses (from scripts/attribution_cross_platform_rollup.py lines 61-89) + 2 baseline-fire archive rows = 7 archive entries
+    var ARCHIVE_ENTRIES = [
+      { alertId: 'alrt_2026-07-08_0905_R2_advanced_matching_toggle',     timestamp: '2026-07-08 09:05:14 UTC', severity: 'critical', source: 'move-6.8-cross-platform-rollup',  hypothesisId: 'advanced_matching_toggle',     hypothesis: 'Advanced Matching / EMQ toggle flipped off',                                     remediation: 'Re-enable Advanced Matching in Events Manager / Tag Manager; re-test match rates',                              status: 'resolved' },
+      { alertId: 'alrt_2026-07-08_0905_R3_meta_match_rate_drift',        timestamp: '2026-07-08 09:05:14 UTC', severity: 'critical', source: 'move-6.5-meta-google-ga4',        hypothesisId: 'meta_match_rate_drift',          hypothesis: 'Meta CAPI match-rate dropped 4.2pp (90.3% → 86.1%) week-over-week',           remediation: 'Check Meta CAPI access_token rotation cadence; verify event_id deduplication',                                  status: 'resolved' },
+      { alertId: 'alrt_2026-07-01_0905_R2_ios_consent_banner',           timestamp: '2026-07-01 09:05:22 UTC', severity: 'critical', source: 'move-6.8-cross-platform-rollup',  hypothesisId: 'ios_consent_banner',              hypothesis: 'iOS consent banner dropped Meta + Snap match-rate by 6.0pp + 4.5pp',        remediation: 'Verify ATT prompt implementation; check consent-string propagation to CAPI',                                   status: 'resolved' },
+      { alertId: 'alrt_2026-06-24_0905_R1_app_uninstall',                 timestamp: '2026-06-24 09:05:08 UTC', severity: 'warn',     source: 'move-6.7-snap-pinterest',         hypothesisId: 'app_uninstall',                   hypothesis: 'Snap + Pinterest attribution dropped after recent app uninstall (iOS 26+ ID deprecation)',  remediation: 'Verify server-side CAPI events fire regardless of MAID; check app_uninstall webhook',                          status: 'resolved' },
+      { alertId: 'alrt_2026-06-17_0905_R3_capi_token_rotation',          timestamp: '2026-06-17 09:05:31 UTC', severity: 'critical', source: 'move-6.8-cross-platform-rollup',  hypothesisId: 'capi_token_rotation',             hypothesis: 'CAPI access_token expired; Meta + Pinterest match-rate dropped simultaneously', remediation: 'Rotate CAPI access_token; verify exp < 60 days; re-emit dedup window',                                            status: 'resolved' },
+      { alertId: 'alrt_2026-06-10_0905_R2_theme_liquid_update',          timestamp: '2026-06-10 09:05:19 UTC', severity: 'critical', source: 'move-6.8-cross-platform-rollup',  hypothesisId: 'theme_liquid_update',             hypothesis: 'theme.liquid update removed Meta pixel snippet; coverage dropped to 76%',     remediation: 'Restore Meta pixel snippet via {% include "meta-pixel.liquid" %} in <head>',                                       status: 'resolved' },
+      { alertId: 'alrt_2026-06-03_0905_R5_cooldown_suppress',            timestamp: '2026-06-03 09:05:42 UTC', severity: 'info',     source: 'cooldown-walker',                 hypothesisId: 'cooldown_suppression',            hypothesis: 'Fresh archive file alrt_2026-06-03_0900_R1_*.json within 3600s window',  remediation: 'No action — cooldown suppressed duplicate dispatch per Rule 5',                                                     status: 'archived' }
+    ];
+
+    // ----- Helper functions -----
+    function fmtUSD(n) {
+      if (n === Infinity || n === undefined || n === null) return '∞';
+      if (typeof n !== 'number' || isNaN(n)) return '—';
+      if (n >= 1000000) return '$' + (n / 1000000).toFixed(2) + 'M';
+      if (n >= 1000)    return '$' + (n / 1000).toFixed(1)    + 'k';
+      return '$' + n.toFixed(0);
+    }
+    function fmtPct(x)  { return (typeof x === 'number' && !isNaN(x)) ? x.toFixed(1) + '%' : '—'; }
+    function fmtSeconds(s) {
+      if (s === 0) return 'none (DEFER)';
+      if (s >= 86400) return (s / 86400).toFixed(0) + ' day(s)';
+      if (s >= 3600)  return (s / 3600).toFixed(0)  + ' hour(s)';
+      if (s >= 60)    return (s / 60).toFixed(0)    + ' min';
+      return s + 's';
+    }
+    function fmtRoi(lo, hi) {
+      if (lo === Infinity && hi === Infinity) return '∞:1';
+      return lo.toFixed(0) + ':1 to ' + hi.toFixed(0) + ':1';
+    }
+    function paidSpendFloorRange(path) {
+      var lo = PATH_TABLE[path].gmvMin;
+      var hi = PATH_TABLE[path].gmvMax;
+      if (hi === Infinity) return fmtUSD(lo) + '+/mo';
+      if (lo === 0)        return '<' + fmtUSD(hi) + '/mo';
+      return fmtUSD(lo) + '–' + fmtUSD(hi) + '/mo';
+    }
+    function tierForPaidSpend(paid) {
+      if (paid < 500) return 'E';
+      if (paid < 5000) return 'A';
+      if (paid < 50000) return 'B';
+      if (paid < 250000) return 'C';
+      return 'D';
+    }
+    function statusClass(s) { return s === 'resolved' ? 'archived' : (s === 'archived' ? 'archived' : 'archived'); }
+
+    // ----- Render functions (one per section) -----
+    function renderSummary(input) {
+      var path = input.path;
+      var p = PATH_TABLE[path];
+      var avoidedMid = (p.avoidedLow + p.avoidedHigh) / 2;
+      var recoveryMidLow  = p.recoveryLow  * p.avoidedLow;
+      var recoveryMidHigh = p.recoveryHigh * p.avoidedHigh;
+      var costMidLow  = p.costOneTimeLow  + p.costRecurLow  * 12;
+      var costMidHigh = p.costOneTimeHigh + p.costRecurHigh * 12;
+      var stats = [
+        { label: 'Path tier',                  value: 'Path ' + path + (path === 'B' ? ' (DEFAULT)' : ''),  detail: paidSpendFloorRange(path) + ' paid spend', valueClass: 'path-b' },
+        { label: 'Year-1 net annual ROI',      value: fmtRoi(p.roiLow, p.roiHigh),                           detail: 'canonical from playbook/06.10 §Cost & ROI estimate', valueClass: (p.roiLow === Infinity ? 'infinity' : 'path-b') },
+        { label: 'Year-1 avoided incidents',   value: p.avoidedLow + '–' + p.avoidedHigh,                     detail: 'attribution-regression incidents caught by alert vs missed', valueClass: 'path-b' },
+        { label: 'Year-1 incremental recovery',value: fmtUSD(recoveryMidLow) + ' – ' + fmtUSD(recoveryMidHigh), detail: 'incremental attribution-recovery from avoided incidents', valueClass: 'path-b' },
+        { label: 'Annualized cost stack',      value: fmtUSD(costMidLow) + ' – ' + fmtUSD(costMidHigh),       detail: 'one-time + 12 × recurring', valueClass: '' },
+        { label: 'Canonical cooldown',         value: fmtSeconds(p.cooldownSeconds),                          detail: 'override via --cooldown-seconds for Path C/D', valueClass: '' },
+        { label: 'Alert cadence',              value: (path === 'E' ? 'DEFER' : p.cadence.split('(')[0].trim()), detail: (path === 'E' ? 're-evaluate when paid-spend grows to $500+/mo' : 'post-Move-#6.8 rollup cycle'), valueClass: '' },
+        { label: 'Webhook health',             value: WEBHOOK_THRESHOLDS.cooldown_seconds + 's ' + (DECISION_RULES[0].firedToday || DECISION_RULES[1].firedToday || DECISION_RULES[2].firedToday ? 'last cycle fired' : 'last cycle no-fire'), detail: '5-rule engine + 13-field canonical alert-payload + 5 canonical thresholds pinned', valueClass: '' }
+      ];
+      var host = document.getElementById('summary-stats');
+      host.innerHTML = '';
+      stats.forEach(function (s) {
+        var card = document.createElement('div');
+        card.className = 'stat-card';
+        card.innerHTML =
+          '<div class="stat-label">' + s.label + '</div>' +
+          '<div class="stat-value ' + s.valueClass + '">' + s.value + '</div>' +
+          '<div class="stat-detail">' + s.detail + '</div>';
+        host.appendChild(card);
+      });
+    }
+
+    function renderPathGrid() {
+      var host = document.getElementById('path-cards');
+      host.innerHTML = '';
+      ['A','B','C','D','E'].forEach(function (path) {
+        var p = PATH_TABLE[path];
+        var card = document.createElement('div');
+        card.className = 'path-card ' + p.tierClass + (path === 'B' ? ' default' : '');
+        var platsHtml = p.platforms.map(function (pl) { return '<li>' + pl + '</li>'; }).join('');
+        card.innerHTML =
+          '<h3>' + p.label + '</h3>' +
+          '<div class="paid-spend-floor">' + paidSpendFloorRange(path) + ' paid spend floor</div>' +
+          '<div class="alert-cadence">' + p.cadence + '</div>' +
+          '<div class="cooldown">cooldown: ' + fmtSeconds(p.cooldownSeconds) + '</div>' +
+          '<div class="roi-band">Year-1 net ROI: ' + fmtRoi(p.roiLow, p.roiHigh) + '</div>' +
+          '<ul class="platforms">' + platsHtml + '</ul>';
+        host.appendChild(card);
+      });
+    }
+
+    function renderRules() {
+      var host = document.getElementById('rule-cards');
+      host.innerHTML = '';
+      DECISION_RULES.forEach(function (rule) {
+        var card = document.createElement('div');
+        var statusClass = rule.fired ? (rule.severity === 'critical' ? 'fail' : 'warn') : 'ok';
+        card.className = 'rule-card ' + statusClass;
+        var firedText = rule.firedToday ? 'FIRED THIS CYCLE (' + rule.severity + ')' : 'not fired this cycle';
+        card.innerHTML =
+          '<div class="rule-id">' + rule.id + '</div>' +
+          '<h3>' + rule.label + '</h3>' +
+          '<div class="rule-condition">' + rule.condition + '</div>' +
+          '<div class="rule-fired ' + (rule.firedToday ? '' : 'not-fired') + '">' + firedText + '</div>';
+        host.appendChild(card);
+      });
+    }
+
+    function renderCostChart() {
+      var host = document.getElementById('cost-chart');
+      host.innerHTML = '';
+      // Compute stacked (cost vs recovery) per path
+      ['A','B','C','D','E'].forEach(function (path) {
+        var p = PATH_TABLE[path];
+        var costAnnual  = p.costOneTimeLow  + p.costRecurLow  * 12;
+        var costAnnualH = p.costOneTimeHigh + p.costRecurHigh * 12;
+        var recoveryLow  = p.recoveryLow  * p.avoidedLow;
+        var recoveryHigh = p.recoveryHigh * p.avoidedHigh;
+        // bar width = max(recoveryHigh, costAnnualH) within $250k scale
+        var maxScale = 250000.0;
+        var costPct  = Math.min(100, (costAnnualH / maxScale) * 100);
+        var recPct   = Math.min(100, (recoveryHigh / maxScale) * 100);
+        var totalPct = costPct + recPct;
+        if (totalPct > 100) { var shrink = 100 / totalPct; costPct *= shrink; recPct *= shrink; }
+        var row = document.createElement('div');
+        row.className = 'bar-row';
+        row.innerHTML =
+          '<div class="label ' + p.tierClass + '">Path ' + path + '</div>' +
+          '<div class="bar-bg">' +
+            '<div class="stacked-bar" style="width: 100%">' +
+              '<div class="stacked-cost" style="width: ' + costPct.toFixed(1) + '%"></div>' +
+              '<div class="stacked-recovery" style="width: ' + recPct.toFixed(1) + '%"></div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="value">cost ' + fmtUSD(costAnnual) + '-' + fmtUSD(costAnnualH) + ' · rec ' + fmtUSD(recoveryLow) + '-' + fmtUSD(recoveryHigh) + '</div>';
+        host.appendChild(row);
+      });
+      // Legend
+      var legend = document.createElement('div');
+      legend.style.marginTop = '8px';
+      legend.style.fontSize = '11px';
+      legend.style.color = 'var(--text-dim)';
+      legend.innerHTML =
+        '<span style="display:inline-block;width:12px;height:12px;background:var(--fail);opacity:0.7;vertical-align:middle;margin-right:6px;"></span>annualized cost stack &nbsp;&nbsp; ' +
+        '<span style="display:inline-block;width:12px;height:12px;background:var(--ok);vertical-align:middle;margin-right:6px;"></span>Year-1 incremental attribution-recovery';
+      host.appendChild(legend);
+    }
+
+    function renderArchiveTable() {
+      var host = document.getElementById('archive-table-body');
+      host.innerHTML = '';
+      ARCHIVE_ENTRIES.forEach(function (a) {
+        var tr = document.createElement('tr');
+        tr.innerHTML =
+          '<td class="alert-id">' + a.alertId + '</td>' +
+          '<td class="timestamp">' + a.timestamp + '</td>' +
+          '<td><span class="severity-pill ' + a.severity + '">' + a.severity + '</span></td>' +
+          '<td>' + a.source + '</td>' +
+          '<td><span class="hypothesis-id">' + a.hypothesisId + '</span><br/>' + a.hypothesis + '</td>' +
+          '<td>' + a.remediation + '</td>' +
+          '<td><span class="severity-pill ' + statusClass(a.status) + '">' + a.status + '</span></td>';
+        host.appendChild(tr);
+      });
+    }
+
+    function renderNextAction(input) {
+      var path = input.path;
+      var p = PATH_TABLE[path];
+      var steps = [];
+      if (path === 'E') {
+        steps = [
+          'Path E defer is correct: paid-spend below $500/mo. Re-evaluate quarterly.',
+          'Wire Move #6 (Triple Whale attribution) + Move #6.5/6.6/6.7/6.8 (per-platform audits + cross-platform rollup) so that the substrate is ready when paid-spend grows.',
+          'When paid-spend grows to $500+/mo, re-run scripts/attribution_health_alert_unit_economics.py to confirm Path A/B recommendation.'
+        ];
+      } else if (path === 'A') {
+        steps = [
+          'Path A hermetic-local-archive is wired; verify .alerts/ directory exists via <code>python3 scripts/attribution_health_alert_webhook.py --bootstrap</code>.',
+          'Wire cron at weekly Monday 09:00 (5 min before Move #6.8): <code>0 9 * * 1 cd /data/workspace/ecommerce-ops && python3 scripts/attribution_health_alert_webhook.py --rollup-json .rollups/attribution_latest.json --alert-archive .alerts/</code>',
+          'Operator reviews .alerts/ archive weekly (no Slack dispatch). When paid-spend grows to $5k+/mo, upgrade to Path B with Slack-webhook URL.'
+        ];
+      } else if (path === 'B') {
+        steps = [
+          'Path B is canonical DEFAULT; ensure <code>SLACK_ATTRIBUTION_ALERT_WEBHOOK_URL</code> + <code>LINEAR_API_KEY</code> + <code>ATTRIBUTION_ALERT_FALLBACK_LINEAR_TEAM_ID</code> are set.',
+          'Verify cron is wired: <code>0 9 * * 1 cd /data/workspace/ecommerce-ops && python3 scripts/attribution_health_alert_webhook.py --webhook-url "$SLACK_ATTRIBUTION_ALERT_WEBHOOK_URL" --rollup-json .rollups/attribution_latest.json --alert-archive .alerts/ --cooldown-seconds 3600</code>',
+          'Run <code>--validate-thresholds</code> weekly to confirm 5 canonical thresholds + 13-field payload shape remain pinned (regression gate).',
+          'Track cross-platform drift hypotheses via Move #6.8 rollup — fix shared root cause first (usually restores 2+ platforms at once).',
+          'When paid-spend grows to $50k+/mo, upgrade to Path C (every-4-hours cadence + PagerDuty-low-urgency).'
+        ];
+      } else if (path === 'C') {
+        steps = [
+          'Path C is for larger teams; wire PagerDuty-Events-API-v2 low-urgency integration + 16-hr/day on-call rotation (2 shifts × 8 hr each).',
+          'Cron every-4-hours: <code>0 6,10,14,18 * * * cd /data/workspace/ecommerce-ops && python3 scripts/attribution_health_alert_webhook.py --webhook-url "$SLACK_ATTRIBUTION_ALERT_WEBHOOK_URL" --cooldown-seconds 600</code>',
+          'PagerDuty-low 8-hour response window; 7-slide incident-postmortem template per assets/24 after every fired alert.'
+        ];
+      } else {
+        steps = [
+          'Path D is for enterprise ($250k+/mo paid); wire PagerDuty-high + Opsgenie-Enterprise + 24/7 dedicated on-call rotation + CMO-pager for $250k+/mo-impact incidents.',
+          'Cron hourly at minute 5: <code>5 * * * * cd /data/workspace/ecommerce-ops && python3 scripts/attribution_health_alert_webhook.py --webhook-url "$PAGERDUTY_EVENTS_API_URL" --cooldown-seconds 300</code>',
+          '1-hour PagerDuty-high response window; quarterly playbook-update-cycle + 4-amulet cross-platform attribution-regression detection cookbook per assets/24.'
+        ];
+      }
+      var host = document.getElementById('next-action');
+      host.innerHTML = '<ol>' + steps.map(function (s) { return '<li>' + s + '</li>'; }).join('') + '</ol>' +
+        '<div class="meta">Path ' + path + ' selected by tierForPaidSpend(' + fmtUSD(input.paid_spend) + ') → canonical from scripts/attribution_health_alert_unit_economics.py line 385-395.</div>';
+    }
+
+    function renderAll(input) {
+      renderSummary(input);
+      renderPathGrid();
+      renderRules();
+      renderCostChart();
+      renderArchiveTable();
+      renderNextAction(input);
+    }
+
+    // ----- Sample inputs + URL-param parsing + fetch timeout contract -----
+    var SAMPLE_INPUTS = {
+      path: 'B',
+      paid_spend: 25000.0,
+      voice: 'default'
+    };
+
+    var params = new URLSearchParams(window.location.search);
+    function paramOr(p, fallback) {
+      var v = params.get(p);
+      return (v && v.length > 0) ? v : fallback;
+    }
+
+    var DEMO_MODE = paramOr('demo', null) === '1';
+    var modeBadge = document.getElementById('mode-badge');
+    // The dashboard tracks the canonical 13-field alert-payload shape pinned by
+    // _canonical_alert_shape_published() regression gate per scripts/attribution_health_alert_webhook.py
+    // + the canonical 5-decision-rule engine (R1-R5) per scripts/attribution_health_alert_webhook.py _decide_should_fire.
+    var alertsIndexUrl = paramOr('alerts_index', '.alerts/index.json');
+
+    // Fetch with AbortController timeout contract (per Move #6.8 sibling-cron pattern)
+    var FETCH_TIMEOUT_MS = 1500;
+    function fetchJSON(url) {
+      var controller = (typeof AbortController !== 'undefined') ? new AbortController() : null;
+      var timeoutId = setTimeout(function () { if (controller) controller.abort(); }, FETCH_TIMEOUT_MS);
+      var opts = controller ? { signal: controller.signal } : {};
+      return fetch(url, opts).then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.json();
+      }).finally(function () { clearTimeout(timeoutId); });
+    }
+
+    var inputs = {
+      path: paramOr('path', SAMPLE_INPUTS.path),
+      paid_spend: parseFloat(paramOr('paid_spend', SAMPLE_INPUTS.paid_spend)),
+      voice: paramOr('voice', SAMPLE_INPUTS.voice)
+    };
+    // Tier override (canonical tierForPaidSpend logic)
+    inputs.path = tierForPaidSpend(inputs.paid_spend);
+    var pParam = paramOr('path', null);
+    if (pParam && PATH_TABLE[pParam]) inputs.path = pParam;
+
+    if (!DEMO_MODE) {
+      fetchJSON(alertsIndexUrl).then(function (data) {
+        if (data && data.path) inputs.path = data.path;
+        if (data && typeof data.paid_spend === 'number') inputs.paid_spend = data.paid_spend;
+        modeBadge.textContent = 'Live Mode';
+        modeBadge.className = 'mode-badge live';
+        renderAll(inputs);
+      }).catch(function () {
+        // fetch failed (no .alerts/ on disk yet) — fall back to demo mode
+        modeBadge.textContent = 'Demo Mode';
+        modeBadge.className = 'mode-badge demo';
+        renderAll(inputs);
+      });
+    } else {
+      renderAll(inputs);
+    }
+  </script>
+</body>
+</html>
