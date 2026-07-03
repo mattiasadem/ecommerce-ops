@@ -21,7 +21,7 @@ The Slack-compatible JSON payload shape is pinned by test_canonical_alert_shape_
 so future contributors don't silently change which fields downstream consumers
 parse on.
 
-Companion playbook: (deferred — see TODO in docs/journal.md 2026-07-03 tick)
+Companion playbook: playbooks/06.10-attribution-health-alert-webhook-launch.md (shipped 2026-07-09 per the operator-build-tick follow-up to the 2026-07-03 hardening tick)
 Companion tick: 2026-07-03 ecommerce-ops improver track-9-12 hardening tick
 """
 
