@@ -11,6 +11,7 @@ import { MetricCard } from "@/components/metric-card";
 import { Bar } from "@/components/bar";
 import { YourStoreCard } from "@/components/your-store-card";
 import { ShippedProgressStrip } from "@/components/shipped-playbooks";
+import { NextMoveCard } from "@/components/next-move";
 import { content, findTable, fmtDate } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -160,6 +161,11 @@ export default function Home() {
             <YourStoreCard />
           </CardContent>
         </Card>
+      </section>
+
+      {/* === NEXT-MOVE RECOMMENDATION — what to ship TODAY === */}
+      <section id="next-move">
+        <NextMoveCard />
       </section>
 
       {/* === ACTION CARDS: what you can do right now === */}
