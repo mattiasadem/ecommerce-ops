@@ -9,6 +9,7 @@ const NAV_GROUPS = [
     label: "Operate",
     items: [
       { href: "/", label: "Overview" },
+      { href: "/standup", label: "Daily" },
       { href: "/top-10", label: "Top 10 Moves" },
       { href: "/playbooks", label: "Playbooks" },
       { href: "/journal", label: "Journal" },
