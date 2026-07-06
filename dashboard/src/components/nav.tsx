@@ -38,6 +38,7 @@ const NAV_GROUPS = [
       { href: "/amazon-dsp-amazon-attribution-audit", label: "Amazon DSP" },
       { href: "/attribution-health-alert-archive", label: "Attribution Alerts" },
       { href: "/smsbump-postscript-channel-orchestration", label: "SMSBump SMS" },
+      { href: "/generative-ai-engine", label: "AI Engine" },
       { href: "/international", label: "International" },
       { href: "/3pl", label: "3PL" },
       { href: "/lifecycle", label: "Lifecycle" },
