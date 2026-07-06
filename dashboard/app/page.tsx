@@ -10,6 +10,7 @@ import { Separator } from "@/components/ui/separator";
 import { MetricCard } from "@/components/metric-card";
 import { Bar } from "@/components/bar";
 import { YourStoreCard } from "@/components/your-store-card";
+import { ShippedProgressStrip } from "@/components/shipped-playbooks";
 import { content, findTable, fmtDate } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -169,7 +170,7 @@ export default function Home() {
             Each action ships a real artifact — playbook, script, or asset.
           </span>
         </div>
-        <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4">
           <a
             href={`/playbooks#${recommendedPlaybook?.file.replace(/\.md$/, "")}`}
             className="group flex flex-col gap-2 rounded-xl border border-border bg-card p-5 transition-colors hover:border-foreground/30"
@@ -190,6 +191,13 @@ export default function Home() {
               Open playbook <span aria-hidden="true">→</span>
             </div>
           </a>
+
+          <ShippedProgressStrip
+            playbooks={playbooks.map((p) => ({
+              id: p.file.replace(/\.md$/, ""),
+              title: p.title,
+            }))}
+          />
 
           <a
             href="/top-10"
