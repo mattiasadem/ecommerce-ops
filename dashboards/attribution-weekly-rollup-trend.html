@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Attribution Weekly Rollup Trend — ecommerce-ops</title>
+  <!--
+    Attribution Weekly Rollup Trend dashboard — static operator surface for the
+    Move #6.5 weekly-rollup-trend track.
+
+    Renders 6 sections end-to-end:
+      1. Trend Window Summary — headline metrics (12-week canonical trend window,
+         3.0pp cumulative match-rate drift threshold, 2.0pp cumulative coverage
+         drift threshold, 4-week consecutive-decline threshold, 86400s canonical
+         cooldown for daily-cadence replay)
+      2. Per-platform trend direction grid — 4 canonical platforms (Meta+Google+GA4 /
+         TikTok / Snap+Pinterest / Cross-platform rollup) with match-rate +
+         coverage direction pills (improving / declining / stable)
+      3. Per-rule engine status — 4 canonical trend-fired-rule scenarios
+         (cumulative_match_rate_drift / cumulative_coverage_drift /
+         consecutive_decline / all_stable) per scripts/attribution_weekly_rollup_trend.py
+         _decide_should_fire
+      4. Per-platform cumulative-drift stacked bar chart — 12-week cumulative
+         match-rate + coverage drift per platform (max-across-platforms surface
+         on a 5pp scale)
+      5. Per-fired-rule archive table — 7 canonical archive-entry rows (alert_id +
+         timestamp + severity + source + fired_rule + remediation + status) for
+         3 fired-rule scenarios + 1 all_stable pattern across 7 representative
+         weekly cycles
+      6. Recommended next action — context-aware next-step derived from trend
+         direction + consecutive_decline_streak + cumulative_drift thresholds
+
+    Demo data is hardcoded to the canonical 12-week trend window (Meta match-rate
+    drifting -0.4pp/week for 6 weeks = -2.4pp cumulative under threshold but
+    trend clearly downward; TikTok coverage +1.2pp cumulative; Snap stable;
+    Pinterest coverage drifting -0.3pp/week × 8 weeks = -2.4pp cumulative under
+    threshold but stable; Cross-platform rollup overall stable).
+
+    Live data sources (override via URL params):
+      ?window=12                              (default 12)
+      ?demo=1                                 (force demo mode; no fetches; uses SAMPLE_ defaults)
+
+    Architecture: NO build step, NO npm deps, single inline CSS + vanilla JS.
+    Companion artifacts:
+      scripts/attribution_weekly_rollup_trend.py                              (Archetype C/D-light hybrid trend script; ~770 lines)
+      scripts/tests/test_attribution_weekly_rollup_trend.py                   (59 TDD tests across 13 test classes)
+      playbooks/06.5-weekly-rollup-trend-launch.md                            (13-section operator-build playbook; shipped 2026-07-10)
+      assets/25-attribution-weekly-rollup-trend-template.md                    (11 paste-ready artifacts; 20 voice-variant trend templates)
+      scripts/attribution_cross_platform_rollup.py                            (Move #6.8 cross-platform rollup substrate)
+      scripts/attribution_health_alert_webhook.py                             (Move #6.10 per-cycle alert webhook; this dashboard is the multi-cycle companion)
+      dashboards/unified-attribution-health.html                              (per-cycle dashboard; this dashboard is the multi-cycle trend companion)
+      dashboards/attribution-health-alert-archive.html                        (Move #6.10 alert-archive dashboard; per-cycle archive)
+      research/06-marketplace-expansion.md + research/14-amazon-dsp-amazon-attribution-audit.md
+      assets/24-attribution-health-alert-payload-template.md                  (per-cycle alert-payload companion; 25 voice variants)
+
+    All canonical constants (TREND_THRESHOLDS / TREND_ALERT_PAYLOAD_TOP_LEVEL_FIELDS /
+    TREND_REMEDIATION / PER_PLATFORM_METRIC_KEYS / WEBHOOK_TIMEOUT_SECONDS)
+    mirror scripts/attribution_weekly_rollup_trend.py line-for-line.
+
+    Per the v0.11.0 static-dashboard-tick recipe, this dashboard uses self-contained inline CSS +
+    vanilla JS, no Chart.js / no npm / no build step. Pure-Node smoke tests live in
+    dashboards/tests/test_attribution_weekly_rollup_trend.js (~30+ tests across 18 categories
+    per the v0.11.0 recipe).
+  -->
+  <style>
+    :root {
+      --bg: #0f1115;
+      --panel: #161922;
+      --panel-2: #1d2230;
+      --border: #2a2f3d;
+      --text: #e8eaf0;
+      --text-dim: #9097a8;
+      --accent: #58a6ff;
+      --ok: #4ec9b0;
+      --warn: #e0af68;
+      --fail: #f06a6a;
+      --violet: #b48ead;
+      --code-bg: #0a0c10;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    header {
+      padding: 24px 32px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    header .subtitle {
+      color: var(--text-dim);
+      font-size: 13px;
+      margin-top: 4px;
+    }
+    .mode-badge {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 12px;
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .mode-badge.live { background: rgba(78,201,176,0.15); color: var(--ok); border-color: rgba(78,201,176,0.4); }
+    .mode-badge.demo { background: rgba(224,175,104,0.15); color: var(--warn); border-color: rgba(224,175,104,0.4); }
+    main {
+      padding: 24px 32px 64px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    section {
+      margin-bottom: 32px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px 24px;
+    }
+    section h2 {
+      margin: 0 0 16px 0;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: 0.01em;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .stat-card {
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .stat-card .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+      margin-bottom: 6px;
+    }
+    .stat-card .value {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.1;
+    }
+    .stat-card .value.path-b { color: var(--ok); }
+    .stat-card .value.infinity { color: var(--violet); }
+    .stat-card .value.warn { color: var(--warn); }
+    .stat-card .value.critical { color: var(--fail); }
+    .stat-card .detail {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+    .path-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px;
+    }
+    .path-card {
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .path-card .path-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .path-card .path-name {
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .path-card .direction-pill {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .direction-pill.improving { background: rgba(78,201,176,0.15); color: var(--ok); border: 1px solid rgba(78,201,176,0.4); }
+    .direction-pill.stable    { background: rgba(88,166,255,0.15); color: var(--accent); border: 1px solid rgba(88,166,255,0.4); }
+    .direction-pill.declining { background: rgba(240,106,106,0.15); color: var(--fail); border: 1px solid rgba(240,106,106,0.4); }
+    .direction-pill.warning   { background: rgba(224,175,104,0.15); color: var(--warn); border: 1px solid rgba(224,175,104,0.4); }
+    .direction-pill.critical  { background: rgba(240,106,106,0.15); color: var(--fail); border: 1px solid rgba(240,106,106,0.4); }
+    .direction-pill.info      { background: rgba(78,201,176,0.15); color: var(--ok); border: 1px solid rgba(78,201,176,0.4); }
+    .path-card .metric-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      padding: 4px 0;
+      border-top: 1px solid var(--border);
+    }
+    .path-card .metric-row:first-of-type {
+      border-top: none;
+    }
+    .path-card .metric-key {
+      color: var(--text-dim);
+    }
+    .path-card .metric-value {
+      font-weight: 500;
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    }
+    .rule-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px;
+    }
+    .rule-card {
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .rule-card .rule-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .rule-card .rule-id {
+      font-size: 12px;
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      color: var(--violet);
+      font-weight: 600;
+    }
+    .rule-card .rule-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .rule-card .rule-condition {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+    .rule-card .rule-status {
+      font-size: 11px;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
+    }
+    .bar-chart {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .bar-row {
+      display: grid;
+      grid-template-columns: 140px 1fr 220px;
+      align-items: center;
+      gap: 12px;
+    }
+    .bar-row .label {
+      font-size: 12px;
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      color: var(--text);
+    }
+    .bar-row .bar-bg {
+      background: var(--code-bg);
+      border-radius: 4px;
+      height: 18px;
+      overflow: hidden;
+      display: flex;
+      border: 1px solid var(--border);
+    }
+    .bar-row .stacked-bar {
+      display: flex;
+      height: 100%;
+    }
+    .bar-row .stacked-match {
+      height: 100%;
+      background: var(--fail);
+      opacity: 0.7;
+    }
+    .bar-row .stacked-coverage {
+      height: 100%;
+      background: var(--accent);
+      opacity: 0.7;
+    }
+    .bar-row .value {
+      font-size: 11px;
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      color: var(--text-dim);
+    }
+    .archive-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    .archive-table th {
+      text-align: left;
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-dim);
+      font-weight: 500;
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: 0.06em;
+    }
+    .archive-table td {
+      padding: 10px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .archive-table .alert-id {
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      color: var(--accent);
+    }
+    .archive-table .timestamp {
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      color: var(--text-dim);
+      white-space: nowrap;
+    }
+    .severity-pill {
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-weight: 600;
+      display: inline-block;
+    }
+    .severity-pill.critical { background: rgba(240,106,106,0.15); color: var(--fail); border: 1px solid rgba(240,106,106,0.4); }
+    .severity-pill.warn     { background: rgba(224,175,104,0.15); color: var(--warn); border: 1px solid rgba(224,175,104,0.4); }
+    .severity-pill.info     { background: rgba(78,201,176,0.15); color: var(--ok);  border: 1px solid rgba(78,201,176,0.4); }
+    .severity-pill.archived { background: rgba(144,151,168,0.15); color: var(--text-dim); border: 1px solid rgba(144,151,168,0.3); }
+    .severity-pill.resolved { background: rgba(78,201,176,0.15); color: var(--ok); border: 1px solid rgba(78,201,176,0.4); }
+    .hypothesis-id {
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      color: var(--violet);
+      font-size: 11px;
+      padding: 1px 5px;
+      background: rgba(180,142,173,0.12);
+      border-radius: 3px;
+      display: inline-block;
+    }
+    .next-step {
+      font-size: 13px;
+      line-height: 1.7;
+    }
+    .next-step ol {
+      padding-left: 22px;
+      margin: 8px 0;
+    }
+    .next-step li {
+      margin: 6px 0;
+    }
+    .next-step code {
+      background: var(--code-bg);
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 11px;
+      border: 1px solid var(--border);
+      color: var(--accent);
+    }
+    .next-step .meta {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+    }
+    footer {
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 11px;
+      padding: 24px 32px;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Attribution Weekly Rollup Trend</h1>
+      <div class="subtitle">Move #6.5 weekly-rollup-trend static-dashboard layer 4 — 12-week canonical trend window · 3.0pp cumulative match-rate drift · 2.0pp cumulative coverage drift · 4-week consecutive-decline · 86400s cooldown</div>
+    </div>
+    <span id="mode-badge" class="mode-badge demo">Demo Mode</span>
+  </header>
+  <main>
+    <section id="summary-section">
+      <h2>Trend Window Summary</h2>
+      <div class="stats" id="summary-stats"></div>
+    </section>
+
+    <section id="platform-section">
+      <h2>Per-platform trend direction grid</h2>
+      <div class="path-grid" id="platform-cards"></div>
+    </section>
+
+    <section id="rules-section">
+      <h2>Per-rule engine status</h2>
+      <div class="rule-grid" id="rule-cards"></div>
+    </section>
+
+    <section id="drift-section">
+      <h2>Per-platform cumulative-drift over 12 weeks (match-rate + coverage)</h2>
+      <div class="bar-chart" id="drift-chart"></div>
+    </section>
+
+    <section id="archive-section">
+      <h2>Per-fired-rule trend-archive table</h2>
+      <table class="archive-table">
+        <thead>
+          <tr>
+            <th>alert_id</th>
+            <th>timestamp</th>
+            <th>severity</th>
+            <th>source</th>
+            <th>fired_rule</th>
+            <th>remediation</th>
+            <th>status</th>
+          </tr>
+        </thead>
+        <tbody id="archive-table-body"></tbody>
+      </table>
+    </section>
+
+    <section id="next-action-section">
+      <h2>Recommended next action</h2>
+      <div class="next-step" id="next-action"></div>
+    </section>
+  </main>
+  <footer>
+    Move #6.5 weekly-rollup-trend · self-contained static dashboard · no build step · vanilla JS + CSS only · compounds Move #6.8 cross-platform rollup + Move #6.10 per-cycle alert webhook
+  </footer>
+  <script>
+    // ----- 5 canonical trend thresholds — pinned by _canonical_trend_thresholds_published() regression gate per scripts/attribution_weekly_rollup_trend.py -----
+    var TREND_THRESHOLDS = {
+      trend_window_weeks: 12,
+      fire_on_cumulative_match_rate_drift_pp: 3.0,
+      fire_on_cumulative_coverage_drift_pp: 2.0,
+      fire_on_consecutive_decline_weeks: 4,
+      cooldown_seconds: 86400
+    };
+
+    // ----- 15 canonical trend-alert payload fields — pinned by _canonical_trend_alert_shape_published() regression gate per scripts/attribution_weekly_rollup_trend.py -----
+    var TREND_ALERT_PAYLOAD_FIELDS = [
+      'alert_id', 'timestamp', 'source', 'severity', 'title', 'summary',
+      'trend_window_weeks', 'weeks_analyzed', 'per_platform_trend',
+      'cumulative_drift', 'consecutive_decline_platforms', 'remediation',
+      'overall_passed', 'thresholds_used', 'raw_trend_state_path'
+    ];
+
+    // ----- 4 canonical fired-rule scenarios — mirrors TREND_REMEDIATION + _decide_should_fire in scripts/attribution_weekly_rollup_trend.py -----
+    var DECISION_RULES = [
+      { id: 'R1', label: 'Rule 1 — cumulative match-rate drift > 3.0pp',   condition: 'max|delta-match-rate| across the 12-week window > 3.0pp',                        fired: false, severity: 'critical', firedToday: false, firedWeeks: [] },
+      { id: 'R2', label: 'Rule 2 — cumulative coverage drift > 2.0pp',     condition: 'max|delta-coverage| across the 12-week window > 2.0pp',                          fired: false, severity: 'critical', firedToday: false, firedWeeks: [] },
+      { id: 'R3', label: 'Rule 3 — 4+ consecutive weeks of decline',       condition: 'any platform shows >= 4 trailing weekly declines in match-rate',                 fired: true,  severity: 'warn',     firedToday: true,  firedWeeks: ['2026-06-23', '2026-06-30', '2026-07-07'] },
+      { id: 'R4', label: 'Rule 4 — all trends stable (info)',              condition: 'no rule fired; trend is stable across the 12-week window',                        fired: false, severity: 'info',     firedToday: false, firedWeeks: [] }
+    ];
+
+    // ----- Per-platform trend data: 4 canonical platforms from Move #6.8 cross-platform rollup -----
+    // Each platform carries match-rate + coverage weekly series + computed cumulative_delta + consecutive_decline_weeks + direction.
+    var PER_PLATFORM_TREND = [
+      {
+        label: 'meta_google_ga4',
+        name: 'Meta+Google+GA4',
+        match_rate: { values: [89.2, 89.0, 88.8, 88.5, 88.3, 88.0, 87.7, 87.4, 87.2, 87.0, 86.8, 86.6], cumulative_delta: -2.6, consecutive_decline_weeks: 6, direction: 'declining' },
+        coverage:   { values: [96.0, 96.0, 95.9, 95.8, 95.8, 95.7, 95.7, 95.6, 95.5, 95.5, 95.4, 95.4], cumulative_delta: -0.6, consecutive_decline_weeks: 5, direction: 'stable' }
+      },
+      {
+        label: 'tiktok',
+        name: 'TikTok (Move #6.6)',
+        match_rate: { values: [82.5, 82.7, 83.0, 83.1, 83.2, 83.4, 83.5, 83.6, 83.7, 83.8, 84.0, 84.1], cumulative_delta: 1.6, consecutive_decline_weeks: 0, direction: 'improving' },
+        coverage:   { values: [91.2, 91.4, 91.5, 91.6, 91.8, 92.0, 92.1, 92.3, 92.4, 92.6, 92.7, 92.8], cumulative_delta: 1.6, consecutive_decline_weeks: 0, direction: 'improving' }
+      },
+      {
+        label: 'snap_pinterest',
+        name: 'Snap+Pinterest (Move #6.7)',
+        match_rate: { values: [78.0, 78.1, 78.0, 77.9, 77.8, 77.6, 77.5, 77.4, 77.3, 77.2, 77.1, 77.0], cumulative_delta: -1.0, consecutive_decline_weeks: 5, direction: 'stable' },
+        coverage:   { values: [88.4, 88.2, 88.0, 87.8, 87.6, 87.4, 87.2, 87.0, 86.8, 86.6, 86.4, 86.2], cumulative_delta: -2.2, consecutive_decline_weeks: 12, direction: 'declining' }
+      },
+      {
+        label: 'cross_platform_rollup',
+        name: 'Cross-platform rollup (Move #6.8)',
+        match_rate: { values: [85.6, 85.6, 85.5, 85.5, 85.4, 85.3, 85.2, 85.1, 85.0, 84.9, 84.8, 84.7], cumulative_delta: -0.9, consecutive_decline_weeks: 4, direction: 'stable' },
+        coverage:   { values: [92.5, 92.5, 92.4, 92.4, 92.3, 92.3, 92.2, 92.1, 92.1, 92.0, 92.0, 91.9], cumulative_delta: -0.6, consecutive_decline_weeks: 4, direction: 'stable' }
+      }
+    ];
+
+    // ----- 7 canonical trend-archive entries (3 fired-rule scenarios + 1 all_stable + 3 cross-pollinated Move #6.10 baseline fires) -----
+    var ARCHIVE_ENTRIES = [
+      { alertId: 'attr-trend-2026-07-06T0905Z-consecutive_pinterest',          timestamp: '2026-07-06 09:05:14 UTC', severity: 'warn',     source: 'move-6.5-weekly-rollup-trend',   firedRule: 'consecutive_decline',                hypothesis: 'Snap+Pinterest match-rate declined 4+ consecutive weeks (1.0pp cumulative); approaching cumulative-drift threshold', remediation: 'Check Pinterest CAPI token rotation cadence + Snap pixel snippet integrity; verify app_uninstall webhook propagation',     status: 'resolved' },
+      { alertId: 'attr-trend-2026-07-06T0905Z-consecutive_meta',               timestamp: '2026-07-06 09:05:14 UTC', severity: 'warn',     source: 'move-6.5-weekly-rollup-trend',   firedRule: 'consecutive_decline',                hypothesis: 'Meta match-rate declined 6+ consecutive weeks (2.6pp cumulative); approaching cumulative-drift threshold',              remediation: 'Verify Meta CAPI dedup window + Advanced Matching state; check iOS consent banner rollback',                              status: 'resolved' },
+      { alertId: 'attr-trend-2026-07-06T0905Z-stable_tiktok',                  timestamp: '2026-07-06 09:05:14 UTC', severity: 'info',     source: 'move-6.5-weekly-rollup-trend',   firedRule: 'all_stable',                         hypothesis: 'TikTok match-rate + coverage improving (+1.6pp each); no rule fired this cycle',                                          remediation: 'No action — trend is stable across the 12-week window',                                                                     status: 'resolved' },
+      { alertId: 'attr-trend-2026-06-29T0905Z-consecutive_pinterest',          timestamp: '2026-06-29 09:05:22 UTC', severity: 'warn',     source: 'move-6.5-weekly-rollup-trend',   firedRule: 'consecutive_decline',                hypothesis: 'Snap+Pinterest match-rate declined 3 consecutive weeks (still under 4-week threshold)',                                  remediation: 'Monitor; re-evaluate at next cycle; check coverage drift < 2.0pp threshold',                                              status: 'resolved' },
+      { alertId: 'attr-trend-2026-06-22T0905Z-stable_cross_platform',          timestamp: '2026-06-22 09:05:08 UTC', severity: 'info',     source: 'move-6.5-weekly-rollup-trend',   firedRule: 'all_stable',                         hypothesis: 'Cross-platform rollup stable (max|cumulative_delta| 0.6pp < 2.0pp coverage threshold)',                                    remediation: 'No action — trend is stable across the 12-week window',                                                                     status: 'resolved' },
+      { alertId: 'attr-trend-2026-06-15T0905Z-coverage_drift_snap',            timestamp: '2026-06-15 09:05:31 UTC', severity: 'critical', source: 'move-6.5-weekly-rollup-trend',   firedRule: 'cumulative_coverage_drift',          hypothesis: 'Snap+Pinterest coverage cumulative_delta exceeded 2.0pp threshold (-2.2pp over 12 weeks)',                              remediation: 'Check Snap pixel snippet + Pinterest tag firing; verify advanced_matching_toggle state across both platforms',                  status: 'resolved' },
+      { alertId: 'attr-trend-2026-06-08T0905Z-cooldown_suppress',              timestamp: '2026-06-08 09:05:42 UTC', severity: 'info',     source: 'cooldown-walker',                 firedRule: 'cooldown_suppression',               hypothesis: 'Fresh archive file attr-trend-2026-06-08_0830_*.json within 86400s window',                                                  remediation: 'No action — cooldown suppressed duplicate dispatch per cooldown_seconds=86400',                                              status: 'archived' }
+    ];
+
+    // ----- Helper functions -----
+    function fmtPct(x)  { return (typeof x === 'number' && !isNaN(x)) ? x.toFixed(1) + '%' : '—'; }
+    function fmtPp(x)   { return (typeof x === 'number' && !isNaN(x)) ? (x >= 0 ? '+' : '') + x.toFixed(1) + 'pp' : '—'; }
+    function fmtCount(n) { return (typeof n === 'number' && !isNaN(n)) ? n.toString() : '—'; }
+    function fmtSeconds(s) {
+      if (s === 0) return 'none';
+      if (s >= 86400) return (s / 86400).toFixed(0) + ' day(s)';
+      if (s >= 3600)  return (s / 3600).toFixed(0)  + ' hour(s)';
+      return s + 's';
+    }
+    function directionClass(direction) {
+      if (direction === 'improving') return 'improving';
+      if (direction === 'declining') return 'declining';
+      return 'stable';
+    }
+    function severityClass(severity) { return severity; }
+
+    // ----- Render functions (one per section) -----
+    function renderSummary(input) {
+      var weeks = input.weeks_analyzed;
+      var firedCount = DECISION_RULES.filter(function (r) { return r.fired; }).length;
+      var maxMatchDrift = 0.0;
+      var maxCoverageDrift = 0.0;
+      var consecutivePlatforms = [];
+      PER_PLATFORM_TREND.forEach(function (p) {
+        maxMatchDrift = Math.max(maxMatchDrift, Math.abs(p.match_rate.cumulative_delta));
+        maxCoverageDrift = Math.max(maxCoverageDrift, Math.abs(p.coverage.cumulative_delta));
+        if (p.match_rate.consecutive_decline_weeks >= TREND_THRESHOLDS.fire_on_consecutive_decline_weeks) {
+          consecutivePlatforms.push(p.label);
+        }
+      });
+      var stats = [
+        { label: 'Trend window',                  value: weeks + ' weeks',                                                detail: 'canonical ' + TREND_THRESHOLDS.trend_window_weeks + '-week window from scripts/attribution_weekly_rollup_trend.py TREND_THRESHOLDS', valueClass: '' },
+        { label: 'Cumulative match-rate drift',  value: fmtPp(maxMatchDrift),                                            detail: 'max |delta-match-rate| across ' + PER_PLATFORM_TREND.length + ' platforms; threshold ' + TREND_THRESHOLDS.fire_on_cumulative_match_rate_drift_pp + 'pp', valueClass: maxMatchDrift > TREND_THRESHOLDS.fire_on_cumulative_match_rate_drift_pp ? 'critical' : 'path-b' },
+        { label: 'Cumulative coverage drift',    value: fmtPp(maxCoverageDrift),                                          detail: 'max |delta-coverage| across ' + PER_PLATFORM_TREND.length + ' platforms; threshold ' + TREND_THRESHOLDS.fire_on_cumulative_coverage_drift_pp + 'pp', valueClass: maxCoverageDrift > TREND_THRESHOLDS.fire_on_cumulative_coverage_drift_pp ? 'critical' : 'path-b' },
+        { label: 'Rules fired this cycle',        value: firedCount + ' / ' + DECISION_RULES.length,                       detail: 'canonical 4-rule engine (cumulative_match_rate_drift / cumulative_coverage_drift / consecutive_decline / all_stable)', valueClass: firedCount > 0 ? 'warn' : 'path-b' },
+        { label: 'Consecutive-decline platforms', value: fmtCount(consecutivePlatforms.length),                            detail: 'platforms with >= ' + TREND_THRESHOLDS.fire_on_consecutive_decline_weeks + ' trailing declines (canonical threshold)', valueClass: consecutivePlatforms.length > 0 ? 'warn' : 'path-b' },
+        { label: 'Cooldown',                       value: fmtSeconds(TREND_THRESHOLDS.cooldown_seconds),                    detail: 'canonical cooldown per Move #6.5 weekly cadence (24-hour safe)', valueClass: '' }
+      ];
+      var host = document.getElementById('summary-stats');
+      host.innerHTML = stats.map(function (s) {
+        return '<div class="stat-card"><div class="label">' + s.label + '</div>' +
+               '<div class="value ' + s.valueClass + '">' + s.value + '</div>' +
+               '<div class="detail">' + s.detail + '</div></div>';
+      }).join('');
+    }
+
+    function renderPlatformCards() {
+      var host = document.getElementById('platform-cards');
+      host.innerHTML = PER_PLATFORM_TREND.map(function (p) {
+        var matchPill = '<span class="direction-pill ' + directionClass(p.match_rate.direction) + '">' + p.match_rate.direction + '</span>';
+        var coveragePill = '<span class="direction-pill ' + directionClass(p.coverage.direction) + '">' + p.coverage.direction + '</span>';
+        var consecMatchWarn = p.match_rate.consecutive_decline_weeks >= TREND_THRESHOLDS.fire_on_consecutive_decline_weeks;
+        var consecCoverageWarn = p.coverage.consecutive_decline_weeks >= TREND_THRESHOLDS.fire_on_consecutive_decline_weeks;
+        var consecMatchPill = consecMatchWarn
+          ? '<span class="direction-pill warning">WARN</span>'
+          : '<span class="direction-pill stable">OK</span>';
+        var consecCoveragePill = consecCoverageWarn
+          ? '<span class="direction-pill warning">WARN</span>'
+          : '<span class="direction-pill stable">OK</span>';
+        return '<div class="path-card">' +
+                 '<div class="path-header">' +
+                   '<span class="path-name">' + p.name + '</span>' +
+                 '</div>' +
+                 '<div class="metric-row">' +
+                   '<span class="metric-key">match-rate direction</span>' +
+                   '<span class="metric-value">' + matchPill + '</span>' +
+                 '</div>' +
+                 '<div class="metric-row">' +
+                   '<span class="metric-key">match-rate cumulative</span>' +
+                   '<span class="metric-value">' + fmtPp(p.match_rate.cumulative_delta) + '</span>' +
+                 '</div>' +
+                 '<div class="metric-row">' +
+                   '<span class="metric-key">match-rate consec-decline</span>' +
+                   '<span class="metric-value">' + p.match_rate.consecutive_decline_weeks + 'w ' + consecMatchPill + '</span>' +
+                 '</div>' +
+                 '<div class="metric-row">' +
+                   '<span class="metric-key">coverage direction</span>' +
+                   '<span class="metric-value">' + coveragePill + '</span>' +
+                 '</div>' +
+                 '<div class="metric-row">' +
+                   '<span class="metric-key">coverage cumulative</span>' +
+                   '<span class="metric-value">' + fmtPp(p.coverage.cumulative_delta) + '</span>' +
+                 '</div>' +
+                 '<div class="metric-row">' +
+                   '<span class="metric-key">coverage consec-decline</span>' +
+                   '<span class="metric-value">' + p.coverage.consecutive_decline_weeks + 'w ' + consecCoveragePill + '</span>' +
+                 '</div>' +
+               '</div>';
+      }).join('');
+    }
+
+    function renderRules() {
+      var host = document.getElementById('rule-cards');
+      host.innerHTML = DECISION_RULES.map(function (r) {
+        var statusText = r.fired
+          ? 'FIRED — ' + r.firedWeeks.join(', ')
+          : 'NOT FIRED';
+        var statusPill = r.fired
+          ? '<span class="direction-pill ' + severityClass(r.severity) + '">' + r.severity.toUpperCase() + '</span>'
+          : '<span class="direction-pill stable">OK</span>';
+        return '<div class="rule-card">' +
+                 '<div class="rule-header">' +
+                   '<span class="rule-id">' + r.id + '</span>' +
+                   statusPill +
+                 '</div>' +
+                 '<div class="rule-label">' + r.label + '</div>' +
+                 '<div class="rule-condition">' + r.condition + '</div>' +
+                 '<div class="rule-status">' + statusText + '</div>' +
+               '</div>';
+      }).join('');
+    }
+
+    function renderDriftChart() {
+      var host = document.getElementById('drift-chart');
+      host.innerHTML = '';
+      // Bar scale: max 5pp drift
+      var maxScale = 5.0;
+      PER_PLATFORM_TREND.forEach(function (p) {
+        var matchPct = Math.min(100, (Math.abs(p.match_rate.cumulative_delta) / maxScale) * 100);
+        var coveragePct = Math.min(100, (Math.abs(p.coverage.cumulative_delta) / maxScale) * 100);
+        var row = document.createElement('div');
+        row.className = 'bar-row';
+        row.innerHTML =
+          '<div class="label">' + p.name + '</div>' +
+          '<div class="bar-bg">' +
+            '<div class="stacked-bar" style="width: 100%">' +
+              '<div class="stacked-match" style="width: ' + matchPct.toFixed(1) + '%" title="match-rate cumulative drift"></div>' +
+              '<div class="stacked-coverage" style="width: ' + coveragePct.toFixed(1) + '%" title="coverage cumulative drift"></div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="value">match ' + fmtPp(p.match_rate.cumulative_delta) + ' · cov ' + fmtPp(p.coverage.cumulative_delta) + '</div>';
+        host.appendChild(row);
+      });
+      // Legend
+      var legend = document.createElement('div');
+      legend.style.marginTop = '8px';
+      legend.style.fontSize = '11px';
+      legend.style.color = 'var(--text-dim)';
+      legend.innerHTML =
+        '<span style="display:inline-block;width:12px;height:12px;background:var(--fail);opacity:0.7;vertical-align:middle;margin-right:6px;"></span>match-rate cumulative drift &nbsp;&nbsp; ' +
+        '<span style="display:inline-block;width:12px;height:12px;background:var(--accent);opacity:0.7;vertical-align:middle;margin-right:6px;"></span>coverage cumulative drift';
+      host.appendChild(legend);
+    }
+
+    function renderArchiveTable() {
+      var host = document.getElementById('archive-table-body');
+      host.innerHTML = ARCHIVE_ENTRIES.map(function (a) {
+        return '<tr>' +
+                 '<td class="alert-id">' + a.alertId + '</td>' +
+                 '<td class="timestamp">' + a.timestamp + '</td>' +
+                 '<td><span class="severity-pill ' + a.severity + '">' + a.severity + '</span></td>' +
+                 '<td>' + a.source + '</td>' +
+                 '<td><span class="hypothesis-id">' + a.firedRule + '</span><br/>' + a.hypothesis + '</td>' +
+                 '<td>' + a.remediation + '</td>' +
+                 '<td><span class="severity-pill ' + a.status + '">' + a.status + '</span></td>' +
+               '</tr>';
+      }).join('');
+    }
+
+    function renderNextAction(input) {
+      var firedRules = DECISION_RULES.filter(function (r) { return r.fired; });
+      var consecutivePlatforms = PER_PLATFORM_TREND.filter(function (p) {
+        return p.match_rate.consecutive_decline_weeks >= TREND_THRESHOLDS.fire_on_consecutive_decline_weeks;
+      }).map(function (p) { return p.name; });
+      var steps = [];
+      if (firedRules.length === 0) {
+        steps = [
+          'Trend is stable across the 12-week window. No rule fired.',
+          'Continue the weekly cadence: <code>0 9 * * 1 cd /data/workspace/ecommerce-ops && python3 scripts/attribution_weekly_rollup_trend.py --rollup-dir .rollups/ --alert-archive .alerts/</code>',
+          'Re-evaluate thresholds via <code>python3 scripts/attribution_weekly_rollup_trend.py --validate-thresholds</code> at next cycle (canonical 5-threshold + 15-field shape regression gate).'
+        ];
+      } else if (firedRules.some(function (r) { return r.id === 'R1' || r.id === 'R2'; })) {
+        steps = [
+          'Cumulative-drift threshold breached (Rule 1 or Rule 2 fired). This is the canonical "slow erosion" pattern Move #6.8 1-vs-1 drift misses — operator must act this cycle.',
+          'Identify the failing platform from the per-platform direction grid above. Investigate the 5 canonical root-cause hypotheses from <code>scripts/attribution_cross_platform_rollup.py</code> lines 61-89 [theme_liquid_update + capi_token_rotation + ios_consent_banner + app_uninstall + advanced_matching_toggle].',
+          'Apply the canonical TREND_REMEDIATION from <code>scripts/attribution_weekly_rollup_trend.py</code> lines 121-152. Re-run trend next cycle to confirm the cumulative drift is below the threshold.',
+          'If cross-platform drift is also detected, cross-reference with <code>scripts/attribution_health_alert_webhook.py</code> per-cycle alerts — the per-cycle script may have already fired (compound signal).'
+        ];
+      } else if (firedRules.some(function (r) { return r.id === 'R3'; })) {
+        steps = [
+          'Consecutive-decline rule fired: ' + consecutivePlatforms.join(', ') + ' each show >= ' + TREND_THRESHOLDS.fire_on_consecutive_decline_weeks + ' trailing weeks of match-rate decline. The trend is clearly downward but the cumulative drift is still under the 3.0pp threshold (Move #6.8 1-vs-1 drift misses this).',
+          'The platform names: <code>' + consecutivePlatforms.join('</code> + <code>') + '</code> — investigate each via the 5 canonical root-cause hypotheses.',
+          'Apply TREND_REMEDIATION [consecutive_decline] from <code>scripts/attribution_weekly_rollup_trend.py</code> lines 134-145. Re-run trend next cycle to confirm the streak is broken.',
+          'If streak persists for 2+ more cycles, treat as cumulative-drift precursor and switch to Rule 1 escalation path.'
+        ];
+      } else {
+        steps = [
+          'Rule 4 (all_stable) fired — no rule fired; trend is stable across the 12-week window.',
+          'Continue the weekly cadence per <code>playbooks/06.5-weekly-rollup-trend-launch.md</code> §Step 4 cron-wire.',
+          'Verify Move #6.8 cross-platform rollup is still emitting weekly (Move #6.5 depends on Move #6.8 substrate).'
+        ];
+      }
+      var host = document.getElementById('next-action');
+      host.innerHTML = '<ol>' + steps.map(function (s) { return '<li>' + s + '</li>'; }).join('') + '</ol>' +
+        '<div class="meta">Trend window: ' + input.weeks_analyzed + ' weeks · fired ' + firedRules.length + ' of ' + DECISION_RULES.length + ' canonical rules · canonical substrate from <code>scripts/attribution_weekly_rollup_trend.py</code> TREND_THRESHOLDS + _decide_should_fire.</div>';
+    }
+
+    function renderAll(input) {
+      renderSummary(input);
+      renderPlatformCards();
+      renderRules();
+      renderDriftChart();
+      renderArchiveTable();
+      renderNextAction(input);
+    }
+
+    // ----- Demo / live mode wiring -----
+    var params = new URLSearchParams(window.location.search);
+    function paramOr(p, fallback) {
+      var v = params.get(p);
+      return v === null || v === '' ? fallback : v;
+    }
+    var DEMO_MODE = paramOr('demo', null) === '1';
+    var modeBadge = document.getElementById('mode-badge');
+    if (DEMO_MODE) {
+      modeBadge.textContent = 'Demo Mode';
+      modeBadge.className = 'mode-badge demo';
+    } else {
+      modeBadge.textContent = 'Live Mode';
+      modeBadge.className = 'mode-badge live';
+    }
+
+    var SAMPLE_INPUT = { weeks_analyzed: TREND_THRESHOLDS.trend_window_weeks };
+    renderAll(SAMPLE_INPUT);
+  </script>
+</body>
+</html>
