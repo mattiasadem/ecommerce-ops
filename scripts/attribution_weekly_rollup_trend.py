@@ -38,8 +38,18 @@ Companion artifacts:
   operator-build playbook that ships the per-cycle rollup)
 - research/06-marketplace-expansion.md + research/14-amazon-dsp-amazon-attribution-audit.md
   (the research substrate that motivates the multi-platform rollup)
-- dashboards/unified-attribution-health.html (the per-cycle dashboard; this
-  script produces trend data that a future multi-week dashboard can render)
+- dashboards/unified-attribution-health.html (the per-cycle dashboard; the
+  trend script renders its multi-week output as the companion dashboard
+  `dashboards/attribution-weekly-rollup-trend.html`)
+- dashboards/attribution-weekly-rollup-trend.html (the multi-week trend
+  dashboard — shipped 2026-07-11 per the static-dashboard-tick follow-up to
+  the 2026-07-10 22:00 operator-copy-tick; closes the canonical
+  Move-#6.5-weekly-rollup-trend-companion-dashboard deferred gap per the
+  v0.9.0 layer-order-completion sub-rule applied to the Move #6.5
+  weekly-rollup-trend substrate at 3/4 layers)
+- dashboards/tests/test_attribution_weekly_rollup_trend.js (the 109-test
+  Node smoke-test suite for the trend dashboard; mirrors the canonical
+  dashboards/tests/test_attribution_health_alert_archive.js structure)
 
 Companion tick: 2026-07-10 ecommerce-ops improver track-9-12 hardening tick
 (closes the canonical Move-#6.5-weekly-rollup-trend-script deferred gap per
@@ -53,7 +63,9 @@ substrate at 1/4 layers). Companion asset tick: 2026-07-10 ecommerce-ops improve
 Move-#6.5-weekly-rollup-trend-companion-asset deferred gap per the v0.9.0
 layer-order-completion sub-rule applied to the Move #6.5 weekly-rollup-trend
 substrate at 2/4 layers; ships 20 paste-ready per-voice Slack-compatible
-trend-alert templates = 5 voices × 4 fired-rule scenarios).
+trend-alert templates = 5 voices × 4 fired-rule scenarios). Companion
+dashboard tick: 2026-07-11 04:00 ecommerce-ops improver
+(dashboards/attribution-weekly-rollup-trend.html + dashboards/tests/test_attribution_weekly_rollup_trend.js — closes the canonical Move-#6.5-weekly-rollup-trend-companion-dashboard deferred gap per the v0.9.0 layer-order-completion sub-rule applied to the Move #6.5 weekly-rollup-trend substrate at 3/4 layers; ships 109 Node smoke tests across 28 categories; moves Move #6.5 weekly-rollup-trend to 4/4 layers complete — TRACK FULLY CLOSED 2026-07-11 per the v0.11.0 track-fully-closed pivot pattern).
 """
 
 import argparse
