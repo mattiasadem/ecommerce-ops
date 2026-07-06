@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { MetricCard } from "@/components/metric-card";
 import { Bar } from "@/components/bar";
+import { YourStoreCard } from "@/components/your-store-card";
 import { content, findTable, fmtDate } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -135,6 +136,27 @@ export default function Home() {
             >
               See the full benchmark table →
             </a>
+          </CardContent>
+        </Card>
+      </section>
+
+      {/* === YOUR STORE — cross-page ROI inputs === */}
+      <section>
+        <Card className="border-2">
+          <CardHeader className="pb-3">
+            <div className="flex items-center justify-between">
+              <CardTitle className="text-base">Your store — feed the ROI calculators</CardTitle>
+              <Badge variant="accent" className="text-[10px]">
+                Live
+              </Badge>
+            </div>
+            <CardDescription className="text-xs">
+              Set AOV, monthly orders, and gross margin once. Every interactive
+              calculator on <a className="underline hover:text-foreground" href="/playbooks">/playbooks</a> reads from this card.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <YourStoreCard />
           </CardContent>
         </Card>
       </section>

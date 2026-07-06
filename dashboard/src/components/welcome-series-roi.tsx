@@ -9,6 +9,7 @@ import {
   healthBandShort,
 } from "@/lib/welcome-series-roi";
 import { formatInt, formatPercent, formatRatio, formatUsd } from "@/lib/format";
+import { loadYourStore, mergeFromYourStore } from "@/lib/your-store";
 import { cn } from "@/lib/utils";
 import { CopyButton } from "@/components/copy-button";
 
@@ -127,10 +128,22 @@ export function WelcomeSeriesROICalculator() {
   const [inputs, setInputs] = useState<WelcomeSeriesInputs>(WELCOME_SERIES_DEFAULTS);
   const [hydrated, setHydrated] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [fromYourStore, setFromYourStore] = useState(false);
 
   useEffect(() => {
     const stored = loadStored();
-    if (stored) setInputs(stored);
+    if (stored) {
+      setInputs(stored);
+      setFromYourStore(false);
+    } else {
+      // Fall back to operator's cross-page Your-store inputs (if any).
+      // For welcome-series we map orders -> optins as a flow-volume proxy.
+      const yourStore = loadYourStore();
+      if (yourStore) {
+        setInputs(mergeFromYourStore(WELCOME_SERIES_DEFAULTS, yourStore));
+        setFromYourStore(true);
+      }
+    }
     setHydrated(true);
   }, []);
 
@@ -159,6 +172,7 @@ export function WelcomeSeriesROICalculator() {
       if (!ok) return;
     }
     setInputs(WELCOME_SERIES_DEFAULTS);
+    setFromYourStore(false);
   };
 
   const copyReport = async () => {
@@ -237,6 +251,12 @@ export function WelcomeSeriesROICalculator() {
             <code className="font-mono text-[11px]">scripts/welcome_series_roi.py</code>.
             Inputs persist to your browser so you can come back later.
           </p>
+          {fromYourStore && hydrated && (
+            <span className="mt-1 inline-flex w-fit items-center gap-1 rounded-full border border-accent/40 bg-accent/10 px-2 py-0.5 text-[10px] font-medium text-accent">
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent" />
+              Prefilled from Your store on Overview
+            </span>
+          )}
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <button

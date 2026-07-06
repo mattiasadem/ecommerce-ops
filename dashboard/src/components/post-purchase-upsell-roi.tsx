@@ -9,6 +9,7 @@ import {
   healthBandShort,
 } from "@/lib/post-purchase-upsell-roi";
 import { formatInt, formatPercent, formatRatio, formatUsd } from "@/lib/format";
+import { loadYourStore, mergeFromYourStore } from "@/lib/your-store";
 import { cn } from "@/lib/utils";
 import { CopyButton } from "@/components/copy-button";
 
@@ -131,10 +132,23 @@ export function PostPurchaseUpsellROICalculator() {
   );
   const [hydrated, setHydrated] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [fromYourStore, setFromYourStore] = useState(false);
 
   useEffect(() => {
     const stored = loadStored();
-    if (stored) setInputs(stored);
+    if (stored) {
+      setInputs(stored);
+      setFromYourStore(false);
+    } else {
+      // Fall back to operator's cross-page Your-store inputs (if any).
+      const yourStore = loadYourStore();
+      if (yourStore) {
+        setInputs(
+          mergeFromYourStore(POST_PURCHASE_UPSELL_DEFAULTS, yourStore),
+        );
+        setFromYourStore(true);
+      }
+    }
     setHydrated(true);
   }, []);
 
@@ -163,6 +177,7 @@ export function PostPurchaseUpsellROICalculator() {
       if (!ok) return;
     }
     setInputs(POST_PURCHASE_UPSELL_DEFAULTS);
+    setFromYourStore(false);
   };
 
   const copyReport = async () => {
@@ -230,6 +245,12 @@ export function PostPurchaseUpsellROICalculator() {
             <code className="font-mono text-[11px]">scripts/post_purchase_upsell_roi.py</code>.
             Inputs persist to your browser so you can come back later.
           </p>
+          {fromYourStore && hydrated && (
+            <span className="mt-1 inline-flex w-fit items-center gap-1 rounded-full border border-accent/40 bg-accent/10 px-2 py-0.5 text-[10px] font-medium text-accent">
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent" />
+              Prefilled from Your store on Overview
+            </span>
+          )}
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <button
