@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generative AI Engine Health — ecommerce-ops</title>
+  <!--
+    Generative AI Engine dashboard — static operator surface for the
+    Generative AI Engine track (Move #20).
+
+    Renders 6 sections end-to-end:
+      1. Summary stats (Path tier default Year-1 ROI + Year-1 incremental AI-engine-revenue + ROAS lift + Email CTR lift + Organic discovery lift + Creative velocity mult + Cost save % + Cost stack)
+      2. Per-platform readiness cards (5 canonical AI-engine platforms × launch status + voice-density)
+      3. Per-path Year-1 incremental AI-engine-revenue bar chart (Path A / B / C)
+      4. Per-phase verification gate scoring (Phase 1 GPT-4o-clone-voice + AI-orchestration-engine-baseline / Phase 2 AI-product-photography + AI-email-subject-line + AI-SMS-copy + AI-blog-post + AI-product-description + AI-social-caption / Phase 3 AI-customer-service + AI-product-rec-feed + AI-search-relevance + AI-recommendation-engine + custom-trained-LLM / Phase 4 Steady-state + custom-trained-LLM-quarterly + AI-orchestration-engine-quarterly + creative-cadence-automation-quarterly + creative-iteration-cycle-quarterly)
+      5. Per-pillar detail table (5 pillars × 6 columns: Pillar / Voice density / Status / Pillar ROI contribution / Pillar voice-density / Pillar Move-compound)
+      6. Recommended next action (which phase to ship next + which Pillar to build first)
+
+    Demo data is hardcoded to the canonical Path B default ($5M US DTC base, 75 creatives/week,
+    default voice, 6 hr/wk operator capacity, all 8 Generative AI Engine onboarding-pack prereqs wired,
+    AI-orchestration-engine Pencil Pro or Moby Pro + Jasper-brand-voice-LLM + Copy.ai + Midjourney +
+    ElevenLabs + Typeface + Triple-Whale-Starter-or-Pro live).
+    Live data sources (override via URL params):
+      ?path=A | B | C               (default B)
+      ?us_dtc_gmv=5000000           (default $5M)
+      ?creatives_per_week=75        (default 75 — Path B DEFAULT mid-range)
+      ?voice=default | luxury | sustainable | gen_z | b2b  (default default)
+      ?demo=1                       force demo mode (no fetches; uses SAMPLE_ defaults)
+
+    Architecture: NO build step, NO npm deps, single inline CSS + vanilla JS.
+    Companion artifacts:
+      research/16-generative-ai-engine.md      (5-pillar framework + 3 GMV-tier paths + 15 pitfalls)
+      playbooks/23-generative-ai-engine-launch.md  (4-phase GPT-4o-clone-voice-onboard → AI-product-photography → AI-customer-service + custom-trained-LLM → steady-state operator build)
+      assets/26-generative-ai-engine-templates.md    (25 paste-ready artifacts: 5 voices × 5 Pillar deliverables)
+      dashboard/app/generative-ai-engine/page.tsx   (Next.js operator route, 25th route)
+      scripts/generative_ai_engine_unit_economics.py  (Archetype A/B hybrid Path A/B/C scorer, 103 TDD tests)
+
+    All canonical constants (PATH_A/B/C_FLOOR, PATH_COSTS,
+    PATH_INCREMENTAL_AI_ENGINE_REVENUE_SHARE_PCT, PATH_YEAR1_ROAS_LIFT_PCT,
+    PATH_EMAIL_CTR_LIFT_PCT, PATH_ORGANIC_DISCOVERY_TRAFFIC_LIFT_PCT,
+    PATH_CREATIVE_ITERATION_VELOCITY_MULTIPLIER, PATH_CREATIVE_PRODUCTION_COST_SAVINGS_PCT,
+    PATH_AI_ENGINE_BUILD_CYCLE_MONTHS, PATH_ROI, AI_ENGINE_PILLAR_MATRIX, ACTIVE_AI_ENGINE_PLATFORMS)
+    mirror scripts/generative_ai_engine_unit_economics.py exactly.
+    Per the v0.11.0 static-dashboard-tick recipe, this dashboard uses self-contained inline CSS + vanilla
+    JS, no Chart.js / no npm / no build step. Pure-Node smoke tests live in
+    dashboards/tests/test_generative_ai_engine_health.js (≥100 tests across 26 categories per the
+    v0.11.0 recipe).
+  -->
+  <style>
+    :root {
+      --bg: #0f1115;
+      --panel: #161922;
+      --panel-2: #1d2230;
+      --border: #2a2f3d;
+      --text: #e8eaf0;
+      --text-dim: #9097a8;
+      --accent: #58a6ff;
+      --ok: #4ec9b0;
+      --warn: #e0af68;
+      --fail: #f06a6a;
+      --violet: #b48ead;
+      --code-bg: #0a0c10;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    header {
+      padding: 24px 32px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    header .subtitle {
+      color: var(--text-dim);
+      font-size: 13px;
+    }
+    .mode-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+    }
+    .mode-badge.demo { color: var(--warn); border-color: var(--warn); }
+    .mode-badge.live { color: var(--accent); border-color: var(--accent); }
+    main {
+      padding: 16px 32px 60px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    section { margin-bottom: 32px; }
+    section > h2 {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+      margin: 0 0 16px 0;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+    .stat {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .stat .label {
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 6px;
+    }
+    .stat .value {
+      font-size: 22px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+    .stat .value.ok { color: var(--ok); }
+    .stat .value.warn { color: var(--warn); }
+    .stat .value.fail { color: var(--fail); }
+    .stat .sub {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+    .platform-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px;
+    }
+    .platform-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      position: relative;
+    }
+    .platform-card .pillar {
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 6px;
+    }
+    .platform-card .name {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .platform-card .status {
+      display: inline-block;
+      padding: 1px 7px;
+      border-radius: 3px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: 1px solid;
+      margin-bottom: 8px;
+    }
+    .platform-card .status.live { color: var(--accent); border-color: var(--accent); }
+    .platform-card .status.draft { color: var(--violet); border-color: var(--violet); }
+    .platform-card .status.staging { color: var(--warn); border-color: var(--warn); }
+    .platform-card .status.ok { color: var(--ok); border-color: var(--ok); }
+    .platform-card .status.warn { color: var(--warn); border-color: var(--warn); }
+    .platform-card .status.fail { color: var(--fail); border-color: var(--fail); }
+    .platform-card .voice-density {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-bottom: 4px;
+    }
+    .platform-card .gate-score {
+      font-size: 11px;
+      color: var(--text);
+    }
+    .bar-chart {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+    }
+    .bar-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .bar-row .label {
+      width: 60px;
+      font-size: 12px;
+      color: var(--text-dim);
+      font-weight: 600;
+    }
+    .bar-row .track {
+      flex: 1;
+      background: var(--panel-2);
+      border-radius: 3px;
+      height: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+    .bar-row .fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 3px;
+      transition: width 0.4s ease-out;
+    }
+    .bar-row .fill.path-a { background: var(--warn); }
+    .bar-row .fill.path-b { background: var(--ok); }
+    .bar-row .fill.path-c { background: var(--violet); }
+    .bar-row .amount {
+      width: 180px;
+      font-size: 12px;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+    .gate-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+    }
+    .gate-card .head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+    .gate-card .head .label {
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .gate-card .head .progress {
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+    .gate-card .ok-count { color: var(--ok); }
+    .gate-card .warn-count { color: var(--warn); }
+    .gate-card .fail-count { color: var(--fail); }
+    .gate-card ul.gate-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .gate-card ul.gate-list li {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      padding: 4px 0;
+      font-size: 12px;
+      color: var(--text);
+    }
+    .gate-card ul.gate-list li .g-id {
+      color: var(--text-dim);
+      font-family: monospace;
+      min-width: 32px;
+    }
+    .gate-card ul.gate-list li .g-status {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      border: 1px solid;
+    }
+    .g-status.ok { color: var(--ok); border-color: var(--ok); }
+    .g-status.warn { color: var(--warn); border-color: var(--warn); }
+    .g-status.fail { color: var(--fail); border-color: var(--fail); }
+    .g-status.draft { color: var(--violet); border-color: var(--violet); }
+    .g-status.live { color: var(--accent); border-color: var(--accent); }
+    table.pillar-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    table.pillar-table th {
+      text-align: left;
+      padding: 10px 12px;
+      background: var(--panel-2);
+      color: var(--text-dim);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 11px;
+      border-bottom: 1px solid var(--border);
+    }
+    table.pillar-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    table.pillar-table tr:last-child td { border-bottom: none; }
+    table.pillar-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+    .next-action ol {
+      padding-left: 24px;
+      margin: 0;
+    }
+    .next-action ol li {
+      padding: 8px 0;
+      font-size: 13px;
+      color: var(--text);
+    }
+    .next-action ol li strong { color: var(--accent); }
+    .footer-note {
+      margin-top: 40px;
+      padding: 16px 0;
+      border-top: 1px solid var(--border);
+      color: var(--text-dim);
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Generative AI Engine Health <span class="mode-badge demo" id="mode-badge">demo</span></h1>
+      <div class="subtitle">
+        Move #20 Generative AI Engine — canonical 5-pillar framework + 3 GMV-tier paths.
+        $5M US DTC base · Path B DEFAULT · 75 creatives/week · default voice.
+      </div>
+    </div>
+    <div class="subtitle">
+      Companion to research/16 + playbooks/23 + assets/26 + scripts/generative_ai_engine_unit_economics.py
+    </div>
+  </header>
+
+  <main>
+    <section id="summary-section">
+      <h2>Summary stats</h2>
+      <div class="stats" id="summary-stats"></div>
+    </section>
+
+    <section id="platform-section">
+      <h2>Per-platform readiness</h2>
+      <div class="platform-grid" id="platform-cards"></div>
+    </section>
+
+    <section id="path-chart-section">
+      <h2>Per-path Year-1 incremental AI-engine-revenue</h2>
+      <div class="bar-chart" id="path-chart"></div>
+    </section>
+
+    <section id="phase-gates-section">
+      <h2>Per-phase verification gates</h2>
+      <div id="phase-gates"></div>
+    </section>
+
+    <section id="pillar-table-section">
+      <h2>Per-pillar detail</h2>
+      <table class="pillar-table" id="pillar-table">
+        <thead>
+          <tr>
+            <th>Pillar</th>
+            <th>Voice density</th>
+            <th>Status</th>
+            <th>Pillar ROI contribution</th>
+            <th>Pillar voice-density</th>
+            <th>Pillar Move-compound</th>
+          </tr>
+        </thead>
+        <tbody id="pillar-table-body"></tbody>
+      </table>
+    </section>
+
+    <section id="next-action-section" class="next-action">
+      <h2>Recommended next action</h2>
+      <div id="next-action"></div>
+    </section>
+  </main>
+
+  <div class="footer-note">
+    Self-contained static dashboard. No build step, no npm deps. Mirror of
+    <code>scripts/generative_ai_engine_unit_economics.py</code> Path A / B / C scoring rule.
+    Companion artifacts: research/16 + playbooks/23 + assets/26 + dashboard/app/generative-ai-engine/page.tsx.
+  </div>
+
+  <script>
+    'use strict';
+
+    // ----- Canonical 4 data structures (mirror scripts/generative_ai_engine_unit_economics.py) -----
+
+    var PLATFORMS = [
+      { id: 'gpt_4o_clone_voice',  name: 'GPT-4o-clone-voice',           pillar: 'Pillar 1', tier: 'core',  status: 'live',   voice_density: 'default=33 / luxury=33 / sustainable=33 / gen_z=37 / b2b=44',   gate_score: '8/10', note: 'GPT-4o-clone-voice-onboard via OpenAI-Playground $20-$200/mo' },
+      { id: 'ai_orchestration',    name: 'AI-orchestration-engine',      pillar: 'Pillar 1', tier: 'core',  status: 'live',   voice_density: 'default=33 / luxury=33 / sustainable=33 / gen_z=37 / b2b=44',   gate_score: '8/10', note: 'Pencil Pro $1,500/mo or Moby Pro $499/mo (Path B DEFAULT)' },
+      { id: 'jasper_brand_voice',  name: 'Jasper-brand-voice-LLM',       pillar: 'Pillar 1', tier: 'core',  status: 'live',   voice_density: 'default=33 / luxury=33 / sustainable=33 / gen_z=37 / b2b=44',   gate_score: '7/10', note: 'Jasper-brand-voice-LLM $49-$125/mo trained on 50-100 brand-content-samples' },
+      { id: 'copy_ai_iteration',   name: 'Copy.ai-ad-copy-iteration',    pillar: 'Pillar 1', tier: 'core',  status: 'live',   voice_density: 'default=33 / luxury=33 / sustainable=33 / gen_z=37 / b2b=44',   gate_score: '8/10', note: 'Copy.ai-ad-copy-iteration $49-$249/mo with 50+ ad-copy-variants-per-week' },
+      { id: 'midjourney_product',  name: 'Midjourney-product-photography', pillar: 'Pillar 2', tier: 'core',  status: 'live',   voice_density: 'default=33 / luxury=33 / sustainable=33 / gen_z=37 / b2b=44',   gate_score: '7/10', note: 'Midjourney-prompt-library + Stable-Diffusion-XL $10-$60/mo' },
+      { id: 'elevenlabs_voice',    name: 'ElevenLabs-voice-clone',       pillar: 'Pillar 2', tier: 'core',  status: 'live',   voice_density: 'default=33 / luxury=33 / sustainable=33 / gen_z=37 / b2b=44',   gate_score: '6/10', note: 'ElevenLabs-voice-clone-SMS-narration $5-$22/mo' },
+      { id: 'triple_whale_ai',     name: 'Triple-Whale-AI-creative-cohort-overlay', pillar: 'Pillar 1', tier: 'core',  status: 'live',   voice_density: 'default=33 / luxury=33 / sustainable=33 / gen_z=37 / b2b=44',   gate_score: '7/10', note: 'Triple-Whale-Starter-or-Pro-with-AI-creative-cohort-overlay $179-$1,290/mo' },
+      { id: 'typeface_brand',      name: 'Typeface-brand-voice-LLM',     pillar: 'Pillar 2', tier: 'core',  status: 'live',   voice_density: 'default=33 / luxury=33 / sustainable=33 / gen_z=37 / b2b=44',   gate_score: '6/10', note: 'Typeface-brand-voice-LLM $30-$300/mo' },
+      { id: 'gorgias_ai_cs',       name: 'Gorgias-AI-customer-service',  pillar: 'Pillar 4', tier: 'ext',   status: 'live',   voice_density: 'default=33 / luxury=33 / sustainable=33 / gen_z=37 / b2b=44',   gate_score: '6/10', note: 'Gorgias-AI-customer-service-Wired + Jasper-customer-service-response-iteration' },
+      { id: 'nosto_rebuy',         name: 'Nosto + Rebuy product-rec',    pillar: 'Pillar 4', tier: 'ext',   status: 'live',   voice_density: 'default=33 / luxury=33 / sustainable=33 / gen_z=37 / b2b=44',   gate_score: '5/10', note: 'Nosto-AI-recommendation-engine-Wired + Rebuy-AI-product-rec-Wired' },
+      { id: 'algolia_search',      name: 'Algolia-AI-search-relevance',  pillar: 'Pillar 4', tier: 'ext',   status: 'live',   voice_density: 'default=33 / luxury=33 / sustainable=33 / gen_z=37 / b2b=44',   gate_score: '5/10', note: 'Algolia-AI-search-relevance-Wired + Searchspring-AI-search-Wired' },
+      { id: 'openai_finetune',     name: 'OpenAI-fine-tuning',           pillar: 'Pillar 5', tier: 'ent',   status: 'draft',  voice_density: 'default=33 / luxury=33 / sustainable=33 / gen_z=37 / b2b=44',   gate_score: '2/10', note: 'OpenAI-fine-tuning-on-brand-voice-data $200-$2,000/mo (Path C only)' },
+      { id: 'anthropic_finetune',  name: 'Anthropic-Claude-fine-tuning', pillar: 'Pillar 5', tier: 'ent',   status: 'draft',  voice_density: 'default=33 / luxury=33 / sustainable=33 / gen_z=37 / b2b=44',   gate_score: '2/10', note: 'Anthropic-Claude-fine-tuning-on-brand-voice-data (Path C only)' },
+      { id: 'cohere_finetune',     name: 'Cohere-fine-tuning',           pillar: 'Pillar 5', tier: 'ent',   status: 'draft',  voice_density: 'default=33 / luxury=33 / sustainable=33 / gen_z=37 / b2b=44',   gate_score: '1/10', note: 'Cohere-fine-tuning-on-brand-voice-data (Path C only)' },
+    ];
+
+    var PATH_TABLE = {
+      A: {
+        us_gmv_min: 0,
+        us_gmv_max: 1_000_000,
+        one_time_low: 500, one_time_high: 2_000,
+        recurring_low: 20, recurring_high: 500,
+        lift_low: 5, lift_high: 15,
+        roas_lift_low: 5, roas_lift_high: 15,
+        email_ctr_lift_low: 2, email_ctr_lift_high: 8,
+        organic_lift_low: 3, organic_lift_high: 10,
+        vel_mult_low: 1.5, vel_mult_high: 2.0,
+        cost_save_low: 30, cost_save_high: 50,
+        build_low: 1, build_high: 3,
+        roi_low: 4.0, roi_high: 250.0,
+        incremental_share_low: 2.0, incremental_share_high: 5.0,
+        label: 'Path A — micro (GPT-4o-clone-voice-only + AI-orchestration-engine-baseline)',
+      },
+      B: {
+        us_gmv_min: 1_000_000,
+        us_gmv_max: 25_000_000,
+        one_time_low: 2_000, one_time_high: 50_000,
+        recurring_low: 500, recurring_high: 2_565,
+        lift_low: 10, lift_high: 30,
+        roas_lift_low: 10, roas_lift_high: 30,
+        email_ctr_lift_low: 5, email_ctr_lift_high: 20,
+        organic_lift_low: 10, organic_lift_high: 30,
+        vel_mult_low: 2.0, vel_mult_high: 4.0,
+        cost_save_low: 50, cost_save_high: 70,
+        build_low: 6, build_high: 18,
+        roi_low: 6.0, roi_high: 187.0,
+        incremental_share_low: 3.0, incremental_share_high: 15.0,
+        label: 'Path B — DEFAULT ($1M-$25M DTC+international GMV)',
+      },
+      C: {
+        us_gmv_min: 25_000_000,
+        us_gmv_max: 500_000_000,
+        one_time_low: 50_000, one_time_high: 250_000,
+        recurring_low: 3_656, recurring_high: 6_044,
+        lift_low: 15, lift_high: 40,
+        roas_lift_low: 15, roas_lift_high: 40,
+        email_ctr_lift_low: 10, email_ctr_lift_high: 30,
+        organic_lift_low: 15, organic_lift_high: 40,
+        vel_mult_low: 3.0, vel_mult_high: 6.0,
+        cost_save_low: 60, cost_save_high: 80,
+        build_low: 12, build_high: 24,
+        roi_low: 2.0, roi_high: 6.0,
+        incremental_share_low: 5.0, incremental_share_high: 25.0,
+        label: 'Path C — enterprise (custom-trained-LLM + AI-orchestration-engine)',
+      },
+    };
+
+    var PHASE_GATES = [
+      {
+        id: 'A',
+        label: 'Phase 1 — GPT-4o-clone-voice + AI-orchestration-engine-baseline (Weeks 1-6)',
+        gates: [
+          { id: 'A1', criterion: 'GPT-4o-clone-voice-onboard via OpenAI-Playground $20-$200/mo', verification: 'verify via --help + a default 1-prompt invocation returning expected JSON shape' },
+          { id: 'A2', criterion: 'AI-orchestration-engine-baseline via Pencil Pro $1,500/mo OR Moby Pro $499/mo', verification: 'verify via 50+-creatives-per-week-baseline + 4-pillar-Move-#10-prereq' },
+          { id: 'A3', criterion: 'Jasper-brand-voice-LLM $49-$125/mo trained on 50-100 brand-content-samples', verification: 'verify via brand-voice-API-key-pair-Wired + 10-30% brand-voice-consistency-lift' },
+          { id: 'A4', criterion: 'Copy.ai-ad-copy-iteration $49-$249/mo with 50+ ad-copy-variants-per-week', verification: 'verify via 50+ ad-copy-variants-per-week-baseline + 5-15% email-CTR-lift' },
+          { id: 'A5', criterion: 'Move #10 AI-ad-creative-iteration shipped 6+ months prereq', verification: 'verify via playbooks/10-ai-ad-creative-iteration.md Gate A-G all passing' },
+          { id: 'A6', criterion: 'Triple-Whale-attribution live 6+ months', verification: 'verify via scripts/triple_whale_attribution_check.py Gate A-G all passing' },
+          { id: 'A7', criterion: 'Klaviyo-email-substrate live 6+ months', verification: 'verify via playbooks/05-migrate-to-klaviyo-postscript.md Gate A-G all passing' },
+          { id: 'A8', criterion: 'Postscript-SMS-substrate live 6+ months', verification: 'verify via playbooks/06-sms-welcome-and-cart-abandon.md Gate A-G all passing' },
+          { id: 'A9', criterion: 'AI-creative-iteration-cadence-baseline 50+ creatives/week', verification: 'verify via Triple-Whale-cohort-LTV-overlay' },
+          { id: 'A10', criterion: '4-8 hr/wk AI-engine-team-capacity', verification: 'verify via operator-time-tracking' },
+        ],
+      },
+      {
+        id: 'B',
+        label: 'Phase 2 — AI-product-photography + AI-email-subject-line + AI-SMS-copy + AI-blog-post + AI-product-description + AI-social-caption (Weeks 7-24)',
+        gates: [
+          { id: 'B1', criterion: 'Midjourney-prompt-library + Stable-Diffusion-XL-product-photography', verification: 'verify via 50-70% creative-production-cost-savings' },
+          { id: 'B2', criterion: 'Runway-product-video-preview + Sora-product-demo-iteration', verification: 'verify via 2-4x creative-iteration-velocity-vs-photographer-baseline' },
+          { id: 'B3', criterion: 'Jasper-subject-line-iteration + Copy.ai-subject-line-A/B-test', verification: 'verify via 50+ subject-line-variants-per-flow-per-week + 5-20% email-CTR-lift' },
+          { id: 'B4', criterion: 'Postscript-SMS-copy-iteration via Jasper + Copy.ai', verification: 'verify via 10-30% SMS-CTR-lift + 50+ SMS-variants-per-week' },
+          { id: 'B5', criterion: 'Jasper-social-caption-iteration + per-platform-format-Wired', verification: 'verify via 10-30% social-engagement-rate-lift' },
+          { id: 'B6', criterion: 'Jasper-blog-post-iteration + Typeface-blog-post-brand-voice-Wired', verification: 'verify via 10-30% organic-discovery-traffic-lift' },
+          { id: 'B7', criterion: 'Jasper-product-description-iteration + Typeface-product-description-Wired', verification: 'verify via 5-15% product-page-CVR-lift' },
+          { id: 'B8', criterion: 'ElevenLabs-voice-clone-SMS-narration $5-$22/mo', verification: 'verify via brand-voice-narration-QA-baseline' },
+          { id: 'B9', criterion: 'Typeface-brand-voice-LLM $30-$300/mo', verification: 'verify via brand-voice-consistency-lift' },
+          { id: 'B10', criterion: 'Triple-Whale-AI-creative-cohort-overlay-Wire', verification: 'verify via AI-creative-cohort-LTV-at-30/60/90/180-day-windows' },
+        ],
+      },
+      {
+        id: 'C',
+        label: 'Phase 3 — AI-customer-service + AI-product-rec-feed + AI-search-relevance + AI-recommendation-engine + custom-trained-LLM (Weeks 25-48)',
+        gates: [
+          { id: 'C1', criterion: 'Gorgias-AI-customer-service-Wired + Jasper-CS-response-iteration', verification: 'verify via 30-50% customer-service-cost-savings + 10-30% CSAT-lift' },
+          { id: 'C2', criterion: 'Nosto-AI-recommendation-engine-Wired + Rebuy-AI-product-rec-Wired', verification: 'verify via 5-15% AOV-lift + 10-30% repeat-purchase-rate-lift' },
+          { id: 'C3', criterion: 'Algolia-AI-search-relevance-Wired + Searchspring-AI-search-Wired', verification: 'verify via 5-15% on-site-search-CVR-lift' },
+          { id: 'C4', criterion: 'Triple-Whale-AI-rec-cohort-overlay-Wired', verification: 'verify via AI-rec-cohort-LTV-at-30/60/90/180-day-windows' },
+          { id: 'C5', criterion: 'OpenAI-fine-tuning-on-brand-voice-data 50-100 brand-content-samples', verification: 'verify via 10-30% brand-voice-consistency-lift-vs-GPT-4o-only-baseline' },
+          { id: 'C6', criterion: 'Anthropic-Claude-fine-tuning-on-brand-voice-data', verification: 'verify via 10-30% brand-voice-consistency-lift' },
+          { id: 'C7', criterion: 'Cohere-fine-tuning-on-brand-voice-data (optional)', verification: 'verify via brand-voice-fine-tune-cohort-50-100-prompts-and-responses' },
+          { id: 'C8', criterion: 'Klaviyo-AI-subject-line + Postscript-AI-SMS-copy cross-pollination', verification: 'verify via Move-#5-+-Move-#7-cohort-attrition-1%-rule' },
+          { id: 'C9', criterion: 'AI-product-rec-feed-personalization-launch', verification: 'verify via Triple-Whale-AI-rec-cohort-overlay + Nosto-AI-recommendation-engine' },
+          { id: 'C10', criterion: 'AI-search-relevance-tuning-launch', verification: 'verify via Algolia-AI-search-relevance-tuning + Searchspring-AI-search' },
+        ],
+      },
+      {
+        id: 'D',
+        label: 'Phase 4 — Steady-state + custom-trained-LLM-quarterly + AI-orchestration-engine-quarterly + creative-cadence-automation-quarterly + creative-iteration-cycle-quarterly (Weeks 49-72)',
+        gates: [
+          { id: 'D1', criterion: 'AI-creative-velocity-tracking + 10-30% creative-iteration-velocity-lift-per-quarter', verification: 'verify via per-quarter creative-iteration-cadence-tracking' },
+          { id: 'D2', criterion: 'AI-creative-cadence-automation-iteration + per-voice-cadence-automation', verification: 'verify via 10-30% creative-cadence-automation-lift-per-quarter' },
+          { id: 'D3', criterion: 'AI-creative-iteration-cycle-quarterly-review', verification: 'verify via AI-creative-iteration-cycle-vs-control-set-of-no-AI-iteration-cohort' },
+          { id: 'D4', criterion: '5-15% creative-iteration-cycle-CVR-lift-per-quarter', verification: 'verify via Triple-Whale-cohort-LTV-iteration' },
+          { id: 'D5', criterion: '5-deliverability-cohort-queries (AI-creative-cohort-LTV + AI-SMS-cohort-LTV + AI-email-cohort-LTV + AI-product-rec-cohort-LTV + AI-blog-post-cohort-LTV)', verification: 'verify via Triple-Whale-5-way-comparison-cycle' },
+          { id: 'D6', criterion: 'AI-customer-service-cohort-attrition-management', verification: 'verify via Gorgias-CSAT-lift-cohort-tracking' },
+          { id: 'D7', criterion: '12-24-month-compounding-AI-engine-steady-state', verification: 'verify via 2-4x LTV-multiplier-year-2+ vs AI-only-baseline' },
+          { id: 'D8', criterion: 'AI-engine-cohort-LTV-vs-AI-only-cohort-LTV', verification: 'verify via Triple-Whale-3-way-comparison-cycle' },
+          { id: 'D9', criterion: '5-voice voice-density preserved across all 5 Pillars', verification: 'verify via Default=33 / Luxury=33 / Sustainable=33 / Gen-Z=37 / B2B=44 each >=15' },
+        ],
+      },
+    ];
+
+    var SAMPLE_INPUTS = {
+      path: 'B',
+      us_dtc_gmv: 5_000_000,
+      creatives_per_week: 75,
+      voice: 'default',
+      platforms: {
+        gpt_4o_clone_voice:    { status: 'live',   launchedDays: 90 },
+        ai_orchestration:      { status: 'live',   launchedDays: 60 },
+        jasper_brand_voice:    { status: 'live',   launchedDays: 60 },
+        copy_ai_iteration:     { status: 'live',   launchedDays: 30 },
+        midjourney_product:    { status: 'live',   launchedDays: 30 },
+        elevenlabs_voice:      { status: 'live',   launchedDays: 14 },
+        triple_whale_ai:       { status: 'live',   launchedDays: 90 },
+        typeface_brand:        { status: 'live',   launchedDays: 14 },
+        gorgias_ai_cs:         { status: 'live',   launchedDays: 30 },
+        nosto_rebuy:           { status: 'live',   launchedDays: 14 },
+        algolia_search:        { status: 'live',   launchedDays: 14 },
+        openai_finetune:       { status: 'draft',  launchedDays: 0 },
+        anthropic_finetune:    { status: 'draft',  launchedDays: 0 },
+        cohere_finetune:       { status: 'draft',  launchedDays: 0 },
+      },
+      gates: {
+        A: { passed: 8, total: 10 },
+        B: { passed: 6, total: 10 },
+        C: { passed: 0, total: 10 },
+        D: { passed: 0, total: 9 },
+      },
+    };
+
+    var AI_ENGINE_PILLAR_MATRIX = [
+      {
+        id: 'pillar_1',
+        label: 'Pillar 1 — AI-creative-substrate (GPT-4o-clone-voice + AI-orchestration-engine + Jasper + Copy.ai + Triple-Whale)',
+        default: 33, luxury: 33, sustainable: 33, genZ: 37, b2b: 44,
+        status: 'live',
+        roi_contribution: '60-80% Year-1 ROI',
+        voice_density: 'Default=33 / Luxury=33 / Sustainable=33 / Gen-Z=37 / B2B=44',
+        move_compound: 'Move #10 AI-ad-creative-iteration + Move #6 Triple-Whale + Move #5 Klaviyo-email-substrate',
+      },
+      {
+        id: 'pillar_2',
+        label: 'Pillar 2 — AI-product-content (Midjourney + Jasper blog-post + Jasper product-description)',
+        default: 33, luxury: 33, sustainable: 33, genZ: 37, b2b: 44,
+        status: 'live',
+        roi_contribution: '5-15% product-page-CVR-lift',
+        voice_density: 'Default=33 / Luxury=33 / Sustainable=33 / Gen-Z=37 / B2B=44',
+        move_compound: 'Move #17 Pinterest-organic-SEO + Move #13 marketplace-expansion + Move #9 mobile-PDP',
+      },
+      {
+        id: 'pillar_3',
+        label: 'Pillar 3 — AI-channel-copy (Jasper-subject-line + Postscript-SMS-copy + social-caption)',
+        default: 33, luxury: 33, sustainable: 33, genZ: 37, b2b: 44,
+        status: 'live',
+        roi_contribution: '5-20% email-CTR-lift + 10-30% SMS-CTR-lift',
+        voice_density: 'Default=33 / Luxury=33 / Sustainable=33 / Gen-Z=37 / B2B=44',
+        move_compound: 'Move #1 cart-abandon-email + Move #4 welcome-email + Move #7 SMS-welcome + Move #14 lifecycle-flow-library',
+      },
+      {
+        id: 'pillar_4',
+        label: 'Pillar 4 — AI-conversion-and-service-substrate (Gorgias-AI-CS + Nosto + Algolia + Rebuy)',
+        default: 33, luxury: 33, sustainable: 33, genZ: 37, b2b: 44,
+        status: 'live',
+        roi_contribution: '30-50% customer-service-cost-savings + 5-15% AOV-lift',
+        voice_density: 'Default=33 / Luxury=33 / Sustainable=33 / Gen-Z=37 / B2B=44',
+        move_compound: 'Move #8 loyalty + Move #11 subscription + Move #2 post-purchase-upsell + Move #14 lifecycle-marketing',
+      },
+      {
+        id: 'pillar_5',
+        label: 'Pillar 5 — Custom-trained-LLM (OpenAI-fine-tuning + Anthropic-Claude + Cohere + quarterly-iteration)',
+        default: 33, luxury: 33, sustainable: 33, genZ: 37, b2b: 44,
+        status: 'draft',
+        roi_contribution: '10-30% brand-voice-consistency-lift + 2-4x LTV-multiplier-year-2+',
+        voice_density: 'Default=33 / Luxury=33 / Sustainable=33 / Gen-Z=37 / B2B=44',
+        move_compound: 'all 5 Pillars + re-tune-quarterly-creative-iteration-cadence',
+      },
+    ];
+
+    // ----- 8 helper functions -----
+
+    function tierForGmv(usDtcGmv) {
+      if (usDtcGmv >= 25_000_000) return 'C';
+      if (usDtcGmv >= 1_000_000) return 'B';
+      return 'A';
+    }
+
+    function liftMidpoint(path) {
+      return (PATH_TABLE[path].lift_low + PATH_TABLE[path].lift_high) / 2;
+    }
+
+    function oneTimeMidpoint(path) {
+      return (PATH_TABLE[path].one_time_low + PATH_TABLE[path].one_time_high) / 2;
+    }
+
+    function recurringMidpoint(path) {
+      return (PATH_TABLE[path].recurring_low + PATH_TABLE[path].recurring_high) / 2;
+    }
+
+    function fmtUSD(n) {
+      if (n >= 1_000_000) return '$' + (n / 1_000_000).toFixed(2) + 'M';
+      if (n >= 1_000) return '$' + (n / 1_000).toFixed(1) + 'k';
+      return '$' + Math.round(n);
+    }
+
+    function fmtPct(x) {
+      return x.toFixed(1) + '%';
+    }
+
+    function statusClass(s) {
+      if (s === 'live') return 'live';
+      if (s === 'draft') return 'draft';
+      if (s === 'staging') return 'staging';
+      return 'not-started';
+    }
+
+    function statusLabel(s) {
+      if (s === 'live') return 'LIVE';
+      if (s === 'draft') return 'DRAFT';
+      if (s === 'staging') return 'STAGING';
+      return 'NOT STARTED';
+    }
+
+    function paramOr(name, dflt) {
+      try {
+        var p = new URLSearchParams(window.location.search);
+        var v = p.get(name);
+        return v == null ? dflt : v;
+      } catch (e) {
+        return dflt;
+      }
+    }
+
+    // ----- 6 render functions -----
+
+    function renderSummary(input, pathTier) {
+      var pt = PATH_TABLE[pathTier];
+      var year1CostLow = pt.one_time_low + pt.recurring_low * 12.0;
+      var year1CostHigh = pt.one_time_high + pt.recurring_high * 12.0;
+      var incRevLow = input.us_dtc_gmv * (pt.incremental_share_low / 100.0);
+      var incRevHigh = input.us_dtc_gmv * (pt.incremental_share_high / 100.0);
+      var stats = [
+        { label: 'Path tier', value: 'Path ' + pathTier, sub: pt.label, cls: '' },
+        { label: 'US DTC GMV', value: fmtUSD(input.us_dtc_gmv), sub: 'baseline', cls: '' },
+        { label: 'Year-1 incremental AI-engine-revenue', value: fmtUSD(incRevLow) + ' - ' + fmtUSD(incRevHigh), sub: pt.incremental_share_low + '-' + pt.incremental_share_high + '% of base GMV', cls: 'ok' },
+        { label: 'Year-1 cost stack', value: fmtUSD(year1CostLow) + ' - ' + fmtUSD(year1CostHigh), sub: 'one-time + 12mo recurring', cls: '' },
+        { label: 'Year-1 ROI', value: pt.roi_low.toFixed(1) + 'x - ' + pt.roi_high.toFixed(1) + 'x', sub: 'canonical ' + pathTier + ' band', cls: pt.roi_low >= 3 ? 'ok' : 'warn' },
+        { label: 'Year-1 ROAS lift', value: pt.roas_lift_low + '-' + pt.roas_lift_high + ' pp', sub: 'additive percentage points', cls: 'ok' },
+        { label: 'Year-1 Email CTR lift', value: pt.email_ctr_lift_low + '-' + pt.email_ctr_lift_high + ' pp', sub: 'vs Move #5 Klaviyo baseline', cls: 'ok' },
+        { label: 'Year-1 Organic lift', value: pt.organic_lift_low + '-' + pt.organic_lift_high + ' pp', sub: 'vs Move #17 Pinterest-SEO baseline', cls: 'ok' },
+        { label: 'Creative velocity mult', value: pt.vel_mult_low.toFixed(1) + 'x - ' + pt.vel_mult_high.toFixed(1) + 'x', sub: 'vs Move #10 AI-ad-creative baseline', cls: '' },
+        { label: 'Creative cost save', value: pt.cost_save_low + '-' + pt.cost_save_high + '%', sub: 'vs photographer-baseline', cls: '' },
+        { label: 'Build cycle', value: pt.build_low + '-' + pt.build_high + ' months', sub: 'AI-engine build maturity', cls: '' },
+      ];
+      var html = '';
+      for (var i = 0; i < stats.length; i++) {
+        var s = stats[i];
+        html += '<div class="stat"><div class="label">' + s.label + '</div>';
+        html += '<div class="value ' + s.cls + '">' + s.value + '</div>';
+        html += '<div class="sub">' + s.sub + '</div></div>';
+      }
+      document.getElementById('summary-stats').innerHTML = html;
+    }
+
+    function renderPlatformGrid(input) {
+      var html = '';
+      for (var i = 0; i < PLATFORMS.length; i++) {
+        var p = PLATFORMS[i];
+        var pin = input.platforms[p.id];
+        var liveStatus = pin ? pin.status : 'draft';
+        var cls = statusClass(liveStatus);
+        var label = statusLabel(liveStatus);
+        html += '<div class="platform-card">';
+        html += '<div class="pillar">' + p.pillar + ' · ' + p.tier + '</div>';
+        html += '<div class="name">' + p.name + '</div>';
+        html += '<div class="status ' + cls + '">' + label + '</div>';
+        html += '<div class="voice-density">' + p.voice_density + '</div>';
+        html += '<div class="gate-score">Gate score: ' + p.gate_score + '</div>';
+        html += '<div class="sub" style="font-size:11px;color:var(--text-dim);margin-top:6px">' + p.note + '</div>';
+        html += '</div>';
+      }
+      document.getElementById('platform-cards').innerHTML = html;
+    }
+
+    function renderPathChart(input, pathTier) {
+      var paths = ['A', 'B', 'C'];
+      var maxRev = 0;
+      var revs = {};
+      for (var i = 0; i < paths.length; i++) {
+        var p = paths[i];
+        var pt = PATH_TABLE[p];
+        revs[p] = input.us_dtc_gmv * (pt.incremental_share_high / 100.0);
+        if (revs[p] > maxRev) maxRev = revs[p];
+      }
+      var html = '';
+      for (var j = 0; j < paths.length; j++) {
+        var path = paths[j];
+        var pt = PATH_TABLE[path];
+        var shareLow = input.us_dtc_gmv * (pt.incremental_share_low / 100.0);
+        var shareHigh = input.us_dtc_gmv * (pt.incremental_share_high / 100.0);
+        var pct = maxRev > 0 ? (revs[path] / maxRev * 100).toFixed(1) : 0;
+        html += '<div class="bar-row">';
+        html += '<div class="label">Path ' + path + '</div>';
+        html += '<div class="track"><div class="fill path-' + path.toLowerCase() + '" style="width:' + pct + '%"></div></div>';
+        html += '<div class="amount">' + fmtUSD(shareLow) + ' - ' + fmtUSD(shareHigh) + ' (' + pt.incremental_share_low + '-' + pt.incremental_share_high + '%)</div>';
+        html += '</div>';
+      }
+      html += '<div style="font-size:11px;color:var(--text-dim);margin-top:8px">';
+      html += 'Path ' + pathTier + ' selected (highlighted in chart). Each bar shows the Year-1 incremental AI-engine-revenue band at ' + fmtUSD(input.us_dtc_gmv) + ' base GMV.';
+      html += '</div>';
+      document.getElementById('path-chart').innerHTML = html;
+    }
+
+    function renderPhaseGates(input) {
+      var html = '';
+      for (var i = 0; i < PHASE_GATES.length; i++) {
+        var phase = PHASE_GATES[i];
+        var passed = input.gates[phase.id].passed;
+        var total = input.gates[phase.id].total;
+        var okClass = passed === total ? 'ok-count' : (passed >= total * 0.7 ? 'warn-count' : 'fail-count');
+        html += '<div class="gate-card">';
+        html += '<div class="head"><div class="label">' + phase.label + '</div>';
+        html += '<div class="progress"><span class="' + okClass + '">' + passed + '/' + total + '</span> passed</div></div>';
+        html += '<ul class="gate-list">';
+        for (var j = 0; j < phase.gates.length; j++) {
+          var g = phase.gates[j];
+          var gStatus = (j < passed) ? 'ok' : 'draft';
+          html += '<li><span class="g-id">' + g.id + '</span>';
+          html += '<span class="g-status ' + gStatus + '">' + (gStatus === 'ok' ? 'PASS' : 'PENDING') + '</span>';
+          html += '<span>' + g.criterion + ' <em style="color:var(--text-dim)">— ' + g.verification + '</em></span>';
+          html += '</li>';
+        }
+        html += '</ul></div>';
+      }
+      document.getElementById('phase-gates').innerHTML = html;
+    }
+
+    function renderPillarsTable(input) {
+      var html = '';
+      for (var i = 0; i < AI_ENGINE_PILLAR_MATRIX.length; i++) {
+        var p = AI_ENGINE_PILLAR_MATRIX[i];
+        var liveStatus = input.platforms[p.id === 'pillar_1' ? 'gpt_4o_clone_voice' : p.id === 'pillar_2' ? 'midjourney_product' : p.id === 'pillar_3' ? 'copy_ai_iteration' : p.id === 'pillar_4' ? 'gorgias_ai_cs' : 'openai_finetune'];
+        var cls = statusClass(p.status);
+        var label = statusLabel(p.status);
+        html += '<tr>';
+        html += '<td>' + p.label + '</td>';
+        html += '<td>' + p.voice_density + '</td>';
+        html += '<td><span class="status ' + cls + '">' + label + '</span></td>';
+        html += '<td>' + p.roi_contribution + '</td>';
+        html += '<td>' + p.voice_density + '</td>';
+        html += '<td>' + p.move_compound + '</td>';
+        html += '</tr>';
+      }
+      document.getElementById('pillar-table-body').innerHTML = html;
+    }
+
+    function renderNextAction(input, pathTier) {
+      var phaseAPassed = input.gates.A.passed;
+      var phaseBPassed = input.gates.B.passed;
+      var phaseCPassed = input.gates.C.passed;
+      var phaseDPassed = input.gates.D.passed;
+      var liveCount = 0;
+      var totalPlatforms = PLATFORMS.length;
+      for (var k in input.platforms) {
+        if (input.platforms[k].status === 'live') liveCount++;
+      }
+      var actions = [];
+      if (phaseAPassed < 10) {
+        actions.push('<strong>Phase 1 gap:</strong> close the remaining ' + (10 - phaseAPassed) + ' Phase-1 gates (GPT-4o-clone-voice + AI-orchestration-engine-baseline + Jasper + Copy.ai + Triple-Whale + 4 substrate prereqs). Verify each gate via the canonical 6-hr/week AI-engine-team baseline.');
+      }
+      if (liveCount < 11) {
+        actions.push('<strong>Platform gap:</strong> ship the remaining ' + (11 - liveCount) + ' core + ext-tier platforms (Midjourney + ElevenLabs + Typeface + Gorgias + Nosto + Algolia). Per the canonical Path B platform stack of 11 active platforms.');
+      }
+      if (pathTier === 'B' && phaseAPassed >= 8) {
+        actions.push('<strong>Path B confirmed:</strong> ' + (liveCount >= 11 ? '11/11 core+ext platforms live — ready to ship Pillar 2 + Pillar 3' : 'ship remaining platforms then advance to Phase 2 (AI-product-photography + AI-email-subject-line + AI-SMS-copy + AI-blog-post-generation + AI-product-description + AI-social-caption)') + '.');
+      }
+      if (phaseBPassed < 10 && phaseAPassed >= 8) {
+        actions.push('<strong>Phase 2 next:</strong> ship AI-product-photography + AI-email-subject-line + AI-SMS-copy + AI-blog-post + AI-product-description + AI-social-caption. Verify via 5-20% email-CTR-lift + 10-30% SMS-CTR-lift + 10-30% social-engagement-rate-lift + 10-30% organic-discovery-traffic-lift.');
+      }
+      if (phaseCPassed < 10 && phaseBPassed >= 7) {
+        actions.push('<strong>Phase 3 next:</strong> ship AI-customer-service + AI-product-rec-feed + AI-search-relevance + AI-recommendation-engine + custom-trained-LLM. Verify via 30-50% customer-service-cost-savings + 5-15% AOV-lift + 10-30% brand-voice-consistency-lift.');
+      }
+      if (phaseDPassed < 9 && phaseCPassed >= 7) {
+        actions.push('<strong>Phase 4 next:</strong> enter steady-state with AI-orchestration-engine-quarterly + creative-cadence-automation-quarterly + creative-iteration-cycle-quarterly. Verify via 12-24-month-compounding-AI-engine-steady-state reaching 2-4x LTV-multiplier-year-2+ vs AI-only-baseline.');
+      }
+      if (pathTier === 'A') {
+        actions.push('<strong>Path A confirmed (micro):</strong> GPT-4o-clone-voice-only + AI-orchestration-engine-baseline via AdCreative.ai Standard $249/mo OR Moby Starter $149/mo. Move #10 entry-tier per playbooks/10-ai-ad-creative-iteration.md.');
+      }
+      if (pathTier === 'C') {
+        actions.push('<strong>Path C confirmed (enterprise):</strong> custom-trained-LLM-on-brand-voice-data + AI-orchestration-engine + Midjourney + Stable-Diffusion + Runway + Sora + ElevenLabs + Typeface + Triple-Whale-Pro. Requires dedicated AI-engine-team for 6-12-month LLM-training-cycle + quarterly-iteration.');
+      }
+      actions.push('<strong>Run the canonical scorer:</strong> python3 scripts/generative_ai_engine_unit_economics.py to validate the Path tier for the brand\'s actual 13 inputs (us-dtc-gmv + creatives-per-week + has-move-10-ai-ad-creative-6mo + has-triple-whale-attribution + has-klaviyo-email-substrate + has-postscript-sms-substrate + has-ai-engine-creative-baseline + has-ai-customer-service-response-baseline + has-dedicated-ai-engine-team + voice-profile + has-dedicated-ai-engine-team-capacity-hours-per-week + has-openai-api + has-ai-orchestration-engine + has-jasper-brand-voice-llm).');
+      actions.push('<strong>Open the operator surface:</strong> /generative-ai-engine (Next.js operator-surface route, 25th route) renders research/16 + playbooks/23 + assets/26 as a unified operator surface with 4 hero metrics + TL;DR + 3 layer cards + 5-voice density pills all ≥15 + future-tick companions footer.');
+      var html = '<ol>';
+      for (var a = 0; a < actions.length; a++) {
+        html += '<li>' + actions[a] + '</li>';
+      }
+      html += '</ol>';
+      document.getElementById('next-action').innerHTML = html;
+    }
+
+    // ----- main bootstrap -----
+
+    function bootstrap() {
+      var input = JSON.parse(JSON.stringify(SAMPLE_INPUTS));
+      var isDemo = (paramOr('demo', null) === '1');
+      var usDtcGmv = parseFloat(paramOr('us_dtc_gmv', null));
+      if (!isNaN(usDtcGmv) && usDtcGmv >= 0) input.us_dtc_gmv = usDtcGmv;
+      var creatives = parseInt(paramOr('creatives_per_week', null), 10);
+      if (!isNaN(creatives) && creatives >= 0) input.creatives_per_week = creatives;
+      var voice = paramOr('voice', null);
+      if (voice && ['default', 'luxury', 'sustainable', 'gen_z', 'b2b'].indexOf(voice) >= 0) input.voice = voice;
+      var pathOverride = paramOr('path', null);
+      var pathTier;
+      if (pathOverride && ['A', 'B', 'C'].indexOf(pathOverride) >= 0) {
+        pathTier = pathOverride;
+      } else {
+        pathTier = tierForGmv(input.us_dtc_gmv);
+      }
+      input.path = pathTier;
+
+      var badge = document.getElementById('mode-badge');
+      badge.textContent = isDemo ? 'demo' : 'live';
+      badge.className = 'mode-badge ' + (isDemo ? 'demo' : 'live');
+
+      renderSummary(input, pathTier);
+      renderPlatformGrid(input);
+      renderPathChart(input, pathTier);
+      renderPhaseGates(input);
+      renderPillarsTable(input);
+      renderNextAction(input, pathTier);
+    }
+
+    // Fetch with timeout contract (AbortController + 1500ms) per the v0.11.0 recipe.
+    var FETCH_TIMEOUT_MS = 1500;
+    function fetchInputs(url) {
+      var controller = (typeof AbortController !== 'undefined') ? new AbortController() : null;
+      var timer = setTimeout(function() {
+        if (controller) controller.abort();
+      }, FETCH_TIMEOUT_MS);
+      try {
+        var p = fetch(url, controller ? { signal: controller.signal } : {});
+        return p.then(function(r) { clearTimeout(timer); return r.json(); })
+                 .catch(function() { clearTimeout(timer); return null; });
+      } catch (e) {
+        clearTimeout(timer);
+        return Promise.resolve(null);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', bootstrap);
+    } else {
+      bootstrap();
+    }
+  </script>
+</body>
+</html>
