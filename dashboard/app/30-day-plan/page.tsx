@@ -7,6 +7,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ThirtyDayPlanGenerator } from "@/components/thirty-day-plan";
 import { content } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -135,6 +136,28 @@ export default function RolloutPlanPage() {
           </CardContent>
         </Card>
       )}
+
+      {/* === PERSONALIZED 30-DAY PLAN GENERATOR === */}
+      <Card className="border-2">
+        <CardHeader className="pb-3">
+          <div className="flex items-center justify-between gap-2">
+            <CardTitle className="text-base">
+              Your 30-day plan — personalized to your store
+            </CardTitle>
+            <Badge variant="accent" className="text-[10px]">
+              Live
+            </Badge>
+          </div>
+          <CardDescription className="text-xs">
+            Reads Your-store inputs (AOV · monthly orders · gross margin) and your shipped-playbook
+            tracker, then produces a day-by-day calendar with verification gates. Skips moves
+            you&apos;ve already shipped and remaps the remaining queue.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <ThirtyDayPlanGenerator />
+        </CardContent>
+      </Card>
 
       <section className="flex flex-col gap-4">
         <h2 className="text-lg font-semibold tracking-tight">
