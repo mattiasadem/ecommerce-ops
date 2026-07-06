@@ -48,7 +48,12 @@ recommendation). Companion playbook tick: 2026-07-10 ecommerce-ops improver
 (playbooks/06.5-weekly-rollup-trend-launch.md — closes the canonical
 Move-#6.5-weekly-rollup-trend-companion-playbook deferred gap per the v0.9.0
 layer-order-completion sub-rule applied to the Move #6.5 weekly-rollup-trend
-substrate at 1/4 layers).
+substrate at 1/4 layers). Companion asset tick: 2026-07-10 ecommerce-ops improver
+(assets/25-attribution-weekly-rollup-trend-template.md — closes the canonical
+Move-#6.5-weekly-rollup-trend-companion-asset deferred gap per the v0.9.0
+layer-order-completion sub-rule applied to the Move #6.5 weekly-rollup-trend
+substrate at 2/4 layers; ships 20 paste-ready per-voice Slack-compatible
+trend-alert templates = 5 voices × 4 fired-rule scenarios).
 """
 
 import argparse
