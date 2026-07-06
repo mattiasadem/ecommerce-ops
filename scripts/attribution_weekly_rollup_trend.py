@@ -31,6 +31,9 @@ Companion artifacts:
   multi-cycle TREND companion)
 - scripts/tests/test_attribution_health_alert_webhook.py (the per-cycle alert
   test file; this script's test file follows the same canonical pattern)
+- playbooks/06.5-weekly-rollup-trend-launch.md (the canonical Move #6.5
+  weekly-rollup-trend operator-build companion — mirrors the canonical
+  playbook-06.8 single-cron-wire shape applied to this trend script)
 - playbooks/06.8-cross-platform-attribution-drift-unification.md (the Move #6.8
   operator-build playbook that ships the per-cycle rollup)
 - research/06-marketplace-expansion.md + research/14-amazon-dsp-amazon-attribution-audit.md
@@ -41,7 +44,11 @@ Companion artifacts:
 Companion tick: 2026-07-10 ecommerce-ops improver track-9-12 hardening tick
 (closes the canonical Move-#6.5-weekly-rollup-trend-script deferred gap per
 v0.36.0 Track 9-12 hardening recipe + the prior tick's `45ee5b1` next-action
-recommendation).
+recommendation). Companion playbook tick: 2026-07-10 ecommerce-ops improver
+(playbooks/06.5-weekly-rollup-trend-launch.md — closes the canonical
+Move-#6.5-weekly-rollup-trend-companion-playbook deferred gap per the v0.9.0
+layer-order-completion sub-rule applied to the Move #6.5 weekly-rollup-trend
+substrate at 1/4 layers).
 """
 
 import argparse
