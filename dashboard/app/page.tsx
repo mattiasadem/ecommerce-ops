@@ -12,6 +12,7 @@ import { Bar } from "@/components/bar";
 import { YourStoreCard } from "@/components/your-store-card";
 import { ShippedProgressStrip } from "@/components/shipped-playbooks";
 import { NextMoveCard } from "@/components/next-move";
+import { IkasLiveCard } from "@/components/ikas-live-card";
 import { content, findTable, fmtDate } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -43,43 +44,43 @@ export default function Home() {
         <div className="lg:col-span-2 flex flex-col gap-4">
           <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-muted-foreground">
             <span className="inline-block h-1.5 w-1.5 rounded-full bg-success animate-pulse" />
-            <span>Operating system</span>
-            <span>/</span>
-            <span className="text-foreground">Ecommerce Ops</span>
+            <span>Cron running</span>
+            <span>·</span>
+            <span className="text-foreground">every 6h</span>
             <span className="ml-auto text-[10px] tabular-nums">
-              Synced {fmtDate(generatedAt)}
+              Updated {fmtDate(generatedAt)}
             </span>
           </div>
           <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-gradient leading-[1.05]">
-            Run your DTC store on evidence, not gut feel.
+            Your DTC operating system.
           </h1>
           <p className="max-w-2xl text-sm text-muted-foreground leading-relaxed">
-            Every metric, every playbook, every move on this dashboard is grounded
-            in sourced 2025–26 benchmarks and your real store data. Stop guessing
-            what to ship next — start shipping what moves the numbers.
+            {counts.playbooks} playbooks shipped. {counts.researchDocs} research
+            docs. {counts.assets} assets. {journal.length} cron ticks so far.
+            Read the <a className="underline hover:text-foreground" href="/standup">daily standup</a> first — it tells you what shipped yesterday, what's queued today, and what to focus on.
           </p>
 
           <div className="flex flex-wrap items-center gap-3 pt-2">
+            <a
+              href="/standup"
+              className="inline-flex items-center gap-2 rounded-lg bg-foreground text-background px-4 py-2 text-sm font-medium hover:bg-foreground/90 transition-colors"
+            >
+              <span>Open today's standup</span>
+              <span aria-hidden="true">→</span>
+            </a>
             {nextMove && (
               <a
                 href={`/playbooks#${recommendedPlaybook?.file.replace(/\.md$/, "")}`}
-                className="inline-flex items-center gap-2 rounded-lg bg-foreground text-background px-4 py-2 text-sm font-medium hover:bg-foreground/90 transition-colors"
+                className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium hover:bg-muted transition-colors"
               >
                 <span>Ship next: {nextMove.move.split(".")[1]?.trim() ?? nextMove.move}</span>
-                <span aria-hidden="true">→</span>
               </a>
             )}
             <a
               href="/top-10"
-              className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium hover:bg-muted transition-colors"
-            >
-              See the playbook queue
-            </a>
-            <a
-              href="/journal"
               className="inline-flex items-center gap-2 px-2 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
-              What changed today →
+              The Top 10 queue →
             </a>
           </div>
         </div>
@@ -142,6 +143,38 @@ export default function Home() {
         </Card>
       </section>
 
+      {/* === DAILY STANDUP PREVIEW — operator-first, latest tick === */}
+      {journal.length > 0 && (
+        <section>
+          <Card className="border-l-4 border-l-emerald-500 bg-emerald-500/5">
+            <CardHeader className="pb-3">
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2">
+                  <span className="inline-block h-2 w-2 rounded-sm bg-emerald-500" />
+                  <CardTitle className="text-sm font-semibold">
+                    Latest from the daily standup
+                  </CardTitle>
+                </div>
+                <a
+                  href="/standup"
+                  className="text-[10px] uppercase tracking-wider text-muted-foreground hover:text-foreground"
+                >
+                  Open full standup →
+                </a>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="text-sm font-medium leading-snug mb-1">
+                {journal[0].heading.replace(/^\[[^\]]+\]\s*/, "")}
+              </div>
+              <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3">
+                {journal[0].body.split("\n").filter(l => l.trim().startsWith("- **")).slice(0, 2).join(" ").replace(/\*\*/g, "").slice(0, 280)}
+              </p>
+            </CardContent>
+          </Card>
+        </section>
+      )}
+
       {/* === YOUR STORE — cross-page ROI inputs === */}
       <section>
         <Card className="border-2">
@@ -161,6 +194,11 @@ export default function Home() {
             <YourStoreCard />
           </CardContent>
         </Card>
+      </section>
+
+      {/* === LIVE IKAS DATA — pulls from /data/.ikas/config.json on the VPS === */}
+      <section id="ikas-overview">
+        <IkasLiveCard />
       </section>
 
       {/* === NEXT-MOVE RECOMMENDATION — what to ship TODAY === */}

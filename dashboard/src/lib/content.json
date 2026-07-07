@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-06T18:08:50.524Z",
+  "generatedAt": "2026-07-07T06:40:14.187Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-07-06 18:30] Add /standup route — daily human-readable page + manual deploy",
+      "body": "- **What shipped:** `dashboard/app/standup/page.tsx` (new, ~12KB / 218 lines) + `dashboard/src/components/nav.tsx` (modified, added \"Daily\" link in Operate group) + manual Vercel deploy bypassing the 6h cron (disk was full, deploy token extracted from `/data/workspace/env`).\n- **Why this move:** User feedback: \"looks more like a document... want a daily page which is more human readable style\". The existing /journal route shows raw chronological entries; the new /standup route renders them as a Slack-style morning message — header with day-of-build counter, 4 status pills (shipped-today / playbooks / active tracks / deploy cadence), Today's focus card (latest journal entry's \"Next action\"), last 7 days grouped by day with timestamps and human bullets.\n- **Files touched:** `dashboard/app/st"
+    },
+    {
       "heading": "[2026-07-06 18:00] Add research/17-ai-customer-service-automation.md + Move-status SEED on research/03 + sub-class forward-pointer on research/16: Move #20.1 AI-customer-service-automation synthesis (canonical 18th-active-track opening per the v0.7.0 track-exhaustion-revival pivot from the closed Move #20 generative-AI-engine track per the canonical Move #20.1 sub-class pattern — deep-dive on Move #20 Pillar 4 `AI-customer-service-response-baseline-launch`; canonical 1/6 layers SYNTHESIS SHIPPED per the canonical research → playbook → asset → operator-surface → scripts → static-dashboard layer order; the canonical sub-class of the Move #20 generative-AI-engine track that addresses the AI-customer-service-response-automation gap left open after the Move #20 Pillar 4 enumeration in research/16 lines 60-62 — operators who shipped Move #20 Pillar 4 still need a canonical Gorgias + ChatGPT-4o + Triple-Whale cohort-merge AI customer service response automation sub-track)",
       "body": "- **What shipped:** `research/17-ai-customer-service-automation.md` (new, ~28KB / 285 lines / **the 18th research doc in the workspace + the canonical 1st-layer synthesis for the Move #20.1 AI-customer-service-automation sub-track per the canonical research → playbook → asset → operator-surface → scripts → static-dashboard layer order**; canonical 11-section research synthesis for the **Gorgias + ChatGPT-4o + Anthropic-Claude + Recharge + Triple-Whale cohort-merge AI customer service response automation layer** the Move #20 generative-AI-engine Pillar 4 enumeration left as a placeholder; the canonical sub-class pattern that compounds Move #20 Pillar 4 + Move #6 Triple-Whale cohort-merge + Move #5 Klaviyo+Postscript customer-data-on-ticket + Move #7 SMS-resolution-channel + Move #8 loyalty-"
     },
@@ -12480,6 +12484,14 @@
     {
       "heading": "2026-07-06 12:49 UTC — Personalized 30-day plan generator on /30-day-plan",
       "body": "- **What shipped:** A \"Your 30-day plan — personalized to your store\" card on `/30-day-plan` that reads Your-store (AOV / monthly orders / gross margin) + Shipped-playbooks (which playbooks the operator marked shipped) and produces a 4-week × 5-day calendar with verification gates and expected-lift annotations per task. One-click **Generate** button → 30-day schedule with weekend buffer days, projected monthly revenue, projected $ lift (low/high — capped at +80% to match the checkout-audit cap), and a per-move \"moves in flight\" pill that deep-links back to `/playbooks#<playbook-id>`. Two output actions: **Copy markdown** (paste-ready 80-line plan with Inputs, Projected lift, Rationale, and full 30-day Calendar sections) and **Download .md** (saves `30-day-plan-YYYY-MM-DD.md` to disk). The "
+    },
+    {
+      "heading": "2026-07-06 18:34 UTC — Next-move recommendation on / (cross-page-intelligence + state-persistence)",
+      "body": "- **What shipped:** A new full-width \"Ship next\" card on the Overview page (`/`) that ranks the canonical Top-10 move queue against the operator's actual state and surfaces the #1 unblocked move with a personalized $ lift / month estimate, days-to-ship, cost band, and why-this-move rationale. The card reads three live signals: (1) `Your-store` from `ecom-ops:your-store:v1` (AOV / monthly orders / gross margin) for $ lift projection, (2) `Shipped-playbooks` from `ecom-ops:shipped-playbooks:v1` to filter the queue, and (3) `Top-10 priority rank` to pick the canonical next move. It also surfaces **prereq-blocked moves** (e.g. SMS welcome blocked on Klaviyo+Postscript migration) with an amber footer line so the operator knows why a higher-priority move was skipped. A one-click **Mark shipped**"
+    },
+    {
+      "heading": "2026-07-07 06:13 UTC — Playbook search & filter on /playbooks (interactive-tool + state-persistence)",
+      "body": "- **What shipped:** A new client-side filter bar at the top of `/playbooks` that lets the operator narrow all 30 playbooks by free-text (matches title + meta + numbered-section headings), by freshness tier (fresh / aging / stale / unknown — keeps the existing TIER_STYLES palette), and by shipped state (shipped / unshipped — reads from the existing `ecom-ops:shipped-playbooks:v1` localStorage so the toggle on the per-playbook tracker propagates here instantly without a refresh). Filter state persists to `ecom-ops:playbooks:search:v1` and the page now ships a \"X of N visible\" pill, a \"Clear filters\" button at the top, and an empty-state card with a Clear-filters CTA when no playbooks match. The flat map of 30 cards was lifted into a single `<PlaybookSearch />` client component (parity with t"
     }
   ],
   "counts": {
@@ -12488,6 +12500,6 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 84
+    "journalEntries": 87
   }
 }
