@@ -6,12 +6,12 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CopyButton } from "@/components/copy-button";
 import { AbandonedCartROICalculator } from "@/components/abandoned-cart-roi";
 import { WelcomeSeriesROICalculator } from "@/components/welcome-series-roi";
 import { PostPurchaseUpsellROICalculator } from "@/components/post-purchase-upsell-roi";
 import { ShippedPlaybooks as ShippedPlaybooksTracker } from "@/components/shipped-playbooks";
-import { content, freshnessLabel, freshnessTier } from "@/lib/content";
+import { PlaybookSearch } from "@/components/playbook-search";
+import { content, freshnessTier } from "@/lib/content";
 
 export const dynamic = "force-static";
 
@@ -76,71 +76,18 @@ export default function PlaybooksPage() {
         }))}
       />
 
-      <div className="flex flex-col gap-3">
-        {playbooks.map((p, i) => {
-          const tier = freshnessTier(p.lastTouched);
-          const label = freshnessLabel(p.lastTouched);
-          const playbookId = p.file.replace(/\.md$/, "");
-          return (
-            <Card key={p.file} id={playbookId}>
-              <CardHeader>
-                <div className="flex flex-wrap items-baseline gap-3">
-                  <span className="font-mono text-[10px] text-muted-foreground">
-                    PB-{String(i + 1).padStart(2, "0")}
-                  </span>
-                  <CardTitle className="text-base">{p.title}</CardTitle>
-                  <div className="ml-auto flex flex-wrap items-center gap-1.5">
-                    {label && (
-                      <Badge
-                        variant="outline"
-                        className={TIER_STYLES[tier] ?? TIER_STYLES.unknown}
-                        title={p.lastTouched ? `Last edited ${p.lastTouched}` : undefined}
-                      >
-                        {label}
-                      </Badge>
-                    )}
-                    <Badge variant="outline">
-                      {p.sectionCount} sections · {(p.size / 1024).toFixed(1)}kb
-                    </Badge>
-                    <CopyButton value={playbookId} label="Copy ID" />
-                  </div>
-                </div>
-                <CardDescription className="font-mono text-[11px]">
-                  /playbooks/{p.file}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                {p.meta.length > 0 && (
-                  <ul className="space-y-1 text-xs leading-relaxed text-muted-foreground list-disc pl-5">
-                    {p.meta.slice(0, 6).map((m, j) => (
-                      <li key={j}>{m}</li>
-                    ))}
-                  </ul>
-                )}
-                {(p.numberedSections ?? []).length > 0 && (
-                  <details className="rounded-lg border border-border p-3">
-                    <summary className="cursor-pointer text-xs font-medium">
-                      Section preview ({(p.numberedSections ?? []).length})
-                    </summary>
-                    <ol className="mt-2 space-y-1 text-[11px] text-muted-foreground list-decimal pl-5">
-                      {(p.numberedSections ?? []).slice(0, 12).map((s, k) => (
-                        <li key={k}>
-                          <span className="text-foreground">{s.heading}</span>
-                          {s.body && (
-                            <span className="block text-muted-foreground line-clamp-2 mt-0.5">
-                              {s.body.replace(/\n+/g, " ").slice(0, 220)}…
-                            </span>
-                          )}
-                        </li>
-                      ))}
-                    </ol>
-                  </details>
-                )}
-              </CardContent>
-            </Card>
-          );
-        })}
-      </div>
+      <PlaybookSearch
+        playbooks={playbooks.map((p) => ({
+          id: p.file.replace(/\.md$/, ""),
+          title: p.title,
+          file: p.file,
+          meta: p.meta,
+          numberedSections: p.numberedSections,
+          lastTouched: p.lastTouched,
+          sectionCount: p.sectionCount,
+          size: p.size,
+        }))}
+      />
     </div>
   );
 }
