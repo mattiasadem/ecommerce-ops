@@ -6,8 +6,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CopyButton } from "@/components/copy-button";
 import { content, freshnessLabel, freshnessTier } from "@/lib/content";
+import {
+  ContentSearch,
+  type ContentSearchItem as ContentSearchItemType,
+} from "@/components/content-search";
 
 export const dynamic = "force-static";
 
@@ -114,89 +117,26 @@ export default function AssetsPage() {
         </Card>
       </div>
 
-      <div className="flex flex-col gap-3">
-        {assets.map((a) => {
-          const tier = freshnessTier(a.lastTouched);
-          const label = freshnessLabel(a.lastTouched);
-          const assetId = a.file.replace(/\.md$/, "");
-          return (
-            <Card key={a.file} id={assetId}>
-              <CardHeader>
-                <div className="flex flex-wrap items-baseline gap-3">
-                  {a.assetNumber !== null && (
-                    <span className="font-mono text-[10px] text-muted-foreground">
-                      AS-{String(a.assetNumber).padStart(2, "0")}
-                    </span>
-                  )}
-                  <CardTitle className="text-base">{a.title}</CardTitle>
-                  <div className="ml-auto flex flex-wrap items-center gap-1.5">
-                    {label && (
-                      <Badge
-                        variant="outline"
-                        className={TIER_STYLES[tier] ?? TIER_STYLES.unknown}
-                        title={a.lastTouched ? `Last edited ${a.lastTouched}` : undefined}
-                      >
-                        {label}
-                      </Badge>
-                    )}
-                    <Badge variant="outline">
-                      {a.sectionCount} sections · {(a.size / 1024).toFixed(1)}kb
-                    </Badge>
-                    <CopyButton value={assetId} label="Copy ID" />
-                  </div>
-                </div>
-                <CardDescription className="font-mono text-[11px]">
-                  /assets/{a.file}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                {a.meta.length > 0 && (
-                  <ul className="space-y-1 text-xs leading-relaxed text-muted-foreground list-disc pl-5">
-                    {a.meta.map((m, j) => (
-                      <li key={j}>{m}</li>
-                    ))}
-                  </ul>
-                )}
-                {a.voiceGated && a.voiceCounts && (
-                  <div className="flex flex-wrap gap-2 text-[10px] font-mono">
-                    {Object.entries(a.voiceCounts ?? {}).map(([voice, count]) => (
-                      <span
-                        key={voice}
-                        className={
-                          count >= 15
-                            ? "rounded border border-emerald-500/30 bg-emerald-500/10 px-1.5 py-0.5 text-emerald-700 dark:text-emerald-400"
-                            : "rounded border border-amber-500/30 bg-amber-500/10 px-1.5 py-0.5 text-amber-700 dark:text-amber-400"
-                        }
-                      >
-                        {voice}: {count}
-                      </span>
-                    ))}
-                  </div>
-                )}
-                {(a.numberedSections ?? []).length > 0 && (
-                  <details className="rounded-lg border border-border p-3">
-                    <summary className="cursor-pointer text-xs font-medium">
-                      Section preview ({(a.numberedSections ?? []).length})
-                    </summary>
-                    <ol className="mt-2 space-y-1 text-[11px] text-muted-foreground list-decimal pl-5">
-                      {(a.numberedSections ?? []).slice(0, 12).map((s, k) => (
-                        <li key={k}>
-                          <span className="text-foreground">{s.heading}</span>
-                          {s.body && (
-                            <span className="block text-muted-foreground line-clamp-2 mt-0.5">
-                              {s.body.replace(/\n+/g, " ").slice(0, 220)}…
-                            </span>
-                          )}
-                        </li>
-                      ))}
-                    </ol>
-                  </details>
-                )}
-              </CardContent>
-            </Card>
-          );
-        })}
-      </div>
+    <div className="flex flex-col gap-3">
+      <ContentSearch
+        kind="assets"
+        routePrefix="/assets"
+        items={assets.map((a) => ({
+          id: a.file.replace(/\.md$/, ""),
+          title: a.title,
+          file: a.file,
+          meta: a.meta,
+          numberedSections: a.numberedSections,
+          lastTouched: a.lastTouched ?? null,
+          sectionCount: a.sectionCount,
+          size: a.size,
+          voiceGated: a.voiceGated,
+          voiceCounts: a.voiceCounts,
+          assetNumber: a.assetNumber ?? null,
+        }))}
+        itemNumberField={"assetNumber" as keyof ContentSearchItemType}
+      />
+    </div>
     </div>
   );
 }

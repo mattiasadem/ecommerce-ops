@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-07T06:40:14.187Z",
+  "generatedAt": "2026-07-07T12:48:30.604Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12492,6 +12492,10 @@
     {
       "heading": "2026-07-07 06:13 UTC — Playbook search & filter on /playbooks (interactive-tool + state-persistence)",
       "body": "- **What shipped:** A new client-side filter bar at the top of `/playbooks` that lets the operator narrow all 30 playbooks by free-text (matches title + meta + numbered-section headings), by freshness tier (fresh / aging / stale / unknown — keeps the existing TIER_STYLES palette), and by shipped state (shipped / unshipped — reads from the existing `ecom-ops:shipped-playbooks:v1` localStorage so the toggle on the per-playbook tracker propagates here instantly without a refresh). Filter state persists to `ecom-ops:playbooks:search:v1` and the page now ships a \"X of N visible\" pill, a \"Clear filters\" button at the top, and an empty-state card with a Clear-filters CTA when no playbooks match. The flat map of 30 cards was lifted into a single `<PlaybookSearch />` client component (parity with t"
+    },
+    {
+      "heading": "2026-07-07 06:48 UTC — Live Ikas data on Overview (live-data-integration + one-click-action + state-persistence)",
+      "body": "- **What shipped:** A new \"Your store at a glance\" card on Overview (`/`) that pulls the partner's actual store data from the Ikas Admin GraphQL and surfaces it next to the existing Your-store inputs. The server route `/api/ikas/overview` (Next.js 15 Route Handler, `dynamic = \"force-dynamic\"`) reads the partner OAuth token from `process.env.IKAS_PARTNER_TOKEN` first, then `/data/.ikas/config.json` (verified schema: `getMerchant { id email firstName lastName merchantName storeName }` + `listOrder { count data { id orderNumber totalPrice currency orderedAt } }` + `listProduct { count }` probed 2026-07-07 against `https://api.myikas.com/api/v1/admin/graphql`). The route is server-rendered, so the access token never leaves the VPS / Vercel server. Summary stats (orders last 30d, revenue last 3"
     }
   ],
   "counts": {
@@ -12500,6 +12504,6 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 87
+    "journalEntries": 88
   }
 }
