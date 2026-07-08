@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-07T12:48:30.604Z",
+  "generatedAt": "2026-07-08T07:14:27.382Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12494,8 +12494,20 @@
       "body": "- **What shipped:** A new client-side filter bar at the top of `/playbooks` that lets the operator narrow all 30 playbooks by free-text (matches title + meta + numbered-section headings), by freshness tier (fresh / aging / stale / unknown — keeps the existing TIER_STYLES palette), and by shipped state (shipped / unshipped — reads from the existing `ecom-ops:shipped-playbooks:v1` localStorage so the toggle on the per-playbook tracker propagates here instantly without a refresh). Filter state persists to `ecom-ops:playbooks:search:v1` and the page now ships a \"X of N visible\" pill, a \"Clear filters\" button at the top, and an empty-state card with a Clear-filters CTA when no playbooks match. The flat map of 30 cards was lifted into a single `<PlaybookSearch />` client component (parity with t"
     },
     {
+      "heading": "2026-07-07 12:13 UTC — Asset search & filter on /assets (interactive-tool + state-persistence)",
+      "body": "- **What shipped:** A new client-side filter bar at the top of `/assets` that lets the operator narrow all 27 paste-ready artifacts by free-text (matches title + meta + file path + numbered-section headings) and by freshness tier (fresh / aging / stale / unknown, reusing the existing palette from `/playbooks`). Filter state persists to `ecom-ops:content:search:v1` (kind-tagged so the same key can host additional library searchers without collision). The page renders an \"X of 27 visible\" pill, an inline Clear-filters button, and an empty-state card with a Clear-filters CTA when no assets match. Implementation is a single generic `<ContentSearch kind routePrefix itemNumberField />` client component (`dashboard/src/components/content-search.tsx`, ~440 lines / 16 KB) parameterized by `kind: \"a"
+    },
+    {
       "heading": "2026-07-07 06:48 UTC — Live Ikas data on Overview (live-data-integration + one-click-action + state-persistence)",
       "body": "- **What shipped:** A new \"Your store at a glance\" card on Overview (`/`) that pulls the partner's actual store data from the Ikas Admin GraphQL and surfaces it next to the existing Your-store inputs. The server route `/api/ikas/overview` (Next.js 15 Route Handler, `dynamic = \"force-dynamic\"`) reads the partner OAuth token from `process.env.IKAS_PARTNER_TOKEN` first, then `/data/.ikas/config.json` (verified schema: `getMerchant { id email firstName lastName merchantName storeName }` + `listOrder { count data { id orderNumber totalPrice currency orderedAt } }` + `listProduct { count }` probed 2026-07-07 against `https://api.myikas.com/api/v1/admin/graphql`). The route is server-rendered, so the access token never leaves the VPS / Vercel server. Summary stats (orders last 30d, revenue last 3"
+    },
+    {
+      "heading": "2026-07-07 18:34 UTC — Personalized $-lift projection on /cro checkout audit (cross-page-intelligence + interactive-tool)",
+      "body": "- **What shipped:** The `/cro` Baymard 24-guideline checkout audit now projects its estimated CVR lift band onto the operator's actual Your-store numbers in real time. A new \"Personalized lift · tied to Your-store\" panel sits between the audit's `ScoreStrip` and the 24-question form, reading `ecom-ops:your-store:v1` on mount + listening for cross-tab `storage` events so the projection re-computes the moment the operator edits their numbers on Overview. The panel renders four tiles: (1) `AOV × orders/mo = $/mo gross`, (2) `CVR lift band +X.X–Y.Y%`, (3) `Projected $ lift / mo $X–$Y` (highlighted in accent color, with `/ yr $X–$Y` underneath), (4) `Net margin $ / mo $X–$Y` at the operator's gross-margin %. When `Your-store` is empty the panel renders an \"Industry-median default\" badge + a cal"
+    },
+    {
+      "heading": "2026-07-08 01:08 UTC — Interactive AI ad-creative ROI calculator on /playbooks",
+      "body": "- **What shipped:** A fourth interactive browser-side ROI calculator on `/playbooks` (right after welcome-series) that ports `scripts/ai_ad_creative_roi.py` math into React/TypeScript. Operator enters 9 inputs — monthly ad spend, baseline ROAS, expected +% ROAS lift from AI creative, AI tool cost (per tool) + tool count, AI variants/week, operator hours + hourly cost, and an attribution toggle — and the panel forecasts baseline revenue, lift revenue, post-tool ROAS, AI tool stack cost, operator cost, total cost, net revenue, net per $1 of AI tool cost (with `∞` sentinel when no tool cost), variants/month, cost/variant, revenue/variant, ROAS-lift payback in days, and the canonical 5-band health verdict (great ≥10:1 / good 3-10:1 / marginal 1-3:1 / weak / negative). Defaults match a $1M-GMV "
     }
   ],
   "counts": {
@@ -12504,6 +12516,6 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 88
+    "journalEntries": 91
   }
 }

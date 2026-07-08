@@ -10,6 +10,7 @@ import { AbandonedCartROICalculator } from "@/components/abandoned-cart-roi";
 import { WelcomeSeriesROICalculator } from "@/components/welcome-series-roi";
 import { PostPurchaseUpsellROICalculator } from "@/components/post-purchase-upsell-roi";
 import { AiAdCreativeROICalculator } from "@/components/ai-ad-creative-roi";
+import { PdpAbTestCalculator } from "@/components/pdp-ab-test-calculator";
 import { ShippedPlaybooks as ShippedPlaybooksTracker } from "@/components/shipped-playbooks";
 import { PlaybookSearch } from "@/components/playbook-search";
 import { content, freshnessTier } from "@/lib/content";
@@ -71,6 +72,8 @@ export default function PlaybooksPage() {
       <WelcomeSeriesROICalculator />
 
       <AiAdCreativeROICalculator />
+
+      <PdpAbTestCalculator />
 
       <ShippedPlaybooksTracker
         playbooks={playbooks.map((p) => ({
