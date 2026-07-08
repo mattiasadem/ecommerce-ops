@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ResearchTable } from "@/components/research-table";
+import { LifecycleFlowHealthAudit } from "@/components/lifecycle-flow-health-audit";
 import { content, findDoc, findTable } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -313,32 +314,25 @@ export default function LifecyclePage() {
         </Card>
       </div>
 
+      {/* === INTERACTIVE LIFECYCLE FLOW HEALTH AUDIT === */}
+      <div className="border-t border-border/60 pt-6">
+        <LifecycleFlowHealthAudit />
+      </div>
+
       {/* === FOOTER === */}
       <Card>
         <CardHeader>
           <CardTitle className="text-base">
-            Future-tick companions (planned, not yet shipped)
+            Future-tick companion (planned, not yet shipped)
           </CardTitle>
           <CardDescription>
-            The two next-priority bounded improvements that ship after this
-            route — both pre-staged in research/05 §Next moves, playbook 12
-            §Companion tool, and asset 14 §Related
+            The next-priority bounded improvement that ships after this
+            route — pre-staged in research/05 §Next moves #4 + playbook 12
+            §Next moves + asset 14 §Related
           </CardDescription>
         </CardHeader>
         <CardContent>
           <ul className="space-y-2 text-xs leading-relaxed text-muted-foreground list-disc pl-5">
-            <li>
-              <code className="rounded bg-muted px-1">
-                scripts/lifecycle_flow_health_check.py
-              </code>{" "}
-              — Archetype C/D-light hybrid check that audits each of the 13
-              Path B live flows against canonical KPI benchmarks (per-flow
-              revenue per 1k events + open-rate + CTR + unsubscribe-rate +
-              flow-attribution match rate); flags any flow outside ±20% of
-              benchmark. Pre-staged in research/05 §Next moves #3 + playbook 12
-              §Next moves + asset 14 §Related. Gated on the 13 Path B flows
-              being LIVE for ≥30 days.
-            </li>
             <li>
               <code className="rounded bg-muted px-1">
                 dashboards/lifecycle-flow-library.html
