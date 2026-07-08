@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ResearchTable } from "@/components/research-table";
+import { TiktokAttributionAudit } from "@/components/tiktok-attribution-audit";
 import { content, findDoc, findTable } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -452,15 +453,18 @@ export default function TikTokPage() {
         </Card>
       </div>
 
+      {/* === TIKTOK ATTRIBUTION QUALITY AUDIT (Move #6.6) === */}
+      <TiktokAttributionAudit />
+
       {/* === FOOTER === */}
       <Card>
         <CardHeader>
           <CardTitle className="text-base">
-            Future-tick companions (planned, not yet shipped)
+            Future-tick companion (planned, not yet shipped)
           </CardTitle>
           <CardDescription>
-            The two next-priority bounded improvements that ship after this
-            route — both pre-staged in research/11 §Next moves, playbook 18
+            The next-priority bounded improvement that ships after this
+            route — pre-staged in research/11 §Next moves, playbook 18
             §Companion tool, and asset 19 §Related
           </CardDescription>
         </CardHeader>
