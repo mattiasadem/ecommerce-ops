@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ResearchTable } from "@/components/research-table";
+import { B2BWholesalePathCalculator } from "@/components/b2b-wholesale-path-calculator";
 import { content, findDoc, findTable } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -417,15 +418,18 @@ export default function B2BPage() {
         </Card>
       </div>
 
+      {/* === INTERACTIVE B2B PATH SCORER === */}
+      <B2BWholesalePathCalculator />
+
       {/* === FOOTER === */}
       <Card>
         <CardHeader>
           <CardTitle className="text-base">
-            Future-tick companions (planned, not yet shipped)
+            Future-tick companion (planned, not yet shipped)
           </CardTitle>
           <CardDescription>
-            The two next-priority bounded improvements that ship after this
-            route — both pre-staged in research/10 §Next moves, playbook 17
+            The next-priority bounded improvement that ships after this
+            route — pre-staged in research/10 §Next moves, playbook 17
             §Companion tool, and asset 18 §Related
           </CardDescription>
         </CardHeader>
@@ -436,53 +440,25 @@ export default function B2BPage() {
                 scripts/b2b_wholesale_unit_economics.py
               </code>{" "}
               — Archetype A/B hybrid Path A/B/C B2B / wholesale scorer that
-              takes a brand's us_dtc_gmv + sku_count + wholesale_margin_headroom
-              + has_uspto_trademark + has_handshake +
-              has_amazon_business_cert + distributor_capacity_hours_per_week +
-              voice_profile_split + reorder_cadence → outputs Path A (&lt;$500k
-              GMV Faire+Tundra marketplace-only 4.5:1 ROI) / Path B ($500k-$5M
-              GMV Faire+Tundra+Ankorstore+Handshake+Shopify B2B DEFAULT 8.5:1
+              takes a brand&rsquo;s us_dtc_gmv + sku_count +
+              wholesale_margin_headroom + has_uspto_trademark + has_handshake
+              + has_amazon_business_cert +
+              distributor_capacity_hours_per_week + voice_profile_split +
+              reorder_cadence → outputs Path A (&lt;$500k GMV Faire+Tundra
+              marketplace-only 4.5:1 ROI) / Path B ($500k-$5M GMV
+              Faire+Tundra+Ankorstore+Handshake+Shopify B2B DEFAULT 8.5:1
               ROI) / Path C ($5M+ GMV full B2B-orchestration including
               RSP/KeHE/UNFI + Amazon Business + EDI-832/850 6:1 muted)
               recommendation with cost stack + expected Year-1 incremental
-              B2B revenue $1M-$5M Path B + wholesale-channel-cannibalization
-              rate + 6-step build sequence. Pre-staged in research/10
-              §Next moves + playbook 17 §Companion tool + asset 18
-              §Related. Gated on the canonical 8 prereqs (Move #1 + #4 + #6
-              + #8 shipped + 10+ SKUs + 25%+ wholesale-discount margin
-              headroom + 8-prereq distributor-onboarding-pack +
-              corporate-gifting-catalog-ready).
-            </li>
-            <li>
-              <code className="rounded bg-muted px-1">
-                dashboards/b2b-wholesale-channel-health.html
-              </code>{" "}
-              — canonical 6th-and-final static-dashboard layer per the v0.11.0
-              extended layer order research → playbook → asset →
-              operator-surface-route → script → static-dashboard. **Shipped
-              2026-07-01 per the static-dashboard-tick follow-up to
-              research/10 + playbook 17 + asset 18 + dashboard/app/b2b/page.tsx
-              + scripts/b2b_wholesale_unit_economics.py.** Static HTML
-              dashboard rendering B2B / wholesale launch readiness (Path A/B/C
-              tier indicator + us_dtc_gmv band + sku_count band) +
-              per-marketplace readiness (4 canonical B2B marketplaces ×
-              {`{live/draft/staging/not-started}`} status: Faire + Tundra +
-              Ankorstore + Handshake) + per-path Year-1 incremental B2B
-              revenue bar chart (Path A vs B vs C) + 4-phase gate status
-              (Gate A wholesale-pricing + marketplace-storefront / Gate B
-              direct-buyer-pipeline + corporate-gifting + 5-clause-agreement /
-              Gate C distributor-pitch + Amazon Business + MAP-policy / Gate
-              D steady-state + reorder-automation + trade-shows per playbook
-              17 §Verification gates 10/10/10/9 prereqs) +
-              wholesale-channel-cannibalization-rate overlay + 6-tier
-              wholesale-discount-matrix visualization + voice-profile-distribution
-              + reorder-rate-validation as a 1-click operator surface.
-              Self-contained static HTML ~43KB / 6 sections + 4 canonical data
-              structures [FLOWS + PATH_TABLE + PHASE_GATES +
-              WHOLESALE_DISCOUNT_MATRIX] + 8 helper functions + 6 render
-              functions + URL param parsing + 115 Node smoke tests across 26
-              categories. **The B2B-wholesale track is now 6/6 layers fully
-              closed per the v0.11.0 track-fully-closed pivot pattern.**
+              B2B revenue $1M-$5M Path B +
+              wholesale-channel-cannibalization rate + 6-step build
+              sequence. Pre-staged in research/10 §Next moves + playbook 17
+              §Companion tool + asset 18 §Related. <strong>Shipped as the
+              browser-side interactive
+              <code className="rounded bg-muted px-1 mx-1">
+                &lt;B2BWholesalePathCalculator /&gt;
+              </code>
+              card above this footer (2026-07-09 UTC).</strong>
             </li>
           </ul>
         </CardContent>

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-08T07:14:27.382Z",
+  "generatedAt": "2026-07-09T01:51:34.889Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "2026-07-08 07:00 UTC — Interactive PDP A/B test analyzer on /playbooks (interactive-tool + state-persistence)",
+      "body": "- **What shipped:** A fifth interactive browser-side calculator on `/playbooks` (right after the AI ad-creative card) that ports `scripts/pdp_ab_test.py` math into React/TypeScript. Operator enters 13 inputs — control sessions + conversions, variant sessions + conversions, AOV, gross margin, monthly PDP sessions, A/B tool monthly cost, operator hours + hourly rate, confidence target, and the program-level avg relative lift + tests/month — and the panel returns the per-test analysis (control/variant rate, absolute lift in CVR percentage points, relative lift %, z-score, two-sided p-value, confidence 0–100%, significance vs target, decision band: winner / loser / inconclusive — two-proportion z-test, no scipy dependency) and the always-on program ROI forecast (gross margin lift / mo, total p"
+    },
+    {
       "heading": "[2026-07-06 18:30] Add /standup route — daily human-readable page + manual deploy",
       "body": "- **What shipped:** `dashboard/app/standup/page.tsx` (new, ~12KB / 218 lines) + `dashboard/src/components/nav.tsx` (modified, added \"Daily\" link in Operate group) + manual Vercel deploy bypassing the 6h cron (disk was full, deploy token extracted from `/data/workspace/env`).\n- **Why this move:** User feedback: \"looks more like a document... want a daily page which is more human readable style\". The existing /journal route shows raw chronological entries; the new /standup route renders them as a Slack-style morning message — header with day-of-build counter, 4 status pills (shipped-today / playbooks / active tracks / deploy cadence), Today's focus card (latest journal entry's \"Next action\"), last 7 days grouped by day with timestamps and human bullets.\n- **Files touched:** `dashboard/app/st"
     },
@@ -12508,6 +12512,18 @@
     {
       "heading": "2026-07-08 01:08 UTC — Interactive AI ad-creative ROI calculator on /playbooks",
       "body": "- **What shipped:** A fourth interactive browser-side ROI calculator on `/playbooks` (right after welcome-series) that ports `scripts/ai_ad_creative_roi.py` math into React/TypeScript. Operator enters 9 inputs — monthly ad spend, baseline ROAS, expected +% ROAS lift from AI creative, AI tool cost (per tool) + tool count, AI variants/week, operator hours + hourly cost, and an attribution toggle — and the panel forecasts baseline revenue, lift revenue, post-tool ROAS, AI tool stack cost, operator cost, total cost, net revenue, net per $1 of AI tool cost (with `∞` sentinel when no tool cost), variants/month, cost/variant, revenue/variant, ROAS-lift payback in days, and the canonical 5-band health verdict (great ≥10:1 / good 3-10:1 / marginal 1-3:1 / weak / negative). Defaults match a $1M-GMV "
+    },
+    {
+      "heading": "2026-07-08 07:00 UTC — Interactive PDP A/B test analyzer on /playbooks (interactive-tool + state-persistence)",
+      "body": "- **What shipped:** A fifth interactive browser-side calculator on `/playbooks` (right after the AI ad-creative card) that ports `scripts/pdp_ab_test.py` math into React/TypeScript. Operator enters 13 inputs — control sessions + conversions, variant sessions + conversions, AOV, gross margin, monthly PDP sessions, A/B tool monthly cost, operator hours + hourly rate, confidence target, and the program-level avg relative lift + tests/month — and the panel returns the per-test analysis (control/variant rate, absolute lift in CVR percentage points, relative lift %, z-score, two-sided p-value, confidence 0–100%, significance vs target, decision band: winner / loser / inconclusive — two-proportion z-test, no scipy dependency) and the always-on program ROI forecast (gross margin lift / mo, total p"
+    },
+    {
+      "heading": "2026-07-08 13:30 UTC — Interactive lifecycle flow health audit on /lifecycle (interactive-tool + state-persistence)",
+      "body": "- **What shipped:** A new \"Lifecycle flow health — score all 13 Path-B flows in 2 minutes\" card on `/lifecycle` (mounted between the asset-14 card and the footer) that ports `scripts/lifecycle_flow_health_check.py` into the browser as a real audit form. The operator enters each of the 13 Path-B live flows' last-30-days KPI snapshots (sent / opens / clicks / conversions / unsubscribes / revenue / flow_attributed) and the panel scores every flow against the 6 canonical gates (open ≥35%, click ≥4%, CVR ≥0.8%, unsub ≤0.3%, revenue/1k ≥ per-pillar floor, attribution ≥60%) and returns a 0–100 score + 4-tier verdict (PASS 90–100 / WARN 75–89 / NEEDS_WORK 50–74 / FAIL 0–49) + prioritized gate-by-gate fix-list per flow, plus a fleet-wide summary tile strip (flows scored · PASS · WARN · NEEDS_WORK ·"
+    },
+    {
+      "heading": "2026-07-08 19:38 UTC — Interactive TikTok attribution quality audit on /tiktok (interactive-tool + state-persistence)",
+      "body": "- **What shipped:** A new \"TikTok attribution quality — score 3 gates in 2 minutes\" card on `/tiktok` (mounted between the per-platform research tables and the demoted Future-tick footer) that ports `scripts/tiktok_attribution_audit.py` into the browser as a real audit form. The operator enters 9 numeric inputs across the 3 Move #6.6 gates — **Gate A** (4 inputs: pixel events / EAPI events / matched events / expected orders last 7d, scored on match rate ≥ 85% + dedup ratio in [0.7, 1.6] + coverage ≥ 95%), **Gate C** (2 inputs: pixel fired count / expected pageviews, scored on coverage ≥ 90%), **Gate D** (3 inputs: hashed identifier coverage % / matched with identifier / total events, scored on coverage ≥ 75%) — and the panel returns a per-gate PASS/FAIL verdict chip with the canonical-thre"
     }
   ],
   "counts": {
@@ -12516,6 +12532,6 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 91
+    "journalEntries": 95
   }
 }
