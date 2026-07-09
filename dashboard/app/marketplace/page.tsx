@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ResearchTable } from "@/components/research-table";
+import { MarketplacePathCalculator } from "@/components/marketplace-path-calculator";
 import { content, findDoc, findTable } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -340,16 +341,19 @@ export default function MarketplacePage() {
         </Card>
       </div>
 
+      {/* === INTERACTIVE PATH A/B/C CALCULATOR (browser port of marketplace_unit_economics.py) === */}
+      <MarketplacePathCalculator />
+
       {/* === FOOTER === */}
       <Card>
         <CardHeader>
           <CardTitle className="text-base">
-            Future-tick companions (planned, not yet shipped)
+            Future-tick companion (planned, not yet shipped)
           </CardTitle>
           <CardDescription>
-            The two next-priority bounded improvements that ship after this
-            route — both pre-staged in research/06 §Next moves, playbook 13
-            §Companion tool, and asset 15 §Related
+            The next-priority bounded improvement after this route —
+            pre-staged in research/06 §Next moves, playbook 13 §Companion
+            tool, and asset 15 §Related
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -358,18 +362,22 @@ export default function MarketplacePage() {
               <code className="rounded bg-muted px-1">
                 scripts/marketplace_unit_economics.py
               </code>{" "}
-              — Archetype A/B hybrid Path A/B/C/D scorer that takes a brand's
-              US GMV + category + AOV + contribution margin + Amazon-fulfillment
-              mode (FBM vs FBA) + brand-registry-status → outputs Path A
-              (Amazon-only) / Path B (Amazon + Walmart) / Path C (all
-              marketplaces) / Path D (all + Target Plus) recommendation with
-              cost stack + expected Year-1 incremental revenue +
-              DTC-cannibalization-adjusted net lift + 6-step build sequence.
-              Pre-staged in research/06 §Next moves #3 + playbook 13 §Next
-              moves + asset 15 §Related. Gated on the canonical 8 prereqs
-              (Move #1 + #4 + #6 + #8 shipped + registered USPTO trademark +
-              brand-hero SKU + FBA-inbound-readiness OR FBM self-fulfillment +
-              operator capacity).
+              — <strong>shipped as the browser-side interactive{" "}
+              <code className="rounded bg-muted px-1">
+                &lt;MarketplacePathCalculator /&gt;
+              </code>{" "}
+              card above this footer (2026-07-09 UTC)</strong>. The Python
+              CLI's Archetype A/B/C scoring rule is now mirrored in
+              TypeScript; the operator enters 8 inputs (US DTC GMV / AOV /
+              contribution margin / category / Amazon fulfillment mode /
+              Brand Registry status / USPTO trademark flag / operator
+              capacity hr/wk) and the panel picks one of the 3 canonical
+              paths (Path A Amazon-only / Path B Amazon + Walmart / Path C
+              all 8 marketplaces) with the cost stack + Year-1 incremental
+              revenue + DTC-cannibalization-adjusted net revenue + Year-1
+              ROI + per-marketplace revenue breakdown + the 6-step build
+              sequence for the recommended path. State persists to
+              localStorage <code className="rounded bg-muted px-1">ecom-ops:marketplace-path:v1</code>.
             </li>
             <li>
               <code className="rounded bg-muted px-1">
