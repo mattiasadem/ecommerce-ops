@@ -8,6 +8,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { ResearchTable } from "@/components/research-table";
 import { TiktokAttributionAudit } from "@/components/tiktok-attribution-audit";
+import { SnapPinterestAttributionAudit } from "@/components/snap-pinterest-attribution-audit";
 import { content, findDoc, findTable } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -455,6 +456,9 @@ export default function TikTokPage() {
 
       {/* === TIKTOK ATTRIBUTION QUALITY AUDIT (Move #6.6) === */}
       <TiktokAttributionAudit />
+
+      {/* === SNAP + PINTEREST ATTRIBUTION QUALITY AUDIT (Move #6.7) === */}
+      <SnapPinterestAttributionAudit />
 
       {/* === FOOTER === */}
       <Card>
