@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-10T20:50:27.668Z",
+  "generatedAt": "2026-07-10T23:00:02.871Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,12 +12146,24 @@
   },
   "journal": [
     {
+      "heading": "[2026-07-10 21:55] Skill shipped: AI product recommendation feed (Nosto + Rebuy + Dynamic Yield, Move #20.2)",
+      "body": "- **What shipped:** `skills/12-ai-product-recommendation-feed.md` (new, ~25.7 KB / 25755 bytes / 12th skill in the library + canonical Pillar-5 deep-dive of Move #20 generative-AI-engine from research/16 — the canonical AI-personalized recommendation feed lever that compounds Move #2 post-purchase-upsell + Move #11 subscriptions + Move #14 lifecycle flow library + Move #6 Triple-Whale attribution substrate via a 7-surface rec-widget stack). Schema: full canonical 9-field frontmatter (name=ai-product-recommendation-feed, title=AI product recommendation feed (Nosto + Rebuy + Dynamic Yield, Move #20.2), category=retention, tier=1, priority=P1, default_move=20.2, year_1_roi_band=\"6:1–25:1\", sms_friendly=false, last_updated=2026-07-10, sources=[nosto 2024 + rebuy 2024 + dynamic-yield 2024 + sai"
+    },
+    {
+      "heading": "[2026-07-10 20:50] Skill shipped: AI customer service automation (Gorgias Automate + ChatGPT fine-tuning, Move #20.1)",
+      "body": "- **What shipped:** `skills/11-ai-customer-service-automation.md` (new, ~51 KB / 50782 bytes / 11th skill in the library + canonical Move #20.1 Pillar-4 deep-dive of Move #20 generative-AI-engine from research/17 — the canonical AI-customer-service-response-baseline-launch lever). Schema: full canonical 9-field frontmatter (name=ai-customer-service-automation, title=AI customer service automation (Gorgias Automate + ChatGPT fine-tuning, Move #20.1), category=retention, tier=1, priority=P1, default_move=20.1, year_1_roi_band=\"3.5:1–18:1\", sms_friendly=false, last_updated=2026-07-10, sources=[gorgias 2024 + ada 2024 + netomi 2024 + balto 2024 + openai 2024 + anthropic 2024 + triple-whale 2024 + klaviyo 2024 + postscript 2024 + shopify 2024 + smile 2024 + recharge 2024] — 12 vendor sources), "
+    },
+    {
       "heading": "[2026-07-10 19:30] Skill shipped: Lifecycle flow library (Klaviyo + Postscript + Smile 20-flow build, Move #14)",
       "body": "- **What shipped:** `skills/10-lifecycle-flow-library.md` (new, ~28 KB / 280 lines / 10th skill in the library + canonical Move #14 lifecycle-marketing expansion from research/05). Schema: full canonical 9-field frontmatter (name=lifecycle-flow-library, title=Lifecycle flow library (Klaviyo + Postscript + Smile 20-flow build, Move #14), category=retention, tier=1, priority=P1, default_move=14, year_1_roi_band=\"54:1–153:1\", sms_friendly=true, last_updated=2026-07-10, sources=[klaviyo 2024 + postscript 2024 + smile 2024 + recharge 2024 + triple-whale 2024 + omnisend 2024 + litmus 2024 + baymard 2024 + gorgias 2024 + gsp-rcs 2024 + return-path 2024 + twilio 2024] — 12 vendor sources), one-sentence lead blockquote, 9 canonical H2 sections (When to use this skill / What \"best in class\" looks li"
     },
     {
       "heading": "[2026-07-10 18:45] Skill shipped: SMS orchestration (SMSBump + Postscript channel orchestration, Move #19)",
       "body": "- **What shipped:** `skills/09-sms-orchestration.md` (new, ~36 KB / 36393 bytes / 9th skill in the library + canonical Move #19 SMSBump + Postscript channel orchestration from research/15). Schema: full canonical 9-field frontmatter (name=sms-orchestration, title=SMS orchestration (SMSBump + Postscript channel orchestration, Move #19), category=retention, tier=1, priority=P1, default_move=19, year_1_roi_band=\"2.4:1–107:1\", sms_friendly=true, last_updated=2026-07-10, sources=postscript 2024 + smsbump 2024 + klaviyo 2024 + attentive 2024 + gsma-rcs 2024 + triple-whale 2024 + two-way-conversations 2024 + rcs-business-messaging 2024 + mms 2024 + sailthru 2024 + shopify-markets 2024 — 11 vendor sources), one-sentence lead blockquote, 9 canonical H2 sections (When to use this skill / What best i"
+    },
+    {
+      "heading": "[2026-07-10 21:49] ui(dashboard): unit-economics personalizer — your AOV/orders/margin projected into the canonical LTV:CAC dial",
+      "body": "- **What shipped:** `dashboard/src/components/unit-econ-personalizer.tsx` (new, ~13 KB / interactive calculator) + `dashboard/src/lib/unit-economics-personalizer.ts` (new, ~7 KB / pure scoring engine) + `dashboard/app/unit-economics/page.tsx` (mounted as the first card under the header). Cross-page-intelligence on top of `ecom-ops:your-store:v1` — pulls AOV / monthly orders / gross margin from the Overview card on mount, lets the operator override two canonical dials (12-month repeat rate + payback window in months), and instantly recomputes 7 projections + a health-band badge. State for the two dials persists to `ecom-ops:unit-econ:personalizer:v1` so reload keeps the operator's tuning; the shared AOV/orders/margin stay in the canonical Your-store key.\n- **Why it matters:** Unit Economics"
     }
   ],
   "skills": [
@@ -12479,6 +12491,70 @@
       "sourceCount": 0,
       "size": 50049,
       "lastTouched": "2026-07-10"
+    },
+    {
+      "file": "12-ai-product-recommendation-feed.md",
+      "name": "ai-product-recommendation-feed",
+      "title": "AI product recommendation feed (Nosto + Rebuy + Dynamic Yield, Move #20.2)",
+      "category": "retention",
+      "tier": 1,
+      "priority": "P1",
+      "defaultMove": "20.2",
+      "yearOneRoiBand": "6:1–25:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-07-10",
+      "sources": [
+        "nosto 2024",
+        "rebuy 2024",
+        "dynamic-yield 2024",
+        "sailthru 2024",
+        "triple-whale 2024",
+        "klaviyo 2024",
+        "shopify 2024",
+        "smile 2024",
+        "postscript 2024",
+        "gorgias 2024",
+        "algolia 2024",
+        "searchspring 2024"
+      ],
+      "blurb": "The single highest-leverage Move #20 sub-track for $1M+ DTC brands that have already shipped Move #2 post-purchase-upsell.",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 12,
+      "size": 25362,
+      "lastTouched": "2026-07-10"
+    },
+    {
+      "file": "13-triple-whale-attribution.md",
+      "name": "triple-whale-attribution",
+      "title": "Triple Whale / Polar attribution (Move #6 foundation, MTA + cohort LTV)",
+      "category": "attribution",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": 6,
+      "yearOneRoiBand": "19:1–96:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-07-10",
+      "sources": [
+        "triple-whale 2024",
+        "polar 2024",
+        "northbeam 2024",
+        "lifetimely 2024",
+        "peel 2024",
+        "ga4 2024",
+        "meta-capi 2024",
+        "google-ads-enhanced-conversions 2024",
+        "klaviyo 2024",
+        "shopify 2024",
+        "moby-ai 2024",
+        "moz 2024"
+      ],
+      "blurb": "Move #6 is the FOUNDATION underneath every other lever in the top-10 list — without Multi-Touch Attribution (MTA) you cannot distinguish a 12% lift from the welcome series (Move #4) from a cannibalised abandoned-cart ...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 12,
+      "size": 27312,
+      "lastTouched": "2026-07-10"
     }
   ],
   "counts": {
@@ -12487,7 +12563,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 2,
-    "skills": 11
+    "journalEntries": 5,
+    "skills": 13
   }
 }
