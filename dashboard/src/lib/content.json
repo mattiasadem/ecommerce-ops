@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-10T15:38:12.376Z",
+  "generatedAt": "2026-07-10T16:26:56.342Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12735,6 +12735,37 @@
       "sourceCount": 14,
       "size": 20955,
       "lastTouched": "2026-07-10"
+    },
+    {
+      "file": "07-ai-ad-creative-iteration.md",
+      "name": "ai-ad-creative-iteration",
+      "title": "AI ad creative iteration (AdCreative.ai / Moby / Pencil)",
+      "category": "acquisition",
+      "tier": 1,
+      "priority": "P1",
+      "defaultMove": 10,
+      "yearOneRoiBand": "10:1–25:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-07-10",
+      "sources": [
+        "adcreative 2024",
+        "moby 2024",
+        "pencil 2024",
+        "smartwriter 2024",
+        "triple-whale 2024",
+        "meta-ads 2024",
+        "klaviyo 2024",
+        "postscript 2024",
+        "smile 2024",
+        "yotpo 2024",
+        "polar 2024"
+      ],
+      "blurb": "The last top-10 move and the only one that depends on creative *iteration velocity* instead of channel mix.",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 11,
+      "size": 15880,
+      "lastTouched": "2026-07-10"
     }
   ],
   "counts": {
@@ -12744,6 +12775,6 @@
     "tables": 57,
     "findings": 8,
     "journalEntries": 103,
-    "skills": 6
+    "skills": 7
   }
 }
