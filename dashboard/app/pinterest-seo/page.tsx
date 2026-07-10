@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ResearchTable } from "@/components/research-table";
+import { PinterestSeoPathCalculator } from "@/components/pinterest-seo-path-calculator";
 import { content, findDoc, findTable } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -512,15 +513,18 @@ export default function PinterestSeoPage() {
         </Card>
       </div>
 
+      {/* === INTERACTIVE CALCULATOR (Move #17) === */}
+      <PinterestSeoPathCalculator />
+
       {/* === FOOTER === */}
       <Card>
         <CardHeader>
           <CardTitle className="text-base">
-            Future-tick companions (planned, not yet shipped)
+            Future-tick companion (planned, not yet shipped)
           </CardTitle>
           <CardDescription>
-            The two next-priority bounded improvements that ship after this
-            route — both pre-staged in research/13 §Next moves, playbook 20
+            The next-priority bounded improvement that ships after this
+            route — pre-staged in research/13 §Next moves, playbook 20
             §Companion tool, and asset 21 §Related
           </CardDescription>
         </CardHeader>
@@ -530,45 +534,11 @@ export default function PinterestSeoPage() {
               <code className="rounded bg-muted px-1">
                 scripts/pinterest_seo_unit_economics.py
               </code>{" "}
-              — Archetype A/B hybrid Path A/B/C Pinterest-SEO scorer that
-              takes a brand&apos;s us_dtc_gmv + sku_count +
-              sku_archetype_distribution + gross_margin_pct +
-              has_pinterest_business_account + has_shopify_seo_app +
-              has_surfer_seo_subscription + has_ahrefs_content_gap +
-              has_originality_ai_subscription + has_marketmuse_topical_authority
-              + voice_profile +
-              has_dedicated_pinterest_seo_content_operator_capacity_hours_per_week
-              → outputs Path A (Pinterest-only + SEO-baseline-shopify-free
-              $50/mo &lt;$500k GMV 5:1 ROI) / Path B (Pinterest +
-              SEO-content-cluster + Triple-Whale-organic-LTV-iteration
-              DEFAULT $200-$1k/mo $500k-$5M GMV 6:1 default Year-1 ROI with
-              5-15% incremental traffic contribution + 0.6-0.85× CAC vs
-              paid-social + 12-24-month compounding-traffic-curve at $2M US
-              DTC base) / Path C (full-Pinterest-SEO-orchestration +
-              AI-content-validated + backlinks +
-              Pinterest-Catalog-ads-as-paid-amplifier $1k-$5k/mo $5M+ GMV
-              4:1 ROI muted by 6-12-month SEO-compounding-curve +
-              Triple-Whale-organic-LTV-build-cycle) recommendation with
-              cost stack + expected Year-1 incremental Pinterest-SEO-traffic
-              $200k-$1M Path B at $500k-$5M US DTC base + 0.6-0.85× CAC vs
-              paid-social + 12-24-month compounding-traffic-curve
-              steady-state + canonical 5-path Pinterest-SEO-launch-mode
-              decision matrix + canonical
-              5-pillar-Pinterest-vertical-content-pillar-set + 6 deferral
-              gates [sku_count &lt;10 / gross_margin_pct &lt;25% /
-              no-Pinterest-business-account / no-Shopify-SEO-app /
-              no-content-operator-capacity / no-photography-rich-product-set]
-              + 3 downgrade gates [luxury-voice-without-organic-disclosure-consistency
-              / B2B-voice-without-B2B-keyword-cluster /
-              Path-C-without-dedicated-organic-content-team]. Pre-staged in
-              research/13 §Next moves + playbook 20 §Next moves + asset 21
-              §Related. Gated on the canonical 8 prereqs (Pinterest-Business-Account
-              + Shopify-SEO-app + Surfer-SEO-Pro-Business-subscription +
-              Ahrefs-Content-Gap-Starter-Pro-Advanced + Originality.ai-Starter-Pro-Enterprise
-              + MarketMuse-Starter-Enterprise + Klaviyo-Email-and-SMS-Standard
-              + Triple-Whale-organic-LTV-overlay-wire + photography-rich-product-set
-              + ≥15-SKUs + 25%+ Pinterest-SEO-margin-headroom + 4-8 hr/wk
-              content-operator-capacity).
+              — Shipped as the browser-side interactive{" "}
+              <code className="rounded bg-muted px-1">
+                &lt;PinterestSeoPathCalculator /&gt;
+              </code>{" "}
+              card above this footer (2026-07-10 UTC).
             </li>
             <li>
               <code className="rounded bg-muted px-1">

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-09T01:51:34.889Z",
+  "generatedAt": "2026-07-10T09:40:31.280Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "2026-07-09 14:35 UTC — Interactive Marketplace Path A/B/C scorer on /marketplace (interactive-tool + state-persistence)",
+      "body": "- **What shipped:** A new \"Marketplace-expansion Path A / B / C scorer\" card on `/marketplace` (mounted between the asset-15 card and the demoted \"Future-tick companion\" footer) that ports `scripts/marketplace_unit_economics.py` math into React/TypeScript. Operator enters 8 inputs — US DTC GMV, AOV, contribution margin %, category, Amazon fulfillment mode (FBA / FBM / SFP / hybrid), Brand Registry status, USPTO trademark boolean, operator capacity hr/wk — and the panel recommends one of the 3 canonical paths (Path A <$1M Amazon-only / Path B $1M-$10M Amazon + Walmart DEFAULT 8-18:1 / Path C $10M+ all 8 marketplaces 6-14:1 muted) with the per-path cost stack + Year-1 incremental revenue band + DTC-cannibalization-adjusted net revenue band + Year-1 ROI band + per-marketplace revenue breakdow"
+    },
+    {
       "heading": "2026-07-08 07:00 UTC — Interactive PDP A/B test analyzer on /playbooks (interactive-tool + state-persistence)",
       "body": "- **What shipped:** A fifth interactive browser-side calculator on `/playbooks` (right after the AI ad-creative card) that ports `scripts/pdp_ab_test.py` math into React/TypeScript. Operator enters 13 inputs — control sessions + conversions, variant sessions + conversions, AOV, gross margin, monthly PDP sessions, A/B tool monthly cost, operator hours + hourly rate, confidence target, and the program-level avg relative lift + tests/month — and the panel returns the per-test analysis (control/variant rate, absolute lift in CVR percentage points, relative lift %, z-score, two-sided p-value, confidence 0–100%, significance vs target, decision band: winner / loser / inconclusive — two-proportion z-test, no scipy dependency) and the always-on program ROI forecast (gross margin lift / mo, total p"
     },
@@ -12524,6 +12528,74 @@
     {
       "heading": "2026-07-08 19:38 UTC — Interactive TikTok attribution quality audit on /tiktok (interactive-tool + state-persistence)",
       "body": "- **What shipped:** A new \"TikTok attribution quality — score 3 gates in 2 minutes\" card on `/tiktok` (mounted between the per-platform research tables and the demoted Future-tick footer) that ports `scripts/tiktok_attribution_audit.py` into the browser as a real audit form. The operator enters 9 numeric inputs across the 3 Move #6.6 gates — **Gate A** (4 inputs: pixel events / EAPI events / matched events / expected orders last 7d, scored on match rate ≥ 85% + dedup ratio in [0.7, 1.6] + coverage ≥ 95%), **Gate C** (2 inputs: pixel fired count / expected pageviews, scored on coverage ≥ 90%), **Gate D** (3 inputs: hashed identifier coverage % / matched with identifier / total events, scored on coverage ≥ 75%) — and the panel returns a per-gate PASS/FAIL verdict chip with the canonical-thre"
+    },
+    {
+      "heading": "2026-07-09 00:13 UTC — Interactive B2B / wholesale Path A / B / C scorer on /b2b (interactive-tool + state-persistence)",
+      "body": "- **What shipped:** A new \"B2B / wholesale Path A / B / C scorer\" card on `/b2b` (mounted between the asset-18 card and the demoted \"Future-tick companion\" footer) that ports `scripts/b2b_wholesale_unit_economics.py` math into React/TypeScript. Operator enters 12 inputs — US DTC GMV, SKU count, SKU archetype distribution, gross margin %, MOQ operational capacity (1-10), 5 boolean integration gates (Faire / Handshake / NetSuite-or-A2X / RSP-or-KeHE-pitch / corporate-gifting-catalog), voice profile, and dedicated sales-rep hr/wk — and the panel recommends one of the 3 canonical paths (Path A <$500k GMV / Path B $500k-$5M DEFAULT 6-11:1 / Path C $5M+ full B2B-orchestration 4-8:1 muted) with the per-path cost stack + Year-1 incremental B2B revenue band + Year-1 cost band + DTC-cannibalization-"
+    },
+    {
+      "heading": "2026-07-09 07:30 UTC — Interactive Snap + Pinterest attribution quality audit on /tiktok (interactive-tool + state-persistence)",
+      "body": "- **What shipped:** A new \"Snap + Pinterest attribution quality — score 6 gates in 3 minutes\" card on `/tiktok` (mounted immediately below the existing `<TiktokAttributionAudit />` Move #6.6 card — both are Move #6.x attribution-quality-audit siblings). Direct browser port of `scripts/snap_pinterest_attribution_audit.py`: operator enters 16 diagnostic inputs across 2 platforms × 3 gates (Snap CAPI match + dedup + coverage + Pixel coverage + EMQ + Pinterest CAPI match + dedup + coverage + Tag coverage + Enhanced Match) and the panel scores every gate against the canonical thresholds (Snap 80% match / 92% coverage / [0.7, 1.5] dedup / 88% pixel / 70% EMQ + Pinterest 85% match / 93% coverage / [0.7, 1.5] dedup / 85% tag / 75% enhanced match) and surfaces a per-gate PASS/FAIL chip with headlin"
+    },
+    {
+      "heading": "2026-07-10 02:51 UTC — Interactive 3PL migration Path A/B/C scorer on /3pl (interactive-tool + state-persistence)",
+      "body": "- **What shipped:** A new \"3PL migration Path A / B / C scorer\" card on `/3pl` (mounted between the asset-15 (3PL-selection-card) card and the demoted \"Future-tick companion\" footer) that ports `scripts/threepl_unit_economics.py` math into React/TypeScript. Operator enters 9 inputs — orders/mo, AOV, current ship cost / order, current ship time P50 days, has warehouse lease boolean, SKU count, SKU complexity (6 canonical categories), international volume %, operator capacity hr/wk — and the panel recommends one of the 3 canonical paths (Path A SMB 3PL solo ShipBob Starter / Shopify Fulfillment Network / Path B DEFAULT mid-market multi-warehouse ShipBob Mid-Market / ShipMonk / Red Stag 8:1-16:1 Year-1 ROI / Path C enterprise multi-3PL orchestration Stord + Flowspace + Extensiv) with the per-"
+    }
+  ],
+  "skills": [
+    {
+      "file": "01-abandoned-cart-recovery.md",
+      "name": "abandoned-cart-recovery",
+      "title": "Abandoned cart recovery",
+      "category": "retention",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": 1,
+      "yearOneRoiBand": "25:1–60:1",
+      "smsFriendly": true,
+      "lastUpdated": "2026-07-06",
+      "sources": [
+        "baymard 2024",
+        "klaviyo 2024",
+        "postscript 2024",
+        "omnisend 2024",
+        "salesforce 2024",
+        "statista 2024",
+        "triple-whale 2024"
+      ],
+      "blurb": "The single highest-ROI email + SMS flow in DTC.",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 7,
+      "size": 6431,
+      "lastTouched": "2026-07-10"
+    },
+    {
+      "file": "02-post-purchase-upsell.md",
+      "name": "post-purchase-upsell",
+      "title": "Post-purchase upsell",
+      "category": "retention",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": 2,
+      "yearOneRoiBand": "15:1–40:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-07-06",
+      "sources": [
+        "reconvert 2024",
+        "aftersell 2024",
+        "zipify 2024",
+        "bold 2024",
+        "tripleshakable 2024",
+        "klaviyo 2024",
+        "salesforce 2024"
+      ],
+      "blurb": "Cheapest AOV lift in DTC.",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 7,
+      "size": 6224,
+      "lastTouched": "2026-07-10"
     }
   ],
   "counts": {
@@ -12532,6 +12604,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 95
+    "journalEntries": 99,
+    "skills": 2
   }
 }

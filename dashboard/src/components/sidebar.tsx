@@ -50,6 +50,7 @@ const NAV_GROUPS = [
   {
     label: "Library",
     items: [
+      { href: "/skills", label: "Skills", icon: "✺" },
       { href: "/assets", label: "Assets", icon: "▤" },
       { href: "/30-day-plan", label: "30-day plan", icon: "▦" },
       { href: "/settings", label: "Settings", icon: "✱" },

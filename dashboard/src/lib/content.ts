@@ -59,6 +59,26 @@ export interface JournalEntry {
   body: string;
 }
 
+export interface Skill {
+  file: string;
+  name: string;
+  title: string;
+  category: string;
+  tier: number;
+  priority: string;
+  defaultMove: number | null;
+  yearOneRoiBand: string | null;
+  smsFriendly: boolean;
+  lastUpdated: string | null;
+  sources: string[];
+  blurb: string;
+  sectionCount: number;
+  pitfallCount: number;
+  sourceCount: number;
+  size: number;
+  lastTouched?: string;
+}
+
 export interface Content {
   generatedAt: string;
   research: ResearchDoc[];
@@ -66,6 +86,7 @@ export interface Content {
   assets: Asset[];
   top10: { tables: { heading: string; rows: TableRow[] }[]; status: Top10Status[] };
   journal: JournalEntry[];
+  skills: Skill[];
   counts: {
     researchDocs: number;
     playbooks: number;
@@ -73,6 +94,7 @@ export interface Content {
     tables: number;
     findings: number;
     journalEntries: number;
+    skills: number;
   };
 }
 

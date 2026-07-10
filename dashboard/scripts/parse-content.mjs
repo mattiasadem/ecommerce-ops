@@ -281,13 +281,155 @@ async function parseJournal() {
   }));
 }
 
+// Skills = best-practice playbooks for the operator.
+// Frontmatter is YAML at the top (between `---` fences).
+// Body starts with `# <title>` (H1) and uses ## for sections.
+// Schema (canonical 9 fields): name, title, category, tier, priority,
+//   default_move, year_1_roi_band, sms_friendly, last_updated.
+// Plus a free-form "sources" array in frontmatter.
+function parseFrontmatter(md) {
+  const m = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/.exec(md);
+  if (!m) return { meta: {}, body: md };
+  const yamlBlock = m[1];
+  const meta = {};
+  // Tiny YAML parser — handles the 9 canonical fields + sources list.
+  // Sufficient for the frontmatter shape we author; rejects at write time if wrong.
+  // Handles quoted values that may contain colons (e.g. "25:1–60:1").
+  for (const line of yamlBlock.split(/\r?\n/)) {
+    let kv;
+    // Try quoted value first: key: "value with : colons"
+    kv = /^([a-z0-9_]+):\s*"([^"]*)"\s*$/.exec(line);
+    if (kv) {
+      meta[kv[1]] = kv[2];
+      continue;
+    }
+    // Try single-quoted: key: 'value'
+    kv = /^([a-z0-9_]+):\s*'([^']*)'\s*$/.exec(line);
+    if (kv) {
+      meta[kv[1]] = kv[2];
+      continue;
+    }
+    // Plain: key: value (no colons allowed in value)
+    kv = /^([a-z0-9_]+):\s*(.*)$/i.exec(line);
+    if (!kv) continue;
+    const key = kv[1];
+    let val = kv[2].trim();
+    if (val === "true") val = true;
+    else if (val === "false") val = false;
+    else if (/^\d+$/.test(val)) val = parseInt(val, 10);
+    else if (/^\[.*\]$/.test(val)) {
+      // naive inline list — strip brackets, split on comma, trim quotes
+      val = val
+        .slice(1, -1)
+        .split(",")
+        .map((s) => s.trim().replace(/^['"]|['"]$/g, ""))
+        .filter(Boolean);
+    }
+    meta[key] = val;
+  }
+  return { meta, body: m[2] };
+}
+
+function firstSentence(s, max = 200) {
+  if (!s) return "";
+  const cleaned = s.replace(/\s+/g, " ").trim();
+  const m = /^([^.]+[.!?])(\s|$)/.exec(cleaned);
+  const candidate = m ? m[1] : cleaned;
+  return candidate.length > max ? candidate.slice(0, max - 3) + "..." : candidate;
+}
+
+async function parseSkills() {
+  // Read from both the workspace source of truth AND the build-time copy.
+  // The workspace path is the canonical source for the cron's writes.
+  // The dashboard/src/skills copy ships with the build to Vercel.
+  const sources = [join(ROOT, "skills"), join(process.cwd(), "src/skills")];
+  const seen = new Set();
+  const skills = [];
+  for (const dir of sources) {
+    let files = [];
+    try {
+      files = (await readdir(dir)).filter((f) => f.endsWith(".md")).sort();
+    } catch {
+      continue;
+    }
+    for (const f of files) {
+      if (seen.has(f)) continue;
+      seen.add(f);
+    const md = await readFile(join(dir, f), "utf8");
+    const { meta, body } = parseFrontmatter(md);
+    // Title: H1 (# <title>) right after frontmatter
+    const h1 = /^#\s+(.+?)\s*$/m.exec(body);
+    const title = h1 ? h1[1].trim() : meta.title || f.replace(/\.md$/, "");
+    // Pull the lead blurb. Prefer the first blockquote after the H1
+    // (canonical "this skill in one sentence"). Fall back to first paragraph.
+    const afterH1 = h1 ? body.slice(h1.index + h1[0].length) : body;
+    let blurb = "";
+    const blockquoteMatch = /^>\s+(.+?)$/m.exec(afterH1);
+    if (blockquoteMatch) {
+      blurb = firstSentence(blockquoteMatch[1].trim(), 220);
+    } else {
+      const firstPara = afterH1
+        .split(/\r?\n/)
+        .map((l) => l.trim())
+        .find(
+          (l) =>
+            l &&
+            !l.startsWith("#") &&
+            !l.startsWith(">") &&
+            !l.startsWith("-") &&
+            !l.startsWith("*") &&
+            !/^\d+\./.test(l)
+        );
+      blurb = firstSentence((firstPara || "").trim(), 220);
+    }
+    // Count sections (H2) for the depth badge
+    const sectionMatches = body.match(/^##\s+/gm) || [];
+    // Last-touched mtime for freshness badge
+    let lastTouched = null;
+    try {
+      const st = await stat(join(dir, f));
+      lastTouched = st.mtime.toISOString().slice(0, 10);
+    } catch {}
+    // Pull pitfall count from the "Common pitfalls" section if present
+    let pitfallCount = 0;
+    const pitSec = body.match(/^##\s+Common pitfalls[\s\S]*?(?=^##\s+)/m);
+    if (pitSec) {
+      pitfallCount = (pitSec[0].match(/^\d+\.\s/gm) || []).length;
+    }
+    // Pull source count from frontmatter
+    const sourceCount = Array.isArray(meta.sources) ? meta.sources.length : 0;
+    skills.push({
+      file: f,
+      name: meta.name || f.replace(/\.md$/, ""),
+      title,
+      category: meta.category || "general",
+      tier: meta.tier || 3,
+      priority: meta.priority || "P2",
+      defaultMove: meta.default_move || null,
+      yearOneRoiBand: meta.year_1_roi_band || null,
+      smsFriendly: meta.sms_friendly === true,
+      lastUpdated: meta.last_updated || lastTouched,
+      sources: meta.sources || [],
+      blurb,
+      sectionCount: sectionMatches.length,
+      pitfallCount,
+      sourceCount,
+      size: md.length,
+      lastTouched,
+    });
+    }
+  }
+  return skills;
+}
+
 (async () => {
-  const [research, playbooks, assets, top10, journal] = await Promise.all([
+  const [research, playbooks, assets, top10, journal, skills] = await Promise.all([
     parseResearch(),
     parsePlaybooks(),
     parseAssets(),
     parseTop10(),
     parseJournal(),
+    parseSkills(),
   ]);
   const out = {
     generatedAt: new Date().toISOString(),
@@ -296,6 +438,7 @@ async function parseJournal() {
     assets,
     top10,
     journal,
+    skills,
     counts: {
       researchDocs: research.length,
       playbooks: playbooks.length,
@@ -303,10 +446,11 @@ async function parseJournal() {
       tables: research.reduce((n, r) => n + r.tables.length, 0),
       findings: research.reduce((n, r) => n + r.findings.length, 0),
       journalEntries: journal.length,
+      skills: skills.length,
     },
   };
   await writeFile(OUT, JSON.stringify(out, null, 2));
   console.log(
-    `wrote ${OUT} — ${out.counts.researchDocs} research docs, ${out.counts.playbooks} playbooks, ${out.counts.assets} assets, ${out.counts.tables} tables, ${out.counts.findings} findings`
+    `wrote ${OUT} — ${out.counts.researchDocs} research docs, ${out.counts.playbooks} playbooks, ${out.counts.assets} assets, ${out.counts.tables} tables, ${out.counts.findings} findings, ${out.counts.skills} skills`
   );
 })();
