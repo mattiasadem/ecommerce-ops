@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-10T11:46:23.755Z",
+  "generatedAt": "2026-07-10T12:58:40.272Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-07-10 11:50] Skill shipped: Welcome series (email + SMS)",
+      "body": "- **What shipped:** `skills/03-welcome-series.md` (new, ~12 KB, 3rd skill in the library + canonical Move #4 welcome-series skill from the 30-day-rollout plan). Schema: full canonical 9-field frontmatter (name, title, category=retention, tier=1, priority=P0, default_move=4, year_1_roi_band=\"20:1–50:1\", sms_friendly=true, last_updated=2026-07-10, sources=klaviyo 2024 + postscript 2024 + omnisend 2024 + campaign-monitor 2024 + litmus 2024 + salesforce 2024 + smile 2024 + triple-whale 2024), one-sentence lead blockquote, 9 canonical H2 sections (When to use / Best in class / Conversion benchmarks / The build / 17 pitfalls / Verification / How to extend / Cross-references / Sources). Best-in-class table covers email #1-5 timing + subject lines, SMS #1-2 timing + copy, discount strategy by prod"
+    },
+    {
       "heading": "2026-07-09 14:35 UTC — Interactive Marketplace Path A/B/C scorer on /marketplace (interactive-tool + state-persistence)",
       "body": "- **What shipped:** A new \"Marketplace-expansion Path A / B / C scorer\" card on `/marketplace` (mounted between the asset-15 card and the demoted \"Future-tick companion\" footer) that ports `scripts/marketplace_unit_economics.py` math into React/TypeScript. Operator enters 8 inputs — US DTC GMV, AOV, contribution margin %, category, Amazon fulfillment mode (FBA / FBM / SFP / hybrid), Brand Registry status, USPTO trademark boolean, operator capacity hr/wk — and the panel recommends one of the 3 canonical paths (Path A <$1M Amazon-only / Path B $1M-$10M Amazon + Walmart DEFAULT 8-18:1 / Path C $10M+ all 8 marketplaces 6-14:1 muted) with the per-path cost stack + Year-1 incremental revenue band + DTC-cannibalization-adjusted net revenue band + Year-1 ROI band + per-marketplace revenue breakdow"
     },
@@ -12624,6 +12628,36 @@
       "sourceCount": 8,
       "size": 11824,
       "lastTouched": "2026-07-10"
+    },
+    {
+      "file": "04-loyalty-program.md",
+      "name": "loyalty-program",
+      "title": "Loyalty & rewards program",
+      "category": "retention",
+      "tier": 1,
+      "priority": "P1",
+      "defaultMove": 8,
+      "yearOneRoiBand": "10:1–30:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-07-10",
+      "sources": [
+        "smile 2024",
+        "yotpo 2024",
+        "loyalty-lion 2024",
+        "stamped 2024",
+        "birdeye 2024",
+        "klaviyo 2024",
+        "triple-whale 2024",
+        "salesforce 2024",
+        "yonder 2024",
+        "antavo 2024"
+      ],
+      "blurb": "A points-and-tiers loyalty program raises repeat-purchase rate 15–30%, lifts 12-month LTV 20–40%, and unlocks the entire Tier 2-4 lifecycle library (tier-up, tier-down, VIP early-access, referral-activation, points-ex...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 10,
+      "size": 13225,
+      "lastTouched": "2026-07-10"
     }
   ],
   "counts": {
@@ -12632,7 +12666,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 99,
-    "skills": 3
+    "journalEntries": 100,
+    "skills": 4
   }
 }
