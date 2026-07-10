@@ -11,3 +11,4 @@ dashboard/build/
 *.tsbuildinfo
 next-env.d.ts
 .vercel
+.next/
