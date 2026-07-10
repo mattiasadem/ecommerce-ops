@@ -6,13 +6,12 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ResearchTable } from "@/components/research-table";
+import { UnitEconPersonalizer } from "@/components/unit-econ-personalizer";
 import { content, findTable } from "@/lib/content";
 
 export const dynamic = "force-static";
 
-export const metadata = {
-  title: "Unit Economics — Ecommerce Ops",
-};
+export const metadata = { title: "Unit Economics — Ecommerce Ops" };
 
 export default function UnitEconomicsPage() {
   const research = content.research;
@@ -37,6 +36,8 @@ export default function UnitEconomicsPage() {
           constraints before deciding on a channel mix or growth lever.
         </p>
       </header>
+
+      <UnitEconPersonalizer />
 
       <Card>
         <CardHeader>
