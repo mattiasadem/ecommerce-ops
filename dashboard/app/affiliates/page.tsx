@@ -8,6 +8,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { ResearchTable } from "@/components/research-table";
 import { content, findDoc, findTable } from "@/lib/content";
+import { AffiliatePathCalculator } from "@/components/affiliate-path-calculator";
 
 export const dynamic = "force-static";
 
@@ -421,42 +422,26 @@ export default function AffiliatesPage() {
         </Card>
       </div>
 
+      {/* === INTERACTIVE CALCULATOR (Move #15 browser-side port) === */}
+      <AffiliatePathCalculator />
+
       {/* === FOOTER === */}
       <Card>
         <CardHeader>
           <CardTitle className="text-base">
-            Future-tick companions (planned, not yet shipped)
+            Future-tick companion (planned, not yet shipped)
           </CardTitle>
           <CardDescription>
-            The two next-priority bounded improvements that ship after this
-            route — both pre-staged in research/09 §Next moves, playbook 16
-            §Companion tool, and asset 17 §Related
+            The one next-priority bounded improvement that ships after this
+            route — pre-staged in research/09 §Next moves + playbook 16
+            §Companion tool + asset 17 §Related. The script companion
+            (browser-side interactive <code className="rounded bg-muted px-1 font-mono">
+              &lt;AffiliatePathCalculator /&gt;
+            </code>) shipped 2026-07-10.
           </CardDescription>
         </CardHeader>
         <CardContent>
           <ul className="space-y-2 text-xs leading-relaxed text-muted-foreground list-disc pl-5">
-            <li>
-              <code className="rounded bg-muted px-1">
-                scripts/affiliate_unit_economics.py
-              </code>{" "}
-              — Archetype A/B hybrid Path A/B/C affiliate-program scorer that
-              takes a brand's monthly_gmv + active_affiliates_count +
-              avg_affiliate_cvr + avg_aov + commission_tier + platform_choice
-              + has_triple_whale + has_smile_loyalty + voice_profile_split +
-              creator_economy_index → outputs Path A (&lt;$500k GMV
-              GoAffPro free 12.5:1 ROI) / Path B ($500k-$5M GMV Refersion
-              DEFAULT 4.7:1-8:1 ROI) / Path C ($5M+ GMV Impact + Levanta
-              cross-channel 3.5:1-5:1 ROI) recommendation with cost stack +
-              expected Year-1 attributed revenue $720k Path B + 6-step
-              cookie-deprecation recovery 25-35% + 6-step build sequence.
-              Pre-staged in research/09 §Next moves + playbook 16 §Next moves
-              + asset 17 §Related. Gated on the canonical 8 prereqs (Move #1
-              + #4 + #6 + #8 shipped + Triple Whale attribution live +
-              ≥1,000 customers/month + 1 share-worthy SKU + FTC-compliance
-              SOP + Klaviyo post-purchase webhook + Refersion/Levanta/
-              GoAffPro/Impact platform installed + PayPal Mass Pay or Wise
-              configured).
-            </li>
             <li>
               <code className="rounded bg-muted px-1">
                 dashboards/affiliate-program-health.html
