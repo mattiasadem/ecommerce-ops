@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-10T09:40:31.280Z",
+  "generatedAt": "2026-07-10T11:46:23.755Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12596,6 +12596,34 @@
       "sourceCount": 7,
       "size": 6224,
       "lastTouched": "2026-07-10"
+    },
+    {
+      "file": "03-welcome-series.md",
+      "name": "welcome-series",
+      "title": "Welcome series (email + SMS)",
+      "category": "retention",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": 4,
+      "yearOneRoiBand": "20:1–50:1",
+      "smsFriendly": true,
+      "lastUpdated": "2026-07-10",
+      "sources": [
+        "klaviyo 2024",
+        "postscript 2024",
+        "omnisend 2024",
+        "campaign-monitor 2024",
+        "litmus 2024",
+        "salesforce 2024",
+        "smile 2024",
+        "triple-whale 2024"
+      ],
+      "blurb": "The first 7 days of a new subscriber determine their lifetime value.",
+      "sectionCount": 9,
+      "pitfallCount": 17,
+      "sourceCount": 8,
+      "size": 11824,
+      "lastTouched": "2026-07-10"
     }
   ],
   "counts": {
@@ -12605,6 +12633,6 @@
     "tables": 57,
     "findings": 8,
     "journalEntries": 99,
-    "skills": 2
+    "skills": 3
   }
 }
