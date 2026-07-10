@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-10T17:32:08.406Z",
+  "generatedAt": "2026-07-10T18:37:18.386Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-07-10 17:35] Skill shipped: Always-on PDP A/B testing program (Move #9.5)",
+      "body": "- **What shipped:** `skills/08-pdp-ab-testing-program.md` (new, ~22 KB / 22256 bytes / 8th skill in the library + canonical Move #9.5 always-on PDP A/B testing program from the 30-day-rollout plan). Schema: full canonical 9-field frontmatter (name=pdp-ab-testing-program, title=Always-on PDP A/B testing program (Convert.com / VWO / Shoplift), category=acquisition, tier=1, priority=P1, default_move=9.5, year_1_roi_band=\"10:1–35:1\", sms_friendly=false, last_updated=2026-07-10, sources=convert 2024 + vwo 2024 + shoplift 2024 + optimizely 2024 + triple-whale 2024 + polar 2024 + klaviyo 2024 + postscript 2024 + shopify 2024 + smartlook 2024 + hotjar 2024 + rebury 2024 + nosto 2024 + shopify-themes 2024 + baymard 2024), one-sentence lead blockquote, 9 canonical H2 sections (When to use / Best in "
+    },
+    {
       "heading": "[2026-07-10 16:30] Skill shipped: AI ad creative iteration (Move #10)",
       "body": "- **What shipped:** `skills/07-ai-ad-creative-iteration.md` (new, ~16KB / 176 lines, 7th skill in the library + canonical Move #10 AI ad creative iteration from the 30-day-rollout plan). Schema: full canonical 9-field frontmatter (name=ai-ad-creative-iteration, title=AI ad creative iteration (AdCreative.ai / Moby / Pencil), category=acquisition, tier=1, priority=P1, default_move=10, year_1_roi_band=\"10:1–25:1\", sms_friendly=false, last_updated=2026-07-10, sources=adcreative 2024 + moby 2024 + pencil 2024 + smartwriter 2024 + triple-whale 2024 + meta-ads 2024 + klaviyo 2024 + postscript 2024 + smile 2024 + yotpo 2024 + polar 2024), one-sentence lead blockquote, 9 canonical H2 sections (When to use / Best in class / AI ad creative benchmarks / The build / 15 pitfalls / Verification / How to "
     },
@@ -12805,6 +12809,37 @@
       "sourceCount": 15,
       "size": 21921,
       "lastTouched": "2026-07-10"
+    },
+    {
+      "file": "09-sms-orchestration.md",
+      "name": "sms-orchestration",
+      "title": "SMS orchestration (SMSBump + Postscript channel orchestration, Move #19)",
+      "category": "retention",
+      "tier": 1,
+      "priority": "P1",
+      "defaultMove": 19,
+      "yearOneRoiBand": "2.4:1–107:1",
+      "smsFriendly": true,
+      "lastUpdated": "2026-07-10",
+      "sources": [
+        "postscript 2024",
+        "smsbump 2024",
+        "klaviyo 2024",
+        "attentive 2024",
+        "gsma-rcs 2024",
+        "triple-whale 2024",
+        "two-way-conversations 2024",
+        "rcs-business-messaging 2024",
+        "mms 2024",
+        "sailthru 2024",
+        "shopify-markets 2024"
+      ],
+      "blurb": "Move #7 ships the **canonical 4-flow Postscript welcome + cart-abandon SMS substrate** for $100k–$500k GMV brands.",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 11,
+      "size": 35969,
+      "lastTouched": "2026-07-10"
     }
   ],
   "counts": {
@@ -12813,7 +12848,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 104,
-    "skills": 8
+    "journalEntries": 105,
+    "skills": 9
   }
 }
