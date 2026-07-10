@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-10T16:26:56.342Z",
+  "generatedAt": "2026-07-10T17:32:08.406Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-07-10 16:30] Skill shipped: AI ad creative iteration (Move #10)",
+      "body": "- **What shipped:** `skills/07-ai-ad-creative-iteration.md` (new, ~16KB / 176 lines, 7th skill in the library + canonical Move #10 AI ad creative iteration from the 30-day-rollout plan). Schema: full canonical 9-field frontmatter (name=ai-ad-creative-iteration, title=AI ad creative iteration (AdCreative.ai / Moby / Pencil), category=acquisition, tier=1, priority=P1, default_move=10, year_1_roi_band=\"10:1–25:1\", sms_friendly=false, last_updated=2026-07-10, sources=adcreative 2024 + moby 2024 + pencil 2024 + smartwriter 2024 + triple-whale 2024 + meta-ads 2024 + klaviyo 2024 + postscript 2024 + smile 2024 + yotpo 2024 + polar 2024), one-sentence lead blockquote, 9 canonical H2 sections (When to use / Best in class / AI ad creative benchmarks / The build / 15 pitfalls / Verification / How to "
+    },
+    {
       "heading": "[2026-07-10 15:25] Skill shipped: Mobile-first PDP redesign (Move #9)",
       "body": "- **What shipped:** `skills/06-mobile-pdp-redesign.md` (new, ~22 KB / 591 insertions, 6th skill in the library + canonical Move #9 mobile-first PDP redesign from the 30-day-rollout plan). Schema: full canonical 9-field frontmatter (name=mobile-pdp-redesign, title=Mobile-first PDP redesign (speed + above-the-fold + sticky ATC), category=acquisition, tier=1, priority=P1, default_move=9, year_1_roi_band=\"10:1–25:1\", sms_friendly=false, last_updated=2026-07-10, sources=triple-whale 2024 + pagespeed-insights 2024 + crux 2024 + yotpo 2024 + loox 2024 + junip 2024 + rebuy 2024 + aftersell 2024 + shortpixel 2024 + shopify 2024 + cloudflare 2024 + klaviyo 2024 + gorgias 2024 + hotjar 2024), one-sentence lead blockquote, 9 canonical H2 sections (When to use / Best in class / Mobile PDP benchmarks / "
     },
@@ -12766,6 +12770,41 @@
       "sourceCount": 11,
       "size": 15880,
       "lastTouched": "2026-07-10"
+    },
+    {
+      "file": "08-pdp-ab-testing-program.md",
+      "name": "pdp-ab-testing-program",
+      "title": "Always-on PDP A/B testing program (Convert.com / VWO / Shoplift)",
+      "category": "acquisition",
+      "tier": 1,
+      "priority": "P1",
+      "defaultMove": "9.5",
+      "yearOneRoiBand": "10:1–35:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-07-10",
+      "sources": [
+        "convert 2024",
+        "vwo 2024",
+        "shoplift 2024",
+        "optimizely 2024",
+        "triple-whale 2024",
+        "polar 2024",
+        "klaviyo 2024",
+        "postscript 2024",
+        "shopify 2024",
+        "smartlook 2024",
+        "hotjar 2024",
+        "rebury 2024",
+        "nosto 2024",
+        "shopify-themes 2024",
+        "baymard 2024"
+      ],
+      "blurb": "A single PDP redesign (Move #9) is a one-shot lift of 10–25%; an always-on A/B testing program compounds 5–15% YoY on top of that.",
+      "sectionCount": 10,
+      "pitfallCount": 15,
+      "sourceCount": 15,
+      "size": 21921,
+      "lastTouched": "2026-07-10"
     }
   ],
   "counts": {
@@ -12774,7 +12813,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 103,
-    "skills": 7
+    "journalEntries": 104,
+    "skills": 8
   }
 }
