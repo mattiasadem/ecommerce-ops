@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-10T19:44:12.536Z",
+  "generatedAt": "2026-07-10T20:50:27.668Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-07-10 19:30] Skill shipped: Lifecycle flow library (Klaviyo + Postscript + Smile 20-flow build, Move #14)",
+      "body": "- **What shipped:** `skills/10-lifecycle-flow-library.md` (new, ~28 KB / 280 lines / 10th skill in the library + canonical Move #14 lifecycle-marketing expansion from research/05). Schema: full canonical 9-field frontmatter (name=lifecycle-flow-library, title=Lifecycle flow library (Klaviyo + Postscript + Smile 20-flow build, Move #14), category=retention, tier=1, priority=P1, default_move=14, year_1_roi_band=\"54:1–153:1\", sms_friendly=true, last_updated=2026-07-10, sources=[klaviyo 2024 + postscript 2024 + smile 2024 + recharge 2024 + triple-whale 2024 + omnisend 2024 + litmus 2024 + baymard 2024 + gorgias 2024 + gsp-rcs 2024 + return-path 2024 + twilio 2024] — 12 vendor sources), one-sentence lead blockquote, 9 canonical H2 sections (When to use this skill / What \"best in class\" looks li"
+    },
+    {
       "heading": "[2026-07-10 18:45] Skill shipped: SMS orchestration (SMSBump + Postscript channel orchestration, Move #19)",
       "body": "- **What shipped:** `skills/09-sms-orchestration.md` (new, ~36 KB / 36393 bytes / 9th skill in the library + canonical Move #19 SMSBump + Postscript channel orchestration from research/15). Schema: full canonical 9-field frontmatter (name=sms-orchestration, title=SMS orchestration (SMSBump + Postscript channel orchestration, Move #19), category=retention, tier=1, priority=P1, default_move=19, year_1_roi_band=\"2.4:1–107:1\", sms_friendly=true, last_updated=2026-07-10, sources=postscript 2024 + smsbump 2024 + klaviyo 2024 + attentive 2024 + gsma-rcs 2024 + triple-whale 2024 + two-way-conversations 2024 + rcs-business-messaging 2024 + mms 2024 + sailthru 2024 + shopify-markets 2024 — 11 vendor sources), one-sentence lead blockquote, 9 canonical H2 sections (When to use this skill / What best i"
     }
@@ -12456,6 +12460,25 @@
       "sourceCount": 12,
       "size": 27727,
       "lastTouched": "2026-07-10"
+    },
+    {
+      "file": "11-ai-customer-service-automation.md",
+      "name": "ai-customer-service-automation",
+      "title": "AI customer service automation (Gorgias Automate + ChatGPT fine-tuning, Move #20.1)",
+      "category": "retention",
+      "tier": 1,
+      "priority": "P1",
+      "defaultMove": "20.1",
+      "yearOneRoiBand": "3.5:1–18:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-07-10",
+      "sources": [],
+      "blurb": "Pillar-4 deep-dive of Move #20 generative-AI-engine that turns a Gorgias or Zendesk ticket queue into a 3-layer self-service + AI-assisted flow (macro-template match → AI-completion engine → human escalation) that res...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 0,
+      "size": 50049,
+      "lastTouched": "2026-07-10"
     }
   ],
   "counts": {
@@ -12464,7 +12487,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 1,
-    "skills": 10
+    "journalEntries": 2,
+    "skills": 11
   }
 }
