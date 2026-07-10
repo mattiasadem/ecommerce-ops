@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ResearchTable } from "@/components/research-table";
+import { ThreeplPathCalculator } from "@/components/threepl-path-calculator";
 import { content, findDoc, findTable } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -355,35 +356,23 @@ export default function ThreeplPage() {
         </Card>
       </div>
 
+      {/* === INTERACTIVE CALCULATOR (Move #12 browser port) === */}
+      <ThreeplPathCalculator />
+
       {/* === FOOTER === */}
       <Card>
         <CardHeader>
           <CardTitle className="text-base">
-            Future-tick companions (planned, not yet shipped)
+            Future-tick companion (planned, not yet shipped)
           </CardTitle>
           <CardDescription>
-            The two next-priority bounded improvements that ship after this
-            route — both pre-staged in research/07 §Next moves, playbook 14
-            §Next moves, and asset 15 (3PL-selection-card) §Related
+            The next-priority bounded improvement that ships after this
+            route — pre-staged in research/07 §Next moves + playbook 14
+            §Next moves.
           </CardDescription>
         </CardHeader>
         <CardContent>
           <ul className="space-y-2 text-xs leading-relaxed text-muted-foreground list-disc pl-5">
-            <li>
-              <code className="rounded bg-muted px-1">
-                scripts/3pl_unit_economics.py
-              </code>{" "}
-              — Archetype A/B hybrid Path A/B/C scorer that takes current
-              orders/mo + current AOV + current ship cost + current ship time
-              + current warehouse footprint + current SKU count + current
-              international volume → outputs Path A (SMB 3PL solo) / Path B
-              (mid-market multi-warehouse) / Path C (enterprise orchestration)
-              recommendation with cost-stack + expected Year-1 incremental
-              ship-cost savings + ship-time improvement + multi-warehouse-enabled
-              + 6-step build sequence. Pre-staged in research/07 §Next moves +
-              playbook 14 §Next moves + asset 15 §Related. Gated on operator
-              having current 3PL-or-in-house baseline data.
-            </li>
             <li>
               <code className="rounded bg-muted px-1">
                 dashboards/3pl-migration-health.html
@@ -394,7 +383,18 @@ export default function ThreeplPage() {
               Pre-staged in research/07 §Next moves + playbook 14 §Next moves.
               Mirrors the international-expansion-health static-dashboard
               pattern with 6 sections + 4 data structures + 8 helper functions
-              + 17-category Node smoke suite.
+              + 17-category Node smoke suite.{" "}
+              <em>
+                Companion{" "}
+                <code className="rounded bg-muted px-1">
+                  scripts/threepl_unit_economics.py
+                </code>{" "}
+                shipped as the browser-side interactive{" "}
+                <code className="rounded bg-muted px-1">
+                  &lt;ThreeplPathCalculator /&gt;
+                </code>{" "}
+                card above this footer.
+              </em>
             </li>
           </ul>
         </CardContent>
