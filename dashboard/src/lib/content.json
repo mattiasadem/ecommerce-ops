@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-11T05:34:19.008Z",
+  "generatedAt": "2026-07-11T06:42:23.973Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-07-11 07:30] Skill shipped: B2B / wholesale channel launch (Move #14.5, Faire + Tundra + Ankorstore + Handshake + Shopify B2B + RSP/KeHE/UNFI + Amazon Business, 5-pillar Path A/B/C, 8.5:1 default Year-1 ROI)",
+      "body": "- **What shipped:** `skills/19-b2b-wholesale-channel-launch.md` (new, ~50.7 KB / 51960 bytes / 19th skill in the library + canonical Move #14.5 B2B / wholesale-channel-launch layer from research/10 + companion playbook at `playbooks/17-b2b-wholesale-launch.md` + companion asset at `assets/18-b2b-wholesale-kits.md` + operator-surface route at `dashboard/app/b2b/page.tsx`). Schema: full canonical 9-field frontmatter (name=b2b-wholesale-channel-launch, title=B2B / wholesale channel launch (Move #14.5, Faire + Tundra + Ankorstore + Handshake + Shopify B2B + RSP/KeHE/UNFI + Amazon Business, 5-pillar Path A/B/C, 8.5:1 default Year-1 ROI), category=acquisition, tier=1, priority=P1, default_move=14.5, year_1_roi_band=\"4.5:1–14:1\", sms_friendly=false, last_updated=2026-07-11, sources=[faire 2024 + "
+    },
+    {
       "heading": "[2026-07-11 06:30] Skill shipped: Generative AI engine (Move #20, GPT-4o-clone-voice + Pencil/Moby + Jasper + Copy.ai + Midjourney + ElevenLabs + Typeface, 5-pillar Path A/B/C, 3:1 default Year-1 ROI)",
       "body": "- **What shipped:** `skills/18-generative-ai-engine.md` (new, ~50.9 KB / 50903 bytes / 18th skill in the library + canonical Move #20 full-stack generative-AI-engine orchestration layer from research/16). Schema: full canonical 9-field frontmatter (name=generative-ai-engine, title=Generative AI engine (Move #20, GPT-4o-clone-voice + Pencil/Moby + Jasper + Copy.ai + Midjourney + ElevenLabs + Typeface, 5-pillar Path A/B/C, 3:1 default Year-1 ROI), category=ai-orchestration, tier=1, priority=P1, default_move=20, year_1_roi_band=\"2.5:1–4:1\", sms_friendly=false, last_updated=2026-07-11, sources=[openai 2024 + anthropic 2024 + adcreative.ai 2024 + moby 2024 + pencil 2024 + jasper 2024 + typeface 2024 + copy.ai 2024 + midjourney 2024 + runway 2024 + sora 2024 + elevenlabs 2024 + smartwriter 2024 "
     },
@@ -12787,6 +12791,43 @@
       "sourceCount": 16,
       "size": 51205,
       "lastTouched": "2026-07-11"
+    },
+    {
+      "file": "20-amazon-dsp-amazon-attribution-audit.md",
+      "name": "amazon-dsp-amazon-attribution-audit",
+      "title": "Amazon DSP + Amazon Attribution audit (Move #18)",
+      "category": "acquisition",
+      "tier": 1,
+      "priority": "P1",
+      "defaultMove": 18,
+      "yearOneRoiBand": "3.5:1–35:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-07-11",
+      "sources": [
+        "amazon-ad-business 2024",
+        "amazon-marketing-cloud 2024",
+        "amazon-attribution 2024",
+        "amazon-brand-registry 2024",
+        "amazon-creative-assets 2024",
+        "amazon-seller-central 2024",
+        "amazon-brand-analytics 2024",
+        "tinuiti 2024",
+        "pacvue 2024",
+        "helium-10 2024",
+        "perpetua 2024",
+        "jungle-scout 2024",
+        "seller-snap 2024",
+        "ad-badger 2024",
+        "triple-whale 2024",
+        "klaviyo 2024",
+        "shopify 2024"
+      ],
+      "blurb": "The canonical Halo-defense + Halo-measurement lever for $5M+ DTC+Amazon brands — capturing the **5–30% incremental Amazon revenue** + **0.5–0.7× CAC vs paid-social** + **5–10× brand-search-volume-lift** + **25–40% Hal...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 17,
+      "size": 66547,
+      "lastTouched": "2026-07-11"
     }
   ],
   "counts": {
@@ -12795,7 +12836,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 12,
-    "skills": 19
+    "journalEntries": 13,
+    "skills": 20
   }
 }
