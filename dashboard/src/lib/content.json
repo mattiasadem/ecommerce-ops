@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-11T01:10:24.492Z",
+  "generatedAt": "2026-07-11T02:15:02.072Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-07-11 01:00] Skill shipped: Marketplace expansion (Move #13, 5-pillar Path A/B/C, 8:1 default Year-1 ROI)",
+      "body": "- **What shipped:** `skills/15-marketplace-expansion.md` (new, ~38 KB / 39024 bytes / 15th skill in the library + canonical Move #13 marketplace-expansion layer from research/06 + companion playbook at `playbooks/13-marketplace-launch.md` + companion asset at `assets/15-marketplace-listing-card.md` + operator-surface route at `dashboard/app/marketplace/page.tsx` + scoring script at `scripts/marketplace_unit_economics.py`). Schema: full canonical 9-field frontmatter (name=marketplace-expansion, title=Marketplace expansion (Move #13, Amazon + Walmart + Target Plus + EU, 5-pillar Path A/B/C, 8:1 default Year-1 ROI), category=acquisition, tier=1, priority=P1, default_move=13, year_1_roi_band=\"5:1–14:1\", sms_friendly=false, last_updated=2026-07-11, sources=[jungle-scout 2024 + marketplace-pulse"
+    },
+    {
       "heading": "[2026-07-11 00:05] Skill shipped: Affiliate / creator / influencer program (Move #15, 5-pillar Path A/B/C, 6:1–12.5:1 ROI)",
       "body": "- **What shipped:** `skills/14-affiliate-program.md` (new, ~25.7 KB / 25749 bytes / 14th skill in the library + canonical Move #15 creator-led-acquisition layer from research/09 + companion playbook at `playbooks/14-affiliate-program.md` + companion asset at `assets/10-affiliate-program-playbook.md` + `assets/17-affiliate-program-templates.md`). Schema: full canonical 9-field frontmatter (name=affiliate-program, title=Affiliate / creator / influencer program (Move #15, 5-pillar Path A/B/C, 6:1–12.5:1 ROI), category=acquisition, tier=1, priority=P1, default_move=15, year_1_roi_band=\"6:1–12.5:1\", sms_friendly=false, last_updated=2026-07-11, sources=[impact 2024 + awin 2024 + partnerstack 2024 + refersion 2024 + levanta 2024 + goaffpro 2024 + aspire 2024 + ftc 2024 + triple-whale 2024 + klavi"
     },
@@ -12628,6 +12632,38 @@
       "sourceCount": 14,
       "size": 38486,
       "lastTouched": "2026-07-11"
+    },
+    {
+      "file": "16-creator-economy-expansion.md",
+      "name": "creator-economy-expansion",
+      "title": "Creator economy expansion",
+      "category": "acquisition",
+      "tier": 1,
+      "priority": "P1",
+      "defaultMove": 16,
+      "yearOneRoiBand": "6:1–16.7:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-07-11",
+      "sources": [
+        "aspire 2024",
+        "collabstr 2024",
+        "grin 2024",
+        "creatoriq 2024",
+        "tagger 2024",
+        "tubular-labs 2024",
+        "awin 2024",
+        "impact 2024",
+        "ftc-16-cfr-part-255 2024",
+        "triple-whale 2024",
+        "klaviyo 2024",
+        "shopify 2024"
+      ],
+      "blurb": "Move #16 is the canonical cross-platform creator-discovery + content-licensing + whitelisting-ads layer that **compounds Move #15 affiliate-program (publisher-affiliate-relationships) + Move #15.x TikTok-Shop-creator-...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 12,
+      "size": 50769,
+      "lastTouched": "2026-07-11"
     }
   ],
   "counts": {
@@ -12636,7 +12672,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 7,
-    "skills": 15
+    "journalEntries": 8,
+    "skills": 16
   }
 }
