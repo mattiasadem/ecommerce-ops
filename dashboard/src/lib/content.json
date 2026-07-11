@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-11T14:41:56.579Z",
+  "generatedAt": "2026-07-11T16:18:14.733Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,14 @@
   },
   "journal": [
     {
+      "heading": "[2026-07-11 16:18] Skill tick: keep — In-region 3PL distribution upgrade (Move #22.3, EU/UK/AU/CA local fulfillment + returns loop, 11:1 default Year-1 ROI)",
+      "body": "- **Branch:** autoresearch/skills-2026-07-11\n- **Status:** keep\n- **Reason:** Improvement metric rule #1 satisfied — `category: fulfillment` is new to the library (`grep -l '^category: fulfillment' skills/*.md | wc -l` returned 1). This is the first fulfillment-category skill and the natural Move #22 follow-up after `skills/25-international-expansion.md` and `skills/26-native-language-voice-profiles.md`: once cross-border demand and native copy are in place, the next bottleneck is local delivery promise, local returns, and regional 3PL routing.\n- **What shipped:** `skills/27-in-region-3pl-distribution-upgrade.md` (new, 18,161 bytes / 27th skill in the library) + byte-identical build mirror `dashboard/src/skills/27-in-region-3pl-distribution-upgrade.md` + regenerated `dashboard/src/lib/cont"
+    },
+    {
+      "heading": "[2026-07-11 14:44] Skill tick: keep — Native-language voice profiles (Move #22.2, UK English + DE/FR/JP native copy QA + Klaviyo/Gorgias locale packs, 9:1 default Year-1 ROI)",
+      "body": "- **Branch:** autoresearch/skills-2026-07-11\n- **Status:** keep\n- **Reason:** Improvement metric rule #1 satisfied — `category: localization` is new to the library (`grep -l '^category: localization' skills/*.md | wc -l` returned 1). This is the first localization-category skill and a natural Move #22 follow-up after `skills/25-international-expansion.md`: it converts the cross-border rollout into a native-language operator pack for UK English + German + French + Japanese instead of leaving the operator with machine translation and ungoverned voice drift.\n- **What shipped:** `skills/26-native-language-voice-profiles.md` (new, ~17.0 KB / 17,048 bytes / 26th skill in the library) + byte-identical build mirror `dashboard/src/skills/26-native-language-voice-profiles.md` + regenerated `dashboar"
+    },
+    {
       "heading": "[2026-07-11 13:30] Skill shipped: International expansion (Move #22, Shopify Markets + EU IOSS + UK VAT MOSS + AU GST + Klarna + AfterPay + Zonos + Weglot, 5-pillar Path A/B/C, 25:1 default Year-1 ROI)",
       "body": "- **What shipped:** `skills/25-international-expansion.md` (new, ~66.9 KB / 66927 bytes / 25th skill in the library + canonical Move #22 international-expansion layer from research/04 + first skill in the `category: international` sub-library). Schema: full canonical 9-field frontmatter (name=international-expansion, title=International expansion (Move #22, Shopify Markets + EU IOSS + UK VAT MOSS + AU GST + Klarna + AfterPay + Zonos + Weglot, 5-pillar Path A/B/C, 25:1 default Year-1 ROI), category=international, tier=1, priority=P1, default_move=22, year_1_roi_band=\"8:1–62:1\", sms_friendly=false, last_updated=2026-07-11, sources=[shopify-markets 2024 + shopify-markets-pro 2024 + eu-ioss 2024 + uk-vat-moss 2024 + au-gst 2024 + jp-appi 2024 + klarna 2024 + afterpay-clearpay 2024 + ideal-nl 2"
     },
@@ -13144,6 +13152,50 @@
       "sourceCount": 18,
       "size": 16891,
       "lastTouched": "2026-07-11"
+    },
+    {
+      "file": "27-in-region-3pl-distribution-upgrade.md",
+      "name": "in-region-3pl-distribution-upgrade",
+      "title": "In-region 3PL distribution upgrade (Move #22.3)",
+      "category": "fulfillment",
+      "tier": 2,
+      "priority": "P1",
+      "defaultMove": "22.3",
+      "yearOneRoiBand": "4:1–22:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-07-11",
+      "sources": [
+        "shipbob-international 2024",
+        "shipmonk-cross-border 2024",
+        "dhl-ecommerce 2024",
+        "fedex-international 2024",
+        "ups-worldwide 2024",
+        "australia-post 2024",
+        "canada-post 2024",
+        "royal-mail 2024",
+        "dpd-uk 2024",
+        "bpost 2024",
+        "colissimo 2024",
+        "hermes-evri 2024",
+        "shopify-markets 2024",
+        "shopify-fulfillment-network 2024",
+        "flowspace 2024",
+        "stord 2024",
+        "extensiv 2024",
+        "loop-returns 2024",
+        "returngo 2024",
+        "happy-returns 2024",
+        "gorgias-wismo 2024",
+        "baymard-international-checkout-usability 2024",
+        "zonos 2024",
+        "avalara-cross-border 2024"
+      ],
+      "blurb": "Move #22.3 is the post-international-expansion fulfillment layer: once Move #22 proves demand and Move #22.2 protects native language/voice, move the top international SKUs into **EU/UK/AU/CA in-region 3PL nodes** so ...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 24,
+      "size": 17969,
+      "lastTouched": "2026-07-11"
     }
   ],
   "counts": {
@@ -13152,7 +13204,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 20,
-    "skills": 26
+    "journalEntries": 22,
+    "skills": 27
   }
 }
