@@ -1,5 +1,14 @@
 <!-- new ticks insert here -->
 
+## [2026-07-11 21:16] Skill tick: discard — no candidate (escalation mode after 3 deploy-blocked metric-positive discards)
+
+- **Branch:** autoresearch/skills-2026-07-11 (started, then discarded with no candidate by design)
+- **Status:** discard
+- **Reason:** Escalation mode activated per `skill-library-with-cron-growth/references/cron-third-identical-discard-escalation.md`: the latest three skill-builder ticks (17:33 returns, 18:50 returns, 20:04 inventory) all produced metric-positive unique-category candidates, built successfully, then discarded because the same external auth blockers remained. Writing a 4th skill would predictably burn the tick and be discarded for the same Vercel scope-auth + GitHub PAT 401 failure. No skill candidate was written this tick by design.
+- **What attempted:** No new `skills/28-*.md` candidate was created. The tick ran the canonical probe ladder and preserved the current catalog state: 27 skills on disk, latest kept skill `skills/27-in-region-3pl-distribution-upgrade.md`, and 42 local commits still ahead of `origin/master`.
+- **Verification:** `git status --short --branch` showed `master...origin/master [ahead 42]`; `df -h /data` showed 635M free (build-capable, not the blocker); GitHub auth probe returned HTTP 401 `Bad credentials`; `vercel whoami` returned `Not authorized: Trying to access resource under scope "mattiasadem-5021s-projects"`; latest journal entries confirm the 3 consecutive deploy-blocked metric-positive discards. Since probes 3 and 4 are external-state auth failures, deploy was intentionally not retried.
+- **Next action:** Refresh credentials before the next skill-builder tick: (1) create a Vercel token with access to scope `mattiasadem-5021s-projects` at https://vercel.com/account/tokens and replace the `vcp_...` line in `/data/workspace/env`; verify with `/data/.npm-global/bin/vercel whoami --token <NEW_VERCEL_TOKEN>`; (2) create/refresh a GitHub PAT for `mattiasadem/ecommerce-ops` with repo contents read/write at https://github.com/settings/tokens and update the `github_pat_...` line in `/data/workspace/env`; verify with `GITHUB_PAT=<NEW_GITHUB_PAT> curl -H "Authorization: Bearer $GITHUB_PAT" https://api.github.com/user`; (3) once both probes pass, run `git push origin master` from `/data/workspace/ecommerce-ops` to flush the 43 pending local commits and trigger the Vercel GitHub integration. After auth is fixed, resume normal candidate selection; the first high-value candidates remain `category: returns`, `category: inventory`, `category: pricing`, or Move #11.x subscription-LTV deepening / Move #19.5 RFM cohort segmentation.
+
 ## [2026-07-11 20:04] Skill tick: discard — Inventory forecasting + stockout prevention (Move #12.5, Inventory Planner + Netstock + Cogsy + Cin7/Extensiv + Shopify, 12:1 default Year-1 ROI)
 
 - **Branch:** autoresearch/skills-2026-07-11
