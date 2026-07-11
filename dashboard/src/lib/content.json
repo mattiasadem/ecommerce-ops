@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-11T08:56:20.443Z",
+  "generatedAt": "2026-07-11T09:59:56.269Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-07-11 08:00] Skill shipped: 3PL migration (Move #12, ShipBob + ShipMonk + Red Stag + Shopify Fulfillment Network + Rakuten Super Logistics + Stord + Flowspace + Extensiv, 5-pillar Path A/B/C, 12:1 default Year-2+ steady-state ROI)",
+      "body": "- **What shipped:** `skills/21-3pl-migration.md` (new, ~51.4 KB / 52619 bytes / 21st skill in the library + canonical Move #12 3PL-migration layer from research/07 + companion playbook at playbooks/14 + companion asset at assets/15-3pl-selection-card.md + operator-surface route at dashboard/app/3pl/page.tsx + scoring script at scripts/3pl_unit_economics.py + static dashboard at dashboards/3pl-migration-health.html — ALL shipped in prior ticks; only the synthesis skill file was missing). Schema: full canonical 9-field frontmatter (name=3pl-migration, title=3PL migration (Move #12, ShipBob + ShipMonk + Red Stag + Shopify Fulfillment Network + Rakuten Super Logistics + Stord + Flowspace + Extensiv, 5-pillar Path A/B/C, 12:1 default Year-2+ steady-state ROI), category=operations, tier=1, prior"
+    },
+    {
       "heading": "[2026-07-11 07:45] Skill shipped: Amazon DSP + Amazon Attribution audit (Move #18, programmatic display + Halo defense + AMC cohort overlay + post-purchase email merge, 5-pillar Path A/B/C, 3.5:1 default Year-1 ROI)",
       "body": "- **What shipped:** `skills/20-amazon-dsp-amazon-attribution-audit.md` (new, ~65.5 KB / 67118 bytes / 20th skill in the library + canonical Move #18 Amazon-DSP + Amazon-Attribution-audit layer from research/14 + companion playbook at `playbooks/21-amazon-dsp-amazon-attribution-audit-launch.md` + companion asset at `assets/22-amazon-dsp-amazon-attribution-audit-templates.md` + operator-surface route at `dashboard/app/amazon-dsp-amazon-attribution-audit/page.tsx` + scoring script at `scripts/amazon_dsp_amazon_attribution_audit_unit_economics.py` + static dashboard at `dashboards/amazon-dsp-amazon-attribution-audit-health.html`). Schema: full canonical 9-field frontmatter (name=amazon-dsp-amazon-attribution-audit, title=Amazon DSP + Amazon Attribution audit (Move #18, programmatic display + H"
     },
@@ -12885,7 +12889,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 14,
+    "journalEntries": 15,
     "skills": 21
   }
 }
