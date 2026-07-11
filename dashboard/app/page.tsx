@@ -14,6 +14,7 @@ import { BenchmarkDial } from "@/components/benchmark-dial";
 import { ShippedProgressStrip } from "@/components/shipped-playbooks";
 import { NextMoveCard } from "@/components/next-move";
 import { IkasLiveCard } from "@/components/ikas-live-card";
+import { RealizedRoiPanel } from "@/components/realized-roi";
 import { content, findTable, fmtDate } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -210,6 +211,11 @@ export default function Home() {
       {/* === NEXT-MOVE RECOMMENDATION — what to ship TODAY === */}
       <section id="next-move">
         <NextMoveCard />
+      </section>
+
+      {/* === REALIZED ROI — captured vs potential from shipped playbooks === */}
+      <section id="realized-roi">
+        <RealizedRoiPanel />
       </section>
 
       {/* === ACTION CARDS: what you can do right now === */}
