@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-11T11:15:30.545Z",
+  "generatedAt": "2026-07-11T12:23:42.154Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-07-11 11:16] Skill shipped: TikTok Shop / live commerce (Move #15.x, 5-pillar Path A/B/C, 8.5:1 default Year-1 ROI)",
+      "body": "- **What shipped:** `skills/23-tiktok-shop-live-commerce.md` (new, ~63.3 KB / 64851 bytes / 23rd skill in the library + canonical Move #15.x TikTok-Shop / live-commerce channel layer from research/11 + companion artifacts already shipped: playbook `playbooks/18-tiktok-shop-live-launch.md` + asset `assets/19-tiktok-shop-creator-briefs.md` + operator-surface route `dashboard/app/tiktok/page.tsx` + static-dashboard `dashboards/tiktok-shop-live-commerce-health.html`). Schema: full canonical 9-field frontmatter (name=tiktok-shop-live-commerce, title=TikTok Shop / live commerce (Move #15.x, 5-pillar Path A/B/C, 8.5:1 default Year-1 ROI), category=acquisition, tier=1, priority=P1, default_move=15.5, year_1_roi_band=\"4.5:1–14:1\", sms_friendly=false, last_updated=2026-07-11, sources=[tiktok-for-bus"
+    },
+    {
       "heading": "[2026-07-11 10:09] Skill shipped: Checkout audit + Baymard fix-list (Move #3, 24-guideline Baymard score + Shopify theme fixes + mobile-device verification, 5-pillar Path A/B/C, 15:1 default Year-1 ROI)",
       "body": "- **What shipped:** `skills/22-checkout-audit-baymard.md` (new, ~46.6 KB / 46572 bytes / 22nd skill in the library + canonical Move #3 checkout-audit + Baymard-fix-list layer from research/00 finding #26 + research/02 Move #3 ranking + companion playbook at `playbooks/03-checkout-audit-baymard.md` + companion scoring script at `scripts/checkout_audit_score.py` + companion test suite at `scripts/tests/test_checkout_audit_score.py` (≥18 TDD tests) — ALL shipped in prior ticks; only the synthesis skill file was missing). Schema: full canonical 9-field frontmatter (name=checkout-audit-baymard, title=Checkout audit + Baymard fix-list (Move #3, 24-guideline Baymard score + Shopify theme fixes + mobile-device verification, 5-pillar Path A/B/C, 15:1 default Year-1 ROI), category=conversion, tier=1"
     },
@@ -12977,6 +12981,62 @@
       "sourceCount": 24,
       "size": 64373,
       "lastTouched": "2026-07-11"
+    },
+    {
+      "file": "24-klaviyo-postscript-migration.md",
+      "name": "klaviyo-postscript-migration",
+      "title": "Klaviyo + Postscript migration (Move #5)",
+      "category": "retention",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": 5,
+      "yearOneRoiBand": "5:1–25:1",
+      "smsFriendly": true,
+      "lastUpdated": "2026-07-11",
+      "sources": [
+        "klaviyo 2024",
+        "postscript 2024",
+        "mailchimp 2024",
+        "attentive 2024",
+        "brevo 2024",
+        "sendlane 2024",
+        "customer.io 2024",
+        "activecampaign 2024",
+        "iterable 2024",
+        "hubspot 2024",
+        "omnisend 2024",
+        "drip 2024",
+        "sailthru 2024",
+        "twilio 2024",
+        "gsma-rcs 2024",
+        "sms-consent-tcpa-2024",
+        "gdpr-email-consent-2024",
+        "can-spam-2024",
+        "google-postmaster-tools 2024",
+        "microsoft-snds 2024",
+        "shopify-markets 2024",
+        "shopify-flows 2024",
+        "triple-whale 2024",
+        "gorgias 2024",
+        "omnisend-2026-email-benchmarks",
+        "litmus-2024-inbox-placement",
+        "validity-2024-sender-score",
+        "kickbox 2024",
+        "zero-bounce 2024",
+        "return-path 2024",
+        "omeda-email-benchmarks 2024",
+        "smartwriter 2024",
+        "moby-triple-whale 2024",
+        "hubspot-marketing-hub 2024",
+        "attentive-pricing-2024",
+        "klaviyo-cdp 2024"
+      ],
+      "blurb": "Move #5 is the canonical **email + SMS platform consolidation** move for $100k–$50M GMV Shopify-DTC brands — the move that consolidates Mailchimp / Brevo / Sendlane / HubSpot / ActiveCampaign / Customer.io / Attentive...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 36,
+      "size": 67216,
+      "lastTouched": "2026-07-11"
     }
   ],
   "counts": {
@@ -12985,7 +13045,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 17,
-    "skills": 23
+    "journalEntries": 18,
+    "skills": 24
   }
 }
