@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-11T00:05:32.042Z",
+  "generatedAt": "2026-07-11T01:10:24.492Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-07-11 00:05] Skill shipped: Affiliate / creator / influencer program (Move #15, 5-pillar Path A/B/C, 6:1–12.5:1 ROI)",
+      "body": "- **What shipped:** `skills/14-affiliate-program.md` (new, ~25.7 KB / 25749 bytes / 14th skill in the library + canonical Move #15 creator-led-acquisition layer from research/09 + companion playbook at `playbooks/14-affiliate-program.md` + companion asset at `assets/10-affiliate-program-playbook.md` + `assets/17-affiliate-program-templates.md`). Schema: full canonical 9-field frontmatter (name=affiliate-program, title=Affiliate / creator / influencer program (Move #15, 5-pillar Path A/B/C, 6:1–12.5:1 ROI), category=acquisition, tier=1, priority=P1, default_move=15, year_1_roi_band=\"6:1–12.5:1\", sms_friendly=false, last_updated=2026-07-11, sources=[impact 2024 + awin 2024 + partnerstack 2024 + refersion 2024 + levanta 2024 + goaffpro 2024 + aspire 2024 + ftc 2024 + triple-whale 2024 + klavi"
+    },
+    {
       "heading": "[2026-07-10 23:01] Skill shipped: Triple Whale / Polar attribution (Move #6 foundation, MTA + cohort LTV)",
       "body": "- **What shipped:** `skills/13-triple-whale-attribution.md` (new, ~27.8 KB / 27796 bytes / 13th skill in the library + canonical Move #6 MTA + cohort LTV foundation from research/01 + the canonical operator-build playbook at `/playbooks/06-install-attribution-triplewhale-or-polar.md`). Schema: full canonical 9-field frontmatter (name=triple-whale-attribution, title=Triple Whale / Polar attribution (Move #6 foundation, MTA + cohort LTV), category=attribution, tier=1, priority=P0, default_move=6, year_1_roi_band=\"19:1–96:1\", sms_friendly=false, last_updated=2026-07-10, sources=[triple-whale 2024 + polar 2024 + northbeam 2024 + lifetimely 2024 + peel 2024 + ga4 2024 + meta-capi 2024 + google-ads-enhanced-conversions 2024 + klaviyo 2024 + shopify 2024 + moby-ai 2024 + moz 2024] — 12 vendor sou"
     },
@@ -12590,6 +12594,40 @@
       "sourceCount": 11,
       "size": 25346,
       "lastTouched": "2026-07-11"
+    },
+    {
+      "file": "15-marketplace-expansion.md",
+      "name": "marketplace-expansion",
+      "title": "Marketplace expansion",
+      "category": "acquisition",
+      "tier": 1,
+      "priority": "P1",
+      "defaultMove": 13,
+      "yearOneRoiBand": "5:1–14:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-07-11",
+      "sources": [
+        "jungle-scout 2024",
+        "marketplace-pulse 2024",
+        "helium-10 2024",
+        "walmart-marketplace 2024",
+        "target-plus-roundel 2024",
+        "cpc-strategy 2024",
+        "tinuiti 2024",
+        "amazon-seller-central 2024",
+        "amazon-brand-registry 2024",
+        "amazon-attribute 2024",
+        "triple-whale 2024",
+        "pattern 2024",
+        "klaviyo 2024",
+        "shopify 2024"
+      ],
+      "blurb": "Move #13 is the canonical second-largest absolute-revenue move in the workspace (behind Move #14 lifecycle-marketing at 22:1 default ROI but ahead of it on dollars-at-stake at $5M+ GMV) — capturing the **30–60% of cat...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 14,
+      "size": 38486,
+      "lastTouched": "2026-07-11"
     }
   ],
   "counts": {
@@ -12598,7 +12636,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 6,
-    "skills": 14
+    "journalEntries": 7,
+    "skills": 15
   }
 }
