@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-11T13:30:24.939Z",
+  "generatedAt": "2026-07-11T14:41:56.579Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-07-11 13:30] Skill shipped: International expansion (Move #22, Shopify Markets + EU IOSS + UK VAT MOSS + AU GST + Klarna + AfterPay + Zonos + Weglot, 5-pillar Path A/B/C, 25:1 default Year-1 ROI)",
+      "body": "- **What shipped:** `skills/25-international-expansion.md` (new, ~66.9 KB / 66927 bytes / 25th skill in the library + canonical Move #22 international-expansion layer from research/04 + first skill in the `category: international` sub-library). Schema: full canonical 9-field frontmatter (name=international-expansion, title=International expansion (Move #22, Shopify Markets + EU IOSS + UK VAT MOSS + AU GST + Klarna + AfterPay + Zonos + Weglot, 5-pillar Path A/B/C, 25:1 default Year-1 ROI), category=international, tier=1, priority=P1, default_move=22, year_1_roi_band=\"8:1–62:1\", sms_friendly=false, last_updated=2026-07-11, sources=[shopify-markets 2024 + shopify-markets-pro 2024 + eu-ioss 2024 + uk-vat-moss 2024 + au-gst 2024 + jp-appi 2024 + klarna 2024 + afterpay-clearpay 2024 + ideal-nl 2"
+    },
+    {
       "heading": "[2026-07-11 12:25] Skill shipped: Klaviyo + Postscript migration (Move #5, ESP+SMS-platform consolidation, 4-path Path A/B/C/D, 8:1 default Year-1 ROI)",
       "body": "- **What shipped:** `skills/24-klaviyo-postscript-migration.md` (new, ~68.1 KB / 68142 bytes / 24th skill in the library + canonical Move #5 ESP+SMS-platform-consolidation layer from research/02 Move #5 ranking + companion playbook `playbooks/05-migrate-to-klaviyo-postscript.md` already shipped 2026-06-24 — only the synthesis skill file was missing). Schema: full canonical 9-field frontmatter (name=klaviyo-postscript-migration, title=Klaviyo + Postscript migration (Move #5, ESP+SMS-platform consolidation, 4-path Path A/B/C/D, 8:1 default Year-1 ROI), category=retention, tier=1, priority=P0, default_move=5, year_1_roi_band=\"5:1–25:1\", sms_friendly=true, last_updated=2026-07-11, sources=[klaviyo 2024 + postscript 2024 + mailchimp 2024 + attentive 2024 + brevo 2024 + sendlane 2024 + customer."
     },
@@ -13102,6 +13106,44 @@
       "sourceCount": 41,
       "size": 65817,
       "lastTouched": "2026-07-11"
+    },
+    {
+      "file": "26-native-language-voice-profiles.md",
+      "name": "native-language-voice-profiles",
+      "title": "Native-language voice profiles (Move #22.2)",
+      "category": "localization",
+      "tier": 2,
+      "priority": "P1",
+      "defaultMove": "22.2",
+      "yearOneRoiBand": "4:1–18:1",
+      "smsFriendly": true,
+      "lastUpdated": "2026-07-11",
+      "sources": [
+        "weglot 2024",
+        "lokalise 2024",
+        "phrase 2024",
+        "deepl 2024",
+        "smartling 2024",
+        "transifex 2024",
+        "shopify-markets 2024",
+        "klaviyo-per-locale-flows 2024",
+        "gorgias-multilingual 2024",
+        "postscript-per-country-pricing 2024",
+        "baymard-international-checkout-usability 2024",
+        "eu-green-claims-directive-2026",
+        "gdpr 2024",
+        "uk-gdpr-ico 2024",
+        "jp-appi 2024",
+        "klarna 2024",
+        "ideal-nl 2024",
+        "bancontact-be 2024"
+      ],
+      "blurb": "Move #22.2 is the post-international-expansion localization layer that turns a US brand's 5 canonical voice profiles into **native-ready UK English, German, French, and Japanese operator packs** across PDP, checkout m...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 18,
+      "size": 16891,
+      "lastTouched": "2026-07-11"
     }
   ],
   "counts": {
@@ -13110,7 +13152,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 19,
-    "skills": 25
+    "journalEntries": 20,
+    "skills": 26
   }
 }
