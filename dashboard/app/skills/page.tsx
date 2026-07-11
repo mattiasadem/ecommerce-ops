@@ -7,6 +7,8 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { content, fmtDate } from "@/lib/content";
+import { SkillsSearch } from "@/components/skills-search";
+import { NextSkillToStudy } from "@/components/next-skill-to-study";
 import Link from "next/link";
 
 export const dynamic = "force-static";
@@ -162,6 +164,40 @@ export default function SkillsPage() {
           {withSms} skills are SMS-friendly
         </span>
       </section>
+
+      {/* Next-to-study recommendation (cross-page-intelligence) */}
+      <NextSkillToStudy
+        skills={skills.map((s) => ({
+          file: s.file,
+          title: s.title,
+          category: s.category,
+          priority: s.priority,
+          tier: s.tier,
+          defaultMove: s.defaultMove,
+          yearOneRoiBand: s.yearOneRoiBand,
+          pitfallCount: s.pitfallCount,
+          sourceCount: s.sourceCount,
+          sectionCount: s.sectionCount,
+          size: s.size,
+        }))}
+      />
+
+      {/* Interactive search / filter / studied-toggle (state-persistence) */}
+      <SkillsSearch
+        skills={skills.map((s) => ({
+          file: s.file,
+          title: s.title,
+          category: s.category,
+          priority: s.priority,
+          tier: s.tier,
+          defaultMove: s.defaultMove,
+          yearOneRoiBand: s.yearOneRoiBand,
+          smsFriendly: s.smsFriendly,
+          blurb: s.blurb,
+          pitfallCount: s.pitfallCount,
+          sourceCount: s.sourceCount,
+        }))}
+      />
 
       {/* Skills by category */}
       {categories.map((cat) => (

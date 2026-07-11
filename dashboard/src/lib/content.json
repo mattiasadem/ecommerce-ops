@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-11T03:20:43.309Z",
+  "generatedAt": "2026-07-11T03:53:32.664Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-07-11 03:21] Skill shipped: Pinterest organic discovery + SEO content engine (Move #17, 5-pillar Path A/B/C, 6:1 default Year-1 ROI)",
+      "body": "- **What shipped:** `skills/17-pinterest-organic-discovery-seo-content-engine.md` (new, ~54.8 KB / 54808 bytes / 17th skill in the library + canonical Move #17 Pinterest-organic-discovery + SEO-content-engine layer from research/13). Schema: full canonical 9-field frontmatter (name=pinterest-organic-discovery-seo-content-engine, title=Pinterest organic discovery + SEO content engine (Move #17, Pinterest Business + Shopify SEO + Surfer + Ahrefs + Originality.ai + MarketMuse + Triple Whale, 5-pillar Path A/B/C, 6:1 default Year-1 ROI), category=acquisition, tier=1, priority=P1, default_move=17, year_1_roi_band=\"6:1–17:1\", sms_friendly=false, last_updated=2026-07-11, sources=[pinterest 2024, semrush 2024, ahrefs 2024, surfer-seo 2024, backlinko 2024, marketmuse 2024, originality-ai 2024, goog"
+    },
+    {
       "heading": "[2026-07-11 01:30] Skill shipped: Creator economy expansion (Move #16, Aspire + Collabstr + GRIN + CreatorIQ + 5-payout + content-licensing, 5-pillar Path A/B/C, 8:1 default Year-1 ROI)",
       "body": "- **What shipped:** `skills/16-creator-economy-expansion.md` (new, ~51 KB / 51020 bytes / 16th skill in the library + canonical Move #16 cross-platform-creator-discovery + content-licensing + whitelisting-ads layer from research/12 + companion playbook at `playbooks/19-creator-economy-launch.md` + companion asset at `assets/20-creator-discovery-templates.md` + operator-surface route at `dashboard/app/creators/page.tsx` + scoring script at `scripts/creator_economy_unit_economics.py`). Schema: full canonical 9-field frontmatter (name=creator-economy-expansion, title=Creator economy expansion (Move #16, Aspire + Collabstr + GRIN + CreatorIQ + 5-payout + content-licensing, 5-pillar Path A/B/C, 8:1 default Year-1 ROI), category=acquisition, tier=1, priority=P1, default_move=16, year_1_roi_band="
     },
@@ -12708,7 +12712,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 9,
+    "journalEntries": 10,
     "skills": 17
   }
 }
