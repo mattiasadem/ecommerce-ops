@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-11T09:59:56.269Z",
+  "generatedAt": "2026-07-11T10:08:35.368Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12204,6 +12204,10 @@
     {
       "heading": "[2026-07-10 21:49] ui(dashboard): unit-economics personalizer — your AOV/orders/margin projected into the canonical LTV:CAC dial",
       "body": "- **What shipped:** `dashboard/src/components/unit-econ-personalizer.tsx` (new, ~13 KB / interactive calculator) + `dashboard/src/lib/unit-economics-personalizer.ts` (new, ~7 KB / pure scoring engine) + `dashboard/app/unit-economics/page.tsx` (mounted as the first card under the header). Cross-page-intelligence on top of `ecom-ops:your-store:v1` — pulls AOV / monthly orders / gross margin from the Overview card on mount, lets the operator override two canonical dials (12-month repeat rate + payback window in months), and instantly recomputes 7 projections + a health-band badge. State for the two dials persists to `ecom-ops:unit-econ:personalizer:v1` so reload keeps the operator's tuning; the shared AOV/orders/margin stay in the canonical Your-store key.\n- **Why it matters:** Unit Economics"
+    },
+    {
+      "heading": "[2026-07-11 11:00] feat(dashboard): benchmark dial — where does my store sit? (AOV / gross margin / break-even CAC / LTV:CAC / CAC payback vs research/00)",
+      "body": "- **What shipped:** `dashboard/src/lib/benchmark-dial.ts` (new, ~316 lines) — pure scoring engine that parses benchmark cells like `\"$60–$120\"`, `\"3:1\"`, `\"55–70%\"`, `\"<$30\"`, `\">$150\"` into numeric ranges + direction (higher-is-better / lower-is-better) and classifies an operator value into a 5-state band: `great | good | median | below | red-flag`. Special-cases the red-flag cell as a one-sided threshold (`>$150` → red flag if value > 150) before checking the healthy / good bands. Plus `dashboard/src/components/benchmark-dial.tsx` (new, ~378 lines) — a 5-cell responsive grid that mounts onto the Overview page right under the Your-store card, reads the operator's AOV / monthly orders / gross margin from `ecom-ops:your-store:v1` (the same shared key the abandoned-cart / post-purchase / wel"
     }
   ],
   "skills": [
@@ -12881,6 +12885,50 @@
       "sourceCount": 25,
       "size": 51827,
       "lastTouched": "2026-07-11"
+    },
+    {
+      "file": "22-checkout-audit-baymard.md",
+      "name": "checkout-audit-baymard",
+      "title": "Checkout audit + Baymard fix-list",
+      "category": "conversion",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": 3,
+      "yearOneRoiBand": "8:1–35:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-07-11",
+      "sources": [
+        "baymard 2024",
+        "baymard-checkout-usability 2024",
+        "baymard-cart-usability 2024",
+        "shopify-checkout-extensibility 2024",
+        "shopify-payments 2024",
+        "shop-pay 2024",
+        "apple-pay 2024",
+        "google-pay 2024",
+        "klarna 2024",
+        "affirm 2024",
+        "afterpay 2024",
+        "triple-whale 2024",
+        "google-analytics-4 2024",
+        "shopify-analytics 2024",
+        "bigcommerce-checkout 2024",
+        "woocommerce-checkout 2024",
+        "shopify-checkout-conversion-benchmarks 2024",
+        "baymard-mobile-checkout 2024",
+        "akamai-mobile-commerce 2024",
+        "google-mobile-site-speed 2024",
+        "stripe-checkout 2024",
+        "adyen-checkout 2024",
+        "forter-fraud 2024",
+        "signifyd-fraud 2024"
+      ],
+      "blurb": "Move #3 is the canonical **single-biggest-available-lever** in the Shopify-DTC stack — the audit-and-fix loop that lifts checkout-completion-rate 35–80% (and site-wide revenue 6–25%) by shipping the **Baymard Institut...",
+      "sectionCount": 10,
+      "pitfallCount": 0,
+      "sourceCount": 24,
+      "size": 45792,
+      "lastTouched": "2026-07-11"
     }
   ],
   "counts": {
@@ -12889,7 +12937,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 15,
-    "skills": 21
+    "journalEntries": 16,
+    "skills": 22
   }
 }
