@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-11T06:42:23.973Z",
+  "generatedAt": "2026-07-11T08:56:20.443Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-07-11 07:45] Skill shipped: Amazon DSP + Amazon Attribution audit (Move #18, programmatic display + Halo defense + AMC cohort overlay + post-purchase email merge, 5-pillar Path A/B/C, 3.5:1 default Year-1 ROI)",
+      "body": "- **What shipped:** `skills/20-amazon-dsp-amazon-attribution-audit.md` (new, ~65.5 KB / 67118 bytes / 20th skill in the library + canonical Move #18 Amazon-DSP + Amazon-Attribution-audit layer from research/14 + companion playbook at `playbooks/21-amazon-dsp-amazon-attribution-audit-launch.md` + companion asset at `assets/22-amazon-dsp-amazon-attribution-audit-templates.md` + operator-surface route at `dashboard/app/amazon-dsp-amazon-attribution-audit/page.tsx` + scoring script at `scripts/amazon_dsp_amazon_attribution_audit_unit_economics.py` + static dashboard at `dashboards/amazon-dsp-amazon-attribution-audit-health.html`). Schema: full canonical 9-field frontmatter (name=amazon-dsp-amazon-attribution-audit, title=Amazon DSP + Amazon Attribution audit (Move #18, programmatic display + H"
+    },
+    {
       "heading": "[2026-07-11 07:30] Skill shipped: B2B / wholesale channel launch (Move #14.5, Faire + Tundra + Ankorstore + Handshake + Shopify B2B + RSP/KeHE/UNFI + Amazon Business, 5-pillar Path A/B/C, 8.5:1 default Year-1 ROI)",
       "body": "- **What shipped:** `skills/19-b2b-wholesale-channel-launch.md` (new, ~50.7 KB / 51960 bytes / 19th skill in the library + canonical Move #14.5 B2B / wholesale-channel-launch layer from research/10 + companion playbook at `playbooks/17-b2b-wholesale-launch.md` + companion asset at `assets/18-b2b-wholesale-kits.md` + operator-surface route at `dashboard/app/b2b/page.tsx`). Schema: full canonical 9-field frontmatter (name=b2b-wholesale-channel-launch, title=B2B / wholesale channel launch (Move #14.5, Faire + Tundra + Ankorstore + Handshake + Shopify B2B + RSP/KeHE/UNFI + Amazon Business, 5-pillar Path A/B/C, 8.5:1 default Year-1 ROI), category=acquisition, tier=1, priority=P1, default_move=14.5, year_1_roi_band=\"4.5:1–14:1\", sms_friendly=false, last_updated=2026-07-11, sources=[faire 2024 + "
     },
@@ -12828,6 +12832,51 @@
       "sourceCount": 17,
       "size": 66547,
       "lastTouched": "2026-07-11"
+    },
+    {
+      "file": "21-3pl-migration.md",
+      "name": "3pl-migration",
+      "title": "3PL migration",
+      "category": "operations",
+      "tier": 1,
+      "priority": "P1",
+      "defaultMove": 12,
+      "yearOneRoiBand": "6:1–18:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-07-11",
+      "sources": [
+        "shipbob 2024",
+        "shipmonk 2024",
+        "red-stag-fulfillment 2024",
+        "shopify-fulfillment-network 2024",
+        "rakuten-super-logistics 2024",
+        "stord 2024",
+        "flowspace 2024",
+        "easypost 2024",
+        "extensiv 2024",
+        "shiphero 2024",
+        "ordoro 2024",
+        "multichannel-merchant 2024",
+        "shippo 2024",
+        "dhl-ecommerce 2024",
+        "usps 2024",
+        "ups 2024",
+        "fedex 2024",
+        "australia-post 2024",
+        "sagawa 2024",
+        "canadapost 2024",
+        "shipbob-state-of-dtc-shipping 2024",
+        "shopify 2024",
+        "klaviyo 2024",
+        "gorgias 2024",
+        "loop-returns 2024"
+      ],
+      "blurb": "Move #12 is the canonical **operational-bottleneck unblocker** for the Shopify-DTC stack — the move that lets a brand hitting 500+ orders/mo stop running warehouse operations on top of running marketing operations and...",
+      "sectionCount": 10,
+      "pitfallCount": 0,
+      "sourceCount": 25,
+      "size": 51827,
+      "lastTouched": "2026-07-11"
     }
   ],
   "counts": {
@@ -12836,7 +12885,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 13,
-    "skills": 20
+    "journalEntries": 14,
+    "skills": 21
   }
 }
