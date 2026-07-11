@@ -1,5 +1,14 @@
 <!-- new ticks insert here -->
 
+## [2026-07-11 17:33] Skill tick: discard — Returns / exchanges optimization (Move #12.4, Loop Returns + ReturnGO + Happy Returns + Gorgias, 10:1 default Year-1 ROI)
+
+- **Branch:** autoresearch/skills-2026-07-11
+- **Status:** discard
+- **Reason:** Candidate would have satisfied improvement metric rule #1 (`category: returns` was unique; `grep -l '^category: returns$' skills/*.md | wc -l` returned 1 while the candidate existed), but the canonical deploy gate failed. Per `scripts/skill-builder-prompt.md` constraint line 108, a successful local build followed by failed deploy is logged as `discard` with reason `deploy failed`; the skill files were removed and the branch was discarded.
+- **What attempted:** Drafted `skills/28-returns-exchanges-optimization.md` and build mirror `dashboard/src/skills/28-returns-exchanges-optimization.md` (19,666 bytes / 146 lines) with canonical frontmatter, 9 H2 sections, 15 numbered pitfalls, and 24 sources covering Loop Returns, ReturnGO, Happy Returns/UPS, Narvar, AfterShip, Shopify Returns/Flow, Gorgias, 3PL/WMS reverse logistics, NRF/APISS, Baymard, Triple Whale, Klaviyo, and Postscript. Not shipped because deploy failed.
+- **Verification:** `cmp` confirmed the mirror was byte-identical; `node scripts/parse-content.mjs` returned `28 skills`; schema checks returned all canonical frontmatter fields present, `h2_count=9`, `pitfall_count_common=15`, `category_returns_count=1`; `NEXT_TELEMETRY_DISABLED=1 npm run build` succeeded and generated 61 static pages with `/skills/[slug]` showing `[+25 more paths]`; local SSR proof existed at `dashboard/.next/server/app/skills/28-returns-exchanges-optimization.html` (105,365 bytes) + `.rsc` (48,718 bytes) + `.meta` (246 bytes), with canonical tokens present (`Move #12.4` 8, `Loop Returns` 6, `ReturnGO` 10, `Happy Returns` 8, `Gorgias` 26, `10:1` 6, `exchange-first` 14). Deploy failed: `vercel whoami --token ...` returned `Not authorized: Trying to access resource under scope "mattiasadem-5021s-projects"`; `vercel deploy --prod --yes` returned `TypeError: Cannot read properties of undefined (reading 'value')`; GitHub token probe returned HTTP 401 `Bad credentials`; live route `https://ecommerce-ops-iota.vercel.app/skills/28-returns-exchanges-optimization` returned `404 7040`.
+- **Next action:** Refresh the Vercel token with access to `mattiasadem-5021s-projects` and refresh the GitHub PAT for `mattiasadem/ecommerce-ops` before the next skill tick. Once auth is fixed, re-run the returns/exchanges skill as the next candidate because it is a unique-category improvement (`category: returns`) and a natural Move #12.x follow-up after 3PL + in-region distribution.
+
 ## [2026-07-11 16:18] Skill tick: keep — In-region 3PL distribution upgrade (Move #22.3, EU/UK/AU/CA local fulfillment + returns loop, 11:1 default Year-1 ROI)
 
 - **Branch:** autoresearch/skills-2026-07-11
