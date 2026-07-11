@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-11T12:23:42.154Z",
+  "generatedAt": "2026-07-11T13:30:24.939Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-07-11 12:25] Skill shipped: Klaviyo + Postscript migration (Move #5, ESP+SMS-platform consolidation, 4-path Path A/B/C/D, 8:1 default Year-1 ROI)",
+      "body": "- **What shipped:** `skills/24-klaviyo-postscript-migration.md` (new, ~68.1 KB / 68142 bytes / 24th skill in the library + canonical Move #5 ESP+SMS-platform-consolidation layer from research/02 Move #5 ranking + companion playbook `playbooks/05-migrate-to-klaviyo-postscript.md` already shipped 2026-06-24 — only the synthesis skill file was missing). Schema: full canonical 9-field frontmatter (name=klaviyo-postscript-migration, title=Klaviyo + Postscript migration (Move #5, ESP+SMS-platform consolidation, 4-path Path A/B/C/D, 8:1 default Year-1 ROI), category=retention, tier=1, priority=P0, default_move=5, year_1_roi_band=\"5:1–25:1\", sms_friendly=true, last_updated=2026-07-11, sources=[klaviyo 2024 + postscript 2024 + mailchimp 2024 + attentive 2024 + brevo 2024 + sendlane 2024 + customer."
+    },
+    {
       "heading": "[2026-07-11 11:16] Skill shipped: TikTok Shop / live commerce (Move #15.x, 5-pillar Path A/B/C, 8.5:1 default Year-1 ROI)",
       "body": "- **What shipped:** `skills/23-tiktok-shop-live-commerce.md` (new, ~63.3 KB / 64851 bytes / 23rd skill in the library + canonical Move #15.x TikTok-Shop / live-commerce channel layer from research/11 + companion artifacts already shipped: playbook `playbooks/18-tiktok-shop-live-launch.md` + asset `assets/19-tiktok-shop-creator-briefs.md` + operator-surface route `dashboard/app/tiktok/page.tsx` + static-dashboard `dashboards/tiktok-shop-live-commerce-health.html`). Schema: full canonical 9-field frontmatter (name=tiktok-shop-live-commerce, title=TikTok Shop / live commerce (Move #15.x, 5-pillar Path A/B/C, 8.5:1 default Year-1 ROI), category=acquisition, tier=1, priority=P1, default_move=15.5, year_1_roi_band=\"4.5:1–14:1\", sms_friendly=false, last_updated=2026-07-11, sources=[tiktok-for-bus"
     },
@@ -13037,6 +13041,67 @@
       "sourceCount": 36,
       "size": 67216,
       "lastTouched": "2026-07-11"
+    },
+    {
+      "file": "25-international-expansion.md",
+      "name": "international-expansion",
+      "title": "International expansion (Move #22)",
+      "category": "international",
+      "tier": 1,
+      "priority": "P1",
+      "defaultMove": 22,
+      "yearOneRoiBand": "8:1–62:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-07-11",
+      "sources": [
+        "shopify-markets 2024",
+        "shopify-markets-pro 2024",
+        "eu-ioss 2024",
+        "uk-vat-moss 2024",
+        "au-gst 2024",
+        "jp-appi 2024",
+        "klarna 2024",
+        "afterpay-clearpay 2024",
+        "ideal-nl 2024",
+        "bancontact-be 2024",
+        "konbini-jp 2024",
+        "alipay 2024",
+        "stripe-international 2024",
+        "paypal-international 2024",
+        "zonos 2024",
+        "taxjar-international 2024",
+        "avalara-cross-border 2024",
+        "weglot 2024",
+        "shipbob-international 2024",
+        "shipmonk-cross-border 2024",
+        "dhl-express-international 2024",
+        "fedex-international 2024",
+        "usps-international 2024",
+        "gdpr 2024",
+        "uk-gdpr-ico 2024",
+        "eu-green-claims-directive-2026",
+        "canada-usmca 2024",
+        "jpy-conversion-fees 2024",
+        "eu-vat-moss 2024",
+        "baymard-international-checkout-usability 2024",
+        "bigcommerce-international-ecommerce-benchmarks 2024",
+        "statista-cross-border-ecommerce 2024",
+        "klaviyo-per-locale-flows 2024",
+        "postscript-per-country-pricing 2024",
+        "gorgias-multilingual 2024",
+        "smile-multicurrency 2024",
+        "triple-whale-per-market-fx 2024",
+        "eu-customer-rights-directive-2024",
+        "uk-consumer-rights-act-2015",
+        "canada-competition-act-2024",
+        "australia-consumer-law-2024"
+      ],
+      "blurb": "Move #22 is the canonical **cross-border DTC expansion** move for US-based Shopify-DTC brands at **$1M–$50M GMV** ready to compound their US performance with revenue from **Canada + UK + EU + Australia + Japan + DACH ...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 41,
+      "size": 65817,
+      "lastTouched": "2026-07-11"
     }
   ],
   "counts": {
@@ -13045,7 +13110,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 18,
-    "skills": 24
+    "journalEntries": 19,
+    "skills": 25
   }
 }
