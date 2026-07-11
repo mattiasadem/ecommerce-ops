@@ -10,6 +10,7 @@ import { Separator } from "@/components/ui/separator";
 import { MetricCard } from "@/components/metric-card";
 import { Bar } from "@/components/bar";
 import { YourStoreCard } from "@/components/your-store-card";
+import { BenchmarkDial } from "@/components/benchmark-dial";
 import { ShippedProgressStrip } from "@/components/shipped-playbooks";
 import { NextMoveCard } from "@/components/next-move";
 import { IkasLiveCard } from "@/components/ikas-live-card";
@@ -176,7 +177,7 @@ export default function Home() {
       )}
 
       {/* === YOUR STORE — cross-page ROI inputs === */}
-      <section>
+      <section id="your-store">
         <Card className="border-2">
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between">
@@ -194,6 +195,11 @@ export default function Home() {
             <YourStoreCard />
           </CardContent>
         </Card>
+      </section>
+
+      {/* === BENCHMARK DIAL — score my numbers vs canonical Unit Economics === */}
+      <section>
+        <BenchmarkDial rows={unitEcon as unknown as Parameters<typeof BenchmarkDial>[0]["rows"]} />
       </section>
 
       {/* === LIVE IKAS DATA — pulls from /data/.ikas/config.json on the VPS === */}
