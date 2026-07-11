@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Bar } from "@/components/bar";
+import { Top10ProjectionPanel } from "@/components/top10-projection";
 import { content } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -44,6 +45,9 @@ export default function Top10Page() {
           <Bar value={pct} intent="accent" label={`${shipped}/${total} shipped`} />
         </CardContent>
       </Card>
+
+      {/* === TOP-10 ROLLOUT PROJECTION (personalized to operator's store) === */}
+      <Top10ProjectionPanel />
 
       <Card>
         <CardHeader>
