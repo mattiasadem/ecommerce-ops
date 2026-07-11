@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-11T10:08:35.368Z",
+  "generatedAt": "2026-07-11T11:15:30.545Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-07-11 10:09] Skill shipped: Checkout audit + Baymard fix-list (Move #3, 24-guideline Baymard score + Shopify theme fixes + mobile-device verification, 5-pillar Path A/B/C, 15:1 default Year-1 ROI)",
+      "body": "- **What shipped:** `skills/22-checkout-audit-baymard.md` (new, ~46.6 KB / 46572 bytes / 22nd skill in the library + canonical Move #3 checkout-audit + Baymard-fix-list layer from research/00 finding #26 + research/02 Move #3 ranking + companion playbook at `playbooks/03-checkout-audit-baymard.md` + companion scoring script at `scripts/checkout_audit_score.py` + companion test suite at `scripts/tests/test_checkout_audit_score.py` (≥18 TDD tests) — ALL shipped in prior ticks; only the synthesis skill file was missing). Schema: full canonical 9-field frontmatter (name=checkout-audit-baymard, title=Checkout audit + Baymard fix-list (Move #3, 24-guideline Baymard score + Shopify theme fixes + mobile-device verification, 5-pillar Path A/B/C, 15:1 default Year-1 ROI), category=conversion, tier=1"
+    },
+    {
       "heading": "[2026-07-11 08:00] Skill shipped: 3PL migration (Move #12, ShipBob + ShipMonk + Red Stag + Shopify Fulfillment Network + Rakuten Super Logistics + Stord + Flowspace + Extensiv, 5-pillar Path A/B/C, 12:1 default Year-2+ steady-state ROI)",
       "body": "- **What shipped:** `skills/21-3pl-migration.md` (new, ~51.4 KB / 52619 bytes / 21st skill in the library + canonical Move #12 3PL-migration layer from research/07 + companion playbook at playbooks/14 + companion asset at assets/15-3pl-selection-card.md + operator-surface route at dashboard/app/3pl/page.tsx + scoring script at scripts/3pl_unit_economics.py + static dashboard at dashboards/3pl-migration-health.html — ALL shipped in prior ticks; only the synthesis skill file was missing). Schema: full canonical 9-field frontmatter (name=3pl-migration, title=3PL migration (Move #12, ShipBob + ShipMonk + Red Stag + Shopify Fulfillment Network + Rakuten Super Logistics + Stord + Flowspace + Extensiv, 5-pillar Path A/B/C, 12:1 default Year-2+ steady-state ROI), category=operations, tier=1, prior"
     },
@@ -12929,6 +12933,50 @@
       "sourceCount": 24,
       "size": 45792,
       "lastTouched": "2026-07-11"
+    },
+    {
+      "file": "23-tiktok-shop-live-commerce.md",
+      "name": "tiktok-shop-live-commerce",
+      "title": "TikTok Shop / live commerce",
+      "category": "acquisition",
+      "tier": 1,
+      "priority": "P1",
+      "defaultMove": "15.5",
+      "yearOneRoiBand": "4.5:1–14:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-07-11",
+      "sources": [
+        "tiktok-for-business 2024",
+        "jungle-scout 2024",
+        "emarketer 2024",
+        "insider-intelligence 2024",
+        "modern-retail 2024",
+        "nrf 2024",
+        "shopify-tiktok-channel 2024",
+        "klaviyo-tiktok-channel 2024",
+        "triple-whale-tiktok-attribution 2024",
+        "tubular-labs 2024",
+        "aspire 2024",
+        "collabstr 2024",
+        "natori 2024",
+        "ftc-16-cfr-part-255 2024",
+        "tiktok-live-2024",
+        "tiktok-shop-seller-center 2024",
+        "tiktok-creator-marketplace 2024",
+        "schwartzman 2024",
+        "livestream-shopping-attribution 2024",
+        "social-commerce-forecast 2024",
+        "tiktok-shop-creator-brief-templates 2024",
+        "tiktok-shop-product-feed-optimization 2024",
+        "shop-score-metrics 2024",
+        "shipbob-state-of-dtc-shipping 2024"
+      ],
+      "blurb": "Move #15.x is the canonical **shop-native-creator-led social-commerce channel layer** for the Shopify-DTC stack — the move that lets a $500k+ GMV brand capture the **5–20% of US social-commerce GMV that TikTok-Shop is...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 24,
+      "size": 64373,
+      "lastTouched": "2026-07-11"
     }
   ],
   "counts": {
@@ -12937,7 +12985,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 16,
-    "skills": 22
+    "journalEntries": 17,
+    "skills": 23
   }
 }
