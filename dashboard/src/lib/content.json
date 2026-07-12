@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-12T14:03:18.080Z",
+  "generatedAt": "2026-07-12T16:14:11.056Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-07-12 17:30] Skill tick: discard — Returns portal orchestration (Move #12.4, Loop Returns + ReturnGO + Happy Returns + AfterShip, default 11:1 Year-1 ROI Path B at $5M GMV)",
+      "body": "- **Branch:** autoresearch/skills-2026-07-12 (started, skill written + build passed + commit created, then discarded by design due to persistent Vercel + GitHub auth blockers)\n- **Status:** discard\n- **Reason:** The skill itself is **metric-positive** (unique `category: returns` — 0 prior skills in this category, confirmed via `grep -l '^category: returns$' skills/*.md | wc -l = 0` before this tick; now `= 1`), but the same external-state auth blockers that have blocked deploys for the prior 8+ consecutive ticks persist. The build succeeded (`npm run build` produced 28 skill paths prerendered including the new `/skills/28-returns-portal-orchestration`), but `vercel deploy --prod --yes` returned the exact same `Error: An unexpected error occurred in deploy: TypeError: Cannot read properties"
+    },
+    {
       "heading": "[2026-07-12 16:30] feat(dashboard): International Path A/B/C/C+ calculator — port of scripts/international_market_fit.py to /international",
       "body": "- **What shipped:** `dashboard/src/lib/international.ts` (new, ~15 KB / 385 lines / pure scoring engine — direct TypeScript port of `scripts/international_market_fit.py` with byte-identical thresholds, costs, lift bands, ROI bands, market scopes, build-sequence recipes, and per-market lift shares for all 4 paths A / B / C / C+) + `dashboard/src/components/international-path-calculator.tsx` (new, ~21 KB / interactive 6-input form on `/international` page) + `dashboard/app/international/page.tsx` (mounted as the first card under the hero metrics + footer updated to reflect companion artifacts shipped). Plus the `renderInternationalMarkdown()` helper that emits the same paste-ready markdown report as the Python CLI's `--report` flag.\n- **Why this matters:** /international was the last Pillar-"
     },
@@ -13289,6 +13293,54 @@
       "sourceCount": 25,
       "size": 31289,
       "lastTouched": "2026-07-12"
+    },
+    {
+      "file": "29-inventory-forecasting-stockout-prevention.md",
+      "name": "inventory-forecasting-stockout-prevention",
+      "title": "Inventory forecasting + stockout prevention (Move #12.5)",
+      "category": "inventory",
+      "tier": 2,
+      "priority": "P1",
+      "defaultMove": "12.5",
+      "yearOneRoiBand": "6:1–24:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-07-12",
+      "sources": [
+        "inventory-planner 2024",
+        "so-stocked 2024",
+        "cogsy 2024",
+        "cin7 2024",
+        "netstock 2024",
+        "extensiv 2024",
+        "finale 2024",
+        "brightpearl 2024",
+        "netsuite 2024",
+        "anvyl 2024",
+        "shipbob-inventory 2024",
+        "shipmonk-inventory 2024",
+        "stord-inventory 2024",
+        "shopify-stocky 2024",
+        "shopify-inventory 2024",
+        "klaviyo-back-in-stock 2024",
+        "triple-whale 2024",
+        "ga4 2024",
+        "posthog 2024",
+        "nrf 2024",
+        "ihl 2024",
+        "shopify-flow 2024",
+        "shopify-functions 2024",
+        "retool 2024",
+        "airtable 2024",
+        "open-to-buy 2024",
+        "retail-zt 2024",
+        "replenishment-2024"
+      ],
+      "blurb": "Move #12.5 is the **operational-AI layer every $1M+ GMV DTC brand needs after Move #22.3 (3PL migration)**: replace spreadsheet-driven reorder math and reactive \"we just ran out of hero-SKU-#4\" purchasing with **Inven...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 28,
+      "size": 40750,
+      "lastTouched": "2026-07-12"
     }
   ],
   "counts": {
@@ -13297,7 +13349,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 34,
-    "skills": 28
+    "journalEntries": 35,
+    "skills": 29
   }
 }
