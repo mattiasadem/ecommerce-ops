@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-12T21:49:30.246Z",
+  "generatedAt": "2026-07-12T22:57:03.656Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-07-12 21:55] Skill tick: keep — Customer service operations platform (Move #24, Gorgias + Help Scout + Zendesk + Kustomer + Front + Gorgias Automate + Klaviyo Customer Agent, default 10:1 Year-1 ROI Path B at $3M GMV)",
+      "body": "- **Branch:** autoresearch/skills-2026-07-12\n- **Status:** keep (P0-first in `category: cx` — confirmed via `grep -l '^category: cx$' skills/*.md | xargs grep -l '^priority: P0' | wc -l = 1` after the new skill is added; pre-tick the count was 0 since `skills/31-nps-voc-closed-loop-automation.md` is `category: cx, priority: P1`)\n- **Reason:** **METRIC-POSITIVE — P0-FIRST-IN-CATEGORY SLOT FILLED.** The 5 canonical metric gates pass: (a) **unique category** N/A (cx already filled by skill 31); (b) **Tier-1 first** N/A (skill 31 is already Tier-1 in cx); (c) **P0 first** — first P0 (`priority: P0`) skill in `category: cx` (skill 31 is P1); (d) **pitfall count = 15** (matches the canonical P0 depth: 5 failure modes × 3 pitfalls each — A no-helpdesk-platform-or-macro-library / B no-AI-deflectio"
+    },
+    {
       "heading": "[2026-07-12 21:30] Skill tick: keep — Fraud + chargeback management (Move #23, Signifyd + NoFraud + Riskified + Stripe Radar + MidMetrics + Veriff + Kount + Sift + Forter + Adyen RevenueProtect + Shopify Protect + Chargeflow + Chargebacks911 + Midigator + Ethoca + Verifi, default 14:1 Year-1 ROI Path B at $3M GMV)",
       "body": "- **Branch:** autoresearch/skills-2026-07-12\n- **Status:** keep (unique category: `category: risk` — first skill in this slot; confirmed via `grep -l '^category: risk$' skills/*.md | wc -l = 1` after the new skill is added)\n- **Reason:** **METRIC-POSITIVE — UNIQUE-CATEGORY SLOT FILLED.** The 5 canonical metric gates pass: (a) **unique category** — no prior skill in `category: risk` (was 0, now 1); (b) Tier-1 first — first Tier-1 P0 skill in `risk` (the slot was empty); (c) **P0 first** — first P0-priority skill in `risk` (the slot was empty; this is the highest-priority slot in the unclaimed-category space — Move #23 fraud/chargeback is the canonical risk-mitigation layer every $500K+ GMV brand needs after Move #1+#3+#6+#12+#21, equal in priority to Move #3 P0 checkout-audit + Move #6 P0 T"
     },
@@ -13642,6 +13646,53 @@
       "sourceCount": 47,
       "size": 57615,
       "lastTouched": "2026-07-12"
+    },
+    {
+      "file": "35-site-speed-core-web-vitals.md",
+      "name": "site-speed-core-web-vitals",
+      "title": "Site speed + Core Web Vitals",
+      "category": "conversion",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "2.5",
+      "yearOneRoiBand": "8:1–22:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-07-12",
+      "sources": [
+        "google-core-web-vitals 2024",
+        "google-crux 2024",
+        "google-pagespeed-insights 2024",
+        "lighthouse 2024",
+        "web-vitals-js 2024",
+        "shopify-online-store-speed 2024",
+        "shopify-theme-performance 2024",
+        "shopify-hydrogen 2024",
+        "cloudflare-cdn 2024",
+        "cloudflare-images 2024",
+        "fastly 2024",
+        "tinyimg 2024",
+        "shortpixel 2024",
+        "imagekit 2024",
+        "cloudinary 2024",
+        "avif-browser-support 2024",
+        "webp-browser-support 2024",
+        "deloitte-milliseconds 2020",
+        "google-vodafone 2020",
+        "akamai-mobile-commerce 2024",
+        "doubleclick-ad-experience 2024",
+        "ga4-web-vitals 2024",
+        "shopify-analytics-web-vitals 2024",
+        "triple-whale-speed-overlay 2024",
+        "datadog-rum 2024",
+        "sematext-rum 2024",
+        "treo-site-speed-2024 2024"
+      ],
+      "blurb": "Move #2.5 is the canonical **highest-EV, lowest-cost conversion-rate-optimization lever** in the Shopify-DTC stack — the **LCP / INP / CLS** audit-and-fix loop that lifts site-wide conversion **8–25%** (median DTC, +1...",
+      "sectionCount": 10,
+      "pitfallCount": 0,
+      "sourceCount": 27,
+      "size": 44013,
+      "lastTouched": "2026-07-12"
     }
   ],
   "counts": {
@@ -13650,7 +13701,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 40,
-    "skills": 34
+    "journalEntries": 41,
+    "skills": 35
   }
 }
