@@ -5,6 +5,7 @@ import { content, fmtDate } from "@/lib/content";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { SkillDetailToggle } from "@/components/skill-detail-toggle";
 import Link from "next/link";
 
 const ROOT = "/data/workspace/ecommerce-ops";
@@ -364,6 +365,16 @@ export default async function SkillDetailPage({
           {skill.blurb}
         </p>
       </header>
+
+      <Separator />
+
+      {/* Mark studied — interactive one-click action that writes to the same
+          localStorage key as the /skills index, so a toggle here instantly
+          reflects on the index's progress strip and the today page. */}
+      <SkillDetailToggle
+        skillId={skill.file.replace(/\.md$/, "")}
+        skillTitle={skill.title}
+      />
 
       <Separator />
 
