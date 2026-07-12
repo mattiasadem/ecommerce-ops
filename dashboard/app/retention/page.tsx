@@ -6,6 +6,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ResearchTable } from "@/components/research-table";
+import { RetentionProjectionCalculator } from "@/components/retention-projection";
 import { content, findTable } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -32,6 +33,10 @@ export default function RetentionPage() {
           seven shipped playbooks for Klaviyo, Postscript, and Smile.io.
         </p>
       </header>
+
+      {/* Interactive projection calculator — closes the loop from static
+          reference tables to "what does this do to my numbers". */}
+      <RetentionProjectionCalculator />
 
       <Card>
         <CardHeader>
