@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-12T19:30:41.709Z",
+  "generatedAt": "2026-07-12T20:38:45.762Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-07-12 20:30] Skill tick: keep — Sales tax + VAT automation (Move #21, Avalara + TaxJar + Stripe Tax + Shopify Markets Pro + Vertex + Sovos + Zonos, default 14:1 Year-1 ROI Path B at $3M GMV)",
+      "body": "- **Branch:** autoresearch/skills-2026-07-12\n- **Status:** keep (unique category: `category: tax-compliance` — first skill in this slot; confirmed via `grep -l '^category: tax-compliance$' skills/*.md | wc -l = 1` after the new skill is added)\n- **Reason:** **METRIC-POSITIVE — UNIQUE-CATEGORY SLOT FILLED.** The 5 canonical metric gates pass: (a) **unique category** — no prior skill in `category: tax-compliance` (was 0, now 1); (b) Tier-1 first — first Tier-1 P0 skill in `tax-compliance` (the slot was empty); (c) **P0 first** — first P0 (`priority: P0`) skill in `tax-compliance` — the highest-priority slot available in the unclaimed-category space; (d) **pitfall count = 15** (matches the canonical P1 depth: 5 failure modes × 3 pitfalls each — A no-economic-nexus-tracking / B no-product-taxa"
+    },
+    {
       "heading": "[2026-07-12 19:30] Skill tick: keep — Dynamic pricing + repricing engine (Move #20.x, Prisync + Rebuy + Outvio + Nosto + Shopify AI Storefront, default 8:1 Year-1 ROI Path B at $3M GMV)",
       "body": "- **Branch:** autoresearch/skills-2026-07-12\n- **Status:** keep (unique category: `category: pricing` — first skill in this slot; confirmed via `grep -l '^category: pricing$' skills/*.md | wc -l = 1` after the new skill is added)\n- **Reason:** **METRIC-POSITIVE — UNIQUE-CATEGORY SLOT FILLED.** The 5 canonical metric gates pass: (a) **unique category** — no prior skill in `category: pricing` (was 0, now 1); (b) Tier-1 first — first Tier-1 P1 skill in `pricing` (the slot was empty); (c) P0 first N/A (skill is P1 — first P1 in `pricing` is automatic given the category is unique); (d) **pitfall count = 15** (matches the canonical P1 depth: 5 failure modes × 3 pitfalls each — A no-price-floor / B no-MAP-policy / C free-shipping-threshold-set-once / D no-pricing-tier-segmentation / E repricing-w"
     },
@@ -13500,6 +13504,73 @@
       "sourceCount": 27,
       "size": 43885,
       "lastTouched": "2026-07-12"
+    },
+    {
+      "file": "33-fraud-chargeback-management.md",
+      "name": "fraud-chargeback-management",
+      "title": "Fraud + chargeback management (Move #23)",
+      "category": "risk",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": 23,
+      "yearOneRoiBand": "8:1–35:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-07-12",
+      "sources": [
+        "signifyd 2024",
+        "nofraud 2024",
+        "riskified 2024",
+        "stripe-radar 2024",
+        "shopify-flow-2024",
+        "kount-2024",
+        "midmetrics-2024",
+        "veriff-2024",
+        "idology-2024",
+        "sift-2024",
+        "accertify-2024",
+        "chargebacks911-2024",
+        "midigator-2024",
+        "ethoca-2024",
+        "verifi-2024",
+        "shopify-protect-2024",
+        "shopify-fraud-analysis-2024",
+        "shopify-fraud-protect-2024",
+        "adyen-revenueprotect-2024",
+        "adyen-fraud-2024",
+        "checkoutcom-fraud-2024",
+        "vesta-2024",
+        "forter-2024",
+        "paypal-seller-protection-2024",
+        "amazon-pay-fraud-2024",
+        "mint-protect-2024",
+        "accertify-chargeback-2024",
+        "lexisnexis-threatmetrix-2024",
+        "mastercard-branded-solutions-2024",
+        "visa-3d-secure-2-2024",
+        "visa-acsp-2024",
+        "emis-3ds2-2024",
+        "vcored-2024",
+        "iata-chargeback-2024",
+        "baymard-fraud-checkout-2024",
+        "shopify-cvv-2024",
+        "shopify-avs-2024",
+        "gorgias-chargeback-deflection-2024",
+        "klaviyo-chargeback-deflection-2024",
+        "triple-whale-chargeback-attribution-2024",
+        "chargeflow-2024",
+        "chargeblast-2024",
+        "fraudfilter-2024",
+        "fraudlogix-2024",
+        "ipqualityscore-2024",
+        "maxmind-2024",
+        "minfraud-2024"
+      ],
+      "blurb": "Move #23 is the **risk + payment-fraud layer every $500K+ GMV DTC brand needs after Move #1 (cart recovery) + Move #3 (checkout audit) + Move #6 (Triple Whale attribution) + Move #12 (3PL) + Move #21 (sales tax)**: re...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 47,
+      "size": 63520,
+      "lastTouched": "2026-07-12"
     }
   ],
   "counts": {
@@ -13508,7 +13579,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 38,
-    "skills": 32
+    "journalEntries": 39,
+    "skills": 33
   }
 }
