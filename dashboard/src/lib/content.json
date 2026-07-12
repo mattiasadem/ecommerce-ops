@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-12T04:41:42.061Z",
+  "generatedAt": "2026-07-12T10:50:33.463Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,18 @@
   },
   "journal": [
     {
+      "heading": "[2026-07-12 09:49] Skill tick: discard — no candidate (escalation mode continues: Vercel scope + GitHub PAT still blocked)",
+      "body": "- **Branch:** autoresearch/skills-2026-07-12 (started, probe ladder run, then discarded with no candidate by design)\n- **Status:** discard\n- **Reason:** Escalation mode remains active per `skill-library-with-cron-growth/references/cron-third-identical-discard-escalation.md`. This is the **N+2-th consecutive escalation-mode tick** today following the prior chain `b662ba4` / `bed754c` / `c86cebe` / `c522bdd` / `af375f6` / `d35c4a2` / `9aa7df5` / `a372011` / plus the two 2026-07-12 entries (05:40 + 00:31). The probes re-ran this tick and returned the SAME external-state auth failures: GitHub probe HTTP 401 `Bad credentials`; `vercel whoami --token <Vercel token>` returned `Error: Not authorized: Trying to access resource under scope \"mattiasadem-5021s-projects\"`. Per the escalation rule, no s"
+    },
+    {
+      "heading": "[2026-07-12 05:40] Skill tick: discard — no candidate (escalation mode continues: Vercel scope + GitHub PAT still blocked)",
+      "body": "- **Branch:** autoresearch/skills-2026-07-12 (started, probe ladder run, then discarded with no candidate by design)\n- **Status:** discard\n- **Reason:** Escalation mode remains active per `skill-library-with-cron-growth/references/cron-third-identical-discard-escalation.md`. This is the **N+1-th consecutive escalation-mode tick** following the prior today's `b662ba4` / `bed754c` / `c86cebe` / `c522bdd` / `af375f6` / `d35c4a2` / `9aa7df5` / `a372011` / `a372011` chain. The probes re-ran this tick and returned the SAME external-state auth failures: GitHub probe HTTP 401 `Bad credentials`; `vercel whoami --token <Vercel token>` returned `Error: Not authorized: Trying to access resource under scope \"mattiasadem-5021s-projects\"`. Per the escalation rule, no skill candidate was written because t"
+    },
+    {
+      "heading": "[2026-07-12 15:30] feat(dashboard): Mark-studied toggle on every skill detail page (cross-page-intelligence closer)",
+      "body": "- **What shipped:** `dashboard/src/components/skill-detail-toggle.tsx` (new, ~280 lines / single client component) + `dashboard/app/skills/[slug]/page.tsx` (mount under the header `Separator`). The `/skills` index already had a \"Mark studied\" affordance via `skills-search.tsx`, but the actual reading page (every `/skills/[slug]`) had none — the operator had to scroll back to the index to mark a skill as studied, which broke the reading flow. This tick closes that gap.\n- **Why it matters:** 27 skills shipped, each with a 5–10 KB markdown body. The reading page IS the operator workflow — `Mark studied` belongs there. Without it, the studied-confidence ladder (`studied` / `applied` / `shipped`) that powers the `/skills` progress strip and the cross-page `next-skill-to-study` recommender had n"
+    },
+    {
       "heading": "[2026-07-12 00:31] Skill tick: discard — no candidate (escalation mode continues: Vercel scope + GitHub PAT still blocked)",
       "body": "- **Branch:** autoresearch/skills-2026-07-12 (started, probe ladder run, then discarded with no candidate by design)\n- **Status:** discard\n- **Reason:** Escalation mode remains active per `skill-library-with-cron-growth/references/cron-third-identical-discard-escalation.md`. This is the **N-th consecutive escalation-mode tick** today following `af375f6` (2026-07-11 21:16), `c522bdd` (2026-07-11 22:21), and `c86cebe` (latest prior journal-only entry). The probes re-ran this tick and returned the SAME external-state auth failures: GitHub probe HTTP 401 `Bad credentials`; `vercel whoami --token <Vercel token>` returned `Not authorized: Trying to access resource under scope \"mattiasadem-5021s-projects\"`. Per the escalation rule, no skill candidate was written because the keep-on-metric rule ha"
     },
@@ -12264,10 +12276,6 @@
     {
       "heading": "[2026-07-11 11:00] feat(dashboard): benchmark dial — where does my store sit? (AOV / gross margin / break-even CAC / LTV:CAC / CAC payback vs research/00)",
       "body": "- **What shipped:** `dashboard/src/lib/benchmark-dial.ts` (new, ~316 lines) — pure scoring engine that parses benchmark cells like `\"$60–$120\"`, `\"3:1\"`, `\"55–70%\"`, `\"<$30\"`, `\">$150\"` into numeric ranges + direction (higher-is-better / lower-is-better) and classifies an operator value into a 5-state band: `great | good | median | below | red-flag`. Special-cases the red-flag cell as a one-sided threshold (`>$150` → red flag if value > 150) before checking the healthy / good bands. Plus `dashboard/src/components/benchmark-dial.tsx` (new, ~378 lines) — a 5-cell responsive grid that mounts onto the Overview page right under the Your-store card, reads the operator's AOV / monthly orders / gross margin from `ecom-ops:your-store:v1` (the same shared key the abandoned-cart / post-purchase / wel"
-    },
-    {
-      "heading": "[2026-07-11 16:25] feat(dashboard): top-10 rollout projection — what does shipping ALL canonical moves unlock for your store, year 1?",
-      "body": "- **What shipped:** `dashboard/src/lib/top10-projection.ts` (new, ~280 lines / pure scoring engine) + `dashboard/src/components/top10-projection.tsx` (new, ~310 lines / interactive panel) + `dashboard/app/top-10/page.tsx` (mount under the Progress card). Cross-page-intelligence on top of `ecom-ops:your-store:v1` + `ecom-ops:shipped-playbooks:v1` (the canonical shared keys every other calculator reads from) — pulls the operator's AOV / monthly orders / gross margin + their shipped-playbook list, then projects the **cumulative Year-1 picture** for shipping every remaining Top-10 move. The existing `NextMoveCard` on Overview projected ONE move; this new panel projects the FULL TOP-10 — exactly the gap that was missing.\n- **6 stat tiles:** Annual lift band ($X-$Y/yr), Annual cost stack ($X-$Y/"
     }
   ],
   "skills": [
@@ -13240,7 +13248,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 31,
+    "journalEntries": 33,
     "skills": 27
   }
 }

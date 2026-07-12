@@ -8,6 +8,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { ResearchTable } from "@/components/research-table";
 import { content, findDoc, findTable } from "@/lib/content";
+import { InternationalPathCalculator } from "@/components/international-path-calculator";
 
 export const dynamic = "force-static";
 
@@ -149,6 +150,9 @@ export default function InternationalPage() {
           </CardContent>
         </Card>
       )}
+
+      {/* === INTERACTIVE CALCULATOR (port of scripts/international_market_fit.py) === */}
+      <InternationalPathCalculator />
 
       {/* === LAYER CARDS === */}
       <div className="flex flex-col gap-3">
@@ -327,11 +331,10 @@ export default function InternationalPage() {
       <Card>
         <CardHeader>
           <CardTitle className="text-base">
-            Future-tick companions (planned, not yet shipped)
+            Companion artifacts shipped
           </CardTitle>
           <CardDescription>
-            The two next-priority bounded improvements that ship after this
-            route — both pre-staged in research/04 §Related and asset 13 §Related
+            The full canonical layer-order-completion pattern for Move #11 international-expansion
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -340,11 +343,12 @@ export default function InternationalPage() {
               <code className="rounded bg-muted px-1">
                 scripts/international_market_fit.py
               </code>{" "}
-              — Archetype A/B hybrid scoring script (Path A/B/C recommender)
-              that takes a brand&apos;s category + AOV + US contribution margin
-              → outputs Path recommendation with expected revenue lift + cost
-              stack. Pre-staged in research/04 line 300 + playbook 11 line 486
-              + asset 13 line 341.
+              — Archetype A/B/C/C+ scoring script (CLI). Companion to the
+              interactive calculator above. Run{" "}
+              <code className="rounded bg-muted px-1 font-mono">
+                python3 scripts/international_market_fit.py --json
+              </code>{" "}
+              to get the same Path A/B/C/C+ recommendation from the terminal.
             </li>
             <li>
               <code className="rounded bg-muted px-1">
