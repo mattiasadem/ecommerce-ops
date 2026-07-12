@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-12T10:50:33.463Z",
+  "generatedAt": "2026-07-12T14:03:18.080Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-07-12 16:30] feat(dashboard): International Path A/B/C/C+ calculator — port of scripts/international_market_fit.py to /international",
+      "body": "- **What shipped:** `dashboard/src/lib/international.ts` (new, ~15 KB / 385 lines / pure scoring engine — direct TypeScript port of `scripts/international_market_fit.py` with byte-identical thresholds, costs, lift bands, ROI bands, market scopes, build-sequence recipes, and per-market lift shares for all 4 paths A / B / C / C+) + `dashboard/src/components/international-path-calculator.tsx` (new, ~21 KB / interactive 6-input form on `/international` page) + `dashboard/app/international/page.tsx` (mounted as the first card under the hero metrics + footer updated to reflect companion artifacts shipped). Plus the `renderInternationalMarkdown()` helper that emits the same paste-ready markdown report as the Python CLI's `--report` flag.\n- **Why this matters:** /international was the last Pillar-"
+    },
+    {
       "heading": "[2026-07-12 09:49] Skill tick: discard — no candidate (escalation mode continues: Vercel scope + GitHub PAT still blocked)",
       "body": "- **Branch:** autoresearch/skills-2026-07-12 (started, probe ladder run, then discarded with no candidate by design)\n- **Status:** discard\n- **Reason:** Escalation mode remains active per `skill-library-with-cron-growth/references/cron-third-identical-discard-escalation.md`. This is the **N+2-th consecutive escalation-mode tick** today following the prior chain `b662ba4` / `bed754c` / `c86cebe` / `c522bdd` / `af375f6` / `d35c4a2` / `9aa7df5` / `a372011` / plus the two 2026-07-12 entries (05:40 + 00:31). The probes re-ran this tick and returned the SAME external-state auth failures: GitHub probe HTTP 401 `Bad credentials`; `vercel whoami --token <Vercel token>` returned `Error: Not authorized: Trying to access resource under scope \"mattiasadem-5021s-projects\"`. Per the escalation rule, no s"
     },
@@ -13240,6 +13244,51 @@
       "sourceCount": 24,
       "size": 17969,
       "lastTouched": "2026-07-11"
+    },
+    {
+      "file": "28-returns-portal-orchestration.md",
+      "name": "returns-portal-orchestration",
+      "title": "Returns portal orchestration (Move #12.4)",
+      "category": "returns",
+      "tier": 2,
+      "priority": "P1",
+      "defaultMove": "12.4",
+      "yearOneRoiBand": "6:1–28:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-07-12",
+      "sources": [
+        "loop-returns 2024",
+        "returngo 2024",
+        "happy-returns 2024",
+        "aftership-returns 2024",
+        "shopify-returns 2024",
+        "narvar-returns 2024",
+        "returnlogic 2024",
+        "reversal-2024",
+        "multibanco 2024",
+        "sendcloud-returns 2024",
+        "parcel2go 2024",
+        "shipbob-returns 2024",
+        "shipmonk-returns 2024",
+        "stord-returns 2024",
+        "shopify-markets 2024",
+        "klaviyo 2024",
+        "postscript 2024",
+        "gorgias 2024",
+        "triple-whale 2024",
+        "paypal 2024",
+        "shopify-flow 2024",
+        "shopify-functions 2024",
+        "optimizely 2024",
+        "reorder 2024",
+        "rich-relevance 2024"
+      ],
+      "blurb": "Move #12.4 is the post-3PL-migration returns layer every $1M+ GMV DTC brand needs: replace the unmanaged \"customer emails support for an RMA\" workflow with **Loop Returns / ReturnGO / Happy Returns / AfterShip Returns...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 25,
+      "size": 31289,
+      "lastTouched": "2026-07-12"
     }
   ],
   "counts": {
@@ -13248,7 +13297,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 33,
-    "skills": 27
+    "journalEntries": 34,
+    "skills": 28
   }
 }
