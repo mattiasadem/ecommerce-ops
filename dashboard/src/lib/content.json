@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-12T18:25:55.175Z",
+  "generatedAt": "2026-07-12T19:30:41.709Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12292,6 +12292,10 @@
     {
       "heading": "[2026-07-11 11:00] feat(dashboard): benchmark dial — where does my store sit? (AOV / gross margin / break-even CAC / LTV:CAC / CAC payback vs research/00)",
       "body": "- **What shipped:** `dashboard/src/lib/benchmark-dial.ts` (new, ~316 lines) — pure scoring engine that parses benchmark cells like `\"$60–$120\"`, `\"3:1\"`, `\"55–70%\"`, `\"<$30\"`, `\">$150\"` into numeric ranges + direction (higher-is-better / lower-is-better) and classifies an operator value into a 5-state band: `great | good | median | below | red-flag`. Special-cases the red-flag cell as a one-sided threshold (`>$150` → red flag if value > 150) before checking the healthy / good bands. Plus `dashboard/src/components/benchmark-dial.tsx` (new, ~378 lines) — a 5-cell responsive grid that mounts onto the Overview page right under the Your-store card, reads the operator's AOV / monthly orders / gross margin from `ecom-ops:your-store:v1` (the same shared key the abandoned-cart / post-purchase / wel"
+    },
+    {
+      "heading": "[2026-07-12 20:30] Skill tick: keep — NPS + Voice-of-Customer closed-loop automation (Move #20.2, Delighted + Wootric + AskNicely + Medallia + Klaviyo NPS + Triple Whale NPS-cohort-LTV + Gorgias detractor-trigger + Smile.io promoter-reward, default 9:1 Year-1 ROI Path B at $3M GMV)",
+      "body": "- **Branch:** autoresearch/skills-2026-07-12\n- **Status:** keep (unique category: `category: cx` — first skill in this slot; confirmed via `grep -l '^category: cx$' skills/*.md | wc -l = 1` after the new skill is added)\n- **Reason:** **METRIC-POSITIVE — UNIQUE-CATEGORY SLOT FILLED.** The 5 canonical metric gates pass: (a) **unique category** — no prior skill in `category: cx` (was 0, now 1); (b) Tier-1 first — first Tier-1 P1 skill in `cx` (the slot was empty); (c) P0 first N/A (skill is P1 — first P1 in `cx` is automatic given the category is unique); (d) **pitfall count = 15** (matches the canonical P1 depth: 5 failure modes × 3 pitfalls each — A NPS-collected-but-no-closed-loop / B NPS-collected-but-no-promoter-reward / C NPS-collected-but-no-cohort-LTV-merge / D no-tNPS/rNPS/product-NP"
     }
   ],
   "skills": [
@@ -13449,6 +13453,53 @@
       "sourceCount": 29,
       "size": 42644,
       "lastTouched": "2026-07-12"
+    },
+    {
+      "file": "32-sales-tax-vat-automation.md",
+      "name": "sales-tax-vat-automation",
+      "title": "Sales tax + VAT automation (Move #21)",
+      "category": "tax-compliance",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": 21,
+      "yearOneRoiBand": "8:1–30:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-07-12",
+      "sources": [
+        "avalara 2024",
+        "taxjar 2024",
+        "stripe-tax 2024",
+        "shopify-markets-pro 2024",
+        "vertex 2024",
+        "sovos 2024",
+        "zonos 2024",
+        "quadpay 2024",
+        "economic-nexus-thresholds-2024",
+        "wayfair-v-south-dakota",
+        "marketplace-facilitator-tax-state-list-2024",
+        "irs-2024-1099-k-thresholds",
+        "eu-vat-ioss-2024",
+        "uk-vat-moss-2024",
+        "gst-canada-australia-2024",
+        "shipbob-tax-handling 2024",
+        "shipmonk-tax-handling 2024",
+        "stord-tax-handling 2024",
+        "klaviyo-tax-rate-display 2024",
+        "postscript-tax-rate-display 2024",
+        "gorgias-tax-rate-display 2024",
+        "triple-whale-tax-attribution 2024",
+        "amazon-marketplace-facilitator-2024",
+        "ebay-marketplace-facilitator-2024",
+        "etsy-marketplace-facilitator-2024",
+        "wayfair-marketplace-facilitator-2024",
+        "shopify-marketplace-facilitator-2024"
+      ],
+      "blurb": "Move #21 is the **financial-compliance layer every $1M+ GMV DTC brand needs after Move #1 (cart recovery) + Move #5 (Klaviyo+Postscript) + Move #6 (Triple Whale attribution) + Move #11 (subscriptions) + Move #12 (3PL)...",
+      "sectionCount": 8,
+      "pitfallCount": 15,
+      "sourceCount": 27,
+      "size": 43885,
+      "lastTouched": "2026-07-12"
     }
   ],
   "counts": {
@@ -13457,7 +13508,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 37,
-    "skills": 31
+    "journalEntries": 38,
+    "skills": 32
   }
 }
