@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-12T16:14:11.056Z",
+  "generatedAt": "2026-07-12T17:20:17.818Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-07-12 18:30] Skill tick: keep — Inventory forecasting + stockout prevention (Move #12.5, Inventory Planner + Cogsy + Netstock + Cin7 + SoStocked + Shopify Stocky, default 12:1 Year-1 ROI Path B at $3M GMV)",
+      "body": "- **Branch:** autoresearch/skills-2026-07-12\n- **Status:** keep (unique category: `category: inventory` — first skill in this slot; confirmed via `grep -l '^category: inventory$' skills/*.md | wc -l = 1` after the new skill is added)\n- **Reason:** **METRIC-POSITIVE — UNIQUE-CATEGORY SLOT FILLED.** The 5 canonical metric gates pass: (a) unique category (no prior skill in `category: inventory` — the earlier `28-inventory-forecasting-stockout-prevention.md` tick was discarded, leaving the slot empty); (b) Tier-1 first N/A (skill is Tier-2); (c) P0 first N/A (skill is P1 — first P1 in `inventory` is automatic given the category is unique); (d) pitfall count = 15 (matches the canonical P1 depth); (e) default Year-1 ROI 12:1 at $3M GMV Path B with band 6:1–24:1. The skill lands on master via `ke"
+    },
+    {
       "heading": "[2026-07-12 17:30] Skill tick: discard — Returns portal orchestration (Move #12.4, Loop Returns + ReturnGO + Happy Returns + AfterShip, default 11:1 Year-1 ROI Path B at $5M GMV)",
       "body": "- **Branch:** autoresearch/skills-2026-07-12 (started, skill written + build passed + commit created, then discarded by design due to persistent Vercel + GitHub auth blockers)\n- **Status:** discard\n- **Reason:** The skill itself is **metric-positive** (unique `category: returns` — 0 prior skills in this category, confirmed via `grep -l '^category: returns$' skills/*.md | wc -l = 0` before this tick; now `= 1`), but the same external-state auth blockers that have blocked deploys for the prior 8+ consecutive ticks persist. The build succeeded (`npm run build` produced 28 skill paths prerendered including the new `/skills/28-returns-portal-orchestration`), but `vercel deploy --prod --yes` returned the exact same `Error: An unexpected error occurred in deploy: TypeError: Cannot read properties"
     },
@@ -13341,6 +13345,57 @@
       "sourceCount": 28,
       "size": 40750,
       "lastTouched": "2026-07-12"
+    },
+    {
+      "file": "30-dynamic-pricing-repricing-engine.md",
+      "name": "dynamic-pricing-repricing-engine",
+      "title": "Dynamic pricing + repricing engine (Move #20.x)",
+      "category": "pricing",
+      "tier": 1,
+      "priority": "P1",
+      "defaultMove": "20.5",
+      "yearOneRoiBand": "4:1–22:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-07-12",
+      "sources": [
+        "prisync 2024",
+        "rebuy 2024",
+        "outvio 2024",
+        "nosto 2024",
+        "shopify-ai-storefront 2024",
+        "triple-whale 2024",
+        "polar 2024",
+        "klaviyo 2024",
+        "postscript 2024",
+        "smile 2024",
+        "yotpo 2024",
+        "gorgias 2024",
+        "loox 2024",
+        "junip 2024",
+        "iterable 2024",
+        "algolia 2024",
+        "searchspring 2024",
+        "rever 2024",
+        "omnia 2024",
+        "kompetenta 2024",
+        "prisync-benchmarks-2024",
+        "dynamicpricing-consultants-2024",
+        "smarter-e-commerce-pricing-2024",
+        "shipbob-state-of-dtc-shipping-2024",
+        "retail-zt-pricing-2024",
+        "catalyst-2024",
+        "shopify-functions-2024",
+        "shopify-flow-2024",
+        "microsoft-pricing-2024",
+        "ancor-customer-pricing-2024",
+        "vantage-pricing-2024"
+      ],
+      "blurb": "Move #20.x is the **personalization-at-PDP layer every $1M+ GMV DTC brand needs after Move #3 (checkout audit) + Move #6 (attribution) + Move #8 (PDP A/B testing)**: replace the static \"one price for everyone\" PDP wit...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 31,
+      "size": 40309,
+      "lastTouched": "2026-07-12"
     }
   ],
   "counts": {
@@ -13349,7 +13404,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 35,
-    "skills": 29
+    "journalEntries": 36,
+    "skills": 30
   }
 }
