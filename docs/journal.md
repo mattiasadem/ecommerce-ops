@@ -1,5 +1,12 @@
 <!-- new ticks insert here -->
 
+## [2026-07-13 01:20] Skill tick: discard — AI site search + merchandising (Move #20.3, Shopify Search & Discovery + Algolia + Searchspring + Klevu + Constructor)
+
+- **Branch:** autoresearch/skills-2026-07-13
+- **Status:** discard
+- **Reason:** The candidate was metric-positive before the deployment gate: it would have been the first `category: search-merchandising` skill, the first Tier-1 skill in that category, and the first P0 skill in that category. TDD RED was proven with a missing-file assertion; GREEN passed the frontmatter, canonical-section, 18-pitfall, Fix-line, KPI-contract, tool-matrix, and size checks. The content parser reported 37 skills and the production build generated all 70 static pages, including 37 skill paths. However, the canonical deploy command failed with Vercel CLI 54.11.1: `TypeError: Cannot read properties of undefined (reading 'value')`; the live probe returned HTTP 404. Per `scripts/skill-builder-prompt.md` constraint 108, a successful build followed by failed deployment requires discard. The branch and candidate files were deleted; master received only this journal entry.
+- **Next action:** Retry the same unique-category Move #20.3 candidate after refreshing the Vercel token/scope. Verify `/data/.npm-global/bin/vercel whoami --token <token>` first; then recreate the test-first skill, parse, build once, deploy, and require HTTP 200 before keep. If auth remains blocked, log a no-candidate discard rather than repeating the full build.
+
 ## [2026-07-13 00:08] Skill tick: keep — Email deliverability + sender reputation (Move #5.5, SPF/DKIM/DMARC/BIMI + Google Postmaster + Microsoft SNDS + list hygiene + IP warmup + inbox placement + content engagement, unique category: deliverability — 9:1 default Year-1 ROI Path B at $3M GMV)
 
 - **Branch:** autoresearch/skills-2026-07-13
