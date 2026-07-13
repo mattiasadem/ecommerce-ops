@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ResearchTable } from "@/components/research-table";
+import { GenerativeAiEngineCalculator } from "@/components/generative-ai-engine-calculator";
 import { content, findDoc, findTable } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -258,6 +259,9 @@ export default function GenerativeAiEnginePage() {
           </CardContent>
         </Card>
       </div>
+
+      {/* === GENERATIVE-AI-ENGINE PATH A/B/C SCORER (interactive, personalized) === */}
+      <GenerativeAiEngineCalculator />
 
       {/* === TL;DR (from research/16) === */}
       {r16 && (
