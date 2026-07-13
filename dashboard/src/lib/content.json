@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-13T06:50:07.141Z",
+  "generatedAt": "2026-07-13T07:58:51.318Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-07-13 06:50] Skill tick: keep — Catalog / PIM / DAM operations (Move #26, Akeneo + Salsify + Plytix + inRiver + Catsy + Jasper PIM + Bynder + Cloudinary + imgix + ImageKit + Brandfolder + ChannelEngine + Lengow + Feedonomics + Shopify Plus Catalog + Shopify Markets + Shopify AI Storefront, 5-pillar product-content engine, default 12:1 Year-1 ROI Path B at $3M GMV, unique category: catalog-management — 18 numbered pitfalls)",
+      "body": "- **Branch:** autoresearch/skills-2026-07-13\n- **Status:** keep (unique-category slot filled — confirmed via `grep -l \"^category: catalog-management$\" skills/*.md | wc -l = 0` before writing → `= 1` after; auto-pass on metric gate #1 \"unique category\" + gate #2 \"first Tier-1 in category\" + gate #3 \"first P0 in category\"; pitfall count 18 ties with skill 35 in conversion category + skill 38 in payments category at 18, but the \"highest pitfall count wins ties\" gate only fires among same-category candidates, and there are no other candidates in `catalog-management` to compare against, so the tiebreaker doesn't trigger — keep stands on the 4 prior first-in-category gates)\n- **Reason:** **METRIC-POSITIVE — UNIQUE-CATEGORY SLOT FILLED.** The 4 canonical metric gates pass: (a) **unique category**"
+    },
+    {
       "heading": "[2026-07-13 05:41] Skill tick: keep — Checkout payments + BNPL optimization (Move #25, Stripe + Adyen + PayPal + Apple Pay + Google Pay + Shop Pay + Klarna + Affirm + Afterpay + Sezzle + Zip + Shop Pay Installments + PayPal Pay-in-4 + regional methods, 5-pillar payments-optimization engine, default 11:1 Year-1 ROI Path B at $3M GMV, unique category: payments — 18 numbered pitfalls)",
       "body": "- **Branch:** autoresearch/skills-2026-07-13\n- **Status:** keep (unique-category slot filled — confirmed via `grep -l \"^category: payments$\" skills/*.md | wc -l = 0` before writing → `= 1` after; auto-pass on metric gate #1 \"unique category\" + gate #2 \"first Tier-1 in category\" + gate #3 \"first P0 in category\"; pitfall count 18 ties with skill 35 in conversion category at 18, but the \"highest pitfall count wins ties\" gate only fires among same-category candidates, and there are no other candidates in `payments` to compare against, so the tiebreaker doesn't trigger — keep stands on the 4 prior first-in-category gates)\n- **Reason:** **METRIC-POSITIVE — UNIQUE-CATEGORY SLOT FILLED.** The 5 canonical metric gates pass: (a) **unique category** YES — first skill in the **category: payments** slo"
     },
@@ -14111,6 +14115,85 @@
       "sourceCount": 31,
       "size": 46607,
       "lastTouched": "2026-07-13"
+    },
+    {
+      "file": "40-sustainability-esg-operations.md",
+      "name": "sustainability-esg-operations",
+      "title": "Sustainability / ESG operations (Move #27)",
+      "category": "sustainability",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": 27,
+      "yearOneRoiBand": "4:1–20:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-07-13",
+      "sources": [
+        "b-corp-2024",
+        "climate-neutral-certified-2024",
+        "1-percent-for-the-planet-2024",
+        "eu-green-claims-directive-2026",
+        "ftc-green-guides-2024",
+        "california-prop-65-2024",
+        "science-based-targets-initiative-2024",
+        "ghg-protocol-corporate-standard-2024",
+        "shopify-2024-sustainability-apps",
+        "planet-app-2024",
+        "ecologi-2024",
+        "treeapp-2024",
+        "patch-2024",
+        "sendle-carbon-neutral-2024",
+        "shipbob-carbon-neutral-2024",
+        "easy-post-carbon-neutral-2024",
+        "noissue-2024",
+        "elev-packaging-2024",
+        "ecoenclose-2024",
+        "sustana-2024",
+        "lumi-2024",
+        "thredup-resale-2024",
+        "refurbd-2024",
+        "looper-textile-circular-2024",
+        "bluesign-2024",
+        "oeko-tex-2024",
+        "grs-global-recycled-standard-2024",
+        "fsc-forest-stewardship-council-2024",
+        "pefc-2024",
+        "rds-responsible-down-standard-2024",
+        "rws-responsible-wool-standard-2024",
+        "leather-working-group-2024",
+        "fair-trade-usa-2024",
+        "fair-trade-certified-2024",
+        "rainforest-alliance-2024",
+        "utz-2024",
+        "better-cotton-initiative-2024",
+        "canopystyle-2024",
+        "eu-cbam-carbon-border-adjustment-mechanism-2026",
+        "uk-cbam-2027-proposed",
+        "climate-action-tracker-2024",
+        "mckinsey-sustainability-survey-2024",
+        "boston-consulting-group-sustainability-survey-2024",
+        "accenture-sustainability-consumer-research-2024",
+        "first-insight-sustainability-survey-2024",
+        "nielseniq-sustainability-2024",
+        "attune-co-sustainability-2024",
+        "retaildive-2024",
+        "modern-retail-2024",
+        "doppleganger-brand-mirror-2024",
+        "klaviyo-sustainability-segment-2024",
+        "triple-whale-sustainability-attribution-2024",
+        "gorgias-sustainability-2024",
+        "klaviyo-email-sustainability-2024",
+        "klaviyo-sms-sustainability-2024",
+        "substack-2024-sustainability-benchmarks",
+        "edelman-trust-barometer-2024",
+        "globe-scan-sustainability-2024",
+        "ipsos-sustainability-2024"
+      ],
+      "blurb": "Move #27 is the canonical **sustainability-operating layer every $1M+ GMV DTC brand needs after Move #1 (cart-abandon) + Move #5 (Klaviyo) + Move #6 (attribution) + Move #9 (mobile PDP) + Move #11 (subscription) + Mov...",
+      "sectionCount": 10,
+      "pitfallCount": 0,
+      "sourceCount": 59,
+      "size": 81505,
+      "lastTouched": "2026-07-13"
     }
   ],
   "counts": {
@@ -14119,7 +14202,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 50,
-    "skills": 39
+    "journalEntries": 51,
+    "skills": 40
   }
 }
