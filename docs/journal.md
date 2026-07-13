@@ -1,5 +1,12 @@
 <!-- new ticks insert here -->
 
+## [2026-07-13 02:22] Skill tick: discard — no candidate
+
+- **Branch:** autoresearch/skills-2026-07-13
+- **Status:** discard
+- **Reason:** Preflight stopped the tick before another expensive build. The highest-value metric-positive candidate remains AI site search + merchandising (`category: search-merchandising`, first Tier-1 and first P0), and TDD RED confirmed both candidate files are absent and the category count is still zero. However, the mandatory deploy prerequisite is known-bad: `/data/.npm-global/bin/vercel whoami --token <canonical token>` returned `Not authorized: Trying to access resource under scope "mattiasadem-5021s-projects"`. The immediately prior 01:20 tick already researched, built, and then correctly discarded this same candidate when deployment failed and the live route returned 404. Repeating the full candidate/build cycle with unchanged credentials would not produce a keepable improvement and would waste the build budget. The dated branch was discarded cleanly; no skill, dashboard mirror, playbook, asset, dependency, or generated content was changed.
+- **Next action:** Refresh the Vercel token with access to `mattiasadem-5021s-projects`, verify `vercel whoami --token <token>` succeeds, then retry `skills/37-ai-site-search-merchandising.md` test-first. Require parser success, one production build, successful deploy, and HTTP 200 before keeping it.
+
 ## [2026-07-13 01:20] Skill tick: discard — AI site search + merchandising (Move #20.3, Shopify Search & Discovery + Algolia + Searchspring + Klevu + Constructor)
 
 - **Branch:** autoresearch/skills-2026-07-13
