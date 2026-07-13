@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ResearchTable } from "@/components/research-table";
+import { SubscriptionPathCalculator } from "@/components/subscription-path-calculator";
 import { content, findDoc, findTable } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -59,6 +60,8 @@ export default function SubscriptionsPage() {
           <code className="rounded bg-muted px-1">/assets</code>.
         </p>
       </header>
+
+      <SubscriptionPathCalculator />
 
       {/* === HERO METRICS === */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
@@ -367,59 +370,23 @@ export default function SubscriptionsPage() {
       <Card>
         <CardHeader>
           <CardTitle className="text-base">
-            Future-tick companions (planned, not yet shipped)
+            Companion surfaces
           </CardTitle>
           <CardDescription>
-            The two next-priority bounded improvements that ship after this
-            route — both pre-staged in research/08 §Next moves, playbook 15
-            §Companion tool, and asset 16 §Related
+            The terminal scorer now powers the interactive panel above; the static health dashboard remains the final companion surface.
           </CardDescription>
         </CardHeader>
         <CardContent>
           <ul className="space-y-2 text-xs leading-relaxed text-muted-foreground list-disc pl-5">
             <li>
-              <code className="rounded bg-muted px-1">
-                scripts/subscription_unit_economics.py
-              </code>{" "}
-              — Archetype A/B hybrid Path A/B/C subscription-program scorer
-              that takes a brand's consumables-revenue-share +
-              sku-purchase-cadence + LTV baseline + churn-baseline +
-              subscriber-conversion-rate → outputs Path A (Recharge Starter
-              &lt;$500k GMV) / Path B (Recharge Plus DEFAULT $500k-$10M GMV
-              8.3:1 ROI) / Path C (Recharge Enterprise or Skio $10M+ GMV)
-              recommendation with cost stack + expected Year-1 incremental
-              subscription-revenue + 2.0-3.5× LTV-multiplier + 6-step build
-              sequence. Pre-staged in research/08 §Next moves + playbook 15
-              §Next moves + asset 16 §Related. Gated on the canonical 8
-              prereqs (Move #1 + #4 + #6 + #8 shipped + consumables category
-              + 30%+ re-purchase-cadence SKUs + Triple Whale attribution
-              live + Klaviyo + Smile.io + 3PL with FIFO + lot/date tracking
-              OR in-house warehouse).
+              <code className="rounded bg-muted px-1">scripts/subscription_unit_economics.py</code>{" "}
+              — now ported to the Path A/B/C browser scorer above. Use the CLI for cron or CI JSON and this page for interactive scenario planning.
             </li>
             <li>
               <code className="rounded bg-muted px-1">
                 dashboards/subscription-program-health.html
               </code>{" "}
-              — canonical 6th-and-final static-dashboard layer per the v0.11.0
-              extended layer order research → playbook → asset →
-              operator-surface-route → script → static-dashboard. Static
-              HTML dashboard rendering subscription-launch readiness (Path A/B/C
-              tier indicator + consumables-revenue-share band + subscriber
-              count band) + per-platform readiness (7 canonical subscription
-              platforms × {`{live/draft/staging/not-started}`} status: Recharge +
-              Skio + Bold + Stay AI + Appstle + Seal + Loop) + per-path
-              Year-1 incremental revenue bar chart (Path A vs B vs C) +
-              4-phase gate status (Gate A PDP widget + Gate B billing/portal/
-              dunning + Gate C replenishment/smart-cancellation + Gate D
-              subscriber-cohort analytics per playbook 15 §Verification gates
-              10/10/10/9 prereqs) + per-flow churn-by-tier overlay
-              (Tier 1 / 2 / 3 / 4 cadence) + dunning-recovery-rate +
-              replenishment-conversion-rate + subscriber-cohort LTV signal as
-              a 1-click operator surface. Self-contained static HTML;
-              mirrors the canonical 6-section + 4 canonical data structures +
-              17-category Node smoke suite pattern from the marketplace /
-              3PL / international-expansion / lifecycle-flow static
-              dashboards.
+              — static operational dashboard for launch readiness, per-platform state, four-phase gates, churn, dunning recovery, and subscriber-cohort LTV monitoring.
             </li>
           </ul>
         </CardContent>
