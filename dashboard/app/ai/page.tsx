@@ -6,6 +6,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ResearchTable } from "@/components/research-table";
+import { AiAdCreativeROICalculator } from "@/components/ai-ad-creative-roi";
 import { content, findTable } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -32,6 +33,27 @@ export default function AiPage() {
           ROI per dollar.
         </p>
       </header>
+
+      {/* === INTERACTIVE CALCULATOR (Move #10 AI ad-creative iteration) === */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-base">
+            AI ad-creative iteration — will it pay for itself?
+          </CardTitle>
+          <CardDescription>
+            Enter your monthly ad spend + baseline ROAS → see live revenue
+            uplift, payback days, and the per-$1-AI-tool-cost verdict.
+            Persisted to your browser; mirrors{" "}
+            <code className="rounded bg-muted px-1 py-0.5 text-[10px]">
+              scripts/ai_ad_creative_roi.py
+            </code>
+            .
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <AiAdCreativeROICalculator />
+        </CardContent>
+      </Card>
 
       <Card>
         <CardHeader>

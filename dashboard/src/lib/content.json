@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-13T04:33:50.581Z",
+  "generatedAt": "2026-07-13T05:12:53.128Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-07-13 04:33] Skill tick: keep — AI site search + merchandising (Move #20.3, Shopify Search & Discovery + Algolia + Searchspring + Klevu + Constructor + Coveo + Nosto + Findify, 5-pillar on-site discovery engine, default 11.8:1 Year-1 ROI Path B at $3M GMV, unique category: search-merchandising — 18 numbered pitfalls)",
+      "body": "- **Branch:** autoresearch/skills-2026-07-13\n- **Status:** keep (unique-category slot filled — confirmed via `grep -l \"^category: search-merchandising$\" skills/*.md | wc -l = 0` before writing → `= 1` after; auto-pass on metric gate #1 \"unique category\" + gate #2 \"first Tier-1 in category\" + gate #3 \"first P0 in category\"; pitfall count 18 ties with skill 35 = 18 in conversion category, but the \"highest pitfall count wins ties\" gate only fires among same-category candidates, and there are no other candidates in `search-merchandising` to compare against, so the tiebreaker doesn't trigger — keep stands on the 4 prior first-in-category gates)\n- **Reason:** **METRIC-POSITIVE — UNIQUE-CATEGORY SLOT FILLED.** The 5 canonical metric gates pass: (a) **unique category** YES — first skill in the **c"
+    },
+    {
       "heading": "[2026-07-13 03:26] Skill tick: discard — no candidate (deploy prerequisite still broken)",
       "body": "- **Branch:** autoresearch/skills-2026-07-13\n- **Status:** discard\n- **Reason:** Preflight stopped the tick before another expensive build. Verified the state: (a) `bash scripts/skill-branch.sh start` resumed `autoresearch/skills-2026-07-13` cleanly; (b) `grep -l \"^category: search-merchandising$\" skills/*.md | wc -l = 0` — the canonical AI site search + merchandising slot is still open (the immediately prior 01:20 tick built this same candidate but discarded it per spec line 108 when Vercel deploy returned the canonical `TypeError: Cannot read properties of undefined (reading 'value')` and the live route probed 404); (c) `/data/.npm-global/bin/vercel whoami --token \"$(grep -oE 'vcp_[A-Za-z0-9]+' /data/workspace/env)\"` returned the canonical `Error: Not authorized: Trying to access resourc"
     },
@@ -13975,7 +13979,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 47,
+    "journalEntries": 48,
     "skills": 37
   }
 }
