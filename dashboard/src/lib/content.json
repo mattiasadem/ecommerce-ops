@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-13T05:42:04.844Z",
+  "generatedAt": "2026-07-13T06:50:07.141Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-07-13 05:41] Skill tick: keep — Checkout payments + BNPL optimization (Move #25, Stripe + Adyen + PayPal + Apple Pay + Google Pay + Shop Pay + Klarna + Affirm + Afterpay + Sezzle + Zip + Shop Pay Installments + PayPal Pay-in-4 + regional methods, 5-pillar payments-optimization engine, default 11:1 Year-1 ROI Path B at $3M GMV, unique category: payments — 18 numbered pitfalls)",
+      "body": "- **Branch:** autoresearch/skills-2026-07-13\n- **Status:** keep (unique-category slot filled — confirmed via `grep -l \"^category: payments$\" skills/*.md | wc -l = 0` before writing → `= 1` after; auto-pass on metric gate #1 \"unique category\" + gate #2 \"first Tier-1 in category\" + gate #3 \"first P0 in category\"; pitfall count 18 ties with skill 35 in conversion category at 18, but the \"highest pitfall count wins ties\" gate only fires among same-category candidates, and there are no other candidates in `payments` to compare against, so the tiebreaker doesn't trigger — keep stands on the 4 prior first-in-category gates)\n- **Reason:** **METRIC-POSITIVE — UNIQUE-CATEGORY SLOT FILLED.** The 5 canonical metric gates pass: (a) **unique category** YES — first skill in the **category: payments** slo"
+    },
+    {
       "heading": "[2026-07-13 04:33] Skill tick: keep — AI site search + merchandising (Move #20.3, Shopify Search & Discovery + Algolia + Searchspring + Klevu + Constructor + Coveo + Nosto + Findify, 5-pillar on-site discovery engine, default 11.8:1 Year-1 ROI Path B at $3M GMV, unique category: search-merchandising — 18 numbered pitfalls)",
       "body": "- **Branch:** autoresearch/skills-2026-07-13\n- **Status:** keep (unique-category slot filled — confirmed via `grep -l \"^category: search-merchandising$\" skills/*.md | wc -l = 0` before writing → `= 1` after; auto-pass on metric gate #1 \"unique category\" + gate #2 \"first Tier-1 in category\" + gate #3 \"first P0 in category\"; pitfall count 18 ties with skill 35 = 18 in conversion category, but the \"highest pitfall count wins ties\" gate only fires among same-category candidates, and there are no other candidates in `search-merchandising` to compare against, so the tiebreaker doesn't trigger — keep stands on the 4 prior first-in-category gates)\n- **Reason:** **METRIC-POSITIVE — UNIQUE-CATEGORY SLOT FILLED.** The 5 canonical metric gates pass: (a) **unique category** YES — first skill in the **c"
     },
@@ -14056,6 +14060,57 @@
       "sourceCount": 61,
       "size": 94439,
       "lastTouched": "2026-07-13"
+    },
+    {
+      "file": "39-catalog-pim-dam-operations.md",
+      "name": "catalog-pim-dam-operations",
+      "title": "Catalog / PIM / DAM operations (Move #26)",
+      "category": "catalog-management",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": 26,
+      "yearOneRoiBand": "6:1–24:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-07-13",
+      "sources": [
+        "akeneo 2024",
+        "salsify 2024",
+        "plytix 2024",
+        "inriver 2024",
+        "catsy 2024",
+        "jasper-pim 2024",
+        "bynder 2024",
+        "brandfolder 2024",
+        "mediavalet 2024",
+        "cloudinary 2024",
+        "imgix 2024",
+        "imagekit 2024",
+        "adobe-aem-assets 2024",
+        "shopify-plus-catalog 2024",
+        "shopify-markets 2024",
+        "channelengine 2024",
+        "lengow 2024",
+        "feedonomics 2024",
+        "mirakl 2024",
+        "shopify-flow 2024",
+        "shopify-functions 2024",
+        "triple-whale 2024",
+        "klaviyo 2024",
+        "postscript 2024",
+        "gorgias 2024",
+        "prism-mi 2024",
+        "icr-17025-2017",
+        "gdam-research-2024",
+        "ernst-young-pim-survey-2024",
+        "gartner-magic-quadrant-pim-2024",
+        "forrester-wave-dam-2024"
+      ],
+      "blurb": "Move #26 is the canonical **product-content-and-asset operating layer every $1M+ GMV DTC brand needs after Move #3 (checkout) + Move #6 (attribution) + Move #9 (mobile PDP) + Move #12 (3PL) ship**: replace the static ...",
+      "sectionCount": 10,
+      "pitfallCount": 18,
+      "sourceCount": 31,
+      "size": 46607,
+      "lastTouched": "2026-07-13"
     }
   ],
   "counts": {
@@ -14064,7 +14119,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 49,
-    "skills": 38
+    "journalEntries": 50,
+    "skills": 39
   }
 }
