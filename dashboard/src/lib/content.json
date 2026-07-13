@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-13T05:12:53.128Z",
+  "generatedAt": "2026-07-13T05:42:04.844Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12336,6 +12336,10 @@
     {
       "heading": "[2026-07-12 20:30] Skill tick: keep — NPS + Voice-of-Customer closed-loop automation (Move #20.2, Delighted + Wootric + AskNicely + Medallia + Klaviyo NPS + Triple Whale NPS-cohort-LTV + Gorgias detractor-trigger + Smile.io promoter-reward, default 9:1 Year-1 ROI Path B at $3M GMV)",
       "body": "- **Branch:** autoresearch/skills-2026-07-12\n- **Status:** keep (unique category: `category: cx` — first skill in this slot; confirmed via `grep -l '^category: cx$' skills/*.md | wc -l = 1` after the new skill is added)\n- **Reason:** **METRIC-POSITIVE — UNIQUE-CATEGORY SLOT FILLED.** The 5 canonical metric gates pass: (a) **unique category** — no prior skill in `category: cx` (was 0, now 1); (b) Tier-1 first — first Tier-1 P1 skill in `cx` (the slot was empty); (c) P0 first N/A (skill is P1 — first P1 in `cx` is automatic given the category is unique); (d) **pitfall count = 15** (matches the canonical P1 depth: 5 failure modes × 3 pitfalls each — A NPS-collected-but-no-closed-loop / B NPS-collected-but-no-promoter-reward / C NPS-collected-but-no-cohort-LTV-merge / D no-tNPS/rNPS/product-NP"
+    },
+    {
+      "heading": "[2026-07-13 05:17] feat(dashboard): mount AI ad-creative ROI calculator on /ai (Lever 6 of 10)",
+      "body": "- **What shipped:** `dashboard/app/ai/page.tsx` — added a new `<Card>` block at the top of the AI & Automation page (right under the header) that mounts the existing `AiAdCreativeROICalculator` client component (490-line browser port of `scripts/ai_ad_creative_roi.py`). The Lever-6-of-10 page previously had NO interactive tool — just static ResearchTables for the AI value stack + the 3-phase budget breakdown + an 8-bullet findings list. The page now gives operators a one-stop \"see this $25K-$100K/yr AI stack? Plug in your numbers to see if AI ad-creative iteration will pay for itself at your current spend level\" experience.\n- **Calculator surface (mounted via the same `<Card>` pattern used by `/affiliates` / `/marketplace` / `/pinterest-seo` / `/b2b` / `/3pl` / `/international` for their p"
     }
   ],
   "skills": [
@@ -13971,6 +13975,87 @@
       "sourceCount": 114,
       "size": 61903,
       "lastTouched": "2026-07-13"
+    },
+    {
+      "file": "38-checkout-payments-bnpl-optimization.md",
+      "name": "checkout-payments-bnpl-optimization",
+      "title": "Checkout payments + BNPL optimization",
+      "category": "payments",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": 25,
+      "yearOneRoiBand": "5:1–22:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-07-13",
+      "sources": [
+        "stripe-2024",
+        "adyen-2024",
+        "paypal-2024",
+        "apple-pay-2024",
+        "google-pay-2024",
+        "shop-pay-2024",
+        "klarna-2024",
+        "affirm-2024",
+        "afterpay-2024",
+        "sezzle-2024",
+        "zip-2024",
+        "worldpay-2024",
+        "checkout-com-2024",
+        "braintree-2024",
+        "cybersource-2024",
+        "worldpay-fraud-2024",
+        "sift-2024",
+        "kount-2024",
+        "stripe-radar-2024",
+        "adyen-revenueprotect-2024",
+        "shopify-protect-2024",
+        "pci-dss-2024",
+        "3d-secure-2024",
+        "ideal-2024",
+        "sepa-2024",
+        "sofort-2024",
+        "bancontact-2024",
+        "konbini-2024",
+        "alipay-2024",
+        "wechat-pay-2024",
+        "gcash-2024",
+        "pix-2024",
+        "oxxo-2024",
+        "paytm-2024",
+        "upi-2024",
+        "razorpay-2024",
+        "baymard-checkout-2024",
+        "baymard-payments-2024",
+        "jpm-payments-2024",
+        "worldpay-global-payments-2024",
+        "fis-payments-2024",
+        "fiserv-2024",
+        "accenture-payments-2024",
+        "mckinsey-bnpl-2024",
+        "cbi-insights-bnpl-2024",
+        "insider-intelligence-bnpl-2024",
+        "doubleverify-fraud-2024",
+        "airwallex-2024",
+        "wise-business-2024",
+        "mercury-2024",
+        "shopify-payments-2024",
+        "shopify-shop-pay-2024",
+        "shoppay-installments-2024",
+        "amazon-pay-2024",
+        "meta-pay-2024",
+        "triple-whale-payments-2024",
+        "klaviyo-payment-failed-2024",
+        "gorgias-payment-failed-2024",
+        "recharge-bnpl-2024",
+        "rechargedecline-recovery-2024",
+        "smsbump-postscript-payment-failed-2024"
+      ],
+      "blurb": "Move #25 is the canonical **payments-optimization + BNPL + express-checkout + regional-payment-methods + decline-recovery + fraud-prevention engine** every Shopify-DTC brand needs AFTER Move #3 (checkout audit), Move ...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 61,
+      "size": 94439,
+      "lastTouched": "2026-07-13"
     }
   ],
   "counts": {
@@ -13979,7 +14064,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 48,
-    "skills": 37
+    "journalEntries": 49,
+    "skills": 38
   }
 }
