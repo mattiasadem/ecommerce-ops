@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-14T02:13:44.614Z",
+  "generatedAt": "2026-07-14T03:23:32.919Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-07-14 09:30] Skill tick: keep — Packaging engineering + dimensional weight optimization + unboxing experience + branded inserts + returns packaging + subscription packaging + multi-SKU packaging orchestration + packaging-attribution-overlay (Move #46, noissue + Arka + Packhelp + BingCustomBoxes + Paperboard + PakFactory + Shorr + ULINE + EcoEnclose + Limepack + Refine + Sobě + PackagingBee + Giant Eagle + Eco-Products + Berlin Packaging + Imperial Dade + Birchwood + Eco-Pak + Sustainable Packaging Industries + Easypost Dimensions + Shippo Dimensions + ShipStation + Cin7 PackPro + Loop Returns + Klaviyo packaging-segment + Gorgias packaging-macros + Triple Whale packaging-attribution, 5-pillar Path A/B+/B/C/D packaging-engineering-engine, default 12:1 Year-1 ROI Path B at $3M GMV, FIRST Tier-1 + FIRST P0 in `category: packaging-engineering` — 18 numbered pitfalls)",
+      "body": "- **Branch:** autoresearch/skills-2026-07-14\n- **Status:** keep (unique category: `category: packaging-engineering` — first skill in this slot; confirmed via `grep -l \"^category: packaging-engineering$\" skills/*.md | wc -l = 0` before writing → `= 1` after the new skill is added)\n- **Reason:** **METRIC-POSITIVE — UNIQUE-CATEGORY SLOT FILLED.** All 5 canonical metric gates pass: (a) **unique category** YES — first skill in the **category: packaging-engineering** slot (none of the 54 prior skills cover noissue + Arka + Packhelp + Bing Custom Boxes + Paperboard + PakFactory + Shorr + ULINE + EcoEnclose + Limepack + Refine Packaging + Sobě + PackagingBee + Giant Eagle + Eco-Products + Berlin Packaging + Imperial Dade + Birchwood + Eco-Pak + Sustainable Packaging Industries + Easypost Dimension"
+    },
+    {
       "heading": "[2026-07-14 00:54] Skill tick: keep — Gift cards + store credit + gift messaging + corporate gifting + Q4 BFCM gift-card-engine (Move #45, Shopify Gift Cards + Rise.ai + Gift Up + Gift Card Pro + Trellis B2B + Klaviyo gift-card-segment + Triple Whale gift-card-attribution + Gorgias gift-card-flow + post-purchase-store-credit-loop + returns-as-store-credit + referral-as-store-credit + review-as-store-credit + loyalty-as-store-credit + corporate-gifting + bulk-gift-cards + gift-card-fraud-engine + 5-pillar Path A/B/C DTC-gifting-engine, default 7:1 Year-1 ROI Path B at $3M GMV, FIRST Tier-1 + FIRST P0 in `category: gifting` — 18 numbered pitfalls)",
       "body": "- **Branch:** autoresearch/skills-2026-07-14\n- **Status:** keep (unique category: `category: gifting` — first skill in this slot; confirmed via `grep -l \"^category: gifting$\" skills/*.md | wc -l = 0` before writing → `= 1` after the new skill is added)\n- **Reason:** **METRIC-POSITIVE — UNIQUE-CATEGORY SLOT FILLED.** All 5 canonical metric gates pass: (a) **unique category** YES — first skill in the **category: gifting** slot (none of the 53 prior skills cover Shopify Gift Cards + Rise.ai + Gift Up + Gift Card Pro + Trellis B2B + OmniCard + Givex + CashStar + Blackhawk Network + InComm + Klaviyo gift-card-segment + Triple Whale gift-card-attribution + Gorgias gift-card-flow + post-purchase-store-credit-loop + returns-as-store-credit + referral-as-store-credit + review-as-store-credit + loya"
     },
@@ -16860,6 +16864,25 @@
       "sourceCount": 605,
       "size": 130121,
       "lastTouched": "2026-07-14"
+    },
+    {
+      "file": "56-retail-media-networks-cpg-omnichannel.md",
+      "name": "56-retail-media-networks-cpg-omnichannel",
+      "title": "Retail media networks + CPG omnichannel advertising + marketplace cross-network portfolio + retail-media-attribution-overlay (Move #47)",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-07-14",
+      "sources": [],
+      "blurb": "Move #47 is the **canonical retail-media-substrate every $3M+ GMV DTC + $10M+ GMV CPG brand needs after Move #1 (cart-recovery) + Move #5 (Klaviyo+Postscript) + Move #6 (Triple Whale attribution) + Move #14 (lifecycle...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 75564,
+      "lastTouched": "2026-07-14"
     }
   ],
   "counts": {
@@ -16868,7 +16891,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 4,
-    "skills": 55
+    "journalEntries": 5,
+    "skills": 56
   }
 }
