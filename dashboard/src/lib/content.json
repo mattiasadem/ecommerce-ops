@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-14T15:35:32.555Z",
+  "generatedAt": "2026-07-14T16:50:40.828Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-07-14 15:30] Skill tick: keep — AI search visibility + AEO (answer engine optimization) + GEO (generative engine optimization) + LLM-citation-engineering + structured-data-for-AI + Reddit/Wikipedia/authoritative-review-citation + ChatGPT/Perplexity/Gemini/Claude/Google-AI-Overviews-visibility-engine + AI-citation-tracking (Profound + Otterly + Yotpo AI Visibility + Goodie + Bluefish + LLM Rank + Peec AI + Semrush AEO + Ahrefs Brand Radar) + llms.txt + schema-org-product + FAQ-schema-for-LLM-quotability + agentic-commerce-shopping-discovery (ChatGPT Shopping + Perplexity Shopping + Google AI Mode Shopping + Amazon Rufus + UCP/ACP) (Move #64, 5-pillar Path A/B/C/D ai-search-visibility-aeo-geo-engine, default 12:1 Year-1 ROI Path B at $3M GMV, FIRST Tier-1 + FIRST P0 in `category: ai-search-visibility` — 18 numbered pitfalls)",
+      "body": "- **Branch:** autoresearch/skills-2026-07-14\n- **Status:** keep (unique category: `category: ai-search-visibility` — first skill in this slot; confirmed via `grep -l \"^category: ai-search-visibility$\" skills/*.md | wc -l = 0` before writing → `= 1` after the new skill is added; no other skill in the 63-skill corpus covers AEO + GEO + LLM-citation-engineering + structured-data-for-AI + llms.txt + robots.txt AI-bot allowlist + Profound + Otterly + Yotpo AI Visibility + Goodie + Bluefish + LLM Rank + Peec AI + Semrush AEO + Ahrefs Brand Radar + Perplexity-share-of-voice + ChatGPT-product-mention-rate + Google-AI-Overviews-inclusion-rate + Claude-citation-rate + Gemini-shopping-citation-rate + Reddit/Wikipedia/authoritative-review-citation + Product Hunt + G2 Grid + Capterra Shortlist + Trustp"
+    },
+    {
       "heading": "[2026-07-14 11:57] Skill tick: keep — Community-led growth engine + paid community + Discord/Slack/Circle/Mighty Networks/Skool community operations + community-led-acquisition + UGC flywheel + creator-community loops + community-cohort-LTV-overlay (Move #63, 6-pillar Path A/B+/B/C+/C/D community-led-growth-engine, default 13:1 Year-1 ROI Path B at $3M GMV, FIRST Tier-1 + FIRST P0 in `category: community` — 18 numbered pitfalls)",
       "body": "- **Branch:** autoresearch/skills-2026-07-14\n- **Status:** keep (unique category: `category: community` — first skill in this slot; confirmed via `grep -l \"^category: community$\" skills/*.md | wc -l = 0` before writing → `= 1` after the new skill is added; no other skill in the 62-skill corpus covers Discord + Slack + Circle + Mighty Networks + Skool + BetterMode + Tribe + Geneva + Vant + Swell + Kajabi + Teachable + Memberful + Memberstack + Outseta + Whop + School + Podium + Substack + Ghost + beehiiv + Kit + ConvertKit + Mailchimp + Klaviyo + Iterable + Braze + Salesforce Marketing Cloud + Salesforce Data Cloud + Postscript + Attentive + Triple Whale + Northbeam + Polar + Gorgias + Kustomer + Zendesk + HelpScout + Smile + Yotpo + LoyaltyLion + FriendBuy + Yotpo Referral + Referral Rock "
     },
@@ -19567,6 +19571,51 @@
       "sourceCount": 226,
       "size": 69952,
       "lastTouched": "2026-07-14"
+    },
+    {
+      "file": "65-ecommerce-accessibility-compliance.md",
+      "name": "ecommerce-accessibility-compliance",
+      "title": "Ecommerce accessibility compliance + inclusive conversion operations (Move #65)",
+      "category": "accessibility",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": 65,
+      "yearOneRoiBand": "3:1–14:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-07-14",
+      "sources": [
+        "w3c-wcag-2.2-2023",
+        "w3c-understanding-wcag-2.2",
+        "w3c-wcag-em-1.0",
+        "w3c-easy-checks",
+        "w3c-aria-apg",
+        "w3c-wai-business-case",
+        "w3c-low-vision",
+        "ec-european-accessibility-act-2025",
+        "eurlex-directive-2019-882",
+        "eu-harmonised-standards-accessibility-2025",
+        "etsi-en-301-549-v3.2.1-2021",
+        "ada-dot-gov-web-guidance-2022",
+        "section508-ict-testing-baseline",
+        "shopify-theme-accessibility",
+        "axe-core",
+        "pa11y",
+        "lighthouse-accessibility",
+        "webaim-screen-reader-survey-10",
+        "microsoft-inclusive-design",
+        "apple-accessibility",
+        "android-accessibility",
+        "deque-axe-conformance",
+        "tpgi-arc",
+        "siteimprove-accessibility",
+        "level-access"
+      ],
+      "blurb": "Make the entire buying journey—discovery, product evaluation, cart, checkout, payment, account, service, email, and documents—independently usable by disabled customers, using WCAG 2.2 AA as the engineering baseline a...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 25,
+      "size": 27162,
+      "lastTouched": "2026-07-14"
     }
   ],
   "counts": {
@@ -19575,7 +19624,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 15,
-    "skills": 64
+    "journalEntries": 16,
+    "skills": 65
   }
 }
