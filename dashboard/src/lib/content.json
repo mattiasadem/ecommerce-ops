@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-14T19:21:48.884Z",
+  "generatedAt": "2026-07-14T20:42:59.326Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-07-14 19:25] Skill tick: keep — ecommerce insurance + risk-transfer operations (GL + PL + Cyber + Workers Comp + EPLI + D&O + Cargo + Commercial Auto + Umbrella + Key-Person + BIPA + TCPA + GDPR + CCPA fines + ransomware + BEC + marketplace insurance compliance + B2B-MSA coverage + COI automation + claims evidence pipeline + master coverage tracker + broker relationship + parametric insurance + captive insurance + alternative risk transfer) (Move #67, Next Insurance + Vouch + Hiscox + Chubb + Travelers + Hartford + Liberty Mutual + AmTrust + Berkshire Hathaway + Tokio Marine + CoverWallet + Embroker + Certificial + myCOI + TrustLayer + Broker Buddha + Coalition + At-Bay + MetLife + Prudential + Lincoln Financial + Unum + Guardian + Aflac + Sun Life + Progressive Commercial + GEICO Commercial + State Farm Commercial + Nationwide Commercial, 5-pillar Path A/B/C/D ecommerce-insurance-operating-engine, default 9:1 Year-1 ROI Path B at $3M GMV, FIRST Tier-1 + FIRST P0 in `category: insurance-operations` — 18 numbered pitfalls, 8 verification gates A-H)",
+      "body": "- **Branch:** autoresearch/skills-2026-07-14\n- **Status:** keep (unique category: `category: insurance-operations` — first skill in this slot; pre-write `grep -l \"^category: insurance-operations$\" skills/*.md | wc -l = 0`, post-write `= 1`; no other skill in the 66-skill corpus covers Next Insurance + Vouch + Hiscox + Chubb + Travelers + Hartford + Liberty Mutual + AmTrust + Berkshire Hathaway + Tokio Marine + CoverWallet + Embroker + Certificial + myCOI + TrustLayer + Broker Buddha + Coalition + At-Bay + MetLife + Prudential + Lincoln Financial + Unum + Guardian + Aflac + Sun Life + Progressive Commercial + GEICO Commercial + State Farm Commercial + Nationwide Commercial as a 5-pillar Path A/B/C/D ecommerce-insurance-operating-engine + multi-line-coverage-stack-binding + marketplace-insur"
+    },
+    {
       "heading": "[2026-07-14 18:15] Skill tick: keep — international ecommerce tax filing operations (EU OSS/IOSS + UK VAT/MTD + Canada GST/HST + Australia/NZ GST + US marketplace reconciliation) (Move #66, FIRST Tier-1 + P0 in `category: global-tax-filing` — 18 numbered pitfalls, 12 verification gates A-L)",
       "body": "- **Branch:** autoresearch/skills-2026-07-14\n- **Status:** keep (unique category: `category: global-tax-filing`; pre-write category count `0`, skill/mirror absent, max skill number `65`; post-write category count `1`, Tier-1 count `1`, P0 count `1`, skill number `66`)\n- **Reason:** **METRIC-POSITIVE — UNIQUE CATEGORY + FIRST TIER-1 + FIRST P0.** This is distinct from Move #32 `tax-compliance`, which covers nexus monitoring, calculation, product taxability, and registration tooling. Move #66 owns the post-transaction close: immutable extracts, canonical tax subledger, marketplace liability ownership, refunds/credit notes, FX, maker/checker review, returns, remittance, corrections, notices, and evidence retention. It has 18 numbered pitfalls (matching the current corpus ceiling) and a cautio"
     },
@@ -20058,6 +20062,25 @@
       "sourceCount": 369,
       "size": 109927,
       "lastTouched": "2026-07-14"
+    },
+    {
+      "file": "68-influencer-creator-tax-compliance.md",
+      "name": "68-influencer-creator-tax-compliance",
+      "title": "Influencer + creator + UGC tax compliance (Move #68)",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-07-14",
+      "sources": [],
+      "blurb": "Move #68 is the canonical **full-stack creator-economy tax compliance + 1099 + W-9/W-8BEN + backup-withholding + state-1099-e-filing + international-creator-withholding + cohort-LTV-overlay operating engine** that **c...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 124452,
+      "lastTouched": "2026-07-14"
     }
   ],
   "counts": {
@@ -20066,7 +20089,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 18,
-    "skills": 67
+    "journalEntries": 19,
+    "skills": 68
   }
 }
