@@ -8,6 +8,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { ResearchTable } from "@/components/research-table";
 import { content, findDoc, findTable } from "@/lib/content";
+import { CreatorEconomyPathCalculator } from "@/components/creator-economy-path-calculator";
 
 export const dynamic = "force-static";
 
@@ -167,6 +168,16 @@ export default function CreatorsPage() {
           </CardContent>
         </Card>
       </div>
+
+      {/* === INTERACTIVE CREATOR-ECONOMY PATH A / B / C SCORER === */}
+      {/* Direct port of scripts/creator_economy_unit_economics.py to the
+          browser. Operator enters 12 current-creator-economy-fit inputs →
+          sees the canonical Path A / B / C recommendation with cost stack +
+          Year-1 incremental creator-economy revenue band + LTV multiplier +
+          content-licensing 2-4× uplift + 5-way-comparison correction +
+          5-payout creator-economy-structures matrix + 6-step build sequence.
+          State persists to ecom-ops:creator-economy-path:v1. */}
+      <CreatorEconomyPathCalculator />
 
       {/* === TL;DR (from research/12) === */}
       {r12 && (

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-14T11:58:01.020Z",
+  "generatedAt": "2026-07-14T12:17:20.589Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-07-14 11:57] Skill tick: keep — Community-led growth engine + paid community + Discord/Slack/Circle/Mighty Networks/Skool community operations + community-led-acquisition + UGC flywheel + creator-community loops + community-cohort-LTV-overlay (Move #63, 6-pillar Path A/B+/B/C+/C/D community-led-growth-engine, default 13:1 Year-1 ROI Path B at $3M GMV, FIRST Tier-1 + FIRST P0 in `category: community` — 18 numbered pitfalls)",
+      "body": "- **Branch:** autoresearch/skills-2026-07-14\n- **Status:** keep (unique category: `category: community` — first skill in this slot; confirmed via `grep -l \"^category: community$\" skills/*.md | wc -l = 0` before writing → `= 1` after the new skill is added; no other skill in the 62-skill corpus covers Discord + Slack + Circle + Mighty Networks + Skool + BetterMode + Tribe + Geneva + Vant + Swell + Kajabi + Teachable + Memberful + Memberstack + Outseta + Whop + School + Podium + Substack + Ghost + beehiiv + Kit + ConvertKit + Mailchimp + Klaviyo + Iterable + Braze + Salesforce Marketing Cloud + Salesforce Data Cloud + Postscript + Attentive + Triple Whale + Northbeam + Polar + Gorgias + Kustomer + Zendesk + HelpScout + Smile + Yotpo + LoyaltyLion + FriendBuy + Yotpo Referral + Referral Rock "
+    },
+    {
       "heading": "[2026-07-14 10:48] Skill tick: keep — People operations + org design + hiring pipeline + HRIS + payroll + onboarding + performance management + comp design + benefits + culture + employee experience (Move #7.1, Gusto + Rippling + Justworks + BambooHR + Deel + Remote + Papaya Global + Velocity Global + Multiplier + Paylocity + Paycom + ADP Workforce Now + Greenhouse + Lever + Workable + Ashby + Pave + Lattice + Culture Amp + 15Five + Officevibe + Peakon + Glint + Carta + Pulley + Shareworks + Modern Health + Spring Health + Lyra Health + Calm Business + Headspace + BetterUp + LinkedIn Recruiter + LinkedIn Recruiter Lite + LinkedIn Talent Insights + GitHub Recruiter + AngelList + Himalayas + Remote OK + We Work Remotely + YC + Wellfound + Built In + Indeed + Zip Recruiter + Snag, 5-pillar Path A/B/C/D people-operations-engine, default 11:1 Year-1 ROI Path B at $3M GMV, FIRST Tier-1 + FIRST P0 in `category: people-operations` — 18 numbered pitfalls)",
       "body": "- **Branch:** autoresearch/skills-2026-07-14\n- **Status:** keep (unique category: `category: people-operations` — first skill in this slot; confirmed via `grep -l \"^category: people-operations$\" skills/*.md | wc -l = 0` before writing → `= 1` after the new skill is added; no other skill in the 61-skill corpus covers Gusto + Rippling + Justworks + BambooHR + Deel + Remote + Papaya Global + Velocity Global + Multiplier + Paylocity + Paycom + ADP Workforce Now + ADP TotalSource + Greenhouse + Lever + Workable + Ashby + Pave + Lattice + Culture Amp + 15Five + Officevibe + Peakon + Glint + Carta + Pulley + Shareworks + Modern Health + Spring Health + Lyra Health + Calm Business + Headspace for Business + BetterUp + Zens + CoachAccountable + LinkedIn Recruiter + GitHub Recruiter + AngelList + Hi"
     },
@@ -19321,7 +19325,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 13,
+    "journalEntries": 14,
     "skills": 63
   }
 }
