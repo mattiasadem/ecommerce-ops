@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-14T20:42:59.326Z",
+  "generatedAt": "2026-07-14T21:57:10.326Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-07-14 20:45] Skill tick: keep — influencer + creator + UGC tax compliance (IRS 1099-NEC + 1099-MISC + 1099-K + W-9 + W-8BEN + W-8BEN-E + backup-withholding + state 1099 e-filing + international creator withholding + treaty-rate-decision-engine + Form 1042-S + Form 1042-T + Form 945 + Schedule C-Schedule SE + creator-economy-cohort-LTV-overlay + TIN-match + B-Notice-resolution + IRS Section 6721/6722 penalty prevention + FATCA chapter 4) (Move #68, IRS Pub 15-T + Form W-9 + Form W-8BEN + Form W-8BEN-E + Form 1099-NEC + Form 1099-MISC + Form 1099-K + Form 1042 + Form 1042-S + Form 1042-T + Form 945 + Form 8233 + FTB Form 599 + DFA NY 1099 + Track1099 + Sovos + Tax1099 + Yearli + Justworks + Gusto + Rippling + Paylocity + ADP + Paychex + QuickBooks + Xero + Levanta + Refersion + Aspire + GRIN + Impact + PartnerStack + Stripe + PayPal + Shopify Payments + Amazon Pay + Klaviyo + Postscript + Triple Whale + Northbeam + Polar, 5-pillar Path A/B/C/D creator-tax-compliance-engine, default 11:1 Year-1 ROI Path B at $3M GMV, FIRST Tier-1 + FIRST P0 in `category: creator-tax` — 18 numbered pitfalls, 8 verification gates A-H)",
+      "body": "- **Branch:** autoresearch/skills-2026-07-14\n- **Status:** keep (unique category: `category: creator-tax` — first skill in this slot; pre-write `grep -l \"^category: creator-tax$\" skills/*.md | wc -l = 0`, post-write `= 1`; no other skill in the 67-skill corpus covers IRS 1099-NEC + 1099-MISC + 1099-K + W-9 + W-8BEN + W-8BEN-E + backup-withholding 24% + state 1099 e-filing across 30-50 active-states + international creator withholding chapter 3 + treaty-rate-decision-engine + FATCA chapter 4 + Form 1042-S + Form 1042-T + Form 945 + Schedule C/Schedule SE + creator-economy-cohort-LTV-overlay + TIN-match-IRS-e-Services + B-Notice + C-Notice + 973-Notice resolution + IRS Section 6721 + Section 6722 penalty prevention + state 1099 portal late-filing-fee prevention as a 5-pillar Path A/B/C/D cre"
+    },
+    {
       "heading": "[2026-07-14 19:25] Skill tick: keep — ecommerce insurance + risk-transfer operations (GL + PL + Cyber + Workers Comp + EPLI + D&O + Cargo + Commercial Auto + Umbrella + Key-Person + BIPA + TCPA + GDPR + CCPA fines + ransomware + BEC + marketplace insurance compliance + B2B-MSA coverage + COI automation + claims evidence pipeline + master coverage tracker + broker relationship + parametric insurance + captive insurance + alternative risk transfer) (Move #67, Next Insurance + Vouch + Hiscox + Chubb + Travelers + Hartford + Liberty Mutual + AmTrust + Berkshire Hathaway + Tokio Marine + CoverWallet + Embroker + Certificial + myCOI + TrustLayer + Broker Buddha + Coalition + At-Bay + MetLife + Prudential + Lincoln Financial + Unum + Guardian + Aflac + Sun Life + Progressive Commercial + GEICO Commercial + State Farm Commercial + Nationwide Commercial, 5-pillar Path A/B/C/D ecommerce-insurance-operating-engine, default 9:1 Year-1 ROI Path B at $3M GMV, FIRST Tier-1 + FIRST P0 in `category: insurance-operations` — 18 numbered pitfalls, 8 verification gates A-H)",
       "body": "- **Branch:** autoresearch/skills-2026-07-14\n- **Status:** keep (unique category: `category: insurance-operations` — first skill in this slot; pre-write `grep -l \"^category: insurance-operations$\" skills/*.md | wc -l = 0`, post-write `= 1`; no other skill in the 66-skill corpus covers Next Insurance + Vouch + Hiscox + Chubb + Travelers + Hartford + Liberty Mutual + AmTrust + Berkshire Hathaway + Tokio Marine + CoverWallet + Embroker + Certificial + myCOI + TrustLayer + Broker Buddha + Coalition + At-Bay + MetLife + Prudential + Lincoln Financial + Unum + Guardian + Aflac + Sun Life + Progressive Commercial + GEICO Commercial + State Farm Commercial + Nationwide Commercial as a 5-pillar Path A/B/C/D ecommerce-insurance-operating-engine + multi-line-coverage-stack-binding + marketplace-insur"
     },
@@ -20081,6 +20085,50 @@
       "sourceCount": 0,
       "size": 124452,
       "lastTouched": "2026-07-14"
+    },
+    {
+      "file": "69-product-safety-compliance-recall-operations.md",
+      "name": "product-safety-compliance-recall-operations",
+      "title": "Product safety compliance + recall operations (Move #69)",
+      "category": "product-compliance",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": 69,
+      "yearOneRoiBand": "3:1–15:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-07-14",
+      "sources": [
+        "cpsc-gcc-2026",
+        "cpsc-cpc-2026",
+        "cpsc-section-15-reporting-2026",
+        "cpsc-recall-handbook-2026",
+        "cpsc-saferproducts-2026",
+        "cpsia-15-usc-2063",
+        "cpsa-15-usc-2064",
+        "ecfr-16-cfr-1107",
+        "ecfr-16-cfr-1110",
+        "ecfr-16-cfr-1115",
+        "eu-gpsr-2023-988",
+        "eu-safety-gate-2026",
+        "uk-opss-product-safety-2026",
+        "california-oehha-proposition-65-2026",
+        "fda-mocra-2026",
+        "fda-cosmetic-complaints-2026",
+        "fda-recall-policy-21-cfr-7",
+        "fda-dietary-supplements-2026",
+        "fcc-equipment-authorization-2026",
+        "eu-reach-2026",
+        "eu-rohs-2026",
+        "gs1-global-traceability-standard-2026",
+        "iso-10377-product-safety-2013",
+        "iso-10393-product-recall-2013"
+      ],
+      "blurb": "Build one SKU-level compliance control plane that blocks unsafe launches, preserves evidence, detects incidents early, and can identify, stop, notify, refund, and reconcile every affected unit without guessing.",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 24,
+      "size": 38745,
+      "lastTouched": "2026-07-14"
     }
   ],
   "counts": {
@@ -20089,7 +20137,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 19,
-    "skills": 68
+    "journalEntries": 20,
+    "skills": 69
   }
 }
