@@ -11,6 +11,7 @@ import { YourStoreCard } from "@/components/your-store-card";
 import { content } from "@/lib/content";
 import { CronHealthCard } from "@/components/cron-health-card";
 import { WorkspaceResetCard } from "@/components/workspace-reset-card";
+import { WorkspaceBackupCard } from "@/components/workspace-backup-card";
 
 export const dynamic = "force-static";
 
@@ -66,6 +67,13 @@ export default function SettingsPage() {
           researchCount={counts.researchDocs}
           assetsCount={counts.assets}
         />
+      </section>
+
+      <Separator />
+
+      {/* Portable workspace backup */}
+      <section>
+        <WorkspaceBackupCard />
       </section>
 
       <Separator />

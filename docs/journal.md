@@ -1,4 +1,13 @@
 <!-- new ticks insert here -->
+
+## 2026-07-14 06:06 — Portable workspace backup and restore
+
+- **What shipped:** `/settings` now downloads every `ecom-ops:*` localStorage value—store inputs, calculator/audit states, and progress—as one versioned JSON backup, then validates and restores it in another browser.
+- **Why it matters:** operators can move devices or clear browser data without losing the personalized state that powers the dashboard; unrelated browser data and server credentials are excluded.
+- **Files changed:** `dashboard/app/settings/page.tsx`, `dashboard/src/components/workspace-backup-card.tsx`, `dashboard/src/lib/workspace-backup.ts`, focused Node tests, and regenerated `content.json`.
+- **Verification:** 3/3 backup-core tests passed; Next.js generated all 91 pages; production `/settings` returned HTTP 200 with both actions, and its JS chunk contains the backup schema and restore path.
+- **Where to see it:** https://ecommerce-ops-iota.vercel.app/settings — use **Download workspace JSON** or **Import workspace JSON**.
+- **Push status:** GitHub accepted the refreshed PAT, but push protection rejected older unpushed history because prior journal commits contain an exposed Vercel token. Production is current via direct Vercel deploy; rotate/remove that token from history before the 27 local commits can be pushed.
 ## [2026-07-14 11:42] Skill tick: keep — Brand protection + counterfeit enforcement + MAP-policy monitoring + trademark defender + gray-market suppression + Amazon-IP-claim-orchestration + ResellerHub-integrity + test-buy program (Move #14.1, Red Points + MarqVision + Incopro + BrandShield + Ethoca + SnapRapid + ShopBox + Sterling Identity + Prialto + OpSec Security + Compass IP + Darts-ip + Corsearch + WTR + Anaqua + CPA Global + Clarivate + IPfolio + CSC + TrademarkNow + CompuMark + Wolters Kluwer + IPGuard + Amazon Brand Registry + Amazon Project Zero + Amazon Trademark Registry + eBay VeRO + Alibaba IPP + Etsy IP + Walmart IP Protection + Target Seller IP Defense + Mercari IP + Shopify Collabs + Klaviyo-IP-Segment + Gorgias-IP-Tier + Triple Whale revenue-recovery-overlay, 5-pillar Path A/B/C/D, 7:1 default Year-1 ROI Path B at $3M GMV, FIRST Tier-1 + FIRST P0 in `category: brand-protection` — 18 numbered pitfalls)
 
 - **Branch:** autoresearch/skills-2026-07-14
