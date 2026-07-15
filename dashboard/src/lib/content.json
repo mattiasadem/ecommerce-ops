@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-15T02:54:27.528Z",
+  "generatedAt": "2026-07-15T05:12:36.272Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-07-15 02:58] Skill tick: keep — Hazardous materials + lithium-battery dangerous-goods ecommerce operations",
+      "body": "- **Branch:** autoresearch/skills-2026-07-15\n- **Status:** keep\n- **Reason:** Metric-positive on three independent gates: `category: dangerous-goods` was empty before the write and now contains exactly one skill; this is the first Tier-1 and first P0 in the category. Its 18 numbered pitfalls establish the category ceiling.\n- **What shipped:** `skills/72-hazardous-materials-lithium-battery-dangerous-goods.md` plus a byte-identical dashboard mirror (~39 KB, 323 lines), canonical 10-field frontmatter, exactly 9 canonical H2 sections, 18 numbered pitfalls with 18 `Fix:` controls, 12 verification gates, and 27 source links. The runbook covers catalog discovery; 49 CFR/UN/ICAO/IATA/IMDG/postal classification; model-matched UN 38.3 evidence; SKU-package-quantity-lane decisions; packaging, marks, "
+    },
+    {
       "heading": "[2026-07-15 01:18] Skill tick: keep — Ecommerce order management + distributed order orchestration",
       "body": "- **Branch:** autoresearch/skills-2026-07-15\n- **Status:** keep\n- **Reason:** Metric-positive on three independent gates: `category: order-management` was empty before the write and now contains exactly one skill; this is the first Tier-1 and first P0 in that category. Its 18 numbered pitfalls establish the category ceiling.\n- **What shipped:** `skills/71-order-management-distributed-order-orchestration.md` plus a byte-identical dashboard mirror (~33 KB, 298 lines), canonical 10-field frontmatter, exactly 9 canonical H2 sections, 18 numbered pitfalls with 18 `Fix:` controls, 12 verification gates, and 21 source links. The runbook covers canonical order/line/payment/reservation/fulfillment/return/refund state machines; ATP and reservation TTL; order-level routing; payment authorization/capt"
     },
@@ -20601,6 +20605,63 @@
       "sourceCount": 14,
       "size": 39322,
       "lastTouched": "2026-07-15"
+    },
+    {
+      "file": "73-preorder-backorder-allocation-operations.md",
+      "name": "preorder-backorder-allocation-operations",
+      "title": "Preorder + backorder + allocation operations (Move #73)",
+      "category": "preorder-backorder",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": 73,
+      "yearOneRoiBand": "3:1–12:1",
+      "smsFriendly": true,
+      "lastUpdated": "2026-07-15",
+      "sources": [
+        "shopify-inventory-states 2026",
+        "shopify-admin-graphql-api 2026",
+        "shopify-product-variants 2026",
+        "shopify-checkout-extensibility 2026",
+        "shopify-payments-authorization 2026",
+        "shopify-webhooks 2026",
+        "stripe-payment-intents 2026",
+        "stripe-authorization-holds 2026",
+        "stripe-extended-authorization 2026",
+        "stripe-webhooks-2026",
+        "bigcommerce-orders-v3 2026",
+        "woocommerce-backorders-stock-status 2026",
+        "locksmith-backorder-management 2026",
+        "flits-back-in-stock-notification 2026",
+        "preproduct-preorder 2026",
+        "bold-pre-orders 2026",
+        "partial.ly-deposits 2026",
+        "recharge-subscriptions 2026",
+        "klaviyo-back-in-stock-flow 2026",
+        "klaviyo-waitlist-segment 2026",
+        "postscript-waitlist 2026",
+        "attentive-segmentation 2026",
+        "gorgias-helpdesk-2026",
+        "triple-whale-cohort-ltv 2026",
+        "northbeam-attribution 2026",
+        "polar-analytics 2026",
+        "ga4-measurement-protocol 2026",
+        "shopify-flow-2026",
+        "netsuite-demand-planning 2026",
+        "sap-ibor 2026",
+        "klaviyo-consent-tracking 2026",
+        "gdpr-recital-32 2026",
+        "ccpa-section-1798-135 2026",
+        "ftc-click-to-cancel-2024-rule",
+        "afterpay-pay-in-4 2026",
+        "klarna-pay-later 2026",
+        "affirm-financing-2026"
+      ],
+      "blurb": "Run one SKU-to-customer promise engine that decides what is purchasable today, captures intent with a verifiable authorization, reserves stock against a wave, renews or voids authorizations when supplier dates move, s...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 37,
+      "size": 38471,
+      "lastTouched": "2026-07-15"
     }
   ],
   "counts": {
@@ -20609,7 +20670,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 24,
-    "skills": 72
+    "journalEntries": 25,
+    "skills": 73
   }
 }
