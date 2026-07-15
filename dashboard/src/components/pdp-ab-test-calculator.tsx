@@ -10,6 +10,7 @@ import {
 import { formatInt, formatUsd } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import { CopyButton } from "@/components/copy-button";
+import { loadYourStore, mergeFromYourStore } from "@/lib/your-store";
 
 /**
  * Interactive PDP A/B Test Analyzer.
@@ -39,7 +40,9 @@ import { CopyButton } from "@/components/copy-button";
  *
  * Mounted on `/playbooks` next to the four existing ROI calculators
  * (abandoned-cart + post-purchase-upsell + welcome-series + AI ad-creative).
- * Same math + defaults as the Python CLI — no drift.
+ * Same math + defaults as the Python CLI — no drift. When no calculator-
+ * specific state exists yet, AOV + gross margin are pre-filled from the
+ * shared Your-store card on Overview.
  */
 
 const STORAGE_KEY = "ecom-ops:playbooks:pdp-ab:v1";
@@ -222,11 +225,30 @@ export function PdpAbTestCalculator() {
   const [inputs, setInputs] = useState<AbTestInputs>(PDP_AB_TEST_DEFAULTS);
   const [hydrated, setHydrated] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [fromYourStore, setFromYourStore] = useState(false);
 
-  // Hydrate from localStorage on mount so server-render matches client
-  // first paint (no hydration mismatch).
+  // Calculator-specific saved inputs win. On first use, project only the
+  // shared AOV + margin from Overview onto the canonical PDP defaults.
   useEffect(() => {
-    setInputs(loadStored() ?? PDP_AB_TEST_DEFAULTS);
+    const stored = loadStored();
+    if (stored) {
+      setInputs(stored);
+      setHydrated(true);
+      return;
+    }
+
+    const yourStore = loadYourStore();
+    if (yourStore) {
+      const projected = mergeFromYourStore<AbTestInputs>(
+        PDP_AB_TEST_DEFAULTS,
+        yourStore,
+      );
+      setInputs(projected);
+      setFromYourStore(
+        projected.aov !== PDP_AB_TEST_DEFAULTS.aov ||
+          projected.margin !== PDP_AB_TEST_DEFAULTS.margin,
+      );
+    }
     setHydrated(true);
   }, []);
 
@@ -246,6 +268,7 @@ export function PdpAbTestCalculator() {
     const cfg = NUMBER_FIELDS.find((f) => f.field === field);
     if (!cfg) return;
     const num = parseFloat(raw);
+    if (fromYourStore) setFromYourStore(false);
     setInputs((prev) => ({
       ...prev,
       [field]: clamp(Number.isNaN(num) ? cfg.min : num, cfg.min, cfg.max),
@@ -257,6 +280,7 @@ export function PdpAbTestCalculator() {
       const ok = window.confirm("Reset to default PDP A/B test inputs?");
       if (!ok) return;
     }
+    setFromYourStore(false);
     setInputs(PDP_AB_TEST_DEFAULTS);
   };
 
@@ -335,6 +359,14 @@ export function PdpAbTestCalculator() {
             Two-proportion z-test for the test you just ran, plus a steady-state
             program forecast for the rolling 4 tests/month cadence.
           </p>
+          {fromYourStore && (
+            <span
+              data-testid="pdp-ab-test-ys-badge"
+              className="mt-1 inline-flex w-fit items-center rounded-full border border-emerald-500/40 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium text-emerald-700 dark:text-emerald-300"
+            >
+              ← AOV + margin from Your store
+            </span>
+          )}
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <button

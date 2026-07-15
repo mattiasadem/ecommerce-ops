@@ -1,5 +1,12 @@
 <!-- new ticks insert here -->
 
+## 2026-07-15 00:41 — PDP A/B calculator inherits Your-store economics
+
+- **What shipped:** `/playbooks#pdp-ab-test` now pre-fills AOV and gross margin from `ecom-ops:your-store:v1` when the operator has not yet saved calculator-specific inputs. Existing PDP inputs keep priority, so this never overwrites an in-progress test.
+- **Why it matters:** one Overview edit now personalizes the PDP program forecast; annual gross-margin lift, net revenue, and ROI use the operator's own economics instead of canonical $75 / 70% defaults.
+- **Files changed:** `dashboard/src/components/pdp-ab-test-calculator.tsx`, `dashboard/src/lib/your-store.ts`, focused contract test `dashboard/scripts/test-pdp-ab-your-store.mjs`, and regenerated `dashboard/src/lib/content.json`.
+- **Verification:** focused contract test PASS; `node scripts/parse-content.mjs` refreshed 70 skills; `npm run build` compiled, type-checked, and generated 103/103 pages successfully. See https://ecommerce-ops-iota.vercel.app/playbooks#pdp-ab-test.
+
 ## [2026-07-15 00:25] Skill tick: keep — print direct mail + postcard + catalog + lookbook + mailer operations (Move #70, Lob + Postable + Inkit + Tactive + Reachdesk + PebblePost + Stomp + Modern Catalog + Vistaprint + MOO + Notion Mail + USPS EDDM + USPS Informed Delivery + USPS Promotions + postalytics + USPS NCOA + ACS + DSF2 + address-hygiene pipeline + variable-data print + QR-bridge + click-ID attribution + Triple Whale cohort-LTV + Northbeam MMM + holdout-test + frequency-cap math + 5-pillar Path A/B/C/D/E print-direct-mail-engine, default 9:1 Year-1 ROI Path B at $3M GMV, FIRST Tier-1 + FIRST P0 in `category: print-direct-mail` — 18 numbered pitfalls)
 
 - **Branch:** autoresearch/skills-2026-07-15

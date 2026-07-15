@@ -82,7 +82,7 @@ export function clearYourStore(): void {
  * The shared key map:
  *   aov           -> .aov (ac/ws) | .baseAov (ppu)
  *   monthlyOrders -> .checkoutsPerMonth (ac) | .ordersPerMonth (ppu/ws optins)
- *   grossMargin   -> .grossMargin (ws) | .upsellMargin (ppu, falls back)
+ *   grossMargin   -> .grossMargin (ws) | .margin (PDP A/B) | .upsellMargin (ppu, falls back)
  *
  * `extra` lets a calculator map additional fields (e.g. ws reads optins).
  */
@@ -103,8 +103,10 @@ export function mergeFromYourStore<T>(
   if ("optinsPerMonth" in merged && !("ordersPerMonth" in merged)) {
     merged.optinsPerMonth = yourStore.monthlyOrders;
   }
-  // Gross margin — welcome-series uses `grossMargin`; post-purchase uses `upsellMargin`.
+  // Gross margin — welcome-series uses `grossMargin`; PDP A/B uses `margin`;
+  // post-purchase uses `upsellMargin`.
   if ("grossMargin" in merged) merged.grossMargin = yourStore.grossMargin;
+  if ("margin" in merged) merged.margin = yourStore.grossMargin;
   if ("upsellMargin" in merged) merged.upsellMargin = yourStore.grossMargin;
   if (extra) {
     for (const [k, v] of Object.entries(extra as Record<string, unknown>)) {

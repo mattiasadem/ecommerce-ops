@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-15T00:22:26.880Z",
+  "generatedAt": "2026-07-15T00:42:14.273Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,14 @@
   },
   "journal": [
     {
+      "heading": "2026-07-15 00:41 — PDP A/B calculator inherits Your-store economics",
+      "body": "- **What shipped:** `/playbooks#pdp-ab-test` now pre-fills AOV and gross margin from `ecom-ops:your-store:v1` when the operator has not yet saved calculator-specific inputs. Existing PDP inputs keep priority, so this never overwrites an in-progress test.\n- **Why it matters:** one Overview edit now personalizes the PDP program forecast; annual gross-margin lift, net revenue, and ROI use the operator's own economics instead of canonical $75 / 70% defaults.\n- **Files changed:** `dashboard/src/components/pdp-ab-test-calculator.tsx`, `dashboard/src/lib/your-store.ts`, focused contract test `dashboard/scripts/test-pdp-ab-your-store.mjs`, and regenerated `dashboard/src/lib/content.json`.\n- **Verification:** focused contract test PASS; `node scripts/parse-content.mjs` refreshed 70 skills; `npm run"
+    },
+    {
+      "heading": "[2026-07-15 00:25] Skill tick: keep — print direct mail + postcard + catalog + lookbook + mailer operations (Move #70, Lob + Postable + Inkit + Tactive + Reachdesk + PebblePost + Stomp + Modern Catalog + Vistaprint + MOO + Notion Mail + USPS EDDM + USPS Informed Delivery + USPS Promotions + postalytics + USPS NCOA + ACS + DSF2 + address-hygiene pipeline + variable-data print + QR-bridge + click-ID attribution + Triple Whale cohort-LTV + Northbeam MMM + holdout-test + frequency-cap math + 5-pillar Path A/B/C/D/E print-direct-mail-engine, default 9:1 Year-1 ROI Path B at $3M GMV, FIRST Tier-1 + FIRST P0 in `category: print-direct-mail` — 18 numbered pitfalls)",
+      "body": "- **Branch:** autoresearch/skills-2026-07-15\n- **Status:** keep (unique category: `category: print-direct-mail` — first skill in this slot; confirmed via `grep -l \"^category: print-direct-mail$\" skills/*.md | wc -l = 0` pre-write → `= 1` post-write; all 5 canonical metric gates pass: (a) **unique category** YES; (b) **Tier-1 first** YES — first Tier-1 in print-direct-mail; (c) **P0 first** YES — first P0 in print-direct-mail; (d) **highest pitfall count** = **18** (matches canonical 18-pitfall ceiling); (e) **default Year-1 ROI 9:1 Path B at $3M GMV** with band 5:1–22:1)\n- **Reason:** **METRIC-POSITIVE — UNIQUE-CATEGORY SLOT FILLED.** The DTC retention + reactivation + B2B trade + press / influencer / creator / cold-prospect / VIP / loyalty-tier-up + anniversary + birthday + gift-card + su"
+    },
+    {
       "heading": "[2026-07-14 21:55] Skill tick: keep — product safety compliance + recall operations (Move #69, CPSC/CPSIA + GCC/CPC + Section 15(b) + EU GPSR + EU Responsible Person + Safety Gate + GB/NI split + California Proposition 65 + FDA MoCRA + lot traceability + marketplace stop-sale + recall command center)",
       "body": "- **Branch:** autoresearch/skills-2026-07-14\n- **Status:** keep\n- **Reason:** **METRIC-POSITIVE — UNIQUE CATEGORY + FIRST TIER-1 + FIRST P0.** Pre-write RED proved the candidate and dashboard mirror absent, `category: product-compliance` count = 0, Tier-1 count in category = 0, P0 count in category = 0, 68 existing numbered skills, and next number = 69 (7 pass / 0 fail). Post-write evaluation proved the category count is 1, this is the first Tier-1 and first P0 in that category, and the runbook has 18 numbered pitfalls.\n- **What shipped:** `skills/69-product-safety-compliance-recall-operations.md` + byte-identical dashboard mirror (~39 KB) with canonical 10-field frontmatter including 24 source tokens, exactly 9 canonical H2 sections, 18 numbered pitfalls with 18 `Fix:` controls, 12 verifi"
     },
@@ -20522,7 +20530,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 21,
+    "journalEntries": 23,
     "skills": 70
   }
 }
