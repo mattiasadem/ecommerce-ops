@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-15T01:36:27.278Z",
+  "generatedAt": "2026-07-15T02:54:27.528Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-07-15 01:18] Skill tick: keep — Ecommerce order management + distributed order orchestration",
+      "body": "- **Branch:** autoresearch/skills-2026-07-15\n- **Status:** keep\n- **Reason:** Metric-positive on three independent gates: `category: order-management` was empty before the write and now contains exactly one skill; this is the first Tier-1 and first P0 in that category. Its 18 numbered pitfalls establish the category ceiling.\n- **What shipped:** `skills/71-order-management-distributed-order-orchestration.md` plus a byte-identical dashboard mirror (~33 KB, 298 lines), canonical 10-field frontmatter, exactly 9 canonical H2 sections, 18 numbered pitfalls with 18 `Fix:` controls, 12 verification gates, and 21 source links. The runbook covers canonical order/line/payment/reservation/fulfillment/return/refund state machines; ATP and reservation TTL; order-level routing; payment authorization/capt"
+    },
+    {
       "heading": "2026-07-15 00:41 — PDP A/B calculator inherits Your-store economics",
       "body": "- **What shipped:** `/playbooks#pdp-ab-test` now pre-fills AOV and gross margin from `ecom-ops:your-store:v1` when the operator has not yet saved calculator-specific inputs. Existing PDP inputs keep priority, so this never overwrites an in-progress test.\n- **Why it matters:** one Overview edit now personalizes the PDP program forecast; annual gross-margin lift, net revenue, and ROI use the operator's own economics instead of canonical $75 / 70% defaults.\n- **Files changed:** `dashboard/src/components/pdp-ab-test-calculator.tsx`, `dashboard/src/lib/your-store.ts`, focused contract test `dashboard/scripts/test-pdp-ab-your-store.mjs`, and regenerated `dashboard/src/lib/content.json`.\n- **Verification:** focused contract test PASS; `node scripts/parse-content.mjs` refreshed 70 skills; `npm run"
     },
@@ -20563,6 +20567,40 @@
       "sourceCount": 21,
       "size": 33639,
       "lastTouched": "2026-07-15"
+    },
+    {
+      "file": "72-hazardous-materials-lithium-battery-dangerous-goods.md",
+      "name": "hazardous-materials-lithium-battery-dangerous-goods",
+      "title": "Hazardous materials + lithium-battery dangerous-goods ecommerce operations (Move #72)",
+      "category": "dangerous-goods",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": 72,
+      "yearOneRoiBand": "2:1–10:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-07-15",
+      "sources": [
+        "dot-49-cfr-171-172-173 2026",
+        "phmsa-lithium-battery-guide 2026",
+        "faa-lithium-battery-resources 2026",
+        "faa-lithium-battery-incidents 2026",
+        "un-manual-tests-criteria 2023",
+        "icao-technical-instructions 2025-2026",
+        "iata-dgr-67th-edition 2026",
+        "iata-lithium-battery-guidance 2026",
+        "imo-imdg-amendment-42-24 2026",
+        "usps-publication-52 2026",
+        "epa-used-lithium-batteries 2026",
+        "osha-hazard-communication 2026",
+        "ups-battery-guide 2026",
+        "amazon-dangerous-goods 2026"
+      ],
+      "blurb": "Build one SKU-to-lane dangerous-goods control plane that proves classification, battery test status, package configuration, marks, labels, documents, training, carrier acceptance, and incident handling before a regula...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 14,
+      "size": 39322,
+      "lastTouched": "2026-07-15"
     }
   ],
   "counts": {
@@ -20571,7 +20609,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 23,
-    "skills": 71
+    "journalEntries": 24,
+    "skills": 72
   }
 }

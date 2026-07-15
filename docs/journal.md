@@ -1,5 +1,15 @@
 <!-- new ticks insert here -->
 
+## [2026-07-15 02:58] Skill tick: keep — Hazardous materials + lithium-battery dangerous-goods ecommerce operations
+- **Branch:** autoresearch/skills-2026-07-15
+- **Status:** keep
+- **Reason:** Metric-positive on three independent gates: `category: dangerous-goods` was empty before the write and now contains exactly one skill; this is the first Tier-1 and first P0 in the category. Its 18 numbered pitfalls establish the category ceiling.
+- **What shipped:** `skills/72-hazardous-materials-lithium-battery-dangerous-goods.md` plus a byte-identical dashboard mirror (~39 KB, 323 lines), canonical 10-field frontmatter, exactly 9 canonical H2 sections, 18 numbered pitfalls with 18 `Fix:` controls, 12 verification gates, and 27 source links. The runbook covers catalog discovery; 49 CFR/UN/ICAO/IATA/IMDG/postal classification; model-matched UN 38.3 evidence; SKU-package-quantity-lane decisions; packaging, marks, labels, documents, training, carrier acceptance, returns/DDR separation, incident reporting, and audit/reconciliation.
+- **Research:** Checked current Cornell LII mirrors of 49 CFR 171.15, 171.16, 172.101, 172.200/201/202, 172.400, 172.602/604/704, 173.22, and 173.185; FAA lithium resources/incidents; IATA DGR and battery pages; IMO IMDG; USPS Publication 52; EPA used-battery guidance; and carrier/marketplace entry points. IATA identifies the DGR 67th Edition as effective 1 January 2026; IMO identifies Amendment 42-24 as mandatory from 1 January 2026. PHMSA/UNECE and official eCFR pages were blocked or redirected from this server, so the skill explicitly requires direct current-text verification. The delegated web worker returned a preamble-only result with `tool_trace=[]` and was rejected rather than cited.
+- **TDD:** RED proved candidate and mirror absent, category count `0`, 71 skills, max number 71, and next slot 72. GREEN structural validation passed 19/19 checks after one intentional RED correction for the exact IMDG sentinel. Parser reported 72 skills; local build generated 105/105 pages and all 72 skill routes (`[+69 more paths]`).
+- **Verification:** Local Next.js 15.5.19 build passed in one attempt; existing non-fatal warning remains that ESLint is not installed. Vercel production build passed and was ready in 47 seconds. Both public project alias and canonical alias returned HTTP 200, 183,283 bytes, and all four live content sentinels: `UN 38.3`, `IATA DGR 67th Edition`, `IMDG Code Amendment 42-24`, and `DOT Form F 5800.1`.
+- **Next action:** select the next fresh Tier-1/P0 category; strongest candidate is preorder/backorder allocation operations with inventory allocation priority, customer consent, payment authorization renewal, release waves, split/cancel policy, promise integrity, and exception reconciliation.
+
 ## [2026-07-15 01:18] Skill tick: keep — Ecommerce order management + distributed order orchestration
 - **Branch:** autoresearch/skills-2026-07-15
 - **Status:** keep
