@@ -14,6 +14,10 @@ import {
   validateThreeplInputs,
 } from "@/lib/threepl";
 import { CopyButton } from "@/components/copy-button";
+import {
+  loadYourStore,
+  mergeFromYourStore,
+} from "@/lib/your-store";
 import { cn } from "@/lib/utils";
 
 /**
@@ -243,11 +247,44 @@ function SelectInput<T extends string>({
 export function ThreeplPathCalculator() {
   const [inputs, setInputs] = useState<BrandOpsInputs>(THREEPL_DEFAULTS);
   const [hydrated, setHydrated] = useState(false);
+  const [fromYourStore, setFromYourStore] = useState(false);
 
   useEffect(() => {
     const stored = loadStored();
-    if (stored) setInputs(stored);
+    if (stored) {
+      setInputs(stored);
+      setFromYourStore(false);
+      return;
+    }
+    // Fall back to the operator's cross-page Your-store inputs (if any).
+    // For 3PL we map orders → ordersPerMonth and aov → aov directly.
+    const yourStore = loadYourStore();
+    if (yourStore) {
+      setInputs(mergeFromYourStore(THREEPL_DEFAULTS, yourStore));
+      setFromYourStore(true);
+    }
     setHydrated(true);
+  }, []);
+
+  // Listen for cross-card edits to Your-store so the personalized
+  // lift panel re-projects when the operator updates their
+  // numbers on Overview (only when the operator has not yet
+  // overridden the inputs locally).
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const handler = (e: StorageEvent) => {
+      if (e.key !== "ecom-ops:your-store:v1") return;
+      // Skip if the operator has explicit local edits — stored
+      // values win over a cross-card re-hydration.
+      if (loadStored()) return;
+      const refreshed = loadYourStore();
+      if (refreshed) {
+        setInputs(mergeFromYourStore(THREEPL_DEFAULTS, refreshed));
+        setFromYourStore(true);
+      }
+    };
+    window.addEventListener("storage", handler);
+    return () => window.removeEventListener("storage", handler);
   }, []);
 
   useEffect(() => {
@@ -273,6 +310,7 @@ export function ThreeplPathCalculator() {
 
   function resetDefaults() {
     setInputs(THREEPL_DEFAULTS);
+    setFromYourStore(false);
   }
 
   const report = useMemo(() => {
@@ -295,6 +333,12 @@ export function ThreeplPathCalculator() {
           <span className="rounded border border-accent/40 bg-accent/10 px-1.5 py-0.5 text-[10px] font-mono uppercase tracking-wider text-accent">
             Interactive · Move #12
           </span>
+          {fromYourStore && hydrated && (
+            <span className="inline-flex items-center gap-1 rounded-full border border-accent/40 bg-accent/10 px-2 py-0.5 text-[10px] font-medium text-accent">
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent" />
+              Prefilled from Your store on Overview
+            </span>
+          )}
         </div>
         <p className="text-xs text-muted-foreground leading-relaxed">
           Direct port of{" "}
