@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-15T00:42:14.273Z",
+  "generatedAt": "2026-07-15T01:36:27.278Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -20522,6 +20522,47 @@
       "sourceCount": 361,
       "size": 60497,
       "lastTouched": "2026-07-15"
+    },
+    {
+      "file": "71-order-management-distributed-order-orchestration.md",
+      "name": "order-management-distributed-order-orchestration",
+      "title": "Ecommerce order management + distributed order orchestration (Move #71)",
+      "category": "order-management",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": 71,
+      "yearOneRoiBand": "3:1–12:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-07-15",
+      "sources": [
+        "shopify-admin-graphql-order 2026",
+        "shopify-fulfillment-order 2026",
+        "shopify-inventory-states 2026",
+        "shopify-order-editing 2026",
+        "shopify-webhook-topics 2026",
+        "stripe-authorize-capture 2026",
+        "stripe-idempotency 2026",
+        "stripe-webhooks 2026",
+        "aws-transactional-outbox 2026",
+        "aws-saga-orchestration 2026",
+        "aws-sqs-dead-letter-queues 2026",
+        "aws-powertools-idempotency 2026",
+        "google-sre-slo 2026",
+        "opentelemetry-traces 2026",
+        "pci-dss 2026",
+        "fluent-commerce-docs 2026",
+        "manhattan-active-order-management 2026",
+        "salesforce-order-management 2026",
+        "ibm-sterling-order-management 2026",
+        "fabric-oms 2026",
+        "kibo-order-management 2026"
+      ],
+      "blurb": "Build one auditable order-control plane that accepts an order once, reserves inventory once, authorizes or captures payment once, routes each line to a viable node, survives duplicate and out-of-order events, and give...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 21,
+      "size": 33639,
+      "lastTouched": "2026-07-15"
     }
   ],
   "counts": {
@@ -20531,6 +20572,6 @@
     "tables": 57,
     "findings": 8,
     "journalEntries": 23,
-    "skills": 70
+    "skills": 71
   }
 }
