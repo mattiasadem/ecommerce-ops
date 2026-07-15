@@ -40,6 +40,7 @@ const NAV_GROUPS = [
       { href: "/pinterest-seo", label: "Pinterest + SEO", icon: "✿" },
       { href: "/amazon-dsp-amazon-attribution-audit", label: "Amazon DSP", icon: "◈" },
       { href: "/attribution-health-alert-archive", label: "Attribution alerts", icon: "⚠" },
+      { href: "/attribution-quality", label: "Attribution quality", icon: "✓" },
       { href: "/smsbump-postscript-channel-orchestration", label: "SMSBump SMS", icon: "✉" },
       { href: "/generative-ai-engine", label: "AI engine", icon: "✺" },
       { href: "/international", label: "International", icon: "◯" },
