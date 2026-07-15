@@ -8,6 +8,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { ResearchTable } from "@/components/research-table";
 import { AttributionQualityAudit } from "@/components/attribution-quality-audit";
+import { AttributionDriftRollup } from "@/components/attribution-drift-rollup";
 import { content, findDoc, findTable } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -59,6 +60,9 @@ export default function AttributionQualityPage() {
 
       {/* ===== Interactive Move #6.5 audit ===== */}
       <AttributionQualityAudit />
+
+      {/* ===== Interactive Move #6.8 cross-platform rollup ===== */}
+      <AttributionDriftRollup />
 
       {/* ===== Substrate context cards ===== */}
       <div className="grid gap-4 lg:grid-cols-3">
@@ -203,15 +207,12 @@ export default function AttributionQualityPage() {
       {/* ===== Footer ===== */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">
-            Future-tick companion (planned, not yet shipped)
-          </CardTitle>
+          <CardTitle className="text-base">Move #6.8 is now interactive</CardTitle>
           <CardDescription>
-            The next-priority bounded improvement that ships after this page. The natural
-            follow-up is a per-platform-drift-rollup-scoring-bridge that ingests Gate G outputs
-            from Move #6.5 (this audit) + Move #6.6 (TikTok) + Move #6.7 (Snap + Pinterest)
-            and emits one consolidated cross-platform drift score + prioritized fix list. The
-            scoring math ports from{" "}
+            The cross-platform rollup above imports current persisted audit metrics from Move
+            #6.5 (Meta) + Move #6.6 (TikTok) + Move #6.7 (Snap), applies the canonical D1/D2/D3
+            thresholds, and emits one consolidated health score, shared-root-cause hypothesis,
+            and paste-ready incident report. Its scoring math is ported from{" "}
             <code className="font-mono text-[11px]">scripts/attribution_cross_platform_rollup.py</code>{" "}
             and pairs with playbook{" "}
             <code className="font-mono text-[11px]">06.8-cross-platform-attribution-drift-unification.md</code>.
@@ -226,6 +227,7 @@ export default function AttributionQualityPage() {
           <Badge variant="outline">GA4</Badge>
           <Badge variant="outline">Klaviyo cohort roundtrip</Badge>
           <Badge variant="outline">Drift monitoring</Badge>
+          <Badge variant="outline">D1 / D2 / D3 scorer</Badge>
         </CardContent>
       </Card>
     </div>
