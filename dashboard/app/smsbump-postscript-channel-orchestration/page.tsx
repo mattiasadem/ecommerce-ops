@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ResearchTable } from "@/components/research-table";
+import { SmsbumpPostscriptChannelOrchestrationCalculator } from "@/components/smsbump-postscript-path-calculator";
 import { content, findDoc, findTable } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -292,6 +293,9 @@ export default function SmsbumpPostscriptChannelOrchestrationPage() {
           </CardContent>
         </Card>
       )}
+
+      {/* === INTERACTIVE CALCULATOR (Move #19 SMSBump + Postscript Channel Orchestration) === */}
+      <SmsbumpPostscriptChannelOrchestrationCalculator />
 
       {/* === LAYER CARDS === */}
       <div className="flex flex-col gap-3">
