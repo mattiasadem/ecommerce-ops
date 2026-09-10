@@ -6,6 +6,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { AttributionHealthAlertCalculator } from "@/components/attribution-health-alert-calculator";
 import { content, findDoc, findTable } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -507,6 +508,9 @@ export default function AttributionHealthAlertArchivePage() {
           </CardContent>
         </Card>
       </div>
+
+      {/* === MOVE #6.10 INTERACTIVE SCORER === */}
+      <AttributionHealthAlertCalculator />
 
       {/* === FUTURE-TICK COMPANIONS FOOTER === */}
       <Card>

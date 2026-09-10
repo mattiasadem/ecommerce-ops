@@ -13,6 +13,7 @@ import { PostPurchaseUpsellROICalculator as PostPurchaseUpsellRoi } from "@/comp
 import { WelcomeSeriesROICalculator as WelcomeSeriesRoi } from "@/components/welcome-series-roi";
 import { YourStoreCard } from "@/components/your-store-card";
 import { NextMoveCard } from "@/components/next-move";
+import { IkasLiveCard } from "@/components/ikas-live-card";
 import Link from "next/link";
 
 export const dynamic = "force-static";
@@ -157,6 +158,16 @@ export default function TodayPage() {
             <YourStoreCard />
           </CardContent>
         </Card>
+      </section>
+
+      {/* === Live Ikas — real store numbers from /api/ikas/overview ===
+          Mounted here (and on /) so the operator's daily cockpit shows
+          actual order count + revenue + product count, not just the
+          industry-median defaults from Your-store. When the Ikas OAuth
+          token is missing/expired, this card renders a refresh recipe
+          instead of fabricated numbers. */}
+      <section>
+        <IkasLiveCard />
       </section>
 
       {/* === Next move — what to ship === */}
