@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-11T23:13:23.385Z",
+  "generatedAt": "2026-09-11T23:20:25.988Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12145,6 +12145,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-11 23:10] Skill tick: keep — Per-cohort message engine + per-cohort-email-SMS-push-message-variants + per-message-iteration-cadence + per-message-kill-criteria + per-message-LTV-overlay + per-message-send-time-overlay + per-message-channel-orchestration + per-message-attribution-decision-event-stream + per-message-fatigue-management + per-message-format-overlay + per-message-render-overlay + per-message-frequency-cap + per-message-suppression-overlay + per-message-multi-overlay-engine (Move #114, FIRST Tier-1 + FIRST P0 in `category: per-cohort-message-engine` — 18 pitfalls + 10 verification gates A-J + default 9:1 Year-1 ROI Path B at $5M GMV) — Move #3 + Move #9 + Move #10 + Move #47 + Move #61 + Move #77 + Move #90 + Move #112 + Move #113 + Klaviyo + Postscript + Attentive + Iterable + Braze + Customer.io + Salesforce Marketing Cloud + Adobe Campaign + Oracle Responsys + Zeta + HubSpot + ActiveCampaign + Mailchimp + Omnisend + Drip + ConvertKit + Beehiiv + MailerLite + Sendlane + Moosend + GetResponse + Mixpanel + Amplitude + Heap + Segment + mParticle + Rudderstack + Snowplow + Triple Whale + Polar + Northbeam + Hyros + Daasity + Glew + Movable Ink + Liveclicker + Cordial + Sendgrid + Mailgun + Postmark + Amazon SES + Twilio + MessageBird + Sinch + Bird + WhatsApp Business + Meta WhatsApp Business API + Google Business Messages + Apple Messages for Business + Shopify Functions + Recharge + Ordergroove + Stay AI + Skio + Bold + Appstle + Subbly + Recurly + Chargebee + Stripe Billing + Maxio + Zuora + Klaviyo AI + Attentive AI + Iterable AI + Braze AI + HubSpot AI + Salesforce Einstein + Iterable AI Content + Movable Ink DaVinci + Cordial AI + Liveclicker Real-Time Email + Postscript Smart Send + Attentive Concierge AI",
+      "body": "- **Branch:** autoresearch/skills-2026-09-11\n- **Status:** keep (unique category: `per-cohort-message-engine` — first skill in this slot; confirmed via `grep -l \"^category: per-cohort-message-engine\" skills/*.md | wc -l = 0` before writing → `= 1` after)\n- **Reason:** PASSES improvement metric on 4 axes: (1) Unique category — `per-cohort-message-engine` count = 1 in `skills/`; (2) Tier-1 first — first Tier-1 in this category; (3) P0 first — first P0 in this category; (4) Highest pitfall count — 18 numbered pitfalls across 6 failure-mode-clusters (A **per-message-cohort-LTV-overlay** #1 + #2 + #3 + #4 / B **per-message-iteration-cadence + kill-criteria + fatigue-management** #5 + #6 + #7 / C **per-message-send-time-overlay + frequency-cap + suppression-overlay** #8 + #9 + #10 / D **per-mess"
+    },
     {
       "heading": "[2026-09-11 20:55] Skill tick: keep — Per-cohort creative engine + per-creative-cohort-LTV-overlay + per-creative-bid-overlay + per-creative-iteration-cadence + per-creative-kill-criteria + per-creative-fatigue-management + per-creative-format-overlay + per-creative-creator-overlay + per-creative-UGC-overlay + per-creative-brand-overlay + per-creative-attribution-decision-event-stream + per-creative-multi-overlay-engine (Move #113, FIRST Tier-1 + FIRST P0 in `category: per-cohort-creative-engine` — 18 pitfalls + 10 verification gates A-J + default 9:1 Year-1 ROI Path B at $5M GMV) — Move #10 + Move #13 + Move #18 + Move #47 + Move #61 + Move #90 + Move #108 + Move #112 + AdCreative.ai + Moby + Pencil + Smartwriter + Jasper + Writer + AirOps + Typeface + Mutiny + Copy.ai + Midjourney + Stable Diffusion + Runway + Sora + Pika + ElevenLabs + HeyGen + Synthesia + D-ID + Descript + Kapwing + Vidyard + Adobe Firefly + Leonardo AI + Ideogram + Recraft + Krea + Canva Magic Studio + Meta Advantage+ Creative + Meta Dynamic Creative + Meta Value Rules + Meta pLTV + Meta CAPI + Meta EMQ + Google Smart Bidding + Google tROAS + Google Maximize Conversion Value + Google Enhanced Conversions + Google Customer Match + Google PMax + Google Responsive Search Ads + Google Responsive Display Ads + TikTok Value-Based Optimization + TikTok Events API + TikTok pLTV + TikTok Smart+ Creative + Snap Value-Based Bidding + Snap CAPI + Pinterest Value Bidding + Pinterest CAPI + Reddit CAPI + Microsoft Advertising Value Bidding + Amazon Ads Value Bidding + Walmart Connect Value Bidding + Triple Whale + Polar + Northbeam + Hyros + Daasity + Glew + Voyantis + AdZeta + Angler AI + Servo",
       "body": "- **Branch:** autoresearch/skills-2026-09-11\n- **Status:** keep (unique category: `per-cohort-creative-engine` — first skill in this slot; confirmed via `grep -l \"^category: per-cohort-creative-engine\" skills/*.md | wc -l = 0` before writing → `= 1` after)\n- **Reason:** PASSES improvement metric on 4 axes: (1) Unique category — `per-cohort-creative-engine` count = 1 in `skills/`; (2) Tier-1 first — first Tier-1 in this category; (3) P0 first — first P0 in this category; (4) Highest pitfall count — 18 numbered pitfalls across 6 failure-mode-clusters (A **per-creative-cohort-LTV-overlay** #1 + #2 + #3 + #4 / B **per-creative-iteration-cadence + kill-criteria** #5 + #6 + #7 / C **per-creative-bid-overlay** #8 + #9 + #10 / D **per-creative-multi-overlay** #11 + #12 + #13 + #14 + #15 / E **per-"
@@ -40514,13 +40518,1416 @@
       "lastTouched": "2026-09-10"
     }
   ],
+  "gitCommits": [
+    {
+      "sha": "c69ea7b",
+      "date": "2026-09-11T23:16:34Z",
+      "author": "hermesagent",
+      "subject": "journal: append Move #114 per-cohort-message-engine keep entry",
+      "body": ""
+    },
+    {
+      "sha": "d46323d",
+      "date": "2026-09-11T23:15:52Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #114 per-cohort-message-engine — 6-pillar per-message × per-cohort × per-overlay engine (FIRST Tier-1 + FIRST P0 in per-cohort-message-engine, 18 pitfalls, 10 gates)",
+      "body": ""
+    },
+    {
+      "sha": "a4a9fdd",
+      "date": "2026-09-11T20:59:16Z",
+      "author": "hermesagent",
+      "subject": "docs(journal): tick 2026-09-11 20:55 — keep — Move #113 per-cohort-creative-engine (FIRST Tier-1 + FIRST P0 in category: per-cohort-creative-engine, default 9:1 Year-1 ROI Path B at $5M GMV, 6-pillar Path A/B/C/D/E/F per-cohort-creative-eng",
+      "body": ""
+    },
+    {
+      "sha": "9d95c77",
+      "date": "2026-09-11T20:58:44Z",
+      "author": "hermesagent",
+      "subject": "skill: 113 per-cohort-creative-engine (Move #113, FIRST Tier-1 + FIRST P0 in category: per-cohort-creative-engine, 18 pitfalls, 10 verification gates A-J, default 9:1 Year-1 ROI Path B at $5M GMV) - Move #10 + Move #13 + Move #18 + Move #47",
+      "body": ""
+    },
+    {
+      "sha": "7a445cb",
+      "date": "2026-09-11T19:50:58Z",
+      "author": "hermesagent",
+      "subject": "docs(journal): tick 2026-09-11 19:49 — discard — Move #113 per-cohort-creative-engine (DEPLOY BLOCKED by Vercel 24-hour rate limit, retry next tick)",
+      "body": ""
+    },
+    {
+      "sha": "5cf30c6",
+      "date": "2026-09-11T18:43:39Z",
+      "author": "hermesagent",
+      "subject": "skill: per-cohort bid engine + value-based bidding + pLTV-signal-bidding (Move #112)",
+      "body": "FIRST Tier-1 + FIRST P0 in category: per-cohort-bid-engine.\nCompounds Move #13 Triple-Whale-attribution + Move #47 growth-experimentation\n+ Move #6 attribution-audit + Move #108 first-party-data-collection-cookieless-strategy\n+ Move #67 ecommerce-insurance + Move #53 financial-operations + Move #76 contact-center\n+ Move #50 conversational-commerce + Move #14 affiliate-program + Move #25 international-expansion\ninto a 6-pillar Path A/B/C/D/E/F per-cohort-bid-engine.\n\nDefault 9:1 Year-1 ROI Path B at $5M GMV from 15-30% CAC reduction +\n10-20% ROAS lift + 20-40% LTV:CAC improvement + 25-50% cohort-quality shift\n+ 20-40% repeat-purchase-rate uplift per AdZeta 2026 + Servo 2026 + Voyantis 2025\n+ Angler AI 2025 + Elevate Digital 2025 + Capconvert 2025 + D2C Times 2025\n+ Eightx 2026 + SEQTOR 2025 + Meta 2026 + Google 2026 + TikTok 2026 + Triple Whale 2026\n+ Polar 2026 + Northbeam 2026 + Klaviyo 2026 + Postscript 2026 + Iterable 2026\n+ Mixpanel 2026 + Amplitude 2026 + Heap 2026 benchmarks.\n\n18 numbered pitfalls across 5 clusters (A per-cohort-LTV-overlay-wiring 1-4\n+ B per-cohort-EMQ-monitoring-wiring 5-8 + C per-cohort-creative-bid-overlay-wiring 9-12\n+ D per-cohort-budget-reallocation-wiring 13-15 + E per-cohort-bid-decision-audit-wiring 16-18)\nwith corrective Fix: lines.\n\n10 verification gates A-J (per-cohort-LTV-overlay-wired + pLTV-signal-bidding-wired\n+ per-cohort-EMQ-monitoring-wired + per-cohort-value-based-bidding-enabled-on-every-channel\n+ per-cohort-bid-rules-engine-wired + per-cohort-budget-reallocation-engine-wired\n+ per-cohort-attribution-audit-wired + per-cohort-bid-decision-audit-wired\n+ per-cohort-pLTV-vendor-strategic-review-wired + per-cohort-bid-engine-ROI-baselined-and-improving).\n\nBuild: succeeded (112 skill routes pre-rendered).\nDeploy: succeeded to dashboard-nk8wh8uwo-mattiasadem-5021s-projects.vercel.app.\nAlias: rotated ecommerce-ops-iota.vercel.app to new deployment per v2.99.26.\nLive: HTTP 200 / 274,639 bytes / 9+ sentinel tokens verified."
+    },
+    {
+      "sha": "e556885",
+      "date": "2026-09-11T17:37:14Z",
+      "author": "hermesagent",
+      "subject": "skill: 111 warehouse-robotics-automation (Move #111, FIRST Tier-1 + FIRST P0 in category: warehouse-robotics-automation, 18 pitfalls, 10 verification gates A-J, default 7:1 Year-1 ROI Path B at $5M GMV) - Cin7 + NetSuite WMS + Korber + Manh",
+      "body": ""
+    },
+    {
+      "sha": "c30b358",
+      "date": "2026-09-11T17:18:08Z",
+      "author": "hermesagent",
+      "subject": "feat(dashboard): /attribution-health-alert-archive Move #6.10 Path A/B/C/D/E interactive scorer (DEPLOY BLOCKED — Vercel 24h quota)",
+      "body": ""
+    },
+    {
+      "sha": "73efa8c",
+      "date": "2026-09-11T16:32:04Z",
+      "author": "hermesagent",
+      "subject": "docs(journal): tick 2026-09-11 15:30 — discard — Move #111 warehouse-robotics-automation (DEPLOY BLOCKED by Vercel 24-hour rate limit, retry next tick)",
+      "body": ""
+    },
+    {
+      "sha": "23aac60",
+      "date": "2026-09-11T14:19:45Z",
+      "author": "hermesagent",
+      "subject": "docs(journal): tick 2026-09-11 14:17 — keep — sku-inventory-allocation-engine (Move #110)",
+      "body": ""
+    },
+    {
+      "sha": "be1a3b6",
+      "date": "2026-09-11T14:19:28Z",
+      "author": "hermesagent",
+      "subject": "skill: 110 sku-inventory-allocation-engine (Move #110, FIRST Tier-1 + FIRST P0 in category: sku-inventory-allocation, 18 pitfalls, 10 verification gates A-J, default 9:1 Year-1 ROI Path B at $5M GMV) - Cin7 Core + Cin7 Omni + NetSuite Deman",
+      "body": ""
+    },
+    {
+      "sha": "19b7346",
+      "date": "2026-09-11T13:13:15Z",
+      "author": "hermesagent",
+      "subject": "skill: 109 ai-product-content-generation-engine (Move #109, FIRST Tier-1 + FIRST P0 in category: ai-product-content-generation, 18 pitfalls, 10 verification gates A-J, default 9:1 Year-1 ROI Path B at $3M GMV) - Jasper + Writer + AirOps + T",
+      "body": ""
+    },
+    {
+      "sha": "40138dd",
+      "date": "2026-09-11T12:04:43Z",
+      "author": "hermesagent",
+      "subject": "skill: 108 first-party-data-collection-cookieless-strategy (Move #108, Klaviyo One + Segment + mParticle + RudderStack + Snowplow + Liveramp RampID + TTD UID 2.0 + ID5 + Permutive + Meta CAPI + TikTok EAPI + Pinterest CAPI + Snap CAPI + Goo",
+      "body": ""
+    },
+    {
+      "sha": "44a17d4",
+      "date": "2026-09-11T11:15:13Z",
+      "author": "hermesagent",
+      "subject": "docs(journal): tick 2026-09-11 11:14 — DEPLOY BLOCKED (Vercel quota) — creator-economy Your-store wiring (Move #19 cross-page-intelligence)",
+      "body": ""
+    },
+    {
+      "sha": "45a81c7",
+      "date": "2026-09-11T11:14:23Z",
+      "author": "hermesagent",
+      "subject": "feat(dashboard): /creators inherits Your-store economics (Move #19 cross-page-intelligence)",
+      "body": ""
+    },
+    {
+      "sha": "b854bd8",
+      "date": "2026-09-11T10:56:43Z",
+      "author": "mattiasadem",
+      "subject": "skill: Move #107 competitive-price-intelligence-engine (FIRST Tier-1 + FIRST P0 in category: price-intelligence, 18 pitfalls, 10 verification gates A-J, default 6:1-24:1 Year-1 ROI Path B at $3M+ multi-channel-GMV) - Prisync + Competera + P",
+      "body": ""
+    },
+    {
+      "sha": "d593dbe",
+      "date": "2026-09-11T08:40:05Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #18.8 retail-media-vertical-extension (FIRST Tier-1 + FIRST P0 in category: retail-media-vertical, 18 pitfalls, 10 verification gates A-J, default 5:1–22:1 Year-1 ROI Path B at $10M marketplace-GMV) — Sephora Media Network + Sep",
+      "body": ""
+    },
+    {
+      "sha": "ac46a01",
+      "date": "2026-09-11T07:31:52Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #18.7 retail-media-networks (FIRST Tier-1 + FIRST P0 in category: retail-media-networks, 18 pitfalls, 10 verification gates A-J, default 4:1–20:1 Year-1 ROI Path B at $10M marketplace-GMV) — Amazon Sponsored Products + Amazon DS",
+      "body": ""
+    },
+    {
+      "sha": "373bef4",
+      "date": "2026-09-11T06:20:55Z",
+      "author": "hermesagent",
+      "subject": "docs(journal): tick 2026-09-11 06:20 — discard (DEPLOY BLOCKED) — marketplace-fee-optimization (Move #13.1)",
+      "body": ""
+    },
+    {
+      "sha": "1acd476",
+      "date": "2026-09-11T05:11:48Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #5.7 subscription-economy per-cohort deep-dive (FIRST Tier-1 + FIRST P0 in category: subscription-economy-per-cohort-deep-dive, 18 pitfalls, 10 gates, default 9:1 Year-1 ROI Path B at $3M subscription-GMV)",
+      "body": ""
+    },
+    {
+      "sha": "d571251",
+      "date": "2026-09-11T05:07:03Z",
+      "author": "hermesagent",
+      "subject": "feat(dashboard): /journal search + tick-type facets (interactive-tool + state-persistence)",
+      "body": ""
+    },
+    {
+      "sha": "c8ef9e4",
+      "date": "2026-09-11T04:03:43Z",
+      "author": "hermesagent",
+      "subject": "docs(journal): tick 2026-09-11 04:02 — keep — product-analytics (Move #103)",
+      "body": ""
+    },
+    {
+      "sha": "232d5d0",
+      "date": "2026-09-11T04:02:52Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #103 product-analytics (FIRST Tier-1 + FIRST P0 in category: product-analytics, 18 pitfalls, 10 gates, default 11:1 Year-1 ROI Path B at $3M GMV)",
+      "body": ""
+    },
+    {
+      "sha": "985b468",
+      "date": "2026-09-11T00:36:57Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #100 customer data platform (CDP) + identity resolution + cross-channel profile synthesis + per-cohort event-routing + reverse-ETL + per-channel profile-activation — first skill in customer-data-platform category, Tier-1 P0, 18 ",
+      "body": ""
+    },
+    {
+      "sha": "95adc26",
+      "date": "2026-09-10T23:27:26Z",
+      "author": "hermesagent",
+      "subject": "skill: contract-lifecycle-management (Move #99, 6-pillar Path A/B/C/D/E/F CLM-engine, default 9:1 Year-1 ROI Path B at $5M GMV, FIRST Tier-1 + FIRST P0 in category: contract-lifecycle-management, 18 numbered pitfalls, 10 verification gates ",
+      "body": ""
+    },
+    {
+      "sha": "775d5c0",
+      "date": "2026-09-10T22:56:07Z",
+      "author": "mattiasadem",
+      "subject": "docs(journal): SMSBump + Postscript Channel Orchestration interactive scorer (Move #19)",
+      "body": ""
+    },
+    {
+      "sha": "3ebd1c4",
+      "date": "2026-09-10T22:55:50Z",
+      "author": "mattiasadem",
+      "subject": "feat(dashboard): SMSBump + Postscript Channel Orchestration interactive scorer (Move #19)",
+      "body": ""
+    },
+    {
+      "sha": "0466ff9",
+      "date": "2026-09-10T22:20:18Z",
+      "author": "hermesagent",
+      "subject": "skill: 87-market-research-consumer-intelligence-engine (FIRST Tier-1 + FIRST P0 in category market-research, Move #87, 7-pillar Path A/B+/B/C/D/E/F market-research-consumer-intelligence-engine unifying GWI + Nielsen + Circana + Numerator + ",
+      "body": ""
+    },
+    {
+      "sha": "0fdd166",
+      "date": "2026-09-10T21:16:33Z",
+      "author": "mattiasadem",
+      "subject": "skill: 98-subscription-economy-vertical-deep-dive (FIRST Tier-1 + FIRST P0 in category subscription-economy-vertical-deep-dive, Move #5.6, 7-pillar Path A/B/C/D/E/F/G subscription-economy-vertical-engine unifying Recharge + Skio + Bold Comm",
+      "body": ""
+    },
+    {
+      "sha": "425187b",
+      "date": "2026-09-10T20:09:43Z",
+      "author": "mattiasadem",
+      "subject": "skill: 97-subscription-economy-deep-dive (FIRST Tier-1 + FIRST P0 in category subscription-economy-deep-dive, Move #5.5, 6-pillar Path A/B/C/D/E/F subscription-economy-engine unifying Recharge + Skio + Bold Commerce + Stay AI + Loop Subscri",
+      "body": ""
+    },
+    {
+      "sha": "99f881a",
+      "date": "2026-09-10T17:54:17Z",
+      "author": "mattiasadem",
+      "subject": "skill: 96-demand-sensing-supply-chain-resilience (FIRST Tier-1 + FIRST P0 in category demand-sensing-supply-chain-resilience, Move #12.7 follow-up to Move #12.6, default 7:1 Year-1 ROI Path B at $3M GMV, 6-pillar Path A/B/C/D/E/F demand-sen",
+      "body": ""
+    },
+    {
+      "sha": "26a60e6",
+      "date": "2026-07-16T01:07:05Z",
+      "author": "mattiasadem",
+      "subject": "skill: 86-inventory-working-capital-dead-stock-liquidation-engine (FIRST Tier-1 P0 in category inventory, Move #12.6, default 11:1 Year-1 ROI Path B at $3M GMV, 6-pillar engine, 18 numbered pitfalls, 7-gate end-to-end verification, 250+ sou",
+      "body": ""
+    },
+    {
+      "sha": "5b7d3d7",
+      "date": "2026-07-15T23:58:21Z",
+      "author": "skill-builder-cron",
+      "subject": "skill: Move #85 trade-compliance-operations (5-pillar Path A/B/C/D/E trade-compliance-engine unifying Tradeverifyd + Avalara + Altana-Atlas + Resilinc + Interos + Descartes + E2open + Visual-Compliance + Amber-Road + Thomson-Reuters + SAP-G",
+      "body": ""
+    },
+    {
+      "sha": "bdd1fe8",
+      "date": "2026-07-15T22:46:01Z",
+      "author": "mattiasadem",
+      "subject": "skill: BOPIS & Store Fulfillment Operations (Move #84) — first in category",
+      "body": ""
+    },
+    {
+      "sha": "487284d",
+      "date": "2026-07-15T21:38:59Z",
+      "author": "skill-builder-cron",
+      "subject": "skill: Move #83 headless-cms-content-operations (5-pillar Path A/B/C/D/E headless-CMS-content-engine unifying Contentful + Sanity + Strapi + Storyblok + Hygraph + Builder.io + Prismic + Kontent.ai + Contentstack + dotCMS + Magnolia + CoreMe",
+      "body": ""
+    },
+    {
+      "sha": "acc52fd",
+      "date": "2026-07-15T20:27:05Z",
+      "author": "mattiasadem",
+      "subject": "skill: Move #82 carbon-accounting-scope3-operations (5-pillar Path A/B+/B/C/C+/D/E/F carbon-accounting-engine unifying Watershed + Persefoni + Greenly + CarbonChain + Sphera + Emitwise + SINAI + EcoAct + South Pole + Planet FWD + Avarni + S",
+      "body": ""
+    },
+    {
+      "sha": "9ba94e9",
+      "date": "2026-07-15T19:31:11Z",
+      "author": "mattiasadem",
+      "subject": "feat(dashboard): add cross-platform attribution drift rollup",
+      "body": ""
+    },
+    {
+      "sha": "219f601",
+      "date": "2026-07-15T19:13:52Z",
+      "author": "mattiasadem",
+      "subject": "journal: tick 2026-07-15 19:30 — keep — multichannel-product-feed-management-operations (Move #81, FIRST Tier-1 + P0 in category: multichannel-product-feed-management-operations, default 6:1 Year-1 ROI Path B at $5M GMV, 18 numbered pitfall",
+      "body": ""
+    },
+    {
+      "sha": "6f01ee8",
+      "date": "2026-07-15T19:13:06Z",
+      "author": "mattiasadem",
+      "subject": "skill: Move #81 multichannel-product-feed-management-operations (5-pillar Path A/B/C/D/E/F product-feed-distribution engine unifying Feedonomics + Productsup + GoDataFeed + DataFeedWatch + ChannelEngine + Lengow + Sellbrite + CedCommerce + ",
+      "body": ""
+    },
+    {
+      "sha": "ae67f49",
+      "date": "2026-07-15T18:04:57Z",
+      "author": "skill-builder-cron",
+      "subject": "skill: Move #80 omnichannel-storefront-operations (5-pillar Path A/B/C/D/E/F engine unifying DTC + B2B + marketplace + brick-and-mortar + pop-up + trade-show with per-channel POS + per-channel inventory + per-channel customer-journey-stitch",
+      "body": ""
+    },
+    {
+      "sha": "621858d",
+      "date": "2026-07-15T15:47:16Z",
+      "author": "mattiasadem",
+      "subject": "skill: cross-border-returns-operations (Move #79, category: cross-border-returns, Tier-1 P0 first-in-slot, 5-pillar Path A/B/C/D/E cross-border-returns engine, 18 numbered pitfalls, 5 verification gates A-E, ~80KB)",
+      "body": ""
+    },
+    {
+      "sha": "0bf84d3",
+      "date": "2026-07-15T13:28:53Z",
+      "author": "mattiasadem",
+      "subject": "journal: tick 2026-07-15 13:30 — keep — marketplace-seller-central-operations (Move #78, FIRST Tier-1 + P0 in category: marketplace-seller-ops, default 7:1 Year-1 ROI Path B at $5M GMV, 18 numbered pitfalls, 10 verification gates A-J)",
+      "body": ""
+    },
+    {
+      "sha": "b28d1bf",
+      "date": "2026-07-15T13:27:55Z",
+      "author": "mattiasadem",
+      "subject": "skill: marketplace seller-central operations (Move #78, FIRST Tier-1 + P0 in category: marketplace-seller-ops, default 7:1 Year-1 ROI Path B at $5M GMV, 18 numbered pitfalls, 10 verification gates A-J)",
+      "body": ""
+    },
+    {
+      "sha": "c5fcc51",
+      "date": "2026-07-15T13:17:15Z",
+      "author": "mattiasadem",
+      "subject": "feat(dashboard): attribution-quality Move #6.5 interactive 6-gate scorer",
+      "body": ""
+    },
+    {
+      "sha": "f0d4255",
+      "date": "2026-07-15T12:15:59Z",
+      "author": "mattiasadem",
+      "subject": "skill: agentic AI operations (Move #77, FIRST Tier-1 + P0 in category: agentic-ai, 4:1-20:1 Year-1 ROI Path B at $3M GMV, 18 numbered pitfalls)",
+      "body": ""
+    },
+    {
+      "sha": "d88b930",
+      "date": "2026-07-15T10:59:20Z",
+      "author": "mattiasadem",
+      "subject": "skill: contact center + omnichannel customer-engagement operations (Move #76)",
+      "body": ""
+    },
+    {
+      "sha": "cc6e340",
+      "date": "2026-07-15T09:48:56Z",
+      "author": "mattiasadem",
+      "subject": "journal: tick 2026-07-15 09:45 — keep — recommerce-secondary-market-resale-operations (Move #75, FIRST Tier-1 + P0 in category: recommerce, 5:1-22:1 Year-1 ROI Path B, 18 numbered pitfalls)",
+      "body": ""
+    },
+    {
+      "sha": "807c84b",
+      "date": "2026-07-15T09:48:22Z",
+      "author": "mattiasadem",
+      "subject": "skill: recommerce + reverse-logistics recommerce + secondary-market resale operations (Move #75, FIRST Tier-1 + P0 in category: recommerce, 5:1-22:1 Year-1 ROI Path B, 18 numbered pitfalls)",
+      "body": ""
+    },
+    {
+      "sha": "8710efd",
+      "date": "2026-07-15T07:32:24Z",
+      "author": "mattiasadem",
+      "subject": "journal: tick 2026-07-15 07:30 — keep — customs-brokerage-cross-border-customs-operations (Move #74, FIRST Tier-1 + P0 in category: customs-brokerage, 5:1–18:1 Year-1 ROI Path B, 18 numbered pitfalls)",
+      "body": ""
+    },
+    {
+      "sha": "f6f8dda",
+      "date": "2026-07-15T07:32:06Z",
+      "author": "mattiasadem",
+      "subject": "skill: customs brokerage + cross-border customs operations (Move #74, FIRST Tier-1 + FIRST P0 in category: customs-brokerage, 5:1–18:1 Year-1 ROI, 18 numbered pitfalls)",
+      "body": ""
+    },
+    {
+      "sha": "f94d36c",
+      "date": "2026-07-15T07:01:37Z",
+      "author": "mattiasadem",
+      "subject": "feat(dashboard): 3PL calculator inherits Your-store economics (Move #12)",
+      "body": ""
+    },
+    {
+      "sha": "c856713",
+      "date": "2026-07-15T05:16:10Z",
+      "author": "mattiasadem",
+      "subject": "skill: add preorder + backorder + allocation operations (Move #73)",
+      "body": ""
+    },
+    {
+      "sha": "6e1c6d1",
+      "date": "2026-07-15T02:58:09Z",
+      "author": "mattiasadem",
+      "subject": "skill: add dangerous-goods shipping operations",
+      "body": ""
+    },
+    {
+      "sha": "422b8bc",
+      "date": "2026-07-15T01:41:24Z",
+      "author": "mattiasadem",
+      "subject": "skill: add distributed order orchestration",
+      "body": ""
+    },
+    {
+      "sha": "19bc1fd",
+      "date": "2026-07-15T00:47:15Z",
+      "author": "mattiasadem",
+      "subject": "chore(security): redact Vercel tokens from journal",
+      "body": ""
+    },
+    {
+      "sha": "bef6f93",
+      "date": "2026-07-15T00:44:20Z",
+      "author": "mattiasadem",
+      "subject": "feat(dashboard): personalize PDP forecast from Your-store",
+      "body": ""
+    },
+    {
+      "sha": "8d6eeed",
+      "date": "2026-07-15T00:27:04Z",
+      "author": "mattiasadem",
+      "subject": "skill: print direct mail + postcard + catalog + lookbook + mailer operations",
+      "body": "Move #70 — FIRST skill in the brand-new category: print-direct-mail. 9:1 default Year-1 ROI Path B at $3M GMV. Tier-1 + P0. ~61 KB / 312 lines / 18 numbered pitfalls / 7 verification gates A-G / 300+ sources.\n\nFive-pillar Path A/B/C/D/E print-direct-mail-engine: (P1) postal-rate-card + USPS-DMM-200 compliance + NCOA+DSF2+ACS+DPV+LACS+SuiteLink address-hygiene pipeline + per-piece cost line + Promotions calendar / (P2) RFM × cohort × tier × lifecycle-stage × predicted-CLTV × predicted-cancel-risk list engine + 19-canonical-segment per-trigger library / (P3) brand-safety + legal + USPS-DMM template sign-off + per-merge-variable audit + version-pin 8-template library / (P4) trigger engine + CDP integration + per-event SLA + per-cohort holdout + per-merge-QR + per-merge-short-URL + per-merge-coupon-code + per-merge-click-ID bridge / (P5) attribution + holdout + causal-lift + MMM + Shapley/Markov/MTA + per-cohort frequency-cap math + Triple-Whale cohort-LTV overlay.\n\nDefault math for a $3M US DTC consumables Path B brand: $72k annual print cost vs +$200k-$650k annual incremental revenue across 19-seg × 12-trigger cadence; per-piece attributed incremental revenue ≈$4-$13.\n\nRED-GREEN validated; skill 70 unique category pass + first Tier-1 pass + first P0 pass. Deploy SUCCEEDED; live URL HTTP 200 with 251,615 bytes."
+    },
+    {
+      "sha": "cb345ed",
+      "date": "2026-07-14T22:01:47Z",
+      "author": "mattiasadem",
+      "subject": "journal: keep product safety compliance skill tick",
+      "body": ""
+    },
+    {
+      "sha": "225584a",
+      "date": "2026-07-14T22:01:47Z",
+      "author": "mattiasadem",
+      "subject": "skill: product safety compliance and recall operations",
+      "body": ""
+    },
+    {
+      "sha": "f1620af",
+      "date": "2026-07-14T20:46:51Z",
+      "author": "skill-builder-cron",
+      "subject": "journal: tick 2026-07-14 20:45 — keep — influencer-creator-tax-compliance (Move #68, FIRST Tier-1 + P0 in category: creator-tax, 11:1 Year-1 ROI Path B at $3M GMV, 18 numbered pitfalls)",
+      "body": ""
+    },
+    {
+      "sha": "a26a489",
+      "date": "2026-07-14T20:45:50Z",
+      "author": "skill-builder-cron",
+      "subject": "skill: influencer-creator-tax-compliance (Move #68, FIRST Tier-1 + P0 in category: creator-tax, 11:1 Year-1 ROI Path B at $3M GMV, 18 numbered pitfalls)",
+      "body": ""
+    },
+    {
+      "sha": "9621115",
+      "date": "2026-07-14T19:25:01Z",
+      "author": "mattiasadem",
+      "subject": "journal: tick 2026-07-14 19:25 — keep — ecommerce-insurance-operations + risk-transfer (Move #67, FIRST Tier-1 + P0 in category: insurance-operations, 9:1 Year-1 ROI Path B at $3M GMV, 18 numbered pitfalls)",
+      "body": ""
+    },
+    {
+      "sha": "2a3ef32",
+      "date": "2026-07-14T19:24:11Z",
+      "author": "mattiasadem",
+      "subject": "skill: ecommerce-insurance-operations (Move #67, FIRST Tier-1 + P0 in category: insurance-operations, 9:1 Year-1 ROI Path B at $3M GMV, 18 numbered pitfalls)",
+      "body": ""
+    },
+    {
+      "sha": "ea4d312",
+      "date": "2026-07-14T18:14:28Z",
+      "author": "mattiasadem",
+      "subject": "journal: keep skill 66 global tax filing operations",
+      "body": ""
+    },
+    {
+      "sha": "9acb107",
+      "date": "2026-07-14T18:13:52Z",
+      "author": "mattiasadem",
+      "subject": "skill: regenerate content index for 66 skills",
+      "body": ""
+    },
+    {
+      "sha": "5859981",
+      "date": "2026-07-14T18:13:52Z",
+      "author": "mattiasadem",
+      "subject": "skill: add international tax filing operations (Move #66)",
+      "body": ""
+    },
+    {
+      "sha": "262ed2b",
+      "date": "2026-07-14T16:57:09Z",
+      "author": "mattiasadem",
+      "subject": "journal: tick 2026-07-14 16:18 — keep — ecommerce-accessibility-compliance + WCAG 2.2 AA + EAA + EN 301 549 + ADA risk controls + Shopify/composable storefront/checkout/apps/email/PDF accessibility (Move #65, FIRST Tier-1 + P0 in category: ",
+      "body": ""
+    },
+    {
+      "sha": "a989562",
+      "date": "2026-07-14T16:56:21Z",
+      "author": "mattiasadem",
+      "subject": "skill: ecommerce-accessibility-compliance + WCAG 2.2 AA + EAA + EN 301 549 + ADA risk controls + Shopify/composable storefront/checkout/apps/email/PDF accessibility (Move #65, FIRST Tier-1 + P0 in category: accessibility, 3:1-14:1 Year-1 RO",
+      "body": ""
+    },
+    {
+      "sha": "94dc16d",
+      "date": "2026-07-14T15:41:34Z",
+      "author": "mattiasadem",
+      "subject": "journal: tick 2026-07-14 15:30 — keep — AI search visibility + AEO + GEO + LLM-citation-engineering + structured-data + llms.txt + AI-citation-tracking + agentic-commerce-shopping-discovery (Move #64, FIRST Tier-1 + P0 in category: ai-searc",
+      "body": ""
+    },
+    {
+      "sha": "5be6aa3",
+      "date": "2026-07-14T15:39:16Z",
+      "author": "mattiasadem",
+      "subject": "skill: ai-search-visibility-aeo-geo + LLM-citation-engineering + structured-data + llms.txt + Reddit/Wikipedia/authoritative-review-citation + AI-citation-tracking (Profound + Otterly + Yotpo AI Visibility + Goodie + Bluefish + LLM Rank + P",
+      "body": ""
+    },
+    {
+      "sha": "0caf7d3",
+      "date": "2026-07-14T12:21:29Z",
+      "author": "mattiasadem",
+      "subject": "feat(dashboard): port scripts/creator_economy_unit_economics.py to /creators as Move #19 interactive Path A/B/C scorer with 12-input form, cost stack + LTV + content-licensing 2-4x uplift + 5-way-comparison correction + 5-payout matrix + 6-",
+      "body": ""
+    },
+    {
+      "sha": "790bce2",
+      "date": "2026-07-14T12:03:11Z",
+      "author": "mattiasadem",
+      "subject": "journal: tick 2026-07-14 11:57 — keep — community-led-growth + paid-community + Discord/Slack/Circle/Mighty Networks/Skool community-operations + community-led-acquisition + UGC-flywheel + creator-community-loops + community-cohort-LTV-over",
+      "body": ""
+    },
+    {
+      "sha": "23c9fde",
+      "date": "2026-07-14T12:00:47Z",
+      "author": "mattiasadem",
+      "subject": "skill: community-led-growth-engine + paid-community + Discord/Slack/Circle/Mighty Networks/Skool community-operations + community-led-acquisition + UGC flywheel + creator-community loops + community-cohort-LTV-overlay (Move #63, FIRST Tier-",
+      "body": ""
+    },
+    {
+      "sha": "1a86929",
+      "date": "2026-07-14T10:51:51Z",
+      "author": "mattiasadem",
+      "subject": "journal: tick 2026-07-14 10:48 — keep — people-operations + org-design + hiring-pipeline + HRIS + payroll + onboarding + performance-mgmt + comp-design + benefits + culture (Move #7.1, FIRST Tier-1 + FIRST P0 in category: people-operations,",
+      "body": ""
+    },
+    {
+      "sha": "4863571",
+      "date": "2026-07-14T10:49:39Z",
+      "author": "mattiasadem",
+      "subject": "skill: people-operations + org-design + hiring-pipeline + HRIS + payroll + onboarding + performance-mgmt + comp-design + benefits + culture (Move #7.1, FIRST Tier-1 + FIRST P0 in category: people-operations, 11:1 Year-1 ROI Path B at $3M GM",
+      "body": ""
+    },
+    {
+      "sha": "470a405",
+      "date": "2026-07-14T09:38:33Z",
+      "author": "mattiasadem",
+      "subject": "skill: AI 1:1 personalization engine + AI-LTV-prediction + AI-content-personalization + AI-offer-personalization + AI-journey-orchestration + RFM + zero-party-data-capture + consent-mode-v2-aware-1:1 (Move #20.7, FIRST Tier-1 + FIRST P0 in ",
+      "body": ""
+    },
+    {
+      "sha": "04ca2cb",
+      "date": "2026-07-14T08:22:55Z",
+      "author": "mattiasadem",
+      "subject": "journal: 2026-07-14 13:30 — Skill tick: keep — Product launch engine (Move #39) FIRST Tier-1 + P0 in category: product-launch",
+      "body": ""
+    },
+    {
+      "sha": "a49a3b2",
+      "date": "2026-07-14T08:21:09Z",
+      "author": "mattiasadem",
+      "subject": "skill: Product launch engine + new-SKU GTM playbook + launch cohort LTV overlay (Move #39, FIRST Tier-1 + FIRST P0 in category: product-launch — 18 numbered pitfalls, 5-pillar Path A/B/C/D/E launch-engine, default 12:1 Year-1 ROI Path B at ",
+      "body": ""
+    },
+    {
+      "sha": "a636ce8",
+      "date": "2026-07-14T07:01:42Z",
+      "author": "mattiasadem",
+      "subject": "skill: 59-shipping-carrier-mix-parcel-routing-engine (Move #38, FIRST Tier-1 + FIRST P0 in category: shipping-logistics — Shippo + Easypost + ShipStation + ShipEngine + ShipperHQ + AferShip + Narvar + Loop Returns + EasyPost Insurance + Shi",
+      "body": ""
+    },
+    {
+      "sha": "8a8930a",
+      "date": "2026-07-14T06:07:17Z",
+      "author": "mattiasadem",
+      "subject": "feat(dashboard): add portable workspace backup",
+      "body": ""
+    },
+    {
+      "sha": "16ca46d",
+      "date": "2026-07-14T05:48:24Z",
+      "author": "skill-builder-cron",
+      "subject": "journal: tick entry for skill 58-brand-protection-counterfeit-enforcement keep",
+      "body": ""
+    },
+    {
+      "sha": "b138767",
+      "date": "2026-07-14T05:46:37Z",
+      "author": "skill-builder-cron",
+      "subject": "skill: 58-brand-protection-counterfeit-enforcement (Move #14.1, FIRST Tier-1 + FIRST P0 in category: brand-protection — Red Points + MarqVision + Incopro + BrandShield + Anaqua + Amazon Brand Registry + Customs Recordation + ResellHub + Sho",
+      "body": ""
+    },
+    {
+      "sha": "ca2cb99",
+      "date": "2026-07-14T04:35:43Z",
+      "author": "Hermes skill-builder",
+      "subject": "skill: procurement + supplier-portal + COGS-engineering (Move #48, WFX + Tradecard + Cogsy + Cin7 Procurement + Coupa + SAP Ariba + TradeBeyond + Centric PLM + Airhouse + Altana AI + Resilinc + Bill.com + Brex + Ramp + 5-pillar Path A/B+/B/",
+      "body": ""
+    },
+    {
+      "sha": "6f583e6",
+      "date": "2026-07-14T03:27:50Z",
+      "author": "mattiasadem",
+      "subject": "skill: 56-retail-media-networks-cpg-omnichannel (Move #47, FIRST Tier-1 + FIRST P0 in category: retail-media — 18 pitfalls)",
+      "body": ""
+    },
+    {
+      "sha": "f5fd4d5",
+      "date": "2026-07-14T02:17:39Z",
+      "author": "mattiasadem",
+      "subject": "docs: log skill tick keep — Packaging engineering + DIM weight + unboxing + branded inserts + returns packaging + subscription packaging + multi-SKU packaging orchestration + packaging-attribution-overlay (Move #46, unique category: packagi",
+      "body": ""
+    },
+    {
+      "sha": "b4daa16",
+      "date": "2026-07-14T02:16:37Z",
+      "author": "mattiasadem",
+      "subject": "skill: 55-packaging-engineering-dimensional-weight-unboxing (Move #46, FIRST Tier-1 + FIRST P0 in category: packaging-engineering — 18 pitfalls)",
+      "body": ""
+    },
+    {
+      "sha": "f74342b",
+      "date": "2026-07-14T01:02:39Z",
+      "author": "mattiasadem",
+      "subject": "skill: 54-gift-cards-and-store-credit (Move #45, FIRST Tier-1 + FIRST P0 in category: gifting — 18 pitfalls)",
+      "body": ""
+    },
+    {
+      "sha": "cdf8033",
+      "date": "2026-07-13T23:58:15Z",
+      "author": "mattiasadem",
+      "subject": "feat(dashboard): add Copy TSV / CSV / Markdown export buttons on every research table",
+      "body": ""
+    },
+    {
+      "sha": "ff90e47",
+      "date": "2026-07-13T23:48:36Z",
+      "author": "mattiasadem",
+      "subject": "skill: 53-financial-operations-unit-economics (Move #40, FIRST Tier-1 + FIRST P0 in category: finance, 18 numbered pitfalls, 7 verification gates A-G, default 12:1 Year-1 ROI Path B at $3M GMV)",
+      "body": ""
+    },
+    {
+      "sha": "f075e83",
+      "date": "2026-07-13T22:30:16Z",
+      "author": "mattiasadem",
+      "subject": "skill: Move #37 subscription billing infrastructure (Recharge + Ordergroove + Stay AI + Bold + Appstle + Subbly + Smartrr + Okendo Subscriptions + Loop + Churn-Zero + ProfitWell Recover + Stripe Smart Retries + Stripe Account Updater + Bare",
+      "body": ""
+    },
+    {
+      "sha": "8f8c303",
+      "date": "2026-07-13T21:22:45Z",
+      "author": "mattiasadem",
+      "subject": "docs: log skill tick keep — Web push + mobile push + app push orchestration (Move #36, unique category: push-notifications, default 7:1 Year-1 ROI Path B at $3M GMV, FIRST Tier-1 + FIRST P0 — 18 numbered pitfalls, deploy + alias SUCCEEDED)",
+      "body": ""
+    },
+    {
+      "sha": "44a6cc5",
+      "date": "2026-07-13T21:21:40Z",
+      "author": "mattiasadem",
+      "subject": "skill: regenerate content.json (51 skills, +skill 51 web-push-mobile-push-orchestration)",
+      "body": ""
+    },
+    {
+      "sha": "f41d8a7",
+      "date": "2026-07-13T21:21:37Z",
+      "author": "mattiasadem",
+      "subject": "skill: Move #36 web push + mobile push + app push orchestration (OneSignal + PushEngage + Omnisend-push + Klaviyo-push + Iterable-push + Pushwoosh + Airship + Leanplum + Batch + Customer.io-push + Braze-push + web-push-protocol-VAPID + Appl",
+      "body": ""
+    },
+    {
+      "sha": "97b3349",
+      "date": "2026-07-13T20:14:53Z",
+      "author": "mattiasadem",
+      "subject": "docs: log skill tick keep — Conversational commerce orchestration (Move #35, unique category: conversational-commerce, default 8:1 Year-1 ROI Path B at $3M GMV, 18 numbered pitfalls)",
+      "body": ""
+    },
+    {
+      "sha": "76d33b5",
+      "date": "2026-07-13T20:14:04Z",
+      "author": "mattiasadem",
+      "subject": "skill: Move #35 conversational commerce orchestration (WhatsApp Business Platform + Instagram DM + Messenger + RCS business messaging + two-way SMS + Gorgias Chat + AI-DM-agents + Click-to-WhatsApp-Ads + WhatsApp Catalog + Triple-Whale-conv",
+      "body": ""
+    },
+    {
+      "sha": "b76b884",
+      "date": "2026-07-13T19:07:37Z",
+      "author": "mattiasadem",
+      "subject": "docs: log skill tick keep — Cross-platform live-stream shopping (Move #34, unique category: livestream-shopping, default 9:1 Year-1 ROI Path B at $3M GMV, FIRST Tier-1 + FIRST P0 — 18 numbered pitfalls, deploy + alias SUCCEEDED)",
+      "body": ""
+    },
+    {
+      "sha": "478450d",
+      "date": "2026-07-13T19:06:43Z",
+      "author": "mattiasadem",
+      "subject": "skill: Live-stream shopping (Move #34, cross-platform: TikTok-LIVE + Instagram-LIVE-Shopping + YouTube-LIVE-Shopping + Amazon-LIVE + Whatnot + NTWRK + Talkshoplive + Bambuser + Livescale + Channelize + Klaviyo-live-cohort + Triple-Whale-liv",
+      "body": ""
+    },
+    {
+      "sha": "6618b0c",
+      "date": "2026-07-13T17:59:02Z",
+      "author": "mattiasadem",
+      "subject": "skill: Privacy & consent management (Move #33) — first P0 + first Tier-1 in category: privacy, 18 pitfalls, 8:1–32:1 ROI band",
+      "body": ""
+    },
+    {
+      "sha": "c567c53",
+      "date": "2026-07-13T17:51:23Z",
+      "author": "mattiasadem",
+      "subject": "feat(dashboard): mount Generative-AI-Engine Path A/B/C scorer on /generative-ai-engine",
+      "body": ""
+    },
+    {
+      "sha": "416575e",
+      "date": "2026-07-13T16:50:18Z",
+      "author": "mattiasadem",
+      "subject": "skill: Move #32 growth experimentation engine (Convert.com + Statsig + Triple Whale cohort-LTV + Northbeam + 18 pitfalls, default 12:1 Path B, FIRST Tier-1 + FIRST P0 in category: growth-experimentation)",
+      "body": ""
+    },
+    {
+      "sha": "bac4116",
+      "date": "2026-07-13T15:41:51Z",
+      "author": "mattiasadem",
+      "subject": "docs: log skill tick keep — Promotional calendar + discount strategy + markdown management (Move #13, unique category: promotions, default 8:1 Year-1 ROI Path B at $3M GMV, 18 numbered pitfalls)",
+      "body": ""
+    },
+    {
+      "sha": "c0f4952",
+      "date": "2026-07-13T15:40:38Z",
+      "author": "mattiasadem",
+      "subject": "skill: Move #13 promotional calendar + discount strategy + markdown management (Shopify Discounts API + Shopify Functions + Klaviyo + Postscript + Triple Whale + Yotpo + Smile.io + Rebuy + ShopApp + Blue Yonder, 5-pillar promo-engine, defau",
+      "body": ""
+    },
+    {
+      "sha": "6de58fc",
+      "date": "2026-07-13T14:32:37Z",
+      "author": "mattiasadem",
+      "subject": "skill: Move #21.5 warehouse management + multi-node fulfillment orchestration + shipping carrier rate shopping (ShipBob + Cin7 + EasyPost + Klaviyo + Postscript + Gorgias, FIRST Tier-1 + FIRST P0 in fulfillment category, default 14:1 Year-1",
+      "body": ""
+    },
+    {
+      "sha": "6711cb3",
+      "date": "2026-07-13T13:23:07Z",
+      "author": "mattiasadem",
+      "subject": "docs: log skill tick keep — VoC + customer feedback analytics (Move #31, unique category: analytics, default 9:1 Year-1 ROI Path B at $3M GMV, 18 numbered pitfalls)",
+      "body": ""
+    },
+    {
+      "sha": "514376f",
+      "date": "2026-07-13T13:22:03Z",
+      "author": "mattiasadem",
+      "subject": "skill: Voice of Customer + customer feedback analytics (Move #31, Medallia + Qualtrics + Wootric + AskNicely + Delighted + Nicereply + Hotjar + FullStory + LogRocket + Pendo + Amplitude + Mixpanel + PostHog + Heap + June + Databox, 5-pillar",
+      "body": ""
+    },
+    {
+      "sha": "66e6f0f",
+      "date": "2026-07-13T12:11:43Z",
+      "author": "mattiasadem",
+      "subject": "skill: Product reviews + UGC + social proof (Move #30) — unique category: social-proof",
+      "body": ""
+    },
+    {
+      "sha": "98f5e64",
+      "date": "2026-07-13T11:42:10Z",
+      "author": "mattiasadem",
+      "subject": "feat(dashboard): add subscription path scorer",
+      "body": ""
+    },
+    {
+      "sha": "2bb63f9",
+      "date": "2026-07-13T10:34:05Z",
+      "author": "mattiasadem",
+      "subject": "docs: log skill tick keep — Composable / Headless / MACH architecture (Move #29, unique category: composable-stack, default 8:1 Year-1 ROI Path B at $5M GMV, 18 numbered pitfalls)",
+      "body": ""
+    },
+    {
+      "sha": "f90c6d0",
+      "date": "2026-07-13T10:32:52Z",
+      "author": "mattiasadem",
+      "subject": "skill: regenerate content.json (42 skills, +skill 42 composable-stack)",
+      "body": ""
+    },
+    {
+      "sha": "ecb1633",
+      "date": "2026-07-13T10:32:42Z",
+      "author": "mattiasadem",
+      "subject": "skill: Move #29 composable / headless / MACH architecture (Shopify Hydrogen + Next.js + Sanity + Algolia + commercetools + Workarea + Fabric + Saleor + Medusa + Vendure + Reaction + Crystallize + Vue Storefront + MACH Alliance + 18-vendor-o",
+      "body": ""
+    },
+    {
+      "sha": "5e40a1c",
+      "date": "2026-07-13T09:23:35Z",
+      "author": "hermes",
+      "subject": "skill: Move #28 data warehouse / CDP operations (Segment + mParticle + RudderStack + Snowplow + Hightouch + Census + Reverse-ETL, 5-pillar customer-identity-resolution engine, default 10:1 Year-1 ROI Path B at $3M GMV, unique category: data",
+      "body": ""
+    },
+    {
+      "sha": "45b8603",
+      "date": "2026-07-13T08:01:18Z",
+      "author": "mattiasadem",
+      "subject": "docs: log skill tick keep — Sustainability / ESG operations (Move #27) — unique category: sustainability, default 8:1 Year-1 ROI Path B at $3M GMV, 18 numbered pitfalls",
+      "body": ""
+    },
+    {
+      "sha": "ebcd3fe",
+      "date": "2026-07-13T07:59:57Z",
+      "author": "mattiasadem",
+      "subject": "skill: sustainability / ESG operations (Move #27, B-Corp + Climate Neutral + 1% for the Planet + EU Green Claims Directive 2026 + carbon-neutral shipping + circular packaging + sustainable-sourcing-vendor-portal + sustainability-attribution",
+      "body": ""
+    },
+    {
+      "sha": "b92a012",
+      "date": "2026-07-13T06:52:34Z",
+      "author": "mattiasadem",
+      "subject": "skill: catalog / PIM / DAM operations (Move #26) — Akeneo + Salsify + Bynder + Cloudinary + ChannelEngine + Shopify AI Storefront, 5-pillar catalog-content engine, default 12:1 Year-1 ROI Path B at $3M GMV, unique category: catalog-manageme",
+      "body": ""
+    },
+    {
+      "sha": "1ce68c3",
+      "date": "2026-07-13T05:44:41Z",
+      "author": "mattiasadem",
+      "subject": "skill: checkout-payments-bnpl-optimization (Move #25, Stripe + Adyen + PayPal + Apple Pay + Google Pay + Shop Pay + Klarna + Affirm + Afterpay + Shop Pay Installments + PayPal Pay-in-4 + regional methods, 5-pillar payments-optimization engi",
+      "body": ""
+    },
+    {
+      "sha": "8846be9",
+      "date": "2026-07-13T05:16:53Z",
+      "author": "mattiasadem",
+      "subject": "feat(dashboard): mount AI ad-creative ROI calculator on /ai (Lever 6 of 10)",
+      "body": ""
+    },
+    {
+      "sha": "729c3d2",
+      "date": "2026-07-13T04:35:37Z",
+      "author": "mattiasadem",
+      "subject": "skill: ai-site-search-merchandising (Move #20.3, Shopify Search & Discovery + Algolia + Searchspring + Klevu + Constructor + Coveo + Nosto + Findify, 5-pillar on-site discovery engine, default 11.8:1 Year-1 ROI Path B at $3M GMV, unique cat",
+      "body": ""
+    },
+    {
+      "sha": "1f88380",
+      "date": "2026-07-13T03:28:32Z",
+      "author": "mattiasadem",
+      "subject": "docs: log skill tick blocked by Vercel auth (deploy prerequisite still broken)",
+      "body": ""
+    },
+    {
+      "sha": "916a5a1",
+      "date": "2026-07-13T02:25:01Z",
+      "author": "mattiasadem",
+      "subject": "docs: log skill tick blocked by Vercel auth",
+      "body": ""
+    },
+    {
+      "sha": "940bc1c",
+      "date": "2026-07-13T01:20:52Z",
+      "author": "mattiasadem",
+      "subject": "docs: log discarded AI site search skill tick",
+      "body": ""
+    },
+    {
+      "sha": "e2ce6c6",
+      "date": "2026-07-13T00:10:48Z",
+      "author": "skill-builder-cron",
+      "subject": "skill: email-deliverability-sender-reputation (Move #5.5, unique category: deliverability)",
+      "body": "- 36 skills total now (35 + 1 new) — first skill in the category: deliverability slot\n- 5-pillar framework: authentication-stack (SPF/DKIM/DMARC/BIMI/ARC/MTA-STS/TLS-RPT) / reputation-monitoring-substrate (Google Postmaster + Microsoft SNDS + Validity Sender Score + Litmus) / list-hygiene + suppression + sunset-policy + winback / IP-warmup + dedicated-IP-decision + blacklist-recovery-playbook / content-engagement-loop + A/B + send-time + segment-refresh + AI-personalization\n- 18 numbered pitfalls with Fix: lines\n- 12-gate end-to-end verification\n- 6 GMV-tier paths A/B/B+/C/C+/D (Path B DEFAULT at $1M-$10M GMV $750/mo 9:1 ROI)\n- 116 sources covering Klaviyo + Postscript + Gmail + Yahoo + Microsoft + Validity + Litmus + 7 blocklist providers\n- Default math: $3M US DTC apparel brand Path B → 9:1 Year-1 ROI ($72k-$144k incremental annual net vs $9k cost)\n- Companion: scripts/email_deliverability_score.py + dashboards/email-deliverability-health.html + dashboard/app/deliverability/page.tsx + playbooks/28 + assets/31\n\nRefs research/02 §Top-10-Move-#5-followup + research/05 §5-pillar lifecycle-marketing-framework"
+    },
+    {
+      "sha": "00c4f68",
+      "date": "2026-07-12T23:10:13Z",
+      "author": "mattiasadem",
+      "subject": "docs: journal entry for retention projection calculator tick (Move #14 4-tier lifecycle library LTV uplift on /retention)",
+      "body": ""
+    },
+    {
+      "sha": "e9972be",
+      "date": "2026-07-12T23:09:48Z",
+      "author": "mattiasadem",
+      "subject": "feat(dashboard): retention projection calculator — 4-tier lifecycle library LTV uplift on /retention (Lever 3 of 10) closes the loop from static research tables to operator's own numbers (monthly orders × AOV × margin × RPR voice-banded ben",
+      "body": ""
+    },
+    {
+      "sha": "fc1d0ec",
+      "date": "2026-07-12T22:59:24Z",
+      "author": "mattiasadem",
+      "subject": "skill: site speed + Core Web Vitals (Move #2.5, Google CWV LCP/INP/CLS + CrUX field-data + Shopify theme + image-pipeline + third-party-budget, default 12:1 Year-1 ROI Path B at $3M GMV, highest pitfall count in category: conversion: 18 vs ",
+      "body": ""
+    },
+    {
+      "sha": "f7b2043",
+      "date": "2026-07-12T21:51:28Z",
+      "author": "Hermes Cron",
+      "subject": "skill: customer service operations platform (Move #24, Gorgias + Help Scout + Zendesk + Kustomer + Front + Gorgias Automate + Klaviyo Customer Agent, default 10:1 Year-1 ROI Path B at $3M GMV, first P0 in category: cx)",
+      "body": ""
+    },
+    {
+      "sha": "7fd0875",
+      "date": "2026-07-12T20:42:06Z",
+      "author": "mattiasadem",
+      "subject": "skill: Fraud + chargeback management (Move #23, Signifyd + NoFraud + Riskified + Stripe Radar + Veriff + Kount + Sift + Forter + Adyen RevenueProtect + Chargeflow + MidMetrics + Ethoca + Verifi + Shopify Protect, default 14:1 Year-1 ROI Pat",
+      "body": ""
+    },
+    {
+      "sha": "583a8ed",
+      "date": "2026-07-12T19:33:36Z",
+      "author": "mattiasadem",
+      "subject": "docs: journal entry for sales-tax-vat-automation skill tick (Move #21, default 14:1 Year-1 ROI)",
+      "body": ""
+    },
+    {
+      "sha": "dd3f8a1",
+      "date": "2026-07-12T19:32:58Z",
+      "author": "mattiasadem",
+      "subject": "skill: Sales tax + VAT automation (Move #21, Avalara + TaxJar + Stripe Tax + Shopify Markets Pro + Vertex + Sovos + Zonos, default 14:1 Year-1 ROI Path B at $3M GMV)",
+      "body": ""
+    },
+    {
+      "sha": "09401ed",
+      "date": "2026-07-12T18:27:29Z",
+      "author": "mattiasadem",
+      "subject": "journal: 2026-07-12 20:30 NPS + Voice-of-Customer closed-loop automation skill tick",
+      "body": ""
+    },
+    {
+      "sha": "7c2968e",
+      "date": "2026-07-12T18:27:11Z",
+      "author": "mattiasadem",
+      "subject": "skill: NPS + Voice-of-Customer closed-loop automation (Move #20.2, Delighted + Wootric + AskNicely + Medallia + Klaviyo NPS + Triple Whale NPS-cohort-LTV + Gorgias detractor-trigger + Smile.io promoter-reward, default 9:1 Year-1 ROI Path B ",
+      "body": ""
+    },
+    {
+      "sha": "0c53721",
+      "date": "2026-07-12T17:21:44Z",
+      "author": "mattiasadem",
+      "subject": "skill: dynamic pricing + repricing engine (Move #20.x, Prisync/Rebuy/Nosto/Outvio/Shopify AI Storefront, default 8:1 Y1 ROI Path B at $3M GMV, unique category: pricing)",
+      "body": ""
+    },
+    {
+      "sha": "88f4748",
+      "date": "2026-07-12T16:16:06Z",
+      "author": "skill-builder-cron",
+      "subject": "skill: inventory forecasting + stockout prevention (Move #12.5, Inventory Planner/Cogsy/Netstock/Cin7/SoStocked/Shopify Stocky, default 12:1 Y1 ROI Path B at $3M GMV, unique category: inventory)",
+      "body": ""
+    },
+    {
+      "sha": "f780360",
+      "date": "2026-07-12T14:05:12Z",
+      "author": "mattiasadem",
+      "subject": "skill: returns portal orchestration (Move #12.4, Loop/ReturnGO/Happy Returns, 11:1 default Y1 ROI)",
+      "body": ""
+    },
+    {
+      "sha": "ba994cc",
+      "date": "2026-07-12T10:53:26Z",
+      "author": "mattiasadem",
+      "subject": "feat(dashboard): International Path A/B/C/C+ scorer on /international (port of international_market_fit.py)",
+      "body": ""
+    },
+    {
+      "sha": "303e639",
+      "date": "2026-07-12T09:49:56Z",
+      "author": "mattiasadem",
+      "subject": "journal: skill-builder escalation mode auth blockers",
+      "body": ""
+    },
+    {
+      "sha": "d1ed494",
+      "date": "2026-07-12T05:40:06Z",
+      "author": "mattiasadem",
+      "subject": "journal: skill-builder escalation mode auth blockers",
+      "body": ""
+    },
+    {
+      "sha": "70ddb30",
+      "date": "2026-07-12T04:45:23Z",
+      "author": "mattiasadem",
+      "subject": "feat(dashboard): Mark-studied toggle on every skill detail page",
+      "body": ""
+    },
+    {
+      "sha": "bed754c",
+      "date": "2026-07-12T00:31:10Z",
+      "author": "mattiasadem",
+      "subject": "journal: skill-builder escalation mode auth blockers",
+      "body": ""
+    },
+    {
+      "sha": "c86cebe",
+      "date": "2026-07-11T23:28:26Z",
+      "author": "mattiasadem",
+      "subject": "journal: skill-builder escalation mode auth blockers",
+      "body": ""
+    },
+    {
+      "sha": "485f132",
+      "date": "2026-07-11T22:38:25Z",
+      "author": "mattiasadem",
+      "subject": "feat(dashboard): Realized ROI panel — captured vs potential annual lift on Overview",
+      "body": ""
+    },
+    {
+      "sha": "c522bdd",
+      "date": "2026-07-11T22:21:08Z",
+      "author": "mattiasadem-5021s",
+      "subject": "journal: skill-builder escalation mode auth blockers",
+      "body": ""
+    },
+    {
+      "sha": "af375f6",
+      "date": "2026-07-11T21:16:11Z",
+      "author": "mattiasadem-5021s",
+      "subject": "journal: skill-builder escalation mode auth blockers",
+      "body": ""
+    },
+    {
+      "sha": "a372011",
+      "date": "2026-07-11T20:07:13Z",
+      "author": "mattiasadem-5021s",
+      "subject": "journal: inventory forecasting skill tick discard",
+      "body": ""
+    },
+    {
+      "sha": "d35c4a2",
+      "date": "2026-07-11T18:50:10Z",
+      "author": "mattiasadem-5021s",
+      "subject": "journal: returns exchanges skill tick discard",
+      "body": ""
+    },
+    {
+      "sha": "9aa7df5",
+      "date": "2026-07-11T17:36:20Z",
+      "author": "mattiasadem-5021s",
+      "subject": "journal: skill tick discard returns exchanges deploy failed",
+      "body": ""
+    },
+    {
+      "sha": "b662ba4",
+      "date": "2026-07-11T16:26:51Z",
+      "author": "mattiasadem-5021s",
+      "subject": "journal: 2026-07-11 16:25 top-10 rollout projection shipped (deploy pending vercel+github auth)",
+      "body": ""
+    },
+    {
+      "sha": "813db96",
+      "date": "2026-07-11T16:26:06Z",
+      "author": "mattiasadem-5021s",
+      "subject": "feat(dashboard): top-10 rollout projection — annual lift/cost/ROI for your store",
+      "body": ""
+    },
+    {
+      "sha": "7f77a81",
+      "date": "2026-07-11T16:18:54Z",
+      "author": "mattiasadem-5021s",
+      "subject": "skill: in-region 3PL distribution upgrade (Move #22.3)",
+      "body": ""
+    },
+    {
+      "sha": "ca9dbe8",
+      "date": "2026-07-11T14:45:58Z",
+      "author": "mattiasadem-5021s",
+      "subject": "skill: native-language voice profiles (Move #22.2 localization)",
+      "body": ""
+    },
+    {
+      "sha": "0fb5d8d",
+      "date": "2026-07-11T13:32:47Z",
+      "author": "mattiasadem-5021s",
+      "subject": "skill: international-expansion (Move #22, 5-pillar cross-border DTC, 25:1 default Year-1 ROI)",
+      "body": ""
+    },
+    {
+      "sha": "c2f3f8b",
+      "date": "2026-07-11T12:25:48Z",
+      "author": "mattiasadem-5021s",
+      "subject": "journal: 2026-07-11 12:25 Move #5 Klaviyo+Postscript migration skill shipped",
+      "body": ""
+    },
+    {
+      "sha": "ad051cf",
+      "date": "2026-07-11T12:24:46Z",
+      "author": "mattiasadem-5021s",
+      "subject": "skill: Move #5 Klaviyo+Postscript migration (4-path Path A/B/C/D, 8:1 default Year-1 ROI)",
+      "body": ""
+    },
+    {
+      "sha": "422458f",
+      "date": "2026-07-11T11:16:31Z",
+      "author": "mattiasadem-5021s",
+      "subject": "skill: Move #15.x TikTok Shop / live commerce (5-pillar Path A/B/C, 8.5:1 default Year-1 ROI), 23rd skill in library",
+      "body": ""
+    },
+    {
+      "sha": "6f9b677",
+      "date": "2026-07-11T10:10:41Z",
+      "author": "mattiasadem-5021s",
+      "subject": "skill: Move #3 checkout audit + Baymard fix-list (24-guideline score + Shopify fixes + mobile-device verification, 5-pillar Path A/B/C, 15:1 default Year-1 ROI), 22nd skill in library",
+      "body": ""
+    },
+    {
+      "sha": "6ec9a9b",
+      "date": "2026-07-11T10:03:30Z",
+      "author": "mattiasadem-5021s",
+      "subject": "journal: log benchmark-dial ship (deploy pending Vercel + GitHub auth)",
+      "body": ""
+    },
+    {
+      "sha": "0c14fa7",
+      "date": "2026-07-11T10:02:37Z",
+      "author": "mattiasadem-5021s",
+      "subject": "chore(dashboard): refresh content.json (parse-content after benchmark-dial mount)",
+      "body": ""
+    },
+    {
+      "sha": "fb2d3c0",
+      "date": "2026-07-11T10:02:28Z",
+      "author": "mattiasadem-5021s",
+      "subject": "feat(dashboard): benchmark dial — where does my store sit? (AOV/gross-margin/BE-CAC/LTV/CAC-payback vs research/00)",
+      "body": ""
+    },
+    {
+      "sha": "38020a5",
+      "date": "2026-07-11T08:58:09Z",
+      "author": "mattiasadem-5021s",
+      "subject": "journal: log Move #12 3PL-migration skill (21st ship, deploy pending vercel scope auth)",
+      "body": ""
+    },
+    {
+      "sha": "581b764",
+      "date": "2026-07-11T08:57:21Z",
+      "author": "mattiasadem-5021s",
+      "subject": "skill: Move #12 3PL migration (ShipBob + ShipMonk + Red Stag + Shopify Fulfillment Network + Rakuten Super Logistics + Stord + Flowspace + Extensiv), 5-pillar Path A/B/C, 12:1 default Year-2+ steady-state ROI, 21st skill in library",
+      "body": ""
+    },
+    {
+      "sha": "6cc2c56",
+      "date": "2026-07-11T06:43:35Z",
+      "author": "mattiasadem-5021s",
+      "subject": "skill: Move #18 Amazon DSP + Amazon Attribution audit (programmatic display + Halo defense + AMC cohort overlay + post-purchase email merge), 5-pillar Path A/B/C, 3.5:1 default Year-1 ROI, 20th skill in library",
+      "body": ""
+    },
+    {
+      "sha": "5d2bc1d",
+      "date": "2026-07-11T05:36:49Z",
+      "author": "mattiasadem-5021s",
+      "subject": "skill: Move #14.5 B2B / wholesale channel launch (Faire + Tundra + Ankorstore + Handshake + Shopify B2B + RSP/KeHE/UNFI + Amazon Business), 5-pillar Path A/B/C, 8.5:1 default Year-1 ROI, 19th skill in library",
+      "body": ""
+    },
+    {
+      "sha": "52798f0",
+      "date": "2026-07-11T04:29:49Z",
+      "author": "mattiasadem-5021s",
+      "subject": "journal: log Move #20 generative-AI-engine skill (18th ship, deploy pending vercel scope auth)",
+      "body": ""
+    },
+    {
+      "sha": "ed51ee5",
+      "date": "2026-07-11T04:28:01Z",
+      "author": "mattiasadem-5021s",
+      "subject": "skill: Move #20 generative-AI-engine — full-stack AI orchestration (GPT-4o + Pencil/Moby + Jasper + Copy.ai + Midjourney + ElevenLabs + Typeface), 5-pillar Path A/B/C, 3:1 default Year-1 ROI, 18th skill in library",
+      "body": ""
+    },
+    {
+      "sha": "36f5892",
+      "date": "2026-07-11T03:56:19Z",
+      "author": "mattiasadem-5021s",
+      "subject": "feat(dashboard): skills library search + next-to-study recommendation + studied/applied/shipped tracker",
+      "body": ""
+    },
+    {
+      "sha": "b1bd61f",
+      "date": "2026-07-11T03:21:51Z",
+      "author": "mattiasadem-5021s",
+      "subject": "skill: Move #17 Pinterest organic discovery + SEO content engine (5-pillar Path A/B/C, 6:1 default Year-1 ROI)",
+      "body": ""
+    },
+    {
+      "sha": "50ea8f2",
+      "date": "2026-07-11T02:16:02Z",
+      "author": "mattiasadem-5021s",
+      "subject": "skill: creator-economy-expansion — Move #16 Aspire + Collabstr + GRIN + CreatorIQ 5-pillar Path A/B/C, 8:1 default Year-1 ROI, 16th skill",
+      "body": ""
+    },
+    {
+      "sha": "68948d9",
+      "date": "2026-07-11T01:12:04Z",
+      "author": "mattiasadem-5021s",
+      "subject": "skill: marketplace expansion (Move #13, 5-pillar Path A/B/C, 8:1 default Year-1 ROI)",
+      "body": ""
+    },
+    {
+      "sha": "b1ffab5",
+      "date": "2026-07-11T00:07:38Z",
+      "author": "mattiasadem-5021s",
+      "subject": "skill: affiliate-program — Move #15 creator-led-acquisition (5-pillar Path A/B/C, 6:1–12.5:1 ROI), 14th skill in library",
+      "body": ""
+    },
+    {
+      "sha": "2b42a4e",
+      "date": "2026-07-10T23:02:46Z",
+      "author": "mattiasadem-5021s",
+      "subject": "journal: log Move #6 triple-whale-attribution skill (13th ship, deploy pending vercel scope auth)",
+      "body": ""
+    },
+    {
+      "sha": "01e0caf",
+      "date": "2026-07-10T23:01:47Z",
+      "author": "mattiasadem-5021s",
+      "subject": "skill: triple-whale-attribution — Move #6 MTA + cohort LTV foundation (Triple Whale + Polar + cohort overlays), 13th skill at 19:1–96:1 Year-1 ROI",
+      "body": ""
+    },
+    {
+      "sha": "034f29e",
+      "date": "2026-07-10T21:57:55Z",
+      "author": "mattiasadem-5021s",
+      "subject": "skill: ai-product-recommendation-feed — Move #20.2 Nosto + Rebuy + Dynamic Yield 7-surface widget stack with Triple Whale cohort-LTV overlay, 12th skill in library at 6:1–25:1 Year-1 ROI",
+      "body": ""
+    },
+    {
+      "sha": "af70ec4",
+      "date": "2026-07-10T21:49:11Z",
+      "author": "mattiasadem-5021s",
+      "subject": "feat(dashboard): unit-economics personalizer — your AOV/orders/margin projected into canonical LTV:CAC dial (Lever 1 of 10)",
+      "body": ""
+    },
+    {
+      "sha": "01cee21",
+      "date": "2026-07-10T20:52:59Z",
+      "author": "mattiasadem-5021s",
+      "subject": "skill: ai-customer-service-automation — Move #20.1 Gorgias Automate + ChatGPT fine-tuning (3-layer macro-template + AI-completion + human-escalation), 11th skill in library at 3.5:1–18:1 Year-1 ROI",
+      "body": ""
+    },
+    {
+      "sha": "eebbcf3",
+      "date": "2026-07-10T19:46:56Z",
+      "author": "mattiasadem-5021s",
+      "subject": "skill: lifecycle-flow-library — Move #14 Klaviyo + Postscript + Smile 20-flow build (4-tier launch ladder: browse-abandon + winback + cross-sell + sunset + shipping + birthday + anniversary + tier-up + tier-down + NPS-detractor + dunning + ",
+      "body": ""
+    },
+    {
+      "sha": "4143207",
+      "date": "2026-07-10T18:41:00Z",
+      "author": "mattiasadem-5021s",
+      "subject": "journal: log Move #19 sms-orchestration skill (9th ship, deploy pending vercel scope auth)",
+      "body": ""
+    },
+    {
+      "sha": "3ca4ff0",
+      "date": "2026-07-10T18:38:59Z",
+      "author": "mattiasadem-5021s",
+      "subject": "skill: sms-orchestration — Move #19 SMSBump + Postscript channel orchestration (4-phase orchestration: SMSBump-international + DLR + MMS + RCS + 2-way + 1%-rule attrition), 9th skill in library at 2.4:1–107:1 Year-1 ROI",
+      "body": ""
+    },
+    {
+      "sha": "b55e7a0",
+      "date": "2026-07-10T17:33:19Z",
+      "author": "mattiasadem-5021s",
+      "subject": "skill: pdp-ab-testing-program — Move #9.5 always-on PDP A/B testing program (Convert.com/VWO/Shoplift) at 10:1–35:1 ROI, 8th skill in library",
+      "body": ""
+    },
+    {
+      "sha": "233ae52",
+      "date": "2026-07-10T16:29:50Z",
+      "author": "mattiasadem-5021s",
+      "subject": "journal: log Move #10 ai-ad-creative-iteration skill (7th ship, deploy pending vercel scope auth)",
+      "body": ""
+    },
+    {
+      "sha": "9849719",
+      "date": "2026-07-10T16:29:14Z",
+      "author": "mattiasadem-5021s",
+      "subject": "skill: ai-ad-creative-iteration — Move #10 AI ad creative iteration (AdCreative.ai/Moby/Pencil) at 10:1–25:1 ROI, 7th skill in library",
+      "body": ""
+    },
+    {
+      "sha": "fa4510b",
+      "date": "2026-07-10T15:43:24Z",
+      "author": "mattiasadem-5021s",
+      "subject": "feat(dashboard): interactive affiliate-program Path A/B/C scorer on /affiliates (Move #15)",
+      "body": ""
+    },
+    {
+      "sha": "8d05fda",
+      "date": "2026-07-10T15:24:38Z",
+      "author": "hermesagent",
+      "subject": "journal: log Move #9 mobile-pdp-redesign skill (6th ship)",
+      "body": ""
+    },
+    {
+      "sha": "c953105",
+      "date": "2026-07-10T15:23:44Z",
+      "author": "hermesagent",
+      "subject": "skill: mobile-pdp-redesign — Move #9 mobile-first PDP redesign (speed + above-the-fold + sticky ATC) at 10:1–25:1 ROI",
+      "body": ""
+    },
+    {
+      "sha": "793e890",
+      "date": "2026-07-10T14:18:19Z",
+      "author": "hermesagent",
+      "subject": "skill: subscription & replenishment program (Move #11) — 5th skill in library, canonical Recharge/Skio/Bold 4-phase rollout at 12:1–25:1 year-1 ROI",
+      "body": ""
+    },
+    {
+      "sha": "270ebb5",
+      "date": "2026-07-10T13:06:14Z",
+      "author": "skill-builder",
+      "subject": "skill: loyalty & rewards program (Move #8) — 4th skill shipped",
+      "body": ""
+    },
+    {
+      "sha": "5d059a0",
+      "date": "2026-07-10T11:56:19Z",
+      "author": "hermesagent",
+      "subject": "skill: welcome series — journal entry (deploy succeeded)",
+      "body": ""
+    },
+    {
+      "sha": "527fc28",
+      "date": "2026-07-10T11:50:08Z",
+      "author": "hermesagent",
+      "subject": "skill: welcome series (email + SMS) — 3rd skill shipped, Move #4",
+      "body": ""
+    },
+    {
+      "sha": "473c3a0",
+      "date": "2026-07-10T09:44:13Z",
+      "author": "hermesagent",
+      "subject": "feat(skills): /skills page + 2 seed skills (abandoned-cart, post-purchase-upsell) + hourly skill-builder cron",
+      "body": "- New skills/ folder with canonical 9-field frontmatter schema (name, title, category, tier, priority, default_move, year_1_roi_band, sms_friendly, last_updated, sources)\n- 2 seed skills written: 01-abandoned-cart-recovery (Tier 1, P0, Move #1, 25:1–60:1 ROI, 15 pitfalls, 7 sources) and 02-post-purchase-upsell (Tier 1, P0, Move #2, 15:1–40:1 ROI, 15 pitfalls, 7 sources)\n- New /skills route: catalog page grouped by category, with priority badges, move numbers, ROI bands, pitfall/source counts, SMS-friendly markers\n- New /skills/[slug] route: per-skill detail with rendered markdown (H2/H3, tables, lists, blockquotes, code), pitfalls, sources\n- parse-content.mjs: parseSkills() reads from both workspace skills/ and dashboard/src/skills/, dedupes by filename, supports quoted YAML values with colons\n- Skill added to sidebar (Library group) under /skills\n- New cron 'ecommerce-ops-skill-builder' (every 60m) researches + writes + deploys one new skill per tick, prompt at scripts/skill-builder-prompt.md\n\nReload https://ecommerce-ops-iota.vercel.app/skills — you will now see 2 best-practice skills, each with a 9-section runbook, benchmarks, build sequence, and verification checklist."
+    },
+    {
+      "sha": "9df86e2",
+      "date": "2026-07-10T08:14:43Z",
+      "author": "hermesagent",
+      "subject": "feat(dashboard): sidebar layout + /today operator cockpit + /settings + cron health API",
+      "body": "- New layout: fixed left sidebar (md:w-64) with 4 groups (Operate / Levers / Channels / Library), 23 routes. Mobile bottom nav.\n- New /today route: operator cockpit — KPI strip, your-store inputs at top, next-move card, 3 working ROI calculators (abandoned-cart, post-purchase, welcome-series), today's focus + what-shipped.\n- New /settings route: your-store inputs (live editable), cron health card (auto-refreshes from /api/cron-health), workspace reset card.\n- New API /api/cron-health: server route that reads cron-reports + journal + counts. Best-effort, returns ok:false gracefully on Vercel where /data isn't mounted.\n- New components: sidebar, mobile-nav, cron-health-card, workspace-reset-card.\n- /standup: prior day, still live.\n- Updated dashboard-improver cron prompt with product-direction section (sidebar + /today are now the canonical home for new features).\n- Added weekly-review cron (Mondays 9am) → docs/weekly/YYYY-Www.md.\n- Added .next/ to .gitignore."
+    },
+    {
+      "sha": "71b2207",
+      "date": "2026-07-10T02:52:17Z",
+      "author": "hermesagent",
+      "subject": "feat(dashboard): interactive 3PL migration Path A/B/C scorer on /3pl (Move #12)",
+      "body": ""
+    },
+    {
+      "sha": "ee3ba9b",
+      "date": "2026-07-09T14:36:30Z",
+      "author": "hermesagent",
+      "subject": "feat(dashboard): interactive Marketplace Path A/B/C scorer on /marketplace (Move #13)",
+      "body": ""
+    },
+    {
+      "sha": "f07ce1c",
+      "date": "2026-07-09T08:26:45Z",
+      "author": "hermesagent",
+      "subject": "feat(dashboard): interactive Snap + Pinterest attribution quality audit (Move #6.7)",
+      "body": ""
+    },
+    {
+      "sha": "f4710e7",
+      "date": "2026-07-09T01:54:30Z",
+      "author": "hermesagent",
+      "subject": "feat(b2b): interactive Path A/B/C wholesale scorer on /b2b (Move #14.5)",
+      "body": ""
+    },
+    {
+      "sha": "11683b5",
+      "date": "2026-07-08T19:38:15Z",
+      "author": "hermesagent",
+      "subject": "feat(dashboard): interactive TikTok attribution quality audit on /tiktok (Move #6.6)",
+      "body": ""
+    },
+    {
+      "sha": "94139fa",
+      "date": "2026-07-08T13:30:45Z",
+      "author": "hermesagent",
+      "subject": "feat(dashboard): lifecycle flow health audit on /lifecycle (interactive audit for 13 Path-B flows)",
+      "body": ""
+    },
+    {
+      "sha": "f0d94f1",
+      "date": "2026-07-08T07:21:21Z",
+      "author": "hermesagent",
+      "subject": "feat(dashboard): PDP A/B test analyzer + program ROI (Move #9.5) on /playbooks",
+      "body": ""
+    },
+    {
+      "sha": "160426f",
+      "date": "2026-07-08T01:08:38Z",
+      "author": "hermesagent",
+      "subject": "feat(dashboard): AI ad-creative ROI calculator (Move #10) on /playbooks",
+      "body": "Ports scripts/ai_ad_creative_roi.py math to React/TypeScript. Operator\nenters ad spend + baseline ROAS + expected ROAS lift + tool cost + variants/wk\n+ operator hours + attribution flag; the panel forecasts baseline + lift\nrevenue, post-ROAS, total cost (tool + operator), net revenue, net per\n$1 of AI tool cost, variants/month, cost/variant, revenue/variant, ROAS\nlift payback in days, and a 5-band health verdict.\n\nDefaults match the Python CLI's Triple Whale Moby Starter baseline\n($5k/mo × 2.5× baseline ROAS × +20% lift × $149/mo × 2 hr/wk × $50/hr\n= $1,917.67 net / mo, 12.87× net per $1 tool, great band, 1.79-day\npayback). State persists to localStorage. Copy-report emits a paste-ready\n19-line markdown forecast. Attribution toggle is a separate green button\n(no attribution = wild guess territory).\n\nMounted on /playbooks below the welcome-series calculator. Completes the\nKlaviyo-stack + paid-acquisition ROI calculator set (Move #1, #2, #4, #10)\non a single page — the four highest-leverage automation + AI plays the\nNext-move recommendation card on Overview surfaces."
+    },
+    {
+      "sha": "84c6c7f",
+      "date": "2026-07-07T19:00:38Z",
+      "author": "mattiasadem-5021s",
+      "subject": "feat(cro): personalized $-lift projection tied to Your-store",
+      "body": ""
+    },
+    {
+      "sha": "754cc79",
+      "date": "2026-07-07T12:54:30Z",
+      "author": "mattiasadem-5021s",
+      "subject": "feat(assets): client-side search + freshness filter on /assets",
+      "body": "- Add generic <ContentSearch kind routePrefix itemNumberField /> client component\n- Mount on /assets with kind='assets' to filter all 27 paste-ready artifacts\n- Persists query + tier chip to ecom-ops:content:search:v1 (kind-tagged)\n- Preserves per-card markup parity (voiceGated chips, section preview)"
+    },
+    {
+      "sha": "1bff455",
+      "date": "2026-07-07T06:47:34Z",
+      "author": "hermesagent",
+      "subject": "feat(dashboard): live Ikas GraphQL integration — Your-store at a glance card",
+      "body": ""
+    },
+    {
+      "sha": "6b1eebd",
+      "date": "2026-07-07T00:24:12Z",
+      "author": "hermesagent",
+      "subject": "feat(dashboard): playbook search & filter on /playbooks (free-text + freshness + shipped state, localStorage-persisted)",
+      "body": ""
+    }
+  ],
   "counts": {
     "researchDocs": 18,
     "playbooks": 30,
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 4,
-    "skills": 114
+    "journalEntries": 5,
+    "skills": 114,
+    "gitCommits": 200
   }
 }

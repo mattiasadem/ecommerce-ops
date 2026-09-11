@@ -1,12 +1,17 @@
 #!/usr/bin/env node
 /**
  * Parse /data/workspace/ecommerce-ops/{research,playbooks}/*.md into a single
- * JSON dataset the dashboard reads at build time.
+ * JSON dataset the dashboard reads at build time. Also shells out to
+ * `git log` to capture the real dashboard-subtree commit history into
+ * `gitCommits[]` so the `/journal` page can render a live changelog
+ * without needing git to be available at runtime (Vercel-side builds do
+ * not get the parent repo's `.git`).
  *
  * Run: node scripts/parse-content.mjs
  * Output: src/lib/content.json
  */
 import { readdir, readFile, writeFile, stat } from "node:fs/promises";
+import { spawnSync } from "node:child_process";
 import { join } from "node:path";
 
 const ROOT = "/data/workspace/ecommerce-ops";
@@ -422,15 +427,78 @@ async function parseSkills() {
   return skills;
 }
 
+async function parseGitLog() {
+  /**
+   * Capture the dashboard-subtree commit history at build time.
+   *
+   * Format chosen for compactness: one commit per object, fields:
+   *   - sha       (7 chars) — short hash, link-friendly
+   *   - date      (ISO)     — when the commit landed
+   *   - author    (string)  — git author name (e.g. "hermesagent")
+   *   - subject   (first line of commit message, ≤240 chars)
+   *   - body      (remaining lines, ≤2000 chars total)
+   *
+   * Output is sorted newest-first by git. We cap at 200 commits so the
+   * static bundle stays small — operators almost always want the last
+   * 30-50 anyway.
+   *
+   * Graceful failure: if git isn't available, .git is missing, or
+   * we're not in a checkout, return an empty array. The UI then renders
+   * an empty-state message instead of crashing the build.
+   */
+  const fmt = "%H%n%h%n%aI%n%an%n%s%n--END-SUBJECT--%n%b%n--END-COMMIT--";
+  const res = spawnSync(
+    "git",
+    [
+      "-C",
+      ROOT,
+      "log",
+      "--no-color",
+      "-n",
+      "200",
+      `--pretty=format:${fmt}`,
+      "--",
+      "dashboard/",
+      "docs/journal.md",
+    ],
+    { encoding: "utf8", maxBuffer: 16 * 1024 * 1024 }
+  );
+  if (res.status !== 0 || !res.stdout) return [];
+
+  const out = [];
+  const blocks = res.stdout.split("--END-COMMIT--");
+  for (const block of blocks) {
+    const trimmed = block.trim();
+    if (!trimmed) continue;
+    const lines = trimmed.split("\n");
+    if (lines.length < 5) continue;
+    const [fullSha, shortSha, date, author, ...rest] = lines;
+    const sepIdx = rest.indexOf("--END-SUBJECT--");
+    const subject =
+      sepIdx >= 0 ? rest.slice(0, sepIdx).join("\n") : rest.join("\n");
+    const body = sepIdx >= 0 ? rest.slice(sepIdx + 1).join("\n").trim() : "";
+    out.push({
+      sha: shortSha || fullSha?.slice(0, 7) || "",
+      date: date || "",
+      author: author || "",
+      subject: (subject || "").slice(0, 240),
+      body: body.slice(0, 2000),
+    });
+  }
+  return out;
+}
+
 (async () => {
-  const [research, playbooks, assets, top10, journal, skills] = await Promise.all([
-    parseResearch(),
-    parsePlaybooks(),
-    parseAssets(),
-    parseTop10(),
-    parseJournal(),
-    parseSkills(),
-  ]);
+  const [research, playbooks, assets, top10, journal, skills, gitCommits] =
+    await Promise.all([
+      parseResearch(),
+      parsePlaybooks(),
+      parseAssets(),
+      parseTop10(),
+      parseJournal(),
+      parseSkills(),
+      parseGitLog(),
+    ]);
   const out = {
     generatedAt: new Date().toISOString(),
     research,
@@ -439,6 +507,7 @@ async function parseSkills() {
     top10,
     journal,
     skills,
+    gitCommits,
     counts: {
       researchDocs: research.length,
       playbooks: playbooks.length,
@@ -447,6 +516,7 @@ async function parseSkills() {
       findings: research.reduce((n, r) => n + r.findings.length, 0),
       journalEntries: journal.length,
       skills: skills.length,
+      gitCommits: gitCommits.length,
     },
   };
   await writeFile(OUT, JSON.stringify(out, null, 2));

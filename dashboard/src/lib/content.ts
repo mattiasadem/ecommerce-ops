@@ -59,6 +59,14 @@ export interface JournalEntry {
   body: string;
 }
 
+export interface GitCommit {
+  sha: string;
+  date: string;
+  author: string;
+  subject: string;
+  body: string;
+}
+
 export interface Skill {
   file: string;
   name: string;
@@ -87,6 +95,7 @@ export interface Content {
   top10: { tables: { heading: string; rows: TableRow[] }[]; status: Top10Status[] };
   journal: JournalEntry[];
   skills: Skill[];
+  gitCommits: GitCommit[];
   counts: {
     researchDocs: number;
     playbooks: number;
@@ -95,6 +104,7 @@ export interface Content {
     findings: number;
     journalEntries: number;
     skills: number;
+    gitCommits: number;
   };
 }
 
