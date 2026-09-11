@@ -15,6 +15,7 @@ import {
   validateCreatorEconomyInputs,
 } from "@/lib/creator-economy";
 import { CopyButton } from "@/components/copy-button";
+import { loadYourStore, mergeFromYourStore, YOUR_STORE_STORAGE_KEY } from "@/lib/your-store";
 import { cn } from "@/lib/utils";
 
 /**
@@ -296,11 +297,57 @@ export function CreatorEconomyPathCalculator() {
     CREATOR_ECONOMY_DEFAULTS,
   );
   const [hydrated, setHydrated] = useState(false);
+  const [fromYourStore, setFromYourStore] = useState(false);
 
   useEffect(() => {
     const stored = loadStored();
-    if (stored) setInputs(stored);
+    if (stored) {
+      setInputs(stored);
+      setFromYourStore(false);
+      setHydrated(true);
+      return;
+    }
+    // Fall back to the operator's cross-page Your-store inputs (if any).
+    // For creator-economy we map monthlyOrders × aov × 12 → usDtcGmv and
+    // grossMargin (0..1) × 100 → grossMarginPct (the canonical 3 of 12
+    // fields that overlap with Your-store).
+    const yourStore = loadYourStore();
+    if (yourStore) {
+      setInputs(
+        mergeFromYourStore(CREATOR_ECONOMY_DEFAULTS, yourStore, {
+          usDtcGmv: Math.max(0, Math.round(yourStore.monthlyOrders * yourStore.aov * 12)),
+          grossMarginPct: Math.round(yourStore.grossMargin * 100 * 10) / 10,
+        }),
+      );
+      setFromYourStore(true);
+    }
     setHydrated(true);
+  }, []);
+
+  // Listen for cross-card edits to Your-store so the personalized
+  // lift panel re-projects when the operator updates their numbers
+  // on Overview (only when the operator has not yet overridden the
+  // inputs locally).
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const handler = (e: StorageEvent) => {
+      if (e.key !== YOUR_STORE_STORAGE_KEY) return;
+      // Skip if the operator has explicit local edits — stored values
+      // win over a cross-card re-hydration.
+      if (loadStored()) return;
+      const refreshed = loadYourStore();
+      if (refreshed) {
+        setInputs(
+          mergeFromYourStore(CREATOR_ECONOMY_DEFAULTS, refreshed, {
+            usDtcGmv: Math.max(0, Math.round(refreshed.monthlyOrders * refreshed.aov * 12)),
+            grossMarginPct: Math.round(refreshed.grossMargin * 100 * 10) / 10,
+          }),
+        );
+        setFromYourStore(true);
+      }
+    };
+    window.addEventListener("storage", handler);
+    return () => window.removeEventListener("storage", handler);
   }, []);
 
   useEffect(() => {
@@ -336,6 +383,7 @@ export function CreatorEconomyPathCalculator() {
 
   function resetDefaults() {
     setInputs(CREATOR_ECONOMY_DEFAULTS);
+    setFromYourStore(false);
   }
 
   return (
@@ -351,6 +399,12 @@ export function CreatorEconomyPathCalculator() {
           <span className="rounded border border-accent/40 bg-accent/10 px-1.5 py-0.5 text-[10px] font-mono uppercase tracking-wider text-accent">
             Interactive · Move #19
           </span>
+          {fromYourStore && hydrated && (
+            <span className="inline-flex items-center gap-1 rounded-full border border-accent/40 bg-accent/10 px-2 py-0.5 text-[10px] font-medium text-accent">
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent" />
+              Prefilled from Your store on Overview
+            </span>
+          )}
         </div>
         <p className="text-xs text-muted-foreground leading-relaxed">
           Direct port of{" "}
@@ -368,7 +422,11 @@ export function CreatorEconomyPathCalculator() {
           content-licensing 2-4× uplift band, 5-way-comparison-correction band,
           5-payout-creator-economy-structures matrix, and the 6-step build
           sequence for the recommended path. State persists to{" "}
-          <code className="rounded bg-muted px-1">{STORAGE_KEY}</code>.
+          <code className="rounded bg-muted px-1">{STORAGE_KEY}</code>;
+          cross-page <code className="rounded bg-muted px-1">{YOUR_STORE_STORAGE_KEY}</code>{" "}
+          (entered on Overview) projects onto <code className="rounded bg-muted px-1">usDtcGmv</code>{" "}
+          and <code className="rounded bg-muted px-1">grossMarginPct</code> when the
+          operator has not yet customized local inputs.
         </p>
       </header>
 
