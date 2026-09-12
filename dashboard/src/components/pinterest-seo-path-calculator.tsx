@@ -16,6 +16,7 @@ import {
   voiceBadgeClasses,
 } from "@/lib/pinterest-seo";
 import { CopyButton } from "@/components/copy-button";
+import { loadYourStore } from "@/lib/your-store";
 import { cn } from "@/lib/utils";
 
 /**
@@ -299,10 +300,33 @@ export function PinterestSeoPathCalculator() {
     PINTEREST_SEO_DEFAULTS,
   );
   const [hydrated, setHydrated] = useState(false);
+  const [yourStoreApplied, setYourStoreApplied] = useState(false);
 
   useEffect(() => {
     const stored = loadStored();
-    if (stored) setInputs(stored);
+    if (stored) {
+      // Per-calculator values win — operator explicitly set them.
+      setInputs(stored);
+      setYourStoreApplied(false);
+    } else {
+      // No per-calc history → seed from Your-store on Overview, so a single
+      // edit there propagates across all path calculators. Annual GMV is
+      // reconstructed from monthly orders × 12 (operator's known revenue
+      // cadence) × AOV (average order value). Gross margin converts from
+      // the 0..1 storage form to the 0..100 form this calculator expects.
+      const ys = loadYourStore();
+      if (ys) {
+        const annualGmv = Math.round(ys.aov * ys.monthlyOrders * 12);
+        setInputs((prev) => ({
+          ...prev,
+          usDtcGmv: annualGmv,
+          grossMarginPct: Math.round(ys.grossMargin * 100 * 10) / 10,
+        }));
+        setYourStoreApplied(true);
+      } else {
+        setYourStoreApplied(false);
+      }
+    }
     setHydrated(true);
   }, []);
 
@@ -352,6 +376,15 @@ export function PinterestSeoPathCalculator() {
           <span className={voiceBadgeClasses(inputs.voiceProfile)}>
             {inputs.voiceProfile} voice
           </span>
+          {yourStoreApplied ? (
+            <span
+              data-testid="your-store-applied-badge"
+              className="rounded border border-emerald-500/40 bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-mono uppercase tracking-wider text-emerald-700 dark:text-emerald-300"
+              title="US DTC GMV + gross margin auto-filled from your Your-store inputs on Overview. Edit Your-store there to propagate."
+            >
+              Your-store applied
+            </span>
+          ) : null}
         </div>
         <p className="text-xs text-muted-foreground leading-relaxed">
           Direct port of{" "}
