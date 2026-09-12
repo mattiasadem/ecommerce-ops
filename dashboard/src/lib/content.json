@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-12T04:48:46.504Z",
+  "generatedAt": "2026-09-12T05:56:41.848Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-09-12 04:50] Skill tick: keep — Per-cohort attribution decision engine + per-cohort-attribution-decision-event-stream + per-cohort-attribution-decision-audit + per-cohort-cohort-rollback + per-cohort-EMQ-monitoring + per-cohort-attribution-signal-quality-alerting + per-cohort-attribution-decision-velocity + per-cohort-attribution-decision-replay + per-cohort-attribution-decision-explainer (Move #119, the canonical 8th-move in the per-cohort-track progression per-cohort-bid-engine → per-cohort-creative-engine → per-cohort-message-engine → per-cohort-audience-engine → per-cohort-experimentation-engine → per-cohort-suppression-engine → per-cohort-pricing-engine → per-cohort-attribution-decision-engine, FIRST Tier-1 + FIRST P0 in `category: per-cohort-attribution-decision-engine` — 18 numbered pitfalls + 10 verification gates A-J + default 9:1 Year-1 ROI Path B at $5M GMV) — Move #112 + #113 + #114 + #115 + #116 + #117 + #118 + #9 + #10 + #13 + #30 + #46 + #47 + #48 + #61 + #77 + #90 + #93 + #108 + Triple Whale + Polar + Northbeam + Hyros + Daasity + Glew + Voyantis + AdZeta + Angler AI + Servo + Mixpanel + Amplitude + Heap + Segment + mParticle + Rudderstack + Snowplow + Klaviyo Data Platform + Postscript Analytics + Attentive Analytics + Iterable Analytics + Braze Analytics + Customer.io Analytics + Salesforce Marketing Cloud Analytics + Adobe Campaign Analytics + Oracle Responsys Analytics + Zeta Analytics + HubSpot Analytics + ActiveCampaign Analytics + Mailchimp Analytics + Omnisend Analytics + Drip Analytics + ConvertKit Analytics + Beehiiv Analytics + MailerLite Analytics + Sendlane Analytics + Moosend Analytics + GetResponse Analytics + Eppo + Statsig + LaunchDarkly + Split.io + Optimizely + ABsmartly + GrowthBook + PostHog Experiments + Datadog + Honeycomb + New Relic + Sentry + Slack + PagerDuty + Opsgenie + Liveramp RampID + TTD UID 2.0 + Movable Ink + Liveclicker + Cordial + Iterable AI Content + Braze AI + Klaviyo AI + Attentive AI + Salesforce Marketing Cloud Einstein + HubSpot AI + ActiveCampaign AI + Mailchimp AI + Omnisend AI + Drip AI + ConvertKit AI + Beehiiv AI + MailerLite AI + Sendlane AI + Moosend AI + GetResponse AI",
+      "body": "- **Branch:** autoresearch/skills-2026-09-12\n- **Status:** keep (unique category: `per-cohort-attribution-decision-engine` — first skill in this slot; confirmed via `grep -l \"^category: per-cohort-attribution-decision-engine\" skills/*.md | wc -l = 0` before writing → `= 1` after)\n- **Reason:** PASSES improvement metric on 4 axes: (1) **Unique category** — `per-cohort-attribution-decision-engine` count = 1 in `skills/`; (2) **Tier-1 first** — first Tier-1 in this category; (3) **P0 first** — first P0 in this category; (4) **Highest pitfall count** — 18 numbered pitfalls across 6 failure-mode-clusters (A **per-cohort-attribution-decision-event-stream + per-cohort-attribution-decision-rule-versioning** #1 + #2 + #3 + #4 / B **per-cohort-attribution-decision-audit + per-cohort-attribution-deci"
+    },
+    {
       "heading": "[2026-09-12 03:45] Skill tick: keep — Per-cohort pricing engine + per-cohort-price-discrimination + per-cohort-price-elasticity + per-cohort-promotional-pricing + per-cohort-coupon-engine + per-cohort-bundle-pricing + per-cohort-subscription-pricing + per-cohort-loyalty-pricing + per-cohort-dynamic-pricing + per-cohort-segment-pricing + per-cohort-attribution-pricing-overlay + per-cohort-margin-overlay + per-cohort-LTV-overlay-pricing + per-cohort-iteration-cadence + per-cohort-kill-criteria + per-cohort-fatigue-management + per-cohort-render-overlay + per-cohort-personalization-overlay + per-cohort-multi-overlay-engine + per-cohort-attribution-decision-event-stream + per-cohort-cohort-rollback + per-cohort-pricing-decision-audit (Move #118, the canonical 7th-move in the per-cohort-track progression per-cohort-bid-engine → per-cohort-creative-engine → per-cohort-message-engine → per-cohort-audience-engine → per-cohort-experimentation-engine → per-cohort-suppression-engine → per-cohort-pricing-engine, FIRST Tier-1 + FIRST P0 in `category: per-cohort-pricing-engine` — 18 numbered pitfalls + 10 verification gates A-J + default 9:1 Year-1 ROI Path B at $5M GMV) — Move #112 + #113 + #114 + #115 + #116 + #117 + #9 + #10 + #13 + #30 + #46 + #47 + #48 + #61 + #77 + #90 + #93 + #108 + #14 + #16 + #18 + #25 + Klaviyo + Postscript + Attentive + Iterable + Braze + Customer.io + Salesforce Marketing Cloud + Adobe Campaign + Oracle Responsys + Zeta + HubSpot + ActiveCampaign + Mailchimp + Omnisend + Drip + ConvertKit + Beehiiv + MailerLite + Sendlane + Moosend + GetResponse + Mixpanel + Amplitude + Heap + Segment + mParticle + Rudderstack + Snowplow + Triple Whale + Polar + Northbeam + Hyros + Daasity + Glew + Voyantis + AdZeta + Angler AI + Servo + Prisync + Kompetera + Omnia + BlackCurve + Repricer + ReBuy + Rebuy + Bold Bundles + Shopbox + Fast Bundle + Z\\Bundle + Smilepulze + OneTrust + Cookiebot + Didomi + Iubenda + Usercentrics + ConsentManager + Piwik PRO Consent + Axway + Termly + Osano + DataGrail + Privaci + Seers + Exo + Ethyca + Mine + Transcend + WireWheel + BigID + Ketch + PossibleWorks + DataPlanes + ConsentBit + Eppo + Statsig + LaunchDarkly + Split.io + Optimizely + ABsmartly + GrowthBook + PostHog + Cordial + Movable Ink + Liveclicker + Recharge + Ordergroove + Stay AI + Skio + Bold Subscriptions + Appstle + Subbly + Recurly + Chargebee + Stripe Billing + Maxio + Zuora + Smile.io + Yotpo Loyalty + LoyaltyLion + Rfrnce + FriendBuy",
       "body": "- **Branch:** autoresearch/skills-2026-09-12\n- **Status:** keep (unique category: `per-cohort-pricing-engine` — first skill in this slot; confirmed via `grep -l \"^category: per-cohort-pricing-engine\" skills/*.md | wc -l = 0` before writing → `= 1` after)\n- **Reason:** PASSES improvement metric on 4 axes: (1) Unique category — `per-cohort-pricing-engine` count = 1 in `skills/`; (2) Tier-1 first — first Tier-1 in this category; (3) P0 first — first P0 in this category; (4) Highest pitfall count — 18 numbered pitfalls across 6 failure-mode-clusters (A **per-cohort-price-discrimination + per-cohort-elasticity + per-cohort-margin-overlay** #1 + #2 + #3 / B **per-cohort-promotional-cadence + per-cohort-coupon-engine + per-cohort-bundle-pricing** #4 + #5 + #6 / C **per-cohort-subscription-pricing"
     },
@@ -12184,6 +12188,10 @@
     {
       "heading": "[2026-09-11 15:30] Skill tick: discard — Warehouse robotics + automated storage + retrieval + pick-pack automation (Move #111) — DEPLOY BLOCKED by Vercel 24-hour rate limit",
       "body": ""
+    },
+    {
+      "heading": "[2026-09-12 03:30] Dashboard tick: keep — Pinterest-SEO path calculator wired to Your-store (Move #17 cross-page-intelligence port) — US DTC GMV + gross margin auto-seeded from Overview's Your-store inputs",
+      "body": "- **Status:** keep\n- **Reason:** Completes the cross-page-intelligence pattern on the Pinterest-SEO path scorer — the operator's AOV × monthly orders × 12 (annual GMV) and gross-margin (0..1 → 0..100) are now auto-seeded from `ecom-ops:your-store:v1` on first load when no per-calculator `ecom-ops:pinterest-seo-path:v1` value is stored. A green \"Your-store applied\" badge surfaces in the component header so the operator can see at-a-glance whether their numbers came from Overview or from canonical defaults.\n- **Feature class:** cross-page-intelligence (extends Your-store coverage from 19 → 20 calculator surfaces)\n- **What shipped:** (a) `dashboard/src/components/pinterest-seo-path-calculator.tsx` — added `loadYourStore` import + new `yourStoreApplied` state + on-mount merge that converts `{a"
     }
   ],
   "skills": [
@@ -20553,6 +20561,25 @@
       "sourceCount": 12,
       "size": 25362,
       "lastTouched": "2026-07-10"
+    },
+    {
+      "file": "120-per-cohort-channel-orchestration-engine.md",
+      "name": "120-per-cohort-channel-orchestration-engine",
+      "title": "Per-cohort channel orchestration engine + per-cohort-channel-orchestration-overlay + per-cohort-channel-attribution-decision + per-cohort-channel-rollback-window + per-cohort-cross-channel-frequency-cap + per-cohort-cross-channel-cadence + per-cohort-cross-channel-suppression + per-cohort-cross-channel-attribution-decision-event-stream + per-cohort-cross-channel-decision-audit + per-cohort-cross-channel-EMQ-monitoring + per-cohort-cross-channel-signal-quality-alerting + per-cohort-cross-channel-fatigue-management + per-cohort-cross-channel-creator-overlay + per-cohort-cross-channel-affiliate-overlay + per-cohort-cross-channel-geo-overlay + per-cohort-cross-channel-locale-overlay + per-cohort-cross-channel-format-overlay + per-cohort-cross-channel-personalization-overlay + per-cohort-cross-channel-render-overlay + per-cohort-cross-channel-multi-overlay-engine (Move #120)",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-12",
+      "sources": [],
+      "blurb": "Move #120 is the **canonical per-cohort-channel-orchestration-engine** — the 9th-move in the per-cohort-track progression (Move #112 per-cohort-bid-engine → Move #113 per-cohort-creative-engine → Move #114 per-cohort-...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 111441,
+      "lastTouched": "2026-09-12"
     },
     {
       "file": "13-triple-whale-attribution.md",
@@ -42630,6 +42657,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "7e71e5a",
+      "date": "2026-09-12T05:28:17Z",
+      "author": "hermesagent",
+      "subject": "feat(dashboard): wire Pinterest-SEO path calculator to Your-store (cross-page-intelligence)",
+      "body": ""
+    },
+    {
+      "sha": "21444b5",
+      "date": "2026-09-12T04:53:12Z",
+      "author": "hermesagent",
+      "subject": "skill: 119-per-cohort-attribution-decision-engine (Move #119, 8th-move in per-cohort-track)",
+      "body": ""
+    },
+    {
       "sha": "6160e48",
       "date": "2026-09-12T03:45:46Z",
       "author": "hermesagent",
@@ -44014,20 +44055,6 @@
       "author": "hermesagent",
       "subject": "feat(dashboard): interactive TikTok attribution quality audit on /tiktok (Move #6.6)",
       "body": ""
-    },
-    {
-      "sha": "94139fa",
-      "date": "2026-07-08T13:30:45Z",
-      "author": "hermesagent",
-      "subject": "feat(dashboard): lifecycle flow health audit on /lifecycle (interactive audit for 13 Path-B flows)",
-      "body": ""
-    },
-    {
-      "sha": "f0d94f1",
-      "date": "2026-07-08T07:21:21Z",
-      "author": "hermesagent",
-      "subject": "feat(dashboard): PDP A/B test analyzer + program ROI (Move #9.5) on /playbooks",
-      "body": ""
     }
   ],
   "counts": {
@@ -44036,8 +44063,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 10,
-    "skills": 119,
+    "journalEntries": 12,
+    "skills": 120,
     "gitCommits": 200
   }
 }
