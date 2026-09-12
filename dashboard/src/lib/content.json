@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-12T10:26:21.776Z",
+  "generatedAt": "2026-09-12T11:29:26.520Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12145,6 +12145,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-12 10:26] Skill tick: keep — Agentic commerce merchant readiness engine + UCP + ACP + ChatGPT Instant Checkout + Google AI Mode + Microsoft Copilot Checkout + Perplexity Buy with Pro + Amazon Rufus + Buy for Me + Alexa+ + Walmart Sparky + Shopify Catalog + Shopify Agentic Storefronts + Shopify WebMCP + Storefront MCP + Global Catalog MCP + Stripe Agent Toolkit + PayPal Instant Buy + agent-ready product schema + llms.txt + agent.md + per-channel agent-citation-tracking + Profound + Otterly AI + LLM Rank + Peec AI + Goodie AI + Bluefish AI + Semrush AEO + Ahrefs Brand Radar + Yotpo AI Visibility + agentic-commerce-attribution-engine + AI-shopping-cohort-LTV-overlay (Move #123, FIRST Tier-1 + FIRST P0 in `category: agentic-commerce` — 18 pitfalls + 10 verification gates A-J + default 8:1 Year-1 ROI Path B at $5M GMV)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-12\n- **Status:** keep (unique category: `agentic-commerce` — first skill in this slot; confirmed via `grep -l \"^category: agentic-commerce\" skills/*.md | wc -l = 0` before writing → `= 1` after)\n- **Reason:** PASSES improvement metric on 4 axes: (1) Unique category — `agentic-commerce` count = 1 in `skills/`; (2) Tier-1 first — first Tier-1 in this category; (3) P0 first — first P0 in this category; (4) Highest pitfall count — 18 numbered pitfalls across 5 clusters (A **per-agent-channel-product-schema-completeness** #1 + #2 + #3 + #4 + #5 + #6 / B **per-agent-channel-checkout-readiness** #7 + #8 + #9 + #10 + #11 + #12 / C **per-agent-channel-citation-tracking** #13 + #14 / D **per-agent-channel-attribution + cohort-LTV-overlay** #15 + #16 / E **pe"
+    },
     {
       "heading": "[2026-09-12 08:20] Skill tick: keep — Per-cohort product discovery engine + per-cohort-product-discovery-overlay + per-cohort-product-discovery-event-stream + per-cohort-product-discovery-rollback-window + per-cohort-product-discovery-iteration-cadence + per-cohort-product-discovery-kill-criteria + per-cohort-product-discovery-fatigue-management + per-cohort-product-discovery-EMQ-monitoring + per-cohort-product-discovery-signal-quality-alerting + per-cohort-product-discovery-decision-audit + per-cohort-product-discovery-explainer (Move #122, the canonical 11th-move in the per-cohort-track progression per-cohort-bid-engine → per-cohort-creative-engine → per-cohort-message-engine → per-cohort-audience-engine → per-cohort-experimentation-engine → per-cohort-suppression-engine → per-cohort-pricing-engine → per-cohort-attribution-decision-engine → per-cohort-channel-orchestration-engine → per-cohort-segment-strategy-engine → per-cohort-product-discovery-engine, FIRST Tier-1 + FIRST P0 in `category: per-cohort-product-discovery-engine` — 18 numbered pitfalls + 10 verification gates A-J + default 9:1 Year-1 ROI Path B at $5M GMV)",
       "body": "- **Branch:** autoresearch/skills-2026-09-12\n- **Status:** keep (unique category: `per-cohort-product-discovery-engine` — first skill in this slot; confirmed via `grep -l \"^category: per-cohort-product-discovery-engine\" skills/*.md | wc -l = 0` before writing → `= 1` after)\n- **Reason:** PASSES improvement metric on 4 axes: (1) **Unique category** — `per-cohort-product-discovery-engine` count = 1 in `skills/`; (2) **Tier-1 first** — first Tier-1 in this category; (3) **P0 first** — first P0 in this category; (4) **Highest pitfall count** — 18 numbered pitfalls across 6 failure-mode-clusters (A **per-cohort-product-discovery-event-stream + per-cohort-product-discovery-rule-versioning** #1 + #2 + #3 + #4 / B **per-cohort-product-discovery-rollback-window + per-cohort-product-discovery-replay"
@@ -44790,6 +44794,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "9fe2481",
+      "date": "2026-09-12T10:28:56Z",
+      "author": "hermesagent",
+      "subject": "journal: 2026-09-12 10:26 Move #123 agentic-commerce merchant readiness engine",
+      "body": ""
+    },
+    {
+      "sha": "01589b1",
+      "date": "2026-09-12T10:28:23Z",
+      "author": "hermesagent",
+      "subject": "skill: agentic-commerce-merchant-readiness-engine (Move #123) - first Tier-1/P0 in category: agentic-commerce",
+      "body": ""
+    },
+    {
       "sha": "1897821",
       "date": "2026-09-12T09:20:11Z",
       "author": "hermesagent",
@@ -46174,20 +46192,6 @@
       "author": "hermesagent",
       "subject": "skill: welcome series (email + SMS) — 3rd skill shipped, Move #4",
       "body": ""
-    },
-    {
-      "sha": "473c3a0",
-      "date": "2026-07-10T09:44:13Z",
-      "author": "hermesagent",
-      "subject": "feat(skills): /skills page + 2 seed skills (abandoned-cart, post-purchase-upsell) + hourly skill-builder cron",
-      "body": "- New skills/ folder with canonical 9-field frontmatter schema (name, title, category, tier, priority, default_move, year_1_roi_band, sms_friendly, last_updated, sources)\n- 2 seed skills written: 01-abandoned-cart-recovery (Tier 1, P0, Move #1, 25:1–60:1 ROI, 15 pitfalls, 7 sources) and 02-post-purchase-upsell (Tier 1, P0, Move #2, 15:1–40:1 ROI, 15 pitfalls, 7 sources)\n- New /skills route: catalog page grouped by category, with priority badges, move numbers, ROI bands, pitfall/source counts, SMS-friendly markers\n- New /skills/[slug] route: per-skill detail with rendered markdown (H2/H3, tables, lists, blockquotes, code), pitfalls, sources\n- parse-content.mjs: parseSkills() reads from both workspace skills/ and dashboard/src/skills/, dedupes by filename, supports quoted YAML values with colons\n- Skill added to sidebar (Library group) under /skills\n- New cron 'ecommerce-ops-skill-builder' (every 60m) researches + writes + deploys one new skill per tick, prompt at scripts/skill-builder-prompt.md\n\nReload https://ecommerce-ops-iota.vercel.app/skills — you will now see 2 best-practice skills, each with a 9-section runbook, benchmarks, build sequence, and verification checklist."
-    },
-    {
-      "sha": "9df86e2",
-      "date": "2026-07-10T08:14:43Z",
-      "author": "hermesagent",
-      "subject": "feat(dashboard): sidebar layout + /today operator cockpit + /settings + cron health API",
-      "body": "- New layout: fixed left sidebar (md:w-64) with 4 groups (Operate / Levers / Channels / Library), 23 routes. Mobile bottom nav.\n- New /today route: operator cockpit — KPI strip, your-store inputs at top, next-move card, 3 working ROI calculators (abandoned-cart, post-purchase, welcome-series), today's focus + what-shipped.\n- New /settings route: your-store inputs (live editable), cron health card (auto-refreshes from /api/cron-health), workspace reset card.\n- New API /api/cron-health: server route that reads cron-reports + journal + counts. Best-effort, returns ok:false gracefully on Vercel where /data isn't mounted.\n- New components: sidebar, mobile-nav, cron-health-card, workspace-reset-card.\n- /standup: prior day, still live.\n- Updated dashboard-improver cron prompt with product-direction section (sidebar + /today are now the canonical home for new features).\n- Added weekly-review cron (Mondays 9am) → docs/weekly/YYYY-Www.md.\n- Added .next/ to .gitignore."
     }
   ],
   "counts": {
@@ -46196,7 +46200,7 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 15,
+    "journalEntries": 16,
     "skills": 123,
     "gitCommits": 200
   }

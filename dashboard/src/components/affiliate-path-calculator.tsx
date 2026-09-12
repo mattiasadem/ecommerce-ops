@@ -17,6 +17,7 @@ import {
   validateAffiliateInputs,
 } from "@/lib/affiliate";
 import { CopyButton } from "@/components/copy-button";
+import { loadYourStore } from "@/lib/your-store";
 import { cn } from "@/lib/utils";
 
 /**
@@ -247,10 +248,25 @@ function SelectInput<T extends string>({
 export function AffiliatePathCalculator() {
   const [inputs, setInputs] = useState<BrandAffiliateInputs>(AFFILIATE_DEFAULTS);
   const [hydrated, setHydrated] = useState(false);
+  const [yourStoreApplied, setYourStoreApplied] = useState(false);
 
   useEffect(() => {
     const stored = loadStored();
-    if (stored) setInputs(stored);
+    if (stored) {
+      // Per-calculator values win — operator explicitly set them.
+      setInputs(stored);
+      setYourStoreApplied(false);
+    } else {
+      // No per-calc history → seed US DTC GMV from Your-store on Overview.
+      const ys = loadYourStore();
+      if (ys) {
+        const annualGmv = Math.round(ys.aov * ys.monthlyOrders * 12);
+        setInputs((prev) => ({ ...prev, usGmv: annualGmv }));
+        setYourStoreApplied(true);
+      } else {
+        setYourStoreApplied(false);
+      }
+    }
     setHydrated(true);
   }, []);
 
@@ -311,6 +327,15 @@ export function AffiliatePathCalculator() {
           <span className="rounded border border-accent/40 bg-accent/10 px-1.5 py-0.5 text-[10px] font-mono uppercase tracking-wider text-accent">
             Interactive · Move #15
           </span>
+          {yourStoreApplied ? (
+            <span
+              data-testid="your-store-applied-badge"
+              className="rounded border border-emerald-500/40 bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-mono uppercase tracking-wider text-emerald-700 dark:text-emerald-300"
+              title="US DTC GMV auto-filled from your Your-store inputs on Overview. Edit Your-store there to propagate."
+            >
+              Your-store applied
+            </span>
+          ) : null}
         </div>
         <p className="text-xs text-muted-foreground leading-relaxed">
           Direct port of{" "}

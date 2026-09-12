@@ -15,6 +15,7 @@ import {
   validateB2BInputs,
 } from "@/lib/b2b-wholesale";
 import { CopyButton } from "@/components/copy-button";
+import { loadYourStore } from "@/lib/your-store";
 import { cn } from "@/lib/utils";
 
 /**
@@ -210,10 +211,29 @@ function SelectInput<T extends string>({
 export function B2BWholesalePathCalculator() {
   const [inputs, setInputs] = useState<BrandB2BInputs>(B2B_DEFAULTS);
   const [hydrated, setHydrated] = useState(false);
+  const [yourStoreApplied, setYourStoreApplied] = useState(false);
 
   useEffect(() => {
     const stored = loadStored();
-    if (stored) setInputs(stored);
+    if (stored) {
+      // Per-calculator values win — operator explicitly set them.
+      setInputs(stored);
+      setYourStoreApplied(false);
+    } else {
+      // No per-calc history → seed US DTC GMV + gross margin from Your-store.
+      const ys = loadYourStore();
+      if (ys) {
+        const annualGmv = Math.round(ys.aov * ys.monthlyOrders * 12);
+        setInputs((prev) => ({
+          ...prev,
+          usDtcGmv: annualGmv,
+          grossMarginPct: Math.round(ys.grossMargin * 100 * 10) / 10,
+        }));
+        setYourStoreApplied(true);
+      } else {
+        setYourStoreApplied(false);
+      }
+    }
     setHydrated(true);
   }, []);
 
@@ -257,6 +277,15 @@ export function B2BWholesalePathCalculator() {
           <span className="rounded border border-accent/40 bg-accent/10 px-1.5 py-0.5 text-[10px] font-mono uppercase tracking-wider text-accent">
             Interactive · Move #14.5
           </span>
+          {yourStoreApplied ? (
+            <span
+              data-testid="your-store-applied-badge"
+              className="rounded border border-emerald-500/40 bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-mono uppercase tracking-wider text-emerald-700 dark:text-emerald-300"
+              title="US DTC GMV + gross margin auto-filled from your Your-store inputs on Overview. Edit Your-store there to propagate."
+            >
+              Your-store applied
+            </span>
+          ) : null}
         </div>
         <p className="text-xs text-muted-foreground leading-relaxed">
           Direct port of <code className="rounded bg-muted px-1">scripts/b2b_wholesale_unit_economics.py</code>.
