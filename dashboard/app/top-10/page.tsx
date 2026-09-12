@@ -6,8 +6,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Bar } from "@/components/bar";
 import { Top10ProjectionPanel } from "@/components/top10-projection";
+import { Top10RowToggle, Top10ShippedProgress } from "@/components/top10-shipped-tracker";
 import { content } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -17,9 +17,7 @@ export const metadata = { title: "Top 10 Moves — Ecommerce Ops" };
 export default function Top10Page() {
   const { top10 } = content;
   const main = top10.tables.find((t) => /highest-leverage/i.test(t.heading));
-  const shipped = top10.status.filter((s) => s.shipped).length;
   const total = top10.status.length;
-  const pct = (shipped / Math.max(1, total)) * 100;
 
   return (
     <div className="flex flex-col gap-6">
@@ -34,17 +32,7 @@ export default function Top10Page() {
         </p>
       </header>
 
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-base">Progress</CardTitle>
-          <CardDescription>
-            {shipped} shipped of {total} · pending moves are next-up for the cron
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Bar value={pct} intent="accent" label={`${shipped}/${total} shipped`} />
-        </CardContent>
-      </Card>
+      <Top10ShippedProgress status={top10.status} />
 
       {/* === TOP-10 ROLLOUT PROJECTION (personalized to operator's store) === */}
       <Top10ProjectionPanel />
@@ -80,6 +68,7 @@ export default function Top10Page() {
                         {status.shipped ? "shipped" : status.pending ? "pending" : "—"}
                       </Badge>
                     )}
+                    {status ? <Top10RowToggle status={status} /> : null}
                   </div>
                   <p className="text-xs text-muted-foreground leading-relaxed">
                     {row["Why it ranks"]}
