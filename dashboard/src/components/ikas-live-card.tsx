@@ -54,14 +54,33 @@ function ReloadButton(props: { onClick: () => void; disabled?: boolean }) {
   );
 }
 
+/**
+ * Auto-refresh interval. The operator's daily cockpit should always show
+ * fresh numbers, so we poll every 30s. On hard errors we pause the
+ * countdown (no point hammering a 401 / 5xx — the operator has to fix
+ * something upstream first). On `live` we reset the countdown and keep
+ * polling. The cleanup runs on unmount so navigating away from /today or
+ * / kills the interval cleanly.
+ */
+const REFRESH_INTERVAL_MS = 30_000;
+
 export function IkasLiveCard() {
   const [state, setState] = useState<FetchState>({ kind: "idle" });
   const [yourStore, setYourStore] = useState<YourStoreInputs | null>(null);
   const [applied, setApplied] = useState(false);
+  const [secondsUntilRefresh, setSecondsUntilRefresh] = useState(
+    Math.ceil(REFRESH_INTERVAL_MS / 1000),
+  );
 
-  const fetchOverview = async () => {
-    setState({ kind: "loading" });
-    setApplied(false);
+  const fetchOverview = async (opts?: { silent?: boolean }) => {
+    // Silent refreshes (driven by the auto-poll) keep the previous
+    // `live` state visible while the new fetch is in flight, so the
+    // tiles don't flicker empty every 30s. Only the first manual fetch
+    // shows the "Contacting api.myikas.com…" placeholder.
+    if (!opts?.silent) {
+      setState({ kind: "loading" });
+      setApplied(false);
+    }
     try {
       const r = await fetch("/api/ikas/overview", { cache: "no-store" });
       const json = (await r.json()) as IkasStoreResultUi;
@@ -84,6 +103,36 @@ export function IkasLiveCard() {
     void fetchOverview();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Auto-refresh: poll /api/ikas/overview every REFRESH_INTERVAL_MS.
+  // The countdown ticks once a second so the operator can see "next
+  // refresh in 17s". Pauses on `error` (no point hammering a known-bad
+  // upstream — the operator has to act first). Re-armed automatically
+  // when the state returns to `live` (i.e. they clicked ↻ Retry and
+  // the GraphQL call succeeded).
+  useEffect(() => {
+    if (state.kind === "error") {
+      // Pause the countdown visibly so the operator knows auto-poll
+      // is off and they have to drive it manually via ↻ Retry.
+      setSecondsUntilRefresh(0);
+      return;
+    }
+    setSecondsUntilRefresh(Math.ceil(REFRESH_INTERVAL_MS / 1000));
+    const tickInterval = window.setInterval(() => {
+      setSecondsUntilRefresh((s) => (s > 0 ? s - 1 : 0));
+    }, 1000);
+    const refreshInterval = window.setInterval(() => {
+      // Use a silent refresh so the `live` tiles don't go blank during
+      // the round-trip. The new numbers swap in atomically when the
+      // fetch resolves.
+      void fetchOverview({ silent: true });
+    }, REFRESH_INTERVAL_MS);
+    return () => {
+      window.clearInterval(tickInterval);
+      window.clearInterval(refreshInterval);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.kind]);
 
   // Derive the projected feed into Your-store — clamped the same way Your-store
   // expects (aov >= 1, orders >= 1, margin 0.05..0.95). Margin defaults to the
@@ -126,11 +175,35 @@ export function IkasLiveCard() {
     <Card id="ikas-live" className="border-dashed border-success/40 bg-success/5">
       <CardHeader className="flex flex-row items-start justify-between gap-2 space-y-0">
         <div>
-          <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-muted-foreground">
+          <div className="flex flex-wrap items-center gap-2 text-[10px] uppercase tracking-widest text-muted-foreground">
             <span className="inline-block h-1.5 w-1.5 rounded-full bg-success animate-pulse" />
             <span>Live Ikas data</span>
             <Separator orientation="vertical" className="h-3" />
             <span className="text-foreground">read from /data/.ikas/config.json on the VPS</span>
+            <Separator orientation="vertical" className="h-3" />
+            {state.kind === "error" ? (
+              <span
+                data-testid="ikas-auto-refresh-status"
+                className="text-amber-600 dark:text-amber-400"
+              >
+                Auto-refresh paused
+              </span>
+            ) : state.kind === "live" ? (
+              <span
+                data-testid="ikas-auto-refresh-status"
+                className="text-foreground tabular-nums"
+                aria-live="polite"
+              >
+                Next refresh in {secondsUntilRefresh}s
+              </span>
+            ) : (
+              <span
+                data-testid="ikas-auto-refresh-status"
+                className="text-muted-foreground tabular-nums"
+              >
+                Connecting…
+              </span>
+            )}
           </div>
           <CardTitle className="mt-2 text-lg">Your store at a glance</CardTitle>
           <CardDescription>
@@ -322,6 +395,11 @@ function ErrorPanel(props: {
       >
         ↻ Retry
       </button>
+      <p className="text-[10px] text-muted-foreground">
+        Auto-refresh is paused while this error is active — click{" "}
+        <span className="font-medium text-foreground">↻ Retry</span> once the
+        upstream is fixed and the polling will resume automatically.
+      </p>
     </div>
   );
 }
