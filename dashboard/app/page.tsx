@@ -16,6 +16,7 @@ import { NextMoveCard } from "@/components/next-move";
 import { IkasLiveCard } from "@/components/ikas-live-card";
 import { RealizedRoiPanel } from "@/components/realized-roi";
 import { Top10ShippedOverviewCard } from "@/components/top10-shipped-overview-card";
+import { Top10ExportButton } from "@/components/top10-export-button";
 import { content, findTable, fmtDate } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -223,6 +224,14 @@ export default function Home() {
       {top10.status.length > 0 && (
         <section id="top10-shipped-overview">
           <Top10ShippedOverviewCard status={top10.status} playbooks={content.playbooks} />
+          <div className="mt-2">
+            <Top10ExportButton
+              status={top10.status}
+              playbooks={content.playbooks}
+              compact
+              label="Top 10 shipped — export"
+            />
+          </div>
         </section>
       )}
 

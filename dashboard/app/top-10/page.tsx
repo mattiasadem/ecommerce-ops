@@ -8,6 +8,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Top10ProjectionPanel } from "@/components/top10-projection";
 import { Top10RowToggle, Top10ShippedProgress } from "@/components/top10-shipped-tracker";
+import { Top10ExportButton } from "@/components/top10-export-button";
 import { content } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -32,7 +33,9 @@ export default function Top10Page() {
         </p>
       </header>
 
-      <Top10ShippedProgress status={top10.status} />
+      <Top10ShippedProgress status={top10.status}>
+        <Top10ExportButton status={top10.status} playbooks={content.playbooks} />
+      </Top10ShippedProgress>
 
       {/* === TOP-10 ROLLOUT PROJECTION (personalized to operator's store) === */}
       <Top10ProjectionPanel />
