@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-13T22:29:57.658Z",
+  "generatedAt": "2026-09-13T23:34:50.137Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12312,6 +12312,10 @@
     {
       "heading": "[2026-09-13 11:48] Dashboard tick: deploy-blocked — `/` Overview shows \"Playbooks unlocked\" deep-links per shipped move (Move #128.y cross-page-intelligence — Vercel 24-hour deploy quota exhausted)",
       "body": "- **Status:** deploy-blocked (code change on disk + Next.js build SUCCEEDED, Vercel `vercel deploy --prod --yes` blocked by `Resource is limited - try again in 24 hours (more than 100, code: \"api-deployments-free-per-day\")`)\n- **Reason:** Bounded interactive feature shipped to source code: when the operator has shipped a Top-10 move via the `/top-10` per-row toggle, the home-page card now renders a **Playbooks unlocked** list — one row per (move × playbook) with the canonical playbook title, the move's rank prefix (e.g. `1`, `6.5`, `6.7`), and a per-row \"Open →\" deep link to `/playbooks#<playbook-slug>`. Local Next.js build SUCCEEDED — `/` route 8.45 kB / 131 kB First Load JS (up from prior 8.28 kB / 130 kB; the ~30 LOC + 8-row list adds ~170 bytes, well under the 1 kB diff threshold), ful"
+    },
+    {
+      "heading": "[2026-09-13 22:35] Skill tick: keep — Move #142 agentic-commerce-cart-init-tracking-decision-recovery-decoder-engine (canonical 20th-move in agentic-commerce-track progression; FIRST Tier-1 + FIRST P0 in unique category; 18 numbered pitfalls + 10 verification gates A-J + default 9:1 Year-1 ROI Path B at $5M GMV; LIVE HTTP 200 at canonical alias after Vercel quota reset)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-13\n- **Status:** keep (unique category: `agentic-commerce-cart-init-tracking-decision-recovery-decoder-engine` — first skill in this slot; confirmed via `grep -l \"^category: agentic-commerce-cart-init-tracking-decision-recovery-decoder-engine\" skills/*.md | wc -l = 0` before writing → `= 1` after)\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally before deploy was attempted): (1) **Unique category** — `agentic-commerce-cart-init-tracking-decision-recovery-decoder-engine` count = 1 in `skills/`; (2) **Tier-1 first** — first `tier: 1` in this category; (3) **P0 first** — first `priority: P0` in this category; (4) **Highest pitfall count** — **18 numbered pitfalls with bold prefix and 18 `Fix:` lines** (matches the canonical"
     }
   ],
   "skills": [
@@ -26343,6 +26347,25 @@
       "pitfallCount": 18,
       "sourceCount": 0,
       "size": 78508,
+      "lastTouched": "2026-09-13"
+    },
+    {
+      "file": "143-agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-engine.md",
+      "name": "143-agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-engine",
+      "title": "Agentic commerce cart init tracking decision fallback handler execution engine (Move #143)",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-13",
+      "sources": [],
+      "blurb": "Move #143 is the **canonical agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-engine** that compounds Move #123 (agentic-commerce-merchant-readiness-engine — the umbrella engine that scores per-...",
+      "sectionCount": 10,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 76657,
       "lastTouched": "2026-09-13"
     },
     {
@@ -48358,6 +48381,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "645af17",
+      "date": "2026-09-13T22:32:40Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #142 agentic-commerce-cart-init-tracking-decision-recovery-decoder-engine (canonical 20th-move in agentic-commerce-track progression after Move #123-#141; FIRST Tier-1 + FIRST P0 in unique category; 18 numbered pitfalls + 10 ver",
+      "body": ""
+    },
+    {
       "sha": "4b5ca6f",
       "date": "2026-09-13T21:27:52Z",
       "author": "hermesagent",
@@ -49749,13 +49779,6 @@
       "author": "mattiasadem-5021s",
       "subject": "journal: 2026-07-11 12:25 Move #5 Klaviyo+Postscript migration skill shipped",
       "body": ""
-    },
-    {
-      "sha": "ad051cf",
-      "date": "2026-07-11T12:24:46Z",
-      "author": "mattiasadem-5021s",
-      "subject": "skill: Move #5 Klaviyo+Postscript migration (4-path Path A/B/C/D, 8:1 default Year-1 ROI)",
-      "body": ""
     }
   ],
   "counts": {
@@ -49764,8 +49787,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 42,
-    "skills": 142,
+    "journalEntries": 43,
+    "skills": 143,
     "gitCommits": 200
   }
 }
