@@ -69,3 +69,5 @@ cd /data/workspace/ecommerce-ops && git log --oneline -5
 ls /data/workspace/cron-reports/ | tail
 ```
 ## 2026-07-03 00:07 UTC — Welcome-series ROI calculator on /playbooks (P0+P1 interactive-tool + state-persistence).
+
+## 2026-09-13 05:43 UTC — / Overview Top 10 shipped-by-you cross-link widget (Move #128.x). State-persistence + cross-page-intelligence. Live at https://ecommerce-ops-iota.vercel.app/.
