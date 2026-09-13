@@ -4,7 +4,10 @@ import { useEffect, useMemo, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Bar } from "@/components/bar";
-import { type Top10Status } from "@/lib/content";
+import { type Top10Status, type Playbook } from "@/lib/content";
+import {
+  resolvePlaybookLinksForMove,
+} from "@/lib/top10-playbook-mapping";
 
 /**
  * `Top 10 shipped by you` — Overview-page companion to the
@@ -72,7 +75,13 @@ function moveIdFromStatus(s: Top10Status): string {
   return `top10:${slug || "unknown"}`;
 }
 
-export function Top10ShippedOverviewCard({ status }: { status: Top10Status[] }) {
+export function Top10ShippedOverviewCard({
+  status,
+  playbooks,
+}: {
+  status: Top10Status[];
+  playbooks: Playbook[];
+}) {
   const [shipped, setShipped] = useState<ShippedMap>({});
   const [hydrated, setHydrated] = useState(false);
 
@@ -118,6 +127,42 @@ export function Top10ShippedOverviewCard({ status }: { status: Top10Status[] }) 
     );
     return pending ?? status.find((s) => s.pending) ?? null;
   }, [status, shipped, hydrated]);
+
+  // Build a slug → playbook lookup so we can render the canonical
+  // playbook title (not the slug) in the "Playbooks unlocked" list.
+  // Falls back to the slug if the playbook file isn't in content.json
+  // (e.g. a newly-authored move whose playbook hasn't been parsed yet).
+  const playbookBySlug = useMemo(() => {
+    const out: Record<string, Playbook> = {};
+    for (const p of playbooks) {
+      const slug = p.file.replace(/\.md$/, "");
+      out[slug] = p;
+    }
+    return out;
+  }, [playbooks]);
+
+  // The set of playbooks unlocked by the moves the operator has shipped.
+  // Each entry is { move, slug, title, href } — one entry per (move ×
+  // playbook) so the operator can see which move unlocked which
+  // playbook. Cap at 8 to keep the card compact; surface a "+N more"
+  // pill for overflow that deep-links back to /top-10.
+  const unlocked = useMemo(() => {
+    if (!hydrated) return [];
+    const out: Array<{
+      move: string;
+      link: ReturnType<typeof resolvePlaybookLinksForMove>[number];
+    }> = [];
+    for (const s of status) {
+      if (!shipped[moveIdFromStatus(s)]) continue;
+      for (const link of resolvePlaybookLinksForMove(s.move)) {
+        out.push({ move: s.move, link });
+      }
+    }
+    return out;
+  }, [status, shipped, hydrated]);
+
+  const unlockedShown = unlocked.slice(0, 8);
+  const unlockedOverflow = Math.max(0, unlocked.length - unlockedShown.length);
 
   const intentTone =
     hydrated && myShipped >= 5
@@ -194,6 +239,56 @@ export function Top10ShippedOverviewCard({ status }: { status: Top10Status[] }) 
             </span>
             <span className="text-accent">Mark on /top-10 →</span>
           </a>
+        ) : null}
+        {hydrated && unlocked.length > 0 ? (
+          <div
+            id="top10-shipped-overview-unlocked"
+            data-testid="top10-shipped-overview-unlocked"
+            className="space-y-2 pt-1"
+          >
+            <div className="flex items-center justify-between text-[10px] uppercase tracking-wider text-muted-foreground">
+              <span>Playbooks unlocked ({unlocked.length})</span>
+              {unlockedOverflow > 0 ? (
+                <a
+                  href="/top-10"
+                  className="text-accent hover:underline"
+                  aria-label={`See ${unlockedOverflow} more unlocked playbooks on /top-10`}
+                >
+                  +{unlockedOverflow} more on /top-10 →
+                </a>
+              ) : null}
+            </div>
+            <ul className="space-y-1">
+              {unlockedShown.map(({ move, link }) => {
+                const pb = playbookBySlug[link.slug];
+                const title = pb?.title ?? link.title;
+                return (
+                  <li key={`${move}::${link.slug}`}>
+                    <a
+                      href={link.href}
+                      data-testid="top10-shipped-overview-unlocked-link"
+                      data-slug={link.slug}
+                      className="flex items-center justify-between gap-2 rounded border border-border/60 bg-background/40 px-2 py-1.5 text-xs hover:bg-muted hover:border-border transition-colors"
+                      aria-label={`Open playbook ${title} (unlocked by ${move})`}
+                      title={`Unlocked by ${move} · click to open the playbook`}
+                    >
+                      <span className="flex min-w-0 items-center gap-2">
+                        <span className="shrink-0 text-[10px] uppercase tracking-wider text-muted-foreground tabular-nums">
+                          {move.split(".")[0]}
+                        </span>
+                        <span className="truncate font-medium text-foreground">
+                          {title}
+                        </span>
+                      </span>
+                      <span className="shrink-0 text-[10px] uppercase tracking-wider text-accent">
+                        Open →
+                      </span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         ) : null}
         <p className="text-[10px] text-muted-foreground leading-relaxed">
           State lives in your browser only — clearing site data wipes it. Open

@@ -222,7 +222,7 @@ export default function Home() {
       {/* === TOP 10 SHIPPED BY YOU — cross-link from /top-10 operator tracker === */}
       {top10.status.length > 0 && (
         <section id="top10-shipped-overview">
-          <Top10ShippedOverviewCard status={top10.status} />
+          <Top10ShippedOverviewCard status={top10.status} playbooks={content.playbooks} />
         </section>
       )}
 
