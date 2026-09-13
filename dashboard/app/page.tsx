@@ -15,6 +15,7 @@ import { ShippedProgressStrip } from "@/components/shipped-playbooks";
 import { NextMoveCard } from "@/components/next-move";
 import { IkasLiveCard } from "@/components/ikas-live-card";
 import { RealizedRoiPanel } from "@/components/realized-roi";
+import { Top10ShippedOverviewCard } from "@/components/top10-shipped-overview-card";
 import { content, findTable, fmtDate } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -217,6 +218,13 @@ export default function Home() {
       <section id="realized-roi">
         <RealizedRoiPanel />
       </section>
+
+      {/* === TOP 10 SHIPPED BY YOU — cross-link from /top-10 operator tracker === */}
+      {top10.status.length > 0 && (
+        <section id="top10-shipped-overview">
+          <Top10ShippedOverviewCard status={top10.status} />
+        </section>
+      )}
 
       {/* === ACTION CARDS: what you can do right now === */}
       <section>
