@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-14T11:25:25.504Z",
+  "generatedAt": "2026-09-14T12:38:14.945Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-09-14 11:27] Skill tick: keep — Move #150 agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-recovery-decoder-decision-action-recommendation-engine (canonical 28th-move in agentic-commerce-track progression after Move #123-#149; FIRST Tier-1 + FIRST P0 in unique category `agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-recovery-decoder-decision-action-recommendation-engine`; 18 numbered pitfalls + 10 verification gates A-J + default 9:1 Year-1 ROI Path B at $5M GMV; 8 sentinel tokens verified live at canonical alias; commit 4c07026 merged to master locally)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-14\n- **Status:** keep (unique category: `agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-recovery-decoder-decision-action-recommendation-engine` — first skill in this slot; confirmed via `grep -l \"^category: agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-recovery-decoder-decision-action-recommendation-engine\" skills/*.md | wc -l = 0` before writing → `= 1` after)\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally + live): (1) **Unique category** — `agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-recovery-decoder-decision-action-recommendation-engine` count = 1 in `skills/` (zero before, one after). (2) **Tier-1 first** — fir"
+    },
+    {
       "heading": "[2026-09-14 09:18] Skill tick: keep — Move #149 agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-recovery-decoder-decision-explainer-engine (canonical 27th-move in agentic-commerce-track progression after Move #123-#148; FIRST Tier-1 + FIRST P0 in unique category `agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-recovery-decoder-decision-explainer-engine`; 18 numbered pitfalls + 10 verification gates A-J + default 9:1 Year-1 ROI Path B at $5M GMV; 8 sentinel tokens verified live at canonical alias on retry deploy after Vercel 24h quota reset; HTTP 200 / 294,502 bytes; canonical alias rotation v2.99.26 applied)",
       "body": "- **Branch:** autoresearch/skills-2026-09-14\n- **Status:** keep (unique category: `agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-recovery-decoder-decision-explainer-engine` — first skill in this slot; structural validation + parse-content + build + deploy + canonical-alias-rotation all PASSED on this retry tick after the 2026-09-14 07:08 deploy-failed retry)\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally + live): (1) **Unique category** — `agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-recovery-decoder-decision-explainer-engine` count = 1 in `skills/` (verified via `grep -l \"^category: agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-recovery-decoder-decision-e"
     },
@@ -12364,6 +12368,10 @@
     {
       "heading": "[2026-09-14 00:00] Dashboard tick: keep — `/` Overview shows \"Recently shipped playbooks\" card (Move #128.aa cross-page-intelligence + state-persistence)",
       "body": "- **Status:** keep\n- **Reason:** Closes the \"where did I ship?\" loop on the home page. Every \"Mark shipped\" toggle on `/playbooks` writes to `ecom-ops:shipped-playbooks:v1` in localStorage; this new card reads the SAME key so the operator sees their last 3 shipped playbooks (with dates + free-form notes) at `/` without navigating away. Same-tab cross-component sync via a new custom DOM event `ecom-ops:shipped-playbooks:update` that the writer now dispatches on every persistence; cross-tab sync via the standard `storage` event. Mirrors the Top10 cross-link pattern (Move #128.x + Move #128.y) but for the canonical playbook tracker (lower-level than top-10 moves — a single top-10 move can unlock multiple playbooks).\n- **Feature class:** cross-page-intelligence + state-persistence (operator's "
+    },
+    {
+      "heading": "[2026-09-14 12:15] Dashboard tick: keep — `/` + `/today` Next-move card adds \"Compare top 3 candidates\" expansion (Move #128.ac cross-page-intelligence + interactive-tool)",
+      "body": "- **Status:** keep\n- **Reason:** Closes the operator decision-support gap on the Next-move card. Today the card surfaces ONE algorithmic recommendation (the highest-priority eligible Top-10 move) with projected lift / days / cost. Operators shipping real moves want to see trade-offs before committing — should I pick Move #1 (highest priority) or Move #4 (similar lift, fewer days, lower cost)? Now they can. A new `<details>` block under the rationale lists the top 3 eligible moves side-by-side with name, projected $ lift (computed at YOUR-store monthly revenue, not industry-median defaults), days-to-ship, cost band, and rationale string. The algorithmic #1 is starred and highlighted emerald; alternatives are clickable deep-links to `/playbooks#<id>`.\n- **Feature class:** interactive-tool + "
     }
   ],
   "skills": [
@@ -26581,6 +26589,25 @@
       "pitfallCount": 18,
       "sourceCount": 0,
       "size": 110533,
+      "lastTouched": "2026-09-14"
+    },
+    {
+      "file": "151-agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-recovery-decoder-decision-rollback-engine.md",
+      "name": "151-agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-recovery-decoder-decision-rollback-engine",
+      "title": "Agentic commerce cart init tracking decision fallback handler execution decision recovery decoder decision rollback engine (Move #151)",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-14",
+      "sources": [],
+      "blurb": "Move #151 is the **canonical agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-recovery-decoder-decision-rollback-engine** that compounds Move #123 (agentic-commerce-merchant-readiness-e...",
+      "sectionCount": 10,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 104459,
       "lastTouched": "2026-09-14"
     },
     {
@@ -48562,6 +48589,27 @@
   ],
   "gitCommits": [
     {
+      "sha": "3548972",
+      "date": "2026-09-14T12:15:38Z",
+      "author": "hermesagent",
+      "subject": "feat(dashboard): Next-move card adds 'Compare top 3 candidates' disclosure",
+      "body": ""
+    },
+    {
+      "sha": "a98511a",
+      "date": "2026-09-14T11:27:51Z",
+      "author": "hermesagent",
+      "subject": "journal: log Move #150 keep + next-action Move #151",
+      "body": ""
+    },
+    {
+      "sha": "4c07026",
+      "date": "2026-09-14T11:27:27Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #150 agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-recovery-decoder-decision-action-recommendation-engine (canonical 28th-move; FIRST Tier-1+P0 in unique category; 18 numbered pitfalls + 10 ver",
+      "body": ""
+    },
+    {
       "sha": "e157b1f",
       "date": "2026-09-14T10:22:33Z",
       "author": "hermesagent",
@@ -49939,27 +49987,6 @@
       "author": "skill-builder-cron",
       "subject": "skill: inventory forecasting + stockout prevention (Move #12.5, Inventory Planner/Cogsy/Netstock/Cin7/SoStocked/Shopify Stocky, default 12:1 Y1 ROI Path B at $3M GMV, unique category: inventory)",
       "body": ""
-    },
-    {
-      "sha": "f780360",
-      "date": "2026-07-12T14:05:12Z",
-      "author": "mattiasadem",
-      "subject": "skill: returns portal orchestration (Move #12.4, Loop/ReturnGO/Happy Returns, 11:1 default Y1 ROI)",
-      "body": ""
-    },
-    {
-      "sha": "ba994cc",
-      "date": "2026-07-12T10:53:26Z",
-      "author": "mattiasadem",
-      "subject": "feat(dashboard): International Path A/B/C/C+ scorer on /international (port of international_market_fit.py)",
-      "body": ""
-    },
-    {
-      "sha": "303e639",
-      "date": "2026-07-12T09:49:56Z",
-      "author": "mattiasadem",
-      "subject": "journal: skill-builder escalation mode auth blockers",
-      "body": ""
     }
   ],
   "counts": {
@@ -49968,8 +49995,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 55,
-    "skills": 150,
+    "journalEntries": 57,
+    "skills": 151,
     "gitCommits": 200
   }
 }
