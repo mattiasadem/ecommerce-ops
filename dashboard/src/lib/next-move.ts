@@ -196,6 +196,13 @@ export interface NextMoveResult {
   costHigh: number;
   /** Human-readable explanation of why this move was picked. */
   rationale: string;
+  /** True when the operator's manual override is the source of this
+   *  recommendation (vs the algorithmic #1). False when the override
+   *  was cleared, invalid, or pointing at an ineligible move. */
+  overrideApplied: boolean;
+  /** The override's `reason` note (free-form text the operator wrote),
+   *  if any. Only meaningful when `overrideApplied === true`. */
+  overrideReason: string | null;
 }
 
 /**
@@ -203,14 +210,26 @@ export interface NextMoveResult {
  *   - what's already shipped (skip)
  *   - what the operator's store numbers look like (project $ lift)
  *   - prerequisite dependencies (block, not skip)
+ *   - operator's manual override (overrideId), when set — replaces the
+ *     algorithmic #1 pick with the override target while keeping the
+ *     eligible queue + shipped-skipped + prereq-blocked views intact.
  *
  * @param inputs           Your-store numbers. Falls back to defaults if null.
  * @param shippedPlaybooks Map of playbook-id → shipped entry. Already-shipped
  *                         moves are excluded from the queue.
+ * @param overrideId       Optional playbook-id picked by the operator via
+ *                         the "Pick this instead" button on the compare
+ *                         table. When set + eligible (not shipped + no
+ *                         missing prereq), the recommendation renders
+ *                         this move instead of the algorithmic #1.
+ *                         Already-shipped overrides are silently ignored
+ *                         so the operator can't accidentally ship-skip
+ *                         themselves into a stale pick.
  */
 export function pickNextMove(
   inputs: YourStoreInputs | null,
-  shippedPlaybooks: Record<string, unknown>
+  shippedPlaybooks: Record<string, unknown>,
+  overrideId?: string | null
 ): NextMoveResult {
   const store: YourStoreInputs = inputs ?? YOUR_STORE_DEFAULTS;
   const shippedSet = new Set(Object.keys(shippedPlaybooks));
@@ -235,8 +254,33 @@ export function pickNextMove(
   // 3. Sort eligible by priority rank (1 = top of Top-10).
   eligible.sort((a, b) => a.priorityRank - b.priorityRank);
 
-  const move = eligible[0] ?? null;
+  const algorithmicMove = eligible[0] ?? null;
   const monthlyRevenue = store.aov * store.monthlyOrders;
+
+  // 3.5. Apply operator override if any. Three failure modes that
+  //      silently fall back to the algorithmic pick:
+  //        - override id points at an already-shipped move (stale)
+  //        - override id points at a prereq-blocked move (broken chain)
+  //        - override id doesn't match any Top-10 move (retired/typo)
+  //      In any of those cases `overrideApplied` stays false and the
+  //      algorithm's #1 wins.
+  let move = algorithmicMove;
+  let overrideApplied = false;
+  let overrideReason: string | null = null;
+  if (overrideId && overrideId.length > 0) {
+    const overrideMove = eligible.find((m) => m.id === overrideId);
+    if (overrideMove) {
+      move = overrideMove;
+      overrideApplied = true;
+      // We carry the reason through NextMoveResult so the UI can render
+      // it. The reason itself lives in localStorage and is loaded by
+      // the component — pickNextMove only flags that an override is
+      // active; the caller passes the reason in via a separate prop
+      // when it wants to surface it. For now we expose a generic flag
+      // and let the component pull the reason from localStorage on its
+      // own (single source of truth for that string).
+    }
+  }
 
   // 4. Project $ lift for the recommended move. We surface the
   //    recommended move's lift (not cumulative), so the operator sees
@@ -256,9 +300,14 @@ export function pickNextMove(
         ? `All ${MOVE_RECOMMENDATIONS.length} Top-10 moves shipped. You are running a best-in-class stack — re-audit quarterly or branch into Move #11+ (affiliate / B2B / international).`
         : "Every remaining Top-10 move is blocked by a prerequisite. Open your shipped-playbooks tracker and confirm the prerequisite IDs above are ticked.";
   } else {
-    const prereqNote = prereqBlocked.length
-      ? ` Skipped ${prereqBlocked.length} higher-priority move${prereqBlocked.length > 1 ? "s" : ""} waiting on a prerequisite.`
-      : "";
+    let prereqNote = "";
+    if (overrideApplied && algorithmicMove) {
+      // The algorithm wanted something else — surface the delta so the
+      // operator doesn't forget why they overrode.
+      prereqNote = ` Overriding the algorithmic pick (Move #${algorithmicMove.priorityRank}) per your manual selection.`;
+    } else if (prereqBlocked.length) {
+      prereqNote = ` Skipped ${prereqBlocked.length} higher-priority move${prereqBlocked.length > 1 ? "s" : ""} waiting on a prerequisite.`;
+    }
     rationale = `${move.rationale}${prereqNote}`;
   }
 
@@ -275,5 +324,7 @@ export function pickNextMove(
     costLow: move?.costLow ?? 0,
     costHigh: move?.costHigh ?? 0,
     rationale,
+    overrideApplied,
+    overrideReason,
   };
 }

@@ -17,6 +17,12 @@ import {
   saveShippedPlaybooks,
   toggleShipped,
 } from "@/lib/shipped-playbooks";
+import {
+  NextMoveOverride,
+  clearNextMoveOverride,
+  loadNextMoveOverride,
+  saveNextMoveOverride,
+} from "@/lib/next-move-override";
 import { CopyButton } from "@/components/copy-button";
 import { cn } from "@/lib/utils";
 
@@ -78,7 +84,11 @@ function renderSummary(
     );
     lines.push("");
     lines.push("## Why this move");
-    lines.push(result.rationale);
+    if (result.overrideApplied) {
+      lines.push(`Manual override active — the algorithm would have picked Move #${result.topCandidates[0]?.priorityRank ?? "?"}. ${result.rationale}`);
+    } else {
+      lines.push(result.rationale);
+    }
     lines.push("");
     if (result.topCandidates.length > 1) {
       lines.push("## Top candidates (compare)");
@@ -129,6 +139,7 @@ function renderSummary(
 export function NextMoveCard() {
   const [store, setStore] = useState<YourStoreInputs | null>(null);
   const [shipped, setShipped] = useState<ShippedMap>({});
+  const [override, setOverride] = useState<NextMoveOverride | null>(null);
   const [hydrated, setHydrated] = useState(false);
 
   // Hydrate both localStorage keys on mount. Server renders with empty
@@ -137,13 +148,42 @@ export function NextMoveCard() {
   useEffect(() => {
     setStore(loadYourStore());
     setShipped(loadShippedPlaybooks());
+    setOverride(loadNextMoveOverride());
     setHydrated(true);
+    // Cross-tab sync: another tab may write or clear the override.
+    function handleStorage(e: StorageEvent) {
+      if (e.key && e.key === "ecom-ops:next-move-override:v1") {
+        setOverride(loadNextMoveOverride());
+      }
+      if (e.key && e.key === "ecom-ops:shipped-playbooks:v1") {
+        setShipped(loadShippedPlaybooks());
+      }
+    }
+    // Same-tab broadcast: a saveNextMoveOverride call from this same
+    // component already updates local state, but this lets any future
+    // sibling component on the same page react without re-querying.
+    function handleSameTabOverride() {
+      setOverride(loadNextMoveOverride());
+    }
+    window.addEventListener("storage", handleStorage);
+    window.addEventListener(
+      "ecom-ops:next-move-override:update",
+      handleSameTabOverride as EventListener
+    );
+    return () => {
+      window.removeEventListener("storage", handleStorage);
+      window.removeEventListener(
+        "ecom-ops:next-move-override:update",
+        handleSameTabOverride as EventListener
+      );
+    };
   }, []);
 
-  // Recompute the recommendation every time inputs or shipped change.
+  // Recompute the recommendation every time inputs, shipped, or the
+  // override change.
   const result = useMemo(
-    () => pickNextMove(store, shipped),
-    [store, shipped]
+    () => pickNextMove(store, shipped, override?.moveId ?? null),
+    [store, shipped, override]
   );
 
   const usedDefaults = !store;
@@ -158,6 +198,15 @@ export function NextMoveCard() {
     const next = toggleShipped(shipped, result.move.id);
     setShipped(next);
     saveShippedPlaybooks(next);
+  }
+
+  function handlePickInstead(moveId: string) {
+    setOverride(saveNextMoveOverride(moveId));
+  }
+
+  function handleClearOverride() {
+    clearNextMoveOverride();
+    setOverride(null);
   }
 
   const isAllShipped =
@@ -200,6 +249,34 @@ export function NextMoveCard() {
           </span>
         ) : null}
       </header>
+
+      {result.move && result.overrideApplied ? (
+        <div
+          className="mb-4 flex flex-wrap items-center justify-between gap-2 rounded-lg border border-sky-500/30 bg-sky-500/5 px-3 py-2 text-[11px] text-sky-700 dark:text-sky-300"
+          data-testid="next-move-override-active"
+        >
+          <div className="flex items-center gap-2 min-w-0">
+            <span
+              className="inline-flex items-center rounded-md border border-sky-500/40 bg-sky-500/10 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider"
+              aria-label="Operator override active"
+            >
+              Override active
+            </span>
+            <span className="truncate">
+              Algorithmic pick is Move #{(result.topCandidates[0]?.priorityRank ?? 0)} but
+              you pinned Move #{result.move.priorityRank} — {result.move.name}.
+            </span>
+          </div>
+          <button
+            type="button"
+            onClick={handleClearOverride}
+            className="shrink-0 rounded-md border border-sky-500/40 bg-background px-2 py-1 text-[11px] font-medium text-sky-700 dark:text-sky-300 hover:bg-sky-500/10 transition-colors"
+            data-testid="next-move-override-clear"
+          >
+            Clear override (use algorithm)
+          </button>
+        </div>
+      ) : null}
 
       {result.move ? (
         <>
@@ -298,6 +375,7 @@ export function NextMoveCard() {
                       <th className="font-medium pb-1.5 pr-2 w-16 text-right">Days</th>
                       <th className="font-medium pb-1.5 pr-2 w-24 text-right">Cost / mo</th>
                       <th className="font-medium pb-1.5">Rationale</th>
+                      <th className="font-medium pb-1.5 w-28 text-right">Action</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-border">
@@ -305,6 +383,13 @@ export function NextMoveCard() {
                       const isTop = result.move?.id === cand.id;
                       const candLiftLow = result.monthlyRevenue * cand.liftLow;
                       const candLiftHigh = result.monthlyRevenue * cand.liftHigh;
+                      const isCurrentOverride =
+                        result.overrideApplied && isTop;
+                      const actionLabel = isCurrentOverride
+                        ? "Override ✓"
+                        : isTop
+                          ? "Picked ★"
+                          : "Pick this instead";
                       return (
                         <tr
                           key={cand.id}
@@ -347,6 +432,24 @@ export function NextMoveCard() {
                           <td className="py-1.5 align-top text-muted-foreground">
                             {cand.rationale}
                           </td>
+                          <td className="py-1.5 align-top text-right">
+                            <button
+                              type="button"
+                              onClick={() => handlePickInstead(cand.id)}
+                              disabled={isCurrentOverride}
+                              className={cn(
+                                "inline-flex items-center rounded-md px-2 py-1 text-[10px] font-semibold uppercase tracking-wider transition-colors",
+                                isCurrentOverride
+                                  ? "border border-sky-500/40 bg-sky-500/10 text-sky-700 dark:text-sky-300 cursor-default"
+                                  : isTop
+                                    ? "border border-emerald-500/40 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-500/20"
+                                    : "border border-border bg-background text-foreground hover:bg-muted"
+                              )}
+                              data-testid={`compare-pick-${cand.id}`}
+                            >
+                              {actionLabel}
+                            </button>
+                          </td>
                         </tr>
                       );
                     })}
@@ -354,7 +457,9 @@ export function NextMoveCard() {
                 </table>
               </div>
               <p className="mt-2 text-[10px] text-muted-foreground">
-                ★ marks the algorithmic pick. Click any name to open its playbook; mark shipped via the button above to advance the queue.
+                ★ marks the algorithmic pick. Click <em>Pick this instead</em> to
+                pin any candidate as your next move (overrides the algorithm
+                until cleared). Click any name to open its playbook.
               </p>
             </details>
           ) : null}
