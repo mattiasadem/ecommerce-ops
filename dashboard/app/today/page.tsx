@@ -14,6 +14,7 @@ import { WelcomeSeriesROICalculator as WelcomeSeriesRoi } from "@/components/wel
 import { YourStoreCard } from "@/components/your-store-card";
 import { NextMoveCard } from "@/components/next-move";
 import { IkasLiveCard } from "@/components/ikas-live-card";
+import { CronHealthCard } from "@/components/cron-health-card";
 import Link from "next/link";
 
 export const dynamic = "force-static";
@@ -168,6 +169,19 @@ export default function TodayPage() {
           instead of fabricated numbers. */}
       <section>
         <IkasLiveCard />
+      </section>
+
+      {/* === Cron health — heartbeat of the dashboard-improver cron ===
+          Surfaces last build time + last cron run + catalog counts so the
+          operator knows whether the improver is healthy or stuck.
+          Reads /api/cron-health at runtime for the latest run timestamp. */}
+      <section>
+        <CronHealthCard
+          lastUpdate={today}
+          playbooksCount={counts.playbooks}
+          researchCount={counts.researchDocs}
+          assetsCount={counts.assets}
+        />
       </section>
 
       {/* === Next move — what to ship === */}
