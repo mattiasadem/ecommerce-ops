@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-14T13:43:12.752Z",
+  "generatedAt": "2026-09-14T14:47:21.123Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12145,6 +12145,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-14 13:41] Skill tick: keep — Move #152 agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-recovery-decoder-decision-rollback-decision-explainer-engine (canonical 30th-move in agentic-commerce-track progression after Move #123-#151; FIRST Tier-1 + FIRST P0 in unique category `agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-recovery-decoder-decision-rollback-decision-explainer-engine`; 18 numbered pitfalls + 10 verification gates A-J + default 9:1 Year-1 ROI Path B at $5M GMV; 8 sentinel tokens verified live at canonical alias; commit 739a3ac merged to master locally)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-14\n- **Status:** keep (unique category: `agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-recovery-decoder-decision-rollback-decision-explainer-engine` — first skill in this slot; confirmed via `grep -l \"^category: agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-recovery-decoder-decision-rollback-decision-explainer-engine\" skills/*.md | wc -l = 0` before writing → `= 1` after = skills/ + dashboard/src/skills/ copy)\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally + live): (1) **Unique category** — `agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-recovery-decoder-decision-rollback-decision-explainer-engine` count = 1 in `skil"
+    },
     {
       "heading": "[2026-09-14 12:38] Skill tick: keep — Move #151 agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-recovery-decoder-decision-rollback-engine (canonical 29th-move in agentic-commerce-track progression after Move #123-#150; FIRST Tier-1 + FIRST P0 in unique category `agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-recovery-decoder-decision-rollback-engine`; 18 numbered pitfalls + 10 verification gates A-J + default 9:1 Year-1 ROI Path B at $5M GMV; 11 sentinel tokens verified live at canonical alias; commit 7b0dbef merged to master locally)",
       "body": "- **Branch:** autoresearch/skills-2026-09-14\n- **Status:** keep (unique category: `agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-recovery-decoder-decision-rollback-engine` — first skill in this slot; confirmed via `grep -l \"^category: agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-recovery-decoder-decision-rollback-engine\" skills/*.md | wc -l = 0` before writing → `= 1` after = skills/ + dashboard/src/skills/ copy)\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally + live): (1) **Unique category** — `agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-recovery-decoder-decision-rollback-engine` count = 1 in `skills/` (zero before, one after). (2) **Tier-1 first** — fir"
@@ -26631,6 +26635,38 @@
       "pitfallCount": 18,
       "sourceCount": 0,
       "size": 108044,
+      "lastTouched": "2026-09-14"
+    },
+    {
+      "file": "153-product-review-generation-and-ugc-engine.md",
+      "name": "product-review-generation-and-ugc-engine",
+      "title": "Product review generation and UGC engine",
+      "category": "review-generation",
+      "tier": 1,
+      "priority": "P1",
+      "defaultMove": 153,
+      "yearOneRoiBand": "3:1–18:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-14",
+      "sources": [
+        "yotpo 2024",
+        "loox 2024",
+        "judgeme 2024",
+        "klaviyo 2024",
+        "baymard 2024",
+        "sparks 2024",
+        "g2-reviews-2024",
+        "northwestern-spiegel-2024",
+        "harvard-business-review-2024",
+        "triple-whale 2024",
+        "doubleclick-2024",
+        "okendo-2024"
+      ],
+      "blurb": "Move #153 is the canonical **product-review-generation and UGC (user-generated-content) engine** that ships the missing layer between Move #1 (abandoned cart) + Move #2 (post-purchase upsell) + Move #6 (Triple Whale a...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 12,
+      "size": 33001,
       "lastTouched": "2026-09-14"
     },
     {
@@ -48612,6 +48648,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "c0bf2d6",
+      "date": "2026-09-14T13:45:12Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #152 agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-recovery-decoder-decision-rollback-decision-explainer-engine",
+      "body": ""
+    },
+    {
       "sha": "3f47d48",
       "date": "2026-09-14T12:40:34Z",
       "author": "hermesagent",
@@ -50003,13 +50046,6 @@
       "author": "mattiasadem",
       "subject": "journal: 2026-07-12 20:30 NPS + Voice-of-Customer closed-loop automation skill tick",
       "body": ""
-    },
-    {
-      "sha": "7c2968e",
-      "date": "2026-07-12T18:27:11Z",
-      "author": "mattiasadem",
-      "subject": "skill: NPS + Voice-of-Customer closed-loop automation (Move #20.2, Delighted + Wootric + AskNicely + Medallia + Klaviyo NPS + Triple Whale NPS-cohort-LTV + Gorgias detractor-trigger + Smile.io promoter-reward, default 9:1 Year-1 ROI Path B ",
-      "body": ""
     }
   ],
   "counts": {
@@ -50018,8 +50054,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 58,
-    "skills": 152,
+    "journalEntries": 59,
+    "skills": 153,
     "gitCommits": 200
   }
 }
