@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-14T16:57:31.511Z",
+  "generatedAt": "2026-09-14T18:03:29.850Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12145,6 +12145,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-14 19:00] Skill tick: keep — Move #155 agentic-commerce-discovery-decision-rollback-engine (canonical 33rd-move in agentic-commerce-track progression; FIRST Tier-1 + FIRST P0 in unique category; 18 numbered pitfalls + 10 verification gates A-J + default 9:1 Year-1 ROI Path B at $5M GMV; LIVE HTTP 200 / 334,823 bytes at canonical alias after Vercel deploy + alias rotation)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-14\n- **Status:** keep (unique category: `agentic-commerce-discovery-decision-rollback-engine` — first skill in this slot; confirmed via `grep -l \"^category: agentic-commerce-discovery-decision-rollback-engine\" skills/*.md | wc -l = 0` before writing → `= 1` after)\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally before deploy was attempted): (1) **Unique category** — `agentic-commerce-discovery-decision-rollback-engine` count = 1 in `skills/`; (2) **Tier-1 first** — first `tier: 1` in this category; (3) **P0 first** — first `priority: P0` in this category; (4) **Highest pitfall count** — **18 numbered pitfalls with bold prefix and 18 `Fix:` lines** (matches the canonical 18-pitfall pattern from Move #123 → #154). Compoun"
+    },
     {
       "heading": "[2026-09-14 15:55] Skill tick: keep — Move #154 predictive-ltv-churn-engine (canonical Tier-1 predictive-LTV + churn-scoring substrate missing from prior Move #1-#153 progression; FIRST Tier-1 + FIRST P1 in unique category `predictive-ltv-churn-engine`; 15 numbered pitfalls with corrective Fix: lines + 10 verification gates A-J + default 26:1 Year-1 ROI Path B at $5M GMV; 8 sentinel tokens verified live at canonical alias; HTTP 200 / 227,734 bytes)",
       "body": "- **Branch:** autoresearch/skills-2026-09-14\n- **Status:** keep (unique category: `predictive-ltv-churn-engine` — first skill in this slot; confirmed via `grep -l \"^category: predictive-ltv-churn-engine\" skills/*.md | wc -l = 0` before writing → `= 1` after = skills/ + dashboard/src/skills/ copy)\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally + live): (1) **Unique category** — `predictive-ltv-churn-engine` count = 1 in `skills/` (zero before, one after). (2) **Tier-1 first** — first `tier: 1` in this category. (3) **P1 first** — first `priority: P1` in this category. (4) **Highest pitfall count** — **15 numbered pitfalls with bold prefix and 15 `Fix:` lines**. Closes the canonical gap left by the Tier-1 progression Move #1 (cart-abandon) + Move #2 (post-purcha"
@@ -26744,6 +26748,25 @@
       "pitfallCount": 0,
       "sourceCount": 0,
       "size": 119308,
+      "lastTouched": "2026-09-14"
+    },
+    {
+      "file": "156-agentic-commerce-discovery-decision-rollback-decision-explainer-engine.md",
+      "name": "156-agentic-commerce-discovery-decision-rollback-decision-explainer-engine",
+      "title": "Agentic commerce discovery decision rollback decision explainer engine (Move #156)",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-14",
+      "sources": [],
+      "blurb": "Move #156 is the **canonical agentic-commerce-discovery-decision-rollback-decision-explainer-engine** that compounds Move #123 (agentic-commerce-merchant-readiness-engine — the umbrella engine that scores per-merchant...",
+      "sectionCount": 10,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 120343,
       "lastTouched": "2026-09-14"
     },
     {
@@ -48725,6 +48748,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "5ed86f5",
+      "date": "2026-09-14T17:01:03Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #155 agentic-commerce-discovery-decision-rollback-engine (Tier-1 per-discovery-stage × per-discovery-decoder-family × per-cohort × per-LTV-overlay × per-merchant-readiness-overlay × per-rollback-window × per-fallback-discovery-d",
+      "body": ""
+    },
+    {
       "sha": "c05fb44",
       "date": "2026-09-14T15:54:27Z",
       "author": "hermesagent",
@@ -50116,13 +50146,6 @@
       "author": "mattiasadem",
       "subject": "skill: Fraud + chargeback management (Move #23, Signifyd + NoFraud + Riskified + Stripe Radar + Veriff + Kount + Sift + Forter + Adyen RevenueProtect + Chargeflow + MidMetrics + Ethoca + Verifi + Shopify Protect, default 14:1 Year-1 ROI Pat",
       "body": ""
-    },
-    {
-      "sha": "583a8ed",
-      "date": "2026-07-12T19:33:36Z",
-      "author": "mattiasadem",
-      "subject": "docs: journal entry for sales-tax-vat-automation skill tick (Move #21, default 14:1 Year-1 ROI)",
-      "body": ""
     }
   ],
   "counts": {
@@ -50131,8 +50154,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 61,
-    "skills": 155,
+    "journalEntries": 62,
+    "skills": 156,
     "gitCommits": 200
   }
 }
