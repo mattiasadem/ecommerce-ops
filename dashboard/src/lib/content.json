@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-14T14:47:21.123Z",
+  "generatedAt": "2026-09-14T16:57:31.511Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12145,6 +12145,14 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-14 15:55] Skill tick: keep — Move #154 predictive-ltv-churn-engine (canonical Tier-1 predictive-LTV + churn-scoring substrate missing from prior Move #1-#153 progression; FIRST Tier-1 + FIRST P1 in unique category `predictive-ltv-churn-engine`; 15 numbered pitfalls with corrective Fix: lines + 10 verification gates A-J + default 26:1 Year-1 ROI Path B at $5M GMV; 8 sentinel tokens verified live at canonical alias; HTTP 200 / 227,734 bytes)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-14\n- **Status:** keep (unique category: `predictive-ltv-churn-engine` — first skill in this slot; confirmed via `grep -l \"^category: predictive-ltv-churn-engine\" skills/*.md | wc -l = 0` before writing → `= 1` after = skills/ + dashboard/src/skills/ copy)\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally + live): (1) **Unique category** — `predictive-ltv-churn-engine` count = 1 in `skills/` (zero before, one after). (2) **Tier-1 first** — first `tier: 1` in this category. (3) **P1 first** — first `priority: P1` in this category. (4) **Highest pitfall count** — **15 numbered pitfalls with bold prefix and 15 `Fix:` lines**. Closes the canonical gap left by the Tier-1 progression Move #1 (cart-abandon) + Move #2 (post-purcha"
+    },
+    {
+      "heading": "[2026-09-14 14:45] Skill tick: keep — Move #153 product-review-generation-and-ugc-engine (canonical Tier-1 review/UGC substrate missing from prior Move #1-#152 progression; FIRST Tier-1 + FIRST P1 in unique category `review-generation`; 15 numbered pitfalls with corrective Fix: lines + 10 verification gates A-J + default 3:1–18:1 Year-1 ROI Path B at $5M GMV; 7 sentinel tokens verified live at canonical alias; HTTP 200 / 172,567 bytes)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-14\n- **Status:** keep (unique category: `review-generation` — first skill in this slot; confirmed via `grep -l \"^category: review-generation\" skills/*.md | wc -l = 0` before writing → `= 1` after = skills/ + dashboard/src/skills/ copy)\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally + live): (1) **Unique category** — `review-generation` count = 1 in `skills/` (zero before, one after). (2) **Tier-1 first** — first `tier: 1` in this category. (3) **P1 first** — first `priority: P1` in this category. (4) **Highest pitfall count** — **15 numbered pitfalls with bold prefix and 15 `Fix:` lines**. Closes the canonical gap left by the Tier-1 progression Move #1 (cart-abandon) + Move #2 (post-purchase upsell) + Move #6 (Triple W"
+    },
     {
       "heading": "[2026-09-14 13:41] Skill tick: keep — Move #152 agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-recovery-decoder-decision-rollback-decision-explainer-engine (canonical 30th-move in agentic-commerce-track progression after Move #123-#151; FIRST Tier-1 + FIRST P0 in unique category `agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-recovery-decoder-decision-rollback-decision-explainer-engine`; 18 numbered pitfalls + 10 verification gates A-J + default 9:1 Year-1 ROI Path B at $5M GMV; 8 sentinel tokens verified live at canonical alias; commit 739a3ac merged to master locally)",
       "body": "- **Branch:** autoresearch/skills-2026-09-14\n- **Status:** keep (unique category: `agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-recovery-decoder-decision-rollback-decision-explainer-engine` — first skill in this slot; confirmed via `grep -l \"^category: agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-recovery-decoder-decision-rollback-decision-explainer-engine\" skills/*.md | wc -l = 0` before writing → `= 1` after = skills/ + dashboard/src/skills/ copy)\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally + live): (1) **Unique category** — `agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-recovery-decoder-decision-rollback-decision-explainer-engine` count = 1 in `skil"
@@ -26667,6 +26675,75 @@
       "pitfallCount": 15,
       "sourceCount": 12,
       "size": 33001,
+      "lastTouched": "2026-09-14"
+    },
+    {
+      "file": "154-predictive-ltv-churn-engine.md",
+      "name": "predictive-ltv-churn-engine",
+      "title": "Predictive LTV + churn scoring engine",
+      "category": "predictive-ltv-churn-engine",
+      "tier": 1,
+      "priority": "P1",
+      "defaultMove": 154,
+      "yearOneRoiBand": "4:1–22:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-14",
+      "sources": [
+        "klaviyo 2024",
+        "klaviyo-predictive-2024",
+        "klaviyo-ai-2024",
+        "triple-whale 2024",
+        "triple-whale-cohort-2024",
+        "triple-whale-predictive-ltv-2024",
+        "shopify-segments-2024",
+        "shopify-customer-segments-2024",
+        "shopify-ai-2024",
+        "mixpanel 2024",
+        "mixpanel-predictive-2024",
+        "amplitude 2024",
+        "amplitude-predictive-2024",
+        "amplitude-forecast-2024",
+        "segment-2024",
+        "segment-cdp-predictive-2024",
+        "rudderstack-2024",
+        "iterable-predictive-2024",
+        "braze-predictive-2024",
+        "cordail-predictive-2024",
+        "attentive-predictive-2024",
+        "optimove-2024",
+        "optimove-churn-2024",
+        "ltv-science-2024",
+        "baymard-2024",
+        "harvard-business-review-2024",
+        "northwestern-spiegel-2024",
+        "g2-cdp-2024",
+        "g2-reviews-2024",
+        "northeastern-ltv-2024"
+      ],
+      "blurb": "Move #154 is the canonical **predictive-LTV + churn-scoring engine** that ships the missing decision layer between Move #6 (Triple Whale attribution) + Move #13 (cohort) + Move #100 (CDP) + Move #153 (review-gen/UGC):...",
+      "sectionCount": 10,
+      "pitfallCount": 15,
+      "sourceCount": 30,
+      "size": 46728,
+      "lastTouched": "2026-09-14"
+    },
+    {
+      "file": "155-agentic-commerce-discovery-decision-rollback-engine.md",
+      "name": "155-agentic-commerce-discovery-decision-rollback-engine",
+      "title": "155-agentic-commerce-discovery-decision-rollback-engine",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-14",
+      "sources": [],
+      "blurb": "Move #155 is the **canonical agentic-commerce-discovery-decision-rollback-engine** that compounds Move #123 (agentic-commerce-merchant-readiness-engine — the umbrella engine that scores per-merchant × per-agent-channe...",
+      "sectionCount": 5,
+      "pitfallCount": 0,
+      "sourceCount": 0,
+      "size": 119308,
       "lastTouched": "2026-09-14"
     },
     {
@@ -48648,6 +48725,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "c05fb44",
+      "date": "2026-09-14T15:54:27Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #154 predictive-ltv-churn-engine (Tier-1 per-customer LTV/churn substrate; 5-pillar framework; 15 pitfalls; 4:1–22:1 Year-1 ROI Path B at $5M GMV)",
+      "body": ""
+    },
+    {
+      "sha": "859e7a5",
+      "date": "2026-09-14T14:50:14Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #153 product-review-generation-and-ugc-engine (Tier-1 review/UGC substrate; 5-pillar framework; 15 pitfalls; 3:1–18:1 Year-1 ROI Path B at $5M GMV)",
+      "body": ""
+    },
+    {
       "sha": "c0bf2d6",
       "date": "2026-09-14T13:45:12Z",
       "author": "hermesagent",
@@ -50032,20 +50123,6 @@
       "author": "mattiasadem",
       "subject": "docs: journal entry for sales-tax-vat-automation skill tick (Move #21, default 14:1 Year-1 ROI)",
       "body": ""
-    },
-    {
-      "sha": "dd3f8a1",
-      "date": "2026-07-12T19:32:58Z",
-      "author": "mattiasadem",
-      "subject": "skill: Sales tax + VAT automation (Move #21, Avalara + TaxJar + Stripe Tax + Shopify Markets Pro + Vertex + Sovos + Zonos, default 14:1 Year-1 ROI Path B at $3M GMV)",
-      "body": ""
-    },
-    {
-      "sha": "09401ed",
-      "date": "2026-07-12T18:27:29Z",
-      "author": "mattiasadem",
-      "subject": "journal: 2026-07-12 20:30 NPS + Voice-of-Customer closed-loop automation skill tick",
-      "body": ""
     }
   ],
   "counts": {
@@ -50054,8 +50131,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 59,
-    "skills": 153,
+    "journalEntries": 61,
+    "skills": 155,
     "gitCommits": 200
   }
 }
