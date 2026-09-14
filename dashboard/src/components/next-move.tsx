@@ -80,6 +80,18 @@ function renderSummary(
     lines.push("## Why this move");
     lines.push(result.rationale);
     lines.push("");
+    if (result.topCandidates.length > 1) {
+      lines.push("## Top candidates (compare)");
+      for (const cand of result.topCandidates) {
+        const candLiftLow = result.monthlyRevenue * cand.liftLow;
+        const candLiftHigh = result.monthlyRevenue * cand.liftHigh;
+        const star = result.move?.id === cand.id ? " ★" : "";
+        lines.push(
+          `- Move #${cand.priorityRank}${star} ${cand.name} — ${fmtMoney(candLiftLow)}–${fmtMoney(candLiftHigh)} /mo, ${cand.daysToShip}d, ${fmtCost(cand.costLow)}–${fmtCost(cand.costHigh)} /mo. ${cand.rationale}`
+        );
+      }
+      lines.push("");
+    }
     lines.push("## Your-store inputs");
     lines.push(`- AOV: $${store.aov.toLocaleString("en-US")}`);
     lines.push(`- Monthly orders: ${monthlyOrders.toLocaleString("en-US")}`);
@@ -255,6 +267,96 @@ export function NextMoveCard() {
                 )
                 .join(" · ")}
             </div>
+          ) : null}
+
+          {/* Compare top candidates — operator decision support.
+              Shows up to 3 eligible moves ranked by priorityRank with
+              projected lift, days-to-ship, cost band, and rationale.
+              The algorithm's #1 pick is highlighted; alternatives are
+              clickable deep-links to /playbooks. */}
+          {result.topCandidates.length > 1 ? (
+            <details
+              className="mt-2 mb-4 rounded-lg border border-border bg-background/40 p-3 group"
+              data-testid="compare-top-candidates"
+            >
+              <summary className="cursor-pointer text-[11px] uppercase tracking-widest text-muted-foreground hover:text-foreground flex items-center justify-between">
+                <span>
+                  Compare top {result.topCandidates.length} candidates
+                  {result.eligibleCount > result.topCandidates.length
+                    ? ` (of ${result.eligibleCount} eligible)`
+                    : ""}
+                </span>
+                <span aria-hidden="true" className="text-[10px]">▾</span>
+              </summary>
+              <div className="mt-3 overflow-x-auto">
+                <table className="w-full text-[11px]">
+                  <thead>
+                    <tr className="text-left text-muted-foreground">
+                      <th className="font-medium pb-1.5 pr-2 w-16">Move</th>
+                      <th className="font-medium pb-1.5 pr-2">Name</th>
+                      <th className="font-medium pb-1.5 pr-2 w-24 text-right">Lift / mo</th>
+                      <th className="font-medium pb-1.5 pr-2 w-16 text-right">Days</th>
+                      <th className="font-medium pb-1.5 pr-2 w-24 text-right">Cost / mo</th>
+                      <th className="font-medium pb-1.5">Rationale</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-border">
+                    {result.topCandidates.map((cand) => {
+                      const isTop = result.move?.id === cand.id;
+                      const candLiftLow = result.monthlyRevenue * cand.liftLow;
+                      const candLiftHigh = result.monthlyRevenue * cand.liftHigh;
+                      return (
+                        <tr
+                          key={cand.id}
+                          className={
+                            isTop
+                              ? "bg-emerald-500/5"
+                              : "hover:bg-muted/40"
+                          }
+                          data-testid={`compare-row-${cand.id}`}
+                        >
+                          <td className="py-1.5 pr-2 align-top">
+                            <span
+                              className={
+                                isTop
+                                  ? "inline-flex items-center rounded-md border border-emerald-500/40 bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-semibold text-emerald-700 dark:text-emerald-300"
+                                  : "inline-flex items-center rounded-md border border-border bg-background px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground tabular-nums"
+                              }
+                            >
+                              #{cand.priorityRank}
+                              {isTop ? " ★" : ""}
+                            </span>
+                          </td>
+                          <td className="py-1.5 pr-2 align-top">
+                            <a
+                              href={`/playbooks#${cand.id}`}
+                              className="font-medium text-foreground hover:underline"
+                            >
+                              {cand.name}
+                            </a>
+                          </td>
+                          <td className="py-1.5 pr-2 align-top text-right tabular-nums">
+                            {fmtMoney(candLiftLow)}–{fmtMoney(candLiftHigh)}
+                          </td>
+                          <td className="py-1.5 pr-2 align-top text-right tabular-nums">
+                            {cand.daysToShip}d
+                          </td>
+                          <td className="py-1.5 pr-2 align-top text-right tabular-nums">
+                            {fmtCost(cand.costLow)}–{fmtCost(cand.costHigh)}
+                          </td>
+                          <td className="py-1.5 align-top text-muted-foreground">
+                            {cand.rationale}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+              <p className="mt-2 text-[10px] text-muted-foreground">
+                ★ marks the algorithmic pick. Click any name to open its playbook; mark shipped via the button above to advance the queue.
+              </p>
+            </details>
           ) : null}
 
           {/* Actions */}

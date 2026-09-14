@@ -174,6 +174,11 @@ export const MOVE_RECOMMENDATIONS: MoveRecommendation[] = [
 export interface NextMoveResult {
   /** The recommended next move. `null` if every Top-10 move is shipped. */
   move: MoveRecommendation | null;
+  /** Top 3 eligible moves (eligible = not shipped + no missing prereq),
+   *  ranked by priorityRank. Empty if queue is empty. Length is min(3, eligible.length). */
+  topCandidates: MoveRecommendation[];
+  /** Total number of eligible moves (>= topCandidates.length). 0 means queue is empty. */
+  eligibleCount: number;
   /** Moves skipped because they're already shipped. */
   shippedSkipped: MoveRecommendation[];
   /** Moves skipped because a prerequisite hasn't been shipped yet. */
@@ -259,6 +264,8 @@ export function pickNextMove(
 
   return {
     move,
+    topCandidates: eligible.slice(0, 3),
+    eligibleCount: eligible.length,
     shippedSkipped,
     prereqBlocked,
     projectedLiftDollarsLow: liftDollarsLow,
