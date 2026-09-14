@@ -17,6 +17,7 @@ import { IkasLiveCard } from "@/components/ikas-live-card";
 import { RealizedRoiPanel } from "@/components/realized-roi";
 import { Top10ShippedOverviewCard } from "@/components/top10-shipped-overview-card";
 import { Top10ExportButton } from "@/components/top10-export-button";
+import { RecentlyShippedPlaybooksCard } from "@/components/recently-shipped-playbooks-card";
 import { content, findTable, fmtDate } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -232,6 +233,18 @@ export default function Home() {
               label="Top 10 shipped — export"
             />
           </div>
+        </section>
+      )}
+
+      {/* === RECENTLY SHIPPED PLAYBOOKS — cross-link from /playbooks tracker === */}
+      {playbooks.length > 0 && (
+        <section id="recently-shipped-playbooks">
+          <RecentlyShippedPlaybooksCard
+            playbooks={playbooks.map((p) => ({
+              id: p.file.replace(/\.md$/, ""),
+              title: p.title,
+            }))}
+          />
         </section>
       )}
 

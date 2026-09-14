@@ -85,6 +85,17 @@ export function ShippedPlaybooks({ playbooks }: ShippedPlaybooksProps) {
   useEffect(() => {
     if (!hydrated) return;
     saveShippedPlaybooks(shipped);
+    // Same-tab cross-component notification — e.g. /playbooks tracker
+    // writes here, /`RecentlyShippedPlaybooksCard` on `/` listens.
+    if (typeof window !== "undefined") {
+      try {
+        window.dispatchEvent(
+          new CustomEvent("ecom-ops:shipped-playbooks:update", { detail: { count: Object.keys(shipped).length } })
+        );
+      } catch {
+        /* ignore */
+      }
+    }
   }, [shipped, hydrated]);
 
   const shippedCount = useMemo(() => Object.keys(shipped).length, [shipped]);
