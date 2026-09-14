@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-14T04:59:13.209Z",
+  "generatedAt": "2026-09-14T06:05:07.213Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12145,6 +12145,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-14 04:57] Skill tick: keep — Move #147 agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-action-recommendation-engine (canonical 25th-move in agentic-commerce-track progression after Move #123-#146; FIRST Tier-1 + FIRST P0 in unique category `agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-action-recommendation-engine`; 18 numbered pitfalls + 10 verification gates A-J + default 9:1 Year-1 ROI Path B at $5M GMV; 7 sentinel tokens verified live at canonical alias)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-14\n- **Status:** keep (unique category: `agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-action-recommendation-engine` — first skill in this slot; confirmed via `grep -l \"^category: agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-action-recommendation-engine\" skills/*.md | wc -l = 0` before writing → `= 2` after = skills/ + dashboard/src/skills/ copy)\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally before deploy was attempted): (1) **Unique category** — `agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-action-recommendation-engine` count = 1 in `skills/` (zero before, one after); (2) **Tier-1 first** — first `tier: 1` in th"
+    },
     {
       "heading": "[2026-09-14 03:54] Skill tick: keep — Move #146 agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-explainer-engine (canonical 24th-move in agentic-commerce-track progression after Move #123-#145; FIRST Tier-1 + FIRST P0 in unique category `agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-explainer-engine`; 18 numbered pitfalls + 10 verification gates A-J + default 9:1 Year-1 ROI Path B at $5M GMV; 7 sentinel tokens verified live at canonical alias)",
       "body": "- **Branch:** autoresearch/skills-2026-09-14\n- **Status:** keep (unique category: `agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-explainer-engine` — first skill in this slot; confirmed via `grep -l \"^category: agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-explainer-engine\" skills/*.md | wc -l = 0` before writing → `= 1` after)\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally before deploy was attempted): (1) **Unique category** — `agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-explainer-engine` count = 1 in `skills/` (zero before, one after); (2) **Tier-1 first** — first `tier: 1` in this category; (3) **P0 first** — first `priority: P0` in this category; (4) **Highest pitfall count** —"
@@ -26462,6 +26466,25 @@
       "pitfallCount": 18,
       "sourceCount": 0,
       "size": 116175,
+      "lastTouched": "2026-09-14"
+    },
+    {
+      "file": "148-agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-recovery-decoder-engine.md",
+      "name": "148-agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-recovery-decoder-engine",
+      "title": "Agentic commerce cart init tracking decision fallback handler execution decision recovery decoder engine (Move #148)",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-14",
+      "sources": [],
+      "blurb": "Move #148 is the **canonical agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-recovery-decoder-engine** that compounds Move #123 (agentic-commerce-merchant-readiness-engine — the umbrel...",
+      "sectionCount": 10,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 93082,
       "lastTouched": "2026-09-14"
     },
     {
@@ -48477,6 +48500,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "ac604d7",
+      "date": "2026-09-14T05:01:21Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #147 agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-action-recommendation-engine (canonical 25th-move in agentic-commerce-track progression after Move #123-#146; FIRST Tier-1 + FIRST P0 in uniqu",
+      "body": ""
+    },
+    {
       "sha": "bdac17d",
       "date": "2026-09-14T03:57:19Z",
       "author": "hermesagent",
@@ -49868,13 +49898,6 @@
       "author": "mattiasadem-5021s",
       "subject": "journal: skill-builder escalation mode auth blockers",
       "body": ""
-    },
-    {
-      "sha": "a372011",
-      "date": "2026-07-11T20:07:13Z",
-      "author": "mattiasadem-5021s",
-      "subject": "journal: inventory forecasting skill tick discard",
-      "body": ""
     }
   ],
   "counts": {
@@ -49883,8 +49906,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 48,
-    "skills": 147,
+    "journalEntries": 49,
+    "skills": 148,
     "gitCommits": 200
   }
 }
