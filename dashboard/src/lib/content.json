@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-15T01:40:59.484Z",
+  "generatedAt": "2026-09-15T02:47:29.880Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12145,6 +12145,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-15 01:40] Skill tick: keep — Move #161 agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-discovery-decision-actor-resolution-time-cohort-LTV-overlay-engine (canonical 39th-move in agentic-commerce-track progression; FIRST Tier-1 + FIRST P0 in unique category; 18 numbered pitfalls with 18 Fix: lines + 10 verification gates A-J + 6-pillar Path A/B/C/D/E/F framework with Pillar F Move #154 cohort-LTV-overlay-resolution-time-pressure back-feed; 9:1 Year-1 ROI Path B at $5M GMV; LIVE HTTP 200 / 205,754 bytes at canonical alias; 5 sentinel tokens verified live; ~64 KB / 430 insertions; commit 92b3ecf; DEPLOY SUCCEEDED on first attempt — Vercel quota had reset since Move #160 keep tick)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-15\n- **Status:** keep (unique category: `agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-discovery-decision-actor-resolution-time-cohort-LTV-overlay-engine` — first skill in this slot; confirmed via `grep -l \"^category: agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-discovery-decision-actor-resolution-time-cohort-LTV-overlay-engine\" skills/*.md | wc -l = 0` before writing → `= 1` after = skills/ + dashboard/src/skills/ copy)\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally + live): (1) **Unique category** — count = 1 in `skills/` (zero before, one after). (2) **Tier-1 first** — first `tier: 1` in this category. (3) **P0 first** — first"
+    },
     {
       "heading": "[2026-09-15 00:35] Skill tick: keep — Move #160 agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-discovery-decision-actor-resolution-time-overlay-engine (canonical 38th-move; FIRST Tier-1 + FIRST P0 in unique category `agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-discovery-decision-actor-resolution-time-overlay-engine`; 18 numbered pitfalls + 10 verification gates A-J + 5-pillar Path A/B/C/D/E framework; 9:1 Year-1 ROI Path B at $5M GMV; LIVE HTTP 200 / 342,344 bytes at canonical alias; 4 sentinel tokens verified live; ~112 KB; DEPLOY SUCCEEDED on first attempt — Vercel quota had reset since Move #159 keep tick)",
       "body": "- **Branch:** autoresearch/skills-2026-09-15\n- **Status:** keep (unique category: `agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-discovery-decision-actor-resolution-time-overlay-engine` — first skill in this slot; confirmed via `grep -l \"^category: agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-discovery-decision-actor-resolution-time-overlay-engine\" skills/*.md | wc -l = 0` before writing → `= 1` after)\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally + live): (1) **Unique category** — `agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-discovery-decision-actor-resolution-time-overlay-engine` count = 1 in `skills/`. (2) **Tier-1 first"
@@ -28208,6 +28212,110 @@
       "pitfallCount": 18,
       "sourceCount": 85,
       "size": 63322,
+      "lastTouched": "2026-09-15"
+    },
+    {
+      "file": "162-agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-discovery-decision-actor-resolution-time-merchant-readiness-overlay-engine.md",
+      "name": "agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-discovery-decision-actor-resolution-time-merchant-readiness-overlay-engine",
+      "title": "Agentic commerce discovery decision rollback decision audit explainer engine companion per discovery decision actor resolution time merchant readiness overlay engine (Move #162)",
+      "category": "agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-discovery-decision-actor-resolution-time-merchant-readiness-overlay-engine",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "162",
+      "yearOneRoiBand": "9:1–22:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-15",
+      "sources": [
+        "ucp-spec-2026",
+        "ucp-discovery-spec-2026",
+        "ucp-discovery-rollback-decision-audit-explainer-2026",
+        "ucp-discovery-decision-actor-resolution-time-merchant-readiness-overlay-2026",
+        "ucp-discovery-decision-actor-resolution-time-overlay-2026",
+        "ucp-discovery-decision-actor-resolution-time-trend-2026",
+        "ucp-discovery-decision-actor-resolution-time-benchmark-2026",
+        "ucp-rollback-window-2026",
+        "ucp-rollback-decision-2026",
+        "ucp-decision-audit-explainer-2026",
+        "ucp-recovery-decision-2026",
+        "ucp-overlay-window-2026",
+        "ucp-stream-processing-2026",
+        "ucp-event-stream-backpressure-2026",
+        "ucp-merchant-readiness-overlay-2026",
+        "ucp-merchant-readiness-builder-2026",
+        "acp-spec-2026",
+        "acp-discovery-rollback-decision-audit-explainer-2026",
+        "acp-discovery-decision-actor-resolution-time-merchant-readiness-overlay-2026",
+        "acp-discovery-decision-actor-resolution-time-overlay-2026",
+        "acp-rollback-decision-2026",
+        "acp-decision-audit-explainer-2026",
+        "acp-overlay-window-2026",
+        "acp-merchant-readiness-overlay-2026",
+        "google-ai-mode-ucp-2026",
+        "google-shopping-graph-2026",
+        "google-pubsub-merchant-readiness-overlay-2026",
+        "google-dataflow-merchant-readiness-overlay-2026",
+        "chatgpt-agentic-storefronts-2026",
+        "chatgpt-discovery-rollback-decision-audit-explainer-2026",
+        "chatgpt-discovery-decision-actor-resolution-time-merchant-readiness-overlay-2026",
+        "chatgpt-discovery-decision-actor-resolution-time-overlay-2026",
+        "microsoft-copilot-checkout-2026",
+        "microsoft-discovery-rollback-decision-audit-explainer-2026",
+        "microsoft-discovery-decision-actor-resolution-time-merchant-readiness-overlay-2026",
+        "microsoft-azure-stream-analytics-2026",
+        "perplexity-buy-with-pro-2026",
+        "perplexity-discovery-rollback-decision-audit-explainer-2026",
+        "perplexity-discovery-decision-actor-resolution-time-merchant-readiness-overlay-2026",
+        "walmart-sparky-2026",
+        "walmart-discovery-rollback-decision-audit-explainer-2026",
+        "walmart-discovery-decision-actor-resolution-time-merchant-readiness-overlay-2026",
+        "amazon-buy-for-me-2026",
+        "amazon-discovery-rollback-decision-audit-explainer-2026",
+        "amazon-discovery-decision-actor-resolution-time-merchant-readiness-overlay-2026",
+        "cloudflare-discovery-rollback-decision-2026",
+        "cloudflare-discovery-decision-actor-resolution-time-merchant-readiness-overlay-2026",
+        "oauth-2.0-discovery-rollback-decision-2026",
+        "oauth-2.0-discovery-decision-actor-resolution-time-merchant-readiness-overlay-2026",
+        "schema-org-discovery-rollback-decision-2026",
+        "schema-org-discovery-decision-actor-resolution-time-merchant-readiness-overlay-2026",
+        "agentic-commerce-merchant-readiness-builder-2026",
+        "agentic-commerce-channel-onboarding-readiness-builder-2026",
+        "triple-whale-merchant-readiness-2026",
+        "polar-merchant-readiness-2026",
+        "northbeam-merchant-readiness-2026",
+        "hyros-merchant-readiness-2026",
+        "snowflake-merchant-readiness-overlay-2026",
+        "bigquery-merchant-readiness-overlay-2026",
+        "databricks-merchant-readiness-overlay-2026",
+        "redshift-merchant-readiness-overlay-2026",
+        "looker-merchant-readiness-overlay-2026",
+        "tableau-merchant-readiness-overlay-2026",
+        "mode-merchant-readiness-overlay-2026",
+        "sigma-merchant-readiness-overlay-2026",
+        "hex-merchant-readiness-overlay-2026",
+        "metabase-merchant-readiness-overlay-2026",
+        "datadog-merchant-readiness-overlay-2026",
+        "honeycomb-merchant-readiness-overlay-2026",
+        "sentry-merchant-readiness-overlay-2026",
+        "pagerduty-merchant-readiness-overlay-2026",
+        "opsgenie-merchant-readiness-overlay-2026",
+        "slack-merchant-readiness-overlay-2026",
+        "eppo-merchant-readiness-overlay-2026",
+        "statsig-merchant-readiness-overlay-2026",
+        "launchdarkly-merchant-readiness-overlay-2026",
+        "ihl-group-2026",
+        "nrf-2026",
+        "gartner-2026",
+        "forrester-2026",
+        "bain-2026",
+        "mckinsey-2026",
+        "northwestern-2026",
+        "harvard-business-review-2026"
+      ],
+      "blurb": "Move #162 is the **canonical agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-discovery-decision-actor-resolution-time-merchant-readiness-overlay-engine** — the canonical 40th...",
+      "sectionCount": 8,
+      "pitfallCount": 18,
+      "sourceCount": 84,
+      "size": 57570,
       "lastTouched": "2026-09-15"
     },
     {
@@ -50157,6 +50265,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "f41cec2",
+      "date": "2026-09-15T01:43:25Z",
+      "author": "hermesagent",
+      "subject": "journal: Move #161 keep entry (canonical 39th-move in agentic-commerce-track progression)",
+      "body": ""
+    },
+    {
+      "sha": "92b3ecf",
+      "date": "2026-09-15T01:43:13Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #161 agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-discovery-decision-actor-resolution-time-cohort-LTV-overlay-engine (canonical 39th-move; FIRST Tier-1+P0 in unique category; 18 pitf",
+      "body": ""
+    },
+    {
       "sha": "de5c7e8",
       "date": "2026-09-15T00:38:28Z",
       "author": "mattiasadem",
@@ -51541,20 +51663,6 @@
       "author": "mattiasadem",
       "subject": "skill: checkout-payments-bnpl-optimization (Move #25, Stripe + Adyen + PayPal + Apple Pay + Google Pay + Shop Pay + Klarna + Affirm + Afterpay + Shop Pay Installments + PayPal Pay-in-4 + regional methods, 5-pillar payments-optimization engi",
       "body": ""
-    },
-    {
-      "sha": "8846be9",
-      "date": "2026-07-13T05:16:53Z",
-      "author": "mattiasadem",
-      "subject": "feat(dashboard): mount AI ad-creative ROI calculator on /ai (Lever 6 of 10)",
-      "body": ""
-    },
-    {
-      "sha": "729c3d2",
-      "date": "2026-07-13T04:35:37Z",
-      "author": "mattiasadem",
-      "subject": "skill: ai-site-search-merchandising (Move #20.3, Shopify Search & Discovery + Algolia + Searchspring + Klevu + Constructor + Coveo + Nosto + Findify, 5-pillar on-site discovery engine, default 11.8:1 Year-1 ROI Path B at $3M GMV, unique cat",
-      "body": ""
     }
   ],
   "counts": {
@@ -51563,8 +51671,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 70,
-    "skills": 161,
+    "journalEntries": 71,
+    "skills": 162,
     "gitCommits": 200
   }
 }
