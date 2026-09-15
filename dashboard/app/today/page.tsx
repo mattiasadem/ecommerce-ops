@@ -15,6 +15,7 @@ import { YourStoreCard } from "@/components/your-store-card";
 import { NextMoveCard } from "@/components/next-move";
 import { IkasLiveCard } from "@/components/ikas-live-card";
 import { CronHealthCard } from "@/components/cron-health-card";
+import { ProgressExportButton } from "@/components/progress-export-button";
 import Link from "next/link";
 
 export const dynamic = "force-static";
@@ -326,6 +327,42 @@ export default function TodayPage() {
                 );
               })}
             </ul>
+          </CardContent>
+        </Card>
+      </section>
+
+      {/* === Operator handoff — unified progress export ===
+          Bundles the 3 progress trackers (Top-10 shipped × shipped-playbooks ×
+          next-move override) into one human-readable JSON / CSV download so
+          the operator can paste a single artifact into Slack, Notion, or an
+          email instead of taking 3 separate screenshots. Complements the
+          per-tracker exports (Top10ExportButton on /top-10, etc.) and the
+          workspace-backup-card full-JSON dump. */}
+      <section>
+        <Card>
+          <CardHeader className="pb-2">
+            <div className="flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
+                <span className="inline-block h-2 w-2 rounded-sm bg-sky-500" />
+                <CardTitle className="text-sm font-semibold">
+                  Operator handoff — progress export
+                </CardTitle>
+              </div>
+              <Badge variant="outline" className="text-[10px]">
+                JSON · CSV
+              </Badge>
+            </div>
+            <CardDescription className="text-xs">
+              One-click download of your Top-10 shipped moves + shipped-playbooks
+              + next-move override in a single file. Hand it off to your team in
+              Slack or Notion without 3 separate screenshots.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ProgressExportButton
+              top10Status={top10.status}
+              playbooks={content.playbooks}
+            />
           </CardContent>
         </Card>
       </section>

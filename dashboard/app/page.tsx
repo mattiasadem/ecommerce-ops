@@ -19,6 +19,7 @@ import { RealizedRoiPanel } from "@/components/realized-roi";
 import { Top10ShippedOverviewCard } from "@/components/top10-shipped-overview-card";
 import { Top10ExportButton } from "@/components/top10-export-button";
 import { RecentlyShippedPlaybooksCard } from "@/components/recently-shipped-playbooks-card";
+import { ProgressExportButton } from "@/components/progress-export-button";
 import { content, findTable, fmtDate } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -254,6 +255,40 @@ export default function Home() {
           />
         </section>
       )}
+
+      {/* === PROGRESS EXPORT — one-click JSON / CSV handoff for the 3 trackers ===
+          Bundles Top-10 shipped × shipped-playbooks × next-move override into a
+          single artifact so the operator can paste one file into Slack / Notion /
+          email instead of taking 3 separate screenshots. Complements the per-tracker
+          exports (Top10ExportButton on /top-10) and the workspace-backup-card full
+          JSON dump. */}
+      <section>
+        <Card>
+          <CardHeader className="pb-2">
+            <div className="flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
+                <span className="inline-block h-2 w-2 rounded-sm bg-sky-500" />
+                <CardTitle className="text-sm font-semibold">
+                  Operator handoff — progress export
+                </CardTitle>
+              </div>
+              <Badge variant="outline" className="text-[10px]">JSON · CSV</Badge>
+            </div>
+            <CardDescription className="text-xs">
+              One file with your Top-10 shipped moves + shipped-playbooks +
+              next-move override. Open the JSON in a viewer or paste the CSV
+              into a spreadsheet.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ProgressExportButton
+              top10Status={top10.status}
+              playbooks={content.playbooks}
+              compact
+            />
+          </CardContent>
+        </Card>
+      </section>
 
       {/* === ACTION CARDS: what you can do right now === */}
       <section>
