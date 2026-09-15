@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-15T00:34:50.840Z",
+  "generatedAt": "2026-09-15T01:40:59.484Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-09-15 00:35] Skill tick: keep — Move #160 agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-discovery-decision-actor-resolution-time-overlay-engine (canonical 38th-move; FIRST Tier-1 + FIRST P0 in unique category `agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-discovery-decision-actor-resolution-time-overlay-engine`; 18 numbered pitfalls + 10 verification gates A-J + 5-pillar Path A/B/C/D/E framework; 9:1 Year-1 ROI Path B at $5M GMV; LIVE HTTP 200 / 342,344 bytes at canonical alias; 4 sentinel tokens verified live; ~112 KB; DEPLOY SUCCEEDED on first attempt — Vercel quota had reset since Move #159 keep tick)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-15\n- **Status:** keep (unique category: `agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-discovery-decision-actor-resolution-time-overlay-engine` — first skill in this slot; confirmed via `grep -l \"^category: agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-discovery-decision-actor-resolution-time-overlay-engine\" skills/*.md | wc -l = 0` before writing → `= 1` after)\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally + live): (1) **Unique category** — `agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-discovery-decision-actor-resolution-time-overlay-engine` count = 1 in `skills/`. (2) **Tier-1 first"
+    },
+    {
       "heading": "[2026-09-14 23:28] Skill tick: keep — Move #159 agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-discovery-decision-actor-resolution-time-trend-engine (canonical 37th-move; FIRST Tier-1 + FIRST P0 in unique category `agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-discovery-decision-actor-resolution-time-trend-engine`; 18 numbered pitfalls + 10 verification gates A-J + 5-pillar Path A/B/C/D/E framework; 9:1 Year-1 ROI Path B at $5M GMV; LIVE HTTP 200 at canonical alias; 4 sentinel tokens verified live; ~89 KB / 126 lines; DEPLOY SUCCEEDED on first attempt — Vercel quota had reset since Move #158 keep tick)",
       "body": "- **Branch:** autoresearch/skills-2026-09-14\n- **Status:** keep (unique category: `agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-discovery-decision-actor-resolution-time-trend-engine` — first skill in this slot; confirmed via `grep -l \"^category: agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-discovery-decision-actor-resolution-time-trend-engine\" skills/*.md | wc -l = 0` before writing → `= 1` after)\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally + live): (1) **Unique category** — `agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-discovery-decision-actor-resolution-time-trend-engine` count = 1 in `skills/`. (2) **Tier-1 first** — f"
     },
@@ -12416,6 +12420,10 @@
     {
       "heading": "[2026-09-14 18:30] Dashboard tick: keep — `/` + `/today` Next-move card adds \"Pick this instead\" per-compare-row override picker (Move #128.ad interactive-tool + state-persistence)",
       "body": "- **Status:** keep\n- **Reason:** Closes the operator-decision loop on the Next-move card. The prior tick (Move #128.ac) shipped \"Compare top 3 candidates\" — that lets the operator *see* trade-offs but not *commit* to one. This tick adds the commit action: each compare-row now has a \"Pick this instead\" button that pins the move as the operator's manual override. The card recomputes: the headline + 4-tile output strip + Copy-summary all reflect the override; an \"Override active\" badge surfaces under the header with a \"Clear override (use algorithm)\" link. Override persists in `ecom-ops:next-move-override:v1` localStorage; survives reloads; cross-tab sync via `storage` event; same-tab sync via a new custom DOM event `ecom-ops:next-move-override:update`. The algorithm is still the fallback — c"
+    },
+    {
+      "heading": "[2026-09-15 00:37] Dashboard tick: keep — `/` Overview adds persistent Next-move override pill (Move #128.ae cross-page-intelligence + state-persistence)",
+      "body": "- **Status:** keep\n- **Reason:** Closes the operator-feedback loop for the Move #128.ad override feature. The prior tick shipped \"Pick this instead\" + the in-card \"Override active\" banner — but that banner lived only inside `<NextMoveCard />`. Once the operator leaves `/today` and lands on `/` (or refreshes, or opens the home page from another route), there was no persistent surface telling them \"your override is active.\" They could only find out by navigating back to `/today` and re-expanding the compare table. This tick ships a small dismissible banner pill on `/` (between the IkasLiveCard and NextMoveCard sections) that surfaces the override state from the same `ecom-ops:next-move-override:v1` localStorage key, listens to both `storage` (cross-tab) and `ecom-ops:next-move-override:updat"
     }
   ],
   "skills": [
@@ -28095,6 +28103,111 @@
       "pitfallCount": 18,
       "sourceCount": 511,
       "size": 112597,
+      "lastTouched": "2026-09-15"
+    },
+    {
+      "file": "161-agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-discovery-decision-actor-resolution-time-cohort-LTV-overlay-engine.md",
+      "name": "agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-discovery-decision-actor-resolution-time-cohort-LTV-overlay-engine",
+      "title": "Agentic commerce discovery decision rollback decision audit explainer engine companion per discovery decision actor resolution time cohort LTV overlay engine (Move #161)",
+      "category": "agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-discovery-decision-actor-resolution-time-cohort-LTV-overlay-engine",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "161",
+      "yearOneRoiBand": "9:1–22:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-15",
+      "sources": [
+        "ucp-spec-2026",
+        "ucp-discovery-spec-2026",
+        "ucp-discovery-rollback-decision-audit-explainer-2026",
+        "ucp-discovery-decision-actor-resolution-time-cohort-LTV-overlay-2026",
+        "ucp-discovery-decision-actor-resolution-time-overlay-2026",
+        "ucp-discovery-decision-actor-resolution-time-trend-2026",
+        "ucp-discovery-decision-actor-resolution-time-benchmark-2026",
+        "ucp-rollback-window-2026",
+        "ucp-rollback-decision-2026",
+        "ucp-decision-audit-explainer-2026",
+        "ucp-recovery-decision-2026",
+        "ucp-overlay-window-2026",
+        "ucp-stream-processing-2026",
+        "ucp-event-stream-backpressure-2026",
+        "ucp-cohort-LTV-overlay-2026",
+        "acp-spec-2026",
+        "acp-discovery-rollback-decision-audit-explainer-2026",
+        "acp-discovery-decision-actor-resolution-time-cohort-LTV-overlay-2026",
+        "acp-discovery-decision-actor-resolution-time-overlay-2026",
+        "acp-rollback-decision-2026",
+        "acp-decision-audit-explainer-2026",
+        "acp-overlay-window-2026",
+        "acp-cohort-LTV-overlay-2026",
+        "google-ai-mode-ucp-2026",
+        "google-shopping-graph-2026",
+        "google-pubsub-cohort-LTV-overlay-2026",
+        "google-dataflow-cohort-LTV-overlay-2026",
+        "chatgpt-agentic-storefronts-2026",
+        "chatgpt-discovery-rollback-decision-audit-explainer-2026",
+        "chatgpt-discovery-decision-actor-resolution-time-cohort-LTV-overlay-2026",
+        "chatgpt-discovery-decision-actor-resolution-time-overlay-2026",
+        "microsoft-copilot-checkout-2026",
+        "microsoft-discovery-rollback-decision-audit-explainer-2026",
+        "microsoft-discovery-decision-actor-resolution-time-cohort-LTV-overlay-2026",
+        "microsoft-azure-stream-analytics-2026",
+        "perplexity-buy-with-pro-2026",
+        "perplexity-discovery-rollback-decision-audit-explainer-2026",
+        "perplexity-discovery-decision-actor-resolution-time-cohort-LTV-overlay-2026",
+        "walmart-sparky-2026",
+        "walmart-discovery-rollback-decision-audit-explainer-2026",
+        "walmart-discovery-decision-actor-resolution-time-cohort-LTV-overlay-2026",
+        "amazon-buy-for-me-2026",
+        "amazon-discovery-rollback-decision-audit-explainer-2026",
+        "amazon-discovery-decision-actor-resolution-time-cohort-LTV-overlay-2026",
+        "cloudflare-discovery-rollback-decision-2026",
+        "cloudflare-discovery-decision-actor-resolution-time-cohort-LTV-overlay-2026",
+        "oauth-2.0-discovery-rollback-decision-2026",
+        "oauth-2.0-discovery-decision-actor-resolution-time-cohort-LTV-overlay-2026",
+        "schema-org-discovery-rollback-decision-2026",
+        "schema-org-discovery-decision-actor-resolution-time-cohort-LTV-overlay-2026",
+        "klaviyo-predictive-LTV-2026",
+        "klaviyo-predictive-segments-2026",
+        "klaviyo-cohort-LTV-2026",
+        "triple-whale-cohort-LTV-2026",
+        "triple-whale-predictive-LTV-2026",
+        "polar-cohort-LTV-2026",
+        "northbeam-cohort-LTV-2026",
+        "hyros-cohort-LTV-2026",
+        "snowflake-cohort-LTV-overlay-2026",
+        "bigquery-cohort-LTV-overlay-2026",
+        "databricks-cohort-LTV-overlay-2026",
+        "redshift-cohort-LTV-overlay-2026",
+        "looker-cohort-LTV-overlay-2026",
+        "tableau-cohort-LTV-overlay-2026",
+        "mode-cohort-LTV-overlay-2026",
+        "sigma-cohort-LTV-overlay-2026",
+        "hex-cohort-LTV-overlay-2026",
+        "metabase-cohort-LTV-overlay-2026",
+        "datadog-cohort-LTV-overlay-2026",
+        "honeycomb-cohort-LTV-overlay-2026",
+        "sentry-cohort-LTV-overlay-2026",
+        "pagerduty-cohort-LTV-overlay-2026",
+        "opsgenie-cohort-LTV-overlay-2026",
+        "slack-cohort-LTV-overlay-2026",
+        "eppo-cohort-LTV-overlay-2026",
+        "statsig-cohort-LTV-overlay-2026",
+        "launchdarkly-cohort-LTV-overlay-2026",
+        "ihl-group-2026",
+        "nrf-2026",
+        "gartner-2026",
+        "forrester-2026",
+        "bain-2026",
+        "mckinsey-2026",
+        "northwestern-2026",
+        "harvard-business-review-2026"
+      ],
+      "blurb": "Move #161 is the **canonical agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-discovery-decision-actor-resolution-time-cohort-LTV-overlay-engine** — the canonical 39th-move in...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 85,
+      "size": 63322,
       "lastTouched": "2026-09-15"
     },
     {
@@ -50044,6 +50157,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "de5c7e8",
+      "date": "2026-09-15T00:38:28Z",
+      "author": "mattiasadem",
+      "subject": "feat(dashboard): Next-move override pill on / — cross-page confirmation banner",
+      "body": ""
+    },
+    {
+      "sha": "6705a79",
+      "date": "2026-09-15T00:37:26Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #160 agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-discovery-decision-actor-resolution-time-overlay-engine (canonical 38th-move; FIRST Tier-1 + FIRST P0 in unique category; 18 pitfall",
+      "body": ""
+    },
+    {
       "sha": "1d69070",
       "date": "2026-09-14T23:32:20Z",
       "author": "hermesagent",
@@ -51428,20 +51555,6 @@
       "author": "mattiasadem",
       "subject": "skill: ai-site-search-merchandising (Move #20.3, Shopify Search & Discovery + Algolia + Searchspring + Klevu + Constructor + Coveo + Nosto + Findify, 5-pillar on-site discovery engine, default 11.8:1 Year-1 ROI Path B at $3M GMV, unique cat",
       "body": ""
-    },
-    {
-      "sha": "1f88380",
-      "date": "2026-07-13T03:28:32Z",
-      "author": "mattiasadem",
-      "subject": "docs: log skill tick blocked by Vercel auth (deploy prerequisite still broken)",
-      "body": ""
-    },
-    {
-      "sha": "916a5a1",
-      "date": "2026-07-13T02:25:01Z",
-      "author": "mattiasadem",
-      "subject": "docs: log skill tick blocked by Vercel auth",
-      "body": ""
     }
   ],
   "counts": {
@@ -51450,8 +51563,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 68,
-    "skills": 160,
+    "journalEntries": 70,
+    "skills": 161,
     "gitCommits": 200
   }
 }
