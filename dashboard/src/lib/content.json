@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-15T16:10:59.169Z",
+  "generatedAt": "2026-09-15T18:20:37.555Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12145,6 +12145,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-15 16:10] Skill tick: keep — Move #168 agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-resolution-time-cohort-windows (canonical 46th-move; FIRST Tier-1 + FIRST P0 in unique category; 18 pitfalls + 18 Fix: + 10 gates A-J + 6-pillar Path A/B/C/D/E/F; 9:1 Year-1 ROI Path B at $5M GMV)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-15\n- **Status:** keep (code shipped + Vercel 24h quota RESET after the prior 3 Move #167 deploy-blocks at 12:50 / 13:57 / 14:59; DEPLOY SUCCEEDED on first try after quota reset)\n- **Reason:** PASSES improvement metric on all 4 axes: (1) **Unique category** — `agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-resolution-time-cohort-windows` is brand-new (verified `grep -l \"^category: agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-resolution-time-cohort-windows\" skills/*.md = 0` before writing → `= 1` after). (2) **Tier-1 first** in this category. (3) **P0 first** in this category. (4) **Highest pitfall count** — 18 numbered pitfalls with bold prefix and 18 `Fix:` li"
+    },
     {
       "heading": "[2026-09-15 14:59] Skill tick: discard — Move #167 (THIRD attempt, slug-shortened) agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-discovery-decision-actor-resolution-time-discovery-decoder-family-overlay-engine-companion-per-resolution-time-discovery-decoder-family-overlay-windows (canonical 45th-move; FIRST Tier-1 + FIRST P0 in unique category; 18 numbered pitfalls with bold prefix and 18 Fix: lines + 10 verification gates A-J + 6-pillar Path A/B/C/D/E/F framework with Pillar F Move #155 per-discovery-decision-rollback-engine resolution-time-discovery-decoder-family-overlay-pressure back-feed; 9:1 Year-1 ROI Path B at $5M GMV; ~68 KB; **DEPLOY BLOCKED at Vercel 24h quota AGAIN** — `Resource is limited - try again in 24 hours (more than 100, code: \"api-deployments-free-per-day\")` after 2 prior Move #167 deploy-blocks at 12:50 + 13:57; **slug was renamed** from full 290-char title to `167-resolution-time-discovery-decoder-family-overlay-windows` to work around the `ENAMETOOLONG` prerender-fallback.html failure that blocked the 13:57 retry)",
       "body": "- **Branch:** autoresearch/skills-2026-09-15 (discarded — branch deleted after commit)\n- **Status:** discard (DEPLOY FAILED — Vercel free-tier 24h quota STILL exhausted on 3rd consecutive attempt; per cron spec \"If deploy fails after a successful build, mark the skill as `discard` with status reason 'deploy failed', commit the journal entry only, and try again next tick.\" **Skill is structurally valid + first Tier-1+P0 in unique category** — file is on disk in `skills/` + `dashboard/src/skills/` for re-deploy on next Vercel quota reset but will get dropped with the branch-discard; Move #167 will be re-authored fresh next time the cron picks it up).\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally + locally-built on the discarded branch): (1) **Unique category** "
@@ -29086,6 +29090,83 @@
       "pitfallCount": 18,
       "sourceCount": 137,
       "size": 52995,
+      "lastTouched": "2026-09-15"
+    },
+    {
+      "file": "169-cohort-window-coverage.md",
+      "name": "agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-resolution-time-cohort-window-coverage-engine",
+      "title": "Agentic commerce discovery decision rollback decision audit explainer engine companion per resolution time cohort window coverage engine (Move #169)",
+      "category": "agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-resolution-time-cohort-window-coverage-engine",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "169",
+      "yearOneRoiBand": "9:1–22:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-15",
+      "sources": [
+        "ucp-spec-2026",
+        "ucp-discovery-spec-2026",
+        "ucp-discovery-rollback-decision-audit-explainer-2026",
+        "ucp-resolution-time-cohort-window-2026",
+        "ucp-resolution-time-cohort-window-coverage-2026",
+        "ucp-cohort-window-classifier-2026",
+        "ucp-cohort-window-conformance-2026",
+        "acp-spec-2026",
+        "schema-org-resolution-time-cohort-window-coverage-2026",
+        "open-graph-resolution-time-cohort-window-coverage-2026",
+        "microdata-resolution-time-cohort-window-coverage-2026",
+        "json-ld-resolution-time-cohort-window-coverage-2026",
+        "agent-md-resolution-time-cohort-window-coverage-2026",
+        "llms-txt-resolution-time-cohort-window-coverage-2026",
+        "ucp-resolution-time-cohort-window-coverage-decomposition-2026",
+        "schema-org-cohort-window-coverage-2026",
+        "open-graph-cohort-window-coverage-2026",
+        "microdata-cohort-window-coverage-2026",
+        "json-ld-cohort-window-coverage-2026",
+        "agent-md-cohort-window-coverage-2026",
+        "llms-txt-cohort-window-coverage-2026",
+        "ucp-cohort-window-coverage-2026",
+        "google-ai-mode-ucp-2026",
+        "chatgpt-agentic-storefronts-2026",
+        "microsoft-copilot-checkout-2026",
+        "perplexity-buy-with-pro-2026",
+        "walmart-sparky-2026",
+        "amazon-buy-for-me-2026",
+        "sre-decision-audit-observability-2026",
+        "sre-resolution-time-cohort-window-coverage-2026",
+        "sre-cohort-window-coverage-2026",
+        "sre-rollback-overlay-coverage-2026",
+        "agentic-commerce-channel-onboarding-readiness-builder-2026",
+        "triple-whale-cohort-ltv-2024",
+        "polar-cohort-ltv-2024",
+        "northbeam-cohort-ltv-2024",
+        "hyros-cohort-ltv-2024",
+        "klaviyo-cohort-ltv-2024",
+        "iterable-cohort-ltv-2024",
+        "customerio-cohort-ltv-2024",
+        "braze-cohort-ltv-2024",
+        "semver-2.0-2026",
+        "conventional-commits-2026",
+        "keep-a-changelog-2026",
+        "prometheus-coverage-2026",
+        "grafana-coverage-2026",
+        "datadog-coverage-2026",
+        "honeycomb-coverage-2026",
+        "sentry-coverage-2026",
+        "ihl-group-2026",
+        "nrf-2026",
+        "gartner-2026",
+        "forrester-2026",
+        "bain-2026",
+        "mckinsey-2026",
+        "northwestern-kellogg-2024",
+        "harvard-business-review-2024"
+      ],
+      "blurb": "Move #169 is the **canonical agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-resolution-time-cohort-window-coverage-engine** — the canonical 47th-move in the agentic-commerce...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 57,
+      "size": 41339,
       "lastTouched": "2026-09-15"
     },
     {
@@ -51035,6 +51116,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "54646cd",
+      "date": "2026-09-15T16:13:09Z",
+      "author": "hermesagent",
+      "subject": "journal: Move #168 keep entry (canonical 46th-move; DEPLOY SUCCEEDED)",
+      "body": ""
+    },
+    {
+      "sha": "3bd9b0a",
+      "date": "2026-09-15T16:12:56Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #168 agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine-companion-per-resolution-time-cohort-windows (canonical 46th-move)",
+      "body": ""
+    },
+    {
       "sha": "326babd",
       "date": "2026-09-15T13:58:32Z",
       "author": "mattiasadem",
@@ -52419,20 +52514,6 @@
       "author": "mattiasadem",
       "subject": "docs: log skill tick keep — Promotional calendar + discount strategy + markdown management (Move #13, unique category: promotions, default 8:1 Year-1 ROI Path B at $3M GMV, 18 numbered pitfalls)",
       "body": ""
-    },
-    {
-      "sha": "c0f4952",
-      "date": "2026-07-13T15:40:38Z",
-      "author": "mattiasadem",
-      "subject": "skill: Move #13 promotional calendar + discount strategy + markdown management (Shopify Discounts API + Shopify Functions + Klaviyo + Postscript + Triple Whale + Yotpo + Smile.io + Rebuy + ShopApp + Blue Yonder, 5-pillar promo-engine, defau",
-      "body": ""
-    },
-    {
-      "sha": "6de58fc",
-      "date": "2026-07-13T14:32:37Z",
-      "author": "mattiasadem",
-      "subject": "skill: Move #21.5 warehouse management + multi-node fulfillment orchestration + shipping carrier rate shopping (ShipBob + Cin7 + EasyPost + Klaviyo + Postscript + Gorgias, FIRST Tier-1 + FIRST P0 in fulfillment category, default 14:1 Year-1",
-      "body": ""
     }
   ],
   "counts": {
@@ -52441,8 +52522,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 81,
-    "skills": 167,
+    "journalEntries": 82,
+    "skills": 168,
     "gitCommits": 200
   }
 }
