@@ -71,3 +71,5 @@ ls /data/workspace/cron-reports/ | tail
 ## 2026-07-03 00:07 UTC — Welcome-series ROI calculator on /playbooks (P0+P1 interactive-tool + state-persistence).
 
 ## 2026-09-13 05:43 UTC — / Overview Top 10 shipped-by-you cross-link widget (Move #128.x). State-persistence + cross-page-intelligence. Live at https://ecommerce-ops-iota.vercel.app/.
+
+## 2026-09-15 12:55 UTC — /today Operator handoff import panel (Move #128.ag). One-click-action + cross-page-intelligence + state-persistence. Code shipped (commit 1826f99 pushed); DEPLOY BLOCKED at Vercel 24h quota — local build SUCCEEDED at /today route 4.58 kB / 140 kB First Load JS. Will ship automatically via Vercel GitHub integration or the next deploy attempt after the quota counter resets. GitHub PAT in /data/workspace/env IS now live (93 chars, real fine-grained) — confirmed `git push origin master` succeeded (de5b0ab..1826f99) this tick.
