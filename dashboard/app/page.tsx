@@ -13,6 +13,7 @@ import { YourStoreCard } from "@/components/your-store-card";
 import { BenchmarkDial } from "@/components/benchmark-dial";
 import { ShippedProgressStrip } from "@/components/shipped-playbooks";
 import { NextMoveCard } from "@/components/next-move";
+import { NextMoveOverridePill } from "@/components/next-move-override-pill";
 import { IkasLiveCard } from "@/components/ikas-live-card";
 import { RealizedRoiPanel } from "@/components/realized-roi";
 import { Top10ShippedOverviewCard } from "@/components/top10-shipped-overview-card";
@@ -209,6 +210,12 @@ export default function Home() {
       {/* === LIVE IKAS DATA — pulls from /data/.ikas/config.json on the VPS === */}
       <section id="ikas-overview">
         <IkasLiveCard />
+      </section>
+
+      {/* === NEXT-MOVE OVERRIDE PILL — cross-page confirmation when the
+          operator pinned a non-algorithmic move on /today === */}
+      <section id="next-move-override-pill">
+        <NextMoveOverridePill />
       </section>
 
       {/* === NEXT-MOVE RECOMMENDATION — what to ship TODAY === */}
