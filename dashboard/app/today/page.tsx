@@ -17,6 +17,7 @@ import { IkasLiveCard } from "@/components/ikas-live-card";
 import { CronHealthCard } from "@/components/cron-health-card";
 import { ProgressExportButton } from "@/components/progress-export-button";
 import { ProgressImportButton } from "@/components/progress-import-button";
+import { ProgressImportMarkdownButton } from "@/components/progress-import-markdown-button";
 import Link from "next/link";
 
 export const dynamic = "force-static";
@@ -353,15 +354,16 @@ export default function TodayPage() {
                 </CardTitle>
               </div>
               <Badge variant="outline" className="text-[10px]">
-                JSON · CSV · Import
+                JSON · CSV · Import · Markdown
               </Badge>
             </div>
             <CardDescription className="text-xs">
               One-click download of your Top-10 shipped moves + shipped-playbooks
               + next-move override in a single file. Hand it off to your team in
               Slack or Notion without 3 separate screenshots. Paste a previously
-              exported file into the Import panel to restore state in this or a
-              fresh browser.
+              exported JSON file, OR paste a plain markdown table / Slack thread,
+              into the matching Import panel to restore state in this or a fresh
+              browser.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -370,6 +372,12 @@ export default function TodayPage() {
               playbooks={content.playbooks}
             />
             <ProgressImportButton />
+            <div className="mt-3">
+              <ProgressImportMarkdownButton
+                playbooks={content.playbooks}
+                top10Status={top10.status}
+              />
+            </div>
           </CardContent>
         </Card>
       </section>
