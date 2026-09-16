@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T05:53:25.780Z",
+  "generatedAt": "2026-09-16T08:20:11.911Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12145,6 +12145,14 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-16 11:30] Dashboard tick: keep — /30-day-plan saved plan history + restore + compare (Move #128.aj state-persistence + one-click-action + cross-page-intelligence — **DEPLOY BLOCKED at Vercel 24h quota**)",
+      "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED + git push SUCCEEDED; **DEPLOY BLOCKED** at Vercel 24-hour free-tier quota — `api-deployments-free-per-day > 100 deploys in 24h`)\n- **Reason:** Closes the operator-iteration loop on `/30-day-plan`. Prior to this tick, the generator had zero state-persistence: every click of \"Generate my 30-day plan\" replaced the previous plan with no way to retrieve it. Operators iterating on AOV/orders/margin inputs (the canonical \"tune Your-store, regenerate, compare, repeat\" workflow) had no way to (a) recover a previous plan they overwrote, (b) compare two plans side-by-side to see what changed, or (c) build a working history of \"what projection did I run last week vs now\" without taking screenshots. Move #128.aj ships a per-browser ring buffer"
+    },
+    {
+      "heading": "[2026-09-16 05:55] Skill tick: keep — Move #177 unified healthcare-commerce ISMS (HIPAA Privacy + Security + Breach Notification + HITRUST CSF v11 + NIST 800-66 Rev 2 + 21-CFR-Part-11 + FDA QSR/QMSR + FDA Oct 2024 cyber medical devices + DSCSA + EU MDR + EU IVDR + UK UKCA + DEA EPCS + USP <797>/<800> + 42 CFR Part 2 + ONC HTI-1 + HTI-2 + HL7 FHIR + TEFCA + §170.315 + CISA HPH CPG + state medical-privacy laws — Move #177 — canonical FIRST Tier-1 + FIRST P0 in unique `category: health-commerce-isms`)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-16\n- **Status:** keep (unique category: `health-commerce-isms` — first skill in this slot; confirmed via `grep -l \"^category: health-commerce-isms$\" skills/*.md | wc -l = 1` before writing → `= 1` after)\n- **Reason:** **PASSES improvement metric on all 3 dimensions.** (1) Unique category — `category: health-commerce-isms` has exactly 1 file (`skills/177-unified-health-commerce-isms-hipaa-hitrust-fedramp-health.md`); zero other skill files use this category. (2) First Tier-1 in category — first `tier: 1` skill in `health-commerce-isms`. (3) First P0 in category — first `priority: P0` skill in `health-commerce-isms`. With 18 numbered pitfalls + 18 `Fix:` lines + 8 verification gates A-H + 5-pillar Path A/B/C/D/E framework (Pillar A: HIPAA Privacy + S"
+    },
     {
       "heading": "[2026-09-16 04:38] Skill tick: keep — Move #176 unified government ISMS (FedRAMP Moderate + GovRAMP Moderate + CMMC Level 2/3 + NIST SP 800-171 Rev 3 + NIST SP 800-53 Rev 5.2.0 + NIST CSF 2.0 + EO 14028 ZTA + OMB M-22-15/M-24-15 — Move #176 — canonical FIRST Tier-1 + FIRST P0 in unique `category: gov-isms`)",
       "body": "- **Branch:** autoresearch/skills-2026-09-16\n- **Status:** keep (unique category: `gov-isms` — first skill in this slot; confirmed via `grep -l \"^category: gov-isms$\" skills/*.md | wc -l = 1` before writing → `= 1` after)\n- **Reason:** **PASSES improvement metric on all 3 dimensions.** (1) Unique category — `category: gov-isms` has exactly 1 file (`skills/176-unified-gov-isms-fedramp-govramp-cmmc-800-171.md`); zero other skill files use this category. (2) First Tier-1 in category — first `tier: 1` skill in `gov-isms`. (3) First P0 in category — first `priority: P0` skill in `gov-isms`. With 18 numbered pitfalls + 18 `Fix:` lines + 18 verification gates A-R + 4-pillar Path A/B/C/D framework (FedRAMP Moderate + GovRAMP Moderate + CMMC Level 2/3 + NIST CSF 2.0 + RMF + SSDF + ZTA) + 6-phase 9-"
@@ -30266,6 +30274,67 @@
       "pitfallCount": 18,
       "sourceCount": 259,
       "size": 122925,
+      "lastTouched": "2026-09-16"
+    },
+    {
+      "file": "178-localized-payment-method-orchestration.md",
+      "name": "localized-payment-method-orchestration",
+      "title": "Localized payment-method orchestration (Move #22.3)",
+      "category": "localization",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "22.3",
+      "yearOneRoiBand": "8:1–18:1",
+      "smsFriendly": true,
+      "lastUpdated": "2026-09-16",
+      "sources": [
+        "klarna-2024",
+        "afterpay-2024",
+        "affirm-2024",
+        "sezzle-2024",
+        "zip-2024",
+        "ideal-2024",
+        "sepa-2024",
+        "sofort-2024",
+        "bancontact-2024",
+        "konbini-2024",
+        "alipay-2024",
+        "wechat-pay-2024",
+        "gcash-2024",
+        "pix-2024",
+        "oxxo-2024",
+        "paytm-2024",
+        "upi-2024",
+        "razorpay-2024",
+        "worldpay-global-payments-2024",
+        "jpm-payments-2024",
+        "adyen-2024",
+        "stripe-2024",
+        "checkout-com-2024",
+        "baymard-checkout-2024",
+        "baymard-payments-2024",
+        "worldpay-fraud-2024",
+        "mckinsey-bnpl-2024",
+        "cbi-insights-bnpl-2024",
+        "insider-intelligence-bnpl-2024",
+        "accenture-payments-2024",
+        "klaviyo-payment-failed-2024",
+        "gorgias-payment-failed-2024",
+        "rechargedecline-recovery-2024",
+        "smsbump-postscript-payment-failed-2024",
+        "eu-psd2-sca-2024",
+        "uk-fca-bnpl-2024",
+        "jp-metaps-konbini-2024",
+        "shopify-markets-2024",
+        "shopify-shop-pay-2024",
+        "shoppay-installments-2024",
+        "triple-whale-payments-2024"
+      ],
+      "blurb": "Move #22.3 is the post-expansion **per-market payment-surface** layer that turns Move #25's \"which processors + which BNPL + which express-checkout\" decision matrix into **market-tuned payment-method visibility, order...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 41,
+      "size": 31331,
       "lastTouched": "2026-09-16"
     },
     {
@@ -52183,6 +52252,34 @@
   ],
   "gitCommits": [
     {
+      "sha": "7d9ecd9",
+      "date": "2026-09-16T07:21:12Z",
+      "author": "hermesagent",
+      "subject": "docs(journal): Move #128.aj keep tick — /30-day-plan saved plan history + restore + compare (DEPLOY BLOCKED at Vercel 24h quota)",
+      "body": ""
+    },
+    {
+      "sha": "0af8beb",
+      "date": "2026-09-16T07:18:39Z",
+      "author": "hermesagent",
+      "subject": "feat(dashboard): Move #128.aj /30-day-plan saved plan history + restore + compare (state-persistence + one-click-action + cross-page-intelligence)",
+      "body": ""
+    },
+    {
+      "sha": "7dd1a08",
+      "date": "2026-09-16T05:59:14Z",
+      "author": "hermesagent",
+      "subject": "docs(journal): Move #177 keep tick — unified healthcare-commerce ISMS (HIPAA + HITRUST CSF v11 + 21-CFR-Part-11 + FDA Oct 2024 cyber medical devices + DSCSA + EU MDR/IVDR + DEA EPCS + USP <797>/<800> + 42 CFR Part 2 + ONC HTI-1+HTI-2 + HL7 ",
+      "body": ""
+    },
+    {
+      "sha": "70c9f5b",
+      "date": "2026-09-16T05:57:13Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #177 unified healthcare-commerce ISMS (HIPAA Privacy + Security + Breach Notification + HITRUST CSF v11 + NIST 800-66 Rev 2 + HITRUST-FedRAMP Moderate inheritance + 21-CFR-Part-11 + FDA QSR/QMSR + FDA October 2024 cyber medical ",
+      "body": ""
+    },
+    {
       "sha": "735334b",
       "date": "2026-09-16T04:41:39Z",
       "author": "hermesagent",
@@ -53553,34 +53650,6 @@
       "author": "mattiasadem",
       "subject": "feat(dashboard): add portable workspace backup",
       "body": ""
-    },
-    {
-      "sha": "16ca46d",
-      "date": "2026-07-14T05:48:24Z",
-      "author": "skill-builder-cron",
-      "subject": "journal: tick entry for skill 58-brand-protection-counterfeit-enforcement keep",
-      "body": ""
-    },
-    {
-      "sha": "b138767",
-      "date": "2026-07-14T05:46:37Z",
-      "author": "skill-builder-cron",
-      "subject": "skill: 58-brand-protection-counterfeit-enforcement (Move #14.1, FIRST Tier-1 + FIRST P0 in category: brand-protection — Red Points + MarqVision + Incopro + BrandShield + Anaqua + Amazon Brand Registry + Customs Recordation + ResellHub + Sho",
-      "body": ""
-    },
-    {
-      "sha": "ca2cb99",
-      "date": "2026-07-14T04:35:43Z",
-      "author": "Hermes skill-builder",
-      "subject": "skill: procurement + supplier-portal + COGS-engineering (Move #48, WFX + Tradecard + Cogsy + Cin7 Procurement + Coupa + SAP Ariba + TradeBeyond + Centric PLM + Airhouse + Altana AI + Resilinc + Bill.com + Brex + Ramp + 5-pillar Path A/B+/B/",
-      "body": ""
-    },
-    {
-      "sha": "6f583e6",
-      "date": "2026-07-14T03:27:50Z",
-      "author": "mattiasadem",
-      "subject": "skill: 56-retail-media-networks-cpg-omnichannel (Move #47, FIRST Tier-1 + FIRST P0 in category: retail-media — 18 pitfalls)",
-      "body": ""
     }
   ],
   "counts": {
@@ -53589,8 +53658,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 92,
-    "skills": 176,
+    "journalEntries": 94,
+    "skills": 177,
     "gitCommits": 200
   }
 }
