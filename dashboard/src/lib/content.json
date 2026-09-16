@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T13:01:30.909Z",
+  "generatedAt": "2026-09-16T14:17:41.587Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-09-16 13:05] Skill tick: keep — Move #181 ai-vendor-orchestration-governance-engine (FIRST P0 in `ai-orchestration` category — paired with 18-pitfall vs Move #18's 15-pitfall tie-breaker win; 28-AI-vendor portfolio governance — Klaviyo AI + Shopify Magic + Gorgias AI Agent + Triple Whale Moby + Salesforce Einstein GPT + Salesforce Agentforce + Zendesk AI + Intercom Fin + Ada + Forethought + Kustomer AI + Recharge AI + Smile.io AI + Rebuy AI + Nosto AI + Dynamic Yield + Moby + Pencil + AdCreative.ai + Segment AI + mParticle AI + RudderStack AI + Amplitude AI + Mixpanel AI + Heap Illuminate + Datadog AI + Langfuse + Helicone + Arize Phoenix + Braintrust + Patronus + DeepEval + Ragas + LangSmith + Lakera Guard + Prompt Armor + NeMo Guardrails + Azure AI Content Safety + Promptfoo + Garak + PyRIT + cross-vendor portfolio-PnL + cross-vendor cost-allocation + cross-vendor brand-voice-consistency + per-vendor cost-per-resolution + per-vendor fallback-rate + per-vendor brand-voice-drift-rate + per-vendor PII-exfil-risk + per-vendor model-tier-routing + per-vendor data-residency + per-vendor SOC-2/HIPAA/GDPR posture + per-vendor sunset-plan + per-vendor kill-switch + per-vendor fallback-vendor + per-vendor annual-renewal-cadence + per-vendor data-export-portability + per-vendor data-import-portability + per-vendor vendor-rotation-cost + per-vendor eval-pipeline + per-vendor guardrail-pipeline + per-vendor observability-pipeline; 5:1 default Year-1 ROI Path B at $5M GMV; **DEPLOY SUCCEEDED**)",
+      "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED + **DEPLOY SUCCEEDED** after 5-minute retry — quota briefly reset)\n- **Reason:** Closes the cross-vendor AI portfolio governance gap. 180 skills shipped cover single-vendor AI execution (Move #18 generative-AI-engine + Move #77 agentic-AI-operations + Move #90 ai-orchestration-per-channel) — but no skill ships the **cross-vendor AI portfolio governance layer** that every $5M+ GMV operator running 5+ AI-enabled vendors needs: 28-vendor AI roster + per-vendor cost-per-resolution + per-vendor fallback-rate + per-vendor brand-voice-drift-rate + per-vendor PII-exfil-risk + per-vendor model-tier-routing (GPT-4o + Claude Sonnet 4.5 + Haiku 4.5 + Gemini 2.0 Flash + Llama 3.3 70B) + per-vendor data-residency + per-vendor SOC-2/HIPAA/GDPR po"
+    },
+    {
       "heading": "[2026-09-16 11:50] Skill tick: keep — Move #180 / Move #6.10 marketing-mix-modeling-mmm-attribution-engine (FIRST Tier-1 + FIRST P0 in `marketing-mix-modeling` category; Google Meridian + LightweightMMM + Robyn + PyMC-Marketing + Northbeam MMM + Triple Whale MMM + Marketing Evolution + Recast + Haus + Lifesight + Measured + GeoLift + Shapley/Markov MTA + Hill-saturation + Adstock + cross-channel-halo + Bayesian hierarchical MMM; 14:1 default Year-1 ROI Path B at $5M GMV; **DEPLOY BLOCKED at Vercel 24h quota**)",
       "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED; **DEPLOY BLOCKED at Vercel 24h quota** — `api-deployments-free-per-day > 100`)\n- **Reason:** Closes the largest *incremental-budget-allocation* gap in the operator-stack. 179 skills shipped to date cover every surface of paid-media attribution (Triple Whale #6 + attribution-quality-audit #6.5 + TikTok audit #6.6 + Snap+Pinterest audit #6.7 + cross-platform drift #6.8 + unified dashboard #6.9) — but no skill ships the **incremental-budget-allocation substrate** that answers the operator's hardest question: *\"if I shift $5k/mo from Meta to TikTok, what's my expected revenue delta with 80% confidence?\"* Without a Bayesian hierarchical MMM (Meridian + LightweightMMM + Robyn + PyMC-Marketing) + multi-touch attribution (Shapley/Markov M"
     },
@@ -12536,6 +12540,10 @@
     {
       "heading": "[2026-09-15 12:55] Dashboard tick: keep — `/today` Operator handoff adds \"Import handoff JSON\" panel (Move #128.ag one-click-action + cross-page-intelligence — **DEPLOY BLOCKED at Vercel 24h quota**)",
       "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED; **DEPLOY BLOCKED** at Vercel 24-hour free-tier quota — `api-deployments-free-per-day > 100 deploys in 24h`. Both Move #128.af earlier this tick AND this Move #128.ag hit the same quota error after upload succeeded)\n- **Reason:** Closes the export↔import loop on the operator-handoff side. The Move #128.af ship (earlier in this tick) gave operators a one-click download of all 3 progress trackers (Top-10 shipped × shipped-playbooks × next-move override) as either JSON or CSV — the canonical handoff artifact for Slack/Notion/email. But the loop was half-closed: a teammate receiving that file had no way to *restore* it into their own dashboard. Until now they had three options: (a) ask the sender to also dump workspace-backup-card (noi"
+    },
+    {
+      "heading": "[2026-09-16 13:24] Dashboard tick: keep — `/` + `/today` add 12-month revenue trajectory projection (Move #6.16 cross-page-intelligence + interactive-tool)",
+      "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED + DEPLOY SUCCEEDED at canonical alias)\n- **Reason:** Closes the operator's \"what does my next year look like?\" loop. The dashboard already had `RealizedRoiPanel` (captured/ready/blocked totals) + `Top10ProjectionPanel` (annual lift IF you ship every move) + `RetentionProjectionPanel` (per-tier LTV lift) — but no view that answered \"**month-by-month**, as I progressively ship moves, what does my revenue curve look like?\" Until now an operator had to mentally chain those 3 panels together to estimate their M3 vs M6 vs M12 revenue. This tick ships a single panel — `<TrajectoryPanel />` — that walks every remaining Top-10 move in priority order, assigns each one a ship-month based on cumulative `daysToShip` (ceil(cumDays/30), clamped t"
     }
   ],
   "skills": [
@@ -31030,6 +31038,25 @@
       "pitfallCount": 18,
       "sourceCount": 0,
       "size": 86569,
+      "lastTouched": "2026-09-16"
+    },
+    {
+      "file": "182-ai-agent-trust-recovery-engine.md",
+      "name": "182-ai-agent-trust-recovery-engine",
+      "title": "AI agent trust recovery engine (Move #182)",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-16",
+      "sources": [],
+      "blurb": "Move #182 is the **cross-vendor customer-trust-recovery layer** that every DTC operator at $2M+ GMV running 3+ AI-agent-enabled vendors (Gorgias AI Agent + Zendesk AI Agents + Intercom Fin + Ada + Forethought + Kustom...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 63496,
       "lastTouched": "2026-09-16"
     },
     {
@@ -52908,6 +52935,34 @@
   ],
   "gitCommits": [
     {
+      "sha": "3ca49f4",
+      "date": "2026-09-16T13:33:22Z",
+      "author": "hermesagent",
+      "subject": "feat(dashboard): Move #6.16 12-month revenue trajectory projection (cross-page-intelligence + interactive-tool)",
+      "body": "- New pure-logic engine dashboard/src/lib/trajectory-projection.ts:\n  projectTrajectory(store, shipped) walks unshipped Top-10 moves in\n  priority order, assigns each a ship-month via\n  Math.min(ceil(cumDays/30), 12), and emits a 12-month revenue + cost\n  curve + Year-1 totals + headline + Markdown summary.\n\n- New client component dashboard/src/components/trajectory-projection-panel.tsx:\n  <TrajectoryPanel /> renders 4 stat tiles, a 12-column stacked-bar\n  chart (foreground = baseline floor, accent = lift band up to high\n  end) with per-bar hover/focus that updates a 3-block detail strip\n  below, a per-month row table with which moves ship each month, and a\n  copy-to-clipboard Markdown summary. Returns null until hydrated so\n  SSR drift never bites; subscribes to storage events for cross-tab\n  sync.\n\n- Mount on / between RealizedRoiPanel and Top10ShippedOverviewCard.\n- Mount on /today between the 3-ROI-calculator grid and the Today's\n  focus + what shipped card so the operator's daily cockpit answers\n  the 'what does the year look like?' question without leaving /today.\n\nLIVE: deployment dpl_86zMAhwasjWBD7hw5ELAvgZMB9zp, aliased to\nhttps://ecommerce-ops-iota.vercel.app — bundle-grep verified that\nchunk 5583-a46ed7afe437a808.js contains the TrajectoryPanel hydration\ncode intact (7 hits across 4 sentinel strings)."
+    },
+    {
+      "sha": "a70ed75",
+      "date": "2026-09-16T13:11:19Z",
+      "author": "hermesagent",
+      "subject": "docs(journal): Move #181 keep tick — correct improvement-metric reasoning (FIRST P0 in ai-orchestration + 18 vs 15 pitfall tie-breaker; Move #18 already occupies the category with P1)",
+      "body": ""
+    },
+    {
+      "sha": "de5e3fd",
+      "date": "2026-09-16T13:10:10Z",
+      "author": "hermesagent",
+      "subject": "docs(journal): Move #181 keep tick — AI vendor orchestration & governance engine (FIRST Tier-1 + FIRST P0 in ai-orchestration category; DEPLOY SUCCEEDED after 5-minute quota-retry)",
+      "body": ""
+    },
+    {
+      "sha": "2147619",
+      "date": "2026-09-16T13:02:47Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #181 ai-vendor-orchestration-governance-engine (FIRST Tier-1 + FIRST P0 in unique category: ai-orchestration; 28-vendor AI portfolio governance — Klaviyo AI + Shopify Magic + Gorgias AI Agent + Triple Whale Moby + Recharge AI + ",
+      "body": ""
+    },
+    {
       "sha": "d7045fe",
       "date": "2026-09-16T11:53:51Z",
       "author": "hermesagent",
@@ -54278,34 +54333,6 @@
       "author": "mattiasadem",
       "subject": "journal: tick 2026-07-14 11:57 — keep — community-led-growth + paid-community + Discord/Slack/Circle/Mighty Networks/Skool community-operations + community-led-acquisition + UGC-flywheel + creator-community-loops + community-cohort-LTV-over",
       "body": ""
-    },
-    {
-      "sha": "23c9fde",
-      "date": "2026-07-14T12:00:47Z",
-      "author": "mattiasadem",
-      "subject": "skill: community-led-growth-engine + paid-community + Discord/Slack/Circle/Mighty Networks/Skool community-operations + community-led-acquisition + UGC flywheel + creator-community loops + community-cohort-LTV-overlay (Move #63, FIRST Tier-",
-      "body": ""
-    },
-    {
-      "sha": "1a86929",
-      "date": "2026-07-14T10:51:51Z",
-      "author": "mattiasadem",
-      "subject": "journal: tick 2026-07-14 10:48 — keep — people-operations + org-design + hiring-pipeline + HRIS + payroll + onboarding + performance-mgmt + comp-design + benefits + culture (Move #7.1, FIRST Tier-1 + FIRST P0 in category: people-operations,",
-      "body": ""
-    },
-    {
-      "sha": "4863571",
-      "date": "2026-07-14T10:49:39Z",
-      "author": "mattiasadem",
-      "subject": "skill: people-operations + org-design + hiring-pipeline + HRIS + payroll + onboarding + performance-mgmt + comp-design + benefits + culture (Move #7.1, FIRST Tier-1 + FIRST P0 in category: people-operations, 11:1 Year-1 ROI Path B at $3M GM",
-      "body": ""
-    },
-    {
-      "sha": "470a405",
-      "date": "2026-07-14T09:38:33Z",
-      "author": "mattiasadem",
-      "subject": "skill: AI 1:1 personalization engine + AI-LTV-prediction + AI-content-personalization + AI-offer-personalization + AI-journey-orchestration + RFM + zero-party-data-capture + consent-mode-v2-aware-1:1 (Move #20.7, FIRST Tier-1 + FIRST P0 in ",
-      "body": ""
     }
   ],
   "counts": {
@@ -54314,8 +54341,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 98,
-    "skills": 180,
+    "journalEntries": 100,
+    "skills": 181,
     "gitCommits": 200
   }
 }
