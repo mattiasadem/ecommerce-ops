@@ -26,6 +26,7 @@ import {
   loadShippedPlaybooks,
 } from "@/lib/shipped-playbooks";
 import { CopyButton } from "@/components/copy-button";
+import { TrajectoryExportButton } from "@/components/trajectory-export-button";
 import { cn } from "@/lib/utils";
 
 /**
@@ -140,11 +141,14 @@ export function TrajectoryPanel() {
               </Badge>
             )}
             {projection && (
-              <CopyButton
-                value={projection.summaryMarkdown}
-                label="Copy report"
-                className="text-[10px]"
-              />
+              <>
+                <CopyButton
+                  value={projection.summaryMarkdown}
+                  label="Copy report"
+                  className="text-[10px]"
+                />
+                <TrajectoryExportButton />
+              </>
             )}
           </div>
         </div>
