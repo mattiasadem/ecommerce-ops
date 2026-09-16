@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T22:21:41.107Z",
+  "generatedAt": "2026-09-16T23:29:45.398Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12145,6 +12145,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-16 22:15] Skill tick: keep — Move #189 ai-vendor-portfolio-incident-recovery-orchestrator (FIRST Tier-1 + FIRST P0 in unique category `ai-vendor-incident-recovery`; canonical fleet-level-AI-vendor-portfolio-incident-recovery-engine + fleet-level-incident-recovery-state-machine + fleet-level-portfolio-state-restore-engine + fleet-level-portfolio-state-restore-validation-engine + fleet-level-customer-trust-rebuild-engine + fleet-level-AI-feature-reactivation-engine + fleet-level-eval-pipeline-recalibration-engine + fleet-level-guardrail-pipeline-recalibration-engine + fleet-level-observability-pipeline-recalibration-engine + fleet-level-model-tier-restoration-engine + fleet-level-prompt-template-restoration-engine + fleet-level-fine-tune-model-restoration-engine + fleet-level-vector-store-restoration-engine + fleet-level-knowledge-base-restoration-engine + fleet-level-webhook-restoration-engine + fleet-level-public-API-contract-restoration-engine + fleet-level-data-portability-restore-engine + fleet-level-credential-restore-validation-engine + fleet-level-brand-voice-drift-correction-engine + fleet-level-AI-hallucination-rate-restore-to-baseline-engine + fleet-level-portfolio-PnL-restore-to-baseline-engine + fleet-level-customer-cohort-LTV-recovery-engine + fleet-level-CSAT-recovery-engine + fleet-level-NPS-detractor-recovery-engine + fleet-level-kill-switch-deactivation-validation-engine + fleet-level-post-incident-LTV-impact-measurement-engine + fleet-level-storm-mode + fleet-level-LLM-judge-validation-recovery-engine + fleet-level-regulatory-follow-up-notification-protocol (GDPR-Article-33 + CCPA-CPRA + HIPAA breach-notification-rule + EU-AI-Act-incident-reporting follow-up) + fleet-level-CFO/CSO/CTO/CDPO/CMO/CEO/board-summary; 18 pitfalls + 18 Fix: + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; 8:1 default Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; **DEPLOY SUCCEEDED + canonical-alias rotated**)",
+      "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED; deploy succeeded; canonical alias rotated; live URL returns HTTP 200 with 297× Move #189 sentinels + 324,168 bytes)\n- **Reason:** Closes the AFTERMATH gap that every $5M+ GMV DTC operator running 5+ AI-enabled vendors (Klaviyo AI + Iterable AI + Braze AI + Cordial AI + Attentive AI + HubSpot AI + Salesforce Einstein + Salesforce Agentforce + Shopify Magic + Shopify Sidekick + Gorgias AI Agent + Kustomer AI + Zendesk AI + Intercom Fin + Ada + Forethought + Recharge AI + Skio AI + Smile.io AI + Yotpo AI + LoyaltyLion AI + Rebuy AI + Nosto AI + Dynamic Yield + Triple Whale Moby + Northbeam AI + Polar AI + Recart AI + AdCreative.ai + Pencil AI + Postscript AI + Segment AI + mParticle AI + RudderStack AI + Snowplow AI + Amplitude AI + "
+    },
     {
       "heading": "[2026-09-16 21:10] Skill tick: keep — Move #188 ai-vendor-portfolio-incident-response-orchestrator (FIRST Tier-1 + FIRST P0 in unique category `ai-vendor-incident-response`; canonical fleet-level-AI-vendor-portfolio-incident-response-engine + fleet-level-incident-state-machine + fleet-level-incident-severity-classifier + fleet-level-incident-multi-stakeholder-approval-chain + fleet-level-incident-containment-runbook + fleet-level-incident-upstream-LLM-outage-protocol + fleet-level-incident-vendor-security-breach-protocol + fleet-level-incident-mass-hallucination-event-protocol + fleet-level-incident-vendor-SOC-2-incident-protocol + fleet-level-incident-fallback-vendor-rotation + fleet-level-incident-fallback-LLM-rotation + fleet-level-incident-kill-switch-protocol + fleet-level-incident-customer-impact-broadcast + fleet-level-incident-regulatory-notification-protocol (GDPR-Art-33 + CCPA-CPRA + HIPAA breach-notification-rule + EU-AI-Act-incident-reporting) + fleet-level-incident-model-deprecation-protocol + fleet-level-incident-pricing-change-protocol + fleet-level-incident-storm-mode + fleet-level-incident-LLM-judge-validation + fleet-level-incident-CFO/CSO/CTO/CDPO/board-summary + fleet-level-incident-post-mortem; 18 pitfalls + 18 Fix: + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; 8:1 default Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; **DEPLOY SUCCEEDED + canonical-alias rotated**)",
       "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED + DEPLOY SUCCEEDED + canonical-alias rotated + branch merged to master)\n- **Reason:** Closes the fleet-level-AI-vendor-portfolio-incident-response gap that every $5M+ GMV DTC operator running 5+ AI-enabled vendors (Klaviyo AI + Iterable AI + Braze AI + Cordial AI + Attentive AI + HubSpot AI + Salesforce Marketing Cloud Einstein + Salesforce Agentforce + Shopify Magic + Shopify Sidekick + Gorgias AI Agent + Kustomer AI + Zendesk AI + Intercom Fin + Ada + Forethought + Recharge AI + Skio AI + Smile.io AI + Yotpo AI + LoyaltyLion AI + Rebuy AI + Nosto AI + Dynamic Yield + Triple Whale Moby + Northbeam AI + Polar AI + Recart AI + AdCreative.ai + Pencil AI + Postscript AI + Segment AI + mParticle AI + RudderStack AI + Snowplow AI + Ampl"
@@ -31259,6 +31263,25 @@
       "sourceCount": 16,
       "size": 51205,
       "lastTouched": "2026-07-11"
+    },
+    {
+      "file": "190-ai-vendor-portfolio-incident-post-mortem-engine.md",
+      "name": "190-ai-vendor-portfolio-incident-post-mortem-engine",
+      "title": "AI vendor portfolio incident post-mortem engine (Move #190)",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-16",
+      "sources": [],
+      "blurb": "Move #190 is the **canonical fleet-level-AI-vendor-portfolio-incident-post-mortem-engine + fleet-level-AI-vendor-portfolio-incident-post-mortem-7-day-deliverable-template + fleet-level-AI-vendor-portfolio-incident-pos...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 67925,
+      "lastTouched": "2026-09-16"
     },
     {
       "file": "20-amazon-dsp-amazon-attribution-audit.md",
@@ -53100,6 +53123,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "45eb052",
+      "date": "2026-09-16T22:25:10Z",
+      "author": "hermesagent",
+      "subject": "journal: Move #189 ai-vendor-portfolio-incident-recovery-orchestrator tick (keep; deploy succeeded; canonical alias rotated)",
+      "body": ""
+    },
+    {
+      "sha": "2da5503",
+      "date": "2026-09-16T22:23:55Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #189 ai-vendor-portfolio-incident-recovery-orchestrator (FIRST Tier-1 + FIRST P0 in unique category ai-vendor-incident-recovery; canonical fleet-level-incident-recovery-state-machine + fleet-level-portfolio-state-restore-engine ",
+      "body": ""
+    },
+    {
       "sha": "ea1f6c9",
       "date": "2026-09-16T21:15:00Z",
       "author": "hermesagent",
@@ -54484,20 +54521,6 @@
       "author": "mattiasadem",
       "subject": "chore(security): redact Vercel tokens from journal",
       "body": ""
-    },
-    {
-      "sha": "bef6f93",
-      "date": "2026-07-15T00:44:20Z",
-      "author": "mattiasadem",
-      "subject": "feat(dashboard): personalize PDP forecast from Your-store",
-      "body": ""
-    },
-    {
-      "sha": "8d6eeed",
-      "date": "2026-07-15T00:27:04Z",
-      "author": "mattiasadem",
-      "subject": "skill: print direct mail + postcard + catalog + lookbook + mailer operations",
-      "body": "Move #70 — FIRST skill in the brand-new category: print-direct-mail. 9:1 default Year-1 ROI Path B at $3M GMV. Tier-1 + P0. ~61 KB / 312 lines / 18 numbered pitfalls / 7 verification gates A-G / 300+ sources.\n\nFive-pillar Path A/B/C/D/E print-direct-mail-engine: (P1) postal-rate-card + USPS-DMM-200 compliance + NCOA+DSF2+ACS+DPV+LACS+SuiteLink address-hygiene pipeline + per-piece cost line + Promotions calendar / (P2) RFM × cohort × tier × lifecycle-stage × predicted-CLTV × predicted-cancel-risk list engine + 19-canonical-segment per-trigger library / (P3) brand-safety + legal + USPS-DMM template sign-off + per-merge-variable audit + version-pin 8-template library / (P4) trigger engine + CDP integration + per-event SLA + per-cohort holdout + per-merge-QR + per-merge-short-URL + per-merge-coupon-code + per-merge-click-ID bridge / (P5) attribution + holdout + causal-lift + MMM + Shapley/Markov/MTA + per-cohort frequency-cap math + Triple-Whale cohort-LTV overlay.\n\nDefault math for a $3M US DTC consumables Path B brand: $72k annual print cost vs +$200k-$650k annual incremental revenue across 19-seg × 12-trigger cadence; per-piece attributed incremental revenue ≈$4-$13.\n\nRED-GREEN validated; skill 70 unique category pass + first Tier-1 pass + first P0 pass. Deploy SUCCEEDED; live URL HTTP 200 with 251,615 bytes."
     }
   ],
   "counts": {
@@ -54506,8 +54529,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 108,
-    "skills": 188,
+    "journalEntries": 109,
+    "skills": 189,
     "gitCommits": 200
   }
 }
