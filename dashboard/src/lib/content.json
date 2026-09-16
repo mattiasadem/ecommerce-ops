@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T11:50:59.633Z",
+  "generatedAt": "2026-09-16T13:01:30.909Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12145,6 +12145,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-16 11:50] Skill tick: keep — Move #180 / Move #6.10 marketing-mix-modeling-mmm-attribution-engine (FIRST Tier-1 + FIRST P0 in `marketing-mix-modeling` category; Google Meridian + LightweightMMM + Robyn + PyMC-Marketing + Northbeam MMM + Triple Whale MMM + Marketing Evolution + Recast + Haus + Lifesight + Measured + GeoLift + Shapley/Markov MTA + Hill-saturation + Adstock + cross-channel-halo + Bayesian hierarchical MMM; 14:1 default Year-1 ROI Path B at $5M GMV; **DEPLOY BLOCKED at Vercel 24h quota**)",
+      "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED; **DEPLOY BLOCKED at Vercel 24h quota** — `api-deployments-free-per-day > 100`)\n- **Reason:** Closes the largest *incremental-budget-allocation* gap in the operator-stack. 179 skills shipped to date cover every surface of paid-media attribution (Triple Whale #6 + attribution-quality-audit #6.5 + TikTok audit #6.6 + Snap+Pinterest audit #6.7 + cross-platform drift #6.8 + unified dashboard #6.9) — but no skill ships the **incremental-budget-allocation substrate** that answers the operator's hardest question: *\"if I shift $5k/mo from Meta to TikTok, what's my expected revenue delta with 80% confidence?\"* Without a Bayesian hierarchical MMM (Meridian + LightweightMMM + Robyn + PyMC-Marketing) + multi-touch attribution (Shapley/Markov M"
+    },
     {
       "heading": "[2026-09-16 10:50] Skill tick: keep — Move #179 / Move #22.4 brand-strategy-positioning-messaging-engine (FIRST Tier-1 + FIRST P0 in `brand-strategy` category; April Dunford + StoryBrand SB7 + Building a StoryBrand + Glossier/Allbirds/Liquid Death/Graza/Magic Spoon/Olipop/Chamberlain Coffee/Cuts/MUDWTR/De Soi/Untold&Brilliance founder-led brand-pattern library; 10:1 default Year-1 ROI Path B at $3M GMV; **DEPLOY BLOCKED at Vercel 24h quota**)",
       "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED; **DEPLOY BLOCKED at Vercel 24h quota** — `api-deployments-free-per-day > 100`)\n- **Reason:** Closes the largest *missing-substrate* gap in the operator-stack. 177 skills shipped to date cover the tactical-and-strategic surface of DTC operations (cart-abandon, upsell, welcome-series, mobile-PDP, AI-creative, Triple Whale attribution, Klaviyo+Postscript, loyalty, subscriptions, BFCM, marketplaces, B2B, etc.), but no skill covers the **brand-strategy substrate** that every other move depends on — the load-bearing artifacts are: positioning-statement (April Dunford framework), ICP-wedge + rejection-positioning, one-liner + three-bullet-elevator-pitch + tagline, StoryBrand SB7 brand-script, voice-and-tone-guide, visual-identity-system,"
@@ -31007,6 +31011,25 @@
       "pitfallCount": 0,
       "sourceCount": 287,
       "size": 59279,
+      "lastTouched": "2026-09-16"
+    },
+    {
+      "file": "181-ai-vendor-orchestration-governance-engine.md",
+      "name": "181-ai-vendor-orchestration-governance-engine",
+      "title": "AI vendor orchestration & governance engine (Move #181)",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-16",
+      "sources": [],
+      "blurb": "Move #181 is the **cross-vendor AI portfolio governance layer** that every DTC operator at $2M+ GMV running 5+ AI-enabled vendors (Klaviyo AI + Shopify Magic + Gorgias AI + Triple Whale Moby + Postscript AI + Iterable...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 86569,
       "lastTouched": "2026-09-16"
     },
     {
@@ -52885,6 +52908,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "d7045fe",
+      "date": "2026-09-16T11:53:51Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #180 / Move #6.10 marketing-mix-modeling-mmm-attribution-engine (FIRST Tier-1 + FIRST P0 in unique category: marketing-mix-modeling; Google Meridian + LightweightMMM + Robyn + PyMC-Marketing + Northbeam MMM + Triple Whale MMM + ",
+      "body": ""
+    },
+    {
       "sha": "6305f16",
       "date": "2026-09-16T10:43:32Z",
       "author": "mattiasadem",
@@ -54276,13 +54306,6 @@
       "author": "mattiasadem",
       "subject": "skill: AI 1:1 personalization engine + AI-LTV-prediction + AI-content-personalization + AI-offer-personalization + AI-journey-orchestration + RFM + zero-party-data-capture + consent-mode-v2-aware-1:1 (Move #20.7, FIRST Tier-1 + FIRST P0 in ",
       "body": ""
-    },
-    {
-      "sha": "04ca2cb",
-      "date": "2026-07-14T08:22:55Z",
-      "author": "mattiasadem",
-      "subject": "journal: 2026-07-14 13:30 — Skill tick: keep — Product launch engine (Move #39) FIRST Tier-1 + P0 in category: product-launch",
-      "body": ""
     }
   ],
   "counts": {
@@ -54291,8 +54314,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 97,
-    "skills": 179,
+    "journalEntries": 98,
+    "skills": 180,
     "gitCommits": 200
   }
 }
