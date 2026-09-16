@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T17:44:26.250Z",
+  "generatedAt": "2026-09-16T18:54:07.670Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12145,6 +12145,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-16 17:40] Skill tick: keep — Move #185 ai-vendor-portfolio-roi-dashboard (FIRST Tier-1 + FIRST P0 in unique category: ai-vendor-portfolio-roi; canonical single-page observability surface for Move #181 + Move #182 + Move #183 + Move #184 — 20 overlays (per-vendor-portfolio-roi-card 28vendors×12fields=336cells + per-customer-AI-trust-score-cohort-LTV-overlay 5cohorts×4trust-bands=20cells + cross-vendor-brand-voice-drift-overlay 5channels×4weeks=20cells + per-vendor-sunset-trigger-alert-banner 5sunset-trigger-types + per-vendor-renewal-cadence-tickler-banner 60days×28vendors + cross-vendor-portfolio-PnL-trend 12months×5channels=60cells + per-vendor-cost-per-resolution-trend 6months×28vendors=168cells + per-vendor-deflection-rate-trend 6months×28vendors=168cells + per-vendor-fallback-rate-trend 6months×28vendors=168cells + per-vendor-portfolio-margin-overlay 28vendors + per-vendor-AI-hallucination-rate-overlay 6months×28vendors=168cells + per-vendor-data-export-portability-test-score-overlay 28vendors + per-vendor-kill-switch-drill-pass-rate-overlay 28vendors + per-vendor-PII-exfil-risk-overlay 28vendors + per-vendor-token-bill-trend 12months×28vendors=336cells + per-vendor-eval-pipeline-pass-rate-overlay 6months×28vendors=168cells + per-vendor-observability-pipeline-trace-coverage-overlay 6months×28vendors=168cells + per-vendor-guardrail-pipeline-prompt-injection-defense-pass-rate-overlay 6months×28vendors=168cells + per-vendor-onboarding-completeness-coverage-overlay 28vendors×14onboarding-steps=392cells + CFO/CSO/CTO/CDPO/board-summary-dashboards); 18 pitfalls + 18 Fix: + 8 verification gates A-H + 6-pillar Path A/B/C/D/E/F framework; 9:1 default Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; **DEPLOY SUCCEEDED + canonical-alias rotated**)",
+      "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED + DEPLOY SUCCEEDED + canonical-alias rotated)\n- **Reason:** Closes the canonical-single-page-at-a-glance-observability gap that every $5M+ GMV operator running 5+ AI-enabled vendors (Klaviyo AI + Iterable AI + Braze AI + Cordial AI + Attentive AI + HubSpot AI + Salesforce Marketing Cloud Einstein + Salesforce Agentforce + Shopify Magic + Shopify Sidekick + Gorgias AI Agent + Kustomer AI + Zendesk AI + Intercom Fin + Ada + Forethought + Recharge AI + Skio AI + Smile.io AI + Yotpo AI + LoyaltyLion AI + Rebuy AI + Nosto AI + Dynamic Yield + Triple Whale Moby + Northbeam AI + Polar AI + Recart AI + AdCreative.ai + Pencil AI + Segment AI + mParticle AI + RudderStack AI + Snowplow AI + Amplitude AI + Mixpanel AI + Heap Illuminate + FullS"
+    },
     {
       "heading": "[2026-09-16 16:32] Skill tick: keep — Move #184 ai-vendor-onboarding-runbook-kit (FIRST Tier-1 + FIRST P0 in unique category: ai-vendor-onboarding; canonical artifact-kit that compounds Move #181 + Move #182 + Move #183 — 12 pre-built templates (per-vendor-onboarding-checklist 14-step canonical + per-vendor-onboarding-security-review-template + per-vendor-onboarding-DPA-template + per-vendor-onboarding-SOC-2-review-template + per-vendor-onboarding-GDPR-CCPA-DPA-template + per-vendor-onboarding-HIPAA-BAA-template + per-vendor-onboarding-CCPA-CPRA-template + per-vendor-onboarding-data-residency-classification-template + per-vendor-onboarding-PII-redaction-policy-template + per-vendor-onboarding-eval-pipeline-onboarded-checklist + per-vendor-onboarding-observability-pipeline-onboarded-checklist + per-vendor-onboarding-guardrail-pipeline-onboarded-checklist + per-vendor-onboarding-kill-switch-tested-checklist) + 10 onboarding-test-script templates (per-vendor-fallback-vendor-test-script + per-vendor-data-export-portability-test-script + per-vendor-data-import-portability-test-script + per-vendor-vendor-lock-in-cost-calculator + per-vendor-brand-voice-baseline-capture-script + per-vendor-model-allowlist-applied-checklist + per-vendor-annual-renewal-cadence-scheduled-template + per-vendor-sunset-trigger-documented-template + per-vendor-cost-per-resolution-baseline-measurement + per-vendor-deflection-rate-baseline-measurement + per-vendor-fallback-rate-baseline-measurement + per-vendor-portfolio-PnL-attribution-template) + 6 collaboration-tool orchestrations (per-vendor-onboarding-Slack-channel-orchestration + per-vendor-onboarding-Linear-ticket-template + per-vendor-onboarding-Notion-runbook-template + per-vendor-onboarding-Confluence-tracker-template + per-vendor-onboarding-new-AI-vendor-request-workflow + per-vendor-onboarding-offboarding-runbook-kit-invocation); 18 pitfalls + 18 Fix: + 8 verification gates A-H + 6-pillar Path A/B/C/D/E/F framework + 4-phase 28-day build; 7:1 default Year-1 ROI Path B at $5M GMV; **DEPLOY BLOCKED at Vercel 24h quota**)",
       "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED; **DEPLOY BLOCKED at Vercel 24h quota** — `api-deployments-free-per-day > 100`)\n- **Reason:** Closes the per-vendor-AI-onboarding-artifact-kit gap that every $5M+ GMV DTC operator running 5+ AI-enabled vendors (Klaviyo AI + Iterable AI + Braze AI + Cordial AI + Attentive AI + HubSpot AI + Salesforce Einstein + Salesforce Agentforce + Shopify Magic + Shopify Sidekick + Gorgias AI Agent + Kustomer AI + Zendesk AI + Intercom Fin + Ada + Forethought + Recharge AI + Skio AI + Smile.io AI + Yotpo AI + LoyaltyLion AI + Rebuy AI + Nosto AI + Dynamic Yield + Triple Whale Moby + Northbeam AI + Polar AI + Recart AI + AdCreative.ai + Pencil AI + Segment AI + mParticle AI + RudderStack AI + Snowplow AI + Amplitude AI + Mixpanel AI + Heap Illumi"
@@ -31126,6 +31130,25 @@
       "pitfallCount": 18,
       "sourceCount": 0,
       "size": 64222,
+      "lastTouched": "2026-09-16"
+    },
+    {
+      "file": "186-ai-vendor-sunset-decision-orchestrator.md",
+      "name": "186-ai-vendor-sunset-decision-orchestrator",
+      "title": "AI vendor sunset-decision orchestrator (Move #186)",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-16",
+      "sources": [],
+      "blurb": "Move #186 is the **canonical per-vendor-sunset-decision-workflow + multi-stakeholder-approval-chain + migration-plan + fallback-vendor-activation + vendor-rotation-cost-calculator + customer-impact-broadcast + public-...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 72739,
       "lastTouched": "2026-09-16"
     },
     {
@@ -53004,6 +53027,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "3a552ab",
+      "date": "2026-09-16T17:49:08Z",
+      "author": "hermesagent",
+      "subject": "docs(journal): Move #185 keep tick — ai-vendor-portfolio-roi-dashboard (FIRST Tier-1 + FIRST P0 in ai-vendor-portfolio-roi category; 20 overlays × 28 vendors × 6-pillar Path A/B/C/D/E/F framework × 8 verification gates A-H × 6-phase 4-week ",
+      "body": ""
+    },
+    {
+      "sha": "65e3a31",
+      "date": "2026-09-16T17:47:57Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #185 ai-vendor-portfolio-roi-dashboard (FIRST Tier-1 + FIRST P0 in unique category ai-vendor-portfolio-roi; canonical single-page observability surface for Move #181 + Move #182 + Move #183 + Move #184 — 20 overlays (per-vendor-",
+      "body": ""
+    },
+    {
       "sha": "8a0131e",
       "date": "2026-09-16T16:39:19Z",
       "author": "hermesagent",
@@ -54388,20 +54425,6 @@
       "author": "mattiasadem",
       "subject": "journal: keep skill 66 global tax filing operations",
       "body": ""
-    },
-    {
-      "sha": "9acb107",
-      "date": "2026-07-14T18:13:52Z",
-      "author": "mattiasadem",
-      "subject": "skill: regenerate content index for 66 skills",
-      "body": ""
-    },
-    {
-      "sha": "5859981",
-      "date": "2026-07-14T18:13:52Z",
-      "author": "mattiasadem",
-      "subject": "skill: add international tax filing operations (Move #66)",
-      "body": ""
     }
   ],
   "counts": {
@@ -54410,8 +54433,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 103,
-    "skills": 184,
+    "journalEntries": 104,
+    "skills": 185,
     "gitCommits": 200
   }
 }
