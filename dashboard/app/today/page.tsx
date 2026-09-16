@@ -18,6 +18,7 @@ import { CronHealthCard } from "@/components/cron-health-card";
 import { ProgressExportButton } from "@/components/progress-export-button";
 import { ProgressImportButton } from "@/components/progress-import-button";
 import { ProgressImportMarkdownButton } from "@/components/progress-import-markdown-button";
+import { TrajectoryPanel } from "@/components/trajectory-projection-panel";
 import Link from "next/link";
 
 export const dynamic = "force-static";
@@ -249,6 +250,11 @@ export default function TodayPage() {
       </section>
 
       <Separator />
+
+      {/* === 12-month revenue trajectory — phased rollout of Top-10 === */}
+      <section>
+        <TrajectoryPanel />
+      </section>
 
       {/* === Today's focus + what shipped === */}
       <section className="grid grid-cols-1 gap-4 lg:grid-cols-2">
