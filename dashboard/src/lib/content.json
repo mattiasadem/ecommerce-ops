@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T15:28:46.286Z",
+  "generatedAt": "2026-09-16T16:36:55.333Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12145,6 +12145,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-16 15:31] Skill tick: keep — Move #183 ai-vendor-portfolio-cadence-cron (FIRST Tier-1 + FIRST P0 in unique category: ai-vendor-portfolio-cadence; canonical operationalization of Move #181 + Move #182 — 13 monthly-cadence-crons (per-vendor-portfolio-monthly-review + AI-trust-recovery-monthly-portfolio-review + portfolio-PnL-rollup + cost-allocation-rollup + cross-vendor-brand-voice-drift-rollup + per-vendor-sunset-trigger-alert + per-vendor-fallback-vendor-test + per-vendor-data-export-portability-test + per-vendor-kill-switch-drill + per-vendor-AI-hallucination-rate-rollup + per-customer-AI-trust-score-cohort-LTV-overlay-trend + renewal-cadence-tickler + cross-executive-summary-engine + continuous-improvement-loop) + per-vendor-portfolio-card-Notion+Confluence-template + per-vendor-portfolio-Slack-digest + per-vendor-portfolio-Linear-tickets + per-vendor-portfolio-CFO/CSO/CTO/CDPO/board-summary + Move #184/185/186 handoff; 18 pitfalls + 18 Fix: + 8 verification gates A-H + 6-pillar Path A/B/C/D/E/F framework + 4-phase 28-day build; 8:1 default Year-1 ROI Path B at $5M GMV; **DEPLOY SUCCEEDED**)",
+      "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED + DEPLOY SUCCEEDED + canonical-alias rotated)\n- **Reason:** Closes the cross-vendor AI portfolio cadence gap that every $5M+ GMV operator running 5+ AI-enabled vendors (Klaviyo AI + Iterable AI + Braze AI + Cordial AI + Attentive AI + HubSpot AI + Salesforce Marketing Cloud Einstein + Salesforce Agentforce + Shopify Magic + Shopify Sidekick + Gorgias AI Agent + Kustomer AI + Zendesk AI + Intercom Fin + Ada + Forethought + Recharge AI + Skio AI + Smile.io AI + Yotpo AI + LoyaltyLion AI + Rebuy AI + Nosto AI + Dynamic Yield + Triple Whale Moby + Northbeam AI + Polar AI + Recart AI + AdCreative.ai + Pencil AI + Segment AI + mParticle AI + RudderStack AI + Snowplow AI + Amplitude AI + Mixpanel AI + Heap Illuminate + FullStory AI + Hotj"
+    },
     {
       "heading": "[2026-09-16 14:21] Skill tick: keep — Move #182 ai-agent-trust-recovery-engine (FIRST Tier-1 + FIRST P0 in unique category: ai-trust-recovery; 30-AI-agent-vendor roster + per-customer-AI-trust-score-decay-engine + per-customer-AI-recovery-playbook (24 variants: 6 incident-classes × 4 customer-tiers) + AI-agent-wrong-answer-recall-system (<24 hours) + post-incident-RCA-canonical-pattern + cross-vendor-AI-trust-recovery-orchestration + bot-vs-human-disclosure-policy (AB-3030 + EU-AI-Act-Article-50 + FTC-AI-marketing-disclosure) + per-customer-recovery-budget-cap + recovery-gesture-loyalty-points-engine + recovery-gesture-credit-engine + recovery-gesture-coupon-engine + recovery-gesture-gift-with-purchase-engine + recovery-gesture-personal-handwritten-note + recovery-escalation-to-CSM + recovery-escalation-to-CXO + recovery-public-apology-protocol + per-cohort-recovery-LTV-impact-overlay + AI-trust-recovery-monthly-portfolio-review + AI-trust-recovery-quarterly-portfolio-audit + AI-trust-recovery-annual-portfolio-review; 18 pitfalls + 18 Fix: + 8 verification gates A-H + 6-pillar Path A/B/C/D/E/F framework + 4-phase 28-day build; 6:1 default Year-1 ROI Path B at $5M GMV; **DEPLOY SUCCEEDED**)",
       "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED + DEPLOY SUCCEEDED + canonical-alias rotated)\n- **Reason:** Closes the cross-vendor customer-trust-recovery gap that every $2M+ GMV operator running 3+ AI-agent-enabled vendors (Gorgias AI Agent + Zendesk AI Agents + Intercom Fin + Ada + Forethought + Kustomer AI + Salesforce Agentforce + Shopify Sidekick + Klaviyo AI Agent + Triple Whale Moby + Polar AI + Northbeam AI + Segment AI + mParticle AI + RudderStack AI + Amplitude AI + Mixpanel AI + Heap Illuminate + FullStory AI + Hotjar AI + Quantum Metric AI + Datadog AI + Langfuse + Helicone + Arize Phoenix + Braintrust + Patronus + DeepEval + Ragas + LangSmith + Lakera Guard + Prompt Armor + NeMo Guardrails + Azure AI Content Safety + Promptfoo + Garak + PyRIT) needs but no other Mo"
@@ -31080,6 +31084,25 @@
       "pitfallCount": 18,
       "sourceCount": 0,
       "size": 90944,
+      "lastTouched": "2026-09-16"
+    },
+    {
+      "file": "184-ai-vendor-onboarding-runbook-kit.md",
+      "name": "184-ai-vendor-onboarding-runbook-kit",
+      "title": "AI vendor onboarding runbook kit (Move #184)",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-16",
+      "sources": [],
+      "blurb": "Move #184 is the **canonical artifact-kit that compounds Move #181 ai-vendor-orchestration-governance + Move #182 ai-agent-trust-recovery + Move #183 ai-vendor-portfolio-cadence** that every $5M+ GMV DTC operator runn...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 88773,
       "lastTouched": "2026-09-16"
     },
     {
@@ -52958,6 +52981,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "42618f7",
+      "date": "2026-09-16T15:31:58Z",
+      "author": "hermesagent",
+      "subject": "docs(journal): Move #183 keep tick — ai-vendor-portfolio-cadence-cron (FIRST Tier-1 + FIRST P0 in ai-vendor-portfolio-cadence category; 13 monthly-cadence-crons + per-vendor-portfolio-card-Notion+Confluence + per-vendor-portfolio-Slack-dige",
+      "body": ""
+    },
+    {
+      "sha": "3d39702",
+      "date": "2026-09-16T15:31:05Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #183 ai-vendor-portfolio-cadence-cron (FIRST Tier-1 + FIRST P0 in unique category: ai-vendor-portfolio-cadence; canonical operationalization of Move #181 + Move #182 — 13 monthly-cadence-crons (per-vendor-portfolio-monthly-revie",
+      "body": ""
+    },
+    {
       "sha": "c7513a9",
       "date": "2026-09-16T14:22:22Z",
       "author": "hermesagent",
@@ -54342,20 +54379,6 @@
       "author": "mattiasadem",
       "subject": "skill: ecommerce-accessibility-compliance + WCAG 2.2 AA + EAA + EN 301 549 + ADA risk controls + Shopify/composable storefront/checkout/apps/email/PDF accessibility (Move #65, FIRST Tier-1 + P0 in category: accessibility, 3:1-14:1 Year-1 RO",
       "body": ""
-    },
-    {
-      "sha": "94dc16d",
-      "date": "2026-07-14T15:41:34Z",
-      "author": "mattiasadem",
-      "subject": "journal: tick 2026-07-14 15:30 — keep — AI search visibility + AEO + GEO + LLM-citation-engineering + structured-data + llms.txt + AI-citation-tracking + agentic-commerce-shopping-discovery (Move #64, FIRST Tier-1 + P0 in category: ai-searc",
-      "body": ""
-    },
-    {
-      "sha": "5be6aa3",
-      "date": "2026-07-14T15:39:16Z",
-      "author": "mattiasadem",
-      "subject": "skill: ai-search-visibility-aeo-geo + LLM-citation-engineering + structured-data + llms.txt + Reddit/Wikipedia/authoritative-review-citation + AI-citation-tracking (Profound + Otterly + Yotpo AI Visibility + Goodie + Bluefish + LLM Rank + P",
-      "body": ""
     }
   ],
   "counts": {
@@ -54364,8 +54387,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 101,
-    "skills": 182,
+    "journalEntries": 102,
+    "skills": 183,
     "gitCommits": 200
   }
 }
