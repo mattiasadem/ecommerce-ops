@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T16:36:55.333Z",
+  "generatedAt": "2026-09-16T17:44:26.250Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12145,6 +12145,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-16 16:32] Skill tick: keep — Move #184 ai-vendor-onboarding-runbook-kit (FIRST Tier-1 + FIRST P0 in unique category: ai-vendor-onboarding; canonical artifact-kit that compounds Move #181 + Move #182 + Move #183 — 12 pre-built templates (per-vendor-onboarding-checklist 14-step canonical + per-vendor-onboarding-security-review-template + per-vendor-onboarding-DPA-template + per-vendor-onboarding-SOC-2-review-template + per-vendor-onboarding-GDPR-CCPA-DPA-template + per-vendor-onboarding-HIPAA-BAA-template + per-vendor-onboarding-CCPA-CPRA-template + per-vendor-onboarding-data-residency-classification-template + per-vendor-onboarding-PII-redaction-policy-template + per-vendor-onboarding-eval-pipeline-onboarded-checklist + per-vendor-onboarding-observability-pipeline-onboarded-checklist + per-vendor-onboarding-guardrail-pipeline-onboarded-checklist + per-vendor-onboarding-kill-switch-tested-checklist) + 10 onboarding-test-script templates (per-vendor-fallback-vendor-test-script + per-vendor-data-export-portability-test-script + per-vendor-data-import-portability-test-script + per-vendor-vendor-lock-in-cost-calculator + per-vendor-brand-voice-baseline-capture-script + per-vendor-model-allowlist-applied-checklist + per-vendor-annual-renewal-cadence-scheduled-template + per-vendor-sunset-trigger-documented-template + per-vendor-cost-per-resolution-baseline-measurement + per-vendor-deflection-rate-baseline-measurement + per-vendor-fallback-rate-baseline-measurement + per-vendor-portfolio-PnL-attribution-template) + 6 collaboration-tool orchestrations (per-vendor-onboarding-Slack-channel-orchestration + per-vendor-onboarding-Linear-ticket-template + per-vendor-onboarding-Notion-runbook-template + per-vendor-onboarding-Confluence-tracker-template + per-vendor-onboarding-new-AI-vendor-request-workflow + per-vendor-onboarding-offboarding-runbook-kit-invocation); 18 pitfalls + 18 Fix: + 8 verification gates A-H + 6-pillar Path A/B/C/D/E/F framework + 4-phase 28-day build; 7:1 default Year-1 ROI Path B at $5M GMV; **DEPLOY BLOCKED at Vercel 24h quota**)",
+      "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED; **DEPLOY BLOCKED at Vercel 24h quota** — `api-deployments-free-per-day > 100`)\n- **Reason:** Closes the per-vendor-AI-onboarding-artifact-kit gap that every $5M+ GMV DTC operator running 5+ AI-enabled vendors (Klaviyo AI + Iterable AI + Braze AI + Cordial AI + Attentive AI + HubSpot AI + Salesforce Einstein + Salesforce Agentforce + Shopify Magic + Shopify Sidekick + Gorgias AI Agent + Kustomer AI + Zendesk AI + Intercom Fin + Ada + Forethought + Recharge AI + Skio AI + Smile.io AI + Yotpo AI + LoyaltyLion AI + Rebuy AI + Nosto AI + Dynamic Yield + Triple Whale Moby + Northbeam AI + Polar AI + Recart AI + AdCreative.ai + Pencil AI + Segment AI + mParticle AI + RudderStack AI + Snowplow AI + Amplitude AI + Mixpanel AI + Heap Illumi"
+    },
     {
       "heading": "[2026-09-16 15:31] Skill tick: keep — Move #183 ai-vendor-portfolio-cadence-cron (FIRST Tier-1 + FIRST P0 in unique category: ai-vendor-portfolio-cadence; canonical operationalization of Move #181 + Move #182 — 13 monthly-cadence-crons (per-vendor-portfolio-monthly-review + AI-trust-recovery-monthly-portfolio-review + portfolio-PnL-rollup + cost-allocation-rollup + cross-vendor-brand-voice-drift-rollup + per-vendor-sunset-trigger-alert + per-vendor-fallback-vendor-test + per-vendor-data-export-portability-test + per-vendor-kill-switch-drill + per-vendor-AI-hallucination-rate-rollup + per-customer-AI-trust-score-cohort-LTV-overlay-trend + renewal-cadence-tickler + cross-executive-summary-engine + continuous-improvement-loop) + per-vendor-portfolio-card-Notion+Confluence-template + per-vendor-portfolio-Slack-digest + per-vendor-portfolio-Linear-tickets + per-vendor-portfolio-CFO/CSO/CTO/CDPO/board-summary + Move #184/185/186 handoff; 18 pitfalls + 18 Fix: + 8 verification gates A-H + 6-pillar Path A/B/C/D/E/F framework + 4-phase 28-day build; 8:1 default Year-1 ROI Path B at $5M GMV; **DEPLOY SUCCEEDED**)",
       "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED + DEPLOY SUCCEEDED + canonical-alias rotated)\n- **Reason:** Closes the cross-vendor AI portfolio cadence gap that every $5M+ GMV operator running 5+ AI-enabled vendors (Klaviyo AI + Iterable AI + Braze AI + Cordial AI + Attentive AI + HubSpot AI + Salesforce Marketing Cloud Einstein + Salesforce Agentforce + Shopify Magic + Shopify Sidekick + Gorgias AI Agent + Kustomer AI + Zendesk AI + Intercom Fin + Ada + Forethought + Recharge AI + Skio AI + Smile.io AI + Yotpo AI + LoyaltyLion AI + Rebuy AI + Nosto AI + Dynamic Yield + Triple Whale Moby + Northbeam AI + Polar AI + Recart AI + AdCreative.ai + Pencil AI + Segment AI + mParticle AI + RudderStack AI + Snowplow AI + Amplitude AI + Mixpanel AI + Heap Illuminate + FullStory AI + Hotj"
@@ -31103,6 +31107,25 @@
       "pitfallCount": 18,
       "sourceCount": 0,
       "size": 88773,
+      "lastTouched": "2026-09-16"
+    },
+    {
+      "file": "185-ai-vendor-portfolio-roi-dashboard.md",
+      "name": "185-ai-vendor-portfolio-roi-dashboard",
+      "title": "AI vendor portfolio ROI dashboard (Move #185)",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-16",
+      "sources": [],
+      "blurb": "Move #185 is the **canonical single-page observability surface for Move #181 ai-vendor-orchestration-governance + Move #182 ai-agent-trust-recovery + Move #183 ai-vendor-portfolio-cadence + Move #184 ai-vendor-onboard...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 64222,
       "lastTouched": "2026-09-16"
     },
     {
@@ -52981,6 +53004,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "8a0131e",
+      "date": "2026-09-16T16:39:19Z",
+      "author": "hermesagent",
+      "subject": "docs(journal): Move #184 keep tick — ai-vendor-onboarding-runbook-kit (FIRST Tier-1 + FIRST P0 in ai-vendor-onboarding category; 12 pre-built templates + 10 onboarding-test-script templates + 6 collaboration-tool orchestrations + auto-invoc",
+      "body": ""
+    },
+    {
+      "sha": "f3c2303",
+      "date": "2026-09-16T16:37:54Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #184 ai-vendor-onboarding-runbook-kit (FIRST Tier-1 + FIRST P0 in unique category ai-vendor-onboarding; 12 pre-built templates (per-vendor-onboarding-checklist 14-step canonical + per-vendor-onboarding-security-review-template +",
+      "body": ""
+    },
+    {
       "sha": "42618f7",
       "date": "2026-09-16T15:31:58Z",
       "author": "hermesagent",
@@ -54365,20 +54402,6 @@
       "author": "mattiasadem",
       "subject": "skill: add international tax filing operations (Move #66)",
       "body": ""
-    },
-    {
-      "sha": "262ed2b",
-      "date": "2026-07-14T16:57:09Z",
-      "author": "mattiasadem",
-      "subject": "journal: tick 2026-07-14 16:18 — keep — ecommerce-accessibility-compliance + WCAG 2.2 AA + EAA + EN 301 549 + ADA risk controls + Shopify/composable storefront/checkout/apps/email/PDF accessibility (Move #65, FIRST Tier-1 + P0 in category: ",
-      "body": ""
-    },
-    {
-      "sha": "a989562",
-      "date": "2026-07-14T16:56:21Z",
-      "author": "mattiasadem",
-      "subject": "skill: ecommerce-accessibility-compliance + WCAG 2.2 AA + EAA + EN 301 549 + ADA risk controls + Shopify/composable storefront/checkout/apps/email/PDF accessibility (Move #65, FIRST Tier-1 + P0 in category: accessibility, 3:1-14:1 Year-1 RO",
-      "body": ""
     }
   ],
   "counts": {
@@ -54387,8 +54410,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 102,
-    "skills": 183,
+    "journalEntries": 103,
+    "skills": 184,
     "gitCommits": 200
   }
 }
