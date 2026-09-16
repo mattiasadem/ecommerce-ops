@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T14:17:41.587Z",
+  "generatedAt": "2026-09-16T15:28:46.286Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12145,6 +12145,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-16 14:21] Skill tick: keep — Move #182 ai-agent-trust-recovery-engine (FIRST Tier-1 + FIRST P0 in unique category: ai-trust-recovery; 30-AI-agent-vendor roster + per-customer-AI-trust-score-decay-engine + per-customer-AI-recovery-playbook (24 variants: 6 incident-classes × 4 customer-tiers) + AI-agent-wrong-answer-recall-system (<24 hours) + post-incident-RCA-canonical-pattern + cross-vendor-AI-trust-recovery-orchestration + bot-vs-human-disclosure-policy (AB-3030 + EU-AI-Act-Article-50 + FTC-AI-marketing-disclosure) + per-customer-recovery-budget-cap + recovery-gesture-loyalty-points-engine + recovery-gesture-credit-engine + recovery-gesture-coupon-engine + recovery-gesture-gift-with-purchase-engine + recovery-gesture-personal-handwritten-note + recovery-escalation-to-CSM + recovery-escalation-to-CXO + recovery-public-apology-protocol + per-cohort-recovery-LTV-impact-overlay + AI-trust-recovery-monthly-portfolio-review + AI-trust-recovery-quarterly-portfolio-audit + AI-trust-recovery-annual-portfolio-review; 18 pitfalls + 18 Fix: + 8 verification gates A-H + 6-pillar Path A/B/C/D/E/F framework + 4-phase 28-day build; 6:1 default Year-1 ROI Path B at $5M GMV; **DEPLOY SUCCEEDED**)",
+      "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED + DEPLOY SUCCEEDED + canonical-alias rotated)\n- **Reason:** Closes the cross-vendor customer-trust-recovery gap that every $2M+ GMV operator running 3+ AI-agent-enabled vendors (Gorgias AI Agent + Zendesk AI Agents + Intercom Fin + Ada + Forethought + Kustomer AI + Salesforce Agentforce + Shopify Sidekick + Klaviyo AI Agent + Triple Whale Moby + Polar AI + Northbeam AI + Segment AI + mParticle AI + RudderStack AI + Amplitude AI + Mixpanel AI + Heap Illuminate + FullStory AI + Hotjar AI + Quantum Metric AI + Datadog AI + Langfuse + Helicone + Arize Phoenix + Braintrust + Patronus + DeepEval + Ragas + LangSmith + Lakera Guard + Prompt Armor + NeMo Guardrails + Azure AI Content Safety + Promptfoo + Garak + PyRIT) needs but no other Mo"
+    },
     {
       "heading": "[2026-09-16 13:05] Skill tick: keep — Move #181 ai-vendor-orchestration-governance-engine (FIRST P0 in `ai-orchestration` category — paired with 18-pitfall vs Move #18's 15-pitfall tie-breaker win; 28-AI-vendor portfolio governance — Klaviyo AI + Shopify Magic + Gorgias AI Agent + Triple Whale Moby + Salesforce Einstein GPT + Salesforce Agentforce + Zendesk AI + Intercom Fin + Ada + Forethought + Kustomer AI + Recharge AI + Smile.io AI + Rebuy AI + Nosto AI + Dynamic Yield + Moby + Pencil + AdCreative.ai + Segment AI + mParticle AI + RudderStack AI + Amplitude AI + Mixpanel AI + Heap Illuminate + Datadog AI + Langfuse + Helicone + Arize Phoenix + Braintrust + Patronus + DeepEval + Ragas + LangSmith + Lakera Guard + Prompt Armor + NeMo Guardrails + Azure AI Content Safety + Promptfoo + Garak + PyRIT + cross-vendor portfolio-PnL + cross-vendor cost-allocation + cross-vendor brand-voice-consistency + per-vendor cost-per-resolution + per-vendor fallback-rate + per-vendor brand-voice-drift-rate + per-vendor PII-exfil-risk + per-vendor model-tier-routing + per-vendor data-residency + per-vendor SOC-2/HIPAA/GDPR posture + per-vendor sunset-plan + per-vendor kill-switch + per-vendor fallback-vendor + per-vendor annual-renewal-cadence + per-vendor data-export-portability + per-vendor data-import-portability + per-vendor vendor-rotation-cost + per-vendor eval-pipeline + per-vendor guardrail-pipeline + per-vendor observability-pipeline; 5:1 default Year-1 ROI Path B at $5M GMV; **DEPLOY SUCCEEDED**)",
       "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED + **DEPLOY SUCCEEDED** after 5-minute retry — quota briefly reset)\n- **Reason:** Closes the cross-vendor AI portfolio governance gap. 180 skills shipped cover single-vendor AI execution (Move #18 generative-AI-engine + Move #77 agentic-AI-operations + Move #90 ai-orchestration-per-channel) — but no skill ships the **cross-vendor AI portfolio governance layer** that every $5M+ GMV operator running 5+ AI-enabled vendors needs: 28-vendor AI roster + per-vendor cost-per-resolution + per-vendor fallback-rate + per-vendor brand-voice-drift-rate + per-vendor PII-exfil-risk + per-vendor model-tier-routing (GPT-4o + Claude Sonnet 4.5 + Haiku 4.5 + Gemini 2.0 Flash + Llama 3.3 70B) + per-vendor data-residency + per-vendor SOC-2/HIPAA/GDPR po"
@@ -31057,6 +31061,25 @@
       "pitfallCount": 18,
       "sourceCount": 0,
       "size": 63496,
+      "lastTouched": "2026-09-16"
+    },
+    {
+      "file": "183-ai-vendor-portfolio-cadence-cron.md",
+      "name": "183-ai-vendor-portfolio-cadence-cron",
+      "title": "AI vendor portfolio cadence & monthly review cron (Move #183)",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-16",
+      "sources": [],
+      "blurb": "Move #183 is the **canonical operationalization of Move #181 ai-vendor-orchestration-governance + Move #182 ai-agent-trust-recovery** that every $5M+ GMV DTC operator running 5+ AI-enabled vendors (Klaviyo AI + Iterab...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 90944,
       "lastTouched": "2026-09-16"
     },
     {
@@ -52935,6 +52958,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "c7513a9",
+      "date": "2026-09-16T14:22:22Z",
+      "author": "hermesagent",
+      "subject": "docs(journal): Move #182 keep tick — ai-agent-trust-recovery-engine (FIRST Tier-1 + FIRST P0 in ai-trust-recovery category; 24-variant recovery playbook + 6 recall-templates + 18 pitfalls + 8 verification gates; 6:1 default Year-1 ROI Path ",
+      "body": ""
+    },
+    {
+      "sha": "6cc5fea",
+      "date": "2026-09-16T14:21:12Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #182 ai-agent-trust-recovery-engine (FIRST Tier-1 + FIRST P0 in unique category: ai-trust-recovery; cross-vendor customer-trust-recovery layer — per-customer-AI-trust-score-decay-engine + per-customer-AI-recovery-playbook (24 va",
+      "body": ""
+    },
+    {
       "sha": "3ca49f4",
       "date": "2026-09-16T13:33:22Z",
       "author": "hermesagent",
@@ -54319,20 +54356,6 @@
       "author": "mattiasadem",
       "subject": "skill: ai-search-visibility-aeo-geo + LLM-citation-engineering + structured-data + llms.txt + Reddit/Wikipedia/authoritative-review-citation + AI-citation-tracking (Profound + Otterly + Yotpo AI Visibility + Goodie + Bluefish + LLM Rank + P",
       "body": ""
-    },
-    {
-      "sha": "0caf7d3",
-      "date": "2026-07-14T12:21:29Z",
-      "author": "mattiasadem",
-      "subject": "feat(dashboard): port scripts/creator_economy_unit_economics.py to /creators as Move #19 interactive Path A/B/C scorer with 12-input form, cost stack + LTV + content-licensing 2-4x uplift + 5-way-comparison correction + 5-payout matrix + 6-",
-      "body": ""
-    },
-    {
-      "sha": "790bce2",
-      "date": "2026-07-14T12:03:11Z",
-      "author": "mattiasadem",
-      "subject": "journal: tick 2026-07-14 11:57 — keep — community-led-growth + paid-community + Discord/Slack/Circle/Mighty Networks/Skool community-operations + community-led-acquisition + UGC-flywheel + creator-community-loops + community-cohort-LTV-over",
-      "body": ""
     }
   ],
   "counts": {
@@ -54341,8 +54364,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 100,
-    "skills": 181,
+    "journalEntries": 101,
+    "skills": 182,
     "gitCommits": 200
   }
 }
