@@ -7,6 +7,7 @@ import {
   generateThirtyDayPlan,
   renderPlanMarkdown,
 } from "@/lib/thirty-day-plan";
+import { renderPlanIcs, validatePlanIcs } from "@/lib/thirty-day-plan-ics";
 import {
   YOUR_STORE_DEFAULTS,
   YourStoreInputs,
@@ -30,8 +31,11 @@ import { cn } from "@/lib/utils";
  *      a 3-tasks-per-workday cap.
  *   4. Renders the plan in-browser with a daily breakdown + a summary tile
  *      strip (revenue projection + projected $ lift).
- *   5. Two one-click actions: "Copy markdown" (paste-ready) and "Download
- *      .md" (saved as `30-day-plan-YYYY-MM-DD.md`).
+ *   5. Three one-click actions: "Copy markdown" (paste-ready), "Download
+ *      .md" (saved as `30-day-plan-YYYY-MM-DD.md`), and "Download .ics"
+ *      (saved as `30-day-plan-YYYY-MM-DD.ics` — a valid RFC 5545 file
+ *      that imports cleanly into Google Calendar, Apple Calendar, and
+ *      Outlook; one VEVENT per workday at 09:00–10:00 local time).
  *
  * Lives on `/30-day-plan` as a one-click action — no inputs to type, no
  * server round-trip, no new dependency.
@@ -103,6 +107,29 @@ export function ThirtyDayPlanGenerator() {
     URL.revokeObjectURL(url);
   };
 
+  const onDownloadIcs = () => {
+    if (plan.kind !== "ready") return;
+    const ics = renderPlanIcs(plan.days, plan.summary);
+    const filename = `30-day-plan-${plan.summary.startDate}.ics`;
+    const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  // Validate the generated .ics in the browser — surfaces any RFC 5545
+  // regression before the operator imports it into their calendar.
+  const icsValidation = useMemo(() => {
+    if (plan.kind !== "ready") return null;
+    const ics = renderPlanIcs(plan.days, plan.summary);
+    return validatePlanIcs(ics);
+  }, [plan]);
+
   return (
     <div className="flex flex-col gap-4">
       {/* === INPUT-STATUS + GENERATE === */}
@@ -136,7 +163,7 @@ export function ThirtyDayPlanGenerator() {
             Output
           </div>
           <div className="text-xs font-medium leading-snug">
-            30-day calendar · 4 weeks · markdown copy + .md download
+            30-day calendar · 4 weeks · markdown + .ics export
           </div>
           <button
             type="button"
@@ -207,6 +234,37 @@ export function ThirtyDayPlanGenerator() {
               <span aria-hidden="true">↓</span>
               <span>Download .md</span>
             </button>
+            <button
+              type="button"
+              onClick={onDownloadIcs}
+              data-testid="download-ics"
+              className="inline-flex items-center gap-1.5 rounded-md border border-accent/40 bg-accent/10 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-accent hover:bg-accent/20 transition-colors"
+              title="Import into Google Calendar, Apple Calendar, or Outlook — one VEVENT per workday, 9am–10am"
+            >
+              <span aria-hidden="true">📅</span>
+              <span>Download .ics (calendar)</span>
+            </button>
+            {icsValidation && (
+              <span
+                data-testid="ics-validation-pill"
+                className={cn(
+                  "inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider",
+                  icsValidation.length === 0
+                    ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300"
+                    : "border-rose-500/30 bg-rose-500/10 text-rose-700 dark:text-rose-300"
+                )}
+                title={
+                  icsValidation.length === 0
+                    ? "RFC 5545 valid — safe to import"
+                    : icsValidation.join("\n")
+                }
+              >
+                <span aria-hidden="true">{icsValidation.length === 0 ? "✓" : "✗"}</span>
+                <span>
+                  .ics {icsValidation.length === 0 ? "valid" : `${icsValidation.length} issue${icsValidation.length === 1 ? "" : "s"}`}
+                </span>
+              </span>
+            )}
             <span className="text-[10px] text-muted-foreground ml-auto">
               Starts {plan.summary.startDate} · 30 days · weekends are catch-up
             </span>
