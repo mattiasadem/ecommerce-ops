@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T18:54:07.670Z",
+  "generatedAt": "2026-09-16T20:02:25.960Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-09-16 18:55] Skill tick: keep — Move #186 ai-vendor-sunset-decision-orchestrator (FIRST Tier-1 + FIRST P0 in unique category `ai-vendor-sunset-decision`; canonical per-vendor-sunset-decision-workflow + per-vendor-sunset-decision-multi-stakeholder-approval-chain + per-vendor-sunset-decision-data-portability-execution-runbook + per-vendor-sunset-decision-vendor-rotation-cost-calculator + per-vendor-sunset-decision-fallback-vendor-activation-protocol + per-vendor-sunset-decision-model-tier-rerouting + per-vendor-sunset-decision-prompt-template-migration + per-vendor-sunset-decision-fine-tune-model-migration + per-vendor-sunset-decision-vector-store-migration + per-vendor-sunset-decision-knowledge-base-migration + per-vendor-sunset-decision-customer-impact-broadcast-protocol + per-vendor-sunset-decision-eval-pipeline-decommission + per-vendor-sunset-decision-guardrail-pipeline-decommission + per-vendor-sunset-decision-observability-pipeline-decommission + per-vendor-sunset-decision-CFO/CSO/CTO/CDPO/board-summary-engine + per-vendor-sunset-decision-rollback-engine + per-vendor-sunset-decision-LLM-judge-validation; 18 pitfalls + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; default 7:1 Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; **DEPLOY SUCCEEDED + canonical-alias rotated**)",
+      "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED + DEPLOY SUCCEEDED + canonical-alias rotated + branch merged to master)\n- **Reason:** Closes the per-vendor-sunset-decision-orchestration gap that every $5M+ GMV operator running 5+ AI-enabled vendors (Klaviyo AI + Iterable AI + Braze AI + Cordial AI + Attentive AI + HubSpot AI + Salesforce Marketing Cloud Einstein + Salesforce Agentforce + Shopify Magic + Shopify Sidekick + Gorgias AI Agent + Kustomer AI + Zendesk AI + Intercom Fin + Ada + Forethought + Recharge AI + Skio AI + Smile.io AI + Yotpo AI + LoyaltyLion AI + Rebuy AI + Nosto AI + Dynamic Yield + Triple Whale Moby + Northbeam AI + Polar AI + Recart AI + AdCreative.ai + Pencil AI + Postscript AI + Segment AI + mParticle AI + RudderStack AI + Snowplow AI + Amplitude AI + Mi"
+    },
+    {
       "heading": "[2026-09-16 17:40] Skill tick: keep — Move #185 ai-vendor-portfolio-roi-dashboard (FIRST Tier-1 + FIRST P0 in unique category: ai-vendor-portfolio-roi; canonical single-page observability surface for Move #181 + Move #182 + Move #183 + Move #184 — 20 overlays (per-vendor-portfolio-roi-card 28vendors×12fields=336cells + per-customer-AI-trust-score-cohort-LTV-overlay 5cohorts×4trust-bands=20cells + cross-vendor-brand-voice-drift-overlay 5channels×4weeks=20cells + per-vendor-sunset-trigger-alert-banner 5sunset-trigger-types + per-vendor-renewal-cadence-tickler-banner 60days×28vendors + cross-vendor-portfolio-PnL-trend 12months×5channels=60cells + per-vendor-cost-per-resolution-trend 6months×28vendors=168cells + per-vendor-deflection-rate-trend 6months×28vendors=168cells + per-vendor-fallback-rate-trend 6months×28vendors=168cells + per-vendor-portfolio-margin-overlay 28vendors + per-vendor-AI-hallucination-rate-overlay 6months×28vendors=168cells + per-vendor-data-export-portability-test-score-overlay 28vendors + per-vendor-kill-switch-drill-pass-rate-overlay 28vendors + per-vendor-PII-exfil-risk-overlay 28vendors + per-vendor-token-bill-trend 12months×28vendors=336cells + per-vendor-eval-pipeline-pass-rate-overlay 6months×28vendors=168cells + per-vendor-observability-pipeline-trace-coverage-overlay 6months×28vendors=168cells + per-vendor-guardrail-pipeline-prompt-injection-defense-pass-rate-overlay 6months×28vendors=168cells + per-vendor-onboarding-completeness-coverage-overlay 28vendors×14onboarding-steps=392cells + CFO/CSO/CTO/CDPO/board-summary-dashboards); 18 pitfalls + 18 Fix: + 8 verification gates A-H + 6-pillar Path A/B/C/D/E/F framework; 9:1 default Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; **DEPLOY SUCCEEDED + canonical-alias rotated**)",
       "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED + DEPLOY SUCCEEDED + canonical-alias rotated)\n- **Reason:** Closes the canonical-single-page-at-a-glance-observability gap that every $5M+ GMV operator running 5+ AI-enabled vendors (Klaviyo AI + Iterable AI + Braze AI + Cordial AI + Attentive AI + HubSpot AI + Salesforce Marketing Cloud Einstein + Salesforce Agentforce + Shopify Magic + Shopify Sidekick + Gorgias AI Agent + Kustomer AI + Zendesk AI + Intercom Fin + Ada + Forethought + Recharge AI + Skio AI + Smile.io AI + Yotpo AI + LoyaltyLion AI + Rebuy AI + Nosto AI + Dynamic Yield + Triple Whale Moby + Northbeam AI + Polar AI + Recart AI + AdCreative.ai + Pencil AI + Segment AI + mParticle AI + RudderStack AI + Snowplow AI + Amplitude AI + Mixpanel AI + Heap Illuminate + FullS"
     },
@@ -12560,6 +12564,10 @@
     {
       "heading": "[2026-09-16 13:24] Dashboard tick: keep — `/` + `/today` add 12-month revenue trajectory projection (Move #6.16 cross-page-intelligence + interactive-tool)",
       "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED + DEPLOY SUCCEEDED at canonical alias)\n- **Reason:** Closes the operator's \"what does my next year look like?\" loop. The dashboard already had `RealizedRoiPanel` (captured/ready/blocked totals) + `Top10ProjectionPanel` (annual lift IF you ship every move) + `RetentionProjectionPanel` (per-tier LTV lift) — but no view that answered \"**month-by-month**, as I progressively ship moves, what does my revenue curve look like?\" Until now an operator had to mentally chain those 3 panels together to estimate their M3 vs M6 vs M12 revenue. This tick ships a single panel — `<TrajectoryPanel />` — that walks every remaining Top-10 move in priority order, assigns each one a ship-month based on cumulative `daysToShip` (ceil(cumDays/30), clamped t"
+    },
+    {
+      "heading": "[2026-09-16 19:40] Dashboard tick: keep — Trajectory export buttons on `/` + `/today` (Move #6.17 one-click-action + cross-page-intelligence)",
+      "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED + DEPLOY SUCCEEDED + canonical alias rotated + GitHub push SUCCEEDED)\n- **Reason:** Closes the \"paste my 12-month curve into Slack / Notion / Linear / email\" loop that Move #6.16's `<TrajectoryPanel />` left open. Operators have a fully-personalized trajectory panel on `/` and `/today` with a \"Copy report\" markdown button, but until now they had three ways to extract the curve to share: (a) hit Copy report and paste into a doc manually, (b) screenshot the bar chart (lossy, can't paste into a spreadsheet), or (c) give up and just describe the curve in words. This tick ships a symmetric `<TrajectoryExportButton />` companion that exposes two real file downloads — CSV (metadata block + 12-row monthly table, RFC 4180 escaping, drops st"
     }
   ],
   "skills": [
@@ -31149,6 +31157,25 @@
       "pitfallCount": 18,
       "sourceCount": 0,
       "size": 72739,
+      "lastTouched": "2026-09-16"
+    },
+    {
+      "file": "187-cross-vendor-ai-portfolio-sunset-rollback-orchestrator.md",
+      "name": "187-cross-vendor-ai-portfolio-sunset-rollback-orchestrator",
+      "title": "Cross-vendor AI portfolio sunset-rollback orchestrator (Move #187)",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-16",
+      "sources": [],
+      "blurb": "Move #187 is the **canonical cross-vendor-AI-portfolio-sunset-rollback-engine + cross-vendor-AI-portfolio-sunset-rollback-multi-stakeholder-approval-chain + cross-vendor-AI-portfolio-sunset-rollback-decision-reversal-...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 82052,
       "lastTouched": "2026-09-16"
     },
     {
@@ -53027,6 +53054,34 @@
   ],
   "gitCommits": [
     {
+      "sha": "d1e16b2",
+      "date": "2026-09-16T19:40:54Z",
+      "author": "mattiasadem",
+      "subject": "docs(journal): Move #6.17 trajectory export — DEPLOY SUCCEEDED + alias rotated + GitHub push ok",
+      "body": ""
+    },
+    {
+      "sha": "4e175d8",
+      "date": "2026-09-16T19:40:12Z",
+      "author": "mattiasadem",
+      "subject": "feat(dashboard): Move #6.17 — trajectory export (CSV + Markdown download)",
+      "body": "One-click CSV + Markdown download of the 12-month revenue projection\npanel on / and /today. Closes the 'paste my curve into Slack/Notion/\nLinear' loop that Move #6.16 left open.\n\n- dashboard/src/lib/trajectory-export.ts (NEW ~165 LOC): pure-logic\n  builders. buildTrajectoryCsv() emits a metadata block + 12-row\n  monthly table with RFC 4180 escaping. buildTrajectoryMarkdown()\n  mirrors projection.summaryMarkdown + an export footer line.\n- dashboard/src/components/trajectory-export-button.tsx (NEW ~165 LOC):\n  TrajectoryExportButton client component, mirrors Top10ExportButton\n  + ProgressExportButton visual style. Two pill buttons (CSV + MD)\n  with hover preview title showing the projection summary.\n- dashboard/src/components/trajectory-projection-panel.tsx: mounts\n  <TrajectoryExportButton /> next to the existing CopyButton in the\n  panel header (both / and /today routes pick it up).\n\nStorage: same canonical localStorage keys as the panel\n(ecom-ops:your-store:v1 + ecom-ops:shipped-playbooks:v1) with\ncross-tab storage-event sync.\n\nBundle: /today route 146kB → 147kB (+1kB). Build SUCCEEDED on first\ntry, deploy SUCCEEDED on first try, canonical alias rotated to\ndashboard-o40ips2mz-...vercel.app."
+    },
+    {
+      "sha": "a066ad6",
+      "date": "2026-09-16T18:57:37Z",
+      "author": "hermesagent",
+      "subject": "journal: Move #186 ai-vendor-sunset-decision-orchestrator tick (keep; deploy succeeded; canonical alias rotated)",
+      "body": ""
+    },
+    {
+      "sha": "a4a42ea",
+      "date": "2026-09-16T18:56:50Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #186 ai-vendor-sunset-decision-orchestrator (FIRST Tier-1 + FIRST P0 in unique category ai-vendor-sunset-decision; canonical per-vendor-sunset-decision-workflow + multi-stakeholder-approval-chain + data-portability-execution-run",
+      "body": ""
+    },
+    {
       "sha": "3a552ab",
       "date": "2026-09-16T17:49:08Z",
       "author": "hermesagent",
@@ -54397,34 +54452,6 @@
       "author": "skill-builder-cron",
       "subject": "journal: tick 2026-07-14 20:45 — keep — influencer-creator-tax-compliance (Move #68, FIRST Tier-1 + P0 in category: creator-tax, 11:1 Year-1 ROI Path B at $3M GMV, 18 numbered pitfalls)",
       "body": ""
-    },
-    {
-      "sha": "a26a489",
-      "date": "2026-07-14T20:45:50Z",
-      "author": "skill-builder-cron",
-      "subject": "skill: influencer-creator-tax-compliance (Move #68, FIRST Tier-1 + P0 in category: creator-tax, 11:1 Year-1 ROI Path B at $3M GMV, 18 numbered pitfalls)",
-      "body": ""
-    },
-    {
-      "sha": "9621115",
-      "date": "2026-07-14T19:25:01Z",
-      "author": "mattiasadem",
-      "subject": "journal: tick 2026-07-14 19:25 — keep — ecommerce-insurance-operations + risk-transfer (Move #67, FIRST Tier-1 + P0 in category: insurance-operations, 9:1 Year-1 ROI Path B at $3M GMV, 18 numbered pitfalls)",
-      "body": ""
-    },
-    {
-      "sha": "2a3ef32",
-      "date": "2026-07-14T19:24:11Z",
-      "author": "mattiasadem",
-      "subject": "skill: ecommerce-insurance-operations (Move #67, FIRST Tier-1 + P0 in category: insurance-operations, 9:1 Year-1 ROI Path B at $3M GMV, 18 numbered pitfalls)",
-      "body": ""
-    },
-    {
-      "sha": "ea4d312",
-      "date": "2026-07-14T18:14:28Z",
-      "author": "mattiasadem",
-      "subject": "journal: keep skill 66 global tax filing operations",
-      "body": ""
     }
   ],
   "counts": {
@@ -54433,8 +54460,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 104,
-    "skills": 185,
+    "journalEntries": 106,
+    "skills": 186,
     "gitCommits": 200
   }
 }
