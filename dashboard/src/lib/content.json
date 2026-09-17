@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-17T01:40:45.795Z",
+  "generatedAt": "2026-09-17T02:45:41.610Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-09-17 01:40] Skill tick: keep — Move #192 ai-vendor-portfolio-incident-cost-attribution-engine (FIRST Tier-1 + FIRST P0 in unique category `ai-vendor-incident-cost-attribution`; canonical fleet-level-AI-vendor-portfolio-incident-direct-cost-calculator + fleet-level-AI-vendor-portfolio-incident-indirect-cost-calculator + fleet-level-AI-vendor-portfolio-incident-opportunity-cost-calculator + fleet-level-AI-vendor-portfolio-incident-IRS-incident-cost-deduction-pack + fleet-level-AI-vendor-portfolio-incident-cyber-insurance-claim-pack + fleet-level-AI-vendor-portfolio-incident-per-vendor-cost-per-resolution-engine + fleet-level-AI-vendor-portfolio-incident-per-incident-class-cost-band-engine + fleet-level-AI-vendor-portfolio-incident-portfolio-wide-incident-cost-rollup + cost-attribution-CFO/CSO/CTO/board-summary; 18 pitfalls + 18 Fix: + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; 8:1 default Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; **DEPLOY SUCCEEDED + canonical-alias rotated**)",
+      "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED + DEPLOY SUCCEEDED + canonical-alias rotated + branch merged to master)\n- **Reason:** Closes the fleet-level-AI-vendor-portfolio-incident-COST-ATTRIBUTION gap that every $5M+ GMV DTC operator running 5+ AI-enabled vendors needs but no other Move in the dashboard ships — it is the FINANCIAL cousin to Move #188 (incident-response-orchestrator) + Move #189 (incident-recovery-orchestrator) + Move #190 (post-mortem-engine) + Move #191 (cross-incident-pattern-recognition-engine), the layer where the operator moves from **\"Move #188 contained the gpt-4o upstream outage in 14 minutes + Move #189 recovered portfolio-state in 14 days + Move #190 published the post-mortem in 7 days + Move #191 surfaced that the same eval-pipeline-failure root"
+    },
+    {
       "heading": "[2026-09-17 00:50] Skill tick: keep — Move #191 ai-vendor-portfolio-incident-cross-incident-pattern-recognition-engine (FIRST Tier-1 + FIRST P0 in unique category `ai-vendor-cross-incident-pattern`; canonical fleet-level-AI-vendor-portfolio-incident-knowledge-base-archive-indexer + fleet-level-AI-vendor-portfolio-incident-semantic-embedding-clustering-engine + fleet-level-AI-vendor-portfolio-incident-cross-vendor-incident-correlation-engine + fleet-level-AI-vendor-portfolio-incident-temporal-incident-clustering-engine + fleet-level-AI-vendor-portfolio-incident-seasonal-incident-pattern-engine + fleet-level-AI-vendor-portfolio-incident-per-incident-class-prevention-plan-rollup + fleet-level-AI-vendor-portfolio-incident-per-vendor-prevention-plan-rollup + fleet-level-AI-vendor-portfolio-incident-fleet-level-prevention-plan-effectiveness-engine + fleet-level-AI-vendor-portfolio-incident-CRO-pattern-acknowledgment-engine + fleet-level-AI-vendor-portfolio-incident-prevention-plan-rewrite-trigger + fleet-level-AI-vendor-portfolio-incident-per-incident-class-prevention-plan-rewrite-engine + fleet-level-AI-vendor-portfolio-incident-per-vendor-prevention-plan-rewrite-engine + fleet-level-AI-vendor-portfolio-incident-prevention-plan-rewrite-Move-#181-prevention-state-update + fleet-level-AI-vendor-portfolio-incident-cross-incident-pattern-recognition-dashboard; 18 pitfalls + 18 Fix: + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; 7:1 default Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; **DEPLOY SUCCEEDED + canonical-alias rotated**)",
       "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED + DEPLOY SUCCEEDED + canonical-alias rotated + branch merged to master)\n- **Reason:** Closes the fleet-level-AI-vendor-portfolio-incident-CROSS-INCIDENT-PATTERN-RECOGNITION gap that every $5M+ GMV DTC operator running 5+ AI-enabled vendors needs but no other Move in the dashboard ships — it is the AFTERMATH cousin to Move #190 (post-mortem-engine) and Move #189 (incident-recovery-orchestrator), the layer where the operator moves from **\"Move #190 fleet-level-AI-vendor-portfolio-incident-post-mortem-engine has been live for 6 months and we have 47 published postmortems in our knowledge-base-archive (Move #190 Pillar 6), but the cross-incident-pattern-recognition-engine (Move #190 Pillar 6 sub-engine) only surfaces patterns on ad-hoc"
     },
@@ -12588,6 +12592,10 @@
     {
       "heading": "[2026-09-16 19:40] Dashboard tick: keep — Trajectory export buttons on `/` + `/today` (Move #6.17 one-click-action + cross-page-intelligence)",
       "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED + DEPLOY SUCCEEDED + canonical alias rotated + GitHub push SUCCEEDED)\n- **Reason:** Closes the \"paste my 12-month curve into Slack / Notion / Linear / email\" loop that Move #6.16's `<TrajectoryPanel />` left open. Operators have a fully-personalized trajectory panel on `/` and `/today` with a \"Copy report\" markdown button, but until now they had three ways to extract the curve to share: (a) hit Copy report and paste into a doc manually, (b) screenshot the bar chart (lossy, can't paste into a spreadsheet), or (c) give up and just describe the curve in words. This tick ships a symmetric `<TrajectoryExportButton />` companion that exposes two real file downloads — CSV (metadata block + 12-row monthly table, RFC 4180 escaping, drops st"
+    },
+    {
+      "heading": "[2026-09-17 01:48] Dashboard tick: keep — `/` + `/today` add trajectory check-in banner with vs-last-snapshot delta (Move #128.ak cross-page-intelligence + state-persistence)",
+      "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED + DEPLOY SUCCEEDED + canonical alias rotated + GitHub push SUCCEEDED)\n- **Reason:** Closes the operator's \"when did I last look at this curve?\" engagement loop. The trajectory panel (Move #6.16) and its CSV/MD export (Move #6.17) are pure read-side artifacts — until now an operator had no way to capture a baseline snapshot, come back 30 days later, and see \"what changed in my curve?\" This tick ships a quarterly check-in banner on `/` and `/today` that (a) surfaces a reminder when `daysSinceLatestCheckin >= 30` (or never set), (b) on save captures the current projection's key numbers (AOV/orders/margin/baseline/peak/Year-1 lift low-high/moves shipped), (c) renders a 5-tile delta grid vs the most-recent check-in older than the 30d co"
     }
   ],
   "skills": [
@@ -31327,6 +31335,25 @@
       "pitfallCount": 18,
       "sourceCount": 0,
       "size": 101367,
+      "lastTouched": "2026-09-17"
+    },
+    {
+      "file": "193-ai-vendor-portfolio-incident-regulatory-fine-calculator.md",
+      "name": "193-ai-vendor-portfolio-incident-regulatory-fine-calculator",
+      "title": "AI vendor portfolio incident regulatory fine calculator (Move #193)",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-17",
+      "sources": [],
+      "blurb": "Move #193 is the **canonical fleet-level-AI-vendor-portfolio-incident-regulatory-fine-calculator + fleet-level-AI-vendor-portfolio-incident-per-jurisdiction-fine-table + fleet-level-AI-vendor-portfolio-incident-per-in...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 119879,
       "lastTouched": "2026-09-17"
     },
     {
@@ -53169,6 +53196,27 @@
   ],
   "gitCommits": [
     {
+      "sha": "f93db70",
+      "date": "2026-09-17T01:48:22Z",
+      "author": "hermesagent",
+      "subject": "docs(journal): Move #128.ak trajectory check-in tick entry",
+      "body": ""
+    },
+    {
+      "sha": "34f77f1",
+      "date": "2026-09-17T01:46:42Z",
+      "author": "hermesagent",
+      "subject": "feat(dashboard): Move #128.ak trajectory check-in banner — quarterly review with vs-last-snapshot delta",
+      "body": "- dashboard/src/lib/trajectory-checkin.ts (NEW): TrajectoryCheckinPayload schema, load/save/add/delete helpers, ring buffer (max 24 entries), isValidShape validator, daysSinceCheckin/shouldShowReminder/checkinWithinCompareWindow/computeCheckinDelta derivations, fmtCheckinDate/fmtCheckinRelative formatters, custom DOM event 'ecom-ops:trajectory-checkins:update' for same-tab sync. Storage key 'ecom-ops:trajectory-checkins:v1'.\n- dashboard/src/components/trajectory-checkin-banner.tsx (NEW): TrajectoryCheckinBanner client component with two render variants:\n  - Empty-state invitation when no check-in has ever been recorded — soft amber dashed card with 'Save current trajectory' button.\n  - Full variant when at least one snapshot exists — reminder banner (amber 2px border when daysSinceLast >= 30) + Save snapshot button + 5-tile delta grid (peak revenue / Year-1 lift / baseline / moves shipped / AOV % delta) computed against the most-recent check-in older than the 30d compare window + collapsible history table (Copy-button for Markdown export + per-row delete).\n  - Compact prop for /today mount (tighter padding); full variant for / mount.\n- dashboard/app/page.tsx: mount <TrajectoryCheckinBanner /> inside new <section id='trajectory-checkin-banner'> immediately below TrajectoryPanel.\n- dashboard/app/today/page.tsx: mount <TrajectoryCheckinBanner compact /> inside new <section> immediately below TrajectoryPanel.\n- All math reuses canonical TrajectoryProjection engine + Your-store + shipped-playbooks localStorage keys; same-tab sync via custom event; cross-tab sync via storage event.\n\nOperator now sees: (a) a quarterly cadence nudge on / + /today, (b) a clean before/after delta vs the last snapshot, (c) a full audit trail of every saved check-in. Closes the engagement loop on Move #6.16 / 6.17."
+    },
+    {
+      "sha": "8ad6438",
+      "date": "2026-09-17T01:42:46Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #192 ai-vendor-portfolio-incident-cost-attribution-engine (FIRST Tier-1 + FIRST P0 in unique category ai-vendor-incident-cost-attribution; canonical fleet-level-AI-vendor-portfolio-incident-direct-cost-calculator + indirect-cost",
+      "body": ""
+    },
+    {
       "sha": "20a13de",
       "date": "2026-09-17T00:37:30Z",
       "author": "mattiasadem",
@@ -54546,27 +54594,6 @@
       "author": "mattiasadem",
       "subject": "skill: recommerce + reverse-logistics recommerce + secondary-market resale operations (Move #75, FIRST Tier-1 + P0 in category: recommerce, 5:1-22:1 Year-1 ROI Path B, 18 numbered pitfalls)",
       "body": ""
-    },
-    {
-      "sha": "8710efd",
-      "date": "2026-07-15T07:32:24Z",
-      "author": "mattiasadem",
-      "subject": "journal: tick 2026-07-15 07:30 — keep — customs-brokerage-cross-border-customs-operations (Move #74, FIRST Tier-1 + P0 in category: customs-brokerage, 5:1–18:1 Year-1 ROI Path B, 18 numbered pitfalls)",
-      "body": ""
-    },
-    {
-      "sha": "f6f8dda",
-      "date": "2026-07-15T07:32:06Z",
-      "author": "mattiasadem",
-      "subject": "skill: customs brokerage + cross-border customs operations (Move #74, FIRST Tier-1 + FIRST P0 in category: customs-brokerage, 5:1–18:1 Year-1 ROI, 18 numbered pitfalls)",
-      "body": ""
-    },
-    {
-      "sha": "f94d36c",
-      "date": "2026-07-15T07:01:37Z",
-      "author": "mattiasadem",
-      "subject": "feat(dashboard): 3PL calculator inherits Your-store economics (Move #12)",
-      "body": ""
     }
   ],
   "counts": {
@@ -54575,8 +54602,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 111,
-    "skills": 191,
+    "journalEntries": 113,
+    "skills": 192,
     "gitCommits": 200
   }
 }
