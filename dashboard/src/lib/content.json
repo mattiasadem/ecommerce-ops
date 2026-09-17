@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-17T02:45:41.610Z",
+  "generatedAt": "2026-09-17T03:50:43.409Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12145,6 +12145,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-17 02:43] Skill tick: keep — Move #193 ai-vendor-portfolio-incident-regulatory-fine-calculator (FIRST Tier-1 + FIRST P0 in unique category `ai-vendor-incident-regulatory-fine`; canonical fleet-level-AI-vendor-portfolio-incident-regulatory-fine-calculator + fleet-level-AI-vendor-portfolio-incident-per-jurisdiction-fine-table + fleet-level-AI-vendor-portfolio-incident-per-incident-class-fine-calculator + fleet-level-AI-vendor-portfolio-incident-fine-cap-enforcer + fleet-level-AI-vendor-portfolio-incident-GDPR-Article-83-fine-calculator + fleet-level-AI-vendor-portfolio-incident-CCPA-CPRA-fine-calculator + fleet-level-AI-vendor-portfolio-incident-EU-AI-Act-fine-calculator + fleet-level-AI-vendor-portfolio-incident-HIPAA-breach-notification-rule-fine-calculator + fleet-level-AI-vendor-portfolio-incident-FTC-fine-calculator + fleet-level-AI-vendor-portfolio-incident-FCC-fine-calculator + fleet-level-AI-vendor-portfolio-incident-state-AG-fine-calculator + fleet-level-AI-vendor-portfolio-incident-cross-jurisdictional-fine-aggregator + fleet-level-AI-vendor-portfolio-incident-fine-prevention-engine + fleet-level-AI-vendor-portfolio-incident-regulatory-fine-dashboard; 18 pitfalls + 18 Fix: + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; 7:1 default Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; **DEPLOY SUCCEEDED + canonical-alias rotated**)",
+      "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED + DEPLOY SUCCEEDED + canonical-alias rotated + branch merged to master)\n- **Reason:** Closes the fleet-level-AI-vendor-portfolio-incident-REGULATORY-FINE-EXPOSURE gap that every $5M+ GMV DTC operator running 5+ AI-enabled vendors needs but no other Move in the dashboard ships — it is the FINANCIAL cousin to Move #188 (incident-response-orchestrator) + Move #189 (incident-recovery-orchestrator) + Move #190 (post-mortem-engine) + Move #191 (cross-incident-pattern-recognition-engine) + Move #192 (cost-attribution-engine), the layer where the operator moves from **\"Move #188 fleet-level-AI-vendor-portfolio-incident-response-orchestrator surfaces that a SEV-1 incident may trigger a regulatory fine of $500k-$50M across GDPR-Article-83 + "
+    },
     {
       "heading": "[2026-09-17 01:40] Skill tick: keep — Move #192 ai-vendor-portfolio-incident-cost-attribution-engine (FIRST Tier-1 + FIRST P0 in unique category `ai-vendor-incident-cost-attribution`; canonical fleet-level-AI-vendor-portfolio-incident-direct-cost-calculator + fleet-level-AI-vendor-portfolio-incident-indirect-cost-calculator + fleet-level-AI-vendor-portfolio-incident-opportunity-cost-calculator + fleet-level-AI-vendor-portfolio-incident-IRS-incident-cost-deduction-pack + fleet-level-AI-vendor-portfolio-incident-cyber-insurance-claim-pack + fleet-level-AI-vendor-portfolio-incident-per-vendor-cost-per-resolution-engine + fleet-level-AI-vendor-portfolio-incident-per-incident-class-cost-band-engine + fleet-level-AI-vendor-portfolio-incident-portfolio-wide-incident-cost-rollup + cost-attribution-CFO/CSO/CTO/board-summary; 18 pitfalls + 18 Fix: + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; 8:1 default Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; **DEPLOY SUCCEEDED + canonical-alias rotated**)",
       "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED + DEPLOY SUCCEEDED + canonical-alias rotated + branch merged to master)\n- **Reason:** Closes the fleet-level-AI-vendor-portfolio-incident-COST-ATTRIBUTION gap that every $5M+ GMV DTC operator running 5+ AI-enabled vendors needs but no other Move in the dashboard ships — it is the FINANCIAL cousin to Move #188 (incident-response-orchestrator) + Move #189 (incident-recovery-orchestrator) + Move #190 (post-mortem-engine) + Move #191 (cross-incident-pattern-recognition-engine), the layer where the operator moves from **\"Move #188 contained the gpt-4o upstream outage in 14 minutes + Move #189 recovered portfolio-state in 14 days + Move #190 published the post-mortem in 7 days + Move #191 surfaced that the same eval-pipeline-failure root"
@@ -31354,6 +31358,25 @@
       "pitfallCount": 18,
       "sourceCount": 0,
       "size": 119879,
+      "lastTouched": "2026-09-17"
+    },
+    {
+      "file": "194-ai-vendor-portfolio-incident-customer-impact-broadcast-engine.md",
+      "name": "194-ai-vendor-portfolio-incident-customer-impact-broadcast-engine",
+      "title": "AI vendor portfolio incident customer impact broadcast engine (Move #194)",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-17",
+      "sources": [],
+      "blurb": "Move #194 is the **canonical fleet-level-AI-vendor-portfolio-incident-customer-impact-broadcast-engine + fleet-level-AI-vendor-portfolio-incident-per-tier-customer-communication-engine + fleet-level-AI-vendor-portfoli...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 104077,
       "lastTouched": "2026-09-17"
     },
     {
@@ -53196,6 +53219,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "f5952b9",
+      "date": "2026-09-17T02:48:14Z",
+      "author": "mattiasadem",
+      "subject": "journal: append Move #193 skill tick keep entry",
+      "body": ""
+    },
+    {
+      "sha": "db88049",
+      "date": "2026-09-17T02:47:42Z",
+      "author": "mattiasadem",
+      "subject": "skill: Move #193 ai-vendor-portfolio-incident-regulatory-fine-calculator (FIRST Tier-1 + FIRST P0 in unique category ai-vendor-incident-regulatory-fine; canonical 70+-jurisdiction-fine-table + 80+-incident-class-fine-calculator + fine-cap-e",
+      "body": ""
+    },
+    {
       "sha": "f93db70",
       "date": "2026-09-17T01:48:22Z",
       "author": "hermesagent",
@@ -54580,20 +54617,6 @@
       "author": "mattiasadem",
       "subject": "skill: contact center + omnichannel customer-engagement operations (Move #76)",
       "body": ""
-    },
-    {
-      "sha": "cc6e340",
-      "date": "2026-07-15T09:48:56Z",
-      "author": "mattiasadem",
-      "subject": "journal: tick 2026-07-15 09:45 — keep — recommerce-secondary-market-resale-operations (Move #75, FIRST Tier-1 + P0 in category: recommerce, 5:1-22:1 Year-1 ROI Path B, 18 numbered pitfalls)",
-      "body": ""
-    },
-    {
-      "sha": "807c84b",
-      "date": "2026-07-15T09:48:22Z",
-      "author": "mattiasadem",
-      "subject": "skill: recommerce + reverse-logistics recommerce + secondary-market resale operations (Move #75, FIRST Tier-1 + P0 in category: recommerce, 5:1-22:1 Year-1 ROI Path B, 18 numbered pitfalls)",
-      "body": ""
     }
   ],
   "counts": {
@@ -54602,8 +54625,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 113,
-    "skills": 192,
+    "journalEntries": 114,
+    "skills": 193,
     "gitCommits": 200
   }
 }
