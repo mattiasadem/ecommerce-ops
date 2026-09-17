@@ -298,3 +298,262 @@ export const TRAJECTORY_FORMATTERS = {
   fmtMoney,
   fmtRoi,
 };
+
+// ---------------------------------------------------------------------------
+// Move #128.al — Trajectory scenario comparator
+// ---------------------------------------------------------------------------
+
+/**
+ * Optional extra-days overrides applied per move when computing an
+ * alternate-scenario trajectory. Each entry adds the given days to
+ * the move's `daysToShip` *before* the cumulative-day-to-month
+ * conversion, effectively pushing the move's ship-month later in the
+ * horizon.
+ *
+ * Example: `{ "01-abandoned-cart-flow-klaviyo": 30 }` pushes Move #1
+ * out by 30 days (~1 ship-month later).
+ *
+ * The overrides do NOT change the priority-rank order — they only
+ * change each move's individual ship-month.
+ */
+export type TrajectoryDelayMap = Record<string, number>;
+
+/**
+ * Same inputs as `projectTrajectory` plus an optional `delays` map.
+ * When `delays` is omitted or empty, this is bit-identical to
+ * `projectTrajectory(store, shipped)` — the override is purely additive.
+ *
+ * Use case: operator wants to know "if I delay Move #5 by 1 month,
+ * what does my Year-1 look like?" Run `projectTrajectoryWithDelays(
+ * store, shipped, { [moveId]: 30 })` and diff against the un-delayed
+ * projection.
+ */
+export function projectTrajectoryWithDelays(
+  inputs: YourStoreInputs | null,
+  shippedPlaybooks: Record<string, unknown>,
+  delays: TrajectoryDelayMap = {},
+): TrajectoryProjection {
+  // No-op fast path: when no delays are set, defer to the canonical
+  // engine so behavior is bit-identical.
+  const hasDelays = Object.values(delays).some((d) => d && d > 0);
+  if (!hasDelays) return projectTrajectory(inputs, shippedPlaybooks);
+
+  const store: YourStoreInputs = inputs ?? YOUR_STORE_DEFAULTS;
+  const baselineMonthlyRevenue = Math.max(0, store.aov * store.monthlyOrders);
+  const baselineAnnualRevenue = baselineMonthlyRevenue * TRAJECTORY_HORIZON_MONTHS;
+
+  const shippedSet = new Set(Object.keys(shippedPlaybooks));
+
+  const queued = MOVE_RECOMMENDATIONS.filter((m) => !shippedSet.has(m.id));
+  queued.sort((a, b) => {
+    if (a.priorityRank !== b.priorityRank) return a.priorityRank - b.priorityRank;
+    return a.id.localeCompare(b.id);
+  });
+
+  const movesOnHorizon: TrajectoryProjection["movesOnHorizon"] = [];
+  const movesBeyondHorizon: MoveRecommendation[] = [];
+  let cumDays = 0;
+  for (const m of queued) {
+    const extra = delays[m.id] ?? 0;
+    // Override the move's daysToShip with the (positive) delay added.
+    const effectiveDays = m.daysToShip + (extra > 0 ? extra : 0);
+    cumDays += effectiveDays;
+    const shipMonthRaw = Math.ceil(cumDays / 30);
+    const shipMonth = Math.min(shipMonthRaw, TRAJECTORY_HORIZON_MONTHS);
+    const monthlyLiftLow = baselineMonthlyRevenue * m.liftLow;
+    const monthlyLiftHigh = baselineMonthlyRevenue * m.liftHigh;
+    const entry = {
+      move: m,
+      shipMonth,
+      monthlyLiftLow,
+      monthlyLiftHigh,
+      monthlyCostLow: m.costLow,
+      monthlyCostHigh: m.costHigh,
+    };
+    if (shipMonthRaw > TRAJECTORY_HORIZON_MONTHS) {
+      movesBeyondHorizon.push(m);
+    }
+    movesOnHorizon.push(entry);
+  }
+
+  const months: MonthTrajectory[] = [];
+  for (let m = 1; m <= TRAJECTORY_HORIZON_MONTHS; m++) {
+    let liftLow = 0;
+    let liftHigh = 0;
+    let costLow = 0;
+    let costHigh = 0;
+    const movesShippedThisMonth: string[] = [];
+    let movesShippedCumulative = 0;
+    for (const entry of movesOnHorizon) {
+      if (entry.shipMonth <= m) {
+        liftLow += entry.monthlyLiftLow;
+        liftHigh += entry.monthlyLiftHigh;
+        costLow += entry.monthlyCostLow;
+        costHigh += entry.monthlyCostHigh;
+        movesShippedCumulative += 1;
+        if (entry.shipMonth === m) {
+          movesShippedThisMonth.push(entry.move.name);
+        }
+      }
+    }
+    months.push({
+      month: m,
+      revenueLow: baselineMonthlyRevenue + liftLow,
+      revenueHigh: baselineMonthlyRevenue + liftHigh,
+      costLow,
+      costHigh,
+      movesShippedThisMonth,
+      movesShippedCumulative,
+    });
+  }
+
+  let year1RevenueLow = 0;
+  let year1RevenueHigh = 0;
+  let year1CostLow = 0;
+  let year1CostHigh = 0;
+  for (const mo of months) {
+    year1RevenueLow += mo.revenueLow;
+    year1RevenueHigh += mo.revenueHigh;
+    year1CostLow += mo.costLow;
+    year1CostHigh += mo.costHigh;
+  }
+  const year1LiftLow = Math.max(0, year1RevenueLow - baselineAnnualRevenue);
+  const year1LiftHigh = Math.max(0, year1RevenueHigh - baselineAnnualRevenue);
+  const year1RoiLow = year1CostHigh > 0 ? year1LiftLow / year1CostHigh : Infinity;
+  const year1RoiHigh = year1CostHigh > 0 ? year1LiftHigh / year1CostHigh : Infinity;
+
+  // Headline (note: doesn't say "delayed" — the comparator renders the
+  // delta separately so this projection stays bit-identical to the
+  // un-delayed one in shape).
+  let headline: string;
+  if (movesOnHorizon.length === 0) {
+    headline = `Every Top-10 move already shipped. Your 12-month revenue is flat at ${fmtMoney(baselineMonthlyRevenue)}/mo · ${fmtMoney(baselineAnnualRevenue)}/yr (no further lift from this queue).`;
+  } else {
+    headline = `Phased rollout unlocks ${fmtMoney(year1LiftLow)}–${fmtMoney(year1LiftHigh)} Year-1 lift · ${fmtMoney(baselineMonthlyRevenue)}/mo baseline → peak ${fmtMoney(months[TRAJECTORY_HORIZON_MONTHS - 1].revenueHigh)}/mo by month 12 (${fmtRoi(year1RoiLow)}–${fmtRoi(year1RoiHigh)} Year-1 ROI).`;
+  }
+
+  const mdLines: string[] = [];
+  mdLines.push(`## 12-month revenue trajectory (${store.aov} AOV × ${store.monthlyOrders.toLocaleString("en-US")} orders/mo × ${(store.grossMargin * 100).toFixed(0)}% margin)`);
+  mdLines.push("");
+  mdLines.push(`- **Baseline monthly revenue:** ${fmtMoney(baselineMonthlyRevenue)}`);
+  mdLines.push(`- **Baseline annual revenue:** ${fmtMoney(baselineAnnualRevenue)}`);
+  mdLines.push(`- **Moves already shipped:** ${shippedSet.size} / ${MOVE_RECOMMENDATIONS.length}`);
+  mdLines.push(`- **Moves on horizon (≤12 mo):** ${movesOnHorizon.length}`);
+  if (movesBeyondHorizon.length) {
+    mdLines.push(`- **Moves beyond horizon (>12 mo):** ${movesBeyondHorizon.length} — ${movesBeyondHorizon.map((m) => m.name).join(", ")}`);
+  }
+  mdLines.push(`- **Year-1 incremental lift:** ${fmtMoney(year1LiftLow)} – ${fmtMoney(year1LiftHigh)}`);
+  mdLines.push(`- **Year-1 cumulative cost:** ${fmtMoney(year1CostLow)} – ${fmtMoney(year1CostHigh)}`);
+  mdLines.push(`- **Year-1 ROI band:** ${fmtRoi(year1RoiLow)} – ${fmtRoi(year1RoiHigh)}`);
+  mdLines.push("");
+  mdLines.push("### Monthly breakdown");
+  mdLines.push("");
+  mdLines.push("| Month | Revenue (low–high) | Monthly cost | Moves shipped |");
+  mdLines.push("|---|---|---|---|");
+  for (const mo of months) {
+    const movesShippedCell = mo.movesShippedThisMonth.length > 0
+      ? mo.movesShippedThisMonth.join(", ")
+      : (mo.movesShippedCumulative > 0 ? `(${mo.movesShippedCumulative} prior)` : "—");
+    mdLines.push(
+      `| M${mo.month} | ${fmtMoney(mo.revenueLow)}–${fmtMoney(mo.revenueHigh)} | ${fmtMoney(mo.costLow)}–${fmtMoney(mo.costHigh)} | ${movesShippedCell} |`,
+    );
+  }
+  mdLines.push("");
+  mdLines.push(
+    `_Generated from /trajectory (delayed scenario) — your-store inputs: AOV ${fmtMoney(store.aov)} × ${store.monthlyOrders.toLocaleString("en-US")} orders/mo × ${(store.grossMargin * 100).toFixed(0)}% margin._`,
+  );
+
+  return {
+    baselineMonthlyRevenue,
+    baselineAnnualRevenue,
+    months,
+    movesOnHorizon,
+    movesBeyondHorizon,
+    movesAlreadyShipped: shippedSet.size,
+    totalMoves: MOVE_RECOMMENDATIONS.length,
+    year1RevenueLow,
+    year1RevenueHigh,
+    year1CostLow,
+    year1CostHigh,
+    year1LiftLow,
+    year1LiftHigh,
+    year1RoiLow,
+    year1RoiHigh,
+    headline,
+    summaryMarkdown: mdLines.join("\n"),
+  };
+}
+
+/**
+ * Compute the signed delta between two projections. Used by the
+ * `<TrajectoryScenarioComparator />` to render the "delayed vs baseline"
+ * impact tiles. All values are `scenario - baseline`.
+ */
+export interface TrajectoryScenarioDelta {
+  year1LiftLowDelta: number;
+  year1LiftHighDelta: number;
+  year1CostLowDelta: number;
+  year1CostHighDelta: number;
+  year1RoiLowDelta: number;
+  year1RoiHighDelta: number;
+  /** Peak month revenue at the LOW end (scenario - baseline). */
+  peakRevenueLowDelta: number;
+  /** Peak month revenue at the HIGH end (scenario - baseline). */
+  peakRevenueHighDelta: number;
+  /** True when ANY delta is non-zero. */
+  hasImpact: boolean;
+}
+
+function peakRevenue(projection: TrajectoryProjection, side: "low" | "high"): number {
+  let best = 0;
+  for (const mo of projection.months) {
+    const v = side === "low" ? mo.revenueLow : mo.revenueHigh;
+    if (v > best) best = v;
+  }
+  return best;
+}
+
+export function computeTrajectoryScenarioDelta(
+  baseline: TrajectoryProjection,
+  scenario: TrajectoryProjection,
+): TrajectoryScenarioDelta {
+  const y1L = scenario.year1LiftLow - baseline.year1LiftLow;
+  const y1H = scenario.year1LiftHigh - baseline.year1LiftHigh;
+  const cL = scenario.year1CostLow - baseline.year1CostLow;
+  const cH = scenario.year1CostHigh - baseline.year1CostHigh;
+  const rL = scenario.year1RoiLow - baseline.year1RoiLow;
+  const rH = scenario.year1RoiHigh - baseline.year1RoiHigh;
+  const pL = peakRevenue(scenario, "low") - peakRevenue(baseline, "low");
+  const pH = peakRevenue(scenario, "high") - peakRevenue(baseline, "high");
+  const hasImpact =
+    Math.abs(y1L) > 0.01 ||
+    Math.abs(y1H) > 0.01 ||
+    Math.abs(cL) > 0.01 ||
+    Math.abs(cH) > 0.01 ||
+    Math.abs(pL) > 0.01 ||
+    Math.abs(pH) > 0.01;
+  return {
+    year1LiftLowDelta: y1L,
+    year1LiftHighDelta: y1H,
+    year1CostLowDelta: cL,
+    year1CostHighDelta: cH,
+    year1RoiLowDelta: rL,
+    year1RoiHighDelta: rH,
+    peakRevenueLowDelta: pL,
+    peakRevenueHighDelta: pH,
+    hasImpact,
+  };
+}
+
+/** Format a signed money delta with the canonical fmtMoney. */
+export function fmtTrajectoryDeltaMoney(amount: number): string {
+  if (Math.abs(amount) < 0.5) return "±$0";
+  return `${amount > 0 ? "+" : "-"}${fmtMoney(Math.abs(amount))}`;
+}
+
+/** Format a signed ROI delta with the canonical fmtRoi. */
+export function fmtTrajectoryDeltaRoi(amount: number): string {
+  if (!Number.isFinite(amount)) return "—";
+  if (Math.abs(amount) < 0.05) return "±0:1";
+  return `${amount > 0 ? "+" : "-"}${fmtRoi(Math.abs(amount))}`;
+}
