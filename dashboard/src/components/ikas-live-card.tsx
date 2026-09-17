@@ -34,6 +34,7 @@ import type {
 } from "@/lib/ikas-ui";
 import { formatIkasRevenue } from "@/lib/ikas-ui";
 import { IkasTrendStrip, appendIkasTrendSample } from "@/components/ikas-trend-strip";
+import { IkasTrendExportButton } from "@/components/ikas-trend-export-button";
 
 type FetchState =
   | { kind: "idle" }
@@ -289,6 +290,10 @@ function LiveSummary(props: LiveSummaryProps) {
         latestFetchedAt={data.fetchedAt}
         latestRevenue={data.orders.revenue30dUsd}
         latestCurrency={data.orders.currency}
+      />
+
+      <IkasTrendExportButton
+        latestFetchedAt={data.fetchedAt}
       />
 
       <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">

@@ -65,6 +65,14 @@ function loadHistory(): IkasTrendSample[] {
   }
 }
 
+/**
+ * Public re-export so the trend-export companion (`<IkasTrendExportButton />`)
+ * can read the same canonical history without duplicating the validator.
+ */
+export function loadIkasTrendHistory(): IkasTrendSample[] {
+  return loadHistory();
+}
+
 function saveHistory(samples: IkasTrendSample[]): void {
   if (typeof window === "undefined") return;
   try {
