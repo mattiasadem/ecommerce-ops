@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T23:29:45.398Z",
+  "generatedAt": "2026-09-17T00:35:02.589Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12145,6 +12145,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-16 23:25] Skill tick: keep — Move #190 ai-vendor-portfolio-incident-post-mortem-engine (FIRST Tier-1 + FIRST P0 in unique category `ai-vendor-post-mortem`; canonical fleet-level-AI-vendor-portfolio-incident-post-mortem-engine + fleet-level-AI-vendor-portfolio-incident-post-mortem-7-day-deliverable-template + fleet-level-AI-vendor-portfolio-incident-post-mortem-per-step-root-cause-analysis-engine + fleet-level-AI-vendor-portfolio-incident-post-mortem-per-step-corrective-action-plan-engine + fleet-level-AI-vendor-portfolio-incident-post-mortem-per-step-prevention-plan-engine + fleet-level-AI-vendor-portfolio-incident-post-mortem-per-vendor-LLM-judge-validator + fleet-level-AI-vendor-portfolio-incident-post-mortem-per-customer-cohort-LTV-impact-measurement + fleet-level-AI-vendor-portfolio-incident-post-mortem-MTTD-MTTR-rollup-engine + fleet-level-AI-vendor-portfolio-incident-post-mortem-incident-class-taxonomy + fleet-level-AI-vendor-portfolio-incident-post-mortem-blame-free-culture-template + fleet-level-AI-vendor-portfolio-incident-post-mortem-CFO/CSO/CTO/CDPO/CMO/CEO/board-summary + fleet-level-AI-vendor-portfolio-incident-post-mortem-Move-#181-prevention-handoff + fleet-level-AI-vendor-portfolio-incident-post-mortem-Move-#189-recovery-handoff; 18 pitfalls + 18 Fix: + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; 6:1 default Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; **DEPLOY SUCCEEDED + canonical-alias rotated**)",
+      "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED + DEPLOY SUCCEEDED + canonical-alias rotated + branch merged to master)\n- **Reason:** Closes the fleet-level-AI-vendor-portfolio-incident-post-mortem gap that every $5M+ GMV DTC operator running 5+ AI-enabled vendors needs but no other Move in the dashboard ships — it is the AFTERMATH cousin to Move #188 (RESPOND), Move #189 (RECOVER), and Move #186 (SUNSET), the layer where the operator moves from **\"Move #188 contained the gpt-4o upstream outage in 14 minutes and sent the post-mortem kickoff email on Slack #incident-postmortem + filed the GDPR-Article-33 notification, but 7 days later the postmortem-document is still in 12 different Google Docs owned by 12 different team-members, the per-step-root-cause-analysis has 3 contradicto"
+    },
     {
       "heading": "[2026-09-16 22:15] Skill tick: keep — Move #189 ai-vendor-portfolio-incident-recovery-orchestrator (FIRST Tier-1 + FIRST P0 in unique category `ai-vendor-incident-recovery`; canonical fleet-level-AI-vendor-portfolio-incident-recovery-engine + fleet-level-incident-recovery-state-machine + fleet-level-portfolio-state-restore-engine + fleet-level-portfolio-state-restore-validation-engine + fleet-level-customer-trust-rebuild-engine + fleet-level-AI-feature-reactivation-engine + fleet-level-eval-pipeline-recalibration-engine + fleet-level-guardrail-pipeline-recalibration-engine + fleet-level-observability-pipeline-recalibration-engine + fleet-level-model-tier-restoration-engine + fleet-level-prompt-template-restoration-engine + fleet-level-fine-tune-model-restoration-engine + fleet-level-vector-store-restoration-engine + fleet-level-knowledge-base-restoration-engine + fleet-level-webhook-restoration-engine + fleet-level-public-API-contract-restoration-engine + fleet-level-data-portability-restore-engine + fleet-level-credential-restore-validation-engine + fleet-level-brand-voice-drift-correction-engine + fleet-level-AI-hallucination-rate-restore-to-baseline-engine + fleet-level-portfolio-PnL-restore-to-baseline-engine + fleet-level-customer-cohort-LTV-recovery-engine + fleet-level-CSAT-recovery-engine + fleet-level-NPS-detractor-recovery-engine + fleet-level-kill-switch-deactivation-validation-engine + fleet-level-post-incident-LTV-impact-measurement-engine + fleet-level-storm-mode + fleet-level-LLM-judge-validation-recovery-engine + fleet-level-regulatory-follow-up-notification-protocol (GDPR-Article-33 + CCPA-CPRA + HIPAA breach-notification-rule + EU-AI-Act-incident-reporting follow-up) + fleet-level-CFO/CSO/CTO/CDPO/CMO/CEO/board-summary; 18 pitfalls + 18 Fix: + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; 8:1 default Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; **DEPLOY SUCCEEDED + canonical-alias rotated**)",
       "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED; deploy succeeded; canonical alias rotated; live URL returns HTTP 200 with 297× Move #189 sentinels + 324,168 bytes)\n- **Reason:** Closes the AFTERMATH gap that every $5M+ GMV DTC operator running 5+ AI-enabled vendors (Klaviyo AI + Iterable AI + Braze AI + Cordial AI + Attentive AI + HubSpot AI + Salesforce Einstein + Salesforce Agentforce + Shopify Magic + Shopify Sidekick + Gorgias AI Agent + Kustomer AI + Zendesk AI + Intercom Fin + Ada + Forethought + Recharge AI + Skio AI + Smile.io AI + Yotpo AI + LoyaltyLion AI + Rebuy AI + Nosto AI + Dynamic Yield + Triple Whale Moby + Northbeam AI + Polar AI + Recart AI + AdCreative.ai + Pencil AI + Postscript AI + Segment AI + mParticle AI + RudderStack AI + Snowplow AI + Amplitude AI + "
@@ -31282,6 +31286,25 @@
       "sourceCount": 0,
       "size": 67925,
       "lastTouched": "2026-09-16"
+    },
+    {
+      "file": "191-ai-vendor-portfolio-incident-cross-incident-pattern-recognition-engine.md",
+      "name": "191-ai-vendor-portfolio-incident-cross-incident-pattern-recognition-engine",
+      "title": "AI vendor portfolio incident cross-incident pattern recognition engine (Move #191)",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-17",
+      "sources": [],
+      "blurb": "Move #191 is the **canonical fleet-level-AI-vendor-portfolio-incident-cross-incident-pattern-recognition-engine + fleet-level-AI-vendor-portfolio-incident-cross-incident-pattern-aggregator + fleet-level-AI-vendor-port...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 81046,
+      "lastTouched": "2026-09-17"
     },
     {
       "file": "20-amazon-dsp-amazon-attribution-audit.md",
@@ -53123,6 +53146,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "56f1ff0",
+      "date": "2026-09-16T23:33:19Z",
+      "author": "mattiasadem",
+      "subject": "docs: journal entry for Move #190",
+      "body": ""
+    },
+    {
+      "sha": "73020ee",
+      "date": "2026-09-16T23:32:09Z",
+      "author": "mattiasadem",
+      "subject": "skill: Move #190 ai-vendor-portfolio-incident-post-mortem-engine",
+      "body": ""
+    },
+    {
       "sha": "45eb052",
       "date": "2026-09-16T22:25:10Z",
       "author": "hermesagent",
@@ -54507,20 +54544,6 @@
       "author": "mattiasadem",
       "subject": "skill: add dangerous-goods shipping operations",
       "body": ""
-    },
-    {
-      "sha": "422b8bc",
-      "date": "2026-07-15T01:41:24Z",
-      "author": "mattiasadem",
-      "subject": "skill: add distributed order orchestration",
-      "body": ""
-    },
-    {
-      "sha": "19bc1fd",
-      "date": "2026-07-15T00:47:15Z",
-      "author": "mattiasadem",
-      "subject": "chore(security): redact Vercel tokens from journal",
-      "body": ""
     }
   ],
   "counts": {
@@ -54529,8 +54552,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 109,
-    "skills": 189,
+    "journalEntries": 110,
+    "skills": 190,
     "gitCommits": 200
   }
 }
