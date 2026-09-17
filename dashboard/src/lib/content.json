@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-17T17:15:28.229Z",
+  "generatedAt": "2026-09-17T19:22:53.544Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,8 +12146,16 @@
   },
   "journal": [
     {
+      "heading": "[2026-09-17 18:30] Skill tick: keep — Move #199 ai-vendor-portfolio-competitive-positioning-engine (FIRST Tier-1 + FIRST P0 in unique category `ai-vendor-competitive-positioning`; DEPLOY SUCCEEDED + canonical alias rotated)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-17 (merged to master via `bash scripts/skill-branch.sh keep`; commit `992f777` — the prior-tick commit that was DEPLOY BLOCKED at Vercel 24h quota, now live after the quota reset between 18:00 and 18:30)\n- **Status:** keep (parse SUCCEEDED + build SUCCEEDED + DEPLOY SUCCEEDED + canonical-alias rotated + live URL 200 + all 9 verification gates A-I passed)\n- **Reason:** The prior journal's `Next action` explicitly named **Move #199 ai-vendor-portfolio-competitive-positioning-engine** as the canonical 6th member of the Move #180-198 attribution chain (closing the per-portfolio-competitive-positioning-vs-strategic-positioning-vs-customer-positioning-vs-channel-positioning gap). The Vercel 24h quota reset between the 18:00 tick and this 18:30 tick (depl"
+    },
+    {
+      "heading": "[2026-09-17 18:00] Skill tick: discard — Move #199 ai-vendor-portfolio-competitive-positioning-engine (FIRST Tier-1 + FIRST P0 in unique category `ai-vendor-competitive-positioning`; Vercel 24h quota still blocked; build artifact ready locally)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-17 (NOT merged to master via `bash scripts/skill-branch.sh keep` — will remain on branch per canonical-pitfall recipe for Vercel 24h-quota-exhaustion)\n- **Status:** discard (parse SUCCEEDED + build SUCCEEDED + ALL 9 verification gates A-I passed structurally; DEPLOY BLOCKED at Vercel 24h quota `api-deployments-free-per-day > 100` — 6th consecutive tick blocked at same gate)\n- **Reason:** Move #198 `Next action` explicitly named **Move #199 ai-vendor-portfolio-competitive-positioning-engine** as the canonical follow-on substrate — Move #198 Pillar 6 documents \"per-strategic-positioning-vs-competitive-positioning-overlay\" with no canonical engine (currently Move-#198 Pillar 6 ships a per-strategic-positioning-state without the strategic-positioning-v"
+    },
+    {
       "heading": "[2026-09-17 16:30] Skill tick: keep — Move #198 ai-vendor-portfolio-strategic-positioning-engine (FIRST Tier-1 + FIRST P0 in unique category `ai-vendor-strategic-positioning`; DEPLOY SUCCEEDED + canonical alias rotated)",
-      "body": "- **Branch:** autoresearch/skills-2026-09-17 (merged to master via `bash scripts/skill-branch.sh keep`; commit `be831be`)\n- **Status:** keep (parse SUCCEEDED + build SUCCEEDED + DEPLOY SUCCEEDED + canonical-alias rotated + live URL 200 + all 9 verification gates A-I passed)\n- **Reason:** Move #197 explicitly named **Move #198 ai-vendor-portfolio-strategic-positioning-engine** as the canonical follow-on substrate — every Move with \"strategic-positioning\" in its name (Move #180 Pillar 4 channel-strategic-positioning-fit-score + Move #181 Pillar 5 per-vendor-strategic-positioning-vs-portfolio-margin-overlay + Move #185 Pillar 6 per-portfolio-strategic-positioning-margin-overlay + Move #195 Pillar 5 competitor-strategic-positioning-drift + Move #196 Pillar 4 partnership-strategic-positioning-d"
+      "body": "ai-vendor-portfolio-strategic-positioning-engine (FIRST Tier-1 + FIRST P0 in unique category `ai-vendor-strategic-positioning`; DEPLOY SUCCEEDED + canonical alias rotated)\n\n- **Branch:** autoresearch/skills-2026-09-17 (merged to master via `bash scripts/skill-branch.sh keep`; commit `be831be`)\n- **Status:** keep (parse SUCCEEDED + build SUCCEEDED + DEPLOY SUCCEEDED + canonical-alias rotated + live URL 200 + all 9 verification gates A-I passed)\n- **Reason:** Move #197 explicitly named **Move #198 ai-vendor-portfolio-strategic-positioning-engine** as the canonical follow-on substrate — every Move with \"strategic-positioning\" in its name (Move #180 Pillar 4 channel-strategic-positioning-fit-score + Move #181 Pillar 5 per-vendor-strategic-positioning-vs-portfolio-margin-overlay + Move #185 Pil"
     },
     {
       "heading": "[2026-09-17 15:08] Skill tick: discard — Move #198 ai-vendor-portfolio-strategic-positioning-engine (Vercel 24h quota still blocked; build artifact ready locally)",
@@ -31546,6 +31554,25 @@
       "sourceCount": 17,
       "size": 66547,
       "lastTouched": "2026-07-11"
+    },
+    {
+      "file": "200-ai-vendor-portfolio-portfolio-wide-competitive-positioning-rollup-engine.md",
+      "name": "ai-vendor-portfolio-portfolio-wide-competitive-positioning-rollup-engine",
+      "title": "AI vendor portfolio portfolio-wide competitive positioning rollup engine",
+      "category": "ai-vendor-portfolio-wide-competitive-positioning",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "200",
+      "yearOneRoiBand": "5:1–18:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-17",
+      "sources": [],
+      "blurb": "The canonical fleet-level-AI-vendor-portfolio-portfolio-wide-competitive-positioning-rollup-engine that consumes Move #199.data.per_competitive_positioning_state + Move-#195 Pillar 5 (per-competitor-portfolio-state) +...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 70185,
+      "lastTouched": "2026-09-17"
     },
     {
       "file": "21-3pl-migration.md",
@@ -53350,6 +53377,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "d824730",
+      "date": "2026-09-17T18:20:43Z",
+      "author": "hermesagent",
+      "subject": "docs: journal entry — Move #199 ai-vendor-portfolio-competitive-positioning-engine (keep; 2026-09-17 18:30)",
+      "body": ""
+    },
+    {
+      "sha": "992f777",
+      "date": "2026-09-17T17:17:25Z",
+      "author": "mattiasadem",
+      "subject": "skill: Move #199 ai-vendor-portfolio-competitive-positioning-engine (FIRST Tier-1 + FIRST P0 in unique category ai-vendor-competitive-positioning; canonical 6-pillar Path A/B/C/D/E/F fleet-level competitive-positioning substrate for Move #1",
+      "body": ""
+    },
+    {
       "sha": "a2dd3db",
       "date": "2026-09-17T16:13:24Z",
       "author": "hermesagent",
@@ -54734,20 +54775,6 @@
       "author": "mattiasadem",
       "subject": "skill: 96-demand-sensing-supply-chain-resilience (FIRST Tier-1 + FIRST P0 in category demand-sensing-supply-chain-resilience, Move #12.7 follow-up to Move #12.6, default 7:1 Year-1 ROI Path B at $3M GMV, 6-pillar Path A/B/C/D/E/F demand-sen",
       "body": ""
-    },
-    {
-      "sha": "26a60e6",
-      "date": "2026-07-16T01:07:05Z",
-      "author": "mattiasadem",
-      "subject": "skill: 86-inventory-working-capital-dead-stock-liquidation-engine (FIRST Tier-1 P0 in category inventory, Move #12.6, default 11:1 Year-1 ROI Path B at $3M GMV, 6-pillar engine, 18 numbered pitfalls, 7-gate end-to-end verification, 250+ sou",
-      "body": ""
-    },
-    {
-      "sha": "5b7d3d7",
-      "date": "2026-07-15T23:58:21Z",
-      "author": "skill-builder-cron",
-      "subject": "skill: Move #85 trade-compliance-operations (5-pillar Path A/B/C/D/E trade-compliance-engine unifying Tradeverifyd + Avalara + Altana-Atlas + Resilinc + Interos + Descartes + E2open + Visual-Compliance + Amber-Road + Thomson-Reuters + SAP-G",
-      "body": ""
     }
   ],
   "counts": {
@@ -54756,8 +54783,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 123,
-    "skills": 198,
+    "journalEntries": 125,
+    "skills": 199,
     "gitCommits": 200
   }
 }
