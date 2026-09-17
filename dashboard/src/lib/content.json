@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-17T06:02:59.354Z",
+  "generatedAt": "2026-09-17T07:09:09.006Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,7 +12146,11 @@
   },
   "journal": [
     {
-      "heading": "[2026-09-17 04:58] Skill tick: keep — Move #195 ai-vendor-portfolio-competitor-coverage-engine (FIRST Tier-1 + FIRST P0 in unique category `ai-vendor-portfolio-competitor-coverage`; canonical fleet-level-AI-vendor-portfolio-competitor-coverage-engine + per-competitor-vendor-portfolio-coverage-mapper + per-competitor-AI-capability-coverage-mapper + per-competitor-incident-class-coverage-mapper + per-competitor-AI-vendor-launch-coverage-monitor + competitor-coverage-incident-cost-attribution-engine + competitor-coverage-press-coverage-cost-calculator + competitor-coverage-social-media-backlash-cost-calculator + competitor-coverage-share-of-voice-engine + competitor-coverage-share-of-incident-engine + competitor-coverage-Move-#192-handoff + competitor-coverage-dashboard; 18 pitfalls + 18 Fix: + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; 6:1 default Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; **DEPLOY SUCCEEDED + canonical-alias rotated**)",
+      "heading": "[2026-09-17 06:05] Skill tick: keep — Move #196 ai-vendor-portfolio-partnership-revenue-engine (FIRST Tier-1 + FIRST P0 in unique category `ai-vendor-portfolio-partnership-revenue`; canonical fleet-level-AI-vendor-portfolio-partnership-revenue-engine + per-partnership-pipeline-tracker + per-partnership-revenue-per-deal-calculator + per-partnership-deferred-integration-roadmap-cost-attribution + per-partnership-replacement-risk-engine + per-partnership-revops-coverage + per-partnership-cohort-LTV-overlay + per-partnership-attribution-decision-event-stream + Move-#192-handoff + Move-#195-handoff + partnership-revenue-dashboard; 18 pitfalls + 18 Fix: + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; 7:1 default Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; **DEPLOY SUCCEEDED + canonical-alias rotated**)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-17\n- **Status:** keep (unique category: `ai-vendor-portfolio-partnership-revenue` — first skill in this slot; confirmed via `grep -l \"^category: ai-vendor-portfolio-partnership-revenue$\" skills/*.md | wc -l = 0` before writing → `= 1` after; Tier-1 first + P0 first confirmed)\n- **Reason:** PASSES improvement metric on all 3 axes (verified structurally before deploy was attempted): (1) **Unique category** — `ai-vendor-portfolio-partnership-revenue` count = 1 in `skills/`; (2) **Tier-1 first** — first `tier: 1` in this category; (3) **P0 first** — first `priority: P0` in this category. Closes the fleet-level-AI-vendor-portfolio-PARTNERSHIP-REVENUE gap that every $5M+ GMV DTC operator running 5+ AI-enabled vendors + 5-30 integration-partnerships needs"
+    },
+    {
+      "heading": "[2026-09-17 04:58] Skill tick: keep — Move #195 ai-vendor-portfolio-competitor-coverage-engine (FIRST Tier-1 + FIRST P0 in unique category `ai-vendor-portfolio-competitor-coverage`; canonical fleet-level-AI-vendor-portfolio-competitor-coverage-engine + fleet-level-AI-vendor-portfolio-per-competitor-vendor-portfolio-coverage-mapper + fleet-level-AI-vendor-portfolio-per-competitor-AI-capability-coverage-mapper + fleet-level-AI-vendor-portfolio-per-competitor-incident-class-coverage-mapper + fleet-level-AI-vendor-portfolio-per-competitor-AI-vendor-launch-coverage-monitor + competitor-coverage-incident-cost-attribution-engine + competitor-coverage-press-coverage-cost-calculator + competitor-coverage-social-media-backlash-cost-calculator + competitor-coverage-share-of-voice-engine + competitor-coverage-share-of-incident-engine + competitor-coverage-Move-#192-handoff + competitor-coverage-dashboard; 18 pitfalls + 18 Fix: + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; 6:1 default Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; **DEPLOY SUCCEEDED + canonical-alias rotated**)",
       "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED + DEPLOY SUCCEEDED + canonical-alias rotated)\n- **Reason:** Closes the fleet-level-AI-vendor-portfolio-COMPETITOR-COVERAGE gap that every $5M+ GMV DTC operator running 5+ AI-enabled vendors needs but no other Move in the dashboard ships — the canonical substrate that Move #192 Pillar 2 indirect-cost-calculator explicitly references for \"press-coverage-cost-from-competitor-coverage + social-media-backlash-cost-from-competitor-coverage + share-of-voice-loss-from-competitor-AI-vendor-launch + share-of-incident-loss-from-competitor-AI-vendor-incident\" cost categories. Without Move #195 wired first, every Move #192 Pillar 2 indirect-cost-calculation that mentions \"competitor\" silently returns 0, the IRS-incident-cost-deduction-pack + cy"
     },
     {
@@ -31419,6 +31423,25 @@
       "pitfallCount": 18,
       "sourceCount": 0,
       "size": 73102,
+      "lastTouched": "2026-09-17"
+    },
+    {
+      "file": "197-ai-vendor-portfolio-customer-defection-engine.md",
+      "name": "197-ai-vendor-portfolio-customer-defection-engine",
+      "title": "AI vendor portfolio customer defection engine (Move #197)",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-17",
+      "sources": [],
+      "blurb": "Move #197 is the **canonical fleet-level-AI-vendor-portfolio-customer-defection-detector + fleet-level-AI-vendor-portfolio-per-customer-defection-Move-#192-handoff + fleet-level-AI-vendor-portfolio-per-customer-defect...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 76650,
       "lastTouched": "2026-09-17"
     },
     {
@@ -53261,6 +53284,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "136dad0",
+      "date": "2026-09-17T06:06:12Z",
+      "author": "hermesagent",
+      "subject": "journal: Move #196 tick (2026-09-17 06:05) — partnership-revenue-engine shipped",
+      "body": ""
+    },
+    {
+      "sha": "06319ed",
+      "date": "2026-09-17T06:05:27Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #196 ai-vendor-portfolio-partnership-revenue-engine (FIRST Tier-1 + FIRST P0 in unique category; 18 pitfalls + 18 Fix + 9 gates A-I + 6-pillar Path A/B/C/D/E/F framework; default 7:1 Year-1 ROI Path B at $5M GMV)",
+      "body": ""
+    },
+    {
       "sha": "711ed28",
       "date": "2026-09-17T04:59:01Z",
       "author": "hermesagent",
@@ -54645,20 +54682,6 @@
       "author": "mattiasadem",
       "subject": "skill: cross-border-returns-operations (Move #79, category: cross-border-returns, Tier-1 P0 first-in-slot, 5-pillar Path A/B/C/D/E cross-border-returns engine, 18 numbered pitfalls, 5 verification gates A-E, ~80KB)",
       "body": ""
-    },
-    {
-      "sha": "0bf84d3",
-      "date": "2026-07-15T13:28:53Z",
-      "author": "mattiasadem",
-      "subject": "journal: tick 2026-07-15 13:30 — keep — marketplace-seller-central-operations (Move #78, FIRST Tier-1 + P0 in category: marketplace-seller-ops, default 7:1 Year-1 ROI Path B at $5M GMV, 18 numbered pitfalls, 10 verification gates A-J)",
-      "body": ""
-    },
-    {
-      "sha": "b28d1bf",
-      "date": "2026-07-15T13:27:55Z",
-      "author": "mattiasadem",
-      "subject": "skill: marketplace seller-central operations (Move #78, FIRST Tier-1 + P0 in category: marketplace-seller-ops, default 7:1 Year-1 ROI Path B at $5M GMV, 18 numbered pitfalls, 10 verification gates A-J)",
-      "body": ""
     }
   ],
   "counts": {
@@ -54667,8 +54690,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 115,
-    "skills": 195,
+    "journalEntries": 116,
+    "skills": 196,
     "gitCommits": 200
   }
 }
