@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-17T16:10:40.311Z",
+  "generatedAt": "2026-09-17T17:15:28.229Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-09-17 16:30] Skill tick: keep — Move #198 ai-vendor-portfolio-strategic-positioning-engine (FIRST Tier-1 + FIRST P0 in unique category `ai-vendor-strategic-positioning`; DEPLOY SUCCEEDED + canonical alias rotated)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-17 (merged to master via `bash scripts/skill-branch.sh keep`; commit `be831be`)\n- **Status:** keep (parse SUCCEEDED + build SUCCEEDED + DEPLOY SUCCEEDED + canonical-alias rotated + live URL 200 + all 9 verification gates A-I passed)\n- **Reason:** Move #197 explicitly named **Move #198 ai-vendor-portfolio-strategic-positioning-engine** as the canonical follow-on substrate — every Move with \"strategic-positioning\" in its name (Move #180 Pillar 4 channel-strategic-positioning-fit-score + Move #181 Pillar 5 per-vendor-strategic-positioning-vs-portfolio-margin-overlay + Move #185 Pillar 6 per-portfolio-strategic-positioning-margin-overlay + Move #195 Pillar 5 competitor-strategic-positioning-drift + Move #196 Pillar 4 partnership-strategic-positioning-d"
+    },
+    {
       "heading": "[2026-09-17 15:08] Skill tick: discard — Move #198 ai-vendor-portfolio-strategic-positioning-engine (Vercel 24h quota still blocked; build artifact ready locally)",
       "body": "- **Branch:** autoresearch/skills-2026-09-17 (deleted via discard)\n- **Status:** discard (build SUCCEEDED + parse SUCCEEDED + ALL 9 verification gates A-I passed structurally; DEPLOY BLOCKED at Vercel 24h quota `api-deployments-free-per-day > 100` — 5th consecutive tick blocked at same gate)\n- **Reason:** The prior journal's `Next action` explicitly named **Move #198 ai-vendor-portfolio-strategic-positioning-engine** as the canonical follow-on substrate for Move #197 (and the entire Move #180-197 fleet-level AI-vendor-portfolio stack — every Move with \"strategic-positioning\" in its name currently sits UNATTRIBUTED: Move #180 Pillar 4 channel-strategic-positioning-fit-score + Move #181 Pillar 5 per-vendor-strategic-positioning-vs-portfolio-margin-overlay + Move #185 Pillar 6 per-portfolio-s"
     },
@@ -12178,8 +12182,16 @@
       "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED + DEPLOY SUCCEEDED + canonical-alias rotated + branch merged to master)\n- **Reason:** Closes the fleet-level-AI-vendor-portfolio-incident-CROSS-INCIDENT-PATTERN-RECOGNITION gap that every $5M+ GMV DTC operator running 5+ AI-enabled vendors needs but no other Move in the dashboard ships — it is the AFTERMATH cousin to Move #190 (post-mortem-engine) and Move #189 (incident-recovery-orchestrator), the layer where the operator moves from **\"Move #190 fleet-level-AI-vendor-portfolio-incident-post-mortem-engine has been live for 6 months and we have 47 published postmortems in our knowledge-base-archive (Move #190 Pillar 6), but the cross-incident-pattern-recognition-engine (Move #190 Pillar 6 sub-engine) only surfaces patterns on ad-hoc"
     },
     {
+      "heading": "[2026-09-17 16:30] Skill tick: keep — Move #198 ai-vendor-portfolio-strategic-positioning-engine (FIRST Tier-1 + FIRST P0 in unique category `ai-vendor-strategic-positioning`; DEPLOY SUCCEEDED + canonical alias rotated)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-17 (merged to master via `bash scripts/skill-branch.sh keep`; commit `be831be`)\n- **Status:** keep (parse SUCCEEDED + build SUCCEEDED + DEPLOY SUCCEEDED + canonical-alias rotated + live URL 200 + all 9 verification gates A-I passed)\n- **Reason:** Move #197 explicitly named **Move #198 ai-vendor-portfolio-strategic-positioning-engine** as the canonical follow-on substrate — every Move with \"strategic-positioning\" in its name (Move #180 Pillar 4 channel-strategic-positioning-fit-score + Move #181 Pillar 5 per-vendor-strategic-positioning-vs-portfolio-margin-overlay + Move #185 Pillar 6 per-portfolio-strategic-positioning-margin-overlay + Move #195 Pillar 5 competitor-strategic-positioning-drift + Move #196 Pillar 4 partnership-strategic-positioning-d"
+    },
+    {
       "heading": "[2026-09-16 23:25] Skill tick: keep — Move #190 ai-vendor-portfolio-incident-post-mortem-engine (FIRST Tier-1 + FIRST P0 in unique category `ai-vendor-post-mortem`; canonical fleet-level-AI-vendor-portfolio-incident-post-mortem-engine + fleet-level-AI-vendor-portfolio-incident-post-mortem-7-day-deliverable-template + fleet-level-AI-vendor-portfolio-incident-post-mortem-per-step-root-cause-analysis-engine + fleet-level-AI-vendor-portfolio-incident-post-mortem-per-step-corrective-action-plan-engine + fleet-level-AI-vendor-portfolio-incident-post-mortem-per-step-prevention-plan-engine + fleet-level-AI-vendor-portfolio-incident-post-mortem-per-vendor-LLM-judge-validator + fleet-level-AI-vendor-portfolio-incident-post-mortem-per-customer-cohort-LTV-impact-measurement + fleet-level-AI-vendor-portfolio-incident-post-mortem-MTTD-MTTR-rollup-engine + fleet-level-AI-vendor-portfolio-incident-post-mortem-incident-class-taxonomy + fleet-level-AI-vendor-portfolio-incident-post-mortem-blame-free-culture-template + fleet-level-AI-vendor-portfolio-incident-post-mortem-CFO/CSO/CTO/CDPO/CMO/CEO/board-summary + fleet-level-AI-vendor-portfolio-incident-post-mortem-Move-#181-prevention-handoff + fleet-level-AI-vendor-portfolio-incident-post-mortem-Move-#189-recovery-handoff; 18 pitfalls + 18 Fix: + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; 6:1 default Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; **DEPLOY SUCCEEDED + canonical-alias rotated**)",
       "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED + DEPLOY SUCCEEDED + canonical-alias rotated + branch merged to master)\n- **Reason:** Closes the fleet-level-AI-vendor-portfolio-incident-post-mortem gap that every $5M+ GMV DTC operator running 5+ AI-enabled vendors needs but no other Move in the dashboard ships — it is the AFTERMATH cousin to Move #188 (RESPOND), Move #189 (RECOVER), and Move #186 (SUNSET), the layer where the operator moves from **\"Move #188 contained the gpt-4o upstream outage in 14 minutes and sent the post-mortem kickoff email on Slack #incident-postmortem + filed the GDPR-Article-33 notification, but 7 days later the postmortem-document is still in 12 different Google Docs owned by 12 different team-members, the per-step-root-cause-analysis has 3 contradicto"
+    },
+    {
+      "heading": "[2026-09-17 16:30] Skill tick: keep — Move #198 ai-vendor-portfolio-strategic-positioning-engine (FIRST Tier-1 + FIRST P0 in unique category `ai-vendor-strategic-positioning`; DEPLOY SUCCEEDED + canonical alias rotated)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-17 (merged to master via `bash scripts/skill-branch.sh keep`; commit `be831be`)\n- **Status:** keep (parse SUCCEEDED + build SUCCEEDED + DEPLOY SUCCEEDED + canonical-alias rotated + live URL 200 + all 9 verification gates A-I passed)\n- **Reason:** Move #197 explicitly named **Move #198 ai-vendor-portfolio-strategic-positioning-engine** as the canonical follow-on substrate — every Move with \"strategic-positioning\" in its name (Move #180 Pillar 4 channel-strategic-positioning-fit-score + Move #181 Pillar 5 per-vendor-strategic-positioning-vs-portfolio-margin-overlay + Move #185 Pillar 6 per-portfolio-strategic-positioning-margin-overlay + Move #195 Pillar 5 competitor-strategic-positioning-drift + Move #196 Pillar 4 partnership-strategic-positioning-d"
     },
     {
       "heading": "[2026-09-16 22:15] Skill tick: keep — Move #189 ai-vendor-portfolio-incident-recovery-orchestrator (FIRST Tier-1 + FIRST P0 in unique category `ai-vendor-incident-recovery`; canonical fleet-level-AI-vendor-portfolio-incident-recovery-engine + fleet-level-incident-recovery-state-machine + fleet-level-portfolio-state-restore-engine + fleet-level-portfolio-state-restore-validation-engine + fleet-level-customer-trust-rebuild-engine + fleet-level-AI-feature-reactivation-engine + fleet-level-eval-pipeline-recalibration-engine + fleet-level-guardrail-pipeline-recalibration-engine + fleet-level-observability-pipeline-recalibration-engine + fleet-level-model-tier-restoration-engine + fleet-level-prompt-template-restoration-engine + fleet-level-fine-tune-model-restoration-engine + fleet-level-vector-store-restoration-engine + fleet-level-knowledge-base-restoration-engine + fleet-level-webhook-restoration-engine + fleet-level-public-API-contract-restoration-engine + fleet-level-data-portability-restore-engine + fleet-level-credential-restore-validation-engine + fleet-level-brand-voice-drift-correction-engine + fleet-level-AI-hallucination-rate-restore-to-baseline-engine + fleet-level-portfolio-PnL-restore-to-baseline-engine + fleet-level-customer-cohort-LTV-recovery-engine + fleet-level-CSAT-recovery-engine + fleet-level-NPS-detractor-recovery-engine + fleet-level-kill-switch-deactivation-validation-engine + fleet-level-post-incident-LTV-impact-measurement-engine + fleet-level-storm-mode + fleet-level-LLM-judge-validation-recovery-engine + fleet-level-regulatory-follow-up-notification-protocol (GDPR-Article-33 + CCPA-CPRA + HIPAA breach-notification-rule + EU-AI-Act-incident-reporting follow-up) + fleet-level-CFO/CSO/CTO/CDPO/CMO/CEO/board-summary; 18 pitfalls + 18 Fix: + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; 8:1 default Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; **DEPLOY SUCCEEDED + canonical-alias rotated**)",
@@ -31477,6 +31489,25 @@
       "pitfallCount": 18,
       "sourceCount": 0,
       "size": 60847,
+      "lastTouched": "2026-09-17"
+    },
+    {
+      "file": "199-ai-vendor-portfolio-competitive-positioning-engine.md",
+      "name": "ai-vendor-portfolio-competitive-positioning-engine",
+      "title": "AI vendor portfolio competitive positioning engine",
+      "category": "ai-vendor-competitive-positioning",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "199",
+      "yearOneRoiBand": "5:1–18:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-17",
+      "sources": [],
+      "blurb": "The canonical fleet-level-AI-vendor-portfolio-competitive-positioning-engine that consumes Move-#195 Pillar 5 (per-competitor-portfolio-state) + Move-#197 Pillar 4 (per-customer-defection-state) + Move-#198 Pillar 6 (...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 62162,
       "lastTouched": "2026-09-17"
     },
     {
@@ -53319,6 +53350,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "a2dd3db",
+      "date": "2026-09-17T16:13:24Z",
+      "author": "hermesagent",
+      "subject": "docs: journal entry — Move #198 ai-vendor-portfolio-strategic-positioning-engine (keep; 2026-09-17 16:30)",
+      "body": ""
+    },
+    {
+      "sha": "be831be",
+      "date": "2026-09-17T16:12:55Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #198 ai-vendor-portfolio-strategic-positioning-engine (FIRST Tier-1 + FIRST P0 in unique category ai-vendor-strategic-positioning; canonical fleet-level strategic-positioning substrate for Move #180-197; 9 H2 sections + 18 pitfa",
+      "body": ""
+    },
+    {
       "sha": "e68c680",
       "date": "2026-09-17T15:09:27Z",
       "author": "hermesagent",
@@ -54703,20 +54748,6 @@
       "author": "skill-builder-cron",
       "subject": "skill: Move #85 trade-compliance-operations (5-pillar Path A/B/C/D/E trade-compliance-engine unifying Tradeverifyd + Avalara + Altana-Atlas + Resilinc + Interos + Descartes + E2open + Visual-Compliance + Amber-Road + Thomson-Reuters + SAP-G",
       "body": ""
-    },
-    {
-      "sha": "bdd1fe8",
-      "date": "2026-07-15T22:46:01Z",
-      "author": "mattiasadem",
-      "subject": "skill: BOPIS & Store Fulfillment Operations (Move #84) — first in category",
-      "body": ""
-    },
-    {
-      "sha": "487284d",
-      "date": "2026-07-15T21:38:59Z",
-      "author": "skill-builder-cron",
-      "subject": "skill: Move #83 headless-cms-content-operations (5-pillar Path A/B/C/D/E headless-CMS-content-engine unifying Contentful + Sanity + Strapi + Storyblok + Hygraph + Builder.io + Prismic + Kontent.ai + Contentstack + dotCMS + Magnolia + CoreMe",
-      "body": ""
     }
   ],
   "counts": {
@@ -54725,8 +54756,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 120,
-    "skills": 197,
+    "journalEntries": 123,
+    "skills": 198,
     "gitCommits": 200
   }
 }
