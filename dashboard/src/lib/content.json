@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-17T00:35:02.589Z",
+  "generatedAt": "2026-09-17T01:40:45.795Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12145,6 +12145,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-17 00:50] Skill tick: keep — Move #191 ai-vendor-portfolio-incident-cross-incident-pattern-recognition-engine (FIRST Tier-1 + FIRST P0 in unique category `ai-vendor-cross-incident-pattern`; canonical fleet-level-AI-vendor-portfolio-incident-knowledge-base-archive-indexer + fleet-level-AI-vendor-portfolio-incident-semantic-embedding-clustering-engine + fleet-level-AI-vendor-portfolio-incident-cross-vendor-incident-correlation-engine + fleet-level-AI-vendor-portfolio-incident-temporal-incident-clustering-engine + fleet-level-AI-vendor-portfolio-incident-seasonal-incident-pattern-engine + fleet-level-AI-vendor-portfolio-incident-per-incident-class-prevention-plan-rollup + fleet-level-AI-vendor-portfolio-incident-per-vendor-prevention-plan-rollup + fleet-level-AI-vendor-portfolio-incident-fleet-level-prevention-plan-effectiveness-engine + fleet-level-AI-vendor-portfolio-incident-CRO-pattern-acknowledgment-engine + fleet-level-AI-vendor-portfolio-incident-prevention-plan-rewrite-trigger + fleet-level-AI-vendor-portfolio-incident-per-incident-class-prevention-plan-rewrite-engine + fleet-level-AI-vendor-portfolio-incident-per-vendor-prevention-plan-rewrite-engine + fleet-level-AI-vendor-portfolio-incident-prevention-plan-rewrite-Move-#181-prevention-state-update + fleet-level-AI-vendor-portfolio-incident-cross-incident-pattern-recognition-dashboard; 18 pitfalls + 18 Fix: + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; 7:1 default Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; **DEPLOY SUCCEEDED + canonical-alias rotated**)",
+      "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED + DEPLOY SUCCEEDED + canonical-alias rotated + branch merged to master)\n- **Reason:** Closes the fleet-level-AI-vendor-portfolio-incident-CROSS-INCIDENT-PATTERN-RECOGNITION gap that every $5M+ GMV DTC operator running 5+ AI-enabled vendors needs but no other Move in the dashboard ships — it is the AFTERMATH cousin to Move #190 (post-mortem-engine) and Move #189 (incident-recovery-orchestrator), the layer where the operator moves from **\"Move #190 fleet-level-AI-vendor-portfolio-incident-post-mortem-engine has been live for 6 months and we have 47 published postmortems in our knowledge-base-archive (Move #190 Pillar 6), but the cross-incident-pattern-recognition-engine (Move #190 Pillar 6 sub-engine) only surfaces patterns on ad-hoc"
+    },
     {
       "heading": "[2026-09-16 23:25] Skill tick: keep — Move #190 ai-vendor-portfolio-incident-post-mortem-engine (FIRST Tier-1 + FIRST P0 in unique category `ai-vendor-post-mortem`; canonical fleet-level-AI-vendor-portfolio-incident-post-mortem-engine + fleet-level-AI-vendor-portfolio-incident-post-mortem-7-day-deliverable-template + fleet-level-AI-vendor-portfolio-incident-post-mortem-per-step-root-cause-analysis-engine + fleet-level-AI-vendor-portfolio-incident-post-mortem-per-step-corrective-action-plan-engine + fleet-level-AI-vendor-portfolio-incident-post-mortem-per-step-prevention-plan-engine + fleet-level-AI-vendor-portfolio-incident-post-mortem-per-vendor-LLM-judge-validator + fleet-level-AI-vendor-portfolio-incident-post-mortem-per-customer-cohort-LTV-impact-measurement + fleet-level-AI-vendor-portfolio-incident-post-mortem-MTTD-MTTR-rollup-engine + fleet-level-AI-vendor-portfolio-incident-post-mortem-incident-class-taxonomy + fleet-level-AI-vendor-portfolio-incident-post-mortem-blame-free-culture-template + fleet-level-AI-vendor-portfolio-incident-post-mortem-CFO/CSO/CTO/CDPO/CMO/CEO/board-summary + fleet-level-AI-vendor-portfolio-incident-post-mortem-Move-#181-prevention-handoff + fleet-level-AI-vendor-portfolio-incident-post-mortem-Move-#189-recovery-handoff; 18 pitfalls + 18 Fix: + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; 6:1 default Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; **DEPLOY SUCCEEDED + canonical-alias rotated**)",
       "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED + DEPLOY SUCCEEDED + canonical-alias rotated + branch merged to master)\n- **Reason:** Closes the fleet-level-AI-vendor-portfolio-incident-post-mortem gap that every $5M+ GMV DTC operator running 5+ AI-enabled vendors needs but no other Move in the dashboard ships — it is the AFTERMATH cousin to Move #188 (RESPOND), Move #189 (RECOVER), and Move #186 (SUNSET), the layer where the operator moves from **\"Move #188 contained the gpt-4o upstream outage in 14 minutes and sent the post-mortem kickoff email on Slack #incident-postmortem + filed the GDPR-Article-33 notification, but 7 days later the postmortem-document is still in 12 different Google Docs owned by 12 different team-members, the per-step-root-cause-analysis has 3 contradicto"
@@ -31304,6 +31308,25 @@
       "pitfallCount": 18,
       "sourceCount": 0,
       "size": 81046,
+      "lastTouched": "2026-09-17"
+    },
+    {
+      "file": "192-ai-vendor-portfolio-incident-cost-attribution-engine.md",
+      "name": "192-ai-vendor-portfolio-incident-cost-attribution-engine",
+      "title": "AI vendor portfolio incident cost attribution engine (Move #192)",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-17",
+      "sources": [],
+      "blurb": "Move #192 is the **canonical fleet-level-AI-vendor-portfolio-incident-cost-attribution-engine + fleet-level-AI-vendor-portfolio-incident-direct-cost-calculator + fleet-level-AI-vendor-portfolio-incident-indirect-cost-...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 101367,
       "lastTouched": "2026-09-17"
     },
     {
@@ -53146,6 +53169,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "20a13de",
+      "date": "2026-09-17T00:37:30Z",
+      "author": "mattiasadem",
+      "subject": "docs: journal entry for Move #191 ai-vendor-portfolio-incident-cross-incident-pattern-recognition-engine (keep; deploy succeeded; canonical alias rotated; branch merged to master)",
+      "body": ""
+    },
+    {
+      "sha": "2417600",
+      "date": "2026-09-17T00:37:10Z",
+      "author": "mattiasadem",
+      "subject": "skill: Move #191 ai-vendor-portfolio-incident-cross-incident-pattern-recognition-engine (FIRST Tier-1 + FIRST P0 in unique category ai-vendor-cross-incident-pattern; canonical knowledge-base-archive-indexer + semantic-embedding-clustering-e",
+      "body": ""
+    },
+    {
       "sha": "56f1ff0",
       "date": "2026-09-16T23:33:19Z",
       "author": "mattiasadem",
@@ -54530,20 +54567,6 @@
       "author": "mattiasadem",
       "subject": "feat(dashboard): 3PL calculator inherits Your-store economics (Move #12)",
       "body": ""
-    },
-    {
-      "sha": "c856713",
-      "date": "2026-07-15T05:16:10Z",
-      "author": "mattiasadem",
-      "subject": "skill: add preorder + backorder + allocation operations (Move #73)",
-      "body": ""
-    },
-    {
-      "sha": "6e1c6d1",
-      "date": "2026-07-15T02:58:09Z",
-      "author": "mattiasadem",
-      "subject": "skill: add dangerous-goods shipping operations",
-      "body": ""
     }
   ],
   "counts": {
@@ -54552,8 +54575,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 110,
-    "skills": 190,
+    "journalEntries": 111,
+    "skills": 191,
     "gitCommits": 200
   }
 }
