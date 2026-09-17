@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-17T03:50:43.409Z",
+  "generatedAt": "2026-09-17T06:02:59.354Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12145,6 +12145,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-17 04:58] Skill tick: keep — Move #195 ai-vendor-portfolio-competitor-coverage-engine (FIRST Tier-1 + FIRST P0 in unique category `ai-vendor-portfolio-competitor-coverage`; canonical fleet-level-AI-vendor-portfolio-competitor-coverage-engine + per-competitor-vendor-portfolio-coverage-mapper + per-competitor-AI-capability-coverage-mapper + per-competitor-incident-class-coverage-mapper + per-competitor-AI-vendor-launch-coverage-monitor + competitor-coverage-incident-cost-attribution-engine + competitor-coverage-press-coverage-cost-calculator + competitor-coverage-social-media-backlash-cost-calculator + competitor-coverage-share-of-voice-engine + competitor-coverage-share-of-incident-engine + competitor-coverage-Move-#192-handoff + competitor-coverage-dashboard; 18 pitfalls + 18 Fix: + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; 6:1 default Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; **DEPLOY SUCCEEDED + canonical-alias rotated**)",
+      "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED + DEPLOY SUCCEEDED + canonical-alias rotated)\n- **Reason:** Closes the fleet-level-AI-vendor-portfolio-COMPETITOR-COVERAGE gap that every $5M+ GMV DTC operator running 5+ AI-enabled vendors needs but no other Move in the dashboard ships — the canonical substrate that Move #192 Pillar 2 indirect-cost-calculator explicitly references for \"press-coverage-cost-from-competitor-coverage + social-media-backlash-cost-from-competitor-coverage + share-of-voice-loss-from-competitor-AI-vendor-launch + share-of-incident-loss-from-competitor-AI-vendor-incident\" cost categories. Without Move #195 wired first, every Move #192 Pillar 2 indirect-cost-calculation that mentions \"competitor\" silently returns 0, the IRS-incident-cost-deduction-pack + cy"
+    },
     {
       "heading": "[2026-09-17 02:43] Skill tick: keep — Move #193 ai-vendor-portfolio-incident-regulatory-fine-calculator (FIRST Tier-1 + FIRST P0 in unique category `ai-vendor-incident-regulatory-fine`; canonical fleet-level-AI-vendor-portfolio-incident-regulatory-fine-calculator + fleet-level-AI-vendor-portfolio-incident-per-jurisdiction-fine-table + fleet-level-AI-vendor-portfolio-incident-per-incident-class-fine-calculator + fleet-level-AI-vendor-portfolio-incident-fine-cap-enforcer + fleet-level-AI-vendor-portfolio-incident-GDPR-Article-83-fine-calculator + fleet-level-AI-vendor-portfolio-incident-CCPA-CPRA-fine-calculator + fleet-level-AI-vendor-portfolio-incident-EU-AI-Act-fine-calculator + fleet-level-AI-vendor-portfolio-incident-HIPAA-breach-notification-rule-fine-calculator + fleet-level-AI-vendor-portfolio-incident-FTC-fine-calculator + fleet-level-AI-vendor-portfolio-incident-FCC-fine-calculator + fleet-level-AI-vendor-portfolio-incident-state-AG-fine-calculator + fleet-level-AI-vendor-portfolio-incident-cross-jurisdictional-fine-aggregator + fleet-level-AI-vendor-portfolio-incident-fine-prevention-engine + fleet-level-AI-vendor-portfolio-incident-regulatory-fine-dashboard; 18 pitfalls + 18 Fix: + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; 7:1 default Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; **DEPLOY SUCCEEDED + canonical-alias rotated**)",
       "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED + DEPLOY SUCCEEDED + canonical-alias rotated + branch merged to master)\n- **Reason:** Closes the fleet-level-AI-vendor-portfolio-incident-REGULATORY-FINE-EXPOSURE gap that every $5M+ GMV DTC operator running 5+ AI-enabled vendors needs but no other Move in the dashboard ships — it is the FINANCIAL cousin to Move #188 (incident-response-orchestrator) + Move #189 (incident-recovery-orchestrator) + Move #190 (post-mortem-engine) + Move #191 (cross-incident-pattern-recognition-engine) + Move #192 (cost-attribution-engine), the layer where the operator moves from **\"Move #188 fleet-level-AI-vendor-portfolio-incident-response-orchestrator surfaces that a SEV-1 incident may trigger a regulatory fine of $500k-$50M across GDPR-Article-83 + "
@@ -31377,6 +31381,44 @@
       "pitfallCount": 18,
       "sourceCount": 0,
       "size": 104077,
+      "lastTouched": "2026-09-17"
+    },
+    {
+      "file": "195-ai-vendor-portfolio-competitor-coverage-engine.md",
+      "name": "195-ai-vendor-portfolio-competitor-coverage-engine",
+      "title": "AI vendor portfolio competitor coverage engine (Move #195)",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-17",
+      "sources": [],
+      "blurb": "Move #195 is the **canonical fleet-level-AI-vendor-portfolio-competitor-coverage-engine + fleet-level-AI-vendor-portfolio-per-competitor-vendor-portfolio-coverage-mapper + fleet-level-AI-vendor-portfolio-per-competito...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 90011,
+      "lastTouched": "2026-09-17"
+    },
+    {
+      "file": "196-ai-vendor-portfolio-partnership-revenue-engine.md",
+      "name": "196-ai-vendor-portfolio-partnership-revenue-engine",
+      "title": "AI vendor portfolio partnership revenue engine (Move #196)",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-17",
+      "sources": [],
+      "blurb": "Move #196 is the **canonical fleet-level-AI-vendor-portfolio-partnership-revenue-engine + fleet-level-AI-vendor-portfolio-per-partnership-pipeline-tracker + fleet-level-AI-vendor-portfolio-per-partnership-revenue-per-...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 73102,
       "lastTouched": "2026-09-17"
     },
     {
@@ -53219,6 +53261,27 @@
   ],
   "gitCommits": [
     {
+      "sha": "711ed28",
+      "date": "2026-09-17T04:59:01Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #195 ai-vendor-portfolio-competitor-coverage-engine (FIRST Tier-1 + FIRST P0 in unique category ai-vendor-portfolio-competitor-coverage; canonical 6-pillar Path A/B/C/D/E/F framework with per-competitor-AI-vendor-portfolio-cover",
+      "body": ""
+    },
+    {
+      "sha": "2a184c9",
+      "date": "2026-09-17T03:53:33Z",
+      "author": "mattiasadem",
+      "subject": "docs(journal): Move #194 skill tick keep entry",
+      "body": ""
+    },
+    {
+      "sha": "676b57f",
+      "date": "2026-09-17T03:53:03Z",
+      "author": "mattiasadem",
+      "subject": "skill: Move #194 ai-vendor-portfolio-incident-customer-impact-broadcast-engine (FIRST Tier-1 + FIRST P0 in unique category ai-vendor-incident-customer-broadcast; canonical 6-pillar Path A/B/C/D/E/F framework with 8+ tiers x 80+ incident-cla",
+      "body": ""
+    },
+    {
       "sha": "f5952b9",
       "date": "2026-09-17T02:48:14Z",
       "author": "mattiasadem",
@@ -54596,27 +54659,6 @@
       "author": "mattiasadem",
       "subject": "skill: marketplace seller-central operations (Move #78, FIRST Tier-1 + P0 in category: marketplace-seller-ops, default 7:1 Year-1 ROI Path B at $5M GMV, 18 numbered pitfalls, 10 verification gates A-J)",
       "body": ""
-    },
-    {
-      "sha": "c5fcc51",
-      "date": "2026-07-15T13:17:15Z",
-      "author": "mattiasadem",
-      "subject": "feat(dashboard): attribution-quality Move #6.5 interactive 6-gate scorer",
-      "body": ""
-    },
-    {
-      "sha": "f0d4255",
-      "date": "2026-07-15T12:15:59Z",
-      "author": "mattiasadem",
-      "subject": "skill: agentic AI operations (Move #77, FIRST Tier-1 + P0 in category: agentic-ai, 4:1-20:1 Year-1 ROI Path B at $3M GMV, 18 numbered pitfalls)",
-      "body": ""
-    },
-    {
-      "sha": "d88b930",
-      "date": "2026-07-15T10:59:20Z",
-      "author": "mattiasadem",
-      "subject": "skill: contact center + omnichannel customer-engagement operations (Move #76)",
-      "body": ""
     }
   ],
   "counts": {
@@ -54625,8 +54667,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 114,
-    "skills": 193,
+    "journalEntries": 115,
+    "skills": 195,
     "gitCommits": 200
   }
 }
