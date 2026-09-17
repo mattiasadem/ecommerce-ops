@@ -33,6 +33,7 @@ import type {
   IkasStoreErrorUi,
 } from "@/lib/ikas-ui";
 import { formatIkasRevenue } from "@/lib/ikas-ui";
+import { IkasTrendStrip, appendIkasTrendSample } from "@/components/ikas-trend-strip";
 
 type FetchState =
   | { kind: "idle" }
@@ -86,6 +87,20 @@ export function IkasLiveCard() {
       const json = (await r.json()) as IkasStoreResultUi;
       if (json.ok) {
         setState({ kind: "live", data: json });
+        // Feed the rolling sparkline — every successful fetch pushes one
+        // sample. The strip component dedupes by trimming to the last 12
+        // samples (≈6 minutes at the canonical 30s auto-refresh cadence).
+        try {
+          appendIkasTrendSample({
+            fetchedAt: json.fetchedAt,
+            revenue30dUsd: json.orders.revenue30dUsd,
+            orderCount30d: json.orders.orderCount30d,
+            currency: json.orders.currency,
+          });
+        } catch {
+          /* history write is non-critical — keep the live state even
+             if localStorage is unavailable (private mode, quota). */
+        }
       } else {
         setState({ kind: "error", error: json });
       }
@@ -269,6 +284,12 @@ function LiveSummary(props: LiveSummaryProps) {
           refreshed {new Date(data.fetchedAt).toLocaleTimeString()}
         </span>
       </div>
+
+      <IkasTrendStrip
+        latestFetchedAt={data.fetchedAt}
+        latestRevenue={data.orders.revenue30dUsd}
+        latestCurrency={data.orders.currency}
+      />
 
       <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
         <StatTile
