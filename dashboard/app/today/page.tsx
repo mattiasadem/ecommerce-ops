@@ -19,6 +19,7 @@ import { ProgressExportButton } from "@/components/progress-export-button";
 import { ProgressImportButton } from "@/components/progress-import-button";
 import { ProgressImportMarkdownButton } from "@/components/progress-import-markdown-button";
 import { TrajectoryPanel } from "@/components/trajectory-projection-panel";
+import { TrajectoryCheckinBanner } from "@/components/trajectory-checkin-banner";
 import Link from "next/link";
 
 export const dynamic = "force-static";
@@ -254,6 +255,11 @@ export default function TodayPage() {
       {/* === 12-month revenue trajectory — phased rollout of Top-10 === */}
       <section>
         <TrajectoryPanel />
+      </section>
+
+      {/* === Trajectory check-in — quarterly review banner + history === */}
+      <section>
+        <TrajectoryCheckinBanner compact />
       </section>
 
       {/* === Today's focus + what shipped === */}

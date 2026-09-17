@@ -21,6 +21,7 @@ import { Top10ExportButton } from "@/components/top10-export-button";
 import { RecentlyShippedPlaybooksCard } from "@/components/recently-shipped-playbooks-card";
 import { ProgressExportButton } from "@/components/progress-export-button";
 import { TrajectoryPanel } from "@/components/trajectory-projection-panel";
+import { TrajectoryCheckinBanner } from "@/components/trajectory-checkin-banner";
 import { content, findTable, fmtDate } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -233,6 +234,11 @@ export default function Home() {
       {/* === TRAJECTORY — 12-month revenue curve based on phased Top-10 rollout === */}
       <section id="trajectory-projection">
         <TrajectoryPanel />
+      </section>
+
+      {/* === TRAJECTORY CHECK-IN — quarterly review banner + history === */}
+      <section id="trajectory-checkin-banner">
+        <TrajectoryCheckinBanner />
       </section>
 
       {/* === TOP 10 SHIPPED BY YOU — cross-link from /top-10 operator tracker === */}
