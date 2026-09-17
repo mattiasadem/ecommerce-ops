@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-17T19:22:53.544Z",
+  "generatedAt": "2026-09-17T20:27:42.199Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-09-17 19:30] Skill tick: keep — Move #200 ai-vendor-portfolio-portfolio-wide-competitive-positioning-rollup-engine (FIRST Tier-1 + FIRST P0 in unique category `ai-vendor-portfolio-wide-competitive-positioning`; DEPLOY SUCCEEDED + canonical alias rotated)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-17\n- **Status:** keep (parse SUCCEEDED + build SUCCEEDED + DEPLOY SUCCEEDED + canonical-alias rotated + live URL 200 + all 9 verification gates A-I passed)\n- **Reason:** The prior tick's `Next action` explicitly named **Move #200 ai-vendor-portfolio-portfolio-wide-competitive-positioning-rollup-engine** as the canonical closing 7th member of the Move #180-199 attribution chain + the canonical Move #199 `How to extend this skill` follow-on. The Move #199 skill file's \"How to extend this skill\" section explicitly references Move #200 as \"the canonical portfolio-wide-competitive-positioning-attribution-state-machine that consumes Move #199.data.per_competitive_positioning_state + Move-#185.data.per_portfolio_margin_state + Move-#198.data.per_strategic"
+    },
+    {
       "heading": "[2026-09-17 18:30] Skill tick: keep — Move #199 ai-vendor-portfolio-competitive-positioning-engine (FIRST Tier-1 + FIRST P0 in unique category `ai-vendor-competitive-positioning`; DEPLOY SUCCEEDED + canonical alias rotated)",
       "body": "- **Branch:** autoresearch/skills-2026-09-17 (merged to master via `bash scripts/skill-branch.sh keep`; commit `992f777` — the prior-tick commit that was DEPLOY BLOCKED at Vercel 24h quota, now live after the quota reset between 18:00 and 18:30)\n- **Status:** keep (parse SUCCEEDED + build SUCCEEDED + DEPLOY SUCCEEDED + canonical-alias rotated + live URL 200 + all 9 verification gates A-I passed)\n- **Reason:** The prior journal's `Next action` explicitly named **Move #199 ai-vendor-portfolio-competitive-positioning-engine** as the canonical 6th member of the Move #180-198 attribution chain (closing the per-portfolio-competitive-positioning-vs-strategic-positioning-vs-customer-positioning-vs-channel-positioning gap). The Vercel 24h quota reset between the 18:00 tick and this 18:30 tick (depl"
     },
@@ -12644,6 +12648,10 @@
     {
       "heading": "[2026-09-17 08:05] Dashboard tick: keep — IkasLiveCard trend sparkline (Move #6.14.b cross-page-intelligence + live-data — **DEPLOY BLOCKED at Vercel 24h quota**)",
       "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED + GitHub push SUCCEEDED; **DEPLOY BLOCKED** at Vercel 24-hour free-tier quota — same quota wall as Move #128.af/128.ag/128.ah)\n- **Reason:** Closes the operator's \"is my live revenue actually moving while I sit here?\" loop. The existing `IkasLiveCard` already auto-polls `/api/ikas/overview` every 30s with a live countdown indicator (Move #6.14), but until now each fetch replaced the visible numbers atomically — the operator had no way to tell whether the dashboard was tracking a rising trend, a flat line, or a slow dip. Three realistic workarounds: (a) screenshot the stat tile and diff against memory (lossy, no accuracy), (b) open the Vercel function logs and grep `revenue30dUsd` (technical, slow), or (c) give up and assume flat. M"
+    },
+    {
+      "heading": "[2026-09-17 20:04] Dashboard tick: keep — Trajectory scenario comparator on `/` (Move #128.al cross-page-intelligence + interactive-tool)",
+      "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED + DEPLOY SUCCEEDED + canonical alias rotated + GitHub push SUCCEEDED)\n- **Reason:** Closes the operator's \"what if I delay a move?\" decision loop. The Move #6.16 trajectory panel answers \"what does my Year-1 look like?\" with a single phased-rollout curve, but until now there was no way to ask \"what does it look like if I delay Move #5 by 1 month?\" Three realistic workarounds: (a) recompute manually in a spreadsheet (slow, error-prone), (b) just don't delay anything (loss of optionality), (c) give up and guess. This tick ships a `<TrajectoryScenarioComparator />` panel that lets the operator pick any unshipped move + a delay amount (1/2/3/6 months), re-runs the trajectory engine with that delay, and renders a 4-tile delta grid (peak"
     }
   ],
   "skills": [
@@ -31572,6 +31580,25 @@
       "pitfallCount": 18,
       "sourceCount": 0,
       "size": 70185,
+      "lastTouched": "2026-09-17"
+    },
+    {
+      "file": "201-ai-vendor-portfolio-portfolio-wide-competitive-positioning-rollup-engine-per-quarterly-cmo-board-summary.md",
+      "name": "ai-vendor-portfolio-portfolio-wide-competitive-positioning-rollup-engine-per-quarterly-cmo-board-summary",
+      "title": "AI vendor portfolio portfolio-wide competitive positioning rollup engine per quarterly CMO board summary",
+      "category": "ai-vendor-portfolio-quarterly-cmo-board-summary",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "201",
+      "yearOneRoiBand": "5:1–18:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-17",
+      "sources": [],
+      "blurb": "The canonical fleet-level-AI-vendor-portfolio-portfolio-wide-quarterly-cmo-board-summary-engine that consumes Move #200.data.per_portfolio_wide_competitive_positioning_rollup + Move #199.data.per_competitive_positioni...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 66642,
       "lastTouched": "2026-09-17"
     },
     {
@@ -53377,6 +53404,27 @@
   ],
   "gitCommits": [
     {
+      "sha": "d97f260",
+      "date": "2026-09-17T20:06:47Z",
+      "author": "hermesagent",
+      "subject": "docs(journal): Move #128.al trajectory scenario comparator tick record",
+      "body": ""
+    },
+    {
+      "sha": "0a7bf0c",
+      "date": "2026-09-17T20:06:28Z",
+      "author": "hermesagent",
+      "subject": "feat(dashboard): Move #128.al trajectory scenario comparator — pick a move + delay, see Year-1 delta (cross-page-intelligence + interactive-tool)",
+      "body": ""
+    },
+    {
+      "sha": "c639937",
+      "date": "2026-09-17T19:24:59Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #200 ai-vendor-portfolio-portfolio-wide-competitive-positioning-rollup-engine (FIRST Tier-1 + FIRST P0 in unique category ai-vendor-portfolio-wide-competitive-positioning; canonical 6-pillar Path A/B/C/D/E/F fleet-level portfoli",
+      "body": ""
+    },
+    {
       "sha": "d824730",
       "date": "2026-09-17T18:20:43Z",
       "author": "hermesagent",
@@ -54754,27 +54802,6 @@
       "author": "hermesagent",
       "subject": "skill: 87-market-research-consumer-intelligence-engine (FIRST Tier-1 + FIRST P0 in category market-research, Move #87, 7-pillar Path A/B+/B/C/D/E/F market-research-consumer-intelligence-engine unifying GWI + Nielsen + Circana + Numerator + ",
       "body": ""
-    },
-    {
-      "sha": "0fdd166",
-      "date": "2026-09-10T21:16:33Z",
-      "author": "mattiasadem",
-      "subject": "skill: 98-subscription-economy-vertical-deep-dive (FIRST Tier-1 + FIRST P0 in category subscription-economy-vertical-deep-dive, Move #5.6, 7-pillar Path A/B/C/D/E/F/G subscription-economy-vertical-engine unifying Recharge + Skio + Bold Comm",
-      "body": ""
-    },
-    {
-      "sha": "425187b",
-      "date": "2026-09-10T20:09:43Z",
-      "author": "mattiasadem",
-      "subject": "skill: 97-subscription-economy-deep-dive (FIRST Tier-1 + FIRST P0 in category subscription-economy-deep-dive, Move #5.5, 6-pillar Path A/B/C/D/E/F subscription-economy-engine unifying Recharge + Skio + Bold Commerce + Stay AI + Loop Subscri",
-      "body": ""
-    },
-    {
-      "sha": "99f881a",
-      "date": "2026-09-10T17:54:17Z",
-      "author": "mattiasadem",
-      "subject": "skill: 96-demand-sensing-supply-chain-resilience (FIRST Tier-1 + FIRST P0 in category demand-sensing-supply-chain-resilience, Move #12.7 follow-up to Move #12.6, default 7:1 Year-1 ROI Path B at $3M GMV, 6-pillar Path A/B/C/D/E/F demand-sen",
-      "body": ""
     }
   ],
   "counts": {
@@ -54783,8 +54810,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 125,
-    "skills": 199,
+    "journalEntries": 127,
+    "skills": 200,
     "gitCommits": 200
   }
 }
