@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-18T04:01:54.704Z",
+  "generatedAt": "2026-09-18T05:07:33.679Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12145,6 +12145,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-18 04:30] Skill tick: keep — Move #207 ai-vendor-portfolio-portfolio-wide-competitive-positioning-rollup-engine-per-quarterly-cmo-board-summary-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-board-pack-action-outcome-attribution-rollup-per-board-pack-action-outcome-attribution-explainability-rollup (FIRST Tier-1 + FIRST P0 in unique category `ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup`; canonical closing attribution-explainability-rollup engine for the Move #180-206 attribution chain; 18 numbered pitfalls + 18 Fix: lines + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; default 6:1 Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; DEPLOY SUCCEEDED + canonical alias rotated)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-18\n- **Status:** keep (parse SUCCEEDED + build SUCCEEDED + DEPLOY SUCCEEDED + canonical-alias rotated + live URL 200 + all 11 Move #207 sentinel families verified live)\n- **Reason:** The prior Move #206 journal's `Next action` explicitly named **Move #207 ai-vendor-portfolio-portfolio-wide-competitive-positioning-rollup-engine-per-quarterly-cmo-board-summary-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-board-pack-action-outcome-attribution-rollup-per-board-pack-action-outcome-attribution-explainability-rollup** as the canonical closing attribution-explainability-rollup engine for the Move #180-206 attribution chain — the Move #206 `How to extend this skill` section ex"
+    },
     {
       "heading": "[2026-09-18 02:11] Dashboard tick: keep — `/` Trajectory scenario comparator adds Scenario B side-by-side + compare verdict (Move #128.am cross-page-intelligence + interactive-tool)",
       "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED + DEPLOY SUCCEEDED + canonical alias rotated)\n- **Reason:** Closes the operator's \"compare two delay trade-offs\" decision loop. Move #128.al shipped a single-scenario comparator — pick a move + delay, see the Year-1 delta. But real operator questions are comparative: \"is delaying Move #5 by 1 month more painful than delaying Move #7 by 2 months?\" Three workarounds until now: (a) toggle back and forth between A and B mentally (lossy, slow), (b) do the math in a spreadsheet (defeats the dashboard's purpose), (c) just pick one and hope. This tick adds an optional 2nd scenario (Scenario B) with its own move + delay picker, renders both as a 2-column 4-tile delta grid, and surfaces a violet \"Compare verdict\" footer naming which scenario"
@@ -31737,6 +31741,25 @@
       "pitfallCount": 18,
       "sourceCount": 0,
       "size": 94069,
+      "lastTouched": "2026-09-18"
+    },
+    {
+      "file": "208-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup.md",
+      "name": "ai-vendor-portfolio-portfolio-wide-competitive-positioning-rollup-engine-per-quarterly-cmo-board-summary-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-board-pack-action-outcome-attribution-rollup-per-board-pack-action-outcome-attribution-explainability-rollup-per-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup",
+      "title": "ai vendor portfolio portfolio wide competitive positioning rollup engine per quarterly CMO board summary per board pack distribution per board pack engagement loop per board pack action loop per board pack action outcome rollup per board pack action outcome attribution rollup per board pack action outcome attribution explainability rollup per board pack action outcome attribution explainability rollup decision rollup (Move #208)",
+      "category": "ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "208",
+      "yearOneRoiBand": "4:1–16:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-18",
+      "sources": [],
+      "blurb": "Move #208 is the canonical closing attribution-explainability-rollup-**decision-rollup** engine for the Move #180-207 attribution chain: it consumes Move #207.data.per_board_pack_action_outcome_attribution_explainabil...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 108757,
       "lastTouched": "2026-09-18"
     },
     {
@@ -53542,6 +53565,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "7465441",
+      "date": "2026-09-18T04:04:34Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #207 board-pack-action-outcome-attribution-explainability-rollup (FIRST Tier-1 + FIRST P0 in unique category ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup; canonical closing attribution-explaina",
+      "body": ""
+    },
+    {
       "sha": "63fc0c7",
       "date": "2026-09-18T02:11:37Z",
       "author": "hermesagent",
@@ -54933,13 +54963,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #18.7 retail-media-networks (FIRST Tier-1 + FIRST P0 in category: retail-media-networks, 18 pitfalls, 10 verification gates A-J, default 4:1–20:1 Year-1 ROI Path B at $10M marketplace-GMV) — Amazon Sponsored Products + Amazon DS",
       "body": ""
-    },
-    {
-      "sha": "373bef4",
-      "date": "2026-09-11T06:20:55Z",
-      "author": "hermesagent",
-      "subject": "docs(journal): tick 2026-09-11 06:20 — discard (DEPLOY BLOCKED) — marketplace-fee-optimization (Move #13.1)",
-      "body": ""
     }
   ],
   "counts": {
@@ -54948,8 +54971,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 133,
-    "skills": 206,
+    "journalEntries": 134,
+    "skills": 207,
     "gitCommits": 200
   }
 }
