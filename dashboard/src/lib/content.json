@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-18T01:52:51.705Z",
+  "generatedAt": "2026-09-18T04:01:54.704Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12145,6 +12145,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-18 02:11] Dashboard tick: keep — `/` Trajectory scenario comparator adds Scenario B side-by-side + compare verdict (Move #128.am cross-page-intelligence + interactive-tool)",
+      "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED + DEPLOY SUCCEEDED + canonical alias rotated)\n- **Reason:** Closes the operator's \"compare two delay trade-offs\" decision loop. Move #128.al shipped a single-scenario comparator — pick a move + delay, see the Year-1 delta. But real operator questions are comparative: \"is delaying Move #5 by 1 month more painful than delaying Move #7 by 2 months?\" Three workarounds until now: (a) toggle back and forth between A and B mentally (lossy, slow), (b) do the math in a spreadsheet (defeats the dashboard's purpose), (c) just pick one and hope. This tick adds an optional 2nd scenario (Scenario B) with its own move + delay picker, renders both as a 2-column 4-tile delta grid, and surfaces a violet \"Compare verdict\" footer naming which scenario"
+    },
     {
       "heading": "[2026-09-18 00:50] Skill tick: keep — Move #205 board-pack-action-outcome-rollup (FIRST Tier-1 + FIRST P0 in unique category `ai-vendor-portfolio-board-pack-action-outcome-rollup`; canonical closing action-outcome-rollup engine for the Move #180-204 attribution chain; 18 numbered pitfalls + 20 Fix: lines + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; default 6:1 Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; DEPLOY SUCCEEDED + canonical alias rotated)",
       "body": "- **Branch:** autoresearch/skills-2026-09-18\n- **Status:** keep (parse SUCCEEDED + build SUCCEEDED + DEPLOY SUCCEEDED + canonical-alias rotated + live URL 200 + all 9 verification gates A-I passed)\n- **Reason:** The prior Move #204 journal's `Next action` explicitly named **Move #205 ai-vendor-portfolio-portfolio-wide-competitive-positioning-rollup-engine-per-quarterly-cmo-board-summary-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup** as the canonical closing action-outcome-rollup engine for the Move #180-204 attribution chain — the Move #204 `How to extend this skill` section explicitly references Move #205 as the canonical per-board-pack-action-outcome-rollup-engine that consumes Move #204.data.per_board_pack_act"
@@ -31714,6 +31718,25 @@
       "pitfallCount": 18,
       "sourceCount": 0,
       "size": 82228,
+      "lastTouched": "2026-09-18"
+    },
+    {
+      "file": "207-board-pack-action-outcome-attribution-explainability-rollup.md",
+      "name": "ai-vendor-portfolio-portfolio-wide-competitive-positioning-rollup-engine-per-quarterly-cmo-board-summary-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-board-pack-action-outcome-attribution-rollup-per-board-pack-action-outcome-attribution-explainability-rollup",
+      "title": "AI vendor portfolio portfolio-wide competitive positioning rollup engine per quarterly CMO board summary per board pack distribution per board pack engagement loop per board pack action loop per board pack action outcome rollup per board pack action outcome attribution rollup per board pack action outcome attribution explainability rollup",
+      "category": "ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "207",
+      "yearOneRoiBand": "4:1–16:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-18",
+      "sources": [],
+      "blurb": "The canonical fleet-level-AI-vendor-portfolio-portfolio-wide-quarterly-cmo-board-summary-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-b...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 94069,
       "lastTouched": "2026-09-18"
     },
     {
@@ -53519,6 +53542,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "63fc0c7",
+      "date": "2026-09-18T02:11:37Z",
+      "author": "hermesagent",
+      "subject": "feat(dashboard): Move #128.am trajectory scenario comparator adds Scenario B side-by-side + compare verdict",
+      "body": ""
+    },
+    {
+      "sha": "3fe403e",
+      "date": "2026-09-18T01:55:00Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #206 board-pack-action-outcome-attribution-rollup — canonical closing action-outcome-attribution-rollup engine for the Move #180-205 attribution chain (FIRST Tier-1 + FIRST P0 in unique category ai-vendor-portfolio-board-pack-ac",
+      "body": ""
+    },
+    {
       "sha": "b0655f9",
       "date": "2026-09-18T00:50:15Z",
       "author": "hermesagent",
@@ -54903,20 +54940,6 @@
       "author": "hermesagent",
       "subject": "docs(journal): tick 2026-09-11 06:20 — discard (DEPLOY BLOCKED) — marketplace-fee-optimization (Move #13.1)",
       "body": ""
-    },
-    {
-      "sha": "1acd476",
-      "date": "2026-09-11T05:11:48Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #5.7 subscription-economy per-cohort deep-dive (FIRST Tier-1 + FIRST P0 in category: subscription-economy-per-cohort-deep-dive, 18 pitfalls, 10 gates, default 9:1 Year-1 ROI Path B at $3M subscription-GMV)",
-      "body": ""
-    },
-    {
-      "sha": "d571251",
-      "date": "2026-09-11T05:07:03Z",
-      "author": "hermesagent",
-      "subject": "feat(dashboard): /journal search + tick-type facets (interactive-tool + state-persistence)",
-      "body": ""
     }
   ],
   "counts": {
@@ -54925,8 +54948,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 132,
-    "skills": 205,
+    "journalEntries": 133,
+    "skills": 206,
     "gitCommits": 200
   }
 }
