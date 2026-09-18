@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-18T15:37:28.671Z",
+  "generatedAt": "2026-09-18T16:45:49.834Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12145,6 +12145,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "2026-09-18 15:35 — Skill tick: keep — Move #215 board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-engagement-loop-per-board-pack-action-loop (FIRST Tier-1 + FIRST P0 in unique category ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop; canonical closing board-pack-action-loop engine for the entire Move #180-214 attribution chain with INDEPENDENT board-pack-action-loop LLM-judge (the 8th INDEPENDENT LLM-judge); 18 pitfalls + 18 Fix: lines + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; default 7:1 Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; DEPLOY SUCCEEDED + canonical alias rotated)",
+      "body": "- **Status:** keep\n- **Reason:** Move #214 Pillar 5 + Pillar 6 explicitly documents Move #215 as the canonical closing **board-pack-action-loop** engine for the entire Move #180-214 attribution chain (per the journal's \"Next action\" line for Move #214 — \"Move #215 — the canonical board-pack-action-loop engine that consumes Move #214 per-board-member-engagement-loop outputs and surfaces them as a per-board-pack-action-loop\"; and per Move #214 \"Cross-references\" → \"Move #214 → Move #215 (canonical follow-on, this skill)\" and Move #214 \"How to extend\" → \"Move #214.3 — … board-pack-action-loop-handoff\" → \"engine writes to Move #215 Pillar 5/6 board-pack-action-loop substrate for downstream board-pack action loop\"). Without Move #215, the entire Move #180-214 attribution chain has no board-pack"
+    },
     {
       "heading": "2026-09-18 14:25 — Skill tick: keep — Move #214 board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-engagement-loop (FIRST Tier-1 + FIRST P0 in unique category ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-engagement-loop; canonical closing board-member-engagement-loop engine for the entire Move #180-213 attribution chain; 18 pitfalls + 18 Fix: lines + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; default 7:1 Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; DEPLOY SUCCEEDED + canonical alias rotated)",
       "body": "- **Status:** keep\n- **Reason:** Move #213 Pillar 5 + Pillar 6 explicitly documents Move #214 as the canonical closing **board-member-engagement-loop** engine for the entire Move #180-213 attribution chain (per the journal's \"Next action\" line for Move #213 — \"Move #214 — the canonical board-member-engagement-loop engine that consumes Move #213 per-board-member-overlay outputs and surfaces them as a per-board-member-engagement-loop\"; and per Move #213 \"Cross-references\" → \"Move #213 → Move #214 (canonical follow-on, this skill)\" and Move #213 \"How to extend\" → \"Move #213.3 — … board-member-engagement-loop-handoff\" → \"engine writes to Move #214 Pillar 5/6 per-board-member-engagement-loop-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-"
@@ -31686,6 +31690,25 @@
       "pitfallCount": 18,
       "sourceCount": 0,
       "size": 62665,
+      "lastTouched": "2026-09-18"
+    },
+    {
+      "file": "216-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-action-outcome-rollup.md",
+      "name": "ai-vendor-portfolio-portfolio-wide-competitive-positioning-rollup-engine-per-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup",
+      "title": "Move #216 — board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-engagement-loop-per-board-pack-action-outcome-rollup",
+      "category": "ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "216",
+      "yearOneRoiBand": "5:1–22:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-18",
+      "sources": [],
+      "blurb": "The canonical **board-pack-action-outcome-rollup** engine that consumes Move #215's per-board-pack-action-loop outputs and rolls them up into per-board-pack-action-outcome-rollup, closing the entire Move #180-215 attr...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 67258,
       "lastTouched": "2026-09-18"
     },
     {
@@ -53446,6 +53469,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "0742ebe",
+      "date": "2026-09-18T15:40:39Z",
+      "author": "hermesagent",
+      "subject": "journal: Move #215 keep — board-pack-action-loop",
+      "body": ""
+    },
+    {
+      "sha": "eeb0d84",
+      "date": "2026-09-18T15:39:51Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #215 board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-engagement-loop-per-board-pack-action-loop (F",
+      "body": ""
+    },
+    {
       "sha": "fc39228",
       "date": "2026-09-18T14:27:47Z",
       "author": "hermesagent",
@@ -54830,20 +54867,6 @@
       "author": "hermesagent",
       "subject": "docs(journal): tick 2026-09-11 19:49 — discard — Move #113 per-cohort-creative-engine (DEPLOY BLOCKED by Vercel 24-hour rate limit, retry next tick)",
       "body": ""
-    },
-    {
-      "sha": "5cf30c6",
-      "date": "2026-09-11T18:43:39Z",
-      "author": "hermesagent",
-      "subject": "skill: per-cohort bid engine + value-based bidding + pLTV-signal-bidding (Move #112)",
-      "body": "FIRST Tier-1 + FIRST P0 in category: per-cohort-bid-engine.\nCompounds Move #13 Triple-Whale-attribution + Move #47 growth-experimentation\n+ Move #6 attribution-audit + Move #108 first-party-data-collection-cookieless-strategy\n+ Move #67 ecommerce-insurance + Move #53 financial-operations + Move #76 contact-center\n+ Move #50 conversational-commerce + Move #14 affiliate-program + Move #25 international-expansion\ninto a 6-pillar Path A/B/C/D/E/F per-cohort-bid-engine.\n\nDefault 9:1 Year-1 ROI Path B at $5M GMV from 15-30% CAC reduction +\n10-20% ROAS lift + 20-40% LTV:CAC improvement + 25-50% cohort-quality shift\n+ 20-40% repeat-purchase-rate uplift per AdZeta 2026 + Servo 2026 + Voyantis 2025\n+ Angler AI 2025 + Elevate Digital 2025 + Capconvert 2025 + D2C Times 2025\n+ Eightx 2026 + SEQTOR 2025 + Meta 2026 + Google 2026 + TikTok 2026 + Triple Whale 2026\n+ Polar 2026 + Northbeam 2026 + Klaviyo 2026 + Postscript 2026 + Iterable 2026\n+ Mixpanel 2026 + Amplitude 2026 + Heap 2026 benchmarks.\n\n18 numbered pitfalls across 5 clusters (A per-cohort-LTV-overlay-wiring 1-4\n+ B per-cohort-EMQ-monitoring-wiring 5-8 + C per-cohort-creative-bid-overlay-wiring 9-12\n+ D per-cohort-budget-reallocation-wiring 13-15 + E per-cohort-bid-decision-audit-wiring 16-18)\nwith corrective Fix: lines.\n\n10 verification gates A-J (per-cohort-LTV-overlay-wired + pLTV-signal-bidding-wired\n+ per-cohort-EMQ-monitoring-wired + per-cohort-value-based-bidding-enabled-on-every-channel\n+ per-cohort-bid-rules-engine-wired + per-cohort-budget-reallocation-engine-wired\n+ per-cohort-attribution-audit-wired + per-cohort-bid-decision-audit-wired\n+ per-cohort-pLTV-vendor-strategic-review-wired + per-cohort-bid-engine-ROI-baselined-and-improving).\n\nBuild: succeeded (112 skill routes pre-rendered).\nDeploy: succeeded to dashboard-nk8wh8uwo-mattiasadem-5021s-projects.vercel.app.\nAlias: rotated ecommerce-ops-iota.vercel.app to new deployment per v2.99.26.\nLive: HTTP 200 / 274,639 bytes / 9+ sentinel tokens verified."
-    },
-    {
-      "sha": "e556885",
-      "date": "2026-09-11T17:37:14Z",
-      "author": "hermesagent",
-      "subject": "skill: 111 warehouse-robotics-automation (Move #111, FIRST Tier-1 + FIRST P0 in category: warehouse-robotics-automation, 18 pitfalls, 10 verification gates A-J, default 7:1 Year-1 ROI Path B at $5M GMV) - Cin7 + NetSuite WMS + Korber + Manh",
-      "body": ""
     }
   ],
   "counts": {
@@ -54852,8 +54875,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 71,
-    "skills": 214,
+    "journalEntries": 72,
+    "skills": 215,
     "gitCommits": 200
   }
 }
