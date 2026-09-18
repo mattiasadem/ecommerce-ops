@@ -63,7 +63,9 @@ import { cn } from "@/lib/utils";
  */
 
 const STORAGE_KEY = "ecom-ops:trajectory-scenario:v1";
+const STORAGE_KEY_B = "ecom-ops:trajectory-scenario-b:v1";
 const SCHEMA = "ecom-ops-trajectory-scenario";
+const SCHEMA_B = "ecom-ops-trajectory-scenario-b";
 const VERSION = 1;
 
 const DELAY_PRESETS_DAYS = [
@@ -81,6 +83,13 @@ interface ScenarioState {
 interface ScenarioStorage {
   schema: typeof SCHEMA;
   version: number;
+  state: ScenarioState;
+}
+
+interface ScenarioBStorage {
+  schema: typeof SCHEMA_B;
+  version: number;
+  enabled: boolean;
   state: ScenarioState;
 }
 
@@ -132,6 +141,64 @@ function saveScenario(state: ScenarioState): void {
   }
 }
 
+function isValidShapeB(value: unknown): value is ScenarioBStorage {
+  if (!value || typeof value !== "object") return false;
+  const v = value as Partial<ScenarioBStorage>;
+  return (
+    v.schema === SCHEMA_B &&
+    v.version === VERSION &&
+    typeof v.state === "object" &&
+    v.state !== null &&
+    typeof v.enabled === "boolean"
+  );
+}
+
+function loadScenarioB(): { enabled: boolean; state: ScenarioState } {
+  if (typeof window === "undefined")
+    return { enabled: false, state: { moveId: null, delayDays: 30 } };
+  try {
+    const raw = window.localStorage.getItem(STORAGE_KEY_B);
+    if (!raw) return { enabled: false, state: { moveId: null, delayDays: 30 } };
+    const parsed = JSON.parse(raw);
+    if (!isValidShapeB(parsed))
+      return { enabled: false, state: { moveId: null, delayDays: 30 } };
+    const s = parsed.state;
+    return {
+      enabled: parsed.enabled,
+      state: {
+        moveId: typeof s.moveId === "string" ? s.moveId : null,
+        delayDays:
+          typeof s.delayDays === "number" && s.delayDays > 0 ? s.delayDays : 30,
+      },
+    };
+  } catch {
+    return { enabled: false, state: { moveId: null, delayDays: 30 } };
+  }
+}
+
+function saveScenarioB(
+  enabled: boolean,
+  state: ScenarioState,
+): void {
+  if (typeof window === "undefined") return;
+  try {
+    const payload: ScenarioBStorage = {
+      schema: SCHEMA_B,
+      version: VERSION,
+      enabled,
+      state,
+    };
+    window.localStorage.setItem(STORAGE_KEY_B, JSON.stringify(payload));
+    window.dispatchEvent(
+      new CustomEvent("ecom-ops:trajectory-scenario-b:update", {
+        detail: payload,
+      }),
+    );
+  } catch {
+    /* quota / private-mode — silently ignore */
+  }
+}
+
 export function TrajectoryScenarioComparator() {
   const [store, setStore] = useState<YourStoreInputs | null>(null);
   const [shipped, setShipped] = useState<ShippedMap>({});
@@ -140,11 +207,19 @@ export function TrajectoryScenarioComparator() {
     moveId: null,
     delayDays: 30,
   });
+  const [scenarioBEnabled, setScenarioBEnabled] = useState(false);
+  const [scenarioB, setScenarioB] = useState<ScenarioState>({
+    moveId: null,
+    delayDays: 60,
+  });
 
   useEffect(() => {
     setStore(loadYourStore());
     setShipped(loadShippedPlaybooks());
     setScenario(loadScenario());
+    const initialB = loadScenarioB();
+    setScenarioBEnabled(initialB.enabled);
+    setScenarioB(initialB.state);
     setHydrated(true);
     const onStorage = (e: StorageEvent) => {
       if (e.key === "ecom-ops:your-store:v1" || e.key === null) {
@@ -156,16 +231,36 @@ export function TrajectoryScenarioComparator() {
       if (e.key === STORAGE_KEY || e.key === null) {
         setScenario(loadScenario());
       }
+      if (e.key === STORAGE_KEY_B || e.key === null) {
+        const next = loadScenarioB();
+        setScenarioBEnabled(next.enabled);
+        setScenarioB(next.state);
+      }
     };
     const onCustom = (e: Event) => {
       const detail = (e as CustomEvent<ScenarioStorage>).detail;
       if (detail && isValidShape(detail)) setScenario(detail.state);
     };
+    const onCustomB = (e: Event) => {
+      const detail = (e as CustomEvent<ScenarioBStorage>).detail;
+      if (detail && isValidShapeB(detail)) {
+        setScenarioBEnabled(detail.enabled);
+        setScenarioB(detail.state);
+      }
+    };
     window.addEventListener("storage", onStorage);
     window.addEventListener("ecom-ops:trajectory-scenario:update", onCustom);
+    window.addEventListener(
+      "ecom-ops:trajectory-scenario-b:update",
+      onCustomB,
+    );
     return () => {
       window.removeEventListener("storage", onStorage);
       window.removeEventListener("ecom-ops:trajectory-scenario:update", onCustom);
+      window.removeEventListener(
+        "ecom-ops:trajectory-scenario-b:update",
+        onCustomB,
+      );
     };
   }, []);
 
@@ -208,6 +303,51 @@ export function TrajectoryScenarioComparator() {
       };
     }, [store, shipped, scenario]);
 
+  // Scenario B — independent second scenario, same engine. When
+  // `scenarioBEnabled` is false, `delayedProjectionB === delayed` and
+  // `deltaB === delta` so the side-by-side grid renders a single
+  // "Scenario B = Scenario A" row.
+  const { delayedB, deltaB, eligibleMovesB, originalShipMonthB } =
+    useMemo(() => {
+      const shippedSet = new Set(Object.keys(shipped));
+      const eligible = MOVE_RECOMMENDATIONS.filter(
+        (m) => !shippedSet.has(m.id),
+      );
+      const selectedMoveB = scenarioB.moveId
+        ? eligible.find((m) => m.id === scenarioB.moveId) ?? null
+        : null;
+      // Default: pick the 2nd eligible move so A and B aren't the same.
+      const fallbackMoveB =
+        scenarioBEnabled && !selectedMoveB
+          ? eligible.find((m) => m.id !== scenario.moveId) ?? eligible[0]
+          : null;
+      const effectiveMoveIdB = selectedMoveB
+        ? selectedMoveB.id
+        : fallbackMoveB?.id ?? null;
+      const delaysB: TrajectoryDelayMap =
+        scenarioBEnabled && effectiveMoveIdB
+          ? { [effectiveMoveIdB]: scenarioB.delayDays }
+          : {};
+      const projB = projectTrajectoryWithDelays(
+        store ?? YOUR_STORE_DEFAULTS,
+        shipped,
+        delaysB,
+      );
+      const deltaB = computeTrajectoryScenarioDelta(baseline, projB);
+      const originalEntryB = effectiveMoveIdB
+        ? baseline.movesOnHorizon.find(
+            (e) => e.move.id === effectiveMoveIdB,
+          )
+        : undefined;
+      const originalMonthB = originalEntryB?.shipMonth ?? null;
+      return {
+        delayedB: projB,
+        deltaB,
+        eligibleMovesB: eligible,
+        originalShipMonthB: originalMonthB,
+      };
+    }, [store, shipped, scenario, scenarioB, scenarioBEnabled, baseline]);
+
   if (!hydrated) {
     return (
       <div
@@ -247,6 +387,39 @@ export function TrajectoryScenarioComparator() {
       ? delayedShipMonth - originalShipMonth
       : null;
   const fmtMoney = TRAJECTORY_FORMATTERS.fmtMoney;
+
+  // Scenario B resolved ids — used in JSX
+  const effectiveMoveIdB =
+    scenarioB.moveId ??
+    (scenarioBEnabled && eligibleMovesB.length > 1
+      ? eligibleMovesB.find((m) => m.id !== scenario.moveId)?.id ??
+        eligibleMovesB[1]?.id
+      : null) ??
+    null;
+  const selectedMoveB = effectiveMoveIdB
+    ? eligibleMovesB.find((m) => m.id === effectiveMoveIdB) ?? null
+    : null;
+  const delayedEntryB = effectiveMoveIdB
+    ? delayedB.movesOnHorizon.find((e) => e.move.id === effectiveMoveIdB)
+    : undefined;
+  const delayedShipMonthB = delayedEntryB?.shipMonth ?? null;
+  const monthShiftB =
+    originalShipMonthB !== null && delayedShipMonthB !== null
+      ? delayedShipMonthB - originalShipMonthB
+      : null;
+
+  // Verdict: which scenario is "less painful" — i.e. whose Year-1 lift
+  // loss is smaller. Ties go to A.
+  const lossA = Math.abs(delta.year1LiftHighDelta);
+  const lossB = scenarioBEnabled ? Math.abs(deltaB.year1LiftHighDelta) : 0;
+  const verdictLabel =
+    scenarioBEnabled && effectiveMoveId !== effectiveMoveIdB
+      ? lossA < lossB
+        ? "Scenario A loses less Year-1 lift"
+        : lossA > lossB
+          ? "Scenario B loses less Year-1 lift"
+          : "Both scenarios lose the same Year-1 lift"
+      : null;
 
   return (
     <Card data-testid="trajectory-scenario-comparator" className="border-l-4 border-l-sky-500/70">
@@ -350,40 +523,237 @@ export function TrajectoryScenarioComparator() {
 
         <Separator />
 
-        {/* === DELTA GRID === */}
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-          <ScenarioDeltaTile
-            testid="trajectory-scenario-delta-peak"
-            label="Peak monthly revenue"
-            value={fmtTrajectoryDeltaMoney(delta.peakRevenueHighDelta)}
-            intent={delta.peakRevenueHighDelta < 0 ? "down" : delta.peakRevenueHighDelta > 0 ? "up" : "neutral"}
-            hint={`${fmtMoney(baseline.months[baseline.months.length - 1].revenueHigh)} → ${fmtMoney(delayed.months[delayed.months.length - 1].revenueHigh)}`}
-          />
-          <ScenarioDeltaTile
-            testid="trajectory-scenario-delta-lift"
-            label="Year-1 lift"
-            value={`${fmtTrajectoryDeltaMoney(delta.year1LiftLowDelta)} – ${fmtTrajectoryDeltaMoney(delta.year1LiftHighDelta)}`}
-            intent={delta.year1LiftHighDelta < 0 ? "down" : delta.year1LiftHighDelta > 0 ? "up" : "neutral"}
-            hint={`${fmtMoney(baseline.year1LiftLow)}–${fmtMoney(baseline.year1LiftHigh)} baseline`}
-          />
-          <ScenarioDeltaTile
-            testid="trajectory-scenario-delta-cost"
-            label="Year-1 cost"
-            value={`${fmtTrajectoryDeltaMoney(delta.year1CostLowDelta)} – ${fmtTrajectoryDeltaMoney(delta.year1CostHighDelta)}`}
-            intent={delta.year1CostHighDelta > 0 ? "up" : delta.year1CostHighDelta < 0 ? "down" : "neutral"}
-            hint={`${fmtMoney(baseline.year1CostLow)}–${fmtMoney(baseline.year1CostHigh)} baseline`}
-          />
-          <ScenarioDeltaTile
-            testid="trajectory-scenario-delta-roi"
-            label="Year-1 ROI"
-            value={`${fmtTrajectoryDeltaRoi(delta.year1RoiLowDelta)} – ${fmtTrajectoryDeltaRoi(delta.year1RoiHighDelta)}`}
-            intent={delta.year1RoiHighDelta < 0 ? "down" : delta.year1RoiHighDelta > 0 ? "up" : "neutral"}
-            hint={`${TRAJECTORY_FORMATTERS.fmtRoi(baseline.year1RoiLow)}–${TRAJECTORY_FORMATTERS.fmtRoi(baseline.year1RoiHigh)} baseline`}
-          />
+        {/* === SCENARIO B TOGGLE === */}
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <label className="inline-flex items-center gap-2 text-[11px] text-muted-foreground">
+            <input
+              type="checkbox"
+              data-testid="trajectory-scenario-b-toggle"
+              className="h-3.5 w-3.5 rounded border-border accent-sky-500"
+              checked={scenarioBEnabled}
+              onChange={(e) => {
+                const next = e.target.checked;
+                setScenarioBEnabled(next);
+                saveScenarioB(next, scenarioB);
+              }}
+            />
+            <span>Compare against a 2nd scenario (B)</span>
+          </label>
+          {scenarioBEnabled && (
+            <div className="flex flex-wrap items-end gap-3">
+              <div className="flex flex-col gap-1">
+                <label
+                  htmlFor="trajectory-scenario-b-move"
+                  className="text-[10px] uppercase tracking-wide text-muted-foreground"
+                >
+                  Scenario B move
+                </label>
+                <select
+                  id="trajectory-scenario-b-move"
+                  data-testid="trajectory-scenario-b-move"
+                  className="rounded border border-border bg-background px-2 py-1 text-xs"
+                  value={effectiveMoveIdB ?? ""}
+                  onChange={(e) => {
+                    const next = { ...scenarioB, moveId: e.target.value };
+                    setScenarioB(next);
+                    saveScenarioB(scenarioBEnabled, next);
+                  }}
+                >
+                  {eligibleMovesB.map((m) => (
+                    <option key={m.id} value={m.id}>
+                      #{m.priorityRank} · {m.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="flex flex-col gap-1">
+                <label
+                  htmlFor="trajectory-scenario-b-delay"
+                  className="text-[10px] uppercase tracking-wide text-muted-foreground"
+                >
+                  Scenario B delay
+                </label>
+                <select
+                  id="trajectory-scenario-b-delay"
+                  data-testid="trajectory-scenario-b-delay"
+                  className="rounded border border-border bg-background px-2 py-1 text-xs"
+                  value={scenarioB.delayDays}
+                  onChange={(e) => {
+                    const days = Number(e.target.value);
+                    if (!Number.isFinite(days) || days <= 0) return;
+                    const next = { ...scenarioB, delayDays: days };
+                    setScenarioB(next);
+                    saveScenarioB(scenarioBEnabled, next);
+                  }}
+                >
+                  {DELAY_PRESETS_DAYS.map((p) => (
+                    <option key={p.value} value={p.value}>
+                      {p.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="text-[10px] text-muted-foreground tabular-nums">
+                {selectedMoveB ? (
+                  <>
+                    Originally ships{" "}
+                    <span className="font-mono font-medium text-foreground">
+                      M{originalShipMonthB ?? "?"}
+                    </span>
+                    {monthShiftB !== null && monthShiftB !== 0 ? (
+                      <>
+                        {" → "}
+                        <span
+                          className={cn(
+                            "font-mono font-medium",
+                            monthShiftB > 0
+                              ? "text-rose-600 dark:text-rose-400"
+                              : "text-emerald-600 dark:text-emerald-400",
+                          )}
+                        >
+                          M{delayedShipMonthB ?? "?"}
+                        </span>
+                        <span className="ml-1">
+                          ({monthShiftB > 0 ? "+" : ""}
+                          {monthShiftB}mo)
+                        </span>
+                      </>
+                    ) : null}
+                  </>
+                ) : null}
+              </div>
+            </div>
+          )}
         </div>
 
-        {/* === STATUS FOOTER === */}
+        <Separator />
+
+        {/* === DELTA GRID — Scenario A (always) + Scenario B (when enabled) === */}
+        <div
+          className={cn(
+            "grid gap-4",
+            scenarioBEnabled ? "grid-cols-1 lg:grid-cols-2" : "grid-cols-1",
+          )}
+        >
+          {/* Scenario A row */}
+          <div
+            data-testid="trajectory-scenario-row-a"
+            className="space-y-2"
+          >
+            <div className="flex items-center gap-2">
+              <Badge
+                variant="outline"
+                className="border-sky-500/70 text-[10px] text-sky-700 dark:text-sky-300"
+              >
+                Scenario A
+              </Badge>
+              <span className="text-[11px] text-muted-foreground">
+                {selectedMove
+                  ? `Delaying ${selectedMove.name} by +${scenario.delayDays}d`
+                  : "Pick a move + delay"}
+              </span>
+            </div>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+              <ScenarioDeltaTile
+                testid="trajectory-scenario-delta-peak"
+                label="Peak monthly revenue"
+                value={fmtTrajectoryDeltaMoney(delta.peakRevenueHighDelta)}
+                intent={delta.peakRevenueHighDelta < 0 ? "down" : delta.peakRevenueHighDelta > 0 ? "up" : "neutral"}
+                hint={`${fmtMoney(baseline.months[baseline.months.length - 1].revenueHigh)} → ${fmtMoney(delayed.months[delayed.months.length - 1].revenueHigh)}`}
+              />
+              <ScenarioDeltaTile
+                testid="trajectory-scenario-delta-lift"
+                label="Year-1 lift"
+                value={`${fmtTrajectoryDeltaMoney(delta.year1LiftLowDelta)} – ${fmtTrajectoryDeltaMoney(delta.year1LiftHighDelta)}`}
+                intent={delta.year1LiftHighDelta < 0 ? "down" : delta.year1LiftHighDelta > 0 ? "up" : "neutral"}
+                hint={`${fmtMoney(baseline.year1LiftLow)}–${fmtMoney(baseline.year1LiftHigh)} baseline`}
+              />
+              <ScenarioDeltaTile
+                testid="trajectory-scenario-delta-cost"
+                label="Year-1 cost"
+                value={`${fmtTrajectoryDeltaMoney(delta.year1CostLowDelta)} – ${fmtTrajectoryDeltaMoney(delta.year1CostHighDelta)}`}
+                intent={delta.year1CostHighDelta > 0 ? "up" : delta.year1CostHighDelta < 0 ? "down" : "neutral"}
+                hint={`${fmtMoney(baseline.year1CostLow)}–${fmtMoney(baseline.year1CostHigh)} baseline`}
+              />
+              <ScenarioDeltaTile
+                testid="trajectory-scenario-delta-roi"
+                label="Year-1 ROI"
+                value={`${fmtTrajectoryDeltaRoi(delta.year1RoiLowDelta)} – ${fmtTrajectoryDeltaRoi(delta.year1RoiHighDelta)}`}
+                intent={delta.year1RoiHighDelta < 0 ? "down" : delta.year1RoiHighDelta > 0 ? "up" : "neutral"}
+                hint={`${TRAJECTORY_FORMATTERS.fmtRoi(baseline.year1RoiLow)}–${TRAJECTORY_FORMATTERS.fmtRoi(baseline.year1RoiHigh)} baseline`}
+              />
+            </div>
+          </div>
+
+          {/* Scenario B row — only when toggled on */}
+          {scenarioBEnabled && (
+            <div
+              data-testid="trajectory-scenario-row-b"
+              className="space-y-2"
+            >
+              <div className="flex items-center gap-2">
+                <Badge
+                  variant="outline"
+                  className="border-violet-500/70 text-[10px] text-violet-700 dark:text-violet-300"
+                >
+                  Scenario B
+                </Badge>
+                <span className="text-[11px] text-muted-foreground">
+                  {selectedMoveB
+                    ? `Delaying ${selectedMoveB.name} by +${scenarioB.delayDays}d`
+                    : "Pick a move + delay"}
+                </span>
+              </div>
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+                <ScenarioDeltaTile
+                  testid="trajectory-scenario-b-delta-peak"
+                  label="Peak monthly revenue"
+                  value={fmtTrajectoryDeltaMoney(deltaB.peakRevenueHighDelta)}
+                  intent={deltaB.peakRevenueHighDelta < 0 ? "down" : deltaB.peakRevenueHighDelta > 0 ? "up" : "neutral"}
+                  hint={`${fmtMoney(baseline.months[baseline.months.length - 1].revenueHigh)} → ${fmtMoney(delayedB.months[delayedB.months.length - 1].revenueHigh)}`}
+                />
+                <ScenarioDeltaTile
+                  testid="trajectory-scenario-b-delta-lift"
+                  label="Year-1 lift"
+                  value={`${fmtTrajectoryDeltaMoney(deltaB.year1LiftLowDelta)} – ${fmtTrajectoryDeltaMoney(deltaB.year1LiftHighDelta)}`}
+                  intent={deltaB.year1LiftHighDelta < 0 ? "down" : deltaB.year1LiftHighDelta > 0 ? "up" : "neutral"}
+                  hint={`${fmtMoney(baseline.year1LiftLow)}–${fmtMoney(baseline.year1LiftHigh)} baseline`}
+                />
+                <ScenarioDeltaTile
+                  testid="trajectory-scenario-b-delta-cost"
+                  label="Year-1 cost"
+                  value={`${fmtTrajectoryDeltaMoney(deltaB.year1CostLowDelta)} – ${fmtTrajectoryDeltaMoney(deltaB.year1CostHighDelta)}`}
+                  intent={deltaB.year1CostHighDelta > 0 ? "up" : deltaB.year1CostHighDelta < 0 ? "down" : "neutral"}
+                  hint={`${fmtMoney(baseline.year1CostLow)}–${fmtMoney(baseline.year1CostHigh)} baseline`}
+                />
+                <ScenarioDeltaTile
+                  testid="trajectory-scenario-b-delta-roi"
+                  label="Year-1 ROI"
+                  value={`${fmtTrajectoryDeltaRoi(deltaB.year1RoiLowDelta)} – ${fmtTrajectoryDeltaRoi(deltaB.year1RoiHighDelta)}`}
+                  intent={deltaB.year1RoiHighDelta < 0 ? "down" : deltaB.year1RoiHighDelta > 0 ? "up" : "neutral"}
+                  hint={`${TRAJECTORY_FORMATTERS.fmtRoi(baseline.year1RoiLow)}–${TRAJECTORY_FORMATTERS.fmtRoi(baseline.year1RoiHigh)} baseline`}
+                />
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* === STATUS FOOTER + VERDICT === */}
         <div className="rounded border border-border/60 bg-background/40 px-3 py-2 text-[11px] text-muted-foreground">
+          {verdictLabel ? (
+            <div
+              data-testid="trajectory-scenario-verdict"
+              className="mb-2 flex flex-wrap items-baseline gap-2 rounded border border-violet-500/30 bg-violet-500/5 px-2 py-1 text-violet-700 dark:text-violet-300"
+            >
+              <span className="font-mono text-[10px] uppercase tracking-wider">
+                Compare verdict
+              </span>
+              <span className="text-foreground">{verdictLabel}.</span>
+              <span className="text-muted-foreground">
+                A loss {fmtTrajectoryDeltaMoney(-delta.year1LiftHighDelta)} · B loss {fmtTrajectoryDeltaMoney(-deltaB.year1LiftHighDelta)}.
+              </span>
+            </div>
+          ) : null}
           {delta.hasImpact ? (
             <>
               Delaying{" "}
