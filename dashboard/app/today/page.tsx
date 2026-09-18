@@ -20,6 +20,7 @@ import { ProgressImportButton } from "@/components/progress-import-button";
 import { ProgressImportMarkdownButton } from "@/components/progress-import-markdown-button";
 import { TrajectoryPanel } from "@/components/trajectory-projection-panel";
 import { TrajectoryCheckinBanner } from "@/components/trajectory-checkin-banner";
+import { TrajectoryScenarioComparatorCompact } from "@/components/trajectory-scenario-comparator-compact";
 import Link from "next/link";
 
 export const dynamic = "force-static";
@@ -260,6 +261,18 @@ export default function TodayPage() {
       {/* === Trajectory check-in — quarterly review banner + history === */}
       <section>
         <TrajectoryCheckinBanner compact />
+      </section>
+
+      {/* === Trajectory scenario — compact variant on /today === Move #128.ap.
+          Closes the cross-page deployment of the Move #128.al comparator
+          so the operator's daily cockpit shows the active Scenario A
+          (move + delay + Year-1 lift Δ + Year-1 ROI Δ + reset) without
+          leaving /today. Reads the SAME localStorage keys the full
+          comparator on / writes — scenarios picked on / re-render here
+          instantly via the same-tab CustomEvent, and the operator can
+          reset / deep-edit via the "Open on /" link. */}
+      <section>
+        <TrajectoryScenarioComparatorCompact />
       </section>
 
       {/* === Today's focus + what shipped === */}
