@@ -29,6 +29,11 @@ import {
   loadShippedPlaybooks,
 } from "@/lib/shipped-playbooks";
 import { MOVE_RECOMMENDATIONS } from "@/lib/next-move";
+import {
+  resetScenarioA,
+  resetScenarioB,
+  resetScenarioBoth,
+} from "@/lib/trajectory-scenario-reset";
 import { cn } from "@/lib/utils";
 
 /**
@@ -421,6 +426,47 @@ export function TrajectoryScenarioComparator() {
           : "Both scenarios lose the same Year-1 lift"
       : null;
 
+  // Reset actions — Move #128.an. The helpers in `trajectory-scenario-reset.ts`
+  // clear the localStorage keys + dispatch the same-tab event the comparator
+  // already listens for, so the UI re-hydrates to defaults with no extra wiring.
+  // Reset Both handles the `confirm()` dialog so a stray click can't wipe the
+  // operator's selected scenarios.
+  const handleResetA = () => {
+    const result = resetScenarioA();
+    if (result.removed && typeof window !== "undefined") {
+      // Bump the in-memory scenario state so the delta tiles + status
+      // footer re-render instantly; the storage event covers cross-tab
+      // and the helper's own dispatch covers same-tab mounts, but the
+      // originating component needs an explicit setter to redraw its
+      // delta grid before the storage event returns.
+      setScenario({ moveId: null, delayDays: 30 });
+      setScenarioB((prev) => prev); // no-op to force re-render
+    }
+  };
+
+  const handleResetB = () => {
+    const result = resetScenarioB();
+    if (result.removed && typeof window !== "undefined") {
+      setScenarioBEnabled(false);
+      setScenarioB({ moveId: null, delayDays: 30 });
+    }
+  };
+
+  const handleResetBoth = () => {
+    if (typeof window !== "undefined") {
+      const ok = window.confirm(
+        "Reset both Scenario A and Scenario B? Your selected moves + delays will clear, but Your-store / shipped-playbooks / override stay untouched.",
+      );
+      if (!ok) return;
+    }
+    const summary = resetScenarioBoth();
+    if (summary.a.removed || summary.b.removed) {
+      setScenario({ moveId: null, delayDays: 30 });
+      setScenarioBEnabled(false);
+      setScenarioB({ moveId: null, delayDays: 30 });
+    }
+  };
+
   return (
     <Card data-testid="trajectory-scenario-comparator" className="border-l-4 border-l-sky-500/70">
       <CardHeader className="pb-3">
@@ -539,8 +585,46 @@ export function TrajectoryScenarioComparator() {
             />
             <span>Compare against a 2nd scenario (B)</span>
           </label>
-          {scenarioBEnabled && (
-            <div className="flex flex-wrap items-end gap-3">
+          <div
+            data-testid="trajectory-scenario-reset-row"
+            className="flex flex-wrap items-center gap-1.5"
+          >
+            <button
+              type="button"
+              data-testid="trajectory-scenario-reset-a"
+              onClick={handleResetA}
+              title="Clear Scenario A back to the default unshipped #1 + 30-day delay"
+              aria-label="Reset Scenario A to defaults"
+              className="inline-flex items-center gap-1 rounded-md border border-border bg-background px-2 py-1 text-[10px] font-mono uppercase tracking-wider text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-sky-500"
+            >
+              Reset A
+            </button>
+            {scenarioBEnabled ? (
+              <button
+                type="button"
+                data-testid="trajectory-scenario-reset-b"
+                onClick={handleResetB}
+                title="Uncheck Scenario B and clear its move + delay back to defaults"
+                aria-label="Reset Scenario B to defaults"
+                className="inline-flex items-center gap-1 rounded-md border border-border bg-background px-2 py-1 text-[10px] font-mono uppercase tracking-wider text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-sky-500"
+              >
+                Reset B
+              </button>
+            ) : null}
+            <button
+              type="button"
+              data-testid="trajectory-scenario-reset-both"
+              onClick={handleResetBoth}
+              title="Reset both Scenario A and Scenario B at once — wipe localStorage keys for the comparator only"
+              aria-label="Reset both scenarios to defaults"
+              className="inline-flex items-center gap-1 rounded-md border border-rose-500/40 bg-background px-2 py-1 text-[10px] font-mono uppercase tracking-wider text-rose-600 transition-colors hover:bg-rose-500/10 hover:text-rose-700 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-rose-500 dark:text-rose-400 dark:hover:text-rose-300"
+            >
+              Reset both
+            </button>
+          </div>
+        </div>
+        {scenarioBEnabled && (
+          <div className="flex flex-wrap items-end gap-3">
               <div className="flex flex-col gap-1">
                 <label
                   htmlFor="trajectory-scenario-b-move"
@@ -624,7 +708,6 @@ export function TrajectoryScenarioComparator() {
               </div>
             </div>
           )}
-        </div>
 
         <Separator />
 
