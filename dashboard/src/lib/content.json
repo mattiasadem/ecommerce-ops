@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-18T05:07:33.679Z",
+  "generatedAt": "2026-09-18T06:13:51.299Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12680,6 +12680,10 @@
     {
       "heading": "[2026-09-17 20:04] Dashboard tick: keep — Trajectory scenario comparator on `/` (Move #128.al cross-page-intelligence + interactive-tool)",
       "body": "- **Status:** keep (code shipped + Next.js build SUCCEEDED + DEPLOY SUCCEEDED + canonical alias rotated + GitHub push SUCCEEDED)\n- **Reason:** Closes the operator's \"what if I delay a move?\" decision loop. The Move #6.16 trajectory panel answers \"what does my Year-1 look like?\" with a single phased-rollout curve, but until now there was no way to ask \"what does it look like if I delay Move #5 by 1 month?\" Three realistic workarounds: (a) recompute manually in a spreadsheet (slow, error-prone), (b) just don't delay anything (loss of optionality), (c) give up and guess. This tick ships a `<TrajectoryScenarioComparator />` panel that lets the operator pick any unshipped move + a delay amount (1/2/3/6 months), re-runs the trajectory engine with that delay, and renders a 4-tile delta grid (peak"
+    },
+    {
+      "heading": "[2026-09-18 05:08] Skill tick: keep — Move #208 board-pack-action-outcome-attribution-explainability-rollup-decision-rollup (FIRST Tier-1 + FIRST P0 in unique category `ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup`; canonical closing decision-rollup engine for the Move #180-207 attribution chain; 18 numbered pitfalls + 20 Fix: lines + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; default 6:1 Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; DEPLOY SUCCEEDED + canonical alias rotated)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-18\n- **Status:** keep (parse SUCCEEDED + build SUCCEEDED + DEPLOY SUCCEEDED + canonical-alias rotated + live URL 200 + all 9 verification gates A-I passed with margin + all 9 Move #208 sentinel families verified live)\n- **Reason:** The prior Move #207 journal's `Next action` explicitly named **Move #208 ai-vendor-portfolio-portfolio-wide-competitive-positioning-rollup-engine-per-quarterly-cmo-board-summary-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-board-pack-action-outcome-attribution-rollup-per-board-pack-action-outcome-attribution-explainability-rollup-per-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup** as the canonical closing decis"
     }
   ],
   "skills": [
@@ -31760,6 +31764,25 @@
       "pitfallCount": 18,
       "sourceCount": 0,
       "size": 108757,
+      "lastTouched": "2026-09-18"
+    },
+    {
+      "file": "209-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator.md",
+      "name": "ai-vendor-portfolio-portfolio-wide-competitive-positioning-rollup-engine-per-quarterly-cmo-board-summary-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-board-pack-action-outcome-attribution-rollup-per-board-pack-action-outcome-attribution-explainability-rollup-per-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-per-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator",
+      "title": "ai vendor portfolio portfolio wide competitive positioning rollup engine per quarterly CMO board summary per board pack distribution per board pack engagement loop per board pack action loop per board pack action outcome rollup per board pack action outcome attribution rollup per board pack action outcome attribution explainability rollup per board pack action outcome attribution explainability rollup decision rollup per board pack action outcome attribution explainability rollup decision rollup validator (Move #209)",
+      "category": "ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "209",
+      "yearOneRoiBand": "4:1–16:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-18",
+      "sources": [],
+      "blurb": "Move #209 is the canonical closing attribution-explainability-rollup-decision-rollup-**validator** engine for the Move #180-208 attribution chain: it consumes Move #208.data.per_board_pack_action_outcome_attribution_e...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 115841,
       "lastTouched": "2026-09-18"
     },
     {
@@ -53565,6 +53588,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "7268ccc",
+      "date": "2026-09-18T05:10:12Z",
+      "author": "hermesagent",
+      "subject": "journal: Move #208 keep — board-pack-action-outcome-attribution-explainability-rollup-decision-rollup",
+      "body": ""
+    },
+    {
+      "sha": "ae341b8",
+      "date": "2026-09-18T05:09:57Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #208 board-pack-action-outcome-attribution-explainability-rollup-decision-rollup (FIRST Tier-1 + FIRST P0 in unique category; canonical closing decision-rollup engine for Move #180-207 attribution chain; 18 pitfalls + 18 Fix: li",
+      "body": ""
+    },
+    {
       "sha": "7465441",
       "date": "2026-09-18T04:04:34Z",
       "author": "hermesagent",
@@ -54949,20 +54986,6 @@
       "author": "mattiasadem",
       "subject": "skill: Move #107 competitive-price-intelligence-engine (FIRST Tier-1 + FIRST P0 in category: price-intelligence, 18 pitfalls, 10 verification gates A-J, default 6:1-24:1 Year-1 ROI Path B at $3M+ multi-channel-GMV) - Prisync + Competera + P",
       "body": ""
-    },
-    {
-      "sha": "d593dbe",
-      "date": "2026-09-11T08:40:05Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #18.8 retail-media-vertical-extension (FIRST Tier-1 + FIRST P0 in category: retail-media-vertical, 18 pitfalls, 10 verification gates A-J, default 5:1–22:1 Year-1 ROI Path B at $10M marketplace-GMV) — Sephora Media Network + Sep",
-      "body": ""
-    },
-    {
-      "sha": "ac46a01",
-      "date": "2026-09-11T07:31:52Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #18.7 retail-media-networks (FIRST Tier-1 + FIRST P0 in category: retail-media-networks, 18 pitfalls, 10 verification gates A-J, default 4:1–20:1 Year-1 ROI Path B at $10M marketplace-GMV) — Amazon Sponsored Products + Amazon DS",
-      "body": ""
     }
   ],
   "counts": {
@@ -54971,8 +54994,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 134,
-    "skills": 207,
+    "journalEntries": 135,
+    "skills": 208,
     "gitCommits": 200
   }
 }
