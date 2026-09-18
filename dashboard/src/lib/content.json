@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-18T16:45:49.834Z",
+  "generatedAt": "2026-09-18T17:51:46.311Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12145,6 +12145,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "2026-09-18 16:41 — Skill tick: keep — Move #216 board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-engagement-loop-per-board-pack-action-outcome-rollup (FIRST Tier-1 + FIRST P0 in unique category ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup; canonical closing board-pack-action-outcome-rollup engine for the entire Move #180-215 attribution chain with INDEPENDENT board-pack-action-outcome-rollup LLM-judge (the 9th INDEPENDENT LLM-judge); 18 pitfalls + 18 Fix: lines + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; default 7:1 Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; DEPLOY SUCCEEDED + canonical alias rotated)",
+      "body": "- **Status:** keep\n- **Reason:** Move #215 Pillar 5 + Pillar 6 explicitly documents Move #216 as the canonical closing **board-pack-action-outcome-rollup** engine for the entire Move #180-215 attribution chain (per the journal's \"Next action\" line for Move #215 — \"Move #216 — the canonical board-pack-action-outcome-rollup engine that consumes Move #215 per-board-pack-action-loop outputs and rolls them up into per-board-pack-action-outcome-rollup; canonical closing action-outcome-rollup layer of the entire Move #180-215 attribution chain\"; and per Move #215 \"Cross-references\" → \"Move #215 → Move #216 (canonical follow-on, this skill)\" and Move #215 \"How to extend\" → \"Move #215.3 — … board-pack-action-outcome-rollup-handoff\" → \"engine writes to Move #216 Pillar 5/6 board-pack-action-outcome-"
+    },
     {
       "heading": "2026-09-18 15:35 — Skill tick: keep — Move #215 board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-engagement-loop-per-board-pack-action-loop (FIRST Tier-1 + FIRST P0 in unique category ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop; canonical closing board-pack-action-loop engine for the entire Move #180-214 attribution chain with INDEPENDENT board-pack-action-loop LLM-judge (the 8th INDEPENDENT LLM-judge); 18 pitfalls + 18 Fix: lines + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; default 7:1 Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; DEPLOY SUCCEEDED + canonical alias rotated)",
       "body": "- **Status:** keep\n- **Reason:** Move #214 Pillar 5 + Pillar 6 explicitly documents Move #215 as the canonical closing **board-pack-action-loop** engine for the entire Move #180-214 attribution chain (per the journal's \"Next action\" line for Move #214 — \"Move #215 — the canonical board-pack-action-loop engine that consumes Move #214 per-board-member-engagement-loop outputs and surfaces them as a per-board-pack-action-loop\"; and per Move #214 \"Cross-references\" → \"Move #214 → Move #215 (canonical follow-on, this skill)\" and Move #214 \"How to extend\" → \"Move #214.3 — … board-pack-action-loop-handoff\" → \"engine writes to Move #215 Pillar 5/6 board-pack-action-loop substrate for downstream board-pack action loop\"). Without Move #215, the entire Move #180-214 attribution chain has no board-pack"
@@ -31709,6 +31713,25 @@
       "pitfallCount": 18,
       "sourceCount": 0,
       "size": 67258,
+      "lastTouched": "2026-09-18"
+    },
+    {
+      "file": "217-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-action-outcome-explainability-rollup.md",
+      "name": "ai-vendor-portfolio-portfolio-wide-competitive-positioning-rollup-engine-per-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-board-pack-action-outcome-explainability-rollup",
+      "title": "Move #217 — board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-action-outcome-explainability-rollup",
+      "category": "ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-board-pack-action-outcome-explainability-rollup",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "217",
+      "yearOneRoiBand": "5:1–22:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-18",
+      "sources": [],
+      "blurb": "The canonical **board-pack-action-outcome-explainability-rollup** engine that consumes Move #216's per-board-pack-action-outcome-rollup outputs and surfaces them as a per-board-pack-action-outcome-explainability-rollu...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 60583,
       "lastTouched": "2026-09-18"
     },
     {
@@ -53469,6 +53492,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "453e6fb",
+      "date": "2026-09-18T16:48:02Z",
+      "author": "hermesagent",
+      "subject": "journal: Move #216 entry — 2026-09-18 16:41 keep",
+      "body": ""
+    },
+    {
+      "sha": "abfbb89",
+      "date": "2026-09-18T16:47:47Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #216 board-pack-action-outcome-rollup engine",
+      "body": ""
+    },
+    {
       "sha": "0742ebe",
       "date": "2026-09-18T15:40:39Z",
       "author": "hermesagent",
@@ -54853,20 +54890,6 @@
       "author": "hermesagent",
       "subject": "docs(journal): tick 2026-09-11 20:55 — keep — Move #113 per-cohort-creative-engine (FIRST Tier-1 + FIRST P0 in category: per-cohort-creative-engine, default 9:1 Year-1 ROI Path B at $5M GMV, 6-pillar Path A/B/C/D/E/F per-cohort-creative-eng",
       "body": ""
-    },
-    {
-      "sha": "9d95c77",
-      "date": "2026-09-11T20:58:44Z",
-      "author": "hermesagent",
-      "subject": "skill: 113 per-cohort-creative-engine (Move #113, FIRST Tier-1 + FIRST P0 in category: per-cohort-creative-engine, 18 pitfalls, 10 verification gates A-J, default 9:1 Year-1 ROI Path B at $5M GMV) - Move #10 + Move #13 + Move #18 + Move #47",
-      "body": ""
-    },
-    {
-      "sha": "7a445cb",
-      "date": "2026-09-11T19:50:58Z",
-      "author": "hermesagent",
-      "subject": "docs(journal): tick 2026-09-11 19:49 — discard — Move #113 per-cohort-creative-engine (DEPLOY BLOCKED by Vercel 24-hour rate limit, retry next tick)",
-      "body": ""
     }
   ],
   "counts": {
@@ -54875,8 +54898,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 72,
-    "skills": 215,
+    "journalEntries": 73,
+    "skills": 216,
     "gitCommits": 200
   }
 }
