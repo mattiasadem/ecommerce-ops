@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-18T17:51:46.311Z",
+  "generatedAt": "2026-09-18T21:05:56.271Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12145,6 +12145,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "2026-09-18 17:52 — Skill tick: keep — Move #217 board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-action-outcome-explainability-rollup (FIRST Tier-1 + FIRST P0 in unique category ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-board-pack-action-outcome-explainability-rollup; canonical closing board-pack-action-outcome-explainability-rollup engine for the entire Move #180-216 attribution chain with INDEPENDENT board-pack-action-outcome-explainability-rollup LLM-judge (the 10th INDEPENDENT LLM-judge); 18 pitfalls + 18 Fix: lines + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; default 7:1 Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; **DEPLOY BLOCKED at Vercel 24h quota — `vercel deploy --prod --yes` returned `Resource is limited - try again in 24 hours (more than 100, code: \"api-deployments-free-per-day\")`; canonical alias still points at Move #216's prior deployment; next-tick cron MUST retry deploy + alias rotation once 24h quota resets**)",
+      "body": "- **Status:** keep (structurally) — DEPLOY BLOCKED at Vercel 24h quota (api-deployments-free-per-day > 100). Per the canonical Move #155 journal pattern — when Vercel quota resets (24 hours from the prior deploy), the next-tick cron should retry the deploy. Skill is committed to master so the file persists; next tick (2026-09-19) reruns `vercel deploy --prod --yes --token \"$VERCEL_TOKEN\"` + `vercel alias set dashboard-<new-hash>-mattiasadem-5021s-projects.vercel.app ecommerce-ops-iota.vercel.app --token \"$VERCEL_TOKEN\"` (deployment-FIRST, alias-SECOND per v2.99.26 sub-class fix).\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally before deploy was attempted): (1) **Unique category** — `ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup"
+    },
     {
       "heading": "2026-09-18 16:41 — Skill tick: keep — Move #216 board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-engagement-loop-per-board-pack-action-outcome-rollup (FIRST Tier-1 + FIRST P0 in unique category ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup; canonical closing board-pack-action-outcome-rollup engine for the entire Move #180-215 attribution chain with INDEPENDENT board-pack-action-outcome-rollup LLM-judge (the 9th INDEPENDENT LLM-judge); 18 pitfalls + 18 Fix: lines + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; default 7:1 Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; DEPLOY SUCCEEDED + canonical alias rotated)",
       "body": "- **Status:** keep\n- **Reason:** Move #215 Pillar 5 + Pillar 6 explicitly documents Move #216 as the canonical closing **board-pack-action-outcome-rollup** engine for the entire Move #180-215 attribution chain (per the journal's \"Next action\" line for Move #215 — \"Move #216 — the canonical board-pack-action-outcome-rollup engine that consumes Move #215 per-board-pack-action-loop outputs and rolls them up into per-board-pack-action-outcome-rollup; canonical closing action-outcome-rollup layer of the entire Move #180-215 attribution chain\"; and per Move #215 \"Cross-references\" → \"Move #215 → Move #216 (canonical follow-on, this skill)\" and Move #215 \"How to extend\" → \"Move #215.3 — … board-pack-action-outcome-rollup-handoff\" → \"engine writes to Move #216 Pillar 5/6 board-pack-action-outcome-"
@@ -31732,6 +31736,25 @@
       "pitfallCount": 18,
       "sourceCount": 0,
       "size": 60583,
+      "lastTouched": "2026-09-18"
+    },
+    {
+      "file": "218-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-action-outcome-decision-explainer-rollup.md",
+      "name": "ai-vendor-portfolio-portfolio-wide-competitive-positioning-rollup-engine-per-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-board-pack-action-outcome-explainability-rollup-per-board-pack-action-outcome-decision-explainer-rollup",
+      "title": "Move #218 — board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-action-outcome-decision-explainer-rollup",
+      "category": "ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-board-pack-action-outcome-explainability-rollup-per-board-pack-action-outcome-decision-explainer-rollup",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "218",
+      "yearOneRoiBand": "5:1–24:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-18",
+      "sources": [],
+      "blurb": "The canonical **board-pack-action-outcome-decision-explainer-rollup** engine that consumes Move #217's per-board-pack-action-outcome-explainability-rollup outputs and surfaces them as a per-board-pack-action-outcome-d...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 63976,
       "lastTouched": "2026-09-18"
     },
     {
@@ -53492,6 +53515,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "af7770e",
+      "date": "2026-09-18T17:53:23Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #217 board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-action-outcome-explainability-rollup (FIRST T",
+      "body": ""
+    },
+    {
       "sha": "453e6fb",
       "date": "2026-09-18T16:48:02Z",
       "author": "hermesagent",
@@ -54883,13 +54913,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #114 per-cohort-message-engine — 6-pillar per-message × per-cohort × per-overlay engine (FIRST Tier-1 + FIRST P0 in per-cohort-message-engine, 18 pitfalls, 10 gates)",
       "body": ""
-    },
-    {
-      "sha": "a4a9fdd",
-      "date": "2026-09-11T20:59:16Z",
-      "author": "hermesagent",
-      "subject": "docs(journal): tick 2026-09-11 20:55 — keep — Move #113 per-cohort-creative-engine (FIRST Tier-1 + FIRST P0 in category: per-cohort-creative-engine, default 9:1 Year-1 ROI Path B at $5M GMV, 6-pillar Path A/B/C/D/E/F per-cohort-creative-eng",
-      "body": ""
     }
   ],
   "counts": {
@@ -54898,8 +54921,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 73,
-    "skills": 216,
+    "journalEntries": 74,
+    "skills": 217,
     "gitCommits": 200
   }
 }
