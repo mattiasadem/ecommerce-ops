@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-18T00:47:31.236Z",
+  "generatedAt": "2026-09-18T01:52:51.705Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12145,6 +12145,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-18 00:50] Skill tick: keep — Move #205 board-pack-action-outcome-rollup (FIRST Tier-1 + FIRST P0 in unique category `ai-vendor-portfolio-board-pack-action-outcome-rollup`; canonical closing action-outcome-rollup engine for the Move #180-204 attribution chain; 18 numbered pitfalls + 20 Fix: lines + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; default 6:1 Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; DEPLOY SUCCEEDED + canonical alias rotated)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-18\n- **Status:** keep (parse SUCCEEDED + build SUCCEEDED + DEPLOY SUCCEEDED + canonical-alias rotated + live URL 200 + all 9 verification gates A-I passed)\n- **Reason:** The prior Move #204 journal's `Next action` explicitly named **Move #205 ai-vendor-portfolio-portfolio-wide-competitive-positioning-rollup-engine-per-quarterly-cmo-board-summary-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup** as the canonical closing action-outcome-rollup engine for the Move #180-204 attribution chain — the Move #204 `How to extend this skill` section explicitly references Move #205 as the canonical per-board-pack-action-outcome-rollup-engine that consumes Move #204.data.per_board_pack_act"
+    },
     {
       "heading": "[2026-09-17 23:35] Skill tick: keep — Move #204 ai-vendor-portfolio-portfolio-wide-competitive-positioning-rollup-engine-per-quarterly-cmo-board-summary-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop (FIRST Tier-1 + FIRST P0 in unique category `ai-vendor-portfolio-board-pack-action-loop`; canonical closing action-loop engine for the Move #180-203 attribution chain; 18 numbered pitfalls + 20 Fix: lines + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; default 6:1 Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; DEPLOY SUCCEEDED + canonical alias rotated)",
       "body": "- **Branch:** autoresearch/skills-2026-09-17\n- **Status:** keep (parse SUCCEEDED + build SUCCEEDED + DEPLOY SUCCEEDED + canonical-alias rotated + live URL 200 + all 9 verification gates A-I passed)\n- **Reason:** The prior journal's `Next action` for Move #203 explicitly named **Move #204 ai-vendor-portfolio-portfolio-wide-competitive-positioning-rollup-engine-per-quarterly-cmo-board-summary-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop** as the canonical closing action-loop engine for the Move #180-203 attribution chain — the Move #203 `How to extend this skill` section explicitly references Move #204 as \"the canonical per-board-pack-action-loop-engine that consumes Move #203.data.per_board_pack_engagement_loop + Move #202.data.per_board_pack_distrib"
@@ -31691,6 +31695,25 @@
       "pitfallCount": 18,
       "sourceCount": 0,
       "size": 76868,
+      "lastTouched": "2026-09-18"
+    },
+    {
+      "file": "206-board-pack-action-outcome-attribution-rollup.md",
+      "name": "ai-vendor-portfolio-portfolio-wide-competitive-positioning-rollup-engine-per-quarterly-cmo-board-summary-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-board-pack-action-outcome-attribution-rollup",
+      "title": "AI vendor portfolio portfolio-wide competitive positioning rollup engine per quarterly CMO board summary per board pack distribution per board pack engagement loop per board pack action loop per board pack action outcome rollup per board pack action outcome attribution rollup",
+      "category": "ai-vendor-portfolio-board-pack-action-outcome-attribution-rollup",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "206",
+      "yearOneRoiBand": "4:1–16:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-18",
+      "sources": [],
+      "blurb": "The canonical fleet-level-AI-vendor-portfolio-portfolio-wide-quarterly-cmo-board-summary-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-b...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 82228,
       "lastTouched": "2026-09-18"
     },
     {
@@ -53496,6 +53519,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "b0655f9",
+      "date": "2026-09-18T00:50:15Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #205 board-pack-action-outcome-rollup — canonical closing action-outcome-rollup engine for Move #180-204 attribution chain (FIRST Tier-1 + FIRST P0 in unique category; 18 pitfalls + 9 verification gates A-I; 4-phase 28-day build",
+      "body": ""
+    },
+    {
       "sha": "0e278f9",
       "date": "2026-09-17T23:43:49Z",
       "author": "hermesagent",
@@ -54887,13 +54917,6 @@
       "author": "hermesagent",
       "subject": "feat(dashboard): /journal search + tick-type facets (interactive-tool + state-persistence)",
       "body": ""
-    },
-    {
-      "sha": "c8ef9e4",
-      "date": "2026-09-11T04:03:43Z",
-      "author": "hermesagent",
-      "subject": "docs(journal): tick 2026-09-11 04:02 — keep — product-analytics (Move #103)",
-      "body": ""
     }
   ],
   "counts": {
@@ -54902,8 +54925,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 131,
-    "skills": 204,
+    "journalEntries": 132,
+    "skills": 205,
     "gitCommits": 200
   }
 }
