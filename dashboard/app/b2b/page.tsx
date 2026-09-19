@@ -8,6 +8,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { ResearchTable } from "@/components/research-table";
 import { B2BWholesalePathCalculator } from "@/components/b2b-wholesale-path-calculator";
+import { B2bMapPolicyCheck } from "@/components/b2b-map-policy-check";
 import { content, findDoc, findTable } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -417,6 +418,9 @@ export default function B2BPage() {
           </CardContent>
         </Card>
       </div>
+
+      {/* === INTERACTIVE B2B MAP-POLICY SELF-CHECK === */}
+      <B2bMapPolicyCheck />
 
       {/* === INTERACTIVE B2B PATH SCORER === */}
       <B2BWholesalePathCalculator />
