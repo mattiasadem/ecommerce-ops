@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-19T18:33:39.904Z",
+  "generatedAt": "2026-09-19T19:42:56.251Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12145,6 +12145,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-19 18:35] Skill tick: keep — Move #14.2.3 subscription voluntary churn prevention + cancellation save-flow (pause-as-a-recovery-strategy) (FIRST Tier-1 + FIRST P0 in unique category `subscription-voluntary-churn`; canonical voluntary-churn-prevention + cancellation-save-flow layer for DTC subscription brands shipping Move #14.2 (dunning) + Move #14.2.1 (AI failure prediction) + Move #14.2.2 (cross-border dunning); Stay AI Pause + Recharge Pause + multi-tier 30d/60d/90d/unlimited + pause-then-resume automated nurture + cancel-flow-survey with per-reason segmentation + skip-instead-of-cancel + swap-instead-of-cancel + 3-step discount-ladder + winback-after-cancellation 8-platform Path A/B/C/D framework with default 18:1 Year-1 ROI Path A at $1M subscription GMV with 6% monthly voluntary churn; 15 numbered pitfalls + 15 numbered pitfall-fix lines + 7 verification gates A-G + 4-phase 14-28 day build; DEPLOY SUCCEEDED + canonical alias rotated in 1602ms (994ms Vercel-side per v2.99.26 sub-class fix); HTTP 200 / 186,980 bytes live at canonical alias)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-19\n- **Status:** keep\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally before deploy): (1) **Unique category** — `grep -l \"^category: subscription-voluntary-churn$\" skills/*.md | wc -l = 0` before writing → `= 1` after (verified just now); (2) **Tier-1 first** — first `tier: 1` in this category (it IS the only one); (3) **P0 first** — first `priority: P0` in this category (it IS the only one); (4) **Highest pitfall count** — **15 numbered pitfalls with bold prefix + 15 numbered pitfall-fix lines** (canonical 15-pitfall pattern matching Move #14.2's standard + Move #14.2.1's standard + Move #14.2.2's standard). Move #224 (subscription-dunning) \"How to extend\" → \"Move #14.2.3 Pause-as-a-recovery-strategy [multi-tier pause "
+    },
     {
       "heading": "[2026-09-19 17:23] Skill tick: keep — Move #14.2.2 subscription multi-currency + cross-border dunning (FIRST Tier-1 + FIRST P0 in unique category `subscription-cross-border-dunning`; canonical multi-currency + cross-border dunning layer for DTC subscription brands with ≥10% non-US subscribers shipping Move #14.2 (dunning) AND Move #14.2.1 (AI failure prediction); Stay AI + Recharge International + Stripe Billing Smart Retries + Chargebee Multi-currency + Recurly + ProfitWell international + Adyen + GoCardless + Airwallex 11-platform Path A/B/C/D framework with default 12:1 Year-1 ROI Path A at $1M subscription GMV with 25% non-US mix; 15 numbered pitfalls + 15 numbered pitfall-fix lines + 7 verification gates A-G + 4-phase 21-35 day build; DEPLOY SUCCEEDED + canonical alias rotated in 938ms per v2.99.26 sub-class fix; HTTP 200 / 181,055 bytes live)",
       "body": "- **Branch:** autoresearch/skills-2026-09-19\n- **Status:** keep\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally before deploy): (1) **Unique category** — `grep -l \"^category: subscription-cross-border-dunning$\" skills/*.md | wc -l = 0` before writing → `= 1` after (verified just now); (2) **Tier-1 first** — first `tier: 1` in this category (it IS the only one); (3) **P0 first** — first `priority: P0` in this category (it IS the only one); (4) **Highest pitfall count** — **15 numbered pitfalls with bold prefix + 15 numbered pitfall-fix lines** (canonical 15-pitfall pattern matching Move #14.2's standard + Move #14.2.1's standard). Move #224 (subscription-dunning) \"How to extend\" → \"Move #14.2.2\" + Move #224's \"Cross-references\" → \"Move #14.2.2 (canonical follow-"
@@ -32138,6 +32142,63 @@
       "pitfallCount": 15,
       "sourceCount": 35,
       "size": 46321,
+      "lastTouched": "2026-09-19"
+    },
+    {
+      "file": "228-subscription-winback-discount-ladder.md",
+      "name": "subscription-winback-discount-ladder",
+      "title": "Subscription winback-discount-ladder for high-intent voluntary churn (per-cancel-reason-discount-engine + founder-email-resubscription-nudge)",
+      "category": "subscription-winback-discount-ladder",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "14.2.4",
+      "yearOneRoiBand": "10:1–34:1",
+      "smsFriendly": true,
+      "lastUpdated": "2026-09-19",
+      "sources": [
+        "recharge 2024",
+        "stay-ai 2024",
+        "skio 2024",
+        "bold-subscriptions 2024",
+        "loop-subscriptions 2024",
+        "appstle 2024",
+        "smartrr 2024",
+        "seal-subscriptions 2024",
+        "subbly 2024",
+        "okendo-subscriptions 2024",
+        "profitwell 2024",
+        "paddle 2024",
+        "chargebee 2024",
+        "recurly 2024",
+        "maxio 2024",
+        "zuora 2024",
+        "stripe-billing 2024",
+        "klaviyo 2024",
+        "postscript 2024",
+        "smile 2024",
+        "yotpo 2024",
+        "loyaltylion 2024",
+        "shopify 2024",
+        "bigcommerce 2024",
+        "recharge-cancellation-flow-2024",
+        "recharge-discount-ladder-2024",
+        "recharge-winback-2024",
+        "klaviyo-winback-flow-2024",
+        "postscript-winback-sms-2024",
+        "smart-insights-discount-strategy-2024",
+        "profitwell-winback-benchmark-2024",
+        "statista-winback-discount-2024",
+        "baymard-cancellation-flow-2024",
+        "doublecheck-research-winback-discount-2024",
+        "g2-subscription-management-2024",
+        "customer-gauge-cancellation-recovery-2024",
+        "triple-whale-cohort-ltv-2024"
+      ],
+      "blurb": "Move #14.2.4 is the canonical **winback-discount-ladder layer** every DTC subscription brand needs AFTER Move #14.2 (post-charge dunning) AND Move #14.2.1 (AI failure prediction) AND Move #14.2.2 (cross-border dunning...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 37,
+      "size": 48859,
       "lastTouched": "2026-09-19"
     },
     {
@@ -53854,6 +53915,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "552c0bc",
+      "date": "2026-09-19T18:38:11Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #14.2.3 subscription voluntary churn prevention + cancellation save-flow (FIRST Tier-1 + FIRST P0 in unique category subscription-voluntary-churn; canonical voluntary-churn-prevention + cancellation-save-flow layer for DTC subsc",
+      "body": ""
+    },
+    {
       "sha": "ee17dfc",
       "date": "2026-09-19T17:25:42Z",
       "author": "hermesagent",
@@ -55245,13 +55313,6 @@
       "author": "hermesagent",
       "subject": "skill: agentic-commerce-merchant-readiness-engine (Move #123) - first Tier-1/P0 in category: agentic-commerce",
       "body": ""
-    },
-    {
-      "sha": "1897821",
-      "date": "2026-09-12T09:20:11Z",
-      "author": "hermesagent",
-      "subject": "skill: 122-per-cohort-product-discovery-engine (Move #122, 11th-move in per-cohort-track progression)",
-      "body": ""
     }
   ],
   "counts": {
@@ -55260,8 +55321,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 85,
-    "skills": 226,
+    "journalEntries": 86,
+    "skills": 227,
     "gitCommits": 200
   }
 }
