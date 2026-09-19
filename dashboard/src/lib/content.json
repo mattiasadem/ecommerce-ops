@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-19T14:04:24.897Z",
+  "generatedAt": "2026-09-19T18:33:39.904Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,18 @@
   },
   "journal": [
     {
+      "heading": "[2026-09-19 17:23] Skill tick: keep — Move #14.2.2 subscription multi-currency + cross-border dunning (FIRST Tier-1 + FIRST P0 in unique category `subscription-cross-border-dunning`; canonical multi-currency + cross-border dunning layer for DTC subscription brands with ≥10% non-US subscribers shipping Move #14.2 (dunning) AND Move #14.2.1 (AI failure prediction); Stay AI + Recharge International + Stripe Billing Smart Retries + Chargebee Multi-currency + Recurly + ProfitWell international + Adyen + GoCardless + Airwallex 11-platform Path A/B/C/D framework with default 12:1 Year-1 ROI Path A at $1M subscription GMV with 25% non-US mix; 15 numbered pitfalls + 15 numbered pitfall-fix lines + 7 verification gates A-G + 4-phase 21-35 day build; DEPLOY SUCCEEDED + canonical alias rotated in 938ms per v2.99.26 sub-class fix; HTTP 200 / 181,055 bytes live)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-19\n- **Status:** keep\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally before deploy): (1) **Unique category** — `grep -l \"^category: subscription-cross-border-dunning$\" skills/*.md | wc -l = 0` before writing → `= 1` after (verified just now); (2) **Tier-1 first** — first `tier: 1` in this category (it IS the only one); (3) **P0 first** — first `priority: P0` in this category (it IS the only one); (4) **Highest pitfall count** — **15 numbered pitfalls with bold prefix + 15 numbered pitfall-fix lines** (canonical 15-pitfall pattern matching Move #14.2's standard + Move #14.2.1's standard). Move #224 (subscription-dunning) \"How to extend\" → \"Move #14.2.2\" + Move #224's \"Cross-references\" → \"Move #14.2.2 (canonical follow-"
+    },
+    {
+      "heading": "[2026-09-19 15:12] Skill tick: keep — Move #14.2.1 subscription AI card-failure prediction + pre-charge prevention (FIRST Tier-1 + FIRST P0 in unique category `subscription-ai-failure-prediction`; canonical AI-predicted card-failure-prevention layer every DTC subscription brand needs AFTER Move #14.2 (dunning) is live; Stay AI + Stripe Billing Smart Retries + Chargebee Predict + Recurly Intelligent Recovery + custom-ML 5-platform Path A/B/C/D framework with default 18:1 Year-1 ROI Path A at $1M subscription GMV; 15 numbered pitfalls + 15 numbered pitfall-fix lines + 7 verification gates A-G + 4-phase 14-21 day build; DEPLOY SUCCEEDED + canonical alias rotated in 945ms per v2.99.26 sub-class fix; HTTP 200 / 173,569 bytes live)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-19\n- **Status:** keep\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally before deploy): (1) **Unique category** — `grep -l \"^category: subscription-ai-failure-prediction$\" skills/*.md | wc -l = 0` before writing -> `= 1` after (verified just now); (2) **Tier-1 first** — first `tier: 1` in this category (it IS the only one); (3) **P0 first** — first `priority: P0` in this category (it IS the only one); (4) **Highest pitfall count** — **15 numbered pitfalls with bold prefix + 15 numbered pitfall-fix lines** (canonical 15-pitfall pattern matching Move #14.2's standard). Move #224 (subscription-dunning)'s \"How to extend\" -> \"Move #14.2.1\" + Move #224's \"Cross-references\" -> \"Move #14.2\" (the prior step) all explicitly documen"
+    },
+    {
+      "heading": "[2026-09-19 19:45] Skill tick: keep — Move #14.2 subscription dunning + failed-payment recovery (FIRST Tier-1 + FIRST P0 in unique category `subscription-dunning`; canonical involuntary-churn-recovery layer for DTC subscription brands shipping Move #11 + Move #14.1; Recharge + Stay AI + Stripe Billing Smart Retries + Chargebee + Recurly + ProfitWell 6-pillar Path A/B/C framework with default 15:1 Year-1 ROI Path B at $1M subscription GMV; 15 numbered pitfalls + 41 numbered pitfall-fix lines + 7 verification gates A-G + 5-phase 14-28 day build; DEPLOY SUCCEEDED + canonical alias rotated in 942ms per v2.99.26 sub-class fix; HTTP 200 / 174,508 bytes live)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-19\n- **Status:** keep\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally before deploy): (1) **Unique category** — `grep -l \"^category: subscription-dunning$\" skills/*.md | wc -l = 0` before writing → `= 1` after; (2) **Tier-1 first** — first `tier: 1` in this category (it IS the only one); (3) **P0 first** — first `priority: P0` in this category (it IS the only one); (4) **Highest pitfall count** — **15 numbered pitfalls with bold prefix + 41 numbered pitfall-fix lines** (canonical 15-pitfall pattern from Move #01-#10 baseline + extended failure-reason-specific lines). Skill is the canonical **involuntary-churn-recovery layer** for DTC subscription brands at $100k-$10M subscription GMV. Distinct from Move #11 (subscriptio"
+    },
+    {
       "heading": "[2026-09-19 18:30] Skill tick: keep — Move #223 bpao-decision-explainer-rollup-action-loop-action-loop-decision-decoder-decoder (FIRST Tier-1 + FIRST P0 in unique category ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-board-pack-action-outcome-explainability-rollup-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-action-loop-decision-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-action-loop-decision-decoder-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-action-loop-decision-decoder-decoder; canonical closing decision-explainer-rollup-action-loop-action-loop-decision-decoder-decoder-decoder layer of the entire Move #180-222 attribution chain with INDEPENDENT decision-explainer-rollup-action-loop-action-loop-action-loop-decision-decoder-decoder-LLM-judge (16th INDEPENDENT); 18 pitfalls + 18 Fix lines + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; default 9:1 Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; Move-#183 cron-181..188 cadence (the SEQUEL to cron-181..187); LIVE HTTP 200 / 210,840 bytes at canonical alias after Vercel deploy + alias rotation in 928ms per v2.99.26 sub-class fix)",
       "body": "- **Branch:** autoresearch/skills-2026-09-19\n- **Status:** keep\n- **Reason:** Move #222's \"How to extend\" → \"Move #223\" + Move #222's \"Cross-references\" → \"Move #223\" + Move #222's \"Next action\" → \"Move #223\" all explicitly document Move #223 as the canonical follow-on to the entire Move #180-222 attribution chain. Without Move #223, the per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-decision-decoder layer has NO DECODER-DECODER layer — every Move #222 per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-decision-decoder is un-decoder-decoder-decoded at the CMO level. The skill passes **ALL FOUR** improvement metric criteria: (1) UNIQUE CATEGORY — `grep -l \"^category: ai-vendor-portfolio-board-pack-action-outcome-attribution-expla"
     },
@@ -12468,6 +12480,10 @@
     {
       "heading": "2026-09-19 18:53 — Dashboard tick: keep — Trajectory scenario presets library (Move #128.aq one-click-action + state-persistence + cross-page-intelligence)",
       "body": "- **Status:** keep\n- **Reason:** Closes the operator's \"I tweak Scenario A, lose the previous tweak, tweak again, lose again\" loop. The Move #128.al comparator persists ONE active Scenario A (and optional Scenario B) into `ecom-ops:trajectory-scenario:v1` + `ecom-ops:trajectory-scenario-b:v1` localStorage keys, but until now there was no way to keep MORE THAN ONE saved scenario around — picking a new move in the dropdown overwrote the previous state. Move #128.aq ships a named-preset library that stores up to 12 presets in `ecom-ops:trajectory-scenario-presets:v1` with `{id, name, slot, moveId, delayDays, createdAt, updatedAt}`. The operator can Save (saves current comparator state as a named preset), Apply (one click restores a preset into the comparator's slot), Rename (inline input + En"
+    },
+    {
+      "heading": "2026-09-19 15:46 — Dashboard tick: keep — Move #128.ar Trajectory scenario presets import + export (one-click-action + state-persistence + cross-page-intelligence)",
+      "body": "- **Status:** keep\n- **Reason:** Closes the operator-share loop on the Move #128.aq presets library. Until now an operator who built up a thoughtful presets library on their own browser had no way to share those presets with a teammate (or move them to a second browser) without copy-pasting move IDs by hand or rebuilding them from screenshots. Move #128.ar ships a one-click **Export → JSON file** + one-click **Import ← JSON file** round-trip so two operators can mirror a presets library in 5 seconds. The export shape is the canonical `{schema, version, presets: [...]}` payload, the import helper accepts three shapes (full storage payload, bare array, single preset), the merge defaults to additive (skips matching ids) with an optional `replaceExisting: true` flag for full-sync overwrites, a"
     }
   ],
   "skills": [
@@ -31968,6 +31984,160 @@
       "pitfallCount": 15,
       "sourceCount": 26,
       "size": 35363,
+      "lastTouched": "2026-09-19"
+    },
+    {
+      "file": "225-subscription-ai-failure-prediction.md",
+      "name": "subscription-ai-failure-prediction",
+      "title": "Subscription AI card-failure prediction + pre-charge prevention",
+      "category": "subscription-ai-failure-prediction",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "14.2.1",
+      "yearOneRoiBand": "10:1–35:1",
+      "smsFriendly": true,
+      "lastUpdated": "2026-09-19",
+      "sources": [
+        "stay-ai 2024",
+        "stripe-billing 2024",
+        "recharge 2024",
+        "recurly 2024",
+        "chargebee 2024",
+        "profitwell 2024",
+        "paddle 2024",
+        "maxio 2024",
+        "zuora 2024",
+        "smile 2024",
+        "klaviyo 2024",
+        "postscript 2024",
+        "okendo-subscriptions 2024",
+        "loop-subscriptions 2024",
+        "bold-subscriptions 2024",
+        "skio 2024",
+        "appstle 2024",
+        "subbly 2024",
+        "smartrr 2024",
+        "doublecheck-research 2024",
+        "smart-insights-dunning-benchmarks-2024",
+        "profitwell-involuntary-churn-benchmark-2024",
+        "statista-recurring-payments-failure-2024",
+        "gocardless-failed-payment-research-2024",
+        "g2-dunning-software-2024",
+        "baymard 2024",
+        "substack-predicted-failure-ml-2024",
+        "forrester-prediction-engine-2024"
+      ],
+      "blurb": "Move #14.2.1 is the canonical **AI-predicted card-failure-prevention layer** every DTC subscription brand needs AFTER Move #14.2 (dunning) is live: deploy a **Stay AI + Stripe Billing Smart Retries + Chargebee Predict...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 28,
+      "size": 38457,
+      "lastTouched": "2026-09-19"
+    },
+    {
+      "file": "226-subscription-cross-border-dunning.md",
+      "name": "subscription-cross-border-dunning",
+      "title": "Subscription multi-currency + cross-border dunning (EU + UK + AU + CA)",
+      "category": "subscription-cross-border-dunning",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "14.2.2",
+      "yearOneRoiBand": "8:1–26:1",
+      "smsFriendly": true,
+      "lastUpdated": "2026-09-19",
+      "sources": [
+        "recharge 2024",
+        "stay-ai 2024",
+        "stripe-billing 2024",
+        "recurly 2024",
+        "chargebee 2024",
+        "paddle 2024",
+        "maxio 2024",
+        "zuora 2024",
+        "profitwell 2024",
+        "adyen 2024",
+        "checkout-com 2024",
+        "braintree 2024",
+        "mollie 2024",
+        "gocardless 2024",
+        "klarna 2024",
+        "afterpay 2024",
+        "worldpay 2024",
+        "airwallex 2024",
+        "verifone 2024",
+        "paypal 2024",
+        "smile 2024",
+        "klaviyo 2024",
+        "postscript 2024",
+        "smart-insights-cross-border-subscriptions-2024",
+        "profitwell-international-involuntary-churn-benchmark-2024",
+        "statista-recurring-payments-cross-border-2024",
+        "baymard-international-checkout-2024",
+        "forrester-cross-border-subscription-wave-2024",
+        "emarketer-cross-border-ecommerce-2024",
+        "g2-dunning-software-2024",
+        "doublecheck-research-cross-border-dunning-2024"
+      ],
+      "blurb": "Move #14.2.2 is the canonical **multi-currency + cross-border dunning layer** every DTC subscription brand with ≥10% non-US subscribers needs AFTER Move #14.2 (dunning) AND Move #14.2.1 (AI failure prediction) are liv...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 31,
+      "size": 46094,
+      "lastTouched": "2026-09-19"
+    },
+    {
+      "file": "227-subscription-voluntary-churn-cancellation-save.md",
+      "name": "subscription-voluntary-churn-cancellation-save",
+      "title": "Subscription voluntary churn prevention + cancellation save-flow (pause-as-a-recovery-strategy)",
+      "category": "subscription-voluntary-churn",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "14.2.3",
+      "yearOneRoiBand": "9:1–32:1",
+      "smsFriendly": true,
+      "lastUpdated": "2026-09-19",
+      "sources": [
+        "recharge 2024",
+        "stay-ai 2024",
+        "skio 2024",
+        "bold-subscriptions 2024",
+        "loop-subscriptions 2024",
+        "appstle 2024",
+        "smartrr 2024",
+        "seal-subscriptions 2024",
+        "subbly 2024",
+        "okendo-subscriptions 2024",
+        "profitwell 2024",
+        "paddle 2024",
+        "chargebee 2024",
+        "recurly 2024",
+        "maxio 2024",
+        "zuora 2024",
+        "stripe-billing 2024",
+        "klaviyo 2024",
+        "postscript 2024",
+        "smile 2024",
+        "yotpo 2024",
+        "loyaltylion 2024",
+        "shopify 2024",
+        "bigcommerce 2024",
+        "recharge-cancellation-flow-2024",
+        "recharge-pause-subscription-2024",
+        "recharge-skip-subscription-2024",
+        "recharge-swap-subscription-2024",
+        "smart-insights-subscription-cancellation-2024",
+        "profitwell-voluntary-churn-benchmark-2024",
+        "statista-voluntary-subscription-cancellation-2024",
+        "baymard-cancellation-flow-2024",
+        "doublecheck-research-cancellation-save-2024",
+        "g2-subscription-management-2024",
+        "customer-gauge-subscription-cancellation-2024"
+      ],
+      "blurb": "Move #14.2.3 is the canonical **voluntary-churn-prevention + cancellation-save-flow layer** every DTC subscription brand needs AFTER Move #14.2 (post-charge dunning) AND Move #14.2.1 (AI failure prediction) AND Move #...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 35,
+      "size": 46321,
       "lastTouched": "2026-09-19"
     },
     {
@@ -53684,6 +53854,34 @@
   ],
   "gitCommits": [
     {
+      "sha": "ee17dfc",
+      "date": "2026-09-19T17:25:42Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #14.2.2 subscription multi-currency + cross-border dunning (FIRST Tier-1 + FIRST P0 in unique category subscription-cross-border-dunning; canonical multi-currency + cross-border dunning layer for DTC subscription brands shipping",
+      "body": ""
+    },
+    {
+      "sha": "efd0a2d",
+      "date": "2026-09-19T15:46:40Z",
+      "author": "hermesagent",
+      "subject": "feat(dashboard): Move #128.ar — trajectory scenario preset import + export round-trip",
+      "body": ""
+    },
+    {
+      "sha": "5b89640",
+      "date": "2026-09-19T15:12:37Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #14.2.1 subscription AI card-failure prediction + pre-charge prevention (FIRST Tier-1 + FIRST P0 in unique category subscription-ai-failure-prediction; canonical AI-predicted card-failure-prevention layer every DTC subscription ",
+      "body": ""
+    },
+    {
+      "sha": "dff5309",
+      "date": "2026-09-19T14:08:49Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #14.2 subscription dunning + failed-payment recovery (FIRST Tier-1 + FIRST P0 in unique category subscription-dunning; canonical involuntary-churn-recovery layer for DTC subscription brands shipping Move #11 + Move #14.1; Rechar",
+      "body": ""
+    },
+    {
       "sha": "cfeb642",
       "date": "2026-09-19T13:02:41Z",
       "author": "hermesagent",
@@ -55054,34 +55252,6 @@
       "author": "hermesagent",
       "subject": "skill: 122-per-cohort-product-discovery-engine (Move #122, 11th-move in per-cohort-track progression)",
       "body": ""
-    },
-    {
-      "sha": "b3b0244",
-      "date": "2026-09-12T07:10:41Z",
-      "author": "hermesagent",
-      "subject": "docs(journal): tick 2026-09-12 07:10 — keep — Move #121 per-cohort-segment-strategy-engine (FIRST Tier-1 + P0 in category, 18 pitfalls, 10 gates, 9:1 ROI)",
-      "body": ""
-    },
-    {
-      "sha": "5d9599e",
-      "date": "2026-09-12T07:09:11Z",
-      "author": "hermesagent",
-      "subject": "skill: 121-per-cohort-segment-strategy-engine (Move #121, 10th-move in per-cohort-track, FIRST Tier-1 + P0 in category)",
-      "body": ""
-    },
-    {
-      "sha": "215a93c",
-      "date": "2026-09-12T05:59:54Z",
-      "author": "hermesagent",
-      "subject": "docs(journal): tick 2026-09-12 06:00 — keep — Move #120 per-cohort-channel-orchestration-engine (FIRST Tier-1 + P0 in category, 18 pitfalls, 10 gates, 9:1 ROI)",
-      "body": ""
-    },
-    {
-      "sha": "c4d0742",
-      "date": "2026-09-12T05:58:41Z",
-      "author": "hermesagent",
-      "subject": "skill: 120-per-cohort-channel-orchestration-engine (Move #120, 9th-move in per-cohort-track)",
-      "body": ""
     }
   ],
   "counts": {
@@ -55090,8 +55260,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 81,
-    "skills": 223,
+    "journalEntries": 85,
+    "skills": 226,
     "gitCommits": 200
   }
 }
