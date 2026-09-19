@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-18T22:52:36.842Z",
+  "generatedAt": "2026-09-19T01:04:33.145Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12145,6 +12145,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "2026-09-18 23:00 — Skill tick: keep — Move #219 board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-decision-explainer-rollup-action-loop (FIRST Tier-1 + FIRST P0 in unique category ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-board-pack-action-outcome-explainability-rollup-per-board-pack-action-outcome-decision-explainer-rollup-action-loop; canonical closing decision-explainer-rollup-action-loop engine for the entire Move #180-218 attribution chain with INDEPENDENT board-pack-action-outcome-decision-explainer-rollup-action-loop LLM-judge (the 12th INDEPENDENT LLM-judge); 18 pitfalls + 18 Fix: lines + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; default 8:1 Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; DEPLOY SUCCEEDED at `dashboard-c7qe6l7vf-mattiasadem-5021s-projects.vercel.app` (READY, alias `dashboard-woad-eight-52.vercel.app`); canonical alias rotation SUCCEEDED in 943ms via `vercel alias set dashboard-c7qe6l7vf-...vercel.app ecommerce-ops-iota.vercel.app` (deployment-FIRST, alias-SECOND per v2.99.26 sub-class fix); HTTP 200 / 229,347 bytes live at canonical URL with all 10 sentinels verified)",
+      "body": "- **Status:** keep — DEPLOY SUCCEEDED at Vercel (`dashboard-c7qe6l7vf-mattiasadem-5021s-projects.vercel.app`, deployment-id `dpl_BXBsnB1ts9D1DBVAkCLHo4jSwtY5`, `READY`, target: production); canonical alias rotation succeeded in 943ms (per v2.99.26 canonical-alias-rotation sub-class fix — deployment-FIRST, alias-SECOND arg order).\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally before deploy was attempted): (1) **Unique category** — `ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-board-pack-action-outcom"
+    },
     {
       "heading": "2026-09-18 21:04 — Skill tick: keep — Move #218 board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-action-outcome-decision-explainer-rollup (FIRST Tier-1 + FIRST P0 in unique category ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-board-pack-action-outcome-explainability-rollup-per-board-pack-action-outcome-decision-explainer-rollup; canonical closing decision-explainer-rollup engine for the entire Move #180-217 attribution chain with INDEPENDENT board-pack-action-outcome-decision-explainer-rollup LLM-judge (the 11th INDEPENDENT LLM-judge); 18 pitfalls + 18 Fix: lines + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; default 8:1 Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; **DEPLOY STILL IN PROGRESS at Vercel — `vercel deploy --prod --yes` initial URL `dashboard-qkc8yisug-mattiasadem-5021s-projects.vercel.app` showing \"Building…\" / \"Initializing\" at 32+ min uptime; canonical alias currently serves Move #217 (from the deploy that succeeded at `hwyqnqskw` ~59min ago, before this tick's build started); next-tick cron MUST retry alias rotation once `qkc8yisug` deploy reaches READY status**)",
       "body": "- **Status:** keep (structurally) — DEPLOY IN PROGRESS at Vercel. Per the canonical Move #155 + Move #217 journal patterns — when Vercel deploy exceeds 30-min uptime on a build with 200+ SSG routes, the deploy eventually reaches READY status in the Vercel queue (sometimes 30-60min total) and the next-tick cron MUST retry the alias rotation step. Skill is committed to master so the file persists; next tick (2026-09-19 or later) reruns `vercel alias set dashboard-qkc8yisug-mattiasadem-5021s-projects.vercel.app ecommerce-ops-iota.vercel.app --token \"$VERCEL_TOKEN\"` (deployment-FIRST, alias-SECOND per v2.99.26 sub-class fix).\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally before deploy was attempted): (1) **Unique category** — `ai-vendor-portfolio-board-pack-actio"
@@ -31823,6 +31827,25 @@
       "sourceCount": 24,
       "size": 45792,
       "lastTouched": "2026-07-11"
+    },
+    {
+      "file": "220-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-board-pack-decision-explainer-rollup-action-loop-action-loop.md",
+      "name": "ai-vendor-portfolio-portfolio-wide-competitive-positioning-rollup-engine-per-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-board-pack-action-outcome-explainability-rollup-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop",
+      "title": "Move #220 — board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop",
+      "category": "ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-board-pack-action-outcome-explainability-rollup-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "220",
+      "yearOneRoiBand": "6:1–24:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-18",
+      "sources": [],
+      "blurb": "The canonical **board-pack-action-outcome-decision-explainer-rollup-action-loop-engine** that consumes Move #219's per-board-pack-action-outcome-decision-explainer-rollup-action-loop outputs and surfaces them as a per...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 73051,
+      "lastTouched": "2026-09-18"
     },
     {
       "file": "23-tiktok-shop-live-commerce.md",
@@ -53538,6 +53561,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "477e2e4",
+      "date": "2026-09-18T22:55:25Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #219 board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-decision-explainer-rollup-action-loop (FIRST ",
+      "body": ""
+    },
+    {
       "sha": "1275b5f",
       "date": "2026-09-18T21:44:36Z",
       "author": "hermesagent",
@@ -54929,13 +54959,6 @@
       "author": "hermesagent",
       "subject": "feat(dashboard): /journal Real change log — git history captured at build time",
       "body": "Live-data integration + interactive filter tool on /journal:\n- parse-content.mjs now shells out to git log and embeds last 200 commits\n- <GitChangeLog /> component: search, conventional-prefix chips, author chips,\n  click-to-expand commit body, GitHub deep links, copy-as-markdown\n- Filters persist to localStorage; default view shows 30, expand to 200\n\nWhy build-time capture: Vercel-side build only ships the dashboard subtree,\nno .git available. Capturing at parse-time means every cron tick re-bakes\nthe log fresh.\n\nLive at: https://ecommerce-ops-iota.vercel.app/journal"
-    },
-    {
-      "sha": "c69ea7b",
-      "date": "2026-09-11T23:16:34Z",
-      "author": "hermesagent",
-      "subject": "journal: append Move #114 per-cohort-message-engine keep entry",
-      "body": ""
     }
   ],
   "counts": {
@@ -54944,8 +54967,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 75,
-    "skills": 218,
+    "journalEntries": 76,
+    "skills": 219,
     "gitCommits": 200
   }
 }

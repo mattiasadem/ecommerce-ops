@@ -29,6 +29,7 @@ import {
 } from "@/lib/shipped-playbooks";
 import { MOVE_RECOMMENDATIONS } from "@/lib/next-move";
 import { resetScenarioA } from "@/lib/trajectory-scenario-reset";
+import { TrajectoryScenarioExportButton } from "@/components/trajectory-scenario-export-button";
 import { cn } from "@/lib/utils";
 
 /**
@@ -455,6 +456,7 @@ export function TrajectoryScenarioComparatorCompact() {
               Cross-page: changes on / reflect here instantly.
             </span>
           </div>
+          <TrajectoryScenarioExportButton compact />
           {delta.hasImpact ? (
             <span
               data-testid="trajectory-scenario-compact-verdict"
