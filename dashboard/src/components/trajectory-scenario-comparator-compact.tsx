@@ -30,6 +30,7 @@ import {
 import { MOVE_RECOMMENDATIONS } from "@/lib/next-move";
 import { resetScenarioA } from "@/lib/trajectory-scenario-reset";
 import { TrajectoryScenarioExportButton } from "@/components/trajectory-scenario-export-button";
+import { TrajectoryScenarioPresetsPanel } from "@/components/trajectory-scenario-presets-panel";
 import { cn } from "@/lib/utils";
 
 /**
@@ -457,6 +458,7 @@ export function TrajectoryScenarioComparatorCompact() {
             </span>
           </div>
           <TrajectoryScenarioExportButton compact />
+          <TrajectoryScenarioPresetsPanel compact defaultSlot="A" />
           {delta.hasImpact ? (
             <span
               data-testid="trajectory-scenario-compact-verdict"

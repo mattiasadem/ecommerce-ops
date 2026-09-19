@@ -35,6 +35,7 @@ import {
   resetScenarioBoth,
 } from "@/lib/trajectory-scenario-reset";
 import { TrajectoryScenarioExportButton } from "@/components/trajectory-scenario-export-button";
+import { TrajectoryScenarioPresetsPanel } from "@/components/trajectory-scenario-presets-panel";
 import { cn } from "@/lib/utils";
 
 /**
@@ -825,6 +826,11 @@ export function TrajectoryScenarioComparator() {
         {/* === EXPORT ROW — Move #128.ao === */}
         <div className="rounded border border-dashed border-border/60 bg-muted/30 px-3 py-2">
           <TrajectoryScenarioExportButton compact />
+        </div>
+
+        {/* === PRESETS PANEL — Move #128.aq === */}
+        <div className="rounded border border-border/60 bg-background/40 px-3 py-2">
+          <TrajectoryScenarioPresetsPanel compact />
         </div>
 
         {/* === STATUS FOOTER + VERDICT === */}
