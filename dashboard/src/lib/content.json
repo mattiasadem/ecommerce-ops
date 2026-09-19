@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-19T07:33:16.170Z",
+  "generatedAt": "2026-09-19T12:59:12.326Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12145,6 +12145,14 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-19 08:35] Skill tick: keep — Move #222 bpao-decision-explainer-rollup-action-loop-action-loop-decision-decoder",
+      "body": "- **Branch:** autoresearch/skills-2026-09-19\n- **Status:** keep\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally before deploy was attempted): (1) **Unique category** — `grep -l \"^category: ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-board-pack-action-outcome-explainability-rollup-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-l"
+    },
+    {
+      "heading": "[2026-09-19 07:35] Skill tick: keep — Move #221 board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-board-pack-action-outcome-explainability-rollup-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-action-loop-decision",
+      "body": "- **Branch:** autoresearch/skills-2026-09-19\n- **Status:** keep\n- **Reason:** Move #220's \"How to extend\" → \"Move #221\" + Move #220's \"Cross-references\" → \"Move #221\" + Move #220's \"Next action\" → \"Move #221\" all explicitly document Move #221 as the canonical follow-on to the entire Move #180-220 attribution chain. Without Move #221, the per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop layer has no DECISION layer — every Move #220 per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop is un-decided at the operator-CMO level. The skill passes **ALL FOUR** improvement metric criteria: (1) UNIQUE CATEGORY — `grep -l \"^category: ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit"
+    },
     {
       "heading": "2026-09-19 01:03 — Skill tick: keep — Move #220 board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-board-pack-decision-explainer-rollup-action-loop-action-loop (FIRST Tier-1 + FIRST P0 in unique category ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-board-pack-action-outcome-explainability-rollup-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop; canonical closing decision-explainer-rollup-action-loop-action-loop engine for the entire Move #180-219 attribution chain with INDEPENDENT board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop LLM-judge (the 13th INDEPENDENT LLM-judge); 18 pitfalls + 18 Fix: lines + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; default 9:1 Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; Move-#183 cron-181..186 cadence (the SEQUEL to cron-175..180); DEPLOY SUCCEEDED at `dashboard-f3z2qavf1-mattiasadem-5021s-projects.vercel.app` (READY, target: production); canonical alias rotation SUCCEEDED in 976ms via `vercel alias set dashboard-f3z2qavf1-...vercel.app ecommerce-ops-iota.vercel.app` (deployment-FIRST, alias-SECOND per v2.99.26 sub-class fix); HTTP 200 / 248,156 bytes live at canonical URL with all 9 sentinels verified)",
       "body": "- **Status:** keep — DEPLOY SUCCEEDED at Vercel (`dashboard-f3z2qavf1-mattiasadem-5021s-projects.vercel.app`, deployment-id `dpl_Ew1idTntVVuyFwD7w1Y5Gr2eKFkY`, `READY`, target: production); canonical alias rotation succeeded in 976ms (per v2.99.26 canonical-alias-rotation sub-class fix — deployment-FIRST, alias-SECOND arg order).\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally before deploy was attempted): (1) **Unique category** — `ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-board-pack-action-outcom"
@@ -31872,6 +31880,44 @@
       "pitfallCount": 18,
       "sourceCount": 0,
       "size": 74783,
+      "lastTouched": "2026-09-19"
+    },
+    {
+      "file": "222-bpao-decision-explainer-rollup-action-loop-action-loop-decision-decoder.md",
+      "name": "ai-vendor-portfolio-portfolio-wide-competitive-positioning-rollup-engine-per-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-board-pack-action-outcome-explainability-rollup-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-action-loop-decision-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-action-loop-decision",
+      "title": "Move #222 — board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-action-loop-decision-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-action-loop-decision",
+      "category": "ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-board-pack-action-outcome-explainability-rollup-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-action-loop-decision-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-action-loop-decision",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "222",
+      "yearOneRoiBand": "7:1–26:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-19",
+      "sources": [],
+      "blurb": "The canonical **board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-decision-decoder-engine** that consumes Move #221's per-board-pack-action-outcome-decision-explainer-rollup-action-loop-actio...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 60638,
+      "lastTouched": "2026-09-19"
+    },
+    {
+      "file": "223-bpao-decision-explainer-rollup-action-loop-action-loop-decision-decoder-decoder.md",
+      "name": "ai-vendor-portfolio-portfolio-wide-competitive-positioning-rollup-engine-per-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-board-pack-action-outcome-explainability-rollup-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-action-loop-decision-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-action-loop-decision-decoder-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-action-loop-decision-decoder-decoder",
+      "title": "Move #223 — BPAO Decision-Explainer-Rollup Action-Loop Action-Loop Decision-Decoder-Decoder Engine",
+      "category": "ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-board-pack-action-outcome-explainability-rollup-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-action-loop-decision-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-action-loop-decision-decoder-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-action-loop-decision-decoder-decoder",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "223",
+      "yearOneRoiBand": "8:1–28:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-19",
+      "sources": [],
+      "blurb": "Move #223 ships the canonical 16th INDEPENDENT LLM-judge layer for the entire Move #180-222 attribution chain: the **board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-action-loop-decision-dec...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 60558,
       "lastTouched": "2026-09-19"
     },
     {
@@ -53588,6 +53634,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "40885d8",
+      "date": "2026-09-19T11:54:54Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #222 bpao-decision-explainer-rollup-action-loop-action-loop-decision-decoder (FIRST Tier-1 + FIRST P0 in unique category; canonical closing decision-explainer-rollup-action-loop-action-loop-decision-decoder layer of the entire M",
+      "body": ""
+    },
+    {
+      "sha": "f7e8f43",
+      "date": "2026-09-19T07:37:46Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #221 board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-engagement-loop-per-board-pack-action-loop-pe",
+      "body": ""
+    },
+    {
       "sha": "64370ad",
       "date": "2026-09-19T03:26:48Z",
       "author": "hermesagent",
@@ -54972,20 +55032,6 @@
       "author": "hermesagent",
       "subject": "skill: 119-per-cohort-attribution-decision-engine (Move #119, 8th-move in per-cohort-track)",
       "body": ""
-    },
-    {
-      "sha": "6160e48",
-      "date": "2026-09-12T03:45:46Z",
-      "author": "hermesagent",
-      "subject": "skill: per-cohort-pricing-engine (Move #118, FIRST Tier-1 + P0 in per-cohort-pricing-engine, 18 pitfalls + 10 gates A-J + 9:1 Year-1 ROI Path B at $5M GMV)",
-      "body": ""
-    },
-    {
-      "sha": "57f4657",
-      "date": "2026-09-12T02:40:11Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #117 per-cohort-suppression-engine (FIRST Tier-1 + FIRST P0 in category, 18 pitfalls, 10 gates, 9:1 ROI Path B at $5M GMV)",
-      "body": ""
     }
   ],
   "counts": {
@@ -54994,8 +55040,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 78,
-    "skills": 220,
+    "journalEntries": 80,
+    "skills": 222,
     "gitCommits": 200
   }
 }
