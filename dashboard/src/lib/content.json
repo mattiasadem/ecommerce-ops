@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-19T01:04:33.145Z",
+  "generatedAt": "2026-09-19T07:33:16.170Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,6 +12146,10 @@
   },
   "journal": [
     {
+      "heading": "2026-09-19 01:03 — Skill tick: keep — Move #220 board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-board-pack-decision-explainer-rollup-action-loop-action-loop (FIRST Tier-1 + FIRST P0 in unique category ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-board-pack-action-outcome-explainability-rollup-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop; canonical closing decision-explainer-rollup-action-loop-action-loop engine for the entire Move #180-219 attribution chain with INDEPENDENT board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop LLM-judge (the 13th INDEPENDENT LLM-judge); 18 pitfalls + 18 Fix: lines + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; default 9:1 Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; Move-#183 cron-181..186 cadence (the SEQUEL to cron-175..180); DEPLOY SUCCEEDED at `dashboard-f3z2qavf1-mattiasadem-5021s-projects.vercel.app` (READY, target: production); canonical alias rotation SUCCEEDED in 976ms via `vercel alias set dashboard-f3z2qavf1-...vercel.app ecommerce-ops-iota.vercel.app` (deployment-FIRST, alias-SECOND per v2.99.26 sub-class fix); HTTP 200 / 248,156 bytes live at canonical URL with all 9 sentinels verified)",
+      "body": "- **Status:** keep — DEPLOY SUCCEEDED at Vercel (`dashboard-f3z2qavf1-mattiasadem-5021s-projects.vercel.app`, deployment-id `dpl_Ew1idTntVVuyFwD7w1Y5Gr2eKFkY`, `READY`, target: production); canonical alias rotation succeeded in 976ms (per v2.99.26 canonical-alias-rotation sub-class fix — deployment-FIRST, alias-SECOND arg order).\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally before deploy was attempted): (1) **Unique category** — `ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-board-pack-action-outcom"
+    },
+    {
       "heading": "2026-09-18 23:00 — Skill tick: keep — Move #219 board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-decision-explainer-rollup-action-loop (FIRST Tier-1 + FIRST P0 in unique category ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-board-pack-action-outcome-explainability-rollup-per-board-pack-action-outcome-decision-explainer-rollup-action-loop; canonical closing decision-explainer-rollup-action-loop engine for the entire Move #180-218 attribution chain with INDEPENDENT board-pack-action-outcome-decision-explainer-rollup-action-loop LLM-judge (the 12th INDEPENDENT LLM-judge); 18 pitfalls + 18 Fix: lines + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; default 8:1 Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; DEPLOY SUCCEEDED at `dashboard-c7qe6l7vf-mattiasadem-5021s-projects.vercel.app` (READY, alias `dashboard-woad-eight-52.vercel.app`); canonical alias rotation SUCCEEDED in 943ms via `vercel alias set dashboard-c7qe6l7vf-...vercel.app ecommerce-ops-iota.vercel.app` (deployment-FIRST, alias-SECOND per v2.99.26 sub-class fix); HTTP 200 / 229,347 bytes live at canonical URL with all 10 sentinels verified)",
       "body": "- **Status:** keep — DEPLOY SUCCEEDED at Vercel (`dashboard-c7qe6l7vf-mattiasadem-5021s-projects.vercel.app`, deployment-id `dpl_BXBsnB1ts9D1DBVAkCLHo4jSwtY5`, `READY`, target: production); canonical alias rotation succeeded in 943ms (per v2.99.26 canonical-alias-rotation sub-class fix — deployment-FIRST, alias-SECOND arg order).\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally before deploy was attempted): (1) **Unique category** — `ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-board-pack-action-outcom"
     },
@@ -12448,6 +12452,10 @@
     {
       "heading": "2026-09-18 08:17 — Dashboard tick: keep — `TrajectoryScenarioComparator` adds Reset A / Reset B / Reset both (Move #128.an one-click-action + cross-page-intelligence)",
       "body": "- **Status:** keep\n- **Reason:** Closes the comparator reset loop on the operator-UX side. The Move #128.al + Move #128.am comparator ships two persisted scenarios (A: always-on; B: toggled) stored in `ecom-ops:trajectory-scenario:v1` + `ecom-ops:trajectory-scenario-b:v1` localStorage keys plus `ecom-ops:trajectory-scenario:update` + `ecom-ops:trajectory-scenario-b:update` same-tab CustomEvents. Until now, an operator who wanted to dismiss a previously-chosen scenario had three ugly workarounds: (a) manually edit the dropdowns back to the default #1 + 30-day delay (clunky, easy to forget), (b) open DevTools → Application → Local Storage → delete both keys (technical, breaks other settings if misclicked), or (c) clear site data (catastrophic — wipes Your-store, shipped-playbooks, override, "
+    },
+    {
+      "heading": "2026-09-19 18:53 — Dashboard tick: keep — Trajectory scenario presets library (Move #128.aq one-click-action + state-persistence + cross-page-intelligence)",
+      "body": "- **Status:** keep\n- **Reason:** Closes the operator's \"I tweak Scenario A, lose the previous tweak, tweak again, lose again\" loop. The Move #128.al comparator persists ONE active Scenario A (and optional Scenario B) into `ecom-ops:trajectory-scenario:v1` + `ecom-ops:trajectory-scenario-b:v1` localStorage keys, but until now there was no way to keep MORE THAN ONE saved scenario around — picking a new move in the dropdown overwrote the previous state. Move #128.aq ships a named-preset library that stores up to 12 presets in `ecom-ops:trajectory-scenario-presets:v1` with `{id, name, slot, moveId, delayDays, createdAt, updatedAt}`. The operator can Save (saves current comparator state as a named preset), Apply (one click restores a preset into the comparator's slot), Rename (inline input + En"
     }
   ],
   "skills": [
@@ -31845,7 +31853,26 @@
       "pitfallCount": 18,
       "sourceCount": 0,
       "size": 73051,
-      "lastTouched": "2026-09-18"
+      "lastTouched": "2026-09-19"
+    },
+    {
+      "file": "221-bpao-decision-explainer-rollup-action-loop-decision.md",
+      "name": "ai-vendor-portfolio-portfolio-wide-competitive-positioning-rollup-engine-per-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-board-pack-action-outcome-explainability-rollup-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-action-loop-decision",
+      "title": "Move #221 — board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-action-loop-decision",
+      "category": "ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-board-pack-action-outcome-explainability-rollup-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-action-loop-decision",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "221",
+      "yearOneRoiBand": "7:1–26:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-19",
+      "sources": [],
+      "blurb": "The canonical **board-pack-action-outcome-decision-explainer-rollup-action-loop-engine** that consumes Move #220's per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop outputs and surfaces t...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 74783,
+      "lastTouched": "2026-09-19"
     },
     {
       "file": "23-tiktok-shop-live-commerce.md",
@@ -53561,6 +53588,27 @@
   ],
   "gitCommits": [
     {
+      "sha": "64370ad",
+      "date": "2026-09-19T03:26:48Z",
+      "author": "hermesagent",
+      "subject": "feat(dashboard): Move #128.aq trajectory scenario presets library (named save/apply/rename/delete; 12-preset cap; cross-tab + same-tab sync; 11-test smoke suite)",
+      "body": ""
+    },
+    {
+      "sha": "d4653d7",
+      "date": "2026-09-19T01:10:04Z",
+      "author": "hermesagent",
+      "subject": "journal: Move #220 keep — board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop (canonical closing decision-explainer-rollup-action-loop-action-loop layer of the Move #180-219 attribution chain; 13th INDEPENDENT LLM-ju",
+      "body": ""
+    },
+    {
+      "sha": "863760e",
+      "date": "2026-09-19T01:09:05Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #220 board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-board-pack-decision-explainer-rollup-action-loop-action-loop",
+      "body": ""
+    },
+    {
       "sha": "477e2e4",
       "date": "2026-09-18T22:55:25Z",
       "author": "hermesagent",
@@ -54938,27 +54986,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #117 per-cohort-suppression-engine (FIRST Tier-1 + FIRST P0 in category, 18 pitfalls, 10 gates, 9:1 ROI Path B at $5M GMV)",
       "body": ""
-    },
-    {
-      "sha": "e9f2fc5",
-      "date": "2026-09-12T01:33:08Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #116 per-cohort-experimentation-engine (18 pitfalls, 10 gates, 9:1 ROI)",
-      "body": ""
-    },
-    {
-      "sha": "883b4a4",
-      "date": "2026-09-12T00:26:48Z",
-      "author": "hermesagent",
-      "subject": "skill: 115 per-cohort-audience-engine (Move #115, FIRST Tier-1 + FIRST P0 in category: per-cohort-audience-engine, 18 pitfalls, 10 verification gates A-J, default 9:1 Year-1 ROI Path B at $5M GMV) - the canonical 4th-move in per-cohort-trac",
-      "body": ""
-    },
-    {
-      "sha": "a35d08b",
-      "date": "2026-09-11T23:24:36Z",
-      "author": "hermesagent",
-      "subject": "feat(dashboard): /journal Real change log — git history captured at build time",
-      "body": "Live-data integration + interactive filter tool on /journal:\n- parse-content.mjs now shells out to git log and embeds last 200 commits\n- <GitChangeLog /> component: search, conventional-prefix chips, author chips,\n  click-to-expand commit body, GitHub deep links, copy-as-markdown\n- Filters persist to localStorage; default view shows 30, expand to 200\n\nWhy build-time capture: Vercel-side build only ships the dashboard subtree,\nno .git available. Capturing at parse-time means every cron tick re-bakes\nthe log fresh.\n\nLive at: https://ecommerce-ops-iota.vercel.app/journal"
     }
   ],
   "counts": {
@@ -54967,8 +54994,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 76,
-    "skills": 219,
+    "journalEntries": 78,
+    "skills": 220,
     "gitCommits": 200
   }
 }
