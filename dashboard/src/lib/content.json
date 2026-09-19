@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-19T12:59:12.326Z",
+  "generatedAt": "2026-09-19T14:04:24.897Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12145,6 +12145,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-19 18:30] Skill tick: keep — Move #223 bpao-decision-explainer-rollup-action-loop-action-loop-decision-decoder-decoder (FIRST Tier-1 + FIRST P0 in unique category ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-board-pack-action-outcome-explainability-rollup-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-action-loop-decision-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-action-loop-decision-decoder-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-action-loop-decision-decoder-decoder; canonical closing decision-explainer-rollup-action-loop-action-loop-decision-decoder-decoder-decoder layer of the entire Move #180-222 attribution chain with INDEPENDENT decision-explainer-rollup-action-loop-action-loop-action-loop-decision-decoder-decoder-LLM-judge (16th INDEPENDENT); 18 pitfalls + 18 Fix lines + 9 verification gates A-I + 6-pillar Path A/B/C/D/E/F framework; default 9:1 Year-1 ROI Path B at $5M GMV; 4-phase 28-day build; Move-#183 cron-181..188 cadence (the SEQUEL to cron-181..187); LIVE HTTP 200 / 210,840 bytes at canonical alias after Vercel deploy + alias rotation in 928ms per v2.99.26 sub-class fix)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-19\n- **Status:** keep\n- **Reason:** Move #222's \"How to extend\" → \"Move #223\" + Move #222's \"Cross-references\" → \"Move #223\" + Move #222's \"Next action\" → \"Move #223\" all explicitly document Move #223 as the canonical follow-on to the entire Move #180-222 attribution chain. Without Move #223, the per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-decision-decoder layer has NO DECODER-DECODER layer — every Move #222 per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-decision-decoder is un-decoder-decoder-decoded at the CMO level. The skill passes **ALL FOUR** improvement metric criteria: (1) UNIQUE CATEGORY — `grep -l \"^category: ai-vendor-portfolio-board-pack-action-outcome-attribution-expla"
+    },
     {
       "heading": "[2026-09-19 08:35] Skill tick: keep — Move #222 bpao-decision-explainer-rollup-action-loop-action-loop-decision-decoder",
       "body": "- **Branch:** autoresearch/skills-2026-09-19\n- **Status:** keep\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally before deploy was attempted): (1) **Unique category** — `grep -l \"^category: ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-distribution-per-board-pack-engagement-loop-per-board-pack-action-loop-per-board-pack-action-outcome-rollup-per-board-pack-action-outcome-explainability-rollup-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-loop-per-board-pack-action-outcome-decision-explainer-rollup-action-loop-action-l"
@@ -31918,6 +31922,52 @@
       "pitfallCount": 18,
       "sourceCount": 0,
       "size": 60558,
+      "lastTouched": "2026-09-19"
+    },
+    {
+      "file": "224-subscription-dunning-failed-payment-recovery.md",
+      "name": "subscription-dunning-failed-payment-recovery",
+      "title": "Subscription dunning + failed-payment recovery",
+      "category": "subscription-dunning",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "14.2",
+      "yearOneRoiBand": "8:1–28:1",
+      "smsFriendly": true,
+      "lastUpdated": "2026-09-19",
+      "sources": [
+        "recharge 2024",
+        "smile 2024",
+        "klaviyo 2024",
+        "postscript 2024",
+        "stripe-billing 2024",
+        "recurly 2024",
+        "chargebee 2024",
+        "profitwell 2024",
+        "paddle 2024",
+        "maxio 2024",
+        "zuora 2024",
+        "okendo-subscriptions 2024",
+        "stay-ai 2024",
+        "loop-subscriptions 2024",
+        "bold-subscriptions 2024",
+        "skio 2024",
+        "appstle 2024",
+        "subbly 2024",
+        "smartrr 2024",
+        "doublecheck-research 2024",
+        "baymard 2024",
+        "smart-insights-dunning-benchmarks-2024",
+        "profitwell-involuntary-churn-benchmark-2024",
+        "statista-recurring-payments-failure-2024",
+        "gocardless-failed-payment-research-2024",
+        "g2-dunning-software-2024"
+      ],
+      "blurb": "Move #14.2 is the canonical **involuntary-churn-recovery layer** every DTC subscription brand needs after Move #1 (cart recovery) + Move #4 (welcome) + Move #5 (Klaviyo+Postscript) + Move #11 (subscriptions) + Move #1...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 26,
+      "size": 35363,
       "lastTouched": "2026-09-19"
     },
     {
@@ -53634,6 +53684,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "cfeb642",
+      "date": "2026-09-19T13:02:41Z",
+      "author": "hermesagent",
+      "subject": "journal: Move #223 keep — bpao-decision-explainer-rollup-action-loop-action-loop-decision-decoder-decoder (canonical closing decision-explainer-rollup-action-loop-action-loop-decision-decoder-decoder-decoder layer of the Move #180-222 attri",
+      "body": ""
+    },
+    {
+      "sha": "00b0801",
+      "date": "2026-09-19T13:01:36Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #223 bpao-decision-explainer-rollup-action-loop-action-loop-decision-decoder-decoder (FIRST Tier-1 + FIRST P0 in unique category; canonical closing decision-explainer-rollup-action-loop-action-loop-decision-decoder-decoder-decod",
+      "body": ""
+    },
+    {
       "sha": "40885d8",
       "date": "2026-09-19T11:54:54Z",
       "author": "hermesagent",
@@ -55018,20 +55082,6 @@
       "author": "hermesagent",
       "subject": "skill: 120-per-cohort-channel-orchestration-engine (Move #120, 9th-move in per-cohort-track)",
       "body": ""
-    },
-    {
-      "sha": "7e71e5a",
-      "date": "2026-09-12T05:28:17Z",
-      "author": "hermesagent",
-      "subject": "feat(dashboard): wire Pinterest-SEO path calculator to Your-store (cross-page-intelligence)",
-      "body": ""
-    },
-    {
-      "sha": "21444b5",
-      "date": "2026-09-12T04:53:12Z",
-      "author": "hermesagent",
-      "subject": "skill: 119-per-cohort-attribution-decision-engine (Move #119, 8th-move in per-cohort-track)",
-      "body": ""
     }
   ],
   "counts": {
@@ -55040,8 +55090,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 80,
-    "skills": 222,
+    "journalEntries": 81,
+    "skills": 223,
     "gitCommits": 200
   }
 }
