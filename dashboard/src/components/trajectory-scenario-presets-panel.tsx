@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { cn } from "@/lib/utils";
 import {
@@ -11,6 +11,8 @@ import {
   applyPreset,
   countPresets,
   deletePreset,
+  exportPresets,
+  importPresets,
   loadPresets,
   renamePreset,
   savePreset,
@@ -279,6 +281,60 @@ export function TrajectoryScenarioPresetsPanel({
     setRenamingId(null);
   };
 
+  // ----- Move #128.ar — Import / Export (JSON preset bundle) -----
+  const importFileRef = useRef<HTMLInputElement>(null);
+  const handleExportClick = () => {
+    const payload = exportPresets("any");
+    if (typeof window === "undefined" || payload.count === 0) {
+      setStatus("Nothing to export — no presets saved yet");
+      return;
+    }
+    try {
+      const blob = new Blob([payload.json], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = payload.filename;
+      a.rel = "noopener";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      setStatus(`Exported ${payload.count} preset${payload.count === 1 ? "" : "s"} → ${payload.filename}`);
+    } catch (err) {
+      setStatus(`Export failed: ${err instanceof Error ? err.message : "unknown error"}`);
+    }
+  };
+
+  const handleImportClick = () => {
+    if (!importFileRef.current) return;
+    importFileRef.current.value = ""; // allow re-picking the same file
+    importFileRef.current.click();
+  };
+
+  const handleImportFile = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const text = String(reader.result ?? "");
+        const result = importPresets({ json: text });
+        if (!result.ok && result.added === 0) {
+          setStatus(`Import failed — ${result.status}`);
+          return;
+        }
+        setStatus(result.status);
+      } catch (err) {
+        setStatus(`Import failed: ${err instanceof Error ? err.message : "unknown error"}`);
+      }
+    };
+    reader.onerror = () => {
+      setStatus(`Could not read file "${file.name}" — file reader error`);
+    };
+    reader.readAsText(file);
+  };
+
   if (!hydrated) {
     return (
       <div
@@ -344,6 +400,47 @@ export function TrajectoryScenarioPresetsPanel({
             </button>
           </span>
         )}
+      </div>
+
+      {/* === IMPORT / EXPORT ROW (Move #128.ar) === */}
+      <div
+        data-testid="trajectory-scenario-presets-import-export-row"
+        className="mb-2 flex flex-wrap items-center gap-2"
+      >
+        <button
+          type="button"
+          onClick={handleExportClick}
+          data-testid="trajectory-scenario-presets-export"
+          aria-label="Export all presets as a JSON file"
+          title="Download all presets as a JSON file you can share with a teammate"
+          className="rounded border border-border bg-background px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider text-muted-foreground hover:border-foreground/40 hover:text-foreground"
+        >
+          ↓ Export
+        </button>
+        <button
+          type="button"
+          onClick={handleImportClick}
+          data-testid="trajectory-scenario-presets-import"
+          aria-label="Import presets from a JSON file"
+          title="Upload a JSON file to add presets (skips ids you already have)"
+          className="rounded border border-border bg-background px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider text-muted-foreground hover:border-foreground/40 hover:text-foreground"
+        >
+          ↑ Import
+        </button>
+        <input
+          ref={importFileRef}
+          type="file"
+          accept="application/json,.json"
+          onChange={handleImportFile}
+          data-testid="trajectory-scenario-presets-import-file"
+          className="hidden"
+        />
+        <span
+          data-testid="trajectory-scenario-presets-import-hint"
+          className="text-[10px] text-muted-foreground"
+        >
+          Share presets with a teammate via a JSON file.
+        </span>
       </div>
 
       {/* === SAVE ROW === */}

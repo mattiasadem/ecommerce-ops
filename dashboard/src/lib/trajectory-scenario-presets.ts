@@ -303,3 +303,206 @@ export function presetFilename(preset: ScenarioPreset): string {
     .slice(0, 24) || "preset";
   return `ecom-ops-trajectory-preset-${preset.slot}-${slug}-${preset.updatedAt}.json`;
 }
+
+// ---------------------------------------------------------------------------
+// Move #128.ar — Presets import / export (round-trip with the panel UI)
+// ---------------------------------------------------------------------------
+
+export interface ExportPresetsResult {
+  /** JSON-stringified payload, ready to drop into a Blob / <a href>. */
+  json: string;
+  /** Suggested file-system-safe filename for the download. */
+  filename: string;
+  /** Number of presets in the exported payload. */
+  count: number;
+}
+
+/**
+ * Serialize ALL presets (or a slot-filtered subset) to a portable JSON payload.
+ * Mirrors the canonical `PresetsStorage` shape so an exported payload can be
+ * re-imported verbatim with `importPresets`. Skips silently on SSR.
+ */
+export function exportPresets(slot: "A" | "B" | "any" = "any"): ExportPresetsResult {
+  const empty: ExportPresetsResult = {
+    json: "{}",
+    filename: presetBundleFilename(slot),
+    count: 0,
+  };
+  if (typeof window === "undefined") return empty;
+  try {
+    const list = slot === "any" ? loadPresets() : loadPresets().filter((p) => p.slot === slot);
+    const payload: PresetsStorage = {
+      schema: PRESETS_SCHEMA,
+      version: PRESETS_VERSION,
+      presets: list,
+    };
+    return {
+      json: JSON.stringify(payload, null, 2),
+      filename: presetBundleFilename(slot),
+      count: list.length,
+    };
+  } catch {
+    return empty;
+  }
+}
+
+/** Suggested filename for the multi-preset bundle export. */
+export function presetBundleFilename(slot: "A" | "B" | "any" = "any"): string {
+  const today = todayIso();
+  const slotTag = slot === "any" ? "all" : slot.toLowerCase();
+  return `ecom-ops-trajectory-presets-${slotTag}-${today}.json`;
+}
+
+export interface ImportPresetsArgs {
+  /** Raw JSON string from a FileReader / drag-drop / paste. */
+  json: string;
+  /**
+   * When `true`, incoming presets with the same `id` REPLACE existing ones
+   * (full sync). When `false` (default), incoming presets are skipped if the
+   * id already exists locally (additive merge).
+   */
+  replaceExisting?: boolean;
+  /** Override timestamp (deterministic tests). */
+  now?: Date;
+}
+
+export interface ImportPresetsResult {
+  /** Number of presets added (or replaced) by the import. */
+  added: number;
+  /** Number of incoming presets that were skipped (id-collision in merge mode). */
+  skipped: number;
+  /** Total presets after the import completed. */
+  total: number;
+  /** Human-readable status message. */
+  status: string;
+  /** True when the import succeeded (even if 0 were added). */
+  ok: boolean;
+}
+
+/**
+ * Import a presets bundle (single preset object OR full `PresetsStorage`
+ * payload) into localStorage. Three supported payload shapes:
+ *
+ *   1. Full `{schema, version, presets: [...]}` — the `exportPresets` format.
+ *   2. Bare array `[preset, preset, ...]` — lenient shape for hand-edited files.
+ *   3. Single `{id, name, slot, moveId, delayDays, createdAt, updatedAt}` —
+ *      wrap-and-import as a 1-element array.
+ *
+ * Refuses (returns `ok: false`) when the payload is malformed, the schema is
+ * wrong, the version is unsupported, OR an incoming preset fails shape
+ * validation (name missing, slot != "A"|"B", negative/NaN delayDays).
+ *
+ * `replaceExisting: true` makes the import a full-sync (delete-then-insert)
+ * for matching ids; default `false` is additive (skip on id collision).
+ * Respects the `PRESETS_MAX` cap — incoming presets beyond the cap are
+ * skipped with the `skipped` counter incremented.
+ */
+export function importPresets(args: ImportPresetsArgs): ImportPresetsResult {
+  const empty: ImportPresetsResult = {
+    added: 0,
+    skipped: 0,
+    total: 0,
+    status: "Import unavailable on the server",
+    ok: false,
+  };
+  if (typeof window === "undefined") return empty;
+
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(args.json);
+  } catch {
+    return { ...empty, status: "Could not parse JSON (file is not valid JSON)" };
+  }
+
+  // Normalize to an array of incoming presets.
+  let incoming: unknown[] = [];
+  if (Array.isArray(parsed)) {
+    incoming = parsed;
+  } else if (parsed && typeof parsed === "object") {
+    const obj = parsed as Record<string, unknown>;
+    if (obj.schema === PRESETS_SCHEMA && Array.isArray(obj.presets)) {
+      incoming = obj.presets as unknown[];
+    } else {
+      // Bare single-preset shape.
+      incoming = [obj];
+    }
+  } else {
+    return { ...empty, status: "Expected an object or array of presets" };
+  }
+
+  if (!incoming.length) {
+    return { ...empty, status: "No presets in the payload", ok: true };
+  }
+
+  const now = todayIso(args.now);
+  const valid: ScenarioPreset[] = [];
+  for (const raw of incoming) {
+    const p = normalizeIncomingPreset(raw, now);
+    if (p) valid.push(p);
+  }
+  if (!valid.length) {
+    return {
+      ...empty,
+      status: "No valid presets in the payload (check shape: {id, name, slot, moveId, delayDays, createdAt, updatedAt})",
+    };
+  }
+
+  const existing = loadPresets();
+  const replace = args.replaceExisting === true;
+  const existingById = new Map(existing.map((p) => [p.id, p]));
+  let added = 0;
+  let skipped = 0;
+  const merged: ScenarioPreset[] = replace ? [] : [...existing];
+
+  for (const inc of valid) {
+    const capRemaining = PRESETS_MAX - merged.length;
+    if (capRemaining <= 0) {
+      skipped += 1;
+      continue;
+    }
+    if (existingById.has(inc.id)) {
+      if (replace) {
+        const idx = merged.findIndex((p) => p.id === inc.id);
+        if (idx >= 0) merged[idx] = inc;
+        else merged.push(inc);
+        added += 1;
+      } else {
+        skipped += 1;
+      }
+    } else {
+      merged.push(inc);
+      added += 1;
+    }
+  }
+
+  persistPresets(merged);
+  notifyPresetsChanged();
+
+  const status =
+    added === 0 && skipped > 0
+      ? `Imported 0 new (${skipped} skipped — all ids already exist locally${replace ? "" : "; pass replaceExisting: true to overwrite"})`
+      : `Imported ${added} new preset${added === 1 ? "" : "s"}${skipped > 0 ? ` (${skipped} skipped)` : ""}`;
+
+  return { added, skipped, total: merged.length, status, ok: true };
+}
+
+/**
+ * Best-effort shape validator for an incoming preset. Coerces missing
+ * timestamps to the supplied `today` default. Returns `null` when the entry
+ * is unrecoverable (bad slot, non-string name, missing required keys, etc.).
+ */
+function normalizeIncomingPreset(raw: unknown, today: string): ScenarioPreset | null {
+  if (!raw || typeof raw !== "object") return null;
+  const r = raw as Record<string, unknown>;
+  const slot = r.slot === "A" || r.slot === "B" ? r.slot : null;
+  const name = normalizePresetName(typeof r.name === "string" ? r.name : "");
+  const delayDays = typeof r.delayDays === "number" && Number.isFinite(r.delayDays) && r.delayDays >= 0
+    ? Math.floor(r.delayDays)
+    : null;
+  if (!slot || !name || delayDays === null) return null;
+  const id = typeof r.id === "string" && r.id ? r.id : presetId(name, today);
+  const moveId = typeof r.moveId === "string" ? r.moveId : null;
+  const createdAt = typeof r.createdAt === "string" && r.createdAt ? r.createdAt : today;
+  const updatedAt = typeof r.updatedAt === "string" && r.updatedAt ? r.updatedAt : today;
+  return { id, name, slot, moveId, delayDays, createdAt, updatedAt };
+}
