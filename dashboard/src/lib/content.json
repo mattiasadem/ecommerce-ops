@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-20T02:14:33.029Z",
+  "generatedAt": "2026-09-20T03:22:01.793Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12146,8 +12146,8 @@
   },
   "journal": [
     {
-      "heading": "[2026-09-20 01:08] Skill tick: keep — Move #231 ecommerce-ops-incident-response-runbook (FIRST Tier-1 + FIRST P0 in unique category `incident-response`; canonical 0-48hr-response runbook for the 6-10 incidents that hit every $1M+ GMV DTC brand per year — site-outage + payment-outage + ad-account-disabled + viral-tweet-bot-surge + 3PL-loss + inventory-stockout + chargeback-spike + email-SMS-deliverability-collapse — drops MTTR from 4-24hr to 15-45min for site/payment, 24-96hr for ad-account, 4-24hr for 3PL, 3-14d for chargeback-spike; year-1 ROI band 10:1-40:1 default 22:1 at $3M GMV; Shop Pay + PayPal + Apple Pay payment-fallback + Cloudflare Bot Fight Mode + pre-filed Meta/Google/TikTok ad-account-recovery-forms + UptimeRobot + Pushover + PagerDuty free-tier on-call-rotation + Statuspage/Better Stack public status page + 12 pre-drafted customer-comms-email templates + 8-incident 8-step war-room pattern + quarterly tabletop exercise; 15 numbered pitfalls + 15 numbered pitfall-fix lines + 9 verification gates; DEPLOY SUCCEEDED + canonical alias rotated in 907ms per v2.99.26 sub-class fix; HTTP 200 / 131,613 bytes live at canonical alias)",
-      "body": "- **Branch:** autoresearch/skills-2026-09-20\n- **Status:** keep\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally before deploy): (1) **Unique category** — `grep -l \"^category: incident-response$\" skills/*.md | wc -l = 0` before writing → `= 1` after (verified just now — NO prior skill has this category); (2) **Tier-1 first** — first `tier: 1` in this category (it IS the only one); (3) **P0 first** — first `priority: P0` in this category (it IS the only one); (4) **Highest pitfall count** — **15 numbered pitfalls with bold prefix + 15 numbered pitfall-fix lines** (canonical 15-pitfall pattern matching Move #1 + Move #4 + Move #14.2 + Move #91 standard). Move #231 fills a **critical operator-relevant gap** that NO existing skill covers: the canonical **0-48hr inci"
+      "heading": "[2026-09-20 02:11] Skill tick: keep — Move #232 CX knowledge-base + on-site-help-center + FAQ-engine + chatbot-content-engine + Gorgias-Automate-content-library (FIRST Tier-1 + FIRST P0 in unique category `cx-knowledge-base-self-serve-deflection`; canonical self-serve-deflection layer every $1M+ GMV DTC brand needs AFTER Move #11 + Move #24 + Move #76 + Move #231 are live; Help Scout Docs + Beacon + AI-Answer + Gorgias Automate + Gorgias Macros + Zendesk Help Center + Zendesk AI + Intercom Fin + Intercom Resolution Bot + Ada + Netomi + Forethought + Tidio + Drift + Klaviyo Customer Agent + Kustomer AI 17-platform Path A/B/C/D/E framework with default 16:1 Year-1 ROI Path B at $3M GMV with 2,000 tickets/mo + $50 AOV + Gorgias Pro $300/mo substrate from Move #24; 15 numbered pitfalls + 15 numbered pitfall-fix lines + 15 verification gates A-O + 7-step 12-24 hr build; DEPLOY SUCCEEDED + canonical alias rotated in 887ms per v2.99.26 sub-class fix; HTTP 200 / 344,353 bytes live at canonical alias; NO REGRESSIONS on Move #231 + Move #230 + Move #1 + Move #11)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-20\n- **Status:** keep\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally before deploy): (1) **Unique category** — `grep -l \"^category: cx-knowledge-base-self-serve-deflection$\" skills/*.md | wc -l = 0` before writing → `= 1` after (verified just now — NO prior skill has this category); (2) **Tier-1 first** — first `tier: 1` in this category (it IS the only one); (3) **P0 first** — first `priority: P0` in this category (it IS the only one); (4) **Highest pitfall count** — **15 numbered pitfalls with bold prefix + 15 numbered pitfall-fix lines** (canonical 15-pitfall pattern matching Move #11 + Move #24 + Move #76 + Move #231 + Move #91 standard). Move #232 fills a **critical operator-relevant gap** that NO existing skill c"
     },
     {
       "heading": "[2026-09-20 00:08] Skill tick: keep — Move #14.2.6 subscription-segmented-paywall-engine with cohort-specific-feature-gating + cohort-specific-pricing-page + cohort-specific-CTA + cohort-specific-upgrade-flow (FIRST Tier-1 + FIRST P0 in unique category `subscription-segmented-paywall-engine`; canonical per-cohort-feature-gating-engine layer for DTC subscription brands shipping Move #11 (subscription-replenishment) + Move #14.2 (dunning) + Move #14.2.1 (AI failure prediction) + Move #14.2.2 (cross-border dunning) + Move #14.2.3 (voluntary-churn prevention + cancellation save-flow) + Move #14.2.4 (winback-discount-ladder) + Move #14.2.5 (subscription-box curated-discovery-engine); Recharge + Stay AI + Skio + Bold Subscriptions + Loop Subscriptions + Subbly + Klaviyo + Postscript + Smile.io + LoyaltyLion + Yotpo + Triple Whale cohort-LTV + Amplitude cohort + Segment + Iterable + Optimizely + VWO + AB-Tasty + Stripe Billing + Chargebee + Recurly + ProfitWell + Baremetrics + Mixpanel + Iterable + Customer.io + Nosto + Algolia Recommend + Rebound + HubSpot + Intercom 14-platform Path A/B/C/D framework with default 14:1 Year-1 ROI Path A at $1M subscription GMV; 15 numbered pitfalls + 15 numbered pitfall-fix lines + 9 verification gates A-I + 4-phase 14-28 day build; DEPLOY SUCCEEDED + canonical alias rotated in 913ms per v2.99.26 sub-class fix; HTTP 200 / 185,076 bytes live at canonical alias; NO REGRESSIONS on Move #229)",
@@ -32493,6 +32493,85 @@
       "pitfallCount": 15,
       "sourceCount": 49,
       "size": 107906,
+      "lastTouched": "2026-09-20"
+    },
+    {
+      "file": "233-returns-knowledge-base-self-serve-deflection.md",
+      "name": "returns-knowledge-base-self-serve-deflection",
+      "title": "Returns knowledge-base + on-site-help-center-returns-FAQ + chatbot-returns-content-engine + Loop-Returns + Returnly + ReturnGO + AfterShip-Returns + Gorgias-Automate-returns-content-library (Move #233)",
+      "category": "returns-knowledge-base-self-serve-deflection",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": 233,
+      "yearOneRoiBand": "6:1–18:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-20",
+      "sources": [
+        "loop-returns-2024",
+        "returnly-2024",
+        "returngo-2024",
+        "aftership-returns-2024",
+        "parcelpanel-2024",
+        "narvar-returns-2024",
+        "happy-returns-2024",
+        "shipbob-returns-2024",
+        "shipmonk-returns-2024",
+        "gorgias-automate-returns-2024",
+        "gorgias-macros-returns-2024",
+        "help-scout-docs-returns-2024",
+        "help-scout-beacon-returns-2024",
+        "help-scout-ai-answer-returns-2024",
+        "zendesk-help-center-returns-2024",
+        "zendesk-ai-returns-2024",
+        "intercom-fin-returns-2024",
+        "intercom-resolution-bot-returns-2024",
+        "klaviyo-customer-agent-returns-2024",
+        "kustomer-ai-returns-2024",
+        "ada-returns-2024",
+        "netomi-returns-2024",
+        "forethought-returns-2024",
+        "tidio-returns-2024",
+        "klaviyo-returns-flow-2024",
+        "postscript-returns-flow-2024",
+        "recharge-returns-flow-2024",
+        "triple-whale-returns-cohort-2024",
+        "gorgias-returns-cohort-overlay-2024",
+        "klaviyo-returns-segment-deflection-2024",
+        "postscript-returns-segment-deflection-2024",
+        "loop-returns-portal-seo-2024",
+        "returngo-portal-seo-2024",
+        "aftership-portal-seo-2024",
+        "narvar-portal-seo-2024",
+        "parcelpanel-portal-seo-2024",
+        "shopify-returns-api-2024",
+        "shopify-flow-returns-2024",
+        "loop-returns-deflection-benchmark-2024",
+        "returnly-deflection-benchmark-2024",
+        "returngo-deflection-benchmark-2024",
+        "narvar-deflection-benchmark-2024",
+        "parcelpanel-deflection-benchmark-2024",
+        "baymard-returns-help-center-2024",
+        "smart-insights-returns-knowledge-base-2024",
+        "g2-returns-knowledge-base-2024",
+        "capterra-returns-knowledge-base-2024",
+        "statista-returns-knowledge-base-2024",
+        "bain-returns-nps-2024",
+        "customer-gauge-returns-nps-2024",
+        "gorgias-returns-csat-2024",
+        "help-scout-returns-csat-2024",
+        "zendesk-returns-csat-2024",
+        "gorgias-returns-first-response-time-2024",
+        "help-scout-returns-first-response-time-2024",
+        "zendesk-returns-first-response-time-2024",
+        "gorgias-returns-fcr-2024",
+        "help-scout-returns-fcr-2024",
+        "zendesk-returns-fcr-2024"
+      ],
+      "blurb": "Move #233 is the canonical **returns-self-serve-deflection layer** every $1M+ GMV DTC brand with ≥20% returns rate ships AFTER Move #28 (returns-portal-orchestration / Loop Returns + Returnly + ReturnGO + AfterShip Re...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 59,
+      "size": 81151,
       "lastTouched": "2026-09-20"
     },
     {
@@ -54165,6 +54244,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "dbcc24f",
+      "date": "2026-09-20T02:17:17Z",
+      "author": "hermesagent",
+      "subject": "docs: journal entry for Move #232 cx-knowledge-base-self-serve-deflection",
+      "body": ""
+    },
+    {
+      "sha": "da1ef3d",
+      "date": "2026-09-20T02:16:39Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #232 CX knowledge-base + on-site-help-center + FAQ-engine + chatbot-content-engine + Gorgias-Automate-content-library (self-serve deflection layer, FIRST Tier-1 + FIRST P0 in unique category cx-knowledge-base-self-serve-deflecti",
+      "body": ""
+    },
+    {
       "sha": "64adbfa",
       "date": "2026-09-20T01:10:24Z",
       "author": "mattiasadem",
@@ -55549,20 +55642,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #128 — agentic-commerce-checkout-decision-fallback-handler-execution-engine (canonical 6th-move in the agentic-commerce-track progression; FIRST Tier-1 + FIRST P0 in unique category; 18 numbered pitfalls + 10 verification gates ",
       "body": ""
-    },
-    {
-      "sha": "9310496",
-      "date": "2026-09-12T16:03:38Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #127 — agentic-commerce-checkout-decision-recovery-decoder-engine (5th-move in agentic-commerce-track, 18 pitfalls, 9:1 ROI)",
-      "body": ""
-    },
-    {
-      "sha": "f97b17c",
-      "date": "2026-09-12T14:53:08Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #126 — agentic-commerce-checkout-decision-rollback-engine (4th-move in agentic-commerce-track, 18 pitfalls, 9:1 ROI)",
-      "body": ""
     }
   ],
   "counts": {
@@ -55572,7 +55651,7 @@
     "tables": 57,
     "findings": 8,
     "journalEntries": 91,
-    "skills": 231,
+    "skills": 232,
     "gitCommits": 200
   }
 }
