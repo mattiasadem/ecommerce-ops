@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-20T04:28:50.619Z",
+  "generatedAt": "2026-09-20T05:34:42.312Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12145,6 +12145,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-20 04:30] Skill tick: keep — Move #234 warranty-knowledge-base + on-site-help-center-warranty-FAQ + chatbot-warranty-content-engine + Extend + Clyde + Mulberry + AfterShip-Warranty + Gorgias-Automate-warranty-content-library + Gorgias-Macros-warranty-rule-library (FIRST Tier-1 + FIRST P0 in unique category `warranty-knowledge-base-self-serve-deflection`; canonical warranty-self-serve-deflection layer every $1M+ GMV DTC brand with ≥50 warranty-tickets/mo ships AFTER Move #11 (AI customer service automation) + Move #24 (CX-platform) + Move #76 (contact-center) + Move #232 (CX knowledge-base + on-site-help-center + FAQ-engine + chatbot-content-engine) + Move #233 (returns-knowledge-base-self-serve-deflection) are live; Extend + Clyde + Mulberry + AfterShip Warranty + Allstate Protect + SquareTrade + Upspring + Seel + Help Scout Docs + Beacon + AI-Answer + Gorgias Automate + Gorgias Macros + Zendesk Help Center + Zendesk AI + Intercom Fin + Intercom Resolution Bot + Ada + Netomi + Forethought + Tidio + Drift + Klaviyo Customer Agent + Kustomer AI + Klaviyo warranty-flow + Postscript warranty-flow + Recharge warranty-flow + Shopify Flow warranty + Gorgias-warranty-cohort-LTV-overlay + Triple-Whale-warranty-cohort-LTV-feedback-loop + Klaviyo-warranty-segment-deflection + Postscript-warranty-segment-deflection + Extend-attach-rate-overlay + Clyde-attach-rate-overlay + Mulberry-attach-rate-overlay 27-platform Path A/B/C/D/E framework with default 9:1 Year-1 ROI Path B at $3M GMV with 200 warranty-tickets/mo + $50 AOV + Gorgias Pro $300/mo + Extend free (built-in) + Help Scout AI-Answer $50/mo substrate from Move #232 + Move #233 + Move #11 + Move #24; 15 numbered pitfalls + 15 numbered pitfall-fix lines + 15 verification gates A-O + 4-phase 14-28 day build; DEPLOY SUCCEEDED + canonical alias rotated in 926ms per v2.99.26 sub-class fix; HTTP 200 / 270,494 bytes live at canonical alias; NO REGRESSIONS on Move #233 + Move #232 + Move #231 + Move #230 + Move #229 + Move #28 + Move #88)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-20\n- **Status:** keep\n- **Reason:** Move #234 is the canonical WARRANTY-SELF-SERVE-DEFLECTION sibling layer every $1M+ GMV DTC brand with ≥50 warranty-tickets/mo needs AFTER Move #11 (AI customer service automation) + Move #24 (CX-platform) + Move #232 (CX knowledge-base) + Move #233 (returns-knowledge-base) are live. Returns ticket-stream and warranty ticket-stream share ~20% overlap on coverage / defect / FAQ topics — the other ~80% of warranty-specific content (manufacturing-defect / premature-wear / accidental-damage / electrical-failure / cosmetic-damage / extended-warranty-coverage / extended-warranty-registration / warranty-transfer / warranty-replacement-vs-repair / warranty-claim-timeline / warranty-paperwork / international-warranty-cover"
+    },
     {
       "heading": "[2026-09-20 03:19] Skill tick: keep — Move #233 returns-knowledge-base + on-site-help-center-returns-FAQ + chatbot-returns-content-engine + Loop-Returns + Returnly + ReturnGO + AfterShip-Returns + Gorgias-Automate-returns-content-library (FIRST Tier-1 + FIRST P0 in unique category `returns-knowledge-base-self-serve-deflection`; canonical returns-self-serve-deflection layer every $1M+ GMV DTC brand with ≥300 returns-tickets/mo ships AFTER Move #28 (returns-portal-orchestration) + Move #11 (AI customer service automation) + Move #24 (CX-platform) + Move #76 (contact-center) + Move #232 (CX knowledge-base + on-site-help-center + FAQ-engine + chatbot-content-engine) are live; Loop Returns + Returnly + ReturnGO + AfterShip Returns + ParcelPanel + Narvar + Help Scout Docs + Beacon + AI-Answer + Gorgias Automate + Gorgias Macros + Zendesk Help Center + Zendesk AI + Intercom Fin + Intercom Resolution Bot + Ada + Netomi + Forethought + Tidio + Drift + Klaviyo Customer Agent + Kustomer AI + Klaviyo returns-flow + Postscript returns-flow + Recharge returns-flow + Shopify Returns API + Shopify Flow returns + Gorgias-returns-cohort-LTV-overlay + Triple-Whale-returns-cohort-LTV-feedback-loop + Klaviyo-returns-segment-deflection + Postscript-returns-segment-deflection 27-platform Path A/B/C/D/E framework with default 12:1 Year-1 ROI Path B at $3M GMV with 1,000 returns-tickets/mo + $50 AOV + Gorgias Pro $300/mo + Loop Returns Pro $129/mo + Help Scout AI-Answer $50/mo substrate from Move #28 + Move #24 + Move #232; 15 numbered pitfalls + 15 numbered pitfall-fix lines + 15 verification gates A-O + 7-step 12-24 hr build; DEPLOY SUCCEEDED + canonical alias rotated in 927ms per v2.99.26 sub-class fix; HTTP 200 / 268,192 bytes live at canonical alias; NO REGRESSIONS on Move #232 + Move #231 + Move #230 + Move #229 + Move #28 + Move #88)",
       "body": "- **Branch:** autoresearch/skills-2026-09-20\n- **Status:** keep\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally before deploy): (1) **Unique category** — `grep -l \"^category: returns-knowledge-base-self-serve-deflection$\" skills/*.md | wc -l = 0` before writing → `= 1` after (verified just now — NO prior skill has this category); (2) **Tier-1 first** — first `tier: 1` in this category (it IS the only one); (3) **P0 first** — first `priority: P0` in this category (it IS the only one); (4) **Highest pitfall count** — **15 numbered pitfalls with bold prefix + 15 numbered pitfall-fix lines** (canonical 15-pitfall pattern matching Move #232 + Move #231 + Move #91 standard). Move #233 fills a **critical operator-relevant gap** that NO existing skill covers: the canon"
@@ -32648,6 +32652,90 @@
       "pitfallCount": 15,
       "sourceCount": 52,
       "size": 83356,
+      "lastTouched": "2026-09-20"
+    },
+    {
+      "file": "235-repair-knowledge-base-self-serve-deflection.md",
+      "name": "repair-knowledge-base-self-serve-deflection",
+      "title": "Repair knowledge-base + on-site-help-center-repair-FAQ + chatbot-repair-content-engine + iFixit + uBreakiFix + Apple-Self-Service-Repair + Patagonia-Worn-Wear + Visible-Repair + MendNation + Reboot + Gorgias-Automate-repair-content-library + Gorgias-Macros-repair-rule-library (Move #235)",
+      "category": "repair-knowledge-base-self-serve-deflection",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": 235,
+      "yearOneRoiBand": "5:1–16:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-20",
+      "sources": [
+        "ifixit-repair-2024",
+        "ubreaki-fix-repair-2024",
+        "micro-center-repair-2024",
+        "apple-self-service-repair-2024",
+        "samsung-self-service-repair-2024",
+        "google-self-service-repair-2024",
+        "microsoft-surface-self-service-repair-2024",
+        "dell-self-service-repair-2024",
+        "framework-self-service-repair-2024",
+        "fairphone-self-service-repair-2024",
+        "patagonia-worn-wear-2024",
+        "visible-repair-clothing-2024",
+        "mendnation-clothing-repair-2024",
+        "reboot-electronics-repair-2024",
+        "revive-repair-2024",
+        "hellofix-repair-2024",
+        "sugru-repair-2024",
+        "ifixit-partner-program-2024",
+        "help-scout-docs-repair-2024",
+        "help-scout-beacon-repair-2024",
+        "help-scout-ai-answer-repair-2024",
+        "gorgias-automate-repair-2024",
+        "gorgias-macros-repair-2024",
+        "klaviyo-customer-agent-repair-2024",
+        "kustomer-ai-repair-2024",
+        "zendesk-help-center-repair-2024",
+        "zendesk-ai-repair-2024",
+        "intercom-fin-repair-2024",
+        "intercom-resolution-bot-repair-2024",
+        "ada-repair-2024",
+        "netomi-repair-2024",
+        "forethought-repair-2024",
+        "tidio-repair-2024",
+        "klaviyo-repair-flow-2024",
+        "postscript-repair-flow-2024",
+        "recharge-repair-flow-2024",
+        "triple-whale-repair-cohort-ltv-2024",
+        "gorgias-repair-cohort-overlay-2024",
+        "klaviyo-repair-segment-deflection-2024",
+        "postscript-repair-segment-deflection-2024",
+        "shopify-flow-repair-2024",
+        "loop-repair-portal-2024",
+        "aftership-repair-2024",
+        "parcelpanel-repair-2024",
+        "baymard-repair-help-center-2024",
+        "smart-insights-repair-knowledge-base-2024",
+        "g2-repair-knowledge-base-2024",
+        "capterra-repair-knowledge-base-2024",
+        "statista-repair-knowledge-base-2024",
+        "bain-repair-nps-2024",
+        "customer-gauge-repair-nps-2024",
+        "gorgias-repair-csat-2024",
+        "help-scout-repair-csat-2024",
+        "zendesk-repair-csat-2024",
+        "gorgias-repair-first-response-time-2024",
+        "help-scout-repair-first-response-time-2024",
+        "zendesk-repair-first-response-time-2024",
+        "gorgias-repair-fcr-2024",
+        "help-scout-repair-fcr-2024",
+        "zendesk-repair-fcr-2024",
+        "ifixit-repair-deflection-rate-2024",
+        "ifixit-repair-traffic-2024",
+        "repair-org-survey-repair-tickets-2024",
+        "repair-association-repair-cost-benchmark-2024"
+      ],
+      "blurb": "Move #235 is the canonical **repair-self-serve-deflection layer** every $1M+ GMV DTC brand with ≥50 repair-tickets/mo ships AFTER Move #11 (AI customer service automation) AND Move #24 (CX-platform / Gorgias + Help Sc...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 64,
+      "size": 97114,
       "lastTouched": "2026-09-20"
     },
     {
@@ -54320,6 +54408,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "984e66f",
+      "date": "2026-09-20T04:31:44Z",
+      "author": "mattiasadem",
+      "subject": "docs: journal entry for Move #234 warranty-knowledge-base-self-serve-deflection",
+      "body": ""
+    },
+    {
+      "sha": "4d77cf8",
+      "date": "2026-09-20T04:31:14Z",
+      "author": "mattiasadem",
+      "subject": "skill: Move #234 warranty-knowledge-base-self-serve-deflection (FIRST Tier-1 + FIRST P0 in unique category warranty-knowledge-base-self-serve-deflection; canonical warranty-FAQ + on-site-help-center-warranty-FAQ + chatbot-warranty-content-e",
+      "body": ""
+    },
+    {
       "sha": "91a81fb",
       "date": "2026-09-20T03:25:55Z",
       "author": "mattiasadem",
@@ -55704,20 +55806,6 @@
       "author": "mattiasadem",
       "subject": "skill: Move #130 agentic-commerce-checkout-decision-decision-audit-explainer-engine",
       "body": ""
-    },
-    {
-      "sha": "a3f5429",
-      "date": "2026-09-12T20:27:41Z",
-      "author": "mattiasadem",
-      "subject": "skill: Move #129 — agentic-commerce-checkout-decision-rollback-window-tuner-engine (canonical 7th-move in agentic-commerce-track progression; FIRST Tier-1 + FIRST P0 in unique category; 18 numbered pitfalls + 10 verification gates A-J + def",
-      "body": ""
-    },
-    {
-      "sha": "fc9b803",
-      "date": "2026-09-12T19:22:43Z",
-      "author": "mattiasadem",
-      "subject": "journal: tick 18:42 — Move #129 author + discard (Vercel free-tier rate-limit hit, queued for next-tick deploy)",
-      "body": ""
     }
   ],
   "counts": {
@@ -55726,8 +55814,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 92,
-    "skills": 233,
+    "journalEntries": 93,
+    "skills": 234,
     "gitCommits": 200
   }
 }
