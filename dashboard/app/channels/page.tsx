@@ -8,7 +8,22 @@ import {
 import { ResearchTable } from "@/components/research-table";
 import { Bar } from "@/components/bar";
 import { ChannelMixAllocator } from "@/components/channel-mix-allocator";
+import { ChannelBenchmarkExportButton } from "@/components/channel-benchmark-export-button";
 import { content, findTable } from "@/lib/content";
+import type { ChannelBenchmarkBlock } from "@/lib/channel-benchmark-export";
+
+/**
+ * Extract the canonical column headers from a research-table block —
+ * mirrors the `ResearchTable` reducer so the bundled CSV uses the same
+ * header order the operator sees in the dashboard.
+ */
+function tableHeaders(rows: Array<Record<string, string>>): string[] {
+  const set = new Set<string>();
+  for (const r of rows) {
+    for (const k of Object.keys(r)) set.add(k);
+  }
+  return Array.from(set);
+}
 
 export const dynamic = "force-static";
 
@@ -23,6 +38,49 @@ export default function ChannelsPage() {
   const organic = findTable(research, /^Organic/);
   const email = findTable(research, /^Email \+ SMS$/);
   const influencer = findTable(research, /^Influencer/);
+
+  // Build the 6-channel benchmark bundle for the one-click CSV export.
+  // Mirrors the canonical header order the operator sees in each
+  // `<ResearchTable>` block above so the bundled CSV matches the on-screen
+  // column ordering row-for-row.
+  const benchmarkBlocks: ChannelBenchmarkBlock[] = [
+    {
+      id: "meta",
+      title: "Meta (Facebook + Instagram) benchmarks",
+      headers: tableHeaders(meta),
+      rows: meta,
+    },
+    {
+      id: "google",
+      title: "Google Ads benchmarks",
+      headers: tableHeaders(google),
+      rows: google,
+    },
+    {
+      id: "tiktok",
+      title: "TikTok Ads · 2025 typical range",
+      headers: tableHeaders(tiktok),
+      rows: tiktok,
+    },
+    {
+      id: "organic",
+      title: "Organic (SEO + UGC)",
+      headers: tableHeaders(organic),
+      rows: organic,
+    },
+    {
+      id: "email",
+      title: "Email + SMS engagement",
+      headers: tableHeaders(email),
+      rows: email,
+    },
+    {
+      id: "influencer",
+      title: "Influencer / Creator rates (US 2025)",
+      headers: tableHeaders(influencer),
+      rows: influencer,
+    },
+  ];
 
   // Visualize Meta ROAS via a bar.
   return (
@@ -95,8 +153,13 @@ export default function ChannelsPage() {
             browser.
           </CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="flex flex-col gap-3">
           <ChannelMixAllocator />
+          {/* One-click CSV bundle of every channel benchmark table below —
+              closes the operator's "I want one file with all 6 channels" loop
+              so they can pivot across channels in their own spreadsheet
+              without copy-pasting between per-table CSVs. */}
+          <ChannelBenchmarkExportButton blocks={benchmarkBlocks} />
         </CardContent>
       </Card>
 
