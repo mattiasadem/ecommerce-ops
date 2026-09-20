@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-20T01:06:49.421Z",
+  "generatedAt": "2026-09-20T02:14:33.029Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12145,6 +12145,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-20 01:08] Skill tick: keep — Move #231 ecommerce-ops-incident-response-runbook (FIRST Tier-1 + FIRST P0 in unique category `incident-response`; canonical 0-48hr-response runbook for the 6-10 incidents that hit every $1M+ GMV DTC brand per year — site-outage + payment-outage + ad-account-disabled + viral-tweet-bot-surge + 3PL-loss + inventory-stockout + chargeback-spike + email-SMS-deliverability-collapse — drops MTTR from 4-24hr to 15-45min for site/payment, 24-96hr for ad-account, 4-24hr for 3PL, 3-14d for chargeback-spike; year-1 ROI band 10:1-40:1 default 22:1 at $3M GMV; Shop Pay + PayPal + Apple Pay payment-fallback + Cloudflare Bot Fight Mode + pre-filed Meta/Google/TikTok ad-account-recovery-forms + UptimeRobot + Pushover + PagerDuty free-tier on-call-rotation + Statuspage/Better Stack public status page + 12 pre-drafted customer-comms-email templates + 8-incident 8-step war-room pattern + quarterly tabletop exercise; 15 numbered pitfalls + 15 numbered pitfall-fix lines + 9 verification gates; DEPLOY SUCCEEDED + canonical alias rotated in 907ms per v2.99.26 sub-class fix; HTTP 200 / 131,613 bytes live at canonical alias)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-20\n- **Status:** keep\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally before deploy): (1) **Unique category** — `grep -l \"^category: incident-response$\" skills/*.md | wc -l = 0` before writing → `= 1` after (verified just now — NO prior skill has this category); (2) **Tier-1 first** — first `tier: 1` in this category (it IS the only one); (3) **P0 first** — first `priority: P0` in this category (it IS the only one); (4) **Highest pitfall count** — **15 numbered pitfalls with bold prefix + 15 numbered pitfall-fix lines** (canonical 15-pitfall pattern matching Move #1 + Move #4 + Move #14.2 + Move #91 standard). Move #231 fills a **critical operator-relevant gap** that NO existing skill covers: the canonical **0-48hr inci"
+    },
     {
       "heading": "[2026-09-20 00:08] Skill tick: keep — Move #14.2.6 subscription-segmented-paywall-engine with cohort-specific-feature-gating + cohort-specific-pricing-page + cohort-specific-CTA + cohort-specific-upgrade-flow (FIRST Tier-1 + FIRST P0 in unique category `subscription-segmented-paywall-engine`; canonical per-cohort-feature-gating-engine layer for DTC subscription brands shipping Move #11 (subscription-replenishment) + Move #14.2 (dunning) + Move #14.2.1 (AI failure prediction) + Move #14.2.2 (cross-border dunning) + Move #14.2.3 (voluntary-churn prevention + cancellation save-flow) + Move #14.2.4 (winback-discount-ladder) + Move #14.2.5 (subscription-box curated-discovery-engine); Recharge + Stay AI + Skio + Bold Subscriptions + Loop Subscriptions + Subbly + Klaviyo + Postscript + Smile.io + LoyaltyLion + Yotpo + Triple Whale cohort-LTV + Amplitude cohort + Segment + Iterable + Optimizely + VWO + AB-Tasty + Stripe Billing + Chargebee + Recurly + ProfitWell + Baremetrics + Mixpanel + Iterable + Customer.io + Nosto + Algolia Recommend + Rebound + HubSpot + Intercom 14-platform Path A/B/C/D framework with default 14:1 Year-1 ROI Path A at $1M subscription GMV; 15 numbered pitfalls + 15 numbered pitfall-fix lines + 9 verification gates A-I + 4-phase 14-28 day build; DEPLOY SUCCEEDED + canonical alias rotated in 913ms per v2.99.26 sub-class fix; HTTP 200 / 185,076 bytes live at canonical alias; NO REGRESSIONS on Move #229)",
       "body": "- **Branch:** autoresearch/skills-2026-09-19 (carry-over from prior UTC day; manual FF-merge to master after `keep` reported date-mismatch — local merge succeeded, GitHub push failed as expected with dead PAT)\n- **Status:** keep\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally before deploy): (1) **Unique category** — `grep -l \"^category: subscription-segmented-paywall-engine$\" skills/*.md | wc -l = 0` before writing → `= 1` after (verified just now); (2) **Tier-1 first** — first `tier: 1` in this category (it IS the only one); (3) **P0 first** — first `priority: P0` in this category (it IS the only one); (4) **Highest pitfall count** — **15 numbered pitfalls with bold prefix + 15 numbered pitfall-fix lines** (canonical 15-pitfall pattern matching Move #14.2 / M"
@@ -32420,6 +32424,75 @@
       "pitfallCount": 15,
       "sourceCount": 20,
       "size": 25942,
+      "lastTouched": "2026-09-20"
+    },
+    {
+      "file": "232-cx-knowledge-base-self-serve-deflection.md",
+      "name": "cx-knowledge-base-self-serve-deflection",
+      "title": "CX knowledge-base + on-site-help-center + FAQ-engine + chatbot-content-engine + Help-Scout-Docs + Gorgias-Automate-content-library (Move #232)",
+      "category": "cx-knowledge-base-self-serve-deflection",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": 232,
+      "yearOneRoiBand": "8:1–24:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-20",
+      "sources": [
+        "help-scout-docs-2024",
+        "help-scout-beacon-2024",
+        "help-scout-ai-answer-2024",
+        "gorgias-automate-2024",
+        "gorgias-macros-2024",
+        "klaviyo-customer-agent-2024",
+        "kustomer-ai-2024",
+        "zendesk-help-center-2024",
+        "zendesk-ai-2024",
+        "zendesk-sunshine-2024",
+        "intercom-fin-2024",
+        "intercom-resolution-bot-2024",
+        "ada-2024",
+        "netomi-2024",
+        "forethought-2024",
+        "tidio-2024",
+        "drift-2024",
+        "shopify-inbox-2024",
+        "shopify-flow-2024",
+        "klaviyo-help-center-2024",
+        "postscript-help-center-2024",
+        "recharge-help-center-2024",
+        "loop-returns-help-center-2024",
+        "returnly-help-center-2024",
+        "shipbob-help-center-2024",
+        "shipmonk-help-center-2024",
+        "gorgias-csat-benchmarks-2024",
+        "help-scout-csat-benchmarks-2024",
+        "zendesk-csat-benchmarks-2024",
+        "help-scout-fcr-benchmarks-2024",
+        "gorgias-fcr-benchmarks-2024",
+        "zendesk-fcr-benchmarks-2024",
+        "gorgias-first-response-time-benchmarks-2024",
+        "help-scout-first-response-time-benchmarks-2024",
+        "baymard-help-center-2024",
+        "smart-insights-knowledge-base-2024",
+        "g2-knowledge-base-2024",
+        "capterra-knowledge-base-2024",
+        "statista-knowledge-base-2024",
+        "bain-help-center-nps-2024",
+        "customer-gauge-help-center-nps-2024",
+        "triple-whale-cohort-ltv-2024",
+        "gorgias-cohort-overlay-2024",
+        "klaviyo-segment-deflection-2024",
+        "postscript-segment-deflection-2024",
+        "returngo-help-center-2024",
+        "aftership-help-center-2024",
+        "parcelpanel-help-center-2024",
+        "narvar-help-center-2024"
+      ],
+      "blurb": "Move #232 is the canonical **self-serve deflection layer** every $1M+ GMV DTC brand needs AFTER Move #11 (AI customer service) AND Move #24 (CX-platform / Gorgias / Help Scout / Zendesk / Kustomer / Front) AND Move #7...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 49,
+      "size": 107906,
       "lastTouched": "2026-09-20"
     },
     {
@@ -54092,6 +54165,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "64adbfa",
+      "date": "2026-09-20T01:10:24Z",
+      "author": "mattiasadem",
+      "subject": "skill: Move #231 ecommerce-ops-incident-response-runbook (FIRST unique category incident-response, 15 pitfalls, 8-incident war-room pattern)",
+      "body": ""
+    },
+    {
       "sha": "730ecef",
       "date": "2026-09-20T00:05:02Z",
       "author": "hermesagent",
@@ -55483,13 +55563,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #126 — agentic-commerce-checkout-decision-rollback-engine (4th-move in agentic-commerce-track, 18 pitfalls, 9:1 ROI)",
       "body": ""
-    },
-    {
-      "sha": "917991c",
-      "date": "2026-09-12T13:46:44Z",
-      "author": "hermesagent",
-      "subject": "journal: 2026-09-12 13:50 Move #125 agentic-commerce checkout-success-decision-engine (3rd-move in agentic-commerce-track after #123+#124)",
-      "body": ""
     }
   ],
   "counts": {
@@ -55498,8 +55571,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 90,
-    "skills": 230,
+    "journalEntries": 91,
+    "skills": 231,
     "gitCommits": 200
   }
 }
