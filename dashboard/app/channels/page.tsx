@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/card";
 import { ResearchTable } from "@/components/research-table";
 import { Bar } from "@/components/bar";
+import { ChannelMixAllocator } from "@/components/channel-mix-allocator";
 import { content, findTable } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -74,6 +75,28 @@ export default function ChannelsPage() {
               </div>
             );
           })}
+        </CardContent>
+      </Card>
+
+      {/* Interactive Channel Mix Budget Allocator — closes the operator loop
+          from "which channels rank highest ROI" (research/00 § 2) to
+          "what does MY split project in revenue + margin $ tied to MY
+          AOV/orders/margin on Overview". State persists to localStorage so
+          the allocation survives reloads. */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-base">
+            Channel mix budget allocator — split your monthly budget
+          </CardTitle>
+          <CardDescription>
+            Enter your monthly marketing budget + drag the 10 channel sliders.
+            Per-channel ROAS band × Your-store gross margin projects the
+            blended ROAS, revenue, and net margin. State auto-saved to your
+            browser.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <ChannelMixAllocator />
         </CardContent>
       </Card>
 
