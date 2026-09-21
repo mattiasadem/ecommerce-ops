@@ -98,6 +98,38 @@ function extractBullets(md) {
   return out;
 }
 
+// Split a section's body lines into per-H4 sub-blocks. When a body contains
+// `#### <heading>` lines, return one sub-block per H4 (heading + the lines
+// that follow until the next H4 or end). When there are no H4 lines, return
+// a single null-headed block holding the full body. This lets callers emit
+// one tables[] entry per H4 instead of mashing multiple tables into one row
+// set with the wrong header (Move #3 — fixes the /channels empty-table bug
+// where research/00 § 2's 6 per-channel benchmark tables were collapsed into
+// one 44-row blob keyed by the Meta header).
+function splitBodyByH4(lines) {
+  const blocks = [];
+  let current = null;
+  for (const line of lines || []) {
+    const h4 = /^#### (?!#)(.+?)\s*$/.exec(line);
+    if (h4) {
+      if (current) blocks.push(current);
+      current = { h4Heading: h4[1].trim(), bodyLines: [] };
+    } else if (current) {
+      current.bodyLines.push(line);
+    } else {
+      // Pre-H4 prose goes into a sentinel null-headed block so top-level
+      // tables (those above any ####) are still parsed normally.
+      if (!blocks.length || blocks[0].h4Heading !== null) {
+        blocks.unshift({ h4Heading: null, bodyLines: [line] });
+      } else {
+        blocks[0].bodyLines.push(line);
+      }
+    }
+  }
+  if (current) blocks.push(current);
+  return blocks;
+}
+
 async function parseResearch() {
   const dir = join(ROOT, "research");
   const files = (await readdir(dir)).filter((f) => f.endsWith(".md")).sort();
@@ -115,15 +147,34 @@ async function parseResearch() {
     for (const s of sections) {
       const body = (s.body || []).join("\n");
       if (!doc.title && s.level === 2) doc.title = s.heading;
-      const tbl = parseMarkdownTable(s.body || []);
+      const subBlocks = splitBodyByH4(s.body || []);
+      const hasH4 = subBlocks.some((b) => b.h4Heading !== null);
+      // Top-level (non-H4) tables: only parse them when there ARE H4 sub-blocks,
+      // in which case the merged-table problem is real and we want to skip the
+      // cross-table merge entirely. Otherwise (no H4s anywhere), keep the legacy
+      // single-table-per-section behavior so existing pages don't regress.
+      const topTable = hasH4
+        ? []
+        : parseMarkdownTable(s.body || []);
       const entry = {
         heading: s.heading,
         level: s.level,
-        table: tbl.length ? tbl : null,
+        table: topTable.length ? topTable : null,
         body: body.length > 4000 ? body.slice(0, 4000) : body,
       };
       doc.sections.push(entry);
-      if (tbl.length) doc.tables.push({ heading: s.heading, rows: tbl });
+      if (topTable.length) {
+        doc.tables.push({ heading: s.heading, rows: topTable });
+      }
+      // Emit one tables[] entry per H4 sub-block, keyed by the H4 heading,
+      // so findTable(research, /^Meta \(Facebook/) resolves to the right rows.
+      for (const b of subBlocks) {
+        if (b.h4Heading === null) continue;
+        const h4Tbl = parseMarkdownTable(b.bodyLines);
+        if (h4Tbl.length) {
+          doc.tables.push({ heading: b.h4Heading, rows: h4Tbl });
+        }
+      }
     }
     // Pull top-level bullets from "Findings" sections.
     const findSec = doc.sections.find((s) => s.heading && /^Findings$/i.test(s.heading));

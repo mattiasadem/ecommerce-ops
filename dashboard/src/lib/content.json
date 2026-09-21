@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-21T03:50:14.021Z",
+  "generatedAt": "2026-09-21T04:21:58.718Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -208,316 +208,7 @@
         {
           "heading": "Channel benchmark numbers (2025/26)",
           "level": 3,
-          "table": [
-            {
-              "Vertical": "Apparel & accessories",
-              "CPM (USD)": "$8–$15",
-              "CTR (link)": "0.8–1.4%",
-              "CPC (link)": "$0.60–$1.50",
-              "CVR (post-click)": "1.5–2.5%"
-            },
-            {
-              "Vertical": "Beauty & personal care",
-              "CPM (USD)": "$10–$20",
-              "CTR (link)": "1.0–1.6%",
-              "CPC (link)": "$0.70–$1.80",
-              "CVR (post-click)": "2.0–3.5%"
-            },
-            {
-              "Vertical": "Health & wellness",
-              "CPM (USD)": "$12–$22",
-              "CTR (link)": "0.8–1.4%",
-              "CPC (link)": "$0.80–$2.00",
-              "CVR (post-click)": "1.5–3.0%"
-            },
-            {
-              "Vertical": "Food & beverage (consumable)",
-              "CPM (USD)": "$6–$14",
-              "CTR (link)": "1.0–1.8%",
-              "CPC (link)": "$0.50–$1.20",
-              "CVR (post-click)": "3.0–5.0%"
-            },
-            {
-              "Vertical": "Home & furniture",
-              "CPM (USD)": "$15–$30",
-              "CTR (link)": "0.6–1.0%",
-              "CPC (link)": "$1.20–$3.00",
-              "CVR (post-click)": "0.8–1.5%"
-            },
-            {
-              "Vertical": "Pet",
-              "CPM (USD)": "$8–$18",
-              "CTR (link)": "0.9–1.5%",
-              "CPC (link)": "$0.70–$1.60",
-              "CVR (post-click)": "2.0–3.5%"
-            },
-            {
-              "Vertical": "Jewelry & luxury",
-              "CPM (USD)": "$20–$45",
-              "CTR (link)": "0.5–0.9%",
-              "CPC (link)": "$1.80–$4.00",
-              "CVR (post-click)": "0.6–1.4%"
-            },
-            {
-              "Vertical": "Vertical",
-              "CPM (USD)": "Search CPC",
-              "CTR (link)": "Search CTR",
-              "CPC (link)": "Display CPM",
-              "CVR (post-click)": "Shopping CPC"
-            },
-            {
-              "Vertical": "---",
-              "CPM (USD)": "---",
-              "CTR (link)": "---",
-              "CPC (link)": "---",
-              "CVR (post-click)": "---"
-            },
-            {
-              "Vertical": "Apparel",
-              "CPM (USD)": "$0.50–$1.50",
-              "CTR (link)": "3–6%",
-              "CPC (link)": "$3–$8",
-              "CVR (post-click)": "$0.30–$0.80"
-            },
-            {
-              "Vertical": "Beauty",
-              "CPM (USD)": "$0.80–$2.50",
-              "CTR (link)": "4–7%",
-              "CPC (link)": "$4–$10",
-              "CVR (post-click)": "$0.50–$1.50"
-            },
-            {
-              "Vertical": "Home & furniture",
-              "CPM (USD)": "$1.50–$4.00",
-              "CTR (link)": "3–5%",
-              "CPC (link)": "$5–$12",
-              "CVR (post-click)": "$0.80–$2.50"
-            },
-            {
-              "Vertical": "Health",
-              "CPM (USD)": "$1.50–$3.50",
-              "CTR (link)": "4–6%",
-              "CPC (link)": "$6–$14",
-              "CVR (post-click)": "$0.80–$2.00"
-            },
-            {
-              "Vertical": "Food & beverage",
-              "CPM (USD)": "$0.50–$1.50",
-              "CTR (link)": "5–8%",
-              "CPC (link)": "$3–$7",
-              "CVR (post-click)": "$0.20–$0.70"
-            },
-            {
-              "Vertical": "Pet",
-              "CPM (USD)": "$0.80–$2.00",
-              "CTR (link)": "4–6%",
-              "CPC (link)": "$4–$9",
-              "CVR (post-click)": "$0.40–$1.20"
-            },
-            {
-              "Vertical": "Metric",
-              "CPM (USD)": "2025 typical range",
-              "CTR (link)": "Notes",
-              "CPC (link)": "",
-              "CVR (post-click)": ""
-            },
-            {
-              "Vertical": "---",
-              "CPM (USD)": "---",
-              "CTR (link)": "---",
-              "CPC (link)": "",
-              "CVR (post-click)": ""
-            },
-            {
-              "Vertical": "CPM",
-              "CPM (USD)": "$4–$10 (50%+ lower than Meta)",
-              "CTR (link)": "More volatile; spikes around BFCM",
-              "CPC (link)": "",
-              "CVR (post-click)": ""
-            },
-            {
-              "Vertical": "CTR (link)",
-              "CPM (USD)": "0.8–1.6%",
-              "CTR (link)": "Higher than Meta on visual-first creative",
-              "CPC (link)": "",
-              "CVR (post-click)": ""
-            },
-            {
-              "Vertical": "CPC (link)",
-              "CPM (USD)": "$0.40–$1.20",
-              "CTR (link)": "",
-              "CPC (link)": "",
-              "CVR (post-click)": ""
-            },
-            {
-              "Vertical": "CVR (post-click)",
-              "CPM (USD)": "0.8–2.0%",
-              "CTR (link)": "Significantly lower than Meta — traffic is colder",
-              "CPC (link)": "",
-              "CVR (post-click)": ""
-            },
-            {
-              "Vertical": "ROAS (direct, BFCM 2024)",
-              "CPM (USD)": "1.8–3.0×",
-              "CTR (link)": "Higher on Spark Ads / whitelisted creator content",
-              "CPC (link)": "",
-              "CVR (post-click)": ""
-            },
-            {
-              "Vertical": "Metric",
-              "CPM (USD)": "2025 typical range",
-              "CTR (link)": "",
-              "CPC (link)": "",
-              "CVR (post-click)": ""
-            },
-            {
-              "Vertical": "---",
-              "CPM (USD)": "---",
-              "CTR (link)": "",
-              "CPC (link)": "",
-              "CVR (post-click)": ""
-            },
-            {
-              "Vertical": "\"Conversion rate\" (organic traffic to purchase)",
-              "CPM (USD)": "2.5–4.0% (vs paid 1.0–2.0%) [verified — Triple Whale, Statista]",
-              "CTR (link)": "",
-              "CPC (link)": "",
-              "CVR (post-click)": ""
-            },
-            {
-              "Vertical": "Top-3 SERP click share",
-              "CPM (USD)": "60–70% (declining with AI Overviews) [directional]",
-              "CTR (link)": "",
-              "CPC (link)": "",
-              "CVR (post-click)": ""
-            },
-            {
-              "Vertical": "Bounce rate (blogs)",
-              "CPM (USD)": "70–85%",
-              "CTR (link)": "",
-              "CPC (link)": "",
-              "CVR (post-click)": ""
-            },
-            {
-              "Vertical": "SEO ROI timeline",
-              "CPM (USD)": "12–18 months to payback; 3–5× ROI at year 2 [directional]",
-              "CTR (link)": "",
-              "CPC (link)": "",
-              "CVR (post-click)": ""
-            },
-            {
-              "Vertical": "UGC: cost per piece of usable content",
-              "CPM (USD)": "$50–$300 via platforms (Billo, Insense, Trend)",
-              "CTR (link)": "",
-              "CPC (link)": "",
-              "CVR (post-click)": ""
-            },
-            {
-              "Vertical": "Channel",
-              "CPM (USD)": "Open rate",
-              "CTR (link)": "CTR",
-              "CPC (link)": "CTOR",
-              "CVR (post-click)": "Revenue/$1 spent"
-            },
-            {
-              "Vertical": "---",
-              "CPM (USD)": "---",
-              "CTR (link)": "---",
-              "CPC (link)": "---",
-              "CVR (post-click)": "---"
-            },
-            {
-              "Vertical": "Email — automated flows",
-              "CPM (USD)": "40–55%",
-              "CTR (link)": "5–10%",
-              "CPC (link)": "10–15%",
-              "CVR (post-click)": "$36–$40 [Omnisend 2026 verified]"
-            },
-            {
-              "Vertical": "Email — campaigns",
-              "CPM (USD)": "20–30%",
-              "CTR (link)": "1.5–3.0%",
-              "CPC (link)": "7–10%",
-              "CVR (post-click)": "$30–$35"
-            },
-            {
-              "Vertical": "SMS — promotional",
-              "CPM (USD)": "85–98%",
-              "CTR (link)": "8–20%",
-              "CPC (link)": "8–20%",
-              "CVR (post-click)": "$10–$20"
-            },
-            {
-              "Vertical": "SMS — transactional",
-              "CPM (USD)": "95–98%",
-              "CTR (link)": "15–30%",
-              "CPC (link)": "15–30%",
-              "CVR (post-click)": "Very high"
-            },
-            {
-              "Vertical": "Email Open — Retail vertical",
-              "CPM (USD)": "17.1%",
-              "CTR (link)": "0.7%",
-              "CPC (link)": "5.8%",
-              "CVR (post-click)": "—"
-            },
-            {
-              "Vertical": "Email Open — Education vertical",
-              "CPM (USD)": "28.5%",
-              "CTR (link)": "4.4%",
-              "CPC (link)": "15.7%",
-              "CVR (post-click)": "—"
-            },
-            {
-              "Vertical": "Tier",
-              "CPM (USD)": "Followers",
-              "CTR (link)": "Cost per post (US, 2025)",
-              "CPC (link)": "Cost per 1k views",
-              "CVR (post-click)": "Best use"
-            },
-            {
-              "Vertical": "---",
-              "CPM (USD)": "---",
-              "CTR (link)": "---",
-              "CPC (link)": "---",
-              "CVR (post-click)": "---"
-            },
-            {
-              "Vertical": "Nano",
-              "CPM (USD)": "1K–10K",
-              "CTR (link)": "$50–$250",
-              "CPC (link)": "$5–$15",
-              "CVR (post-click)": "Volume, UGC content for ads, seeding"
-            },
-            {
-              "Vertical": "Micro",
-              "CPM (USD)": "10K–100K",
-              "CTR (link)": "$250–$1,500",
-              "CPC (link)": "$8–$25",
-              "CVR (post-click)": "Niche credibility, conversion"
-            },
-            {
-              "Vertical": "Mid",
-              "CPM (USD)": "100K–500K",
-              "CTR (link)": "$1,500–$8,000",
-              "CPC (link)": "$10–$30",
-              "CVR (post-click)": "Awareness + UGC"
-            },
-            {
-              "Vertical": "Macro",
-              "CPM (USD)": "500K–1M",
-              "CTR (link)": "$8,000–$25,000",
-              "CPC (link)": "$15–$40",
-              "CVR (post-click)": "Mass awareness, brand campaigns"
-            },
-            {
-              "Vertical": "Mega",
-              "CPM (USD)": "1M+",
-              "CTR (link)": "$25,000–$250,000+",
-              "CPC (link)": "$20–$60+",
-              "CVR (post-click)": "Mostly brand play, weak direct CVR"
-            }
-          ],
+          "table": null,
           "body": "\n> **Use these as calibration, not goals.** They vary by 2–3× across verticals.\n\n#### Meta (Facebook + Instagram)\n\n| Vertical | CPM (USD) | CTR (link) | CPC (link) | CVR (post-click) |\n|---|---|---|---|---|\n| Apparel & accessories | $8–$15 | 0.8–1.4% | $0.60–$1.50 | 1.5–2.5% |\n| Beauty & personal care | $10–$20 | 1.0–1.6% | $0.70–$1.80 | 2.0–3.5% |\n| Health & wellness | $12–$22 | 0.8–1.4% | $0.80–$2.00 | 1.5–3.0% |\n| Food & beverage (consumable) | $6–$14 | 1.0–1.8% | $0.50–$1.20 | 3.0–5.0% |\n| Home & furniture | $15–$30 | 0.6–1.0% | $1.20–$3.00 | 0.8–1.5% |\n| Pet | $8–$18 | 0.9–1.5% | $0.70–$1.60 | 2.0–3.5% |\n| Jewelry & luxury | $20–$45 | 0.5–0.9% | $1.80–$4.00 | 0.6–1.4% |\n\n> Sources: [HubSpot paid advertising benchmarks](https://blog.hubspot.com/marketing/paid-advertising-cpc-cpm-benchmarks), [WordStream Facebook ads benchmarks](https://www.wordstream.com/blog/ws/2022/09/21/facebook-ads-benchmarks), Triple Whale 2025 vertical cuts. [verified]\n\n#### Google Ads\n\n| Vertical | Search CPC | Search CTR | Display CPM | Shopping CPC |\n|---|---|---|---|---|\n| Apparel | $0.50–$1.50 | 3–6% | $3–$8 | $0.30–$0.80 |\n| Beauty | $0.80–$2.50 | 4–7% | $4–$10 | $0.50–$1.50 |\n| Home & furniture | $1.50–$4.00 | 3–5% | $5–$12 | $0.80–$2.50 |\n| Health | $1.50–$3.50 | 4–6% | $6–$14 | $0.80–$2.00 |\n| Food & beverage | $0.50–$1.50 | 5–8% | $3–$7 | $0.20–$0.70 |\n| Pet | $0.80–$2.00 | 4–6% | $4–$9 | $0.40–$1.20 |\n\n> Sources: HubSpot, FirstPageSage industry CPC breakdowns, Shopify Plus operator data. [verified / directional]\n\n#### TikTok Ads\n\n| Metric | 2025 typical range | Notes |\n|---|---|---|\n| CPM | $4–$10 (50%+ lower than Meta) | More volatile; spikes around BFCM |\n| CTR (link) | 0.8–1.6% | Higher than Meta on visual-first creative |\n| CPC (link) | $0.40–$1.20 | |\n| CVR (post-click) | 0.8–2.0% | Significantly lower than Meta — traffic is colder |\n| ROAS (direct, BFCM 2024) | 1.8–3.0× | Higher on Spark Ads / whitelisted creator content |\n\n> Sources: Triple Whale TikTok benchmarks, Klaviyo industry data, HubSpot paid benchmarks. [verified]\n\n#### Organic (SEO + UGC)\n\n| Metric | 2025 typical range |\n|---|---|\n| \"Conversion rate\" (organic traffic to purchase) | 2.5–4.0% (vs paid 1.0–2.0%) [verified — Triple Whale, Statista] |\n| Top-3 SERP click share | 60–70% (declining with AI Overviews) [directional] |\n| Bounce rate (blogs) | 70–85% |\n| SEO ROI timeline | 12–18 months to payback; 3–5× ROI at year 2 [directional] |\n| UGC: cost per piece of usable content | $50–$300 via platforms (Billo, Insense, Trend) |\n\n#### Email + SMS\n\n| Channel | Open rate | CTR | CTOR | Revenue/$1 spent | Notes |\n|---|---|---|---|---|---|\n| **Email — automated flows** | 40–55% | 5–10% | 10–15% | **$36–$40** [Omnisend 2026 verified] | Welcome, abandoned cart, abandoned browse, post-purchase, winback |\n| **Email — campaigns** | 20–30% | 1.5–3.0% | 7–10% | $30–$35 | 2% of volume → 7% of revenue |\n| **SMS — promotional** | 85–98% | 8–20% | 8–20% | $10–$20 | Carrier opt-in friction is a real cost; mind TCPA |\n| **SMS — transactional** | 95–98% | 15–30% | 15–30% | Very high | Order, ship, delivery |\n| **Email Open — Retail vertical** | 17.1% | 0.7% | 5.8% | — | Worst in [Campaign Monitor vertical breakouts](https://www.campaignmonitor.com/resources/guides/email-marketing-benchmarks/) |\n| **Email Open — Education vertical** | 28.5% | 4.4% | 15.7% | — | Best of the verticals in that dataset |\n\n> Note: 2024+ open rates are inflated by Apple Mail Privacy Protection (MPP). Track **CTOR (click-to-open)** and **click rate** as the cleaner signal. [verified — Campaign Monitor, Omnisend]\n\n#### Influencer / Creator\n\n| Tier | Followers | Cost per post (US, 2025) | Cost per 1k views | Best use |\n|---|---|---|---|---|\n| Nano | 1K–10K | $50–$250 | $5–$15 | Volume, UGC content for ads, seeding |\n| Micro | 10K–100K | $250–$1,500 | $8–$25 | Niche credibility, conversion |\n| Mid | 100K–500K | $1,500–$8,000 | $10–$30 | Awareness + UGC |\n| Macro | 500K–1M | $8,000–$25,000 | $15–$40 | Mass awareness, bran"
         },
         {
@@ -1537,7 +1228,7 @@
           ]
         },
         {
-          "heading": "Channel benchmark numbers (2025/26)",
+          "heading": "Meta (Facebook + Instagram)",
           "rows": [
             {
               "Vertical": "Apparel & accessories",
@@ -1587,265 +1278,201 @@
               "CTR (link)": "0.5–0.9%",
               "CPC (link)": "$1.80–$4.00",
               "CVR (post-click)": "0.6–1.4%"
-            },
-            {
-              "Vertical": "Vertical",
-              "CPM (USD)": "Search CPC",
-              "CTR (link)": "Search CTR",
-              "CPC (link)": "Display CPM",
-              "CVR (post-click)": "Shopping CPC"
-            },
-            {
-              "Vertical": "---",
-              "CPM (USD)": "---",
-              "CTR (link)": "---",
-              "CPC (link)": "---",
-              "CVR (post-click)": "---"
-            },
+            }
+          ]
+        },
+        {
+          "heading": "Google Ads",
+          "rows": [
             {
               "Vertical": "Apparel",
-              "CPM (USD)": "$0.50–$1.50",
-              "CTR (link)": "3–6%",
-              "CPC (link)": "$3–$8",
-              "CVR (post-click)": "$0.30–$0.80"
+              "Search CPC": "$0.50–$1.50",
+              "Search CTR": "3–6%",
+              "Display CPM": "$3–$8",
+              "Shopping CPC": "$0.30–$0.80"
             },
             {
               "Vertical": "Beauty",
-              "CPM (USD)": "$0.80–$2.50",
-              "CTR (link)": "4–7%",
-              "CPC (link)": "$4–$10",
-              "CVR (post-click)": "$0.50–$1.50"
+              "Search CPC": "$0.80–$2.50",
+              "Search CTR": "4–7%",
+              "Display CPM": "$4–$10",
+              "Shopping CPC": "$0.50–$1.50"
             },
             {
               "Vertical": "Home & furniture",
-              "CPM (USD)": "$1.50–$4.00",
-              "CTR (link)": "3–5%",
-              "CPC (link)": "$5–$12",
-              "CVR (post-click)": "$0.80–$2.50"
+              "Search CPC": "$1.50–$4.00",
+              "Search CTR": "3–5%",
+              "Display CPM": "$5–$12",
+              "Shopping CPC": "$0.80–$2.50"
             },
             {
               "Vertical": "Health",
-              "CPM (USD)": "$1.50–$3.50",
-              "CTR (link)": "4–6%",
-              "CPC (link)": "$6–$14",
-              "CVR (post-click)": "$0.80–$2.00"
+              "Search CPC": "$1.50–$3.50",
+              "Search CTR": "4–6%",
+              "Display CPM": "$6–$14",
+              "Shopping CPC": "$0.80–$2.00"
             },
             {
               "Vertical": "Food & beverage",
-              "CPM (USD)": "$0.50–$1.50",
-              "CTR (link)": "5–8%",
-              "CPC (link)": "$3–$7",
-              "CVR (post-click)": "$0.20–$0.70"
+              "Search CPC": "$0.50–$1.50",
+              "Search CTR": "5–8%",
+              "Display CPM": "$3–$7",
+              "Shopping CPC": "$0.20–$0.70"
             },
             {
               "Vertical": "Pet",
-              "CPM (USD)": "$0.80–$2.00",
-              "CTR (link)": "4–6%",
-              "CPC (link)": "$4–$9",
-              "CVR (post-click)": "$0.40–$1.20"
+              "Search CPC": "$0.80–$2.00",
+              "Search CTR": "4–6%",
+              "Display CPM": "$4–$9",
+              "Shopping CPC": "$0.40–$1.20"
+            }
+          ]
+        },
+        {
+          "heading": "TikTok Ads",
+          "rows": [
+            {
+              "Metric": "CPM",
+              "2025 typical range": "$4–$10 (50%+ lower than Meta)",
+              "Notes": "More volatile; spikes around BFCM"
             },
             {
-              "Vertical": "Metric",
-              "CPM (USD)": "2025 typical range",
-              "CTR (link)": "Notes",
-              "CPC (link)": "",
-              "CVR (post-click)": ""
+              "Metric": "CTR (link)",
+              "2025 typical range": "0.8–1.6%",
+              "Notes": "Higher than Meta on visual-first creative"
             },
             {
-              "Vertical": "---",
-              "CPM (USD)": "---",
-              "CTR (link)": "---",
-              "CPC (link)": "",
-              "CVR (post-click)": ""
+              "Metric": "CPC (link)",
+              "2025 typical range": "$0.40–$1.20",
+              "Notes": ""
             },
             {
-              "Vertical": "CPM",
-              "CPM (USD)": "$4–$10 (50%+ lower than Meta)",
-              "CTR (link)": "More volatile; spikes around BFCM",
-              "CPC (link)": "",
-              "CVR (post-click)": ""
+              "Metric": "CVR (post-click)",
+              "2025 typical range": "0.8–2.0%",
+              "Notes": "Significantly lower than Meta — traffic is colder"
             },
             {
-              "Vertical": "CTR (link)",
-              "CPM (USD)": "0.8–1.6%",
-              "CTR (link)": "Higher than Meta on visual-first creative",
-              "CPC (link)": "",
-              "CVR (post-click)": ""
+              "Metric": "ROAS (direct, BFCM 2024)",
+              "2025 typical range": "1.8–3.0×",
+              "Notes": "Higher on Spark Ads / whitelisted creator content"
+            }
+          ]
+        },
+        {
+          "heading": "Organic (SEO + UGC)",
+          "rows": [
+            {
+              "Metric": "\"Conversion rate\" (organic traffic to purchase)",
+              "2025 typical range": "2.5–4.0% (vs paid 1.0–2.0%) [verified — Triple Whale, Statista]"
             },
             {
-              "Vertical": "CPC (link)",
-              "CPM (USD)": "$0.40–$1.20",
-              "CTR (link)": "",
-              "CPC (link)": "",
-              "CVR (post-click)": ""
+              "Metric": "Top-3 SERP click share",
+              "2025 typical range": "60–70% (declining with AI Overviews) [directional]"
             },
             {
-              "Vertical": "CVR (post-click)",
-              "CPM (USD)": "0.8–2.0%",
-              "CTR (link)": "Significantly lower than Meta — traffic is colder",
-              "CPC (link)": "",
-              "CVR (post-click)": ""
+              "Metric": "Bounce rate (blogs)",
+              "2025 typical range": "70–85%"
             },
             {
-              "Vertical": "ROAS (direct, BFCM 2024)",
-              "CPM (USD)": "1.8–3.0×",
-              "CTR (link)": "Higher on Spark Ads / whitelisted creator content",
-              "CPC (link)": "",
-              "CVR (post-click)": ""
+              "Metric": "SEO ROI timeline",
+              "2025 typical range": "12–18 months to payback; 3–5× ROI at year 2 [directional]"
             },
             {
-              "Vertical": "Metric",
-              "CPM (USD)": "2025 typical range",
-              "CTR (link)": "",
-              "CPC (link)": "",
-              "CVR (post-click)": ""
+              "Metric": "UGC: cost per piece of usable content",
+              "2025 typical range": "$50–$300 via platforms (Billo, Insense, Trend)"
+            }
+          ]
+        },
+        {
+          "heading": "Email + SMS",
+          "rows": [
+            {
+              "Channel": "Email — automated flows",
+              "Open rate": "40–55%",
+              "CTR": "5–10%",
+              "CTOR": "10–15%",
+              "Revenue/$1 spent": "$36–$40 [Omnisend 2026 verified]",
+              "Notes": "Welcome, abandoned cart, abandoned browse, post-purchase, winback"
             },
             {
-              "Vertical": "---",
-              "CPM (USD)": "---",
-              "CTR (link)": "",
-              "CPC (link)": "",
-              "CVR (post-click)": ""
+              "Channel": "Email — campaigns",
+              "Open rate": "20–30%",
+              "CTR": "1.5–3.0%",
+              "CTOR": "7–10%",
+              "Revenue/$1 spent": "$30–$35",
+              "Notes": "2% of volume → 7% of revenue"
             },
             {
-              "Vertical": "\"Conversion rate\" (organic traffic to purchase)",
-              "CPM (USD)": "2.5–4.0% (vs paid 1.0–2.0%) [verified — Triple Whale, Statista]",
-              "CTR (link)": "",
-              "CPC (link)": "",
-              "CVR (post-click)": ""
+              "Channel": "SMS — promotional",
+              "Open rate": "85–98%",
+              "CTR": "8–20%",
+              "CTOR": "8–20%",
+              "Revenue/$1 spent": "$10–$20",
+              "Notes": "Carrier opt-in friction is a real cost; mind TCPA"
             },
             {
-              "Vertical": "Top-3 SERP click share",
-              "CPM (USD)": "60–70% (declining with AI Overviews) [directional]",
-              "CTR (link)": "",
-              "CPC (link)": "",
-              "CVR (post-click)": ""
+              "Channel": "SMS — transactional",
+              "Open rate": "95–98%",
+              "CTR": "15–30%",
+              "CTOR": "15–30%",
+              "Revenue/$1 spent": "Very high",
+              "Notes": "Order, ship, delivery"
             },
             {
-              "Vertical": "Bounce rate (blogs)",
-              "CPM (USD)": "70–85%",
-              "CTR (link)": "",
-              "CPC (link)": "",
-              "CVR (post-click)": ""
+              "Channel": "Email Open — Retail vertical",
+              "Open rate": "17.1%",
+              "CTR": "0.7%",
+              "CTOR": "5.8%",
+              "Revenue/$1 spent": "—",
+              "Notes": "Worst in [Campaign Monitor vertical breakouts](https://www.campaignmonitor.com/resources/guides/email-marketing-benchmarks/)"
             },
             {
-              "Vertical": "SEO ROI timeline",
-              "CPM (USD)": "12–18 months to payback; 3–5× ROI at year 2 [directional]",
-              "CTR (link)": "",
-              "CPC (link)": "",
-              "CVR (post-click)": ""
+              "Channel": "Email Open — Education vertical",
+              "Open rate": "28.5%",
+              "CTR": "4.4%",
+              "CTOR": "15.7%",
+              "Revenue/$1 spent": "—",
+              "Notes": "Best of the verticals in that dataset"
+            }
+          ]
+        },
+        {
+          "heading": "Influencer / Creator",
+          "rows": [
+            {
+              "Tier": "Nano",
+              "Followers": "1K–10K",
+              "Cost per post (US, 2025)": "$50–$250",
+              "Cost per 1k views": "$5–$15",
+              "Best use": "Volume, UGC content for ads, seeding"
             },
             {
-              "Vertical": "UGC: cost per piece of usable content",
-              "CPM (USD)": "$50–$300 via platforms (Billo, Insense, Trend)",
-              "CTR (link)": "",
-              "CPC (link)": "",
-              "CVR (post-click)": ""
+              "Tier": "Micro",
+              "Followers": "10K–100K",
+              "Cost per post (US, 2025)": "$250–$1,500",
+              "Cost per 1k views": "$8–$25",
+              "Best use": "Niche credibility, conversion"
             },
             {
-              "Vertical": "Channel",
-              "CPM (USD)": "Open rate",
-              "CTR (link)": "CTR",
-              "CPC (link)": "CTOR",
-              "CVR (post-click)": "Revenue/$1 spent"
+              "Tier": "Mid",
+              "Followers": "100K–500K",
+              "Cost per post (US, 2025)": "$1,500–$8,000",
+              "Cost per 1k views": "$10–$30",
+              "Best use": "Awareness + UGC"
             },
             {
-              "Vertical": "---",
-              "CPM (USD)": "---",
-              "CTR (link)": "---",
-              "CPC (link)": "---",
-              "CVR (post-click)": "---"
+              "Tier": "Macro",
+              "Followers": "500K–1M",
+              "Cost per post (US, 2025)": "$8,000–$25,000",
+              "Cost per 1k views": "$15–$40",
+              "Best use": "Mass awareness, brand campaigns"
             },
             {
-              "Vertical": "Email — automated flows",
-              "CPM (USD)": "40–55%",
-              "CTR (link)": "5–10%",
-              "CPC (link)": "10–15%",
-              "CVR (post-click)": "$36–$40 [Omnisend 2026 verified]"
-            },
-            {
-              "Vertical": "Email — campaigns",
-              "CPM (USD)": "20–30%",
-              "CTR (link)": "1.5–3.0%",
-              "CPC (link)": "7–10%",
-              "CVR (post-click)": "$30–$35"
-            },
-            {
-              "Vertical": "SMS — promotional",
-              "CPM (USD)": "85–98%",
-              "CTR (link)": "8–20%",
-              "CPC (link)": "8–20%",
-              "CVR (post-click)": "$10–$20"
-            },
-            {
-              "Vertical": "SMS — transactional",
-              "CPM (USD)": "95–98%",
-              "CTR (link)": "15–30%",
-              "CPC (link)": "15–30%",
-              "CVR (post-click)": "Very high"
-            },
-            {
-              "Vertical": "Email Open — Retail vertical",
-              "CPM (USD)": "17.1%",
-              "CTR (link)": "0.7%",
-              "CPC (link)": "5.8%",
-              "CVR (post-click)": "—"
-            },
-            {
-              "Vertical": "Email Open — Education vertical",
-              "CPM (USD)": "28.5%",
-              "CTR (link)": "4.4%",
-              "CPC (link)": "15.7%",
-              "CVR (post-click)": "—"
-            },
-            {
-              "Vertical": "Tier",
-              "CPM (USD)": "Followers",
-              "CTR (link)": "Cost per post (US, 2025)",
-              "CPC (link)": "Cost per 1k views",
-              "CVR (post-click)": "Best use"
-            },
-            {
-              "Vertical": "---",
-              "CPM (USD)": "---",
-              "CTR (link)": "---",
-              "CPC (link)": "---",
-              "CVR (post-click)": "---"
-            },
-            {
-              "Vertical": "Nano",
-              "CPM (USD)": "1K–10K",
-              "CTR (link)": "$50–$250",
-              "CPC (link)": "$5–$15",
-              "CVR (post-click)": "Volume, UGC content for ads, seeding"
-            },
-            {
-              "Vertical": "Micro",
-              "CPM (USD)": "10K–100K",
-              "CTR (link)": "$250–$1,500",
-              "CPC (link)": "$8–$25",
-              "CVR (post-click)": "Niche credibility, conversion"
-            },
-            {
-              "Vertical": "Mid",
-              "CPM (USD)": "100K–500K",
-              "CTR (link)": "$1,500–$8,000",
-              "CPC (link)": "$10–$30",
-              "CVR (post-click)": "Awareness + UGC"
-            },
-            {
-              "Vertical": "Macro",
-              "CPM (USD)": "500K–1M",
-              "CTR (link)": "$8,000–$25,000",
-              "CPC (link)": "$15–$40",
-              "CVR (post-click)": "Mass awareness, brand campaigns"
-            },
-            {
-              "Vertical": "Mega",
-              "CPM (USD)": "1M+",
-              "CTR (link)": "$25,000–$250,000+",
-              "CPC (link)": "$20–$60+",
-              "CVR (post-click)": "Mostly brand play, weak direct CVR"
+              "Tier": "Mega",
+              "Followers": "1M+",
+              "Cost per post (US, 2025)": "$25,000–$250,000+",
+              "Cost per 1k views": "$20–$60+",
+              "Best use": "Mostly brand play, weak direct CVR"
             }
           ]
         },
@@ -12148,6 +11775,10 @@
     {
       "heading": "[2026-09-20 18:08] Skill tick: keep — Move #246 dtc-vs-marketplace-cannibalization-monitoring (FIRST Tier-1 + FIRST P0 in unique category `marketplace-cannibalization-monitoring`; canonical DTC-traffic-erosion-monitoring layer every $1M+ GMV DTC brand with marketplace presence ships AFTER Move #6 (Triple Whale) + Move #13 (marketplace-expansion) + Move #30 (dynamic-pricing) + Move #107 (competitive-price-intelligence) are live; Triple Whale Marketplace Sync + Amazon Attribution + Walmart Connect + Helium 10 + Pacvue + Perpetua + Tinuiti + Prisync + Competera + Wiser + Minderest + Klaviyo `marketplace_purchaser_30d` segment + Postscript marketplace-tag + Gorgias marketplace-customer-tag + Northbeam + Polar Analytics + Hyros + Daasity + per-SKU marketplace-erosion-scorecard + per-cohort marketplace-vs-DTC-LTV-overlay + branded-search-migration-detector + per-marketplace MAP-policy-compliance + per-marketplace price-stability-guardrail + cannibalization-cost-of-action-vs-inaction calculator + monthly-cannibalization-board-pack 6-pillar Path A/B/C/D framework with default 14:1 Year-1 ROI Path B at $5M GMV; 17 numbered pitfalls + 17 numbered pitfall-fix lines + 105 source tokens + 6-pillar 14-28 day build; DEPLOY SUCCEEDED + canonical alias rotated in 926ms per v2.99.26 sub-class fix; HTTP 200 / 224,409 bytes live at canonical alias; NO REGRESSIONS on Move #245 + Move #244)",
       "body": "- **Branch:** autoresearch/skills-2026-09-20\n- **Status:** keep\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally before deploy): (1) **Unique category** — `grep -l \"^category: marketplace-cannibalization-monitoring$\" skills/*.md | wc -l = 0` before writing → `= 1` after (Move #246 IS the only skill with `category: marketplace-cannibalization-monitoring`; distinct from Move #13 `category: marketplace-expansion` which is the LAUNCH playbook, Move #107 `category: competitive-price-intelligence` which is COMPETITOR pricing only, Move #30 `category: pricing` which is DTC-SITE repricing only, Move #14 `category: lifecycle` which is post-purchase-flow only); (2) **Tier-1 first** — first `tier: 1` in this category (it IS the only one); (3) **P0 first** — first `priority"
+    },
+    {
+      "heading": "[2026-09-21 21:30] Skill tick: keep — Move #253 back-in-stock-restock-notification-engine (FIRST Tier-1 + FIRST P0 in unique category `back-in-stock-restock-notification`; canonical sold-out-recovery layer every $500k+ GMV apparel/footwear/beauty/supplements/home/electronics/dropship/limited-edition/collab/DTC brand with ≥10 SKUs and ≥3 stockouts/mo ships AFTER Move #1 + Move #3 + Move #5 + Move #6 + Move #29 + Move #88 + Move #248 are live; Klaviyo back-in-stock flow + STOQ + Stok + Amp Back-in-Stock-Preorder + Restock Pro + Essential Back-in-Stock + Back-in-Stock-Bell + Notify-Me-Bell + ShopAgain + RestockNotifier + Omnisend back-in-stock + Postscript back-in-stock + Gorgias stockout-flow + Triple Whale restock-attribution + Polar restock-attribution + Northbeam restock-attribution + Klaviyo Sold-Out-Profile-Segment + Postscript Sold-Out-SMS-Segment + per-SKU sold-out-waitlist-length + per-SKU restock-demand-heatmap + per-cohort restock-conversion + per-vertical restock-conversion + per-channel restock-conversion + per-variant size-restock-conversion + restock-minimum-inventory-rule-engine + restock-notification-strategy-rules-engine + restock-batching-engine + restock-time-window-engine + restock-A/B-test-engine + restock-fraud-engine + restock-cohort-LTV-overlay + per-SKU restock-decision-engine + restock-cost-of-action-vs-inaction-calculator + monthly-restock-board-pack 6-pillar Path A/B/C/D framework with default 10:1 Year-1 ROI Path B at $1.5M GMV with 240 restock-signups/mo + $75 AOV + 6.46% restock-conversion-rate + 30.5% clicker-conversion + 58% restock-open-rate, FIRST Tier-1 + FIRST P0 in `category: back-in-stock-restock-notification` — 17 numbered pitfalls + 17 verification gates A-Q)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-21\n- **Status:** keep\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally before deploy): (1) **Unique category** — `grep -l \"^category: back-in-stock-restock-notification$\" skills/*.md | wc -l = 0` before writing → `= 1` after (Move #253 IS the only skill with `category: back-in-stock-restock-notification`; distinct from Move #29 `category: inventory` which is STOCKOUT-PREVENTION forecasting only, Move #1 `category: retention` which is cart-recovery only, Move #88 `category: returns-reverse-logistics-prevention-engine` which is reverse-logistics only, Move #248 `category: per-sku-return-rate-forecasting` which is per-SKU-RETURN-RATE only, Move #45 `category: gifting` which is gift-cards-and-store-credit only, Move #54 `cat"
     },
     {
       "heading": "[2026-09-21 02:46] Skill tick: keep — Move #252 per-warehouse × per-SKU-LTV-attribution-engine (FIRST Tier-1 + FIRST P0 in unique category `per-warehouse-x-per-sku-ltv-attribution`; canonical cross-matrix layer extending Move #251 with the per-SKU dimension AND Move #248 with the per-warehouse dimension AND Move #249 + Move #250 with the per-warehouse × per-SKU × per-cohort × per-channel × per-vertical LTV-overlay routing engine that surfaces the canonical **$112–$440 per-warehouse × per-SKU 12-month-cohort-LTV delta** every $1M+ GMV DTC brand with ≥3 multi-warehouse-3PL contracts AND ≥50 active SKUs AND ≥2 product-verticals ships AFTER Move #21 + Move #88 + Move #248 + Move #249 + Move #251 are live; ShipBob + ShipMonk + ShipHero + Stord + Cart.com + Amazon MCF + Deliverr + FedEx Fulfillment + DHL Supply Chain + XPO Logistics + Ryder System + GEODIS + Maersk Contract Logistics + Radial + Shopify Multi-Location + Triple Whale SKU-LTV + Polar SKU-LTV + Northbeam SKU-LTV + Helium 10 + Jungle Scout + Perpetual Traffic + Smile SKU-LTV + Recharge SKU-LTV + Skio SKU-LTV + Klaviyo per-SKU-segment + Postscript per-SKU-segment + Gorgias per-SKU-CSAT + per-warehouse × per-SKU order-to-customer-join-table + per-warehouse × per-SKU 5-point (30/60/90/180/365-day) cohort-LTV curve + per-warehouse × per-SKU 90-day-repeat-purchase-rate + per-warehouse × per-SKU subscription-conversion-rate + per-warehouse × per-SKU reorder-cadence + per-warehouse × per-SKU AOV-by-cohort + per-warehouse × per-SKU cohort-CAC-payback + per-warehouse × per-SKU ship-time + per-warehouse × per-SKU ship-cost + per-warehouse × per-SKU zone-coverage + per-warehouse × per-SKU inventory-availability + per-warehouse × per-SKU cohort-LTV-vs-ship-cost-decision-engine + per-warehouse × per-SKU LTV-driven multi-warehouse routing engine + per-warehouse × per-SKU routing-by-LTV-optimizer + per-warehouse × per-SKU routing-decision-audit-trail + per-warehouse × per-SKU quarterly-renegotiation-decision-engine + monthly-per-warehouse × per-SKU cohort-LTV-board-pack 6-pillar Path A/B/C framework with default **12:1 Year-1 ROI Path B** at $3M GMV; **17 numbered pitfalls + 17 numbered pitfall-fix lines + 17 verification gates A-Q**; 80 source tokens + 4-phase 14-28 day build; DEPLOY SUCCEEDED + canonical alias rotated in 924ms per v2.99.26 sub-class fix; HTTP 200 / 210,474 bytes live at canonical alias)",
@@ -57335,6 +56966,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "fb13aa0",
+      "date": "2026-09-21T03:53:51Z",
+      "author": "hermesagent",
+      "subject": "docs: Move #253 journal entry for canonical keep decision + move #253 added to docs/journal.md",
+      "body": ""
+    },
+    {
+      "sha": "5f9a83d",
+      "date": "2026-09-21T03:53:31Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #253 back-in-stock-restock-notification-engine (FIRST Tier-1 + FIRST P0 in unique category back-in-stock-restock-notification; canonical sold-out-recovery layer every $500k+ GMV apparel/footwear/beauty/supplements/home/electroni",
+      "body": ""
+    },
+    {
       "sha": "51c8d3c",
       "date": "2026-09-21T02:46:46Z",
       "author": "hermesagent",
@@ -58719,29 +58364,15 @@
       "author": "hermesagent",
       "subject": "skill: Move #147 agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-action-recommendation-engine (canonical 25th-move in agentic-commerce-track progression after Move #123-#146; FIRST Tier-1 + FIRST P0 in uniqu",
       "body": ""
-    },
-    {
-      "sha": "bdac17d",
-      "date": "2026-09-14T03:57:19Z",
-      "author": "hermesagent",
-      "subject": "journal: append Move #146 skill tick entry (keep — canonical 24th-move in agentic-commerce-track; 18 numbered pitfalls + 10 gates A-J + 9:1 Year-1 ROI; LIVE HTTP 200 with 7 sentinel tokens verified)",
-      "body": ""
-    },
-    {
-      "sha": "f923adf",
-      "date": "2026-09-14T03:56:56Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #146 agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-explainer-engine (canonical 24th-move in agentic-commerce-track progression after Move #123-#145; FIRST Tier-1 + FIRST P0 in unique category; 18 number",
-      "body": ""
     }
   ],
   "counts": {
     "researchDocs": 18,
     "playbooks": 30,
     "assets": 27,
-    "tables": 57,
+    "tables": 62,
     "findings": 8,
-    "journalEntries": 106,
+    "journalEntries": 107,
     "skills": 252,
     "gitCommits": 200
   }
