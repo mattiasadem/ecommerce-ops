@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-21T16:14:48.224Z",
+  "generatedAt": "2026-09-21T19:32:09.625Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -11772,6 +11772,22 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-21 19:32 UTC] Skill tick: keep — Move #266 per-payment-method × per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment × per-warehouse × per-carrier × per-zone × per-product-discovery × per-affiliate × per-affiliate-network × per-affiliate-commission-structure 14-axis LTV attribution engine (FIRST Tier-1 + FIRST P0 in unique category `per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-x-per-affiliate-x-per-affiliate-network-x-per-affiliate-commission-structure-ltv-attribution`; canonical 14-axis (with-payment-method × with-experiment × with-warehouse × with-carrier × with-zone × with-product-discovery × with-affiliate × with-affiliate-network × with-affiliate-commission-structure) layer that compounds Move #265 WITH the per-AFFILIATE-COMMISSION-STRUCTURE dimension (CPS-revenue-share vs CPA-action-based vs CPC-click-based vs CPM-impression-based vs tiered-bonus) — answering \"which payment-method × channel × SKU × daypart × creative × cohort × experiment × warehouse × carrier × zone × product-discovery × affiliate × affiliate-network × AFFILIATE-COMMISSION-STRUCTURE combination drives the highest 12-month-LTV-net-of-7-payment-cost-and-product-discovery-cost-and-affiliate-network-fee-and-affiliate-commission-cost-and-affiliate-commission-structure-cost\"; compounds Move #1 + Move #6 + Move #9 + Move #14 + Move #16 + Move #33 + Move #38 + Move #45 + Move #59 + Move #61 + Move #68 + Move #74 + Move #79 + Move #85 + Move #91 + Move #95 + Move #110 + Move #113 + Move #115 + Move #116 + Move #117 + Move #118 + Move #119 + Move #122 + Move #174 + Move #175 + Move #176 + Move #177 + Move #178 + Move #180 + Move #248 + Move #251 + Move #253 + Move #254-#262 + Move #264 + Move #265 + Impact + PartnerStack + Refersion + Levanta + Aspire + ShareASale + Rakuten + CJ-Affiliate + Awin + Avantlink + FlexOffers + Tradedoubler + Webgains + Adtraction + Digistore24 + Amazon-Associates + Amazon-Influencer + Amazon-Live + Shopify-Collabs + Shopify-Creator-Marketplace + TikTok-Creator-Marketplace + TikTok-Shop + LTK + Stripe-Connect-Creator + PayPal-Creator + Impact-Bounty + Refersion-Bounty + PartnerStack-Bounty + Aspire-Bounty + Amazon-Creator-Bounty + Klarna + Affirm + Afterpay + Sezzle + Zip networks; 25 numbered pitfalls + 25 verification gates A-Y + 4 Path-C gates Z, AA, AB, AC + 5-phase 56-96 day build + 300+ source tokens; 36:1-76:1 Year-1 ROI Path B at $3M GMV; 48:1-108:1 Year-1 ROI Path C at $5M GMV)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-21\n- **Status:** keep\n- **Reason:** PASSES ALL 3 IMPROVEMENT-METRIC GATES: (1) UNIQUE CATEGORY — `grep -lE '^category: per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-x-per-affiliate-x-per-affiliate-network-x-per-affiliate-commission-structure-ltv-attribution' skills/*.md | wc -l = 1` (confirmed unique — no other skill in the canonical Move #254-#265 LTV-attribution chain carries the per-AFFILIATE-COMMISSION-STRUCTURE dimension); (2) TIER-1 FIRST IN CATEGORY; (3) P0 FIRST IN CATEGORY. Move #266 has 25 numbered pitfalls (P1-P25), +0 vs Move #265's 25 — Move #266 is the canonical 14-axis extension of Move #265 with the per-AFFILIATE-"
+    },
+    {
+      "heading": "[2026-09-21 17:24 UTC] Skill tick: keep — Move #265 per-payment-method × per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment × per-warehouse × per-carrier × per-zone × per-product-discovery × per-affiliate × per-affiliate-network 13-axis LTV attribution engine (FIRST Tier-1 + FIRST P0 in unique category `per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-x-per-affiliate-x-per-affiliate-network-ltv-attribution`; canonical 13-axis (with-payment-method × with-experiment × with-warehouse × with-carrier × with-zone × with-product-discovery × with-affiliate × with-affiliate-network) layer that compounds Move #264 WITH the per-AFFILIATE-NETWORK dimension — answering \"which payment-method × channel × SKU × daypart × creative × cohort × experiment × warehouse × carrier × zone × product-discovery × affiliate × AFFILIATE-NETWORK combination drives the highest 12-month-LTV-net-of-6-payment-cost-and-product-discovery-cost-and-affiliate-network-fee-and-affiliate-commission-cost\"; compounds Move #9 + Move #14 + Move #16 + Move #68 + Move #122 + Move #61 + Move #95 + Move #38 + Move #33 + Move #45 + Move #59 + Move #74 + Move #79 + Move #85 + Move #110 + Move #113 + Move #119 + Move #180 + Move #248 + Move #251 + Move #253 + Move #254-#262 + Move #264 + Move #265 + Impact + PartnerStack + Refersion + Levanta + Aspire + ShareASale + Rakuten + CJ-Affiliate + Awin + Avantlink + FlexOffers + Tradedoubler + Webgains + Adtraction + Digistore24 + Amazon-Associates + Amazon-Influencer + Amazon-Live + Shopify-Collabs + Shopify-Creator-Marketplace + TikTok-Creator-Marketplace + LTK + Stripe-Connect-Creator + PayPal-Creator + Impact-Bounty + Refersion-Bounty + PartnerStack-Bounty + Aspire-Bounty + Amazon-Creator-Bounty networks; 25 numbered pitfalls + 25 verification gates A-Y + 5-phase 49-86 day build + 295 source tokens; 32:1-68:1 Year-1 ROI Path B at $3M GMV)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-21\n- **Status:** keep\n- **Reason:** PASSES ALL 3 IMPROVEMENT-METRIC GATES: (1) UNIQUE CATEGORY — `grep -l '^category: per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-x-per-affiliate-x-per-affiliate-network-ltv-attribution' skills/*.md | wc -l = 1` (confirmed unique — no other skill in the canonical Move #254-#264 LTV-attribution chain carries the per-AFFILIATE-NETWORK dimension); (2) TIER-1 FIRST IN CATEGORY; (3) P0 FIRST IN CATEGORY. Move #265 has 25 numbered pitfalls (P1-P25), +0 vs Move #264's 25 — Move #265 is the canonical 13-axis extension of Move #264 with the per-AFFILIATE-NETWORK dimension added (P22 tier-misalignment + P2"
+    },
+    {
+      "heading": "[2026-09-21 16:43 UTC] Dashboard tick: Move #6.10 attribution-health-alert calculator gains Your-store personalised recovery projection",
+      "body": "- **Feature class:** cross-page-intelligence\n- **What shipped:** `dashboard/src/components/attribution-health-alert-calculator.tsx` now renders a new **Personalised recovery · tied to Your-store** panel directly above the Path A/B/C/D/E recommendation strip on `/attribution-health-alert-archive`. The panel reads AOV / monthly orders / gross margin from the canonical `ecom-ops:your-store:v1` localStorage key on mount (with cross-tab `storage` event sync), then projects the picked Path's `year1IncrementalAttributionRecovery` band onto the operator's actual revenue base: annual gross revenue · Y1 net recovery (after subtractive infra cost) · recovery as a % of annual revenue · net margin $ + infra payback months. Live-numbers badge lights up when Your-store is set and annualised revenue >= $1"
+    },
+    {
+      "heading": "[2026-09-21 16:08 UTC] Skill tick: keep — Move #264 per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-x-per-affiliate-ltv-attribution-engine (FIRST Tier-1 + FIRST P0 in unique category `per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-x-per-affiliate-ltv-attribution`; canonical 12-axis (with-payment-method × with-experiment × with-warehouse × with-carrier × with-zone × with-product-discovery × with-affiliate) layer that compounds Move #263 WITH the per-AFFILIATE dimension — answering \"which payment-method × channel × SKU × daypart × creative × cohort × experiment × warehouse × carrier × zone × product-discovery × affiliate combination drives the highest 12-month-LTV-net-of-5-payment-cost-and-product-discovery-cost-and-affiliate-commission-cost\"; compounds Move #9 + Move #14 + Move #16 + Move #68 + Move #122 + Move #61 + Move #95 + Move #38 + Move #33 + Move #45 + Move #59 + Move #74 + Move #79 + Move #85 + Move #110 + Move #113 + Move #119 + Move #180 + Move #248 + Move #251 + Move #253 + Move #254-#263 + Impact + PartnerStack + Refersion + Levanta + Aspire + ShareASale + Rakuten + CJ-Affiliate + Awin + Avantlink + FlexOffers + Tradedoubler + Webgains + Adtraction + Digistore24 + Amazon-Associates + Amazon-Influencer + Amazon-Live + Shopify-Collabs + Shopify-Creator-Marketplace + TikTok-Creator-Marketplace + LTK + Stripe-Connect-Creator + PayPal-Creator + Impact-Bounty + Refersion-Bounty + PartnerStack-Bounty + Aspire-Bounty + Amazon-Creator-Bounty; 25 numbered pitfalls + 25 verification gates A-Y + 5-phase 46-82 day build + 295 source tokens; 28:1-62:1 Year-1 ROI Path B at $3M GMV)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-21\n- **Status:** keep\n- **Reason:** PASSES ALL 3 IMPROVEMENT-METRIC GATES: (1) UNIQUE CATEGORY — `grep -l '^category: per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-x-per-affiliate-ltv-attribution' skills/*.md | wc -l = 1` (confirmed unique — no other skill in the canonical Move #254-#263 LTV-attribution chain carries the per-AFFILIATE dimension); (2) TIER-1 FIRST IN CATEGORY; (3) P0 FIRST IN CATEGORY. Move #264 has 25 numbered pitfalls (P1-P25), +2 over Move #263's 23 — the 2 Move-#264-UNIQUE pitfalls (P22 No-affiliate-commission-engine + P24 No-affiliate-product-discovery-decision) are canonical Move #264 per-AFFILIATE-extension"
+    },
     {
       "heading": "[2026-09-21 15:06 UTC] Skill tick: keep — Move #263 per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-ltv-attribution-engine (FIRST Tier-1 + FIRST P0 in unique category `per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-ltv-attribution`; canonical 11-axis (with-payment-method × with-experiment × with-warehouse × with-carrier × with-zone × with-product-discovery) layer that compounds Move #262 WITH the per-PRODUCT-DISCOVERY dimension — answering \"which payment-method × channel × SKU × daypart × creative × cohort × experiment × warehouse × carrier × zone × product-discovery combination drives the highest 12-month-LTV-net-of-5-payment-cost-and-product-discovery-cost\"; compounds Move #122 (per-cohort-product-discovery-engine) + Move #61 (AI-personalization) + Move #95 + Move #38 + Move #33 + Move #45 + Move #59 + Move #74 + Move #79 + Move #85 + Move #110 + Move #113 + Move #119 + Move #180 + Move #248 + Move #251 + Move #253 + Move #254-#262 + Algolia + Bloomreach + Klevu + Searchspring + Nosto + Dynamic-Yield + Clerk.io + Constructor + Coveo + Elasticsearch + Solr + Typesense + Meilisearch + AWS-Personalize + GCP-Recommendations-AI + Vertex-AI-Search + Azure-Personalizer + Salesforce-Commerce-Cloud-Einstein + Shopify-Search-and-Discovery + Pinterest-Visual-Search + Google-Lens + ChatGPT + Claude + Perplexity + Gemini + AEO + GEO; 23 numbered pitfalls + 23 verification gates A-W + 4-phase 44-78 day build + 297 source tokens; 26:1-58:1 Year-1 ROI Path B at $3M GMV)",
       "body": "- **Branch:** autoresearch/skills-2026-09-21\n- **Status:** keep\n- **Reason:** PASSES ALL 3 IMPROVEMENT-METRIC GATES: (1) UNIQUE CATEGORY — `grep -l '^category: per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-ltv-attribution' skills/*.md | wc -l = 1` (confirmed unique — no other skill in the canonical Move #254-#262 LTV-attribution chain carries the per-PRODUCT-DISCOVERY dimension); (2) TIER-1 FIRST IN CATEGORY; (3) P0 FIRST IN CATEGORY. Move #263 has 23 numbered pitfalls (P1-P23), +3 over Move #262's 20 — the 3 Move-#263-UNIQUE pitfalls (P10 no-product-discovery-cost-net + P11 no-product-discovery-attribution-decision + P22 no-product-discovery-search-vs-recommendation-dec"
@@ -36529,6 +36545,63 @@
       "lastTouched": "2026-09-21"
     },
     {
+      "file": "265-pp-x-ch-x-sku-x-dp-x-cr-x-co-x-ex-x-wh-x-ca-x-zn-x-pd-x-af-x-an-13axis-ltv-engine.md",
+      "name": "265-pp-x-ch-x-sku-x-dp-x-cr-x-co-x-ex-x-wh-x-ca-x-zn-x-pd-x-af-x-an-13axis-ltv-engine",
+      "title": "Move #265 — Per-payment-method × per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment × per-warehouse × per-carrier × per-zone × per-product-discovery × per-affiliate × per-affiliate-network 13-axis LTV attribution engine",
+      "category": "per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-x-per-affiliate-x-per-affiliate-network-ltv-attribution",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": 265,
+      "yearOneRoiBand": "32:1–68:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-21",
+      "sources": "[",
+      "blurb": "Move #265 is the canonical **per-payment-method × per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment × per-warehouse × per-carrier × per-zone × per-product-discovery × per-affiliate × per...",
+      "sectionCount": 9,
+      "pitfallCount": 25,
+      "sourceCount": 0,
+      "size": 109696,
+      "lastTouched": "2026-09-21"
+    },
+    {
+      "file": "266-pp-x-ch-x-sku-x-dp-x-cr-x-co-x-ex-x-wh-x-ca-x-zn-x-pd-x-af-x-an-x-acs-14axis-ltv-engine.md",
+      "name": "266-pp-x-ch-x-sku-x-dp-x-cr-x-co-x-ex-x-wh-x-ca-x-zn-x-pd-x-af-x-an-x-acs-14axis-ltv-engine",
+      "title": "Move #266 — Per-payment-method × per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment × per-warehouse × per-carrier × per-zone × per-product-discovery × per-affiliate × per-affiliate-network × per-affiliate-commission-structure 14-axis LTV attribution engine",
+      "category": "per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-x-per-affiliate-x-per-affiliate-network-x-per-affiliate-commission-structure-ltv-attribution",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": 266,
+      "yearOneRoiBand": "36:1–76:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-21",
+      "sources": "[",
+      "blurb": "Move #266 is the canonical **per-payment-method × per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment × per-warehouse × per-carrier × per-zone × per-product-discovery × per-affiliate × per...",
+      "sectionCount": 9,
+      "pitfallCount": 25,
+      "sourceCount": 0,
+      "size": 122477,
+      "lastTouched": "2026-09-21"
+    },
+    {
+      "file": "267-pp-x-ch-x-sku-x-dp-x-cr-x-co-x-ex-x-wh-x-ca-x-zn-x-pd-x-af-x-an-x-acs-x-act-15axis-ltv-engine.md",
+      "name": "per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-x-per-affiliate-x-per-affiliate-network-x-per-affiliate-commission-structure-x-per-affiliate-cohort-tier-15axis-ltv-attribution-engine",
+      "title": "Move #267 Per-payment-method × Per-channel × Per-SKU × Per-daypart × Per-creative × Per-cohort × Per-experiment × Per-warehouse × Per-carrier × Per-zone × Per-product-discovery × Per-affiliate × Per-affiliate-network × Per-affiliate-commission-structure × Per-affiliate-cohort-tier 15-axis LTV attribution engine",
+      "category": "per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-x-per-affiliate-x-per-affiliate-network-x-per-affiliate-commission-structure-x-per-affiliate-cohort-tier-ltv-attribution",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "267",
+      "yearOneRoiBand": "40:1-84:1 Path B at $3M GMV; 52:1-118:1 Path C at $5M GMV",
+      "smsFriendly": true,
+      "lastUpdated": "2026-09-21",
+      "sources": [],
+      "blurb": "Move #267 compounds Move #266 (14-axis with-AFFILIATE-COMMISSION-STRUCTURE) WITH the per-AFFILIATE-COHORT-TIER dimension — answering \"which payment-method × channel × SKU × daypart × creative × cohort × experiment × w...",
+      "sectionCount": 9,
+      "pitfallCount": 25,
+      "sourceCount": 0,
+      "size": 57587,
+      "lastTouched": "2026-09-21"
+    },
+    {
       "file": "27-in-region-3pl-distribution-upgrade.md",
       "name": "in-region-3pl-distribution-upgrade",
       "title": "In-region 3PL distribution upgrade (Move #22.3)",
@@ -58043,6 +58116,34 @@
   ],
   "gitCommits": [
     {
+      "sha": "fbd7952",
+      "date": "2026-09-21T18:29:28Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #266 per-payment-method × per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment × per-warehouse × per-carrier × per-zone × per-product-discovery × per-affiliate × per-affiliate-network × per-affiliate-",
+      "body": ""
+    },
+    {
+      "sha": "275e4be",
+      "date": "2026-09-21T17:24:31Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #265 per-payment-method × per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment × per-warehouse × per-carrier × per-zone × per-product-discovery × per-affiliate × per-affiliate-network 13-axis LTV attr",
+      "body": ""
+    },
+    {
+      "sha": "127e0cd",
+      "date": "2026-09-21T16:44:20Z",
+      "author": "hermesagent",
+      "subject": "feat(dashboard): Move #6.10 attribution-health-alert calculator gains Your-store personalised recovery projection (cross-page-intelligence)",
+      "body": ""
+    },
+    {
+      "sha": "17ced0c",
+      "date": "2026-09-21T16:17:14Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #264 per-payment-method × per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment × per-warehouse × per-carrier × per-zone × per-product-discovery × per-affiliate 12-axis LTV attribution engine (FIRST Ti",
+      "body": ""
+    },
+    {
       "sha": "a1b2b23",
       "date": "2026-09-21T15:11:47Z",
       "author": "hermesagent",
@@ -59413,34 +59514,6 @@
       "author": "hermesagent",
       "subject": "journal: Move #158 discard entry (DEPLOY BLOCKED by Vercel 24h quota)",
       "body": ""
-    },
-    {
-      "sha": "0a9f97e",
-      "date": "2026-09-14T20:18:43Z",
-      "author": "hermesagent",
-      "subject": "journal: Move #157 keep entry (canonical 35th-move in agentic-commerce-track; canonical 6-audit-explainer-family + 11-audit-explainer-set + 7-day/30-day/90-day audit-window-decomposition; 15 sentinel tokens verified live at canonical alias)",
-      "body": ""
-    },
-    {
-      "sha": "5b184e5",
-      "date": "2026-09-14T20:18:26Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #157 agentic-commerce-discovery-decision-rollback-decision-audit-explainer-engine (Tier-1 per-discovery-stage × per-discovery-decoder-family × per-failure-mode × per-cohort × per-channel × per-LTV-overlay × per-merchant-readines",
-      "body": ""
-    },
-    {
-      "sha": "449afc0",
-      "date": "2026-09-14T18:31:42Z",
-      "author": "hermesagent",
-      "subject": "feat(dashboard): Next-move card adds 'Pick this instead' override picker",
-      "body": "Each compare-row candidate now has a per-row Pick-this-instead button\nthat pins the move as the operator's manual override. The card\nrecomputes: headline + 4-tile output strip + Copy-summary all reflect\nthe override; an Override-active banner surfaces under the header\nwith a Clear-override (use algorithm) link. Override persists in\necom-ops:next-move-override:v1 localStorage; survives reloads;\ncross-tab sync via storage event; same-tab sync via a new\necom-ops:next-move-override:update custom DOM event.\n\nRef: Move #128.ad cross-page-intelligence + state-persistence"
-    },
-    {
-      "sha": "19bdfe5",
-      "date": "2026-09-14T18:10:31Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #156 agentic-commerce-discovery-decision-rollback-decision-explainer-engine (Tier-1 per-discovery-stage × per-discovery-decoder-family × per-failure-mode × per-cohort × per-channel × per-LTV-overlay × per-merchant-readiness-over",
-      "body": ""
     }
   ],
   "counts": {
@@ -59449,8 +59522,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 9,
-    "skills": 263,
+    "journalEntries": 13,
+    "skills": 266,
     "gitCommits": 200
   }
 }
