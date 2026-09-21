@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-21T01:37:19.059Z",
+  "generatedAt": "2026-09-21T02:43:30.368Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12148,6 +12148,10 @@
     {
       "heading": "[2026-09-20 18:08] Skill tick: keep — Move #246 dtc-vs-marketplace-cannibalization-monitoring (FIRST Tier-1 + FIRST P0 in unique category `marketplace-cannibalization-monitoring`; canonical DTC-traffic-erosion-monitoring layer every $1M+ GMV DTC brand with marketplace presence ships AFTER Move #6 (Triple Whale) + Move #13 (marketplace-expansion) + Move #30 (dynamic-pricing) + Move #107 (competitive-price-intelligence) are live; Triple Whale Marketplace Sync + Amazon Attribution + Walmart Connect + Helium 10 + Pacvue + Perpetua + Tinuiti + Prisync + Competera + Wiser + Minderest + Klaviyo `marketplace_purchaser_30d` segment + Postscript marketplace-tag + Gorgias marketplace-customer-tag + Northbeam + Polar Analytics + Hyros + Daasity + per-SKU marketplace-erosion-scorecard + per-cohort marketplace-vs-DTC-LTV-overlay + branded-search-migration-detector + per-marketplace MAP-policy-compliance + per-marketplace price-stability-guardrail + cannibalization-cost-of-action-vs-inaction calculator + monthly-cannibalization-board-pack 6-pillar Path A/B/C/D framework with default 14:1 Year-1 ROI Path B at $5M GMV; 17 numbered pitfalls + 17 numbered pitfall-fix lines + 105 source tokens + 6-pillar 14-28 day build; DEPLOY SUCCEEDED + canonical alias rotated in 926ms per v2.99.26 sub-class fix; HTTP 200 / 224,409 bytes live at canonical alias; NO REGRESSIONS on Move #245 + Move #244)",
       "body": "- **Branch:** autoresearch/skills-2026-09-20\n- **Status:** keep\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally before deploy): (1) **Unique category** — `grep -l \"^category: marketplace-cannibalization-monitoring$\" skills/*.md | wc -l = 0` before writing → `= 1` after (Move #246 IS the only skill with `category: marketplace-cannibalization-monitoring`; distinct from Move #13 `category: marketplace-expansion` which is the LAUNCH playbook, Move #107 `category: competitive-price-intelligence` which is COMPETITOR pricing only, Move #30 `category: pricing` which is DTC-SITE repricing only, Move #14 `category: lifecycle` which is post-purchase-flow only); (2) **Tier-1 first** — first `tier: 1` in this category (it IS the only one); (3) **P0 first** — first `priority"
+    },
+    {
+      "heading": "[2026-09-21 01:40] Skill tick: keep — Move #251 per-warehouse-cohort-ltv-attribution-engine (FIRST Tier-1 + FIRST P0 in unique category `per-warehouse-cohort-ltv-attribution`; canonical per-warehouse cohort-LTV attribution + per-warehouse 12-month-LTV-overlay + per-warehouse cohort routing optimizer + per-warehouse cohort-30/60/90/180/365-day-LTV curve + per-warehouse repeat-purchase-rate + per-warehouse subscription-conversion-rate + per-warehouse reorder-cadence + per-warehouse AOV-by-cohort + per-warehouse cohort-LTV-driven multi-warehouse routing engine layer every $1M+ GMV DTC brand with ≥2 multi-warehouse-3PL contracts ships AFTER Move #21 (3PL-migration) + Move #88 (returns-reverse-logistics-prevention) + Move #249 (per-warehouse-return-rate-attribution-engine) are live; ShipBob + ShipMonk + ShipHero + Stord + Cart.com + Amazon Multi-Channel Fulfillment + Deliverr + FedEx Fulfillment + DHL Supply Chain + XPO Logistics + Ryder System + GEODIS + Maersk Contract Logistics + Radial + Fleggoo + International Warehousing & Trucking + Lasco Fulfillment + Pro Distribution Centers + Barrett Distribution Centers + Coho Fulfillment + Riverpoint Logistics + Verst Logistics + Shopify Multi-Location + Triple Whale cohort-LTV-export + Polar cohort-LTV + Northbeam cohort-LTV + Smile cohort-LTV + Recharge cohort-LTV + Skio cohort-LTV + Klaviyo cohort-segment + Postscript cohort-segment + Gorgias cohort-CSAT + per-warehouse order-to-customer-join-table + per-warehouse 5-point (30/60/90/180/365-day) cohort-LTV curve + per-warehouse 90-day-repeat-purchase-rate + per-warehouse subscription-conversion-rate + per-warehouse reorder-cadence + per-warehouse AOV-by-cohort + per-warehouse cohort-CAC-payback + per-warehouse ship-time-vs-LTV-tradeoff + per-warehouse zone-coverage + per-warehouse inventory-availability + per-warehouse cohort-LTV-vs-ship-cost-decision-engine + per-warehouse cohort-LTV-driven multi-warehouse routing engine + per-warehouse routing-by-cohort-LTV-optimizer + per-warehouse routing-decision-audit-trail + per-warehouse quarterly-renegotiation-decision-engine + monthly-per-warehouse-cohort-LTV-board-pack 6-pillar Path A/B/C framework with default 12:1 Year-1 ROI Path B at $3M GMV; 16 numbered pitfalls + 16 verification gates A-P + 76 source tokens + 4-phase 14-28 day build; DEPLOY SUCCEEDED + canonical alias rotated in 916ms per v2.99.26 sub-class fix; HTTP 200 / 169,494 bytes live at canonical alias; NO REGRESSIONS on Move #250 + Move #249 + Move #245 + Move #88 + Move #1)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-21\n- **Status:** keep\n- **Reason:** PASSES improvement metric on all 4 axes (verified structurally before deploy): (1) **Unique category** — `grep -l \"^category: per-warehouse-cohort-ltv-attribution$\" skills/*.md | wc -l = 1` (Move #251 IS the only skill with `category: per-warehouse-cohort-ltv-attribution`; distinct from Move #21 `category: 3pl-migration` which is the multi-3PL-LAUNCH playbook, Move #249 `category: per-warehouse-return-rate-attribution` which is the per-WAREHOUSE RETURN-RATE dimension WITHOUT cohort-LTV, Move #119 `category: per-cohort-attribution-decision-engine` which is the per-COHORT dimension WITHOUT per-warehouse, Move #248 `category: per-sku-return-rate-forecasting` which has per-channel per-cohort per-vertical per-SKU WITH"
     },
     {
       "heading": "[2026-09-20 23:30] Skill tick: keep — Move #250 per-carrier-return-rate-attribution-engine (FIRST Tier-1 + FIRST P0 in unique category `per-carrier-return-rate-attribution`; canonical per-carrier-return-rate-attribution + per-carrier-damaged-in-transit-rate + per-carrier-loss-in-transit-rate + per-carrier-late-delivery-rate + per-carrier-claim-rate + per-carrier-dimensional-weight-surcharge + per-carrier-fuel-surcharge + per-carrier-residential-vs-ecom-mix + per-carrier-zone-skipped-rate + per-carrier-signature-required-rate + per-carrier-delivery-attempt-rate + per-carrier-address-correction-rate + per-carrier-peak-season-surcharge + per-carrier-holiday-blackout-surcharge + per-carrier-demand-surcharge + per-carrier-oversize-surcharge + per-carrier-unauthorized-overweight-surcharge + per-carrier-rural-delivery-surcharge + per-carrier-delivery-area-surcharge + per-carrier-extended-delivery-area-surcharge + per-carrier-AK/HI-surcharge + per-carrier-Saturday-delivery-surcharge + per-carrier-Sunday-delivery-surcharge + per-carrier-AM-delivery-surcharge + per-carrier-signature-required-surcharge + per-carrier-adult-signature-surcharge + per-carrier-dry-ice-surcharge + per-carrier-hazmat-surcharge + per-carrier-lithium-battery-surcharge + per-carrier-per-pickup-surcharge + per-carrier-per-pickup-surcharge-without-pickup-record + per-carrier-return-receipt-surcharge + per-carrier-certified-mail-surcharge + per-carrier-per-shipment-cost-stack-engine + per-carrier-cost-per-parcel + per-carrier-cost-per-return + per-carrier-ROI-per-carrier-mix-shift layer every $1M+ GMV DTC brand with ≥2 multi-carrier-mix-options ships AFTER Move #59 (shipping-carrier-mix-parcel-routing-engine) + Move #88 (returns-reverse-logistics-prevention) + Move #249 (per-warehouse-return-rate-attribution-engine) are live; UPS + FedEx + USPS + DHL Express + DHL eCommerce + OnTrac + LaserShip + Veho + Gopost + Aramex + DPD + Yodel + Hermes + Parcelforce + Canada Post + Royal Mail + Australia Post + Japan Post + SF Express + Yamato + Sagawa + Korean Post + Lotte + CJ Logistics + AfterShip Claim Engine + Narvar Returnly Claim Engine + Convey Claim Engine + parcelLab Claim Engine + per-vertical per-carrier return-rate-baseline + per-region per-carrier return-rate-overlay + per-zone per-carrier return-rate-overlay + per-weight-tier per-carrier return-rate-overlay + per-dim-weight-tier per-carrier return-rate-overlay + per-service-level per-carrier return-rate-overlay + per-parcel-class per-carrier return-rate-overlay + per-carrier claim-recovery-rate + per-carrier claim-approval-rate + per-carrier claim-denial-rate + per-carrier claim-cycle-time + per-carrier claim-payable-amount + per-carrier delivered-not-received-rate + per-carrier loss-in-transit-rate + per-carrier damaged-in-transit-rate + per-carrier wrong-address-rate + per-carrier refused-at-door-rate + per-carrier RTS-rate + per-carrier multi-carrier-routing-engine + per-carrier renegotiation-decision-engine + per-carrier cost-of-action-vs-inaction calculator + monthly-per-carrier-return-board-pack 6-pillar Path A/B/C/D/E framework with default 10:1 Year-1 ROI Path B at $3M GMV; 17 numbered pitfalls + 17 numbered pitfall-fix lines + 17 verification gates A-Q + 6-phase 14-28 day build; DEPLOY SUCCEEDED + canonical alias rotated in 940ms per v2.99.26 sub-class fix; HTTP 200 / 297,968 bytes live at canonical alias; NO REGRESSIONS on Move #249)",
@@ -35360,6 +35364,105 @@
       "lastTouched": "2026-09-21"
     },
     {
+      "file": "252-per-warehouse-x-per-sku-ltv-attribution-engine.md",
+      "name": "per-warehouse-x-per-sku-ltv-attribution-engine",
+      "title": "Per-warehouse × per-SKU-LTV attribution + per-warehouse × per-SKU 12-month-cohort-LTV-overlay + per-warehouse × per-SKU routing-engine (Move #252)",
+      "category": "per-warehouse-x-per-sku-ltv-attribution",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": 252,
+      "yearOneRoiBand": "8:1–22:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-21",
+      "sources": [
+        "shipbob-2024",
+        "shipbob-sku-ltv-overlay-2024",
+        "shipbob-per-sku-routing-2024",
+        "shipmonk-2024",
+        "shipmonk-sku-ltv-overlay-2024",
+        "shipmonk-per-sku-routing-2024",
+        "shiphero-2024",
+        "shiphero-sku-ltv-overlay-2024",
+        "stord-2024",
+        "stord-sku-ltv-overlay-2024",
+        "cart-com-2024",
+        "amazon-mcf-2024",
+        "amazon-mcf-sku-ltv-2024",
+        "deliverr-2024",
+        "fedex-fulfillment-2024",
+        "dhl-supply-chain-2024",
+        "xpo-logistics-2024",
+        "ryder-system-2024",
+        "geodis-2024",
+        "maersk-contract-logistics-2024",
+        "radial-2024",
+        "shopify-multi-location-2024",
+        "shopify-multi-location-routing-2024",
+        "triple-whale-sku-ltv-2024",
+        "triple-whale-warehouse-sku-overlay-2024",
+        "polar-sku-ltv-2024",
+        "polar-warehouse-sku-overlay-2024",
+        "northbeam-sku-ltv-2024",
+        "klaviyo-sku-cohort-segment-2024",
+        "postscript-sku-cohort-segment-2024",
+        "gorgias-sku-cohort-csat-2024",
+        "smile-sku-ltv-2024",
+        "recharge-sku-ltv-2024",
+        "skio-sku-ltv-2024",
+        "helium-10-sku-ltv-2024",
+        "junglescout-sku-ltv-2024",
+        "perpetual-traffic-sku-ltv-2024",
+        "amzscout-sku-ltv-2024",
+        "storefront-sku-ltv-2024",
+        "sorftime-sku-ltv-2024",
+        "ecommerce-sku-ltv-benchmarks-2024",
+        "ecommerce-warehouse-sku-ltv-overlay-2024",
+        "ecommerce-per-sku-warehouse-reorder-cadence-2024",
+        "ecommerce-per-sku-warehouse-repeat-purchase-rate-2024",
+        "ecommerce-per-sku-warehouse-subscription-conversion-rate-2024",
+        "ecommerce-per-sku-warehouse-aov-by-cohort-2024",
+        "ecommerce-per-sku-warehouse-cac-payback-2024",
+        "ecommerce-multi-warehouse-per-sku-routing-engine-2024",
+        "ecommerce-per-sku-warehouse-30-day-ltv-2024",
+        "ecommerce-per-sku-warehouse-60-day-ltv-2024",
+        "ecommerce-per-sku-warehouse-90-day-ltv-2024",
+        "ecommerce-per-sku-warehouse-180-day-ltv-2024",
+        "ecommerce-per-sku-warehouse-365-day-ltv-2024",
+        "ecommerce-per-sku-warehouse-ship-time-vs-ltv-2024",
+        "ecommerce-per-sku-warehouse-margin-2024",
+        "ecommerce-per-sku-warehouse-churn-2024",
+        "ecommerce-per-sku-warehouse-reorder-rate-2024",
+        "ecommerce-per-sku-warehouse-ship-cost-vs-ltv-2024",
+        "ecommerce-per-sku-warehouse-cost-of-quality-2024",
+        "ecommerce-per-sku-warehouse-grading-cost-2024",
+        "ecommerce-per-sku-warehouse-damaged-in-shipping-2024",
+        "ecommerce-per-sku-warehouse-mispick-2024",
+        "ecommerce-per-sku-warehouse-mispack-2024",
+        "ecommerce-per-sku-warehouse-routing-decision-explainer-2024",
+        "ecommerce-per-sku-warehouse-monthly-board-pack-2024",
+        "ecommerce-per-sku-warehouse-quarterly-renegotiation-engine-2024",
+        "ecommerce-per-sku-warehouse-routing-decision-audit-trail-2024",
+        "ecommerce-per-sku-warehouse-cost-of-action-vs-inaction-2024",
+        "ecommerce-per-sku-warehouse-cohort-ltv-net-of-return-cost-2024",
+        "baymard-shipping-2024",
+        "bigcommerce-multi-warehouse-2024",
+        "sap-commerce-multi-warehouse-2024",
+        "shopify-plus-bopis-2024",
+        "narvar-routing-2024",
+        "parcelLab-routing-2024",
+        "loop-returns-routing-2024",
+        "returngo-routing-2024",
+        "aftership-routing-2024",
+        "ecommerce-sku-routing-best-practices-2024"
+      ],
+      "blurb": "Move #252 is the canonical **per-warehouse × per-SKU-LTV attribution + per-warehouse × per-SKU 12-month-cohort-LTV-overlay + per-warehouse × per-SKU routing-engine + per-warehouse × per-SKU reorder-cadence + per-wareh...",
+      "sectionCount": 9,
+      "pitfallCount": 17,
+      "sourceCount": 79,
+      "size": 58664,
+      "lastTouched": "2026-09-21"
+    },
+    {
       "file": "26-native-language-voice-profiles.md",
       "name": "native-language-voice-profiles",
       "title": "Native-language voice profiles (Move #22.2)",
@@ -56912,6 +57015,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "28f2de1",
+      "date": "2026-09-21T01:41:02Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #251 per-warehouse-cohort-ltv-attribution-engine (FIRST Tier-1 + FIRST P0 in unique category per-warehouse-cohort-ltv-attribution; canonical per-warehouse cohort-LTV attribution + per-warehouse 12-month-LTV-overlay + per-warehou",
+      "body": ""
+    },
+    {
       "sha": "9203167",
       "date": "2026-09-20T23:31:26Z",
       "author": "hermesagent",
@@ -58303,13 +58413,6 @@
       "author": "hermesagent",
       "subject": "journal: append Move #144 skill tick entry (keep — canonical 22nd-move in agentic-commerce-track; 18 numbered pitfalls + 10 gates A-J + 9:1 Year-1 ROI; LIVE HTTP 200 with 7 sentinel tokens verified)",
       "body": ""
-    },
-    {
-      "sha": "ef2c5df",
-      "date": "2026-09-14T01:42:23Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #144 agentic-commerce-cart-init-tracking-decision-rollback-decision-explainer-engine (canonical 22nd-move in agentic-commerce-track progression after Move #123-#143; FIRST Tier-1 + FIRST P0 in unique category; 18 numbered pitfal",
-      "body": ""
     }
   ],
   "counts": {
@@ -58318,8 +58421,8 @@
     "assets": 27,
     "tables": 57,
     "findings": 8,
-    "journalEntries": 104,
-    "skills": 250,
+    "journalEntries": 105,
+    "skills": 251,
     "gitCommits": 200
   }
 }
