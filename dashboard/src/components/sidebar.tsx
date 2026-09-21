@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { content } from "@/lib/content";
+import { CommandPalette } from "@/components/command-palette";
 
 const NAV_GROUPS = [
   {
@@ -84,6 +85,9 @@ export function Sidebar() {
         </div>
         <div className="mt-1.5 text-[10px] font-mono text-muted-foreground/70 tabular-nums">
           {counts.playbooks} playbooks · {counts.researchDocs} research · {counts.assets} assets
+        </div>
+        <div className="mt-2">
+          <CommandPalette />
         </div>
       </div>
 
