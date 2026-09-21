@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-21T15:08:49.639Z",
+  "generatedAt": "2026-09-21T16:14:48.224Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -11772,6 +11772,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-21 15:06 UTC] Skill tick: keep — Move #263 per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-ltv-attribution-engine (FIRST Tier-1 + FIRST P0 in unique category `per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-ltv-attribution`; canonical 11-axis (with-payment-method × with-experiment × with-warehouse × with-carrier × with-zone × with-product-discovery) layer that compounds Move #262 WITH the per-PRODUCT-DISCOVERY dimension — answering \"which payment-method × channel × SKU × daypart × creative × cohort × experiment × warehouse × carrier × zone × product-discovery combination drives the highest 12-month-LTV-net-of-5-payment-cost-and-product-discovery-cost\"; compounds Move #122 (per-cohort-product-discovery-engine) + Move #61 (AI-personalization) + Move #95 + Move #38 + Move #33 + Move #45 + Move #59 + Move #74 + Move #79 + Move #85 + Move #110 + Move #113 + Move #119 + Move #180 + Move #248 + Move #251 + Move #253 + Move #254-#262 + Algolia + Bloomreach + Klevu + Searchspring + Nosto + Dynamic-Yield + Clerk.io + Constructor + Coveo + Elasticsearch + Solr + Typesense + Meilisearch + AWS-Personalize + GCP-Recommendations-AI + Vertex-AI-Search + Azure-Personalizer + Salesforce-Commerce-Cloud-Einstein + Shopify-Search-and-Discovery + Pinterest-Visual-Search + Google-Lens + ChatGPT + Claude + Perplexity + Gemini + AEO + GEO; 23 numbered pitfalls + 23 verification gates A-W + 4-phase 44-78 day build + 297 source tokens; 26:1-58:1 Year-1 ROI Path B at $3M GMV)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-21\n- **Status:** keep\n- **Reason:** PASSES ALL 3 IMPROVEMENT-METRIC GATES: (1) UNIQUE CATEGORY — `grep -l '^category: per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-ltv-attribution' skills/*.md | wc -l = 1` (confirmed unique — no other skill in the canonical Move #254-#262 LTV-attribution chain carries the per-PRODUCT-DISCOVERY dimension); (2) TIER-1 FIRST IN CATEGORY; (3) P0 FIRST IN CATEGORY. Move #263 has 23 numbered pitfalls (P1-P23), +3 over Move #262's 20 — the 3 Move-#263-UNIQUE pitfalls (P10 no-product-discovery-cost-net + P11 no-product-discovery-attribution-decision + P22 no-product-discovery-search-vs-recommendation-dec"
+    },
     {
       "heading": "[2026-09-21 13:58 UTC] Skill tick: keep — Move #262 per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-ltv-attribution-engine (FIRST Tier-1 + FIRST P0 in unique category `per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-ltv-attribution`; canonical 10-axis (with-payment-method × with-experiment × with-warehouse × with-carrier × with-zone) layer that compounds Move #261 (Per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment × per-warehouse × per-carrier × per-zone 9-axis LTV attribution) WITH the per-PAYMENT-METHOD dimension — answering \"which payment-method × channel × SKU × daypart × creative × cohort × experiment × warehouse × carrier × zone combination drives the highest 12-month-LTV-net-of-4-payment-cost-and-carrier-and-zone-ship-time\"; compounds Move #95 (payments-orchestration-routing) + Move #38 (checkout-payments-BNPL-optimization) + Move #33 (fraud-chargeback) + Move #61 (AI personalization) + Move #113 (per-cohort creative) + Move #114 (per-cohort message) + Move #119 (per-cohort attribution-decision) + Move #122 (per-cohort product-discovery) + Move #180 (MMM + Shapley-Markov) + Move #248 (per-SKU return-rate) + Move #251 (per-warehouse cohort-LTV) + Move #253 (back-in-stock) + Move #254 + #255 + #256 + #257 + #258 + #259 + #260 + #261 + Klarna + Afterpay + Affirm + Sezzle + Zip + Splitit + PayPal-Pay-Later + Shop-Pay-Installments + Apple-Pay-Later + Cash-App-Pay-Later + Adyen + Checkout.com + Stripe + Braintree + PayPal + Worldpay + Mollie + Razorpay + PayU + dLocal + Nuvei + Tap + HyperPay + Moyasar + Visa + Mastercard + Amex + Discover + network-tokenization-Visa-MDES + Mastercard-DPASM + account-updater + 3DS2-EMV-3DS + PSD2-SCA + Apple-Pay + Google-Pay + Samsung-Pay + Shop-Pay + Venmo + Cash-App-Pay + Click-to-Pay + Paze + iDEAL + SOFORT + Giropay + Bancontact + Boleto + PIX + OXXO + Konbini + Alipay + WeChat-Pay + Paytm + PhonePe + M-Pesa + MTN-MoMo + Paystack + Flutterwave + Poli + BPAY + OSKO + PayID + Afterpay-AU + Zip-AU + Latitude-AU + Humm-AU + Laybuy-AU + Sezzle-AU + Payright-AU; 20 numbered pitfalls + 20 verification gates A-T + 4-phase 38-70 day build + 297 source tokens; 22:1-50:1 Year-1 ROI Path B at $3M GMV)",
       "body": "- **Branch:** autoresearch/skills-2026-09-21\n- **Status:** keep\n- **Reason:** PASSES ALL 3 IMPROVEMENT-METRIC GATES: (1) UNIQUE CATEGORY — `grep -l '^category: per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-ltv-attribution' skills/*.md | wc -l = 1` (confirmed unique — no other skill in the canonical Move #254-#261 LTV-attribution chain carries the per-PAYMENT-METHOD dimension; the existing payments category has Move #95 payments-orchestration-routing which is per-PSP × per-payment-method routing WITHOUT the per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment × per-warehouse × per-carrier × per-zone LTV-overlay extension); (2) TIER-1 FIRST IN CATEGORY — first Tier-1 i"
@@ -36506,6 +36510,25 @@
       "lastTouched": "2026-09-21"
     },
     {
+      "file": "264-per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-x-per-affiliate-ltv-attribution-engine.md",
+      "name": "264-per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-x-per-affiliate-ltv-attribution-engine",
+      "title": "Per-payment-method × per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment × per-warehouse × per-carrier × per-zone × per-product-discovery × per-affiliate 12-axis LTV attribution engine",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-21",
+      "sources": [],
+      "blurb": "Move #264 is the canonical **Per-payment-method × per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment × per-warehouse × per-carrier × per-zone × per-product-discovery × per-affiliate 12-ax...",
+      "sectionCount": 8,
+      "pitfallCount": 0,
+      "sourceCount": 0,
+      "size": 153718,
+      "lastTouched": "2026-09-21"
+    },
+    {
       "file": "27-in-region-3pl-distribution-upgrade.md",
       "name": "in-region-3pl-distribution-upgrade",
       "title": "In-region 3PL distribution upgrade (Move #22.3)",
@@ -58020,6 +58043,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "a1b2b23",
+      "date": "2026-09-21T15:11:47Z",
+      "author": "hermesagent",
+      "subject": "journal: Move #263 keep — 11-axis LTV attribution with per-product-discovery",
+      "body": ""
+    },
+    {
+      "sha": "5e350f6",
+      "date": "2026-09-21T15:11:14Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #263 Per-payment-method × per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment × per-warehouse × per-carrier × per-zone × per-product-discovery 11-axis LTV attribution engine",
+      "body": ""
+    },
+    {
       "sha": "d626c9b",
       "date": "2026-09-21T14:05:07Z",
       "author": "hermesagent",
@@ -59404,20 +59441,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #156 agentic-commerce-discovery-decision-rollback-decision-explainer-engine (Tier-1 per-discovery-stage × per-discovery-decoder-family × per-failure-mode × per-cohort × per-channel × per-LTV-overlay × per-merchant-readiness-over",
       "body": ""
-    },
-    {
-      "sha": "5ed86f5",
-      "date": "2026-09-14T17:01:03Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #155 agentic-commerce-discovery-decision-rollback-engine (Tier-1 per-discovery-stage × per-discovery-decoder-family × per-cohort × per-LTV-overlay × per-merchant-readiness-overlay × per-rollback-window × per-fallback-discovery-d",
-      "body": ""
-    },
-    {
-      "sha": "c05fb44",
-      "date": "2026-09-14T15:54:27Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #154 predictive-ltv-churn-engine (Tier-1 per-customer LTV/churn substrate; 5-pillar framework; 15 pitfalls; 4:1–22:1 Year-1 ROI Path B at $5M GMV)",
-      "body": ""
     }
   ],
   "counts": {
@@ -59426,8 +59449,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 8,
-    "skills": 262,
+    "journalEntries": 9,
+    "skills": 263,
     "gitCommits": 200
   }
 }
