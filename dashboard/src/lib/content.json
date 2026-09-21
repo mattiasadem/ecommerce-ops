@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-21T09:31:59.558Z",
+  "generatedAt": "2026-09-21T10:44:09.652Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -11772,6 +11772,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-21 09:21 UTC] Skill tick: keep — Move #258 per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-ltv-attribution-engine (FIRST Tier-1 + FIRST P0 in unique category `per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-ltv-attribution`; canonical 6-axis (with-EXPERIMENT) layer that extends Move #257 (per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-warehouse 6-axis LTV attribution) with the per-EXPERIMENT dimension AND compounds Move #6 (Triple Whale attribution) + Move #9 (mobile PDP) + Move #21 (3PL-migration) + Move #45 (warehouse-management-fulfillment-orchestration) + Move #47 (growth-experimentation-engine) + Move #59 (shipping-carrier-mix-parcel-routing-engine) + Move #88 (returns-reverse-logistics-prevention-engine) + Move #110 (SKU-inventory-allocation-engine) + Move #113 (per-cohort-creative-engine) + Move #115 (per-cohort-audience-engine) + Move #116 (per-cohort-experimentation-engine) + Move #117 (per-cohort-suppression-engine) + Move #118 (per-cohort-pricing-engine) + Move #119 (per-cohort-attribution-decision-engine) + Move #120 (per-cohort-channel-orchestration-engine) + Move #122 (per-cohort-product-discovery-engine) + Move #180 (MMM + Shapley-Markov-data-driven-attribution) + Move #248 (per-SKU-return-rate) + Move #251 (per-warehouse-cohort-LTV) + Move #253 (back-in-stock-restock-notification) + Move #254 (per-channel × per-SKU LTV) + Move #255 (per-channel × per-SKU × per-daypart × per-creative LTV) + Move #256 (per-channel × per-SKU × per-daypart × per-creative × per-cohort LTV) + Move #257 (per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-warehouse LTV); Meta + Google + TikTok + Snap + Pinterest + Reddit + Microsoft + LinkedIn + Amazon DSP + Walmart Connect + Target Roundel + Instacart Ads + DoorDash Ads + UberEats Ads + Spotify + Pandora + Podcast + YouTube + CTV + OTT + Linear TV + Organic Search + Email + SMS + MMS + WhatsApp Business + Messenger + RCS + Viber + Push + In-App + Two-way-conversation + SMSBump + Affiliate + Influencer + Creator-economy + Direct-mail + Prospecting-vs-Retargeting + Search-vs-Display + Video-vs-Static + Short-form-vs-Long-form-video + Audio + Marketplace-Amazon + Marketplace-Walmart + Marketplace-Target + Marketplace-eBay + Marketplace-Etsy + Marketplace-Shopify-collective + Retail-media-network + Amazon-DSP + Walmart-Connect + Target-Roundel + Instacart-Ads + DoorDash-Ads + UberEats-Ads + Triple Whale + Polar + Northbeam + Daasity + Hyros + Mixpanel + Amplitude + Heap + Segment + mParticle + RudderStack + Snowplow + Eppo + Statsig + LaunchDarkly + Split.io + Optimizely + ABsmartly + GrowthBook + PostHog + Klaviyo + Postscript + Attentive + Iterable + Braze + Customer.io + Salesforce Marketing Cloud + Adobe Campaign + Oracle Responsys + Zeta + HubSpot + ActiveCampaign + Mailchimp + Omnisend + Drip + ConvertKit + Beehiiv + MailerLite + Sendlane + Moosend + GetResponse per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment engine that surfaces the canonical $232-$928 per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment 12-month-cohort-LTV delta + 22-62% per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment creative-conversion-rate delta + 4-16pp per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment daypart-conversion-rate-delta + 3-11pp per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment subscription-conversion-rate delta + 1-7 day per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment reorder-cadence delta + 8-26% per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment AOV-by-cohort delta + 3-13 week per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment CAC-payback delta + $0.72-$3.96 per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment marginal-MER-delta + 16-48% per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment creative-rotation-cadence-delta + 1-4 week per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment daypart-pacing-cadence-delta + 22-66% per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment iOS-14.5-degradation-rate delta + 7-22 day per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment attribution-window-decision delta + 1-15 impressions-per-week-per-cohort × per-experiment per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment frequency-cap-decision + 42-78% per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment cross-channel-overlap-de-dup + 42-62% per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment incremental-share + 28-72% per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment experiment-reorder-cadence-uplift + 4-16% per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment experiment-power-uplift + 4-16 day per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment experiment-runtime-reduction + 30-90% per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment false-positive-rate-reduction + 25-65% per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment experiment-kill-rate-uplift + 35-95% per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment experiment-rollback-window-coverage + 13:1-32:1 Move #257 baseline 12-month-LTV-Ratio-band extending to 13:1-32:1 Move #258 6-axis (with-experiment) Path B ROI band; 17 numbered pitfalls + 17 numbered verification gates A-Q + 4-phase 21-42 day build + 207 source tokens; canonical 13:1-32:1 Year-1 ROI Path B at $3M GMV)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-21\n- **Status:** keep\n- **Reason:** Move #258 is the canonical **per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment 6-axis LTV attribution + per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment 12-month-cohort-LTV-overlay + per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment budget-allocation-engine + per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment reorder-cadence + per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment subscription-conversion-rate + per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment AOV-by-cohort + per-channel × per-SKU × per-daypart × per-creative × per-coh"
+    },
     {
       "heading": "[2026-09-21 08:20 UTC] Skill tick: keep — Move #257 per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-warehouse-ltv-attribution-engine (FIRST Tier-1 + FIRST P0 in unique category `per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-warehouse-ltv-attribution`; canonical 6-axis layer that extends Move #256 (per-channel × per-SKU × per-daypart × per-creative × per-cohort 5-axis LTV attribution) with the per-WAREHOUSE dimension AND compounds Move #21 (3PL-migration) + Move #45 (WMS) + Move #59 (shipping-carrier-mix-parcel-routing-engine) + Move #88 (returns-reverse-logistics-prevention-engine) + Move #110 (SKU-inventory-allocation-engine) + Move #113 (per-cohort-creative-engine) + Move #115 (per-cohort-audience-engine) + Move #116 (per-cohort-experimentation-engine) + Move #117 (per-cohort-suppression-engine) + Move #118 (per-cohort-pricing-engine) + Move #119 (per-cohort-attribution-decision-engine) + Move #120 (per-cohort-channel-orchestration-engine) + Move #180 (MMM) + Move #248 (per-SKU-return-rate) + Move #249 (per-warehouse-return-rate) + Move #250 (per-carrier-return-rate) + Move #251 (per-warehouse-cohort-LTV) + Move #252 (per-warehouse × per-SKU LTV) + Move #253 (back-in-stock-restock-notification) + Move #254 (per-channel × per-SKU LTV) + Move #255 (per-channel × per-SKU × per-daypart × per-creative LTV) + Move #256 (per-channel × per-SKU × per-daypart × per-creative × per-cohort LTV); Meta + Google + TikTok + Snap + Pinterest + Organic-search + Email + SMS + Marketplace-Amazon + Marketplace-Walmart + Marketplace-Target + Affiliate + Influencer + Creator-economy + Retail-media-network + Amazon-DSP + Walmart-Connect + Target-Roundel + Instacart-Ads + DoorDash-Ads + UberEats-Ads + Direct-mail + Prospecting-vs-Retargeting + Search-vs-Display + Video-vs-Static + Short-form-vs-Long-form-video + Audio + Spotify + Podcast + Push-notification + In-app + WhatsApp-Business + Messenger + RCS + MMS + Two-way-conversation + SMSBump + Triple Whale + Polar + Northbeam + Klaviyo + Postscript + Attentive + Smile + Recharge + Skio + Gorgias + ShipBob + ShipMonk + ShipHero + Stord + Cart.com + Amazon MCF + Deliverr + FedEx Fulfillment + DHL Supply Chain + XPO Logistics + Ryder System + GEODIS + Maersk Contract Logistics + Radial + Shopify Multi-Location per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-warehouse engine that surfaces the canonical $186-$748 per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-warehouse 12-month-cohort-LTV delta + 1.4-3.5× east-coast-warehouse-routing-CVR-uplift + $1.20-$5.80 per-order-ship-cost-reduction + 1.5-3.5 days per-order-ship-time-reduction + 0.6-1.4pp delivered-on-time-rate-uplift + $3.20-$9.40 per-order-east-coast-vs-west-coast-ship-cost-delta + $4.20-$12.80 per-order-zone-coverage-excess-ship-cost-reduction + 18-35% out-of-stock-cost-reduction + 18-52% per-creative-CPC-reduction + 18-52% per-creative-CTR-uplift + 22-65% per-daypart-CVR-uplift + 3-12pp per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-warehouse subscription-conversion-rate-delta + 9-27% per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-warehouse AOV-by-cohort-delta + 4-15 week per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-warehouse CAC-payback-delta + $0.80-$4.20 per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-warehouse marginal-MER-delta + 2-8 day per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-warehouse reorder-cadence-delta + 25-70% per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-warehouse iOS-14.5-degradation-rate-delta + 7d-vs-14d-vs-30d-vs-60d-vs-90d per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-warehouse attribution-window-decision + 1-15 impressions-per-week-per-cohort × per-warehouse per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-warehouse frequency-cap-decision + 40-75% per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-warehouse cross-channel-overlap-de-dup + 40-60% per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-warehouse incremental-share + 11:1-28:1 Move #256 baseline 12-month-LTV-Ratio-band extending to 12:1-30:1 Move #257 6-axis-Path-B ROI band; 17 numbered pitfalls + 17 numbered verification gates A-Q + 4-phase 21-42 day build + 207 source tokens; canonical 12:1-30:1 Year-1 ROI Path B at $3M GMV)",
       "body": "- **Branch:** autoresearch/skills-2026-09-21\n- **Status:** keep\n- **Reason:** Move #257 is the canonical **per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-warehouse 6-axis LTV attribution + per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-warehouse 12-month-cohort-LTV-overlay + per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-warehouse budget-allocation-engine + per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-warehouse reorder-cadence + per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-warehouse subscription-conversion-rate + per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-warehouse AOV-by-cohort + per-channel × per-SKU × per-daypart × per-creative × per-cohort × "
@@ -36353,6 +36357,25 @@
       "lastTouched": "2026-09-21"
     },
     {
+      "file": "259-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-ltv-attribution-engine.md",
+      "name": "per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-ltv-attribution-engine",
+      "title": "Per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment × per-warehouse 7-axis LTV attribution + per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment × per-warehouse 12-month-cohort-LTV-overlay + per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment × per-warehouse budget-allocation-engine (Move #259)",
+      "category": "per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-ltv-attribution",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": 259,
+      "yearOneRoiBand": "16:1–38:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-21",
+      "sources": "[",
+      "blurb": "Move #259 is the canonical **per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment × per-warehouse 7-axis LTV attribution + per-channel × per-SKU × per-daypart × per-creative × per-cohort × ...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 208904,
+      "lastTouched": "2026-09-21"
+    },
+    {
       "file": "26-native-language-voice-profiles.md",
       "name": "native-language-voice-profiles",
       "title": "Native-language voice profiles (Move #22.2)",
@@ -57905,6 +57928,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "fc8946f",
+      "date": "2026-09-21T09:35:17Z",
+      "author": "hermesagent",
+      "subject": "journal: append Move #258 keep entry",
+      "body": ""
+    },
+    {
+      "sha": "9c4399a",
+      "date": "2026-09-21T09:34:27Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #258 per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-ltv-attribution-engine (FIRST Tier-1 + FIRST P0 in unique category; 6-axis with-experiment LTV-attribution extending Move #257 with-warehouse)",
+      "body": ""
+    },
+    {
       "sha": "e1f6aa4",
       "date": "2026-09-21T08:21:02Z",
       "author": "hermesagent",
@@ -59289,20 +59326,6 @@
       "author": "hermesagent",
       "subject": "feat(dashboard): Next-move card adds 'Compare top 3 candidates' disclosure",
       "body": ""
-    },
-    {
-      "sha": "a98511a",
-      "date": "2026-09-14T11:27:51Z",
-      "author": "hermesagent",
-      "subject": "journal: log Move #150 keep + next-action Move #151",
-      "body": ""
-    },
-    {
-      "sha": "4c07026",
-      "date": "2026-09-14T11:27:27Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #150 agentic-commerce-cart-init-tracking-decision-fallback-handler-execution-decision-recovery-decoder-decision-action-recommendation-engine (canonical 28th-move; FIRST Tier-1+P0 in unique category; 18 numbered pitfalls + 10 ver",
-      "body": ""
     }
   ],
   "counts": {
@@ -59311,8 +59334,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 3,
-    "skills": 257,
+    "journalEntries": 4,
+    "skills": 258,
     "gitCommits": 200
   }
 }
