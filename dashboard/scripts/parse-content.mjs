@@ -10,12 +10,25 @@
  * Run: node scripts/parse-content.mjs
  * Output: src/lib/content.json
  */
-import { readdir, readFile, writeFile, stat } from "node:fs/promises";
+import { readdir, readFile, writeFile, stat, mkdir, rm } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
 import { join } from "node:path";
 
 const ROOT = "/data/workspace/ecommerce-ops";
 const OUT = join(process.cwd(), "src/lib/content.json");
+
+// Build-time copy of `playbooks/*.md` so detail routes can read raw markdown.
+// Mirrors the `src/skills/` copy pattern — see parseSkills() below. We clear
+// the directory first so deletes in /playbooks/ propagate to the bundle.
+const BUILD_PLAYBOOKS = join(process.cwd(), "src/playbooks");
+async function syncPlaybookCopies(sourceFiles) {
+  await rm(BUILD_PLAYBOOKS, { recursive: true, force: true });
+  await mkdir(BUILD_PLAYBOOKS, { recursive: true });
+  for (const f of sourceFiles) {
+    const md = await readFile(join(ROOT, "playbooks", f), "utf8");
+    await writeFile(join(BUILD_PLAYBOOKS, f), md);
+  }
+}
 
 function slug(s) {
   return String(s)
@@ -550,6 +563,9 @@ async function parseGitLog() {
       parseSkills(),
       parseGitLog(),
     ]);
+  // Mirror playbooks/*.md into src/playbooks/ so /playbooks/[slug] can read
+  // raw markdown at build time without depending on the workspace path.
+  await syncPlaybookCopies(playbooks.map((p) => p.file));
   const out = {
     generatedAt: new Date().toISOString(),
     research,

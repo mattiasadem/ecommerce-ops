@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CopyButton } from "@/components/copy-button";
+import Link from "next/link";
 import {
   freshnessLabel,
   freshnessTier,
@@ -361,7 +362,14 @@ export function PlaybookSearch({
                     <span className="font-mono text-[10px] text-muted-foreground">
                       PB-{String(i + 1).padStart(2, "0")}
                     </span>
-                    <CardTitle className="text-base">{p.title}</CardTitle>
+                    <CardTitle className="text-base">
+                      <Link
+                        href={`/playbooks/${p.id}`}
+                        className="hover:underline"
+                      >
+                        {p.title}
+                      </Link>
+                    </CardTitle>
                     <div className="ml-auto flex flex-wrap items-center gap-1.5">
                       {isShipped ? (
                         <Badge
@@ -395,7 +403,12 @@ export function PlaybookSearch({
                     </div>
                   </div>
                   <CardDescription className="font-mono text-[11px]">
-                    /playbooks/{p.file}
+                    <Link
+                      href={`/playbooks/${p.id}`}
+                      className="hover:text-foreground hover:underline"
+                    >
+                      /playbooks/{p.file}
+                    </Link>
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-3">
