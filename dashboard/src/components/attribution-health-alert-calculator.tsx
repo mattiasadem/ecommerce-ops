@@ -21,6 +21,13 @@ import {
   validateInputs,
 } from "@/lib/attribution-health-alert";
 import { CopyButton } from "@/components/copy-button";
+import {
+  YOUR_STORE_DEFAULTS,
+  YOUR_STORE_STORAGE_KEY,
+  YourStoreInputs,
+  loadYourStore,
+} from "@/lib/your-store";
+import { formatInt, formatPercent, formatUsd } from "@/lib/format";
 import { cn } from "@/lib/utils";
 
 /**
@@ -264,11 +271,35 @@ export function AttributionHealthAlertCalculator() {
     ATTRIBUTION_ALERT_DEFAULTS,
   );
   const [hydrated, setHydrated] = useState(false);
+  const [store, setStore] = useState<YourStoreInputs>(YOUR_STORE_DEFAULTS);
+  const [storeIsLive, setStoreIsLive] = useState(false);
 
   useEffect(() => {
     const stored = loadStored();
     if (stored) setInputs(stored);
+    const ys = loadYourStore();
+    if (ys) {
+      setStore(ys);
+      setStoreIsLive(true);
+    }
     setHydrated(true);
+  }, []);
+
+  // Cross-tab + same-tab sync: if the operator edits Your-store on Overview
+  // while this page is open, the personalized panel re-projects in place.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const handler = (e: StorageEvent) => {
+      if (e.key === YOUR_STORE_STORAGE_KEY) {
+        const refreshed = loadYourStore();
+        if (refreshed) {
+          setStore(refreshed);
+          setStoreIsLive(true);
+        }
+      }
+    };
+    window.addEventListener("storage", handler);
+    return () => window.removeEventListener("storage", handler);
   }, []);
 
   useEffect(() => {
@@ -475,6 +506,12 @@ export function AttributionHealthAlertCalculator() {
 
       {/* ===== OUTPUTS ===== */}
       <div className="space-y-3">
+        <PersonalizedRecoveryPanel
+          rec={rec}
+          projection={projection}
+          store={store}
+          storeIsLive={storeIsLive}
+        />
         {/* Path recommendation strip */}
         <div className="rounded-md border border-border bg-background/50 p-3 space-y-2">
           <div className="flex items-center gap-2 flex-wrap">
@@ -679,6 +716,187 @@ export function AttributionHealthAlertCalculator() {
             Persists to <code className="rounded bg-muted px-1">{STORAGE_KEY}</code>
           </span>
         </div>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * Personalised Recovery Panel — cross-page-intelligence layer.
+ *
+ * Reads the operator's `Your-store` (AOV / monthly orders / gross margin)
+ * from `ecom-ops:your-store:v1` on mount and re-projects the picked Path's
+ * Year-1 incremental attribution recovery onto the operator's actual revenue
+ * base. Falls back to canonical $75 AOV × 1,000 orders × 70% margin defaults
+ * when Your-store hasn't been set yet.
+ *
+ * Personalisation math (matches the canonical script's recovery bands):
+ *   annual_revenue = aov × monthly_orders × 12
+ *   net_cost       = year1CostMid                (one-time + 12 mo recurring)
+ *   gross_recovery = year1IncrementalAttributionRecovery    (low..high)
+ *   net_recovery   = gross_recovery - net_cost
+ *   recovery_pct   = net_recovery / annual_revenue            (% of annual rev)
+ *   payback_months = net_cost / (gross_recovery_mid / 12)
+ *   margin_recovery = net_recovery × gross_margin
+ *
+ * The personalisation is most useful when Your-store is set (the
+ * "Live numbers" badge lights up). Without it, the panel renders the
+ * defaults so the operator still sees the projection shape, but the
+ * dollar values are tied to industry-median inputs.
+ */
+function PersonalizedRecoveryPanel({
+  rec,
+  projection,
+  store,
+  storeIsLive,
+}: {
+  rec: PathRecommendation;
+  projection: PerPathRecovery;
+  store: YourStoreInputs;
+  storeIsLive: boolean;
+}) {
+  const annualizedRevenue = store.aov * store.monthlyOrders * 12;
+  const annualGrossMarginRevenue = annualizedRevenue * store.grossMargin;
+  const recoveryLow = rec.year1IncrementalAttributionRecoveryLow;
+  const recoveryHigh = rec.year1IncrementalAttributionRecoveryHigh;
+  const recoveryMid = (recoveryLow + recoveryHigh) / 2;
+  const costMid = projection.year1CostMidFull;
+  const netRecoveryLow = recoveryLow - costMid;
+  const netRecoveryHigh = recoveryHigh - costMid;
+  const netRecoveryMid = (netRecoveryLow + netRecoveryHigh) / 2;
+  const recoveryPctLow =
+    annualizedRevenue > 0 ? (netRecoveryLow / annualizedRevenue) * 100 : 0;
+  const recoveryPctHigh =
+    annualizedRevenue > 0 ? (netRecoveryHigh / annualizedRevenue) * 100 : 0;
+  const marginRecoveryLow = netRecoveryLow * store.grossMargin;
+  const marginRecoveryHigh = netRecoveryHigh * store.grossMargin;
+  // Months to recoup the alert infra cost from the recovered attribution drift.
+  // Cap at 99 to keep the UI legible when recovery is path-E (zero).
+  const paybackMonths =
+    recoveryMid > 0 ? Math.min(99, costMid / (recoveryMid / 12)) : 99;
+  // Use the projected $500 threshold for the "live numbers" badge — below
+  // that the percentage is noise.
+  const hasMeaningfulProjection = storeIsLive && annualizedRevenue >= 12_000;
+
+  return (
+    <div
+      id="attribution-health-alert-personalized"
+      className={cn(
+        "rounded-md border p-3 space-y-3",
+        hasMeaningfulProjection
+          ? "border-accent/40 bg-accent/5"
+          : "border-border bg-background/30",
+      )}
+    >
+      <header className="flex items-baseline justify-between flex-wrap gap-2">
+        <div className="flex items-baseline gap-2 flex-wrap">
+          <h3 className="text-sm font-semibold">
+            Personalised recovery · tied to Your-store
+          </h3>
+          <span
+            className={cn(
+              "rounded border px-1.5 py-0.5 text-[9px] font-mono uppercase tracking-wider",
+              hasMeaningfulProjection
+                ? "border-accent/40 bg-accent/10 text-accent"
+                : "border-border bg-muted text-muted-foreground",
+            )}
+          >
+            {hasMeaningfulProjection ? "Live numbers" : "Industry-median default"}
+          </span>
+        </div>
+        <span className="text-[10px] uppercase tracking-wider text-muted-foreground">
+          Source · {hasMeaningfulProjection ? "Your-store" : "YOUR_STORE_DEFAULTS"}
+        </span>
+      </header>
+
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+        <div className="rounded-md border border-border bg-background/40 p-2">
+          <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
+            Annual gross revenue
+          </div>
+          <div className="text-sm font-semibold tabular-nums">
+            {formatUsd(annualizedRevenue)}
+          </div>
+          <div className="text-[9px] text-muted-foreground mt-0.5">
+            {formatUsd(store.aov)} × {formatInt(store.monthlyOrders)} × 12
+          </div>
+        </div>
+        <div className="rounded-md border border-border bg-background/40 p-2">
+          <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
+            Y1 net recovery (after infra)
+          </div>
+          <div className="text-base font-semibold tabular-nums text-accent">
+            {formatUsd(netRecoveryLow)} – {formatUsd(netRecoveryHigh)}
+          </div>
+          <div className="text-[9px] text-muted-foreground mt-0.5">
+            = {formatUsd(recoveryLow)} – {formatUsd(recoveryHigh)} −{" "}
+            {formatUsd(costMid)} infra
+          </div>
+        </div>
+        <div className="rounded-md border border-border bg-background/40 p-2">
+          <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
+            % of annual revenue
+          </div>
+          <div className="text-base font-semibold tabular-nums">
+            {recoveryPctLow >= 0 ? "+" : ""}
+            {recoveryPctLow.toFixed(2)}% – {recoveryPctHigh >= 0 ? "+" : ""}
+            {recoveryPctHigh.toFixed(2)}%
+          </div>
+          <div className="text-[9px] text-muted-foreground mt-0.5">
+            NET recovery ÷ annual revenue
+          </div>
+        </div>
+        <div className="rounded-md border border-border bg-background/40 p-2">
+          <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
+            Net margin $ + infra payback
+          </div>
+          <div className="text-base font-semibold tabular-nums">
+            {formatUsd(marginRecoveryLow)} – {formatUsd(marginRecoveryHigh)}
+          </div>
+          <div className="text-[9px] text-muted-foreground mt-0.5">
+            at {formatPercent(store.grossMargin, 0)} · pays back in{" "}
+            {paybackMonths >= 99 ? "— (path E)" : `${paybackMonths.toFixed(1)} mo`}
+          </div>
+        </div>
+      </div>
+
+      <div className="rounded-md border border-border bg-background/30 p-2">
+        <p className="text-xs text-muted-foreground leading-relaxed">
+          {hasMeaningfulProjection ? (
+            <>
+              Path {rec.path} ({pathLongLabel(rec.path).toLowerCase()}) on Your-store
+              &rsquo;s <span className="text-foreground font-semibold">{formatUsd(annualizedRevenue)}/yr</span>{" "}
+              gross base ({formatUsd(annualGrossMarginRevenue)} net margin) recovers{" "}
+              <span className="text-foreground font-semibold">
+                {formatUsd(recoveryLow)} – {formatUsd(recoveryHigh)}
+              </span>{" "}
+              in attribution drift per year. After the canonical{" "}
+              <span className="text-foreground font-semibold">{formatUsd(costMid)}</span>{" "}
+              Year-1 infra cost (Path {rec.path}), the net lift is{" "}
+              <span className="text-foreground font-semibold">
+                {formatUsd(netRecoveryLow)} – {formatUsd(netRecoveryHigh)}
+              </span>{" "}
+              ({recoveryPctLow.toFixed(1)}–{recoveryPctHigh.toFixed(1)}% of annual revenue). Edit Your-store on
+              Overview to see this number change in real time.
+            </>
+          ) : (
+            <>
+              The personalised recovery projection requires Your-store set on
+              Overview (or annualised revenue ≥ $12,000). Industry medians:{" "}
+              {formatUsd(YOUR_STORE_DEFAULTS.aov)} ×{" "}
+              {formatInt(YOUR_STORE_DEFAULTS.monthlyOrders)} × 12 ={" "}
+              <span className="text-foreground font-semibold">
+                {formatUsd(
+                  YOUR_STORE_DEFAULTS.aov * YOUR_STORE_DEFAULTS.monthlyOrders * 12,
+                )}
+              </span>{" "}
+              gross annual revenue.{" "}
+              {storeIsLive
+                ? `Your current annualised revenue (${formatUsd(annualizedRevenue)}) is below the $12k threshold for a meaningful projection — confirm AOV × monthly orders on Overview.`
+                : "Set Your-store on Overview to see the projection become live."}
+            </>
+          )}
+        </p>
       </div>
     </div>
   );
