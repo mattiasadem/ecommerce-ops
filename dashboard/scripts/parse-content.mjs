@@ -44,6 +44,21 @@ async function syncResearchCopies(sourceFiles) {
   }
 }
 
+// Build-time copy of `assets/*.md` so `/assets/[slug]` detail route can
+// read raw markdown. Same shape as syncPlaybookCopies / syncResearchCopies.
+// Move #259-aware tick: completes the detail-route trio (skills / playbooks
+// / research / assets). We clear the directory first so deletes in /assets/
+// propagate to the bundle.
+const BUILD_ASSETS = join(process.cwd(), "src/assets");
+async function syncAssetCopies(sourceFiles) {
+  await rm(BUILD_ASSETS, { recursive: true, force: true });
+  await mkdir(BUILD_ASSETS, { recursive: true });
+  for (const f of sourceFiles) {
+    const md = await readFile(join(ROOT, "assets", f), "utf8");
+    await writeFile(join(BUILD_ASSETS, f), md);
+  }
+}
+
 function slug(s) {
   return String(s)
     .toLowerCase()
@@ -589,6 +604,9 @@ async function parseGitLog() {
   // Mirror research/*.md into src/research/ so /research/[slug] can read
   // raw markdown at build time without depending on the workspace path.
   await syncResearchCopies(research.map((r) => r.file));
+  // Mirror assets/*.md into src/assets/ so /assets/[slug] can read raw
+  // markdown at build time without depending on the workspace path.
+  await syncAssetCopies(assets.map((a) => a.file));
   const out = {
     generatedAt: new Date().toISOString(),
     research,

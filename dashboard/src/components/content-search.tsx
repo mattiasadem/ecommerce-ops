@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 /**
  * `Content search & filter` — generic client-side filter bar for any
  * library of documents (assets today; research/playbooks on the same
@@ -288,7 +290,14 @@ export function ContentSearch({
                         {String(item[itemNumberField]).padStart(2, "0")}
                       </span>
                     )}
-                    <CardTitle className="text-base">{item.title}</CardTitle>
+                    <CardTitle className="text-base">
+                      <Link
+                        href={`${routePrefix}/${item.file.replace(/\.md$/, "")}`}
+                        className="hover:underline"
+                      >
+                        {item.title}
+                      </Link>
+                    </CardTitle>
                     <div className="ml-auto flex flex-wrap items-center gap-1.5">
                       {label && (
                         <Badge
@@ -307,7 +316,12 @@ export function ContentSearch({
                     </div>
                   </div>
                   <CardDescription className="font-mono text-[11px]">
-                    {routePrefix}/{item.file}
+                    <Link
+                      href={`${routePrefix}/${item.file.replace(/\.md$/, "")}`}
+                      className="hover:underline hover:text-foreground"
+                    >
+                      {routePrefix}/{item.file}
+                    </Link>
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-3">
