@@ -8,9 +8,64 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { CopyButton } from "@/components/copy-button";
 import { PlaybookShippedToggle } from "@/components/playbook-shipped-toggle";
+import { AbandonedCartROICalculator } from "@/components/abandoned-cart-roi";
+import { PostPurchaseUpsellROICalculator } from "@/components/post-purchase-upsell-roi";
+import { WelcomeSeriesROICalculator } from "@/components/welcome-series-roi";
+import { PdpAbTestCalculator } from "@/components/pdp-ab-test-calculator";
+import { AiAdCreativeROICalculator } from "@/components/ai-ad-creative-roi";
+import { CheckoutAudit } from "@/components/checkout-audit";
 
 const ROOT = "/data/workspace/ecommerce-ops";
 const BUILD_PLAYBOOKS = join(process.cwd(), "src/playbooks");
+
+// Calculator registry: slug -> component, plus an empty default. Renders
+// the matching interactive ROI / scorer tool right on the playbook page
+// so operators don't have to bounce to /playbooks, /cro, or /today to
+// project their own numbers. Tools that already live on dedicated pages
+// (CheckoutAudit on /cro, PdpAbTestCalculator on /playbooks) are reused
+// verbatim — same math, same localStorage keys, same your-store wiring.
+const CALCULATORS: Record<string, { node: React.ReactNode; label: string }> = {
+  "01-abandoned-cart-flow-klaviyo": {
+    node: <AbandonedCartROICalculator />,
+    label: "Forecast recovered revenue and ROI for this Klaviyo + Postscript flow.",
+  },
+  "02-post-purchase-upsell-reconvert": {
+    node: <PostPurchaseUpsellROICalculator />,
+    label: "Project monthly upsell revenue and ROI before turning the flow on.",
+  },
+  "03-checkout-audit-baymard": {
+    node: <CheckoutAudit />,
+    label: "Score your checkout against Baymard's 24-guideline checklist and surface prioritized fixes.",
+  },
+  "04-welcome-series-klaviyo": {
+    node: <WelcomeSeriesROICalculator />,
+    label: "Forecast monthly incremental revenue from the 4-email welcome flow.",
+  },
+  "09.5-pdp-ab-testing-program": {
+    node: <PdpAbTestCalculator />,
+    label: "Compute the lift, sample size, and runtime of your next PDP A/B test.",
+  },
+  "10-ai-ad-creative-iteration": {
+    node: <AiAdCreativeROICalculator />,
+    label: "Forecast the lift + ROI of swapping in AI-generated creative variants.",
+  },
+};
+
+function PlaybookCalculator({ slug }: { slug: string }) {
+  const entry = CALCULATORS[slug];
+  if (!entry) return null;
+  return (
+    <div className="flex flex-col gap-2">
+      <div className="flex items-center gap-2">
+        <Badge variant="outline" className="text-[10px] border-accent/40 bg-accent/10 text-accent">
+          Calculator
+        </Badge>
+        <span className="text-xs text-muted-foreground">{entry.label}</span>
+      </div>
+      {entry.node}
+    </div>
+  );
+}
 
 export const dynamic = "force-static";
 
@@ -353,6 +408,11 @@ export default async function PlaybookDetailPage({
         playbookId={playbook.file.replace(/\.md$/, "")}
         playbookTitle={playbook.title}
       />
+
+      {/* Embedded calculator — same component + math + your-store wiring as
+          the corresponding /playbooks or /cro surface; lets operators project
+          their own numbers without bouncing pages. */}
+      <PlaybookCalculator slug={slug} />
 
       {/* Goal / lead-block meta bullets (parsed by parse-content.mjs) */}
       {playbook.meta && playbook.meta.length > 0 ? (
