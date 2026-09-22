@@ -116,6 +116,11 @@ export function SkillDetailToggle({
     setMap((prev) => {
       const next = setStudied(prev, skillId, "studied");
       saveStudiedSkills(next);
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(
+          new CustomEvent("ecom-ops:skills:studied-changed"),
+        );
+      }
       return next;
     });
   }, [skillId]);
@@ -133,6 +138,11 @@ export function SkillDetailToggle({
           },
         };
         saveStudiedSkills(updated);
+        if (typeof window !== "undefined") {
+          window.dispatchEvent(
+            new CustomEvent("ecom-ops:skills:studied-changed"),
+          );
+        }
         return updated;
       });
     },
@@ -144,6 +154,11 @@ export function SkillDetailToggle({
       const next: StudiedMap = { ...prev };
       delete next[skillId];
       saveStudiedSkills(next);
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(
+          new CustomEvent("ecom-ops:skills:studied-changed"),
+        );
+      }
       return next;
     });
   }, [skillId]);

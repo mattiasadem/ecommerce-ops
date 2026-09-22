@@ -191,6 +191,11 @@ export function SkillsSearch({ skills }: SkillsSearchProps) {
     const next = setStudied({ ...studied }, skillId, current?.confidence ?? "studied");
     setStudiedState(next);
     saveStudiedSkills(next);
+    // Cross-component sync — the Skills Progress Dashboard on /skills
+    // listens for this same-tab event and refreshes immediately.
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent("ecom-ops:skills:studied-changed"));
+    }
   };
 
   const onClear = () => {
@@ -204,6 +209,9 @@ export function SkillsSearch({ skills }: SkillsSearchProps) {
     try {
       window.localStorage.removeItem("ecom-ops:skills:studied:v1");
       setStudiedState({});
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new CustomEvent("ecom-ops:skills:studied-changed"));
+      }
     } catch {
       /* ignore */
     }

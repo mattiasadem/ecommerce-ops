@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { content, fmtDate } from "@/lib/content";
 import { SkillsSearch } from "@/components/skills-search";
 import { NextSkillToStudy } from "@/components/next-skill-to-study";
+import { SkillsProgressDashboard } from "@/components/skills-progress-dashboard";
 import Link from "next/link";
 
 export const dynamic = "force-static";
@@ -179,6 +180,21 @@ export default function SkillsPage() {
           sourceCount: s.sourceCount,
           sectionCount: s.sectionCount,
           size: s.size,
+        }))}
+      />
+
+      {/* Skills Progress Dashboard — operator's coverage of the 278-skill
+          library (state-persistence + cross-page-intelligence +
+          one-click-action). Reads the same studied-skill map the
+          SkillsSearch rows and SkillDetailToggle write to. Updates
+          instantly on every studied/applied/shipped flip. */}
+      <SkillsProgressDashboard
+        skills={skills.map((s) => ({
+          file: s.file,
+          title: s.title,
+          category: s.category,
+          priority: s.priority,
+          tier: s.tier,
         }))}
       />
 
