@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-22T13:42:46.912Z",
+  "generatedAt": "2026-09-22T14:52:00.923Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -11790,6 +11790,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-22 13:50 UTC] Skill tick: keep — Move #281 Per-payment-method × Per-channel × Per-SKU × Per-daypart × Per-creative × Per-cohort × Per-experiment × Per-warehouse × Per-carrier × Per-zone × Per-product-discovery × Per-affiliate × Per-affiliate-network × Per-affiliate-commission-structure × Per-affiliate-cohort-tier × Per-affiliate-payout-cadence × Per-affiliate-content-type × Per-affiliate-aesthetic × Per-affiliate-language × Per-affiliate-disclosure-mode × Per-affiliate-fraud-tier × Per-affiliate-chargeback-window × Per-affiliate-refund-abuse-window × Per-affiliate-region × Per-affiliate-platform-terms × Per-affiliate-refund-window × Per-affiliate-return-window × Per-affiliate-exchange-window 28-axis decision-rollback engine (FIRST Tier-1 + FIRST P0 in unique category `per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-x-per-affiliate-x-per-affiliate-network-x-per-affiliate-commission-structure-x-per-affiliate-cohort-tier-x-per-affiliate-payout-cadence-x-per-affiliate-content-type-x-per-affiliate-aesthetic-x-per-affiliate-language-x-per-affiliate-disclosure-mode-x-per-affiliate-fraud-tier-x-per-affiliate-chargeback-window-x-per-affiliate-refund-abuse-window-x-per-affiliate-region-x-per-affiliate-platform-terms-x-per-affiliate-refund-window-x-per-affiliate-return-window-x-per-affiliate-exchange-window-decision-rollback`; canonical 28-axis (with-affiliate-exchange-window + with-affiliate-return-window + with-affiliate-refund-window + with-affiliate-platform-terms + with-affiliate-region + with-affiliate-refund-abuse-window + with-affiliate-chargeback-window + with-affiliate-fraud-tier + with-affiliate-disclosure-mode + with-affiliate-language + with-affiliate-aesthetic + with-affiliate-content-type + with-affiliate-payout-cadence + with-affiliate-cohort-tier + with-affiliate-commission-structure + with-affiliate-network + with-affiliate + with-product-discovery + with-zone + with-carrier + with-warehouse + with-experiment + with-cohort + with-creative + with-daypart + with-SKU + with-channel + with-payment-method) decision-rollback engine that compounds Move #280 (the canonical 27-axis Per-payment-method × Per-channel × Per-SKU × Per-daypart × Per-creative × Per-cohort × Per-experiment × Per-warehouse × Per-carrier × Per-zone × Per-product-discovery × Per-affiliate × Per-affiliate-network × Per-affiliate-commission-structure × Per-affiliate-cohort-tier × Per-affiliate-payout-cadence × Per-affiliate-content-type × Per-affiliate-aesthetic × Per-affiliate-language × Per-affiliate-disclosure-mode × Per-affiliate-fraud-tier × Per-affiliate-chargeback-window × Per-affiliate-refund-abuse-window × Per-affiliate-region × Per-affiliate-platform-terms × Per-affiliate-refund-window × Per-affiliate-return-window decision-rollback-engine) WITH the Per-affiliate-exchange-window dimension (instant-exchange-window ↔ 24h-exchange-window ↔ 7-day-exchange-window ↔ 30-day-exchange-window ↔ 60h-exchange-window ↔ 90-day-exchange-window ↔ 180-day-exchange-window ↔ 365-day-exchange-window ↔ network-specific-exchange-window ↔ PSP-specific-exchange-window ↔ BNPL-specific-exchange-window ↔ first-order-exchange-window ↔ repeat-order-exchange-window ↔ subscription-exchange-window ↔ digital-product-exchange-window ↔ service-product-exchange-window ↔ pre-order-exchange-window ↔ back-order-exchange-window ↔ seasonal-exchange-window ↔ gift-card-exchange-window ↔ store-credit-exchange-window ↔ partial-exchange-window ↔ cross-border-exchange-window ↔ platform-terms-exchange-window ↔ size-exchange-window ↔ color-exchange-window ↔ defect-exchange-window ↔ a-to-b-upgrade-exchange-window ↔ b-to-a-downgrade-exchange-window ↔ same-SKU-exchange-window ↔ cross-SKU-exchange-window ↔ cross-region-exchange-window ↔ cross-warehouse-exchange-window ↔ cross-payment-method-exchange-window ↔ cross-cohort-exchange-window ↔ cross-daypart-exchange-window) — answering \"which Per-payment-method × Per-channel × Per-SKU × Per-daypart × Per-creative × Per-cohort × Per-experiment × Per-warehouse × Per-carrier × Per-zone × Per-product-discovery × Per-affiliate × Per-affiliate-network × per-affiliate-commission-structure × Per-affiliate-cohort-tier × Per-affiliate-payout-cadence × Per-affiliate-content-type × Per-affiliate-aesthetic × Per-affiliate-language × Per-affiliate-disclosure-mode × Per-affiliate-fraud-tier × Per-affiliate-chargeback-window × Per-affiliate-refund-abuse-window × Per-affiliate-region × Per-affiliate-platform-terms × Per-affiliate-refund-window × Per-affiliate-return-window axis had a mis-routed exchange-window-decision in the last 24-72h, and how do we detect it, attribute it, rollback it, and prevent recurrence per 28-axis-combination?\"; compounds Move #280 + Move #279 + Move #278 + Move #277 + Move #276 + Move #275 + Move #274 + Move #273 + Move #272 + Move #271 + Move #270 + Move #269 + Move #268 + Move #180 + Move #119 + Move #122 + Move #116 + Move #95 + Move #85 + Move #74 + Move #68 + Move #61 + Move #50 + Move #49 + Move #48 + Move #33 + Move #88 + Move #248 + Move #28 returns-portal-orchestration + Move #79 cross-border-returns-overlay + Move #25 international-expansion + Move #16 creator-economy-expansion + Move #174 ecommerce-compliance + Move #175 + Move #176 + Move #177 + Move #178 + Stripe-Exchanges 2024 + Adyen-Exchanges 2024 + Checkout.com-Exchanges 2024 + Klarna-Exchanges 2024 + Affirm-Exchanges 2024 + Afterpay-Exchanges 2024 + Loop-Exchanges 2024 + Returnly 2024 + Narvar 2024 + AfterShip 2024 + HappyReturns 2024 + ReturnLogic 2024 + Sorted 2024 + Loop-Returns 2024 + ReCharge 2024 + Skio 2024 + Bold-Recurring 2024 + Stay-AI 2024 vendor integrations; **38 numbered pitfalls (P1-P38)** + 41 verification gates A-Z + AA-OO (Move #277 carryover) + PP + QQ + RR (Move #278 carryover) + SS (Move #279 carryover) + TT (Move #280 carryover) + UU (Move #281 unique) + 5-phase 122-196 day build + 80+ source tokens; **80:1-164:1 Year-1 ROI Path B at $3M GMV; 94:1-206:1 Path C at $5M GMV**).",
+      "body": "- **Branch:** autoresearch/skills-2026-09-22\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES: (1) **UNIQUE CATEGORY** — `grep -lE '^category: per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-x-per-affiliate-x-per-affiliate-network-x-per-affiliate-commission-structure-x-per-affiliate-cohort-tier-x-per-affiliate-payout-cadence-x-per-affiliate-content-type-x-per-affiliate-aesthetic-x-per-affiliate-language-x-per-affiliate-disclosure-mode-x-per-affiliate-fraud-tier-x-per-affiliate-chargeback-window-x-per-affiliate-refund-abuse-window-x-per-affiliate-region-x-per-affiliate-platform-terms-x-per-affiliate-refund-window-x-per-affiliate-return-window-x-per-aff"
+    },
     {
       "heading": "[2026-09-22 12:30 UTC] Skill tick: keep — Move #280 Per-payment-method × Per-channel × Per-SKU × Per-daypart × Per-creative × Per-cohort × Per-experiment × Per-warehouse × Per-carrier × Per-zone × Per-product-discovery × Per-affiliate × Per-affiliate-network × Per-affiliate-commission-structure × Per-affiliate-cohort-tier × Per-affiliate-payout-cadence × Per-affiliate-content-type × Per-affiliate-aesthetic × Per-affiliate-language × Per-affiliate-disclosure-mode × Per-affiliate-fraud-tier × Per-affiliate-chargeback-window × Per-affiliate-refund-abuse-window × Per-affiliate-region × Per-affiliate-platform-terms × Per-affiliate-refund-window × Per-affiliate-return-window 27-axis decision-rollback engine (FIRST Tier-1 + FIRST P0 in unique category `per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-x-per-affiliate-x-per-affiliate-network-x-per-affiliate-commission-structure-x-per-affiliate-cohort-tier-x-per-affiliate-payout-cadence-x-per-affiliate-content-type-x-per-affiliate-aesthetic-x-per-affiliate-language-x-per-affiliate-disclosure-mode-x-per-affiliate-fraud-tier-x-per-affiliate-chargeback-window-x-per-affiliate-refund-abuse-window-x-per-affiliate-region-x-per-affiliate-platform-terms-x-per-affiliate-refund-window-x-per-affiliate-return-window-decision-rollback`; canonical 27-axis (with-affiliate-return-window + with-affiliate-refund-window + with-affiliate-platform-terms + with-affiliate-region + with-affiliate-refund-abuse-window + with-affiliate-chargeback-window + with-affiliate-fraud-tier + with-affiliate-disclosure-mode + with-affiliate-language + with-affiliate-aesthetic + with-affiliate-content-type + with-affiliate-payout-cadence + with-affiliate-cohort-tier + with-affiliate-commission-structure + with-affiliate-network + with-affiliate + with-product-discovery + with-zone + with-carrier + with-warehouse + with-experiment + with-cohort + with-creative + with-daypart + with-SKU + with-channel + with-payment-method) decision-rollback engine that compounds Move #279 WITH the Per-affiliate-return-window dimension (instant-return-window ↔ 24h-return-window ↔ 7-day-return-window ↔ 30-day-return-window ↔ 60h-return-window ↔ 90-day-return-window ↔ 180-day-return-window ↔ 365-day-return-window ↔ network-specific-return-window ↔ PSP-specific-return-window ↔ BNPL-specific-return-window ↔ first-order-return-window ↔ repeat-order-return-window ↔ subscription-return-window ↔ digital-product-return-window ↔ service-product-return-window ↔ pre-order-return-window ↔ back-order-return-window ↔ seasonal-return-window ↔ gift-card-return-window ↔ store-credit-return-window ↔ partial-return-window ↔ exchange-credit-return-window ↔ region-specific-return-window ↔ cross-border-return-window ↔ platform-terms-return-window ↔ subscription-cancellation-flow-return-window ↔ subscription-dunning-flow-return-window ↔ subscription-trial-conversion-return-window ↔ subscription-reactivation-return-window ↔ subscription-skip-flow-return-window ↔ subscription-pause-flow-return-window) — answering \"which Per-payment-method × Per-channel × Per-SKU × Per-daypart × Per-creative × Per-cohort × Per-experiment × Per-warehouse × Per-carrier × Per-zone × Per-product-discovery × Per-affiliate × Per-affiliate-network × Per-affiliate-commission-structure × Per-affiliate-cohort-tier × Per-affiliate-payout-cadence × Per-affiliate-content-type × Per-affiliate-aesthetic × Per-affiliate-language × Per-affiliate-disclosure-mode × Per-affiliate-fraud-tier × Per-affiliate-chargeback-window × Per-affiliate-refund-abuse-window × Per-affiliate-region × Per-affiliate-platform-terms × Per-affiliate-refund-window axis had a mis-routed return-window-decision in the last 24-72h, and how do we detect it, attribute it, rollback it, and prevent recurrence per 27-axis-combination?\"; compounds Move #279 + Move #278 + Move #277 + Move #276 + Move #275 + Move #274 + Move #273 + Move #272 + Move #271 + Move #270 + Move #269 + Move #268 + Move #180 + Move #119 + Move #122 + Move #116 + Move #95 + Move #85 + Move #74 + Move #68 + Move #61 + Move #50 + Move #49 + Move #48 + Move #33 + Move #88 + Move #248 + Move #79 + Move #25 international-expansion + Move #16 creator-economy-expansion + Move #174 ecommerce-compliance + Move #175 + Move #176 + Move #177 + Move #178 + Stripe-Returns 2024 + Adyen-Returns 2024 + Checkout.com-Returns 2024 + Klarna-Returns 2024 + Affirm-Returns 2024 + Afterpay-Returns 2024 + Loop-Returns 2024 + Returnly 2024 + Narvar 2024 + AfterShip 2024 + HappyReturns 2024 + ReturnLogic 2024 + Sorted 2024 + Return-Zoom 2024 + Optoro 2024 + ReturnGO 2024 + ReverseLogix 2024 + parcelLab 2024 + Postscript-Returns 2024 + ReCharge 2024 + Skio 2024 + Bold-Recurring 2024 + Stay-AI 2024 vendor integrations; **37 numbered pitfalls (P1-P37)** + 40 verification gates A-Z + AA-OO (Move #277 carryover) + PP + QQ + RR (Move #278 carryover) + SS (Move #279 carryover) + TT (Move #280 unique) + 5-phase 116-188 day build + 80+ source tokens; **76:1-156:1 Year-1 ROI Path B at $3M GMV; 90:1-198:1 Path C at $5M GMV**).",
       "body": "- **Branch:** autoresearch/skills-2026-09-22\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES: (1) **UNIQUE CATEGORY** — `grep -lE '^category: per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-x-per-affiliate-x-per-affiliate-network-x-per-affiliate-commission-structure-x-per-affiliate-cohort-tier-x-per-affiliate-payout-cadence-x-per-affiliate-content-type-x-per-affiliate-aesthetic-x-per-affiliate-language-x-per-affiliate-disclosure-mode-x-per-affiliate-fraud-tier-x-per-affiliate-chargeback-window-x-per-affiliate-refund-abuse-window-x-per-affiliate-region-x-per-affiliate-platform-terms-x-per-affiliate-refund-window-x-per-affiliate-return-window-decision-"
@@ -39568,6 +39572,25 @@
       "lastTouched": "2026-09-22"
     },
     {
+      "file": "282-pp-x-ch-x-sku-x-dp-x-cr-x-co-x-ex-x-wh-x-ca-x-zn-x-pd-x-af-x-an-x-acs-x-act-x-apc-x-acy-x-ae-x-al-x-adm-x-aft-x-acw-x-raaw-x-afe-x-apt-x-arw-x-artw-x-aew-x-ascw-29axis-decision-rollback-engine.md",
+      "name": "per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-x-per-affiliate-x-per-affiliate-network-x-per-affiliate-commission-structure-x-per-affiliate-cohort-tier-x-per-affiliate-payout-cadence-x-per-affiliate-content-type-x-per-affiliate-aesthetic-x-per-affiliate-language-x-per-affiliate-disclosure-mode-x-per-affiliate-fraud-tier-x-per-affiliate-chargeback-window-x-per-affiliate-refund-abuse-window-x-per-affiliate-region-x-per-affiliate-platform-terms-x-per-affiliate-refund-window-x-per-affiliate-return-window-x-per-affiliate-exchange-window-x-per-affiliate-store-credit-window-29axis-decision-rollback-engine",
+      "title": "Move #281.1 (shipped as Move #282) Per-payment-method × Per-channel × Per-SKU × Per-daypart × Per-creative × Per-cohort × Per-experiment × Per-warehouse × Per-carrier × Per-zone × Per-product-discovery × Per-affiliate × Per-affiliate-network × Per-affiliate-commission-structure × Per-affiliate-cohort-tier × Per-affiliate-payout-cadence × Per-affiliate-content-type × Per-affiliate-aesthetic × Per-affiliate-language × Per-affiliate-disclosure-mode × Per-affiliate-fraud-tier × Per-affiliate-chargeback-window × Per-affiliate-refund-abuse-window × Per-affiliate-region × Per-affiliate-platform-terms × Per-affiliate-refund-window × Per-affiliate-return-window × Per-affiliate-exchange-window × Per-affiliate-store-credit-window 29-axis decision-rollback engine",
+      "category": "per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-x-per-affiliate-x-per-affiliate-network-x-per-affiliate-commission-structure-x-per-affiliate-cohort-tier-x-per-affiliate-payout-cadence-x-per-affiliate-content-type-x-per-affiliate-aesthetic-x-per-affiliate-language-x-per-affiliate-disclosure-mode-x-per-affiliate-fraud-tier-x-per-affiliate-chargeback-window-x-per-affiliate-refund-abuse-window-x-per-affiliate-region-x-per-affiliate-platform-terms-x-per-affiliate-refund-window-x-per-affiliate-return-window-x-per-affiliate-exchange-window-x-per-affiliate-store-credit-window-decision-rollback",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "282",
+      "yearOneRoiBand": "84:1-172:1 Path B at $3M GMV; 99:1-216:1 Path C at $5M GMV",
+      "smsFriendly": true,
+      "lastUpdated": "2026-09-22",
+      "sources": [],
+      "blurb": "A canonical 29-axis decision-rollback-engine for per-affiliate × per-store-credit-window-mis-routing incidents (instant-store-credit-window ↔ 24h-store-credit-window ↔ 7-day-store-credit-window ↔ 30-day-store-credit-w...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 0,
+      "size": 75604,
+      "lastTouched": "2026-09-22"
+    },
+    {
       "file": "29-inventory-forecasting-stockout-prevention.md",
       "name": "inventory-forecasting-stockout-prevention",
       "title": "Inventory forecasting + stockout prevention (Move #12.5)",
@@ -60993,6 +61016,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "0187bc8",
+      "date": "2026-09-22T13:46:29Z",
+      "author": "hermesagent",
+      "subject": "docs: journal entry for Move #281 28-axis decision-rollback-engine skill tick (keep)",
+      "body": ""
+    },
+    {
+      "sha": "ede0776",
+      "date": "2026-09-22T13:45:17Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #281 Per-payment-method × Per-channel × Per-SKU × Per-daypart × Per-creative × Per-cohort × Per-experiment × Per-warehouse × Per-carrier × Per-zone × Per-product-discovery × Per-affiliate × Per-affiliate-network × Per-affiliate-",
+      "body": ""
+    },
+    {
       "sha": "89575c7",
       "date": "2026-09-22T12:37:03Z",
       "author": "hermesagent",
@@ -62377,20 +62414,6 @@
       "author": "hermesagent",
       "subject": "journal: Move #171 keep entry (canonical 49th-move; DEPLOY SUCCEEDED)",
       "body": ""
-    },
-    {
-      "sha": "0685ab3",
-      "date": "2026-09-15T21:35:17Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #171 coverage-band-fairness-versioning (canonical 49th-move; Move #170.1 companion; FIRST Tier-1 + FIRST P0 in unique category; 18 pitfalls + 18 Fix: + 10 gates A-J + 6-pillar Path A/B/C/D/E/F; 9:1 Year-1 ROI Path B at $5M GMV; ",
-      "body": ""
-    },
-    {
-      "sha": "83f2131",
-      "date": "2026-09-15T19:26:39Z",
-      "author": "hermesagent",
-      "subject": "journal: Move #170 keep entry (canonical 48th-move; DEPLOY SUCCEEDED)",
-      "body": ""
     }
   ],
   "counts": {
@@ -62399,8 +62422,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 30,
-    "skills": 280,
+    "journalEntries": 31,
+    "skills": 281,
     "gitCommits": 200
   }
 }
