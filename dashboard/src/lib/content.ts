@@ -20,6 +20,7 @@ export interface ResearchDoc {
   sections: ContentSection[];
   tables: { heading: string; rows: TableRow[] }[];
   findings: string[];
+  lastTouched?: string | null;
 }
 
 export interface Playbook {

@@ -30,6 +30,20 @@ async function syncPlaybookCopies(sourceFiles) {
   }
 }
 
+// Build-time copy of `research/*.md` so `/research/[slug]` detail route can
+// read raw markdown. Same shape as syncPlaybookCopies — declared just above.
+// We clear the directory first so deletes in /research/ propagate to the
+// bundle. Move #259-aware tick: needed by the new research detail route.
+const BUILD_RESEARCH = join(process.cwd(), "src/research");
+async function syncResearchCopies(sourceFiles) {
+  await rm(BUILD_RESEARCH, { recursive: true, force: true });
+  await mkdir(BUILD_RESEARCH, { recursive: true });
+  for (const f of sourceFiles) {
+    const md = await readFile(join(ROOT, "research", f), "utf8");
+    await writeFile(join(BUILD_RESEARCH, f), md);
+  }
+}
+
 function slug(s) {
   return String(s)
     .toLowerCase()
@@ -150,6 +164,11 @@ async function parseResearch() {
   for (const f of files) {
     const md = await readFile(join(dir, f), "utf8");
     const sections = splitSections(md);
+    let lastTouched = null;
+    try {
+      const st = await stat(join(dir, f));
+      lastTouched = st.mtime.toISOString().slice(0, 10);
+    } catch {}
     const doc = {
       file: f,
       title: null,
@@ -192,6 +211,7 @@ async function parseResearch() {
     // Pull top-level bullets from "Findings" sections.
     const findSec = doc.sections.find((s) => s.heading && /^Findings$/i.test(s.heading));
     if (findSec) doc.findings = extractBullets(findSec.body || "");
+    doc.lastTouched = lastTouched;
     docs.push(doc);
   }
   return docs;
@@ -566,6 +586,9 @@ async function parseGitLog() {
   // Mirror playbooks/*.md into src/playbooks/ so /playbooks/[slug] can read
   // raw markdown at build time without depending on the workspace path.
   await syncPlaybookCopies(playbooks.map((p) => p.file));
+  // Mirror research/*.md into src/research/ so /research/[slug] can read
+  // raw markdown at build time without depending on the workspace path.
+  await syncResearchCopies(research.map((r) => r.file));
   const out = {
     generatedAt: new Date().toISOString(),
     research,
