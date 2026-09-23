@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-23T05:31:05.731Z",
+  "generatedAt": "2026-09-23T06:14:09.346Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12642,6 +12642,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-23 06:18 UTC] Dashboard tick: keep — /research search + freshness-tier filter (interactive-tool + state-persistence)",
+      "body": "- **Branch:** master\n- **Commit:** `c35c887`\n- **Status:** keep\n- **What shipped:** Wired the existing `<ContentSearch>` component onto `/research` so the 18 research docs are no longer a flat unsorted grid. Page now renders (a) header freshness summary (fresh / aging / stale counts) + freshness legend, (b) 3-stat strip (total docs · tables+findings · total KB), (c) the same `Filter researchs` text-query + freshness-tier chip group already on `/assets` + `/playbooks`, (d) per-doc cards with RD-XX chip (parsed from filename `00-`, `01-`, …) + title + freshness badge + section-count badge + Copy-ID button + collapsible section-preview panel. State persists to `localStorage[\"ecom-ops:content:search:v1\"]` under a `research`-kind discriminator so the asset and research filter state don't collid"
+    },
     {
       "heading": "[2026-09-23 04:58 UTC] Skill tick: keep — Move #287.6 Per-payment-method × Per-channel × Per-SKU × Per-daypart × Per-creative × Per-cohort × Per-experiment × Per-warehouse × Per-carrier × Per-zone × Per-product-discovery × Per-affiliate × Per-affiliate-network × Per-affiliate-commission-structure × Per-affiliate-cohort-tier × Per-affiliate-payout-cadence × Per-affiliate-content-type × Per-affiliate-aesthetic × Per-affiliate-language × Per-affiliate-disclosure-mode × Per-affiliate-fraud-tier × Per-affiliate-chargeback-window × Per-affiliate-refund-abuse-window × Per-affiliate-region × Per-affiliate-platform-terms × Per-affiliate-refund-window × Per-affiliate-return-window × Per-affiliate-exchange-window × Per-affiliate-store-credit-window × Per-affiliate-replacement-window × Per-affiliate-cancellation-window × Per-affiliate-credit-note-window × Per-affiliate-debit-note-window × Per-affiliate-write-off-window × Per-affiliate-recovery-window × Per-affiliate-recovery-cadence × Per-affiliate-recovery-channel × Per-affiliate-recovery-tone × Per-affiliate-recovery-script × Per-affiliate-recovery-rendering-language 40-axis decision-rollback engine (FIRST Tier-1 + FIRST P0 in unique category `per-payment-method-x-per-channel-x-...-x-per-affiliate-recovery-script-x-per-affiliate-recovery-rendering-language-decision-rollback`; canonical Move #287.6 extension explicitly named in Move #287.5's \"How to extend\" roadmap line \"Move #287.6 — ... × Per-affiliate-recovery-translation 40-axis decision-rollback engine\" — re-purposed as Per-affiliate-recovery-rendering-language per the v2.99.26 canonical-40th-axis-name decision; compounds Move #287.5 WITH the Per-affiliate-recovery-rendering-language dimension (the canonical 30+ locale-rendering-decisions × 1000+ lines-of-recovery-script-decision-tree × per-jurisdiction × per-aging-bucket × per-bankruptcy-chapter × per-ECL-overlay × per-tax-jurisdiction × per-network-policy × per-platform-terms × per-statute-of-limitations × per-channel × per-cadence × per-affiliate-cohort-tier × per-affiliate-language × per-affiliate-disclosure-mode × per-affiliate-fraud-tier × per-affiliate-region × per-affiliate-platform-terms × per-affiliate-refund-window × per-affiliate-return-window × per-affiliate-exchange-window × per-affiliate-store-credit-window × per-affiliate-replacement-window × per-affiliate-cancellation-window × per-affiliate-credit-note-window × per-affiliate-debit-note-window × per-affiliate-write-off-window × per-affiliate-recovery-window × per-affiliate-recovery-cadence × per-affiliate-recovery-channel × per-affiliate-recovery-tone × per-affiliate-recovery-script × per-affiliate-recovery-rendering-language — recovery-rendering-language is the canonical POST-script-decision RENDERING layer (Move #287.5's script-decision tells the system WHAT script-template to render; Move #287.6's rendering-language-decision tells the system WHAT locale-script-text to render for that script × 39-axis combination, including en-US ↔ en-GB ↔ en-AU ↔ en-CA ↔ en-IN ↔ en-NZ ↔ en-IE ↔ en-ZA ↔ es-ES ↔ es-MX ↔ es-AR ↔ es-CL ↔ es-CO ↔ es-PE ↔ fr-FR ↔ fr-CA ↔ fr-BE ↔ fr-CH ↔ de-DE ↔ de-AT ↔ de-CH ↔ it-IT ↔ pt-PT ↔ pt-BR ↔ ja-JP ↔ zh-CN ↔ zh-TW ↔ zh-HK ↔ ko-KR ↔ ar-SA ↔ ar-AE ↔ ar-EG ↔ ru-RU ↔ hi-IN ↔ bn-IN ↔ ur-PK ↔ tr-TR ↔ vi-VN ↔ th-TH ↔ id-ID ↔ ms-MY ↔ tl-PH ↔ nl-NL ↔ pl-PL ↔ sv-SE ↔ no-NO ↔ da-DK ↔ fi-FI ↔ cs-CZ ↔ hu-HU ↔ ro-RO ↔ el-GR ↔ he-IL 30+ locales); 50 numbered pitfalls (P1-P49 carryover from Move #287.5 + P50 Move #287.6 unique 7-signal-discriminator: locale-template-mismatch ↔ customer-language-mismatch ↔ FDCPA-required-disclosure-in-customer-language-mismatch ↔ GDPR-required-disclosure-in-customer-language-mismatch ↔ Rosenthal-Act-required-disclosure-in-customer-language-mismatch ↔ CCPA-required-disclosure-in-customer-language-mismatch ↔ court-certified-translation-required-mismatch); 54 verification gates A-Z + AA-HHH (Move #287.5 carryover Gates A-FFF + Move #287.6 unique Gate GGG 19-way-pre-check + Gate HHH 7-signal-discriminator); 5-phase 184-289 day build + 95+ source tokens; **128:1-260:1 Year-1 ROI Path B at $3M GMV; 154:1-326:1 Path C at $5M GMV**)",
       "body": "- **Branch:** autoresearch/skills-2026-09-23\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES: (1) **UNIQUE CATEGORY** — `grep -lE '^category: per-payment-method-x-per-channel-x-...-x-per-affiliate-recovery-script-x-per-affiliate-recovery-rendering-language-decision-rollback' skills/*.md | wc -l = 1` (confirmed unique — this is the canonical Move #287.6 extension adding the Per-affiliate-recovery-rendering-language dimension; explicitly named in Move #287.5's \"How to extend\" roadmap); (2) **TIER-1 FIRST IN CATEGORY** — first Tier-1 in the canonical 40-axis Per-affiliate-recovery-rendering-language decision-rollback category; (3) **P0 FIRST IN CATEGORY** — first P0 in the same category; (4) **HIGHEST PITFALL COUNT WINS TIES** — Move #293 has **50 numbered pitfalls (P1-"
@@ -40569,6 +40573,25 @@
       "lastTouched": "2026-09-23"
     },
     {
+      "file": "294-pp-x-ch-x-sku-x-dp-x-cr-x-co-x-ex-x-wh-x-ca-x-zn-x-pd-x-af-x-an-x-acs-x-act-x-apc-x-acy-x-ae-x-al-x-adm-x-aft-x-acw-x-raaw-x-afe-x-apt-x-arw-x-artw-x-aew-x-ascw-x-arpw-x-acnw-x-arrl-x-artc-41axis-decision-rollback-engine.md",
+      "name": "per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-x-per-affiliate-x-per-affiliate-network-x-per-affiliate-commission-structure-x-per-affiliate-cohort-tier-x-per-affiliate-payout-cadence-x-per-affiliate-content-type-x-per-affiliate-aesthetic-x-per-affiliate-language-x-per-affiliate-disclosure-mode-x-per-affiliate-fraud-tier-x-per-affiliate-chargeback-window-x-per-affiliate-refund-abuse-window-x-per-affiliate-region-x-per-affiliate-platform-terms-x-per-affiliate-refund-window-x-per-affiliate-return-window-x-per-affiliate-exchange-window-x-per-affiliate-store-credit-window-x-per-affiliate-replacement-window-x-per-affiliate-cancellation-window-x-per-affiliate-credit-note-window-x-per-affiliate-debit-note-window-x-per-affiliate-write-off-window-x-per-affiliate-recovery-window-x-per-affiliate-recovery-cadence-x-per-affiliate-recovery-channel-x-per-affiliate-recovery-tone-x-per-affiliate-recovery-script-x-per-affiliate-recovery-rendering-language-x-per-affiliate-recovery-translation-cost-allocation-41axis-decision-rollback-engine",
+      "title": "Move #287.7 Per-payment-method × Per-channel × Per-SKU × Per-daypart × Per-creative × Per-cohort × Per-experiment × Per-warehouse × Per-carrier × Per-zone × Per-product-discovery × Per-affiliate × Per-affiliate-network × Per-affiliate-commission-structure × Per-affiliate-cohort-tier × Per-affiliate-payout-cadence × Per-affiliate-content-type × Per-affiliate-aesthetic × Per-affiliate-language × Per-affiliate-disclosure-mode × Per-affiliate-fraud-tier × Per-affiliate-chargeback-window × Per-affiliate-refund-abuse-window × Per-affiliate-region × Per-affiliate-platform-terms × Per-affiliate-refund-window × Per-affiliate-return-window × Per-affiliate-exchange-window × Per-affiliate-store-credit-window × Per-affiliate-replacement-window × Per-affiliate-cancellation-window × Per-affiliate-credit-note-window × Per-affiliate-debit-note-window × Per-affiliate-write-off-window × Per-affiliate-recovery-window × Per-affiliate-recovery-cadence × Per-affiliate-recovery-channel × Per-affiliate-recovery-tone × Per-affiliate-recovery-script × Per-affiliate-recovery-rendering-language × Per-affiliate-recovery-translation-cost-allocation 41-axis decision-rollback engine",
+      "category": "per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-x-per-affiliate-x-per-affiliate-network-x-per-affiliate-commission-structure-x-per-affiliate-cohort-tier-x-per-affiliate-payout-cadence-x-per-affiliate-content-type-x-per-affiliate-aesthetic-x-per-affiliate-language-x-per-affiliate-disclosure-mode-x-per-affiliate-fraud-tier-x-per-affiliate-chargeback-window-x-per-affiliate-refund-abuse-window-x-per-affiliate-region-x-per-affiliate-platform-terms-x-per-affiliate-refund-window-x-per-affiliate-return-window-x-per-affiliate-exchange-window-x-per-affiliate-store-credit-window-x-per-affiliate-replacement-window-x-per-affiliate-cancellation-window-x-per-affiliate-credit-note-window-x-per-affiliate-debit-note-window-x-per-affiliate-write-off-window-x-per-affiliate-recovery-window-x-per-affiliate-recovery-cadence-x-per-affiliate-recovery-channel-x-per-affiliate-recovery-tone-x-per-affiliate-recovery-script-x-per-affiliate-recovery-rendering-language-x-per-affiliate-recovery-translation-cost-allocation-decision-rollback",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "287.7",
+      "yearOneRoiBand": "132:1-268:1 Path B at $3M GMV; 159:1-336:1 Path C at $5M GMV",
+      "smsFriendly": true,
+      "lastUpdated": "2026-09-23",
+      "sources": [],
+      "blurb": "A canonical 41-axis decision-rollback-engine for per-affiliate × per-recovery-translation-cost-allocation-mis-attribution incidents (12-tone × 40-axis × 30+ locale × per-locale × per-jurisdiction × per-aging-bucket × ...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 0,
+      "size": 181068,
+      "lastTouched": "2026-09-23"
+    },
+    {
       "file": "30-dynamic-pricing-repricing-engine.md",
       "name": "dynamic-pricing-repricing-engine",
       "title": "Dynamic pricing + repricing engine (Move #20.x)",
@@ -61946,6 +61969,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "c4cf233",
+      "date": "2026-09-23T05:37:38Z",
+      "author": "hermesagent",
+      "subject": "journal: dashboard tick 2026-09-23 06:18 UTC — /research search + freshness-tier filter shipped (commit c35c887)",
+      "body": ""
+    },
+    {
+      "sha": "c35c887",
+      "date": "2026-09-23T05:36:19Z",
+      "author": "hermesagent",
+      "subject": "feat(dashboard): search + freshness-tier filter on /research (interactive-tool + state-persistence)",
+      "body": "Wires the existing ContentSearch component (already on /assets + /playbooks)\nonto the /research index. 18 research docs is past the comfortable scroll\nlength, and the route had zero filter surface — operators scrolling for\na specific brief had no way to narrow by topic or freshness.\n\nThree small supporting changes:\n\n1. dashboard/scripts/parse-content.mjs — ResearchDoc parser now emits\n   numberedSections (top-level H2 sections capped at 20), sectionCount\n   (total sections), and size (markdown length) so the same generic\n   ContentSearch component can mount on /research without a research-\n   specific search bar.\n\n2. dashboard/src/lib/content.ts — ResearchDoc interface extends with\n   the three new optional fields. JSON parses cleanly.\n\n3. dashboard/src/components/content-search.tsx — ContentSearchItem now\n   exposes assetNumber as an optional number field used to render the\n   RD-XX / PB-XX / AS-XX chip on each card. research/.json\n   derives the leading integer from the filename pattern (00-…, 01-…).\n\nPage now renders (a) header with freshness summary badges (fresh /\naging / stale counts), (b) 3-stat strip (total docs, tables+findings,\ntotal KB), (c) the same Filter [kind]s + freshness-tier chips already\non /assets, (d) the research-doc card list with RD-XX chip + title +\nfreshness badge + section-count badge + copy-ID button + collapsible\nsection preview.\n\nState persists to localStorage under a research-kind discriminator\n(ecom-ops:content:search:v1) so the asset and research filter state\ndon't collide.\n\nBuild: NEXT_TELEMETRY_DISABLED=1 npm run build succeeded on first\nattempt — 22 static routes unchanged, /research prerendered shell\n135 B + client-component bundle, no type errors.\n\nDeploy: vercel deploy --prod from dashboard/ + vercel alias set to\necommerce-ops-iota.vercel.app. Live HTTP 200, ~568 KB SSR HTML\n(combined ContentSearch client bundle + per-doc card markup +\nsection-preview details panels). Bundle contains 'research' kind data\n+ 18 docs + RD-XX chips"
+    },
+    {
       "sha": "c47b6a4",
       "date": "2026-09-23T05:02:59Z",
       "author": "hermesagent",
@@ -63330,20 +63367,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #181 ai-vendor-orchestration-governance-engine (FIRST Tier-1 + FIRST P0 in unique category: ai-orchestration; 28-vendor AI portfolio governance — Klaviyo AI + Shopify Magic + Gorgias AI Agent + Triple Whale Moby + Recharge AI + ",
       "body": ""
-    },
-    {
-      "sha": "d7045fe",
-      "date": "2026-09-16T11:53:51Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #180 / Move #6.10 marketing-mix-modeling-mmm-attribution-engine (FIRST Tier-1 + FIRST P0 in unique category: marketing-mix-modeling; Google Meridian + LightweightMMM + Robyn + PyMC-Marketing + Northbeam MMM + Triple Whale MMM + ",
-      "body": ""
-    },
-    {
-      "sha": "6305f16",
-      "date": "2026-09-16T10:43:32Z",
-      "author": "mattiasadem",
-      "subject": "skill: Move #22.4 / Move #179 brand-strategy-positioning-messaging-engine (FIRST Tier-1 + FIRST P0 in unique category: brand-strategy; April Dunford positioning + StoryBrand SB7 + Building a StoryBrand + 12-brand-pattern library Glossier/Al",
-      "body": ""
     }
   ],
   "counts": {
@@ -63352,8 +63375,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 3,
-    "skills": 291,
+    "journalEntries": 4,
+    "skills": 292,
     "gitCommits": 200
   }
 }
