@@ -97,3 +97,34 @@
 
 ## [2026-09-23 01:30 UTC] Skill tick: discard — Move #287.4 Per-affiliate-recovery-tone 38-axis decision-rollback engine (build failed: ENAMETOOLONG on Vercel prerender-fallback filename)
 
+## [2026-09-23 11:45 UTC] Dashboard tick: keep — global Cmd-K command palette
+
+- **Branch:** master
+- **Status:** keep
+- **Reason:** Replaced the placeholder `<CommandPalette />` (which rendered `null`) with a fully-functional global ⌘K/Ctrl-K search modal that indexes all 30 playbooks + 18 research docs + 27 assets + 296 skills + 26 static routes + 10 Top-10 moves in the browser, with category-grouped results, arrow-key navigation, recent-search chips, and Cmd-K / "/" quick-access shortcuts. Resolves the roadmap's "Add a search bar in the header that filters across all 25 playbook titles" item — and extends it to every other content type for free.
+- **What shipped:** `dashboard/src/components/command-palette.tsx` (~660 lines, replaces the prior 7-line `return null` stub). Mounted in the sidebar between the cron-status pill and the nav groups. State persists in localStorage (`ecom-ops:cmd-palette:v1`, schema `{ recents: string[] }`, max 5 entries).
+- **Search surface (one query, 6 result categories):**
+  - **Pages** (26) — static routes like `/today`, `/top-10`, `/playbooks`, `/b2b`, `/3pl`, `/settings`, etc., with hint text.
+  - **Playbooks** (up to 12) — scored by title (×2) + meta[] + numbered section heading + filename slug.
+  - **Research** (up to 12) — scored by title (×2) + H2 sections + filename slug.
+  - **Assets** (up to 12) — scored by title (×2) + meta[] + filename slug.
+  - **Skills** (up to 6) — scored by name + title, hint shows category · tier · priority.
+  - **Top-10 moves** (up to 6) — scored by move name + status string.
+- **Scoring:** substring > word-boundary (×4) > prefix (×10) > exact (×20) — so `"cart"` matches "Cart abandonment" before "Cart-abandonment-X", and `"abandoned cart"` matches playbooks with "abandoned" and "cart" anywhere in title/meta/section.
+- **UX details:**
+  - Trigger button in the sidebar shows `⌘K` chip + a hint label.
+  - Cmd-K / Ctrl-K toggles the modal; "/" also opens it when no input is focused (same muscle memory as GitHub).
+  - Escape closes; arrow-up/down move highlight; Enter navigates.
+  - Click-outside closes. Mouse hover updates the highlight so click-to-navigate lands the right entry.
+  - Empty-state panel shows recent-search chips + a 3-column "Jump to" grid of the top 9 routes + the indexed-corpus size footer.
+  - Footer hint bar shows keyboard shortcuts + result count.
+  - Recent searches persist per-key; navigating to a result pushes the producing query to position 1.
+- **Verification:**
+  - (a) RED — feature was absent (`grep -lE '^export function CommandPalette' dashboard/src/components/command-palette.tsx` confirmed the prior `return null` stub).
+  - (b) GREEN — `cd dashboard && NEXT_TELEMETRY_DISABLED=1 npm run build` SUCCEEDED on first attempt after the type fixes (4 patches to convert ternary returns to `if/return` form so TypeScript narrows `kind: "playbook" | "research" | ...` to the literal type). 22 routes prerendered, no type errors, no lint warnings.
+  - (c) `vercel deploy --prod --yes --token <vcp>` SUCCEEDED — `dashboard-qjygxwcr4-mattiasadem-5021s-projects.vercel.app` (`READY`, `target: production`, deployment-id `dpl_BArfYRfLKCmuDSm7AvGqa7yKzFvy`).
+  - (d) `vercel alias set dashboard-qjygxwcr4-...vercel.app ecommerce-ops-iota.vercel.app --token <vcp>` SUCCEEDED in **937ms** (canonical-alias rotation).
+  - (e) `curl -sSI https://ecommerce-ops-iota.vercel.app` → HTTP/2 200. Live HTML contains `cmd-palette-trigger` sentinel token.
+- **Where to see it:** https://ecommerce-ops-iota.vercel.app — press Cmd-K (or Ctrl-K on Linux/Windows) anywhere on the page; the modal opens centered over the page with the input pre-focused. Try queries like `abandoned cart`, `klaviyo`, `tiktok`, `b2b`, `baymard`, `welcome series`, `pdp`, `unit economics` to see cross-category results. Click any recent-search chip on the empty-state panel to re-run a query in one click.
+- **Deploy status:** **DEPLOY SUCCEEDED + CANONICAL ALIAS ROTATED.** Live URL serves the new command palette with all 6 result categories + scoring + recent-search persistence + keyboard navigation.
+- **Next action:** Natural follow-up: add per-playbook search highlighting (highlight the matched substring in the title/hint when the result row renders) — 10-minute follow-up tick. Or wire the palette to surface the operator's "your-store" personalized numbers as a `/settings` jump if they have stale values.
