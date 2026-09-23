@@ -8,6 +8,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { content, fmtDate } from "@/lib/content";
+import { WeeklySummaryButton } from "@/components/weekly-summary-button";
 
 export const dynamic = "force-static";
 
@@ -155,6 +156,9 @@ export default function StandupPage() {
           first — every morning.
         </p>
       </header>
+
+      {/* === WEEKLY SUMMARY: one-click Slack / Discord / email handoff === */}
+      <WeeklySummaryButton journal={journal} generatedAt={generatedAt} />
 
       {/* === TOP ROW: Status pills === */}
       <section className="grid grid-cols-2 gap-3 md:grid-cols-4">
