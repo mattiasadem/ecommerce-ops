@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-23T19:34:02.861Z",
+  "generatedAt": "2026-09-23T21:47:08.470Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12642,6 +12642,14 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-23 21:11 UTC] Skill tick: keep — Move #287.19 Per-affiliate-recovery-translation-state-suspension-procedure-jurisdictional-rule-restatement 53-axis decision-rollback engine",
+      "body": "- **Branch:** autoresearch/skills-2026-09-23\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES: (1) UNIQUE CATEGORY — `grep -lE '^category: per-payment-method-x-...-x-per-affiliate-recovery-translation-state-suspension-procedure-jurisdictional-rule-restatement-decision-rollback' skills/*.md | wc -l = 1` (confirmed unique — canonical Move #287.19 extension adding the Per-affiliate-recovery-translation-state-suspension-procedure-jurisdictional-rule-restatement dimension; explicitly named in Move #305's \"How to extend this skill\" roadmap line \"Move #287.19 — ... × Per-affiliate-recovery-translation-state-suspension-procedure-jurisdictional-rule-restatement 53-axis decision-rollback engine\"); (2) TIER-1 FIRST IN CATEGORY — first Tier-1 in the canonical 53-axis Per-affiliat"
+    },
+    {
+      "heading": "[2026-09-23 20:09 UTC] Skill tick: keep — Move #287.18 Per-affiliate-recovery-translation-state-revocation-procedure-jurisdictional-rule-restatement 52-axis decision-rollback engine",
+      "body": "- **Branch:** autoresearch/skills-2026-09-23\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES: (1) UNIQUE CATEGORY — `grep -lE '^category: per-payment-method-x-per-channel-x-...-x-per-affiliate-recovery-translation-state-revocation-procedure-jurisdictional-rule-restatement-decision-rollback' skills/*.md | wc -l = 1` (confirmed unique — canonical Move #287.18 extension adding the Per-affiliate-recovery-translation-state-revocation-procedure-jurisdictional-rule-restatement dimension; explicitly named in Move #304's \"How to extend this skill\" roadmap line \"Move #287.18 — ... × Per-affiliate-recovery-translation-state-revocation-procedure-jurisdictional-rule-restatement 52-axis decision-rollback engine\"); (2) TIER-1 FIRST IN CATEGORY — first Tier-1 in the canonical 52-axi"
+    },
     {
       "heading": "[2026-09-23 19:09 UTC] Skill tick: keep — Move #287.17 Per-affiliate-recovery-translation-state-collateral-jurisdictional-rule-restatement 51-axis decision-rollback engine",
       "body": "- **Branch:** autoresearch/skills-2026-09-23\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES: (1) UNIQUE CATEGORY — `grep -lE '^category: per-payment-method-x-per-channel-x-...-x-per-affiliate-recovery-translation-state-collateral-jurisdictional-rule-restatement-decision-rollback' skills/*.md | wc -l = 1` (confirmed unique — canonical Move #287.17 extension adding the Per-affiliate-recovery-translation-state-collateral-jurisdictional-rule-restatement dimension; explicitly named in Move #303's \"How to extend this skill\" roadmap line \"Move #287.17 — ... × Per-affiliate-recovery-translation-state-collateral-jurisdictional-rule-restatement 51-axis decision-rollback engine\"); (2) TIER-1 FIRST IN CATEGORY — first Tier-1 in the canonical 51-axis Per-affiliate-recovery-trans"
@@ -40840,6 +40848,44 @@
       "lastTouched": "2026-09-23"
     },
     {
+      "file": "306-pp-x-ch-x-sku-x-dp-x-cr-x-co-x-ex-x-wh-x-ca-x-zn-x-pd-x-af-x-an-x-acs-x-act-x-apc-x-acy-x-ae-x-al-x-adm-x-aft-x-acw-x-raaw-x-afe-x-apt-x-arw-x-arsj-x-acsc-x-acsrp-x-acssp-53axis-decision-rollback-engine.md",
+      "name": "306-pp-x-ch-x-sku-x-dp-x-cr-x-co-x-ex-x-wh-x-ca-x-zn-x-pd-x-af-x-an-x-acs-x-act-x-apc-x-acy-x-ae-x-al-x-adm-x-aft-x-acw-x-raaw-x-afe-x-apt-x-arw-x-arsj-x-acsc-x-acsrp-x-acssp-53axis-decision-rollback-engine",
+      "title": "Move #287.19 Per-payment-method × Per-channel × Per-SKU × Per-daypart × Per-creative × Per-cohort × Per-experiment × Per-warehouse × Per-carrier × Per-zone × Per-product-discovery × Per-affiliate × Per-affiliate-network × Per-affiliate-commission-structure × Per-affiliate-cohort-tier × Per-affiliate-payout-cadence × Per-affiliate-content-type × Per-affiliate-aesthetic × Per-affiliate-language × Per-affiliate-disclosure-mode × Per-affiliate-fraud-tier × Per-affiliate-chargeback-window × Per-affiliate-refund-abuse-window × Per-affiliate-region × Per-affiliate-platform-terms × Per-affiliate-refund-window × Per-affiliate-return-window × Per-affiliate-exchange-window × Per-affiliate-store-credit-window × Per-affiliate-replacement-window × Per-affiliate-cancellation-window × Per-affiliate-credit-note-window × Per-affiliate-debit-note-window × Per-affiliate-write-off-window × Per-affiliate-recovery-window × Per-affiliate-recovery-cadence × Per-affiliate-recovery-channel × Per-affiliate-recovery-tone × Per-affiliate-recovery-script × Per-affiliate-recovery-rendering-language × Per-affiliate-recovery-translation-cost-allocation × Per-affiliate-recovery-translation-revenue-recognition × Per-affiliate-recovery-translation-tax-jurisdiction-restatement × Per-affiliate-recovery-translation-statute-of-limitations-restatement × Per-affiliate-recovery-translation-FDCPA-§1692-restatement × Per-affiliate-recovery-translation-Rosenthal-Act-restatement × Per-affiliate-recovery-translation-mini-FDCPA-state-restatement × Per-affiliate-recovery-translation-state-license-jurisdictional-rule-restatement × Per-affiliate-recovery-translation-state-bond-jurisdictional-rule-restatement × Per-affiliate-recovery-translation-state-surety-jurisdictional-rule-restatement × Per-affiliate-recovery-translation-state-collateral-jurisdictional-rule-restatement × Per-affiliate-recovery-translation-state-revocation-procedure-jurisdictional-rule-restatement × Per-affiliate-recovery-translation-state-suspension-procedure-jurisdictional-rule-restatement 53-axis decision-rollback engine",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-23",
+      "sources": [],
+      "blurb": "A canonical 53-axis decision-rollback-engine for per-affiliate × per-recovery-translation-state-suspension-procedure-jurisdictional-rule-restatement-mis-attribution incidents (63-signal-discriminator × 30-state-suspen...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 0,
+      "size": 96972,
+      "lastTouched": "2026-09-23"
+    },
+    {
+      "file": "307-pp-x-ch-x-sku-x-dp-x-cr-x-co-x-ex-x-wh-x-ca-x-zn-x-pd-x-af-x-an-x-acs-x-act-x-apc-x-acy-x-ae-x-al-x-adm-x-aft-x-acw-x-raaw-x-afe-x-apt-x-arw-x-arsj-x-acsc-x-acsrp-x-acssp-x-acsrp-54axis-decision-rollback-engine.md",
+      "name": "307-pp-x-ch-x-sku-x-dp-x-cr-x-co-x-ex-x-wh-x-ca-x-zn-x-pd-x-af-x-an-x-acs-x-act-x-apc-x-acy-x-ae-x-al-x-adm-x-aft-x-acw-x-raaw-x-afe-x-apt-x-arw-x-arsj-x-acsc-x-acsrp-x-acssp-x-acsrp-54axis-decision-rollback-engine",
+      "title": "Move #287.20 Per-payment-method × Per-channel × Per-SKU × Per-daypart × Per-creative × Per-cohort × Per-experiment × Per-warehouse × Per-carrier × Per-zone × Per-product-discovery × Per-affiliate × Per-affiliate-network × Per-affiliate-commission-structure × Per-affiliate-cohort-tier × Per-affiliate-payout-cadence × Per-affiliate-content-type × Per-affiliate-aesthetic × Per-affiliate-language × Per-affiliate-disclosure-mode × Per-affiliate-fraud-tier × Per-affiliate-chargeback-window × Per-affiliate-refund-abuse-window × Per-affiliate-region × Per-affiliate-platform-terms × Per-affiliate-refund-window × Per-affiliate-return-window × Per-affiliate-exchange-window × Per-affiliate-store-credit-window × Per-affiliate-replacement-window × Per-affiliate-cancellation-window × Per-affiliate-credit-note-window × Per-affiliate-debit-note-window × Per-affiliate-write-off-window × Per-affiliate-recovery-window × Per-affiliate-recovery-cadence × Per-affiliate-recovery-channel × Per-affiliate-recovery-tone × Per-affiliate-recovery-script × Per-affiliate-recovery-rendering-language × Per-affiliate-recovery-translation-cost-allocation × Per-affiliate-recovery-translation-revenue-recognition × Per-affiliate-recovery-translation-tax-jurisdiction-restatement × Per-affiliate-recovery-translation-statute-of-limitations-restatement × Per-affiliate-recovery-translation-FDCPA-§1692-restatement × Per-affiliate-recovery-translation-Rosenthal-Act-restatement × Per-affiliate-recovery-translation-mini-FDCPA-state-restatement × Per-affiliate-recovery-translation-state-license-jurisdictional-rule-restatement × Per-affiliate-recovery-translation-state-bond-jurisdictional-rule-restatement × Per-affiliate-recovery-translation-state-surety-jurisdictional-rule-restatement × Per-affiliate-recovery-translation-state-collateral-jurisdictional-rule-restatement × Per-affiliate-recovery-translation-state-revocation-procedure-jurisdictional-rule-restatement × Per-affiliate-recovery-translation-state-reinstatement-procedure-jurisdictional-rule-restatement 54-axis decision-rollback engine",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-23",
+      "sources": [],
+      "blurb": "A canonical 54-axis decision-rollback-engine for per-affiliate × per-recovery-translation-state-reinstatement-procedure-jurisdictional-rule-restatement-mis-attribution incidents (64-signal-discriminator × 30-state-rei...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 0,
+      "size": 103598,
+      "lastTouched": "2026-09-23"
+    },
+    {
       "file": "31-nps-voc-closed-loop-automation.md",
       "name": "nps-voc-closed-loop-automation",
       "title": "NPS + Voice-of-Customer closed-loop automation (Move #20.2)",
@@ -62166,6 +62212,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "88ff68b",
+      "date": "2026-09-23T20:44:01Z",
+      "author": "mattiasadem",
+      "subject": "skill: Move #287.19 Per-affiliate-recovery-translation-state-suspension-procedure-jurisdictional-rule-restatement 53-axis decision-rollback engine",
+      "body": ""
+    },
+    {
+      "sha": "9128139",
+      "date": "2026-09-23T19:37:26Z",
+      "author": "mattiasadem",
+      "subject": "skill: Move #287.18 Per-affiliate-recovery-translation-state-revocation-procedure-jurisdictional-rule-restatement 52-axis decision-rollback engine",
+      "body": ""
+    },
+    {
       "sha": "c7950aa",
       "date": "2026-09-23T18:29:51Z",
       "author": "mattiasadem",
@@ -63550,20 +63610,6 @@
       "author": "mattiasadem",
       "subject": "skill: Move #190 ai-vendor-portfolio-incident-post-mortem-engine",
       "body": ""
-    },
-    {
-      "sha": "45eb052",
-      "date": "2026-09-16T22:25:10Z",
-      "author": "hermesagent",
-      "subject": "journal: Move #189 ai-vendor-portfolio-incident-recovery-orchestrator tick (keep; deploy succeeded; canonical alias rotated)",
-      "body": ""
-    },
-    {
-      "sha": "2da5503",
-      "date": "2026-09-16T22:23:55Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #189 ai-vendor-portfolio-incident-recovery-orchestrator (FIRST Tier-1 + FIRST P0 in unique category ai-vendor-incident-recovery; canonical fleet-level-incident-recovery-state-machine + fleet-level-portfolio-state-restore-engine ",
-      "body": ""
     }
   ],
   "counts": {
@@ -63572,8 +63618,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 1,
-    "skills": 303,
+    "journalEntries": 3,
+    "skills": 305,
     "gitCommits": 200
   }
 }
