@@ -6,8 +6,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { content, freshnessLabel, freshnessTier } from "@/lib/content";
-import Link from "next/link";
+import { content, freshnessTier } from "@/lib/content";
+import {
+  ContentSearch,
+  type ContentSearchItem as ContentSearchItemType,
+} from "@/components/content-search";
 
 export const dynamic = "force-static";
 
@@ -26,6 +29,25 @@ export default function ResearchIndexPage() {
   // numbered order.
   const sorted = [...docs].sort((a, b) => a.file.localeCompare(b.file));
 
+  // Aggregate freshness summary for the header strip — mirrors the
+  // /assets header pattern so operators learn one visual and apply
+  // it everywhere.
+  const freshCount = sorted.filter(
+    (d) => freshnessTier(d.lastTouched ?? undefined) === "fresh",
+  ).length;
+  const agingCount = sorted.filter(
+    (d) => freshnessTier(d.lastTouched ?? undefined) === "aging",
+  ).length;
+  const staleCount = sorted.filter(
+    (d) => freshnessTier(d.lastTouched ?? undefined) === "stale",
+  ).length;
+  const totalFindings = sorted.reduce(
+    (n, d) => n + (d.findings?.length ?? 0),
+    0,
+  );
+  const totalTables = sorted.reduce((n, d) => n + (d.tables?.length ?? 0), 0);
+  const totalSize = sorted.reduce((n, d) => n + (d.size ?? 0), 0);
+
   return (
     <div className="flex flex-col gap-6">
       <header className="flex flex-col gap-2">
@@ -39,74 +61,106 @@ export default function ResearchIndexPage() {
           card to open the full SSR-rendered document with a permanent URL
           you can share.
         </p>
+        <div className="flex flex-wrap items-center gap-2 pt-1">
+          <span className="text-[10px] uppercase tracking-wider text-muted-foreground">
+            Freshness
+          </span>
+          <Badge variant="outline" className={TIER_STYLES.fresh}>
+            {freshCount} fresh
+          </Badge>
+          <Badge variant="outline" className={TIER_STYLES.aging}>
+            {agingCount} aging
+          </Badge>
+          <Badge variant="outline" className={TIER_STYLES.stale}>
+            {staleCount} stale
+          </Badge>
+          <span className="text-[10px] text-muted-foreground ml-1">
+            (fresh &lt;14d · aging 14–60d · stale &gt;60d since last edit)
+          </span>
+        </div>
       </header>
 
-      <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-        {sorted.map((doc) => {
-          const slug = doc.file.replace(/\.md$/, "");
-          const tier = freshnessTier(doc.lastTouched ?? undefined);
-          const tierStyle = TIER_STYLES[tier] ?? TIER_STYLES.unknown;
-          const sectionCount = doc.sections?.length ?? 0;
-          const tableCount = doc.tables?.length ?? 0;
-          const title =
-            doc.title ??
-            doc.file.replace(/\.md$/, "").replace(/^\d+-/, "").replace(/-/g, " ");
-          return (
-            <Link
-              key={doc.file}
-              href={`/research/${slug}`}
-              className="block group rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/40"
-            >
-              <Card className="h-full transition-colors group-hover:border-accent/40">
-                <CardHeader>
-                  <div className="flex flex-wrap items-baseline justify-between gap-2">
-                    <CardTitle className="text-base leading-tight">
-                      {title}
-                    </CardTitle>
-                    <Badge
-                      variant="outline"
-                      className={`text-[10px] shrink-0 ${tierStyle}`}
-                    >
-                      {freshnessLabel(doc.lastTouched ?? undefined) ?? "—"}
-                    </Badge>
-                  </div>
-                  <CardDescription className="font-mono text-[10px]">
-                    research/{doc.file}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="flex flex-col gap-2">
-                  <div className="flex flex-wrap items-center gap-2 text-[10px] text-muted-foreground">
-                    <span>{sectionCount} sections</span>
-                    {tableCount > 0 && (
-                      <>
-                        <span>·</span>
-                        <span>
-                          {tableCount} {tableCount === 1 ? "table" : "tables"}
-                        </span>
-                      </>
-                    )}
-                    {(doc.findings?.length ?? 0) > 0 && (
-                      <>
-                        <span>·</span>
-                        <span>{doc.findings?.length} findings</span>
-                      </>
-                    )}
-                  </div>
-                  {doc.findings && doc.findings.length > 0 ? (
-                    <ul className="space-y-1 text-xs text-foreground/80 list-disc pl-4 line-clamp-3">
-                      {doc.findings.slice(0, 3).map((f, j) => (
-                        <li key={j} className="leading-snug">
-                          {f}
-                        </li>
-                      ))}
-                    </ul>
-                  ) : null}
-                </CardContent>
-              </Card>
-            </Link>
-          );
-        })}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-base">Total research docs</CardTitle>
+            <CardDescription>On-disk long-form briefs</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="text-3xl font-semibold tabular-nums">
+              {sorted.length}
+            </div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-base">Tables + findings</CardTitle>
+            <CardDescription>Aggregated structured data</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="text-3xl font-semibold tabular-nums">
+              {totalTables}
+              <span className="ml-1 text-base text-muted-foreground font-normal">
+                tables
+              </span>
+              <span className="mx-1.5 text-base text-muted-foreground">·</span>
+              {totalFindings}
+              <span className="ml-1 text-base text-muted-foreground font-normal">
+                findings
+              </span>
+            </div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-base">Total size</CardTitle>
+            <CardDescription>
+              Combined markdown content (no build step)
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="text-3xl font-semibold tabular-nums">
+              {(totalSize / 1024).toFixed(0)}
+              <span className="ml-1 text-base text-muted-foreground font-normal">
+                KB
+              </span>
+            </div>
+          </CardContent>
+        </Card>
       </div>
+
+      {/* ContentSearch — same component shape as /assets + /playbooks:
+          text query across title + file + meta + section headings, plus
+          a freshness-tier chip group. State persists to localStorage
+          under a `research`-kind discriminator so the asset and research
+          filter state don't collide. */}
+      <ContentSearch
+        kind="research"
+        routePrefix="/research"
+        items={sorted.map((d) => {
+          // Pull the leading number from the filename so the chip can
+          // display RD-00 / RD-01 / … RD-17 in the canonical order.
+          const m = /^(\d+)-/.exec(d.file);
+          const researchNumber = m ? parseInt(m[1], 10) : null;
+          return {
+            id: d.file.replace(/\.md$/, ""),
+            title:
+              d.title ??
+              d.file
+                .replace(/\.md$/, "")
+                .replace(/^\d+-/, "")
+                .replace(/-/g, " "),
+            file: d.file,
+            meta: d.findings,
+            numberedSections: d.numberedSections,
+            lastTouched: d.lastTouched ?? null,
+            sectionCount: d.sectionCount,
+            size: d.size,
+            assetNumber: researchNumber ?? undefined,
+          } satisfies ContentSearchItemType;
+        })}
+        itemNumberField={"assetNumber" as keyof ContentSearchItemType}
+      />
     </div>
   );
 }

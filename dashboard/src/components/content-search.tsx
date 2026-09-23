@@ -48,6 +48,10 @@ export interface ContentSearchItem {
   size?: number;
   voiceGated?: boolean;
   voiceCounts?: Record<string, number>;
+  // Generic per-doc number used to render the RD-XX / PB-XX / AS-XX chip.
+  // assets pass assetNumber, research passes the leading filename integer,
+  // playbooks (when mounted here) would pass playbookNumber.
+  assetNumber?: number | null;
 }
 
 interface SearchState {

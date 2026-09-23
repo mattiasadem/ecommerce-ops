@@ -227,6 +227,17 @@ async function parseResearch() {
     const findSec = doc.sections.find((s) => s.heading && /^Findings$/i.test(s.heading));
     if (findSec) doc.findings = extractBullets(findSec.body || "");
     doc.lastTouched = lastTouched;
+    // Mirror the playbook shape so the generic ContentSearch component can
+    // mount on /research (text query + freshness tier chip filter).
+    // numberedSections: top-level H2 sections only, capped at 20 entries,
+    // matching the playbook parser's slice so the search index has consistent
+    // depth across both routes.
+    doc.numberedSections = doc.sections
+      .filter((s) => s.level === 2)
+      .slice(0, 20)
+      .map((s) => ({ heading: s.heading, body: s.body || "" }));
+    doc.sectionCount = doc.sections.length;
+    doc.size = md.length;
     docs.push(doc);
   }
   return docs;

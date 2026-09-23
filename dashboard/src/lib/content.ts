@@ -20,6 +20,9 @@ export interface ResearchDoc {
   sections: ContentSection[];
   tables: { heading: string; rows: TableRow[] }[];
   findings: string[];
+  numberedSections?: { heading: string; body: string }[];
+  sectionCount?: number;
+  size?: number;
   lastTouched?: string | null;
 }
 
