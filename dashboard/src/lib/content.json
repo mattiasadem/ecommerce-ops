@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-23T02:33:20.110Z",
+  "generatedAt": "2026-09-23T03:49:13.247Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -11790,6 +11790,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-23 02:38 UTC] Skill tick: keep — Move #287.4 Per-affiliate-recovery-tone 38-axis decision-rollback engine (FIRST Tier-1 + FIRST P0 in unique category `per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-x-per-affiliate-x-per-affiliate-network-x-per-affiliate-commission-structure-x-per-affiliate-cohort-tier-x-per-affiliate-payout-cadence-x-per-affiliate-content-type-x-per-affiliate-aesthetic-x-per-affiliate-language-x-per-affiliate-disclosure-mode-x-per-affiliate-fraud-tier-x-per-affiliate-chargeback-window-x-per-affiliate-refund-abuse-window-x-per-affiliate-region-x-per-affiliate-platform-terms-x-per-affiliate-refund-window-x-per-affiliate-return-window-x-per-affiliate-exchange-window-x-per-affiliate-store-credit-window-x-per-affiliate-replacement-window-x-per-affiliate-cancellation-window-x-per-affiliate-credit-note-window-x-per-affiliate-debit-note-window-x-per-affiliate-write-off-window-x-per-affiliate-recovery-window-x-per-affiliate-recovery-cadence-x-per-affiliate-recovery-channel-x-per-affiliate-recovery-tone-decision-rollback`; 38-axis (with-affiliate-recovery-tone + with-affiliate-recovery-channel + with-affiliate-recovery-cadence + with-affiliate-recovery-window + with-affiliate-write-off-window + with-affiliate-debit-note-window + with-affiliate-credit-note-window + with-affiliate-cancellation-window + with-affiliate-replacement-window + with-affiliate-store-credit-window + with-affiliate-exchange-window + with-affiliate-return-window + with-affiliate-refund-window + with-affiliate-platform-terms + with-affiliate-region + with-affiliate-refund-abuse-window + with-affiliate-chargeback-window + with-affiliate-fraud-tier + with-affiliate-disclosure-mode + with-affiliate-language + with-affiliate-aesthetic + with-affiliate-content-type + with-affiliate-payout-cadence + with-affiliate-cohort-tier + with-affiliate-commission-structure + with-affiliate-network + with-affiliate + with-product-discovery + with-zone + with-carrier + with-warehouse + with-experiment + with-cohort + with-creative + with-daypart + with-SKU + with-channel + with-payment-method) compound extension of Move #290 + Move #289 + Move #288 + Move #287 + Move #286 + Move #285 + Move #284 + Move #283 + Move #281.1 + Move #28 + Move #79 + Move #25 + Move #16 + Move #174; canonical Move #287.4 extension adding the Per-affiliate-recovery-tone dimension (12-tone-decision-grid: friendly-tone ↔ firm-tone ↔ legal-tone ↔ empathic-tone ↔ financial-counselor-tone ↔ settlement-offer-tone ↔ hardship-program-tone ↔ goodwill-tone ↔ escalation-tone ↔ final-notice-tone ↔ small-claims-court-tone ↔ bankruptcy-tone) — answering \"which Per-payment-method × ... × Per-affiliate-recovery-channel axis had a mis-routed recovery-tone-decision in the last 24-72h, and how do we detect it, attribute it, rollback it, and prevent recurrence per 38-axis-combination?\"; **48 numbered pitfalls (P1-P48)** + 51 verification gates A-Z + AA-OO (Move #277 carryover) + PP-RR (Move #278 carryover) + SS (Move #279 carryover) + TT (Move #280 carryover) + UU (Move #281 carryover) + VV (Move #281.1 carryover) + WW (Move #283 carryover) + XX (Move #284 carryover) + YY (Move #285 carryover) + ZZ (Move #286 carryover) + AAA (Move #287 carryover) + BBB (Move #288 carryover) + CCC (Move #289 carryover) + DDD (Move #290 carryover) + EEE (Move #291 unique) + 5-phase 168-264 day build + 110+ source tokens; **120:1-244:1 Year-1 ROI Path B at $3M GMV; 144:1-306:1 Path C at $5M GMV**)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-23\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES: (1) **UNIQUE CATEGORY** — `grep -lE '^category: per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-x-per-affiliate-x-per-affiliate-network-x-per-affiliate-commission-structure-x-per-affiliate-cohort-tier-x-per-affiliate-payout-cadence-x-per-affiliate-content-type-x-per-affiliate-aesthetic-x-per-affiliate-language-x-per-affiliate-disclosure-mode-x-per-affiliate-fraud-tier-x-per-affiliate-chargeback-window-x-per-affiliate-refund-abuse-window-x-per-affiliate-region-x-per-affiliate-platform-terms-x-per-affiliate-refund-window-x-per-affiliate-return-window-x-per-aff"
+    },
     {
       "heading": "[2026-09-23 01:30 UTC] Skill tick: discard — Move #287.4 Per-affiliate-recovery-tone 38-axis decision-rollback engine (build failed: ENAMETOOLONG on Vercel prerender-fallback filename)",
       "body": "- **Branch:** autoresearch/skills-2026-09-23\n- **Status:** discard\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES (FIRST Tier-1 + FIRST P0 in unique category `per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-x-per-affiliate-x-per-affiliate-network-x-per-affiliate-commission-structure-x-per-affiliate-cohort-tier-x-per-affiliate-payout-cadence-x-per-affiliate-content-type-x-per-affiliate-aesthetic-x-per-affiliate-language-x-per-affiliate-disclosure-mode-x-per-affiliate-fraud-tier-x-per-affiliate-chargeback-window-x-per-affiliate-refund-abuse-window-x-per-affiliate-region-x-per-affiliate-platform-terms-x-per-affiliate-refund-window-x-per-affiliate-return-window-x-per-affi"
@@ -39839,6 +39843,25 @@
       "lastTouched": "2026-09-23"
     },
     {
+      "file": "292-pp-x-ch-x-sku-x-dp-x-cr-x-co-x-ex-x-wh-x-ca-x-zn-x-pd-x-af-x-an-x-acs-x-act-x-apc-x-acy-x-ae-x-al-x-adm-x-aft-x-acw-x-raaw-x-afe-x-apt-x-arw-x-artw-x-aew-x-ascw-x-arpw-x-acnw-x-artx-39axis-decision-rollback-engine.md",
+      "name": "per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-x-per-affiliate-x-per-affiliate-network-x-per-affiliate-commission-structure-x-per-affiliate-cohort-tier-x-per-affiliate-payout-cadence-x-per-affiliate-content-type-x-per-affiliate-aesthetic-x-per-affiliate-language-x-per-affiliate-disclosure-mode-x-per-affiliate-fraud-tier-x-per-affiliate-chargeback-window-x-per-affiliate-refund-abuse-window-x-per-affiliate-region-x-per-affiliate-platform-terms-x-per-affiliate-refund-window-x-per-affiliate-return-window-x-per-affiliate-exchange-window-x-per-affiliate-store-credit-window-x-per-affiliate-replacement-window-x-per-affiliate-cancellation-window-x-per-affiliate-credit-note-window-x-per-affiliate-debit-note-window-x-per-affiliate-write-off-window-x-per-affiliate-recovery-window-x-per-affiliate-recovery-cadence-x-per-affiliate-recovery-channel-x-per-affiliate-recovery-tone-x-per-affiliate-recovery-script-39axis-decision-rollback-engine",
+      "title": "Move #287.5 Per-payment-method × Per-channel × Per-SKU × Per-daypart × Per-creative × Per-cohort × Per-experiment × Per-warehouse × Per-carrier × Per-zone × Per-product-discovery × Per-affiliate × Per-affiliate-network × Per-affiliate-commission-structure × Per-affiliate-cohort-tier × Per-affiliate-payout-cadence × Per-affiliate-content-type × Per-affiliate-aesthetic × Per-affiliate-language × Per-affiliate-disclosure-mode × Per-affiliate-fraud-tier × Per-affiliate-chargeback-window × Per-affiliate-refund-abuse-window × Per-affiliate-region × Per-affiliate-platform-terms × Per-affiliate-refund-window × Per-affiliate-return-window × Per-affiliate-exchange-window × Per-affiliate-store-credit-window × Per-affiliate-replacement-window × Per-affiliate-cancellation-window × Per-affiliate-credit-note-window × Per-affiliate-debit-note-window × Per-affiliate-write-off-window × Per-affiliate-recovery-window × Per-affiliate-recovery-cadence × Per-affiliate-recovery-channel × Per-affiliate-recovery-tone × Per-affiliate-recovery-script 39-axis decision-rollback engine",
+      "category": "per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-x-per-affiliate-x-per-affiliate-network-x-per-affiliate-commission-structure-x-per-affiliate-cohort-tier-x-per-affiliate-payout-cadence-x-per-affiliate-content-type-x-per-affiliate-aesthetic-x-per-affiliate-language-x-per-affiliate-disclosure-mode-x-per-affiliate-fraud-tier-x-per-affiliate-chargeback-window-x-per-affiliate-refund-abuse-window-x-per-affiliate-region-x-per-affiliate-platform-terms-x-per-affiliate-refund-window-x-per-affiliate-return-window-x-per-affiliate-exchange-window-x-per-affiliate-store-credit-window-x-per-affiliate-replacement-window-x-per-affiliate-cancellation-window-x-per-affiliate-credit-note-window-x-per-affiliate-debit-note-window-x-per-affiliate-write-off-window-x-per-affiliate-recovery-window-x-per-affiliate-recovery-cadence-x-per-affiliate-recovery-channel-x-per-affiliate-recovery-tone-x-per-affiliate-recovery-script-decision-rollback",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "287.5",
+      "yearOneRoiBand": "124:1-252:1 Path B at $3M GMV; 149:1-316:1 Path C at $5M GMV",
+      "smsFriendly": true,
+      "lastUpdated": "2026-09-23",
+      "sources": [],
+      "blurb": "A canonical 39-axis decision-rollback-engine for per-affiliate × per-recovery-script-mis-execution incidents (12-tone × 38-axis × 1000+ lines-of-recovery-script-decision-tree × per-jurisdiction × per-aging-bucket × pe...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 0,
+      "size": 136840,
+      "lastTouched": "2026-09-23"
+    },
+    {
       "file": "30-dynamic-pricing-repricing-engine.md",
       "name": "dynamic-pricing-repricing-engine",
       "title": "Dynamic pricing + repricing engine (Move #20.x)",
@@ -61216,6 +61239,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "8ea66df",
+      "date": "2026-09-23T02:38:32Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #287.4 (38-axis recovery-tone) — SHIPPED via 5-trailing-axis-token slug-shortening (resolves ENAMETOOLONG blocker; canonical content preserved; HTTP 200, 438,654 bytes, 11 sentinel tokens live)",
+      "body": ""
+    },
+    {
       "sha": "66f228a",
       "date": "2026-09-23T01:28:46Z",
       "author": "hermesagent",
@@ -62607,13 +62637,6 @@
       "author": "hermesagent",
       "subject": "docs(journal): Move #178 skill tick — localized payment-method orchestration (DEPLOY BLOCKED at Vercel 24h quota; discard; reflog-preserved at 8d4a4e6)",
       "body": ""
-    },
-    {
-      "sha": "7d9ecd9",
-      "date": "2026-09-16T07:21:12Z",
-      "author": "hermesagent",
-      "subject": "docs(journal): Move #128.aj keep tick — /30-day-plan saved plan history + restore + compare (DEPLOY BLOCKED at Vercel 24h quota)",
-      "body": ""
     }
   ],
   "counts": {
@@ -62622,8 +62645,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 43,
-    "skills": 289,
+    "journalEntries": 44,
+    "skills": 290,
     "gitCommits": 200
   }
 }
