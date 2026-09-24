@@ -1,5 +1,5 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "cd dashboard && next build",
-  "outputDirectory": "dashboard/.next"
+  "buildCommand": "next build",
+  "outputDirectory": ".next"
 }

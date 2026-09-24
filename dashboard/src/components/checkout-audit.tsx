@@ -95,6 +95,14 @@ function storeInputs(inputs: AuditInputs) {
   if (typeof window === "undefined") return;
   try {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(inputs));
+    // Dispatch a custom event so same-tab sibling components (e.g. the
+    // `<CheckoutAuditExportButton />` mounted by the
+    // `<CheckoutAuditWithExport />` wrapper) see the change in real time
+    // without waiting for a remount. Cross-tab updates still flow through
+    // the standard `storage` event.
+    window.dispatchEvent(
+      new CustomEvent("ecom-ops:cro:checkout-audit:update"),
+    );
   } catch {
     /* quota / private-mode */
   }

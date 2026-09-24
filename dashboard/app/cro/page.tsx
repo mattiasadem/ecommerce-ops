@@ -6,7 +6,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ResearchTable } from "@/components/research-table";
-import { CheckoutAudit } from "@/components/checkout-audit";
+import { CheckoutAuditWithExport } from "@/components/checkout-audit-with-export";
 import { content, findTable } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -83,7 +83,7 @@ export default function CroPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <CheckoutAudit />
+          <CheckoutAuditWithExport />
         </CardContent>
       </Card>
 
