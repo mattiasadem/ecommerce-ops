@@ -14,6 +14,7 @@ import { WelcomeSeriesROICalculator } from "@/components/welcome-series-roi";
 import { PdpAbTestCalculator } from "@/components/pdp-ab-test-calculator";
 import { AiAdCreativeROICalculator } from "@/components/ai-ad-creative-roi";
 import { CheckoutAudit } from "@/components/checkout-audit";
+import { LoyaltyROICalculator } from "@/components/loyalty-roi-calculator";
 
 const ROOT = "/data/workspace/ecommerce-ops";
 const BUILD_PLAYBOOKS = join(process.cwd(), "src/playbooks");
@@ -40,6 +41,10 @@ const CALCULATORS: Record<string, { node: React.ReactNode; label: string }> = {
   "04-welcome-series-klaviyo": {
     node: <WelcomeSeriesROICalculator />,
     label: "Forecast monthly incremental revenue from the 4-email welcome flow.",
+  },
+  "07-loyalty-program-smile": {
+    node: <LoyaltyROICalculator />,
+    label: "Project incremental revenue, cohort share, and net $/$1 from launching Smile.io / Yotpo Loyalty / LoyaltyLion.",
   },
   "09.5-pdp-ab-testing-program": {
     node: <PdpAbTestCalculator />,
