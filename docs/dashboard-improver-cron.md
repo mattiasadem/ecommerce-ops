@@ -77,3 +77,5 @@ ls /data/workspace/cron-reports/ | tail
 ## 2026-09-20 10:08 UTC — /channels Channel Mix Budget Allocator (interactive-tool + cross-page-intelligence + state-persistence). Live at https://ecommerce-ops-iota.vercel.app/channels.
 
 ## 2026-09-21 23:55 UTC — /playbooks/[slug] detail route + Mark-as-shipped toggle (cross-page-intelligence + state-persistence + interactive-tool). 30 new prerendered routes. Live at https://ecommerce-ops-iota.vercel.app/playbooks/01-abandoned-cart-flow-klaviyo.
+
+## 2026-09-24 18:34 UTC — Loyalty Program ROI calculator on /playbooks/07-loyalty-program-smile (P0+P1 interactive-tool + state-persistence + cross-page-intelligence). Live at https://ecommerce-ops-iota.vercel.app/playbooks/07-loyalty-program-smile. Commit bc98120 pushed (0389f0e..bc98120).
