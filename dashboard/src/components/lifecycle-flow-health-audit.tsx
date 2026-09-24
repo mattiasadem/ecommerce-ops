@@ -90,6 +90,17 @@ function storeInputs(kpisByFlow: Record<string, FlowKpis>) {
   } catch {
     /* quota / private mode */
   }
+  // Fire a same-tab event so co-mounted export buttons (and any other
+  // sibling components on /lifecycle) reload from localStorage without
+  // waiting for a manual remount. Same-tab updates don't fire the
+  // standard `storage` event — only the cross-tab path does.
+  try {
+    window.dispatchEvent(
+      new CustomEvent("ecom-ops:lifecycle-flow-health:update"),
+    );
+  } catch {
+    /* older browsers — ignore */
+  }
 }
 
 function FlowRow({

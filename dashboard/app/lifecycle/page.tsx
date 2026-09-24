@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ResearchTable } from "@/components/research-table";
-import { LifecycleFlowHealthAudit } from "@/components/lifecycle-flow-health-audit";
+import { LifecycleFlowAuditWithExport } from "@/components/lifecycle-flow-audit-with-export";
 import { content, findDoc, findTable } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -316,7 +316,7 @@ export default function LifecyclePage() {
 
       {/* === INTERACTIVE LIFECYCLE FLOW HEALTH AUDIT === */}
       <div className="border-t border-border/60 pt-6">
-        <LifecycleFlowHealthAudit />
+        <LifecycleFlowAuditWithExport />
       </div>
 
       {/* === FOOTER === */}
