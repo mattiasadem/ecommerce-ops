@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-24T04:16:51.879Z",
+  "generatedAt": "2026-09-24T05:25:37.301Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12642,6 +12642,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-24 04:13 UTC] Skill tick: keep — Move #287.24 Per-affiliate-recovery-translation-state-emergency-procedure-extension-renewal-revocation-jurisdictional-rule-restatement 58-axis decision-rollback engine",
+      "body": "- **Branch:** autoresearch/skills-2026-09-24\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES: (1) UNIQUE CATEGORY — `grep -lE 'state-emergency-procedure-extension-renewal-revocation' skills/*.md | wc -l = 1` (Move #311 is the only skill with the canonical 58-axis Per-affiliate-recovery-translation-state-emergency-procedure-extension-renewal-revocation-jurisdictional-rule-restatement decision-rollback category; canonical Move #287.24 extension explicitly named in Move #310's \"How to extend this skill\" roadmap line \"Move #287.24 — ... × Per-affiliate-recovery-translation-state-emergency-procedure-extension-renewal-revocation-jurisdictional-rule-restatement 58-axis decision-rollback engine\"); (2) TIER-1 FIRST IN CATEGORY — first Tier-1 in the canonical 58-axis category;"
+    },
     {
       "heading": "[2026-09-24 01:35 UTC] Skill tick: keep — Move #287.23 Per-affiliate-recovery-translation-state-emergency-procedure-extension-renewal-jurisdictional-rule-restatement 57-axis decision-rollback engine",
       "body": "- **Branch:** autoresearch/skills-2026-09-24\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES: (1) UNIQUE CATEGORY — `grep -lE 'per-affiliate-recovery-translation-state-emergency-procedure-extension-renewal-jurisdictional-rule-restatement' skills/*.md | wc -l = 1` (Move #310 is the only skill with the canonical 57-axis Per-affiliate-recovery-translation-state-emergency-procedure-extension-renewal-jurisdictional-rule-restatement decision-rollback category); (2) TIER-1 FIRST IN CATEGORY — first Tier-1 in the canonical 57-axis category; (3) P0 FIRST IN CATEGORY — first P0 in the same category; (4) HIGHEST PITFALL COUNT WINS TIES — Move #310 has **67 numbered pitfalls (P1-P66 carryover from Move #287.22 + P67 Move #287.23 unique 67-signal-discriminator for state-emergency"
@@ -41027,6 +41031,25 @@
       "lastTouched": "2026-09-24"
     },
     {
+      "file": "312-pp-x-ch-x-sku-x-dp-x-cr-x-co-x-ex-x-wh-x-ca-x-zn-x-pd-x-af-x-an-x-acs-x-act-x-apc-x-acy-x-ae-x-al-x-adm-x-aft-x-acw-x-raaw-x-afe-x-apt-x-arw-x-arsj-x-arseper-x-arseperv-x-arsepervr-59axis-decision-rollback-engine.md",
+      "name": "312-pp-x-ch-x-sku-x-dp-x-cr-x-co-x-ex-x-wh-x-ca-x-zn-x-pd-x-af-x-an-x-acs-x-act-x-apc-x-acy-x-ae-x-al-x-adm-x-aft-x-acw-x-raaw-x-afe-x-apt-x-arw-x-arsj-x-arseper-x-arseperv-x-arsepervr-59axis-decision-rollback-engine",
+      "title": "Move #287.25 Per-payment-method × Per-channel × Per-SKU × Per-daypart × Per-creative × Per-cohort × Per-experiment × Per-warehouse × Per-carrier × Per-zone × Per-product-discovery × Per-affiliate × Per-affiliate-network × Per-affiliate-commission-structure × Per-affiliate-cohort-tier × Per-affiliate-payout-cadence × Per-affiliate-content-type × Per-affiliate-aesthetic × Per-affiliate-language × Per-affiliate-disclosure-mode × Per-affiliate-fraud-tier × Per-affiliate-chargeback-window × Per-affiliate-refund-abuse-window × Per-affiliate-region × Per-affiliate-platform-terms × Per-affiliate-refund-window × Per-affiliate-return-window × Per-affiliate-exchange-window × Per-affiliate-store-credit-window × Per-affiliate-replacement-window × Per-affiliate-cancellation-window × Per-affiliate-credit-note-window × Per-affiliate-debit-note-window × Per-affiliate-write-off-window × Per-affiliate-recovery-window × Per-affiliate-recovery-cadence × Per-affiliate-recovery-channel × Per-affiliate-recovery-tone × Per-affiliate-recovery-script × Per-affiliate-recovery-rendering-language × Per-affiliate-recovery-translation-cost-allocation × Per-affiliate-recovery-translation-revenue-recognition × Per-affiliate-recovery-translation-tax-jurisdiction-restatement × Per-affiliate-recovery-translation-statute-of-limitations-restatement × Per-affiliate-recovery-translation-FDCPA-§1692-restatement × Per-affiliate-recovery-translation-Rosenthal-Act-restatement × Per-affiliate-recovery-translation-mini-FDCPA-state-restatement × Per-affiliate-recovery-translation-state-license-jurisdictional-rule-restatement × Per-affiliate-recovery-translation-state-bond-jurisdictional-rule-restatement × Per-affiliate-recovery-translation-state-surety-jurisdictional-rule-restatement × Per-affiliate-recovery-translation-state-collateral-jurisdictional-rule-restatement × Per-affiliate-recovery-translation-state-revocation-procedure-jurisdictional-rule-restatement × Per-affiliate-recovery-translation-state-reinstatement-procedure-jurisdictional-rule-restatement × Per-affiliate-recovery-translation-state-emergency-procedure-jurisdictional-rule-restatement × Per-affiliate-recovery-translation-state-emergency-procedure-extension-jurisdictional-rule-restatement × Per-affiliate-recovery-translation-state-emergency-procedure-extension-renewal-revocation-reinstatement-jurisdictional-rule-restatement × Per-affiliate-recovery-translation-state-emergency-procedure-extension-renewal-jurisdictional-rule-restatement 59-axis decision-rollback engine",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-24",
+      "sources": [],
+      "blurb": "A canonical 59-axis decision-rollback-engine for per-affiliate × per-recovery-translation-state-emergency-procedure-extension-jurisdictional-rule-restatement-mis-attribution incidents (69-signal-discriminator × 30-sta...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 0,
+      "size": 167189,
+      "lastTouched": "2026-09-24"
+    },
+    {
       "file": "32-sales-tax-vat-automation.md",
       "name": "sales-tax-vat-automation",
       "title": "Sales tax + VAT automation (Move #21)",
@@ -62304,6 +62327,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "3893fe4",
+      "date": "2026-09-24T04:19:18Z",
+      "author": "mattiasadem",
+      "subject": "skill: Move #287.24 Per-affiliate-recovery-translation-state-emergency-procedure-extension-renewal-revocation-jurisdictional-rule-restatement 58-axis decision-rollback engine (FIRST Tier-1 + P0 in unique 58-axis category; P68 68-signal-disc",
+      "body": ""
+    },
+    {
       "sha": "0602a2c",
       "date": "2026-09-24T02:00:48Z",
       "author": "hermesagent",
@@ -63695,13 +63725,6 @@
       "author": "hermesagent",
       "subject": "docs(journal): Move #128.ak trajectory check-in tick entry",
       "body": ""
-    },
-    {
-      "sha": "34f77f1",
-      "date": "2026-09-17T01:46:42Z",
-      "author": "hermesagent",
-      "subject": "feat(dashboard): Move #128.ak trajectory check-in banner — quarterly review with vs-last-snapshot delta",
-      "body": "- dashboard/src/lib/trajectory-checkin.ts (NEW): TrajectoryCheckinPayload schema, load/save/add/delete helpers, ring buffer (max 24 entries), isValidShape validator, daysSinceCheckin/shouldShowReminder/checkinWithinCompareWindow/computeCheckinDelta derivations, fmtCheckinDate/fmtCheckinRelative formatters, custom DOM event 'ecom-ops:trajectory-checkins:update' for same-tab sync. Storage key 'ecom-ops:trajectory-checkins:v1'.\n- dashboard/src/components/trajectory-checkin-banner.tsx (NEW): TrajectoryCheckinBanner client component with two render variants:\n  - Empty-state invitation when no check-in has ever been recorded — soft amber dashed card with 'Save current trajectory' button.\n  - Full variant when at least one snapshot exists — reminder banner (amber 2px border when daysSinceLast >= 30) + Save snapshot button + 5-tile delta grid (peak revenue / Year-1 lift / baseline / moves shipped / AOV % delta) computed against the most-recent check-in older than the 30d compare window + collapsible history table (Copy-button for Markdown export + per-row delete).\n  - Compact prop for /today mount (tighter padding); full variant for / mount.\n- dashboard/app/page.tsx: mount <TrajectoryCheckinBanner /> inside new <section id='trajectory-checkin-banner'> immediately below TrajectoryPanel.\n- dashboard/app/today/page.tsx: mount <TrajectoryCheckinBanner compact /> inside new <section> immediately below TrajectoryPanel.\n- All math reuses canonical TrajectoryProjection engine + Your-store + shipped-playbooks localStorage keys; same-tab sync via custom event; cross-tab sync via storage event.\n\nOperator now sees: (a) a quarterly cadence nudge on / + /today, (b) a clean before/after delta vs the last snapshot, (c) a full audit trail of every saved check-in. Closes the engagement loop on Move #6.16 / 6.17."
     }
   ],
   "counts": {
@@ -63710,8 +63733,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 7,
-    "skills": 309,
+    "journalEntries": 8,
+    "skills": 310,
     "gitCommits": 200
   }
 }
