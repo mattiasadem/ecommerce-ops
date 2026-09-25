@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-25T00:28:08.096Z",
+  "generatedAt": "2026-09-25T02:38:16.960Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12643,6 +12643,14 @@
   },
   "journal": [
     {
+      "heading": "[2026-09-25 01:32 UTC] Skill tick: keep — Move #3.2 Checkout audit by checkout-step (per-checkout-step funnel + per-checkout-step completion-rate + per-checkout-step leak-rate + per-checkout-step cause-diagnosis + per-checkout-step fix-recommendation + per-checkout-step attribution loop + Move #3 Baymard + Move #3.1 per-payment-method + Move #6 Triple Whale attribution + Move #47 growth-experimentation)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-25\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — second cycle-break candidate per the 2026-09-25 00:30 UTC Move #3.1 cycle-break + the 2026-09-24 16:50 UTC Move #287.34 discard's guidance to rotate off the Move #287 axis-extension pipeline. (1) UNIQUE CATEGORY — `grep -lE '^category: checkout-audit-by-checkout-step' skills/*.md | wc -l = 1` (skill/328 is the only skill with the canonical checkout-audit-by-checkout-step category; master had 325 skills pre-tick, skill/328 is the only one with this category). (2) TIER-1 FIRST IN CATEGORY — first Tier-1 in the canonical checkout-audit-by-checkout-step category. (3) P0 FIRST IN CATEGORY — first P0 in the same category. (4) HIGHEST PITFALL COUNT WINS TIES — skill/328 has **18 n"
+    },
+    {
+      "heading": "[2026-09-25 00:30 UTC] Skill tick: keep — Move #3.1 Checkout audit by payment method (per-payment-method funnel audit + per-PSP-success-rate + per-card-BIN-decline-code + per-cohort-payment-method-completion-rate + per-region-payment-method-affinity + per-device-payment-method-affinity + per-AOV-band-payment-method-affinity + per-cart-value-band-payment-method-affinity + per-customer-LTV-tier-payment-method-affinity + Move #38 BNPL + Move #95 payments-orchestration + Move #3 Baymard + Move #6 Triple Whale attribution + Move #95 cascading-fallback)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-25\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — cycle-break + new-operator-lever pivot per the 16:50 UTC Move #287.34 discard's guidance to rotate off the Move #287 axis-extension pipeline. (1) UNIQUE CATEGORY — `grep -lE '^category: checkout-audit-by-payment-method' skills/*.md | wc -l = 1` (skill/327 is the only skill with the canonical checkout-audit-by-payment-method category; master had 324 skills pre-tick, skill/327 is the only one with this category). (2) TIER-1 FIRST IN CATEGORY — first Tier-1 in the canonical checkout-audit-by-payment-method category. (3) P0 FIRST IN CATEGORY — first P0 in the same category. (4) HIGHEST PITFALL COUNT WINS TIES — gate moot, no other skill in the category for comparison. **Operato"
+    },
+    {
       "heading": "[2026-09-24 08:55 UTC] Skill tick: keep — Move #287.27 Per-affiliate-recovery-translation-state-emergency-procedure-extension-renewal-revocation-reinstatement-emergency-procedure-extension-jurisdictional-rule-restatement 61-axis decision-rollback engine",
       "body": "- **Branch:** autoresearch/skills-2026-09-24\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES: (1) UNIQUE CATEGORY - `grep -lE 'arsepervree' skills/*.md | wc -l = 1` (Move #314 is the only skill with the canonical 61-axis Per-affiliate-recovery-translation-state-emergency-procedure-extension-renewal-revocation-reinstatement-emergency-procedure-extension-jurisdictional-rule-restatement decision-rollback category; canonical Move #287.27 extension explicitly named in Move #313's \"How to extend this skill\" roadmap). (2) TIER-1 FIRST IN CATEGORY - first Tier-1 in the canonical 61-axis category. (3) P0 FIRST IN CATEGORY - first P0 in the same category. (4) HIGHEST PITFALL COUNT WINS TIES - Move #314 has **71 numbered pitfalls** (P1-P70 carryover from Move #287.21-#287.26 + "
     },
@@ -12749,6 +12757,10 @@
     {
       "heading": "[2026-09-24 18:34 UTC] Dashboard-improver tick: keep — Loyalty Program ROI calculator on /playbooks/07-loyalty-program-smile (P0+P1 interactive-tool + state-persistence + cross-page-intelligence)",
       "body": "- **Branch:** autoresearch/dashboard-improver-2026-09-24-18\n- **Status:** keep\n- **Reason:** PASSES ALL DASHBOARD-IMPROVEMENT-METRIC GATES: (1) **NEW INTERACTIVE TOOL** — first interactive calculator on `/playbooks/07-loyalty-program-smile` (Smile.io / Yotpo Loyalty / LoyaltyLion); previously the 07 playbook shipped with rich benchmark numbers (5k customers → 30-36% 90-day repeat rate, +5-9 pts lift, $249/mo program cost) but ZERO interactive math — operators had to compute ROI by hand from the prose. (2) **STATE-PERSISTENCE** — new `ecom-ops:playbooks:loyalty-roi:v1` localStorage key mirrors the existing `ai-ad-creative-roi` / `abandoned-cart-roi` / `welcome-series-roi` persistence pattern; inputs survive reloads. (3) **CROSS-PAGE-INTELLIGENCE** — wired through `mergeFromYourStore(LOYALTY"
+    },
+    {
+      "heading": "[2026-09-25 00:53 UTC] Dashboard-improver tick: keep — SMS Welcome + Cart-Abandon 4-flow ROI calculator on /playbooks/06-sms-welcome-and-cart-abandon (P0 interactive-tool + state-persistence + cross-page-intelligence)",
+      "body": "- **Branch:** autoresearch/dashboard-improver-2026-09-25-00\n- **Status:** keep\n- **Reason:** PASSES ALL DASHBOARD-IMPROVEMENT-METRIC GATES: (1) **NEW INTERACTIVE TOOL** — first interactive calculator on `/playbooks/06-sms-welcome-and-cart-abandon` (Postscript 4-flow stack). Previously this high-leverage Move #7 playbook shipped with canonical benchmarks (Welcome +20% CVR lift, Cart-Soft 5% recovery, Cart-Escalation 3% recovery, Review 20% CVR) but ZERO interactive math — operators had to compute per-flow numbers by hand. The companion `/smsbump-postscript-channel-orchestration` page covers Path A/B/C *channel orchestration* (different lever, $200-$15k/mo); this calculator is the per-flow ROI for the 4 specific Move #7 flows at $100-$400/mo. (2) **STATE-PERSISTENCE** — new `ecom-ops:playboo"
     }
   ],
   "skills": [
@@ -42939,6 +42951,44 @@
       "lastTouched": "2026-09-25"
     },
     {
+      "file": "328-checkout-audit-by-checkout-step.md",
+      "name": "328-checkout-audit-by-checkout-step",
+      "title": "Checkout audit by checkout-step",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-25",
+      "sources": [],
+      "blurb": "Move #3.2 is the canonical **per-checkout-step funnel audit + per-checkout-step completion-rate + per-checkout-step leak-rate + per-checkout-step cause-diagnosis + per-checkout-step fix-recommendation + per-checkout-s...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 51765,
+      "lastTouched": "2026-09-25"
+    },
+    {
+      "file": "329-pp-x-ch-x-sku-x-dp-x-cr-x-co-x-ex-x-wh-x-ca-x-zn-x-pd-x-af-x-an-x-acs-x-act-x-apc-x-acy-x-ae-x-al-x-adm-x-aft-x-acw-x-raaw-x-afe-x-apt-x-arw-x-arsj-x-acsc-x-acsrp-x-acssp-53axis-decision-rollback-engine.md",
+      "name": "per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-x-per-affiliate-x-per-affiliate-network-x-per-affiliate-commission-structure-x-per-affiliate-cohort-tier-x-per-affiliate-payout-cadence-x-per-affiliate-content-type-x-per-affiliate-aesthetic-x-per-affiliate-language-x-per-affiliate-disclosure-mode-x-per-affiliate-fraud-tier-x-per-affiliate-chargeback-window-x-per-affiliate-refund-abuse-window-x-per-affiliate-region-x-per-affiliate-platform-terms-x-per-affiliate-refund-window-x-per-affiliate-return-window-x-per-affiliate-exchange-window-x-per-affiliate-store-credit-window-x-per-affiliate-replacement-window-x-per-affiliate-cancellation-window-x-per-affiliate-credit-note-window-x-per-affiliate-debit-note-window-x-per-affiliate-write-off-window-x-per-affiliate-recovery-window-x-per-affiliate-recovery-cadence-x-per-affiliate-recovery-channel-x-per-affiliate-recovery-tone-x-per-affiliate-recovery-script-x-per-affiliate-recovery-rendering-language-x-per-affiliate-recovery-translation-cost-allocation-x-per-affiliate-recovery-translation-revenue-recognition-x-per-affiliate-recovery-translation-tax-jurisdiction-restatement-x-per-affiliate-recovery-translation-statute-of-limitations-restatement-x-per-affiliate-recovery-translation-fdcpa-restatement-x-per-affiliate-recovery-translation-rosenthal-act-restatement-x-per-affiliate-recovery-translation-mini-fdcpa-state-restatement-x-per-affiliate-recovery-translation-state-license-jurisdictional-rule-restatement-x-per-affiliate-recovery-translation-state-bond-jurisdictional-rule-restatement-x-per-affiliate-recovery-translation-state-surety-jurisdictional-rule-restatement-x-per-affiliate-recovery-translation-state-collateral-jurisdictional-rule-restatement-x-per-affiliate-recovery-translation-state-revocation-procedure-jurisdictional-rule-restatement-x-per-affiliate-recovery-translation-state-suspension-procedure-jurisdictional-rule-restatement-53axis-decision-rollback-engine",
+      "title": "Per-payment-method × Per-channel × Per-SKU × Per-daypart × Per-creative × Per-cohort × Per-experiment × Per-warehouse × Per-carrier × Per-zone × Per-product-discovery × Per-affiliate × Per-affiliate-network × Per-affiliate-commission-structure × Per-affiliate-cohort-tier × Per-affiliate-payout-cadence × Per-affiliate-content-type × Per-affiliate-aesthetic × Per-affiliate-language × Per-affiliate-disclosure-mode × Per-affiliate-fraud-tier × Per-affiliate-chargeback-window × Per-affiliate-refund-abuse-window × Per-affiliate-region × Per-affiliate-platform-terms × Per-affiliate-refund-window × Per-affiliate-return-window × Per-affiliate-exchange-window × Per-affiliate-store-credit-window × Per-affiliate-replacement-window × Per-affiliate-cancellation-window × Per-affiliate-credit-note-window × Per-affiliate-debit-note-window × Per-affiliate-write-off-window × Per-affiliate-recovery-window × Per-affiliate-recovery-cadence × Per-affiliate-recovery-channel × Per-affiliate-recovery-tone × Per-affiliate-recovery-script × Per-affiliate-recovery-rendering-language × Per-affiliate-recovery-translation-cost-allocation × Per-affiliate-recovery-translation-revenue-recognition × Per-affiliate-recovery-translation-tax-jurisdiction-restatement × Per-affiliate-recovery-translation-statute-of-limitations-restatement × Per-affiliate-recovery-translation-FDCPA-§1692-restatement × Per-affiliate-recovery-translation-Rosenthal-Act-restatement × Per-affiliate-recovery-translation-mini-FDCPA-state-restatement × Per-affiliate-recovery-translation-state-license-jurisdictional-rule-restatement × Per-affiliate-recovery-translation-state-bond-jurisdictional-rule-restatement × Per-affiliate-recovery-translation-state-surety-jurisdictional-rule-restatement × Per-affiliate-recovery-translation-state-collateral-jurisdictional-rule-restatement × Per-affiliate-recovery-translation-state-revocation-procedure-jurisdictional-rule-restatement × Per-affiliate-recovery-translation-state-suspension-procedure-jurisdictional-rule-restatement 53-axis decision-rollback engine",
+      "category": "per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-x-per-affiliate-x-per-affiliate-network-x-per-affiliate-commission-structure-x-per-affiliate-cohort-tier-x-per-affiliate-payout-cadence-x-per-affiliate-content-type-x-per-affiliate-aesthetic-x-per-affiliate-language-x-per-affiliate-disclosure-mode-x-per-affiliate-fraud-tier-x-per-affiliate-chargeback-window-x-per-affiliate-refund-abuse-window-x-per-affiliate-region-x-per-affiliate-platform-terms-x-per-affiliate-refund-window-x-per-affiliate-return-window-x-per-affiliate-exchange-window-x-per-affiliate-store-credit-window-x-per-affiliate-replacement-window-x-per-affiliate-cancellation-window-x-per-affiliate-credit-note-window-x-per-affiliate-debit-note-window-x-per-affiliate-write-off-window-x-per-affiliate-recovery-window-x-per-affiliate-recovery-cadence-x-per-affiliate-recovery-channel-x-per-affiliate-recovery-tone-x-per-affiliate-recovery-script-x-per-affiliate-recovery-rendering-language-x-per-affiliate-recovery-translation-cost-allocation-x-per-affiliate-recovery-translation-revenue-recognition-x-per-affiliate-recovery-translation-tax-jurisdiction-restatement-x-per-affiliate-recovery-translation-statute-of-limitations-restatement-x-per-affiliate-recovery-translation-rosenthal-act-restatement-x-per-affiliate-recovery-translation-mini-fdcpa-state-restatement-x-per-affiliate-recovery-translation-state-license-jurisdictional-rule-restatement-x-per-affiliate-recovery-translation-state-bond-jurisdictional-rule-restatement-x-per-affiliate-recovery-translation-state-surety-jurisdictional-rule-restatement-x-per-affiliate-recovery-translation-state-collateral-jurisdictional-rule-restatement-x-per-affiliate-recovery-translation-state-revocation-procedure-jurisdictional-rule-restatement-x-per-affiliate-recovery-translation-state-suspension-procedure-jurisdictional-rule-restatement-decision-rollback",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "287.19",
+      "yearOneRoiBand": "180:1-364:1 Path B at $3M GMV; 212:1-444:1 Path C at $5M GMV",
+      "smsFriendly": true,
+      "lastUpdated": "2026-09-25",
+      "sources": [],
+      "blurb": "Move #287.19 is the canonical **53-axis decision-rollback engine** that extends Move #287.18 (skill/305, per-affiliate-recovery-translation-state-revocation-procedure-jurisdictional-rule-restatement 52-axis) by adding...",
+      "sectionCount": 9,
+      "pitfallCount": 62,
+      "sourceCount": 0,
+      "size": 124683,
+      "lastTouched": "2026-09-25"
+    },
+    {
       "file": "33-fraud-chargeback-management.md",
       "name": "fraud-chargeback-management",
       "title": "Fraud + chargeback management (Move #23)",
@@ -64169,6 +64219,34 @@
   ],
   "gitCommits": [
     {
+      "sha": "65a890d",
+      "date": "2026-09-25T01:36:08Z",
+      "author": "hermesagent",
+      "subject": "journal: append 2026-09-25 01:32 UTC Move #3.2 5-layer checkout-step audit skill tick keep entry",
+      "body": ""
+    },
+    {
+      "sha": "908b54a",
+      "date": "2026-09-25T01:35:32Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #3.2 Checkout audit by checkout-step (per-checkout-step funnel + per-checkout-step completion-rate + per-checkout-step leak-rate + per-checkout-step cause-diagnosis + per-checkout-step fix-recommendation + per-checkout-step attr",
+      "body": ""
+    },
+    {
+      "sha": "abf8b91",
+      "date": "2026-09-25T00:53:59Z",
+      "author": "hermesagent",
+      "subject": "feat(dashboard): SMS Welcome + Cart-Abandon 4-flow ROI calculator on /playbooks/06",
+      "body": ""
+    },
+    {
+      "sha": "eb20f4d",
+      "date": "2026-09-25T00:30:43Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #3.1 Checkout audit by payment method (5-layer Path A/B/C/D + per-payment-method-funnel-instrumentation-engine + per-PSP-decline-code-mapping + per-cohort-payment-method-affinity + 30-fix-recommendations + per-payment-method-att",
+      "body": ""
+    },
+    {
       "sha": "e027b18",
       "date": "2026-09-24T23:26:12Z",
       "author": "hermesagent",
@@ -65539,34 +65617,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #209 board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator (FIRST Tier-1 + FIRST P0 in unique category; canonical closing attribution-explainability-rollup-decision-rollup-validator engine for Mov",
       "body": ""
-    },
-    {
-      "sha": "7268ccc",
-      "date": "2026-09-18T05:10:12Z",
-      "author": "hermesagent",
-      "subject": "journal: Move #208 keep — board-pack-action-outcome-attribution-explainability-rollup-decision-rollup",
-      "body": ""
-    },
-    {
-      "sha": "ae341b8",
-      "date": "2026-09-18T05:09:57Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #208 board-pack-action-outcome-attribution-explainability-rollup-decision-rollup (FIRST Tier-1 + FIRST P0 in unique category; canonical closing decision-rollup engine for Move #180-207 attribution chain; 18 pitfalls + 18 Fix: li",
-      "body": ""
-    },
-    {
-      "sha": "7465441",
-      "date": "2026-09-18T04:04:34Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #207 board-pack-action-outcome-attribution-explainability-rollup (FIRST Tier-1 + FIRST P0 in unique category ai-vendor-portfolio-board-pack-action-outcome-attribution-explainability-rollup; canonical closing attribution-explaina",
-      "body": ""
-    },
-    {
-      "sha": "63fc0c7",
-      "date": "2026-09-18T02:11:37Z",
-      "author": "hermesagent",
-      "subject": "feat(dashboard): Move #128.am trajectory scenario comparator adds Scenario B side-by-side + compare verdict",
-      "body": ""
     }
   ],
   "counts": {
@@ -65575,8 +65625,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 27,
-    "skills": 325,
+    "journalEntries": 30,
+    "skills": 327,
     "gitCommits": 200
   }
 }
