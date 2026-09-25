@@ -17,6 +17,9 @@ import { CheckoutAudit } from "@/components/checkout-audit";
 import { LoyaltyROICalculator } from "@/components/loyalty-roi-calculator";
 import { SmsWelcomeCartROICalculator } from "@/components/sms-welcome-cart-roi";
 import { MigrationSavingsCalculator } from "@/components/migration-savings-calculator";
+import { AttributionQualityAudit } from "@/components/attribution-quality-audit";
+import { TiktokAttributionAudit } from "@/components/tiktok-attribution-audit";
+import { SnapPinterestAttributionAudit } from "@/components/snap-pinterest-attribution-audit";
 
 const ROOT = "/data/workspace/ecommerce-ops";
 const BUILD_PLAYBOOKS = join(process.cwd(), "src/playbooks");
@@ -51,6 +54,18 @@ const CALCULATORS: Record<string, { node: React.ReactNode; label: string }> = {
   "06-sms-welcome-and-cart-abandon": {
     node: <SmsWelcomeCartROICalculator />,
     label: "Project per-flow orders + send cost + net margin across 4 Postscript SMS flows (Welcome + Cart-Soft + Cart-Escalation + Review).",
+  },
+  "06.5-attribution-quality-audit": {
+    node: <AttributionQualityAudit />,
+    label: "Score Meta CAPI + Google EC + GA4 ↔ Triple Whale/Polar against the Move #6.5 quality gates and surface prioritized fixes.",
+  },
+  "06.6-tiktok-attribution-quality-audit": {
+    node: <TiktokAttributionAudit />,
+    label: "Score TikTok Pixel + Events API + Advanced Matching against the Move #6.6 quality gates with per-gate PASS/FAIL chips + remediation.",
+  },
+  "06.7-snap-pinterest-attribution-quality-audit": {
+    node: <SnapPinterestAttributionAudit />,
+    label: "Score Snap Pixel + CAPI + EMQ and Pinterest Tag + CAPI + Enhanced Match against the 6 Move #6.7 quality gates with per-platform split.",
   },
   "07-loyalty-program-smile": {
     node: <LoyaltyROICalculator />,
