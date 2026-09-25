@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-25T05:53:51.465Z",
+  "generatedAt": "2026-09-25T09:09:10.304Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12642,6 +12642,18 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-25 08:05 UTC] Skill tick: keep — Move #3.6 Checkout audit by BFCM-cohort",
+      "body": "- **Branch:** autoresearch/skills-2026-09-25\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of the 06:55 UTC Move #3.5 skill/333 keep entry's canonical next-action recommendation (\"Move #3.6 — Checkout audit by BFCM-cohort ... first Tier-1 + first P0 in `category: checkout-audit-by-bfcm-cohort`; default Year-1 ROI Path B 8:1-24:1 at $1M-$10M GMV\"). (1) UNIQUE CATEGORY — `grep -lE '^category: checkout-audit-by-bfcm-cohort' skills/*.md | wc -l = 1` (skill/334 is the only skill with the canonical checkout-audit-by-bfcm-cohort category; master had 331 skills pre-tick, skill/334 is the only one with this category). (2) TIER-1 FIRST IN CATEGORY — first Tier-1 in the canonical checkout-audit-by-bfcm-cohort category. (3) P0 FIRST IN CATEGORY — first P0 in"
+    },
+    {
+      "heading": "[2026-09-25 06:55 UTC] Skill tick: keep — Move #3.5 Checkout audit by traffic-source",
+      "body": "- **Branch:** autoresearch/skills-2026-09-25\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES: (1) UNIQUE CATEGORY — `grep -lE '^category: checkout-audit-by-traffic-source' skills/*.md | wc -l = 1` (skill 333 is the only skill with the canonical checkout-audit-by-traffic-source category). (2) TIER-1 FIRST IN CATEGORY — first Tier-1 in the canonical checkout-audit-by-traffic-source category. (3) P0 FIRST IN CATEGORY — first P0 in the same category. (4) HIGHEST PITFALL COUNT WINS TIES — skill 333 has **18 numbered pitfalls (P1-P18)** including the canonical Move #3.5-unique P17 (emerging-traffic-source-cohort: creator/influencer/podcast/CSE) and P18 (AI-search-traffic-source-cohort: ChatGPT/Perplexity/Claude/Gemini/Copilot/DeepSeek/Grok); gate moot since no other skill "
+    },
+    {
+      "heading": "[2026-09-25 05:53 UTC] Skill tick: keep — Move #3.4 Checkout audit by device-cohort (per-device-cohort funnel + 15-device-cohort completion-rate + 15-device-cohort leak-rate + 15-cause-diagnosis + 45-fix-recommendations + 360-cell Move #3.3 cross-validation + Move #3 + Move #3.1 + Move #3.2 + Move #3.3 + Move #9 mobile-PDP-redesign + Move #6 Triple Whale attribution + Move #47 growth-experimentation, Move #3.4, 5-layer Path A/B/C/D, 6:1-20:1 Year-1 ROI Path B default 14:1)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-25\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of the 04:48 UTC Move #3.3 skill/331 keep entry's canonical next-action recommendation (\"Move #3.4 — Checkout audit by device-cohort ... first Tier-1 + first P0 in `category: checkout-audit-by-device-cohort`; default Year-1 ROI Path B 6:1-20:1 at $1M-$10M GMV\"). (1) UNIQUE CATEGORY — `grep -lE '^category: checkout-audit-by-device-cohort' skills/*.md | wc -l = 1` (skill/332 is the only skill with the canonical checkout-audit-by-device-cohort category; master had 329 skills pre-tick, skill/332 is the only one with this category). (2) TIER-1 FIRST IN CATEGORY — first Tier-1 in the canonical checkout-audit-by-device-cohort category. (3) P0 FIRST IN CATEGORY — f"
+    },
     {
       "heading": "[2026-09-25 04:48 UTC] Skill tick: keep — Move #3.3 Checkout audit by checkout-friction-element (per-checkout-friction-element funnel + per-checkout-friction-element completion-rate + per-checkout-friction-element leak-rate + per-checkout-friction-element cause-diagnosis + per-checkout-friction-element fix-recommendation + per-checkout-friction-element attribution loop + Move #3 Baymard + Move #3.1 per-payment-method + Move #3.2 per-checkout-step + Move #6 Triple Whale attribution + Move #47 growth-experimentation)",
       "body": "- **Branch:** autoresearch/skills-2026-09-25\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of the 01:32 UTC Move #3.2 skill/328 keep entry's canonical next-action recommendation (\"Move #3.3 — Checkout audit by checkout-friction-element ... first Tier-1 + first P0 in `category: checkout-audit-by-checkout-friction-element`; default Year-1 ROI Path B 6:1-20:1 at $1M-$10M GMV\"). (1) UNIQUE CATEGORY — `grep -lE '^category: checkout-audit-by-checkout-friction-element' skills/*.md | wc -l = 1` (skill/331 is the only skill with the canonical checkout-audit-by-checkout-friction-element category; master had 328 skills pre-tick, skill/331 is the only one with this category). (2) TIER-1 FIRST IN CATEGORY — first Tier-1 in the canonical checkout-audit-by-chec"
@@ -43129,6 +43141,63 @@
       "lastTouched": "2026-09-25"
     },
     {
+      "file": "333-checkout-audit-by-traffic-source.md",
+      "name": "333-checkout-audit-by-traffic-source",
+      "title": "Checkout audit by traffic-source",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-25",
+      "sources": [],
+      "blurb": "Move #3.5 is the canonical **per-traffic-source-cohort funnel audit + per-traffic-source-cohort completion-rate + per-traffic-source-cohort leak-rate + per-traffic-source-cohort cause-diagnosis + per-traffic-source-co...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 79578,
+      "lastTouched": "2026-09-25"
+    },
+    {
+      "file": "334-checkout-audit-by-bfcm-cohort.md",
+      "name": "334-checkout-audit-by-bfcm-cohort",
+      "title": "Checkout audit by BFCM-cohort",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-25",
+      "sources": [],
+      "blurb": "Move #3.6 is the canonical **per-BFCM-cohort funnel audit + per-BFCM-cohort completion-rate + per-BFCM-cohort leak-rate + per-BFCM-cohort cause-diagnosis + per-BFCM-cohort fix-recommendation + per-BFCM-cohort attribut...",
+      "sectionCount": 9,
+      "pitfallCount": 20,
+      "sourceCount": 0,
+      "size": 70507,
+      "lastTouched": "2026-09-25"
+    },
+    {
+      "file": "335-checkout-audit-by-ai-search-traffic-source.md",
+      "name": "335-checkout-audit-by-ai-search-traffic-source",
+      "title": "Checkout audit by AI-search-traffic-source",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-25",
+      "sources": [],
+      "blurb": "Move #3.7 is the canonical **per-AI-search-traffic-source funnel audit + per-AI-search-traffic-source completion-rate + per-AI-search-traffic-source leak-rate + per-AI-search-traffic-source cause-diagnosis + per-AI-se...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 78572,
+      "lastTouched": "2026-09-25"
+    },
+    {
       "file": "34-cx-customer-service-operations-platform.md",
       "name": "cx-customer-service-operations-platform",
       "title": "Customer service operations platform (Move #24)",
@@ -64292,6 +64361,48 @@
   ],
   "gitCommits": [
     {
+      "sha": "f59a995",
+      "date": "2026-09-25T08:07:40Z",
+      "author": "hermesagent",
+      "subject": "journal: record Move #3.6 checkout-audit-by-bfcm-cohort skill tick keep entry",
+      "body": ""
+    },
+    {
+      "sha": "bbcc371",
+      "date": "2026-09-25T08:06:59Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #3.6 Checkout audit by BFCM-cohort (per-BFCM-cohort funnel + 18-BFCM-cohort completion-rate + 18-BFCM-cohort leak-rate + 20 BFCM-cohort cause-diagnoses + 54 per-BFCM-cohort fix-recommendations + 1,106-cell cross-validation matri",
+      "body": ""
+    },
+    {
+      "sha": "1bedcec",
+      "date": "2026-09-25T07:00:59Z",
+      "author": "hermesagent",
+      "subject": "journal: record Move #3.5 checkout-audit-by-traffic-source skill tick",
+      "body": ""
+    },
+    {
+      "sha": "f8ac959",
+      "date": "2026-09-25T07:00:36Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #3.5 Checkout audit by traffic-source (per-traffic-source-cohort funnel + 48 fix-recommendations + 16-traffic-source-cohort × 7-cohort = 112-cell matrix)",
+      "body": ""
+    },
+    {
+      "sha": "3f66a1a",
+      "date": "2026-09-25T05:56:34Z",
+      "author": "hermesagent",
+      "subject": "journal: append 2026-09-25 05:53 UTC Move #3.4 5-layer per-device-cohort checkout-audit skill tick keep entry",
+      "body": ""
+    },
+    {
+      "sha": "99a0a89",
+      "date": "2026-09-25T05:56:15Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #3.4 Checkout audit by device-cohort (per-device-cohort funnel + 15-device-cohort completion-rate + 15-device-cohort leak-rate + 15-cause-diagnosis + 45-fix-recommendations + 360-cell Move #3.3 cross-validation + Move #3 + Move ",
+      "body": ""
+    },
+    {
       "sha": "67d9515",
       "date": "2026-09-25T04:52:11Z",
       "author": "hermesagent",
@@ -65648,48 +65759,6 @@
       "author": "hermesagent",
       "subject": "journal: Move #215 keep — board-pack-action-loop",
       "body": ""
-    },
-    {
-      "sha": "eeb0d84",
-      "date": "2026-09-18T15:39:51Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #215 board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-engagement-loop-per-board-pack-action-loop (F",
-      "body": ""
-    },
-    {
-      "sha": "fc39228",
-      "date": "2026-09-18T14:27:47Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #214 board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member-per-board-pack-engagement-loop (FIRST Tier-1 + FIRST P0 in u",
-      "body": ""
-    },
-    {
-      "sha": "df9fb70",
-      "date": "2026-09-18T14:23:10Z",
-      "author": "mattiasadem",
-      "subject": "feat(dashboard): Move #128.ap — compact comparator for /today",
-      "body": ""
-    },
-    {
-      "sha": "58b4343",
-      "date": "2026-09-18T13:20:02Z",
-      "author": "mattiasadem",
-      "subject": "journal: Move #213 keep — board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member",
-      "body": ""
-    },
-    {
-      "sha": "691f640",
-      "date": "2026-09-18T13:19:23Z",
-      "author": "mattiasadem",
-      "subject": "skill: Move #213 board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator-audit-explainer-decoder-quarterly-cmo-board-summary-overlay-per-board-member (FIRST Tier-1 + FIRST P0 in unique category ai-vendor-portfo",
-      "body": ""
-    },
-    {
-      "sha": "69339a4",
-      "date": "2026-09-18T12:11:06Z",
-      "author": "mattiasadem",
-      "subject": "skill: Move #212 board-pack-decoder-quarterly-cmo-board-summary-overlay (canonical closing quarterly-cmo-board-summary-overlay engine for the Move #180-211 attribution chain; 18 pitfalls + 18 Fix: lines + 9 verification gates A-I; default 7",
-      "body": ""
     }
   ],
   "counts": {
@@ -65698,8 +65767,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 34,
-    "skills": 330,
+    "journalEntries": 37,
+    "skills": 333,
     "gitCommits": 200
   }
 }
