@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-25T02:38:16.960Z",
+  "generatedAt": "2026-09-25T03:44:32.700Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12642,6 +12642,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-25 02:36 UTC] Skill tick: keep — Move #287.19 Per-affiliate-recovery-translation-state-suspension-procedure-jurisdictional-rule-restatement 53-axis decision-rollback engine",
+      "body": "- **Branch:** autoresearch/skills-2026-09-25\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES: (1) UNIQUE CATEGORY — `grep -lE '^category: per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-x-per-affiliate-x-per-affiliate-network-x-per-affiliate-commission-structure-x-per-affiliate-cohort-tier-x-per-affiliate-payout-cadence-x-per-affiliate-content-type-x-per-affiliate-aesthetic-x-per-affiliate-language-x-per-affiliate-disclosure-mode-x-per-affiliate-fraud-tier-x-per-affiliate-chargeback-window-x-per-affiliate-refund-abuse-window-x-per-affiliate-region-x-per-affiliate-platform-terms-x-per-affiliate-refund-window-x-per-affiliate-return-window-x-per-affilia"
+    },
     {
       "heading": "[2026-09-25 01:32 UTC] Skill tick: keep — Move #3.2 Checkout audit by checkout-step (per-checkout-step funnel + per-checkout-step completion-rate + per-checkout-step leak-rate + per-checkout-step cause-diagnosis + per-checkout-step fix-recommendation + per-checkout-step attribution loop + Move #3 Baymard + Move #3.1 per-payment-method + Move #6 Triple Whale attribution + Move #47 growth-experimentation)",
       "body": "- **Branch:** autoresearch/skills-2026-09-25\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — second cycle-break candidate per the 2026-09-25 00:30 UTC Move #3.1 cycle-break + the 2026-09-24 16:50 UTC Move #287.34 discard's guidance to rotate off the Move #287 axis-extension pipeline. (1) UNIQUE CATEGORY — `grep -lE '^category: checkout-audit-by-checkout-step' skills/*.md | wc -l = 1` (skill/328 is the only skill with the canonical checkout-audit-by-checkout-step category; master had 325 skills pre-tick, skill/328 is the only one with this category). (2) TIER-1 FIRST IN CATEGORY — first Tier-1 in the canonical checkout-audit-by-checkout-step category. (3) P0 FIRST IN CATEGORY — first P0 in the same category. (4) HIGHEST PITFALL COUNT WINS TIES — skill/328 has **18 n"
@@ -43056,6 +43060,25 @@
       "lastTouched": "2026-07-12"
     },
     {
+      "file": "330-pp-x-ch-x-sku-x-dp-x-cr-x-co-x-ex-x-wh-x-ca-x-zn-x-pd-x-af-x-an-x-acs-x-act-x-apc-x-acy-x-ae-x-al-x-adm-x-aft-x-acw-x-raaw-x-afe-x-apt-x-arw-x-arsj-x-acsc-x-acsrp-x-acssp-x-acsrp-54axis-decision-rollback-engine.md",
+      "name": "per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-x-per-affiliate-x-per-affiliate-network-x-per-affiliate-commission-structure-x-per-affiliate-cohort-tier-x-per-affiliate-payout-cadence-x-per-affiliate-content-type-x-per-affiliate-aesthetic-x-per-affiliate-language-x-per-affiliate-disclosure-mode-x-per-affiliate-fraud-tier-x-per-affiliate-chargeback-window-x-per-affiliate-refund-abuse-window-x-per-affiliate-region-x-per-affiliate-platform-terms-x-per-affiliate-refund-window-x-per-affiliate-return-window-x-per-affiliate-exchange-window-x-per-affiliate-store-credit-window-x-per-affiliate-replacement-window-x-per-affiliate-cancellation-window-x-per-affiliate-credit-note-window-x-per-affiliate-debit-note-window-x-per-affiliate-write-off-window-x-per-affiliate-recovery-window-x-per-affiliate-recovery-cadence-x-per-affiliate-recovery-channel-x-per-affiliate-recovery-tone-x-per-affiliate-recovery-script-x-per-affiliate-recovery-rendering-language-x-per-affiliate-recovery-translation-cost-allocation-x-per-affiliate-recovery-translation-revenue-recognition-x-per-affiliate-recovery-translation-tax-jurisdiction-restatement-x-per-affiliate-recovery-translation-statute-of-limitations-restatement-x-per-affiliate-recovery-translation-rosenthal-act-restatement-x-per-affiliate-recovery-translation-mini-fdcpa-state-restatement-x-per-affiliate-recovery-translation-state-license-jurisdictional-rule-restatement-x-per-affiliate-recovery-translation-state-bond-jurisdictional-rule-restatement-x-per-affiliate-recovery-translation-state-surety-jurisdictional-rule-restatement-x-per-affiliate-recovery-translation-state-collateral-jurisdictional-rule-restatement-x-per-affiliate-recovery-translation-state-revocation-procedure-jurisdictional-rule-restatement-x-per-affiliate-recovery-translation-state-suspension-procedure-jurisdictional-rule-restatement-x-per-affiliate-recovery-translation-state-reinstatement-procedure-jurisdictional-rule-restatement-decision-rollback",
+      "title": "Per-payment-method × Per-channel × Per-SKU × Per-daypart × Per-creative × Per-cohort × Per-experiment × Per-warehouse × Per-carrier × Per-zone × Per-product-discovery × Per-affiliate × Per-affiliate-network × Per-affiliate-commission-structure × Per-affiliate-cohort-tier × Per-affiliate-payout-cadence × Per-affiliate-content-type × Per-affiliate-aesthetic × Per-affiliate-language × Per-affiliate-disclosure-mode × Per-affiliate-fraud-tier × Per-affiliate-chargeback-window × Per-affiliate-refund-abuse-window × Per-affiliate-region × Per-affiliate-platform-terms × Per-affiliate-refund-window × Per-affiliate-return-window × Per-affiliate-exchange-window × Per-affiliate-store-credit-window × Per-affiliate-replacement-window × Per-affiliate-cancellation-window × Per-affiliate-credit-note-window × Per-affiliate-debit-note-window × Per-affiliate-write-off-window × Per-affiliate-recovery-window × Per-affiliate-recovery-cadence × Per-affiliate-recovery-channel × Per-affiliate-recovery-tone × Per-affiliate-recovery-script × Per-affiliate-recovery-rendering-language × Per-affiliate-recovery-translation-cost-allocation × Per-affiliate-recovery-translation-revenue-recognition × Per-affiliate-recovery-translation-tax-jurisdiction-restatement × Per-affiliate-recovery-translation-statute-of-limitations-restatement × Per-affiliate-recovery-translation-FDCPA-§1692-restatement × Per-affiliate-recovery-translation-Rosenthal-Act-restatement × Per-affiliate-recovery-translation-mini-FDCPA-state-restatement × Per-affiliate-recovery-translation-state-license-jurisdictional-rule-restatement × Per-affiliate-recovery-translation-state-bond-jurisdictional-rule-restatement × Per-affiliate-recovery-translation-state-surety-jurisdictional-rule-restatement × Per-affiliate-recovery-translation-state-collateral-jurisdictional-rule-restatement × Per-affiliate-recovery-translation-state-revocation-procedure-jurisdictional-rule-restatement × Per-affiliate-recovery-translation-state-suspension-procedure-jurisdictional-rule-restatement × Per-affiliate-recovery-translation-state-reinstatement-procedure-jurisdictional-rule-restatement 54-axis decision-rollback engine",
+      "category": "per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-x-per-affiliate-x-per-affiliate-network-x-per-affiliate-commission-structure-x-per-affiliate-cohort-tier-x-per-affiliate-payout-cadence-x-per-affiliate-content-type-x-per-affiliate-aesthetic-x-per-affiliate-language-x-per-affiliate-disclosure-mode-x-per-affiliate-fraud-tier-x-per-affiliate-chargeback-window-x-per-affiliate-refund-abuse-window-x-per-affiliate-region-x-per-affiliate-platform-terms-x-per-affiliate-refund-window-x-per-affiliate-return-window-x-per-affiliate-exchange-window-x-per-affiliate-store-credit-window-x-per-affiliate-replacement-window-x-per-affiliate-cancellation-window-x-per-affiliate-credit-note-window-x-per-affiliate-debit-note-window-x-per-affiliate-write-off-window-x-per-affiliate-recovery-window-x-per-affiliate-recovery-cadence-x-per-affiliate-recovery-channel-x-per-affiliate-recovery-tone-x-per-affiliate-recovery-script-x-per-affiliate-recovery-rendering-language-x-per-affiliate-recovery-translation-cost-allocation-x-per-affiliate-recovery-translation-revenue-recognition-x-per-affiliate-recovery-translation-tax-jurisdiction-restatement-x-per-affiliate-recovery-translation-statute-of-limitations-restatement-x-per-affiliate-recovery-translation-rosenthal-act-restatement-x-per-affiliate-recovery-translation-mini-fdcpa-state-restatement-x-per-affiliate-recovery-translation-state-license-jurisdictional-rule-restatement-x-per-affiliate-recovery-translation-state-bond-jurisdictional-rule-restatement-x-per-affiliate-recovery-translation-state-surety-jurisdictional-rule-restatement-x-per-affiliate-recovery-translation-state-collateral-jurisdictional-rule-restatement-x-per-affiliate-recovery-translation-state-revocation-procedure-jurisdictional-rule-restatement-x-per-affiliate-recovery-translation-state-suspension-procedure-jurisdictional-rule-restatement-x-per-affiliate-recovery-translation-state-reinstatement-procedure-jurisdictional-rule-restatement-decision-rollback",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "287.20",
+      "yearOneRoiBand": "184:1-372:1 Path B at $3M GMV; 216:1-452:1 Path C at $5M GMV",
+      "smsFriendly": true,
+      "lastUpdated": "2026-09-25",
+      "sources": [],
+      "blurb": "Move #287.20 is the canonical **54-axis decision-rollback engine** that extends Move #287.19 (skill/329, per-affiliate-recovery-translation-state-suspension-procedure-jurisdictional-rule-restatement 53-axis) by adding...",
+      "sectionCount": 9,
+      "pitfallCount": 63,
+      "sourceCount": 0,
+      "size": 122242,
+      "lastTouched": "2026-09-25"
+    },
+    {
       "file": "34-cx-customer-service-operations-platform.md",
       "name": "cx-customer-service-operations-platform",
       "title": "Customer service operations platform (Move #24)",
@@ -64219,6 +64242,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "39b7ced",
+      "date": "2026-09-25T02:41:47Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #287.19 Per-affiliate-recovery-translation-state-suspension-procedure-jurisdictional-rule-restatement 53-axis decision-rollback engine",
+      "body": ""
+    },
+    {
       "sha": "65a890d",
       "date": "2026-09-25T01:36:08Z",
       "author": "hermesagent",
@@ -65610,13 +65640,6 @@
       "author": "hermesagent",
       "subject": "feat(dashboard): Move #128.an trajectory scenario comparator adds Reset A / Reset B / Reset both",
       "body": "- dashboard/src/lib/trajectory-scenario-reset.ts — NEW (~140 LOC) — 3 SSR-safe helpers (resetScenarioA/B/both) + ResetSummary type + schema constants mirrored from comparator; Reset B rewrites the B key with enabled=false so the toggle un-checks automatically.\n- dashboard/src/lib/__tests__/trajectory-scenario-reset.test.ts — NEW — 8-assertion smoke test (8/8 pass).\n- dashboard/src/components/trajectory-scenario-comparator.tsx — added 3 buttons + 3 handlers mounted inside the existing Scenario B toggle row (Reset A always visible, Reset B conditional on scenarioBEnabled, Reset both with confirm() dialog + rose accent for destructive emphasis).\n- docs/journal.md — keep entry."
-    },
-    {
-      "sha": "b465843",
-      "date": "2026-09-18T06:16:40Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #209 board-pack-action-outcome-attribution-explainability-rollup-decision-rollup-validator (FIRST Tier-1 + FIRST P0 in unique category; canonical closing attribution-explainability-rollup-decision-rollup-validator engine for Mov",
-      "body": ""
     }
   ],
   "counts": {
@@ -65625,8 +65648,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 30,
-    "skills": 327,
+    "journalEntries": 31,
+    "skills": 328,
     "gitCommits": 200
   }
 }
