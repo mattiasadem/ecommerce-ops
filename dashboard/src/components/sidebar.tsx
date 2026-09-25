@@ -55,6 +55,7 @@ const NAV_GROUPS = [
       { href: "/skills", label: "Skills", icon: "✺" },
       { href: "/assets", label: "Assets", icon: "▤" },
       { href: "/30-day-plan", label: "30-day plan", icon: "▦" },
+      { href: "/pdp-ab-launch-plan", label: "PDP A/B launch plan", icon: "▦" },
       { href: "/settings", label: "Settings", icon: "✱" },
     ],
   },

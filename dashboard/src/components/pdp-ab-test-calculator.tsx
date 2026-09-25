@@ -388,6 +388,15 @@ export function PdpAbTestCalculator() {
           >
             {copied ? "Copied ✓" : "Copy report"}
           </button>
+          <a
+            href="/pdp-ab-launch-plan"
+            data-testid="pdp-ab-launch-plan-inline-cta"
+            className="inline-flex items-center gap-1.5 rounded-md border border-accent/40 bg-accent/10 px-3 py-1.5 text-xs font-semibold text-accent hover:bg-accent/15 transition-colors"
+          >
+            <span aria-hidden="true">▦</span>
+            <span>Generate 30-day launch plan</span>
+            <span aria-hidden="true">→</span>
+          </a>
         </div>
       </div>
 
