@@ -16,6 +16,7 @@ import { AiAdCreativeROICalculator } from "@/components/ai-ad-creative-roi";
 import { CheckoutAudit } from "@/components/checkout-audit";
 import { LoyaltyROICalculator } from "@/components/loyalty-roi-calculator";
 import { SmsWelcomeCartROICalculator } from "@/components/sms-welcome-cart-roi";
+import { MigrationSavingsCalculator } from "@/components/migration-savings-calculator";
 
 const ROOT = "/data/workspace/ecommerce-ops";
 const BUILD_PLAYBOOKS = join(process.cwd(), "src/playbooks");
@@ -42,6 +43,10 @@ const CALCULATORS: Record<string, { node: React.ReactNode; label: string }> = {
   "04-welcome-series-klaviyo": {
     node: <WelcomeSeriesROICalculator />,
     label: "Forecast monthly incremental revenue from the 4-email welcome flow.",
+  },
+  "05-migrate-to-klaviyo-postscript": {
+    node: <MigrationSavingsCalculator />,
+    label: "Pick your current ESP + SMS stack → see the canonical Path A/B/C/D migration plan with cutover cost, monthly savings, revenue lift, breakeven, and Year-1 net benefit.",
   },
   "06-sms-welcome-and-cart-abandon": {
     node: <SmsWelcomeCartROICalculator />,
