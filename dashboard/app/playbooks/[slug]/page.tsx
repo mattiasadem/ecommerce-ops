@@ -15,6 +15,7 @@ import { PdpAbTestCalculator } from "@/components/pdp-ab-test-calculator";
 import { AiAdCreativeROICalculator } from "@/components/ai-ad-creative-roi";
 import { CheckoutAudit } from "@/components/checkout-audit";
 import { LoyaltyROICalculator } from "@/components/loyalty-roi-calculator";
+import { SmsWelcomeCartROICalculator } from "@/components/sms-welcome-cart-roi";
 
 const ROOT = "/data/workspace/ecommerce-ops";
 const BUILD_PLAYBOOKS = join(process.cwd(), "src/playbooks");
@@ -41,6 +42,10 @@ const CALCULATORS: Record<string, { node: React.ReactNode; label: string }> = {
   "04-welcome-series-klaviyo": {
     node: <WelcomeSeriesROICalculator />,
     label: "Forecast monthly incremental revenue from the 4-email welcome flow.",
+  },
+  "06-sms-welcome-and-cart-abandon": {
+    node: <SmsWelcomeCartROICalculator />,
+    label: "Project per-flow orders + send cost + net margin across 4 Postscript SMS flows (Welcome + Cart-Soft + Cart-Escalation + Review).",
   },
   "07-loyalty-program-smile": {
     node: <LoyaltyROICalculator />,
