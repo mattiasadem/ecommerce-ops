@@ -20,6 +20,7 @@ import { MigrationSavingsCalculator } from "@/components/migration-savings-calcu
 import { AttributionQualityAudit } from "@/components/attribution-quality-audit";
 import { TiktokAttributionAudit } from "@/components/tiktok-attribution-audit";
 import { SnapPinterestAttributionAudit } from "@/components/snap-pinterest-attribution-audit";
+import { AttributionHealthAlertCalculator } from "@/components/attribution-health-alert-calculator";
 
 const ROOT = "/data/workspace/ecommerce-ops";
 const BUILD_PLAYBOOKS = join(process.cwd(), "src/playbooks");
@@ -66,6 +67,10 @@ const CALCULATORS: Record<string, { node: React.ReactNode; label: string }> = {
   "06.7-snap-pinterest-attribution-quality-audit": {
     node: <SnapPinterestAttributionAudit />,
     label: "Score Snap Pixel + CAPI + EMQ and Pinterest Tag + CAPI + Enhanced Match against the 6 Move #6.7 quality gates with per-platform split.",
+  },
+  "06.10-attribution-health-alert-webhook-launch": {
+    node: <AttributionHealthAlertCalculator />,
+    label: "Pick your paid-spend + team size + alerting stack → see the canonical Move #6.10 Path A/B/C/D/E recommendation with deferral gates, downgrade rules, Year-1 cost stack + avoided incidents + net ROI, alert cadence, and the 6-step build sequence.",
   },
   "07-loyalty-program-smile": {
     node: <LoyaltyROICalculator />,
