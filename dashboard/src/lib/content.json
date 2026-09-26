@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-26T15:12:59.178Z",
+  "generatedAt": "2026-09-26T16:21:59.109Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12642,6 +12642,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-26 15:17 UTC] Skill tick: keep — Move #358.1 Cross-warehouse-balance cost-amortization-engine + per-transfer ROI attribution + per-trigger payback-window + per-warehouse ledger",
+      "body": "- **Branch:** autoresearch/skills-2026-09-26\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #358 (shipped at 15:11 UTC today) skill's canonical \"How to extend\" first follow-up recommendation. **(1) UNIQUE CATEGORY** — only skill in `category: cross-warehouse-balance-cost-amortization` (master had 357 skills, ZERO in this category). **(2) TIER-1 FIRST IN CATEGORY**. **(3) P0 FIRST IN CATEGORY**. **(4) HIGHEST PITFALL COUNT WINS TIES** — 18 numbered pitfalls (P1-P18) including Move #358.1-unique: P1 ship-without-event-stream, P2 ship-without-confidence-band, P3 no-per-trigger-payback-window, P4 no-per-tier-stockout-cost-weights, P5 no-3PL-cost-savings-attribution, P6 no-dead-stock-clearance-attribution, P7 no-BFCM-peak-uplift-attribution, P8"
+    },
     {
       "heading": "[2026-09-26 13:30 UTC] Skill tick: keep — Move #358 Cross-warehouse-balance-engine — per-SKU multi-warehouse inventory allocation + auto-transfer + stockout-risk rebalance + per-region fulfillment pool + per-cohort-affinity routing-rule (cross-warehouse-balance-engine)",
       "body": "- **Branch:** autoresearch/skills-2026-09-26\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #357 (just shipped at 12:56 UTC) skill's canonical \"How to extend\" first follow-up recommendation (\"Move #357.1 — Per-SKU inventory allocation across multi-warehouse with cross-warehouse-balance-engine — given the per-warehouse-routing-rule, build the cross-warehouse-balance-engine that auto-transfers inventory when stockout-risk detected\"). **(1) UNIQUE CATEGORY** — `grep -lE '^category: cross-warehouse-balance-engine' skills/*.md | wc -l = 1` (Move #358 is the only skill with this canonical cross-warehouse-balance-engine category; pre-tick the dashboard had 355 skills but ZERO in this category — the inventory-execution layer Move #357 Pillar 3 per"
@@ -46571,6 +46575,25 @@
       "lastTouched": "2026-07-13"
     },
     {
+      "file": "360-per-warehouse-capacity-utilization-cross-warehouse-overflow-engine.md",
+      "name": "per-warehouse-capacity-utilization-cross-warehouse-overflow-engine",
+      "title": "Per-warehouse capacity-utilization-engine + cross-warehouse-overflow-engine + per-hour capacity-load-index + per-region overflow-routing-rule + per-warehouse SLA-breach-alert + per-warehouse-rollback-decision-engine",
+      "category": "per-warehouse-capacity-utilization",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "358.2",
+      "yearOneRoiBand": "5:1–15:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-26",
+      "sources": [],
+      "blurb": "The capacity-resilience + overflow-routing layer every $1M+ GMV DTC operator running ≥2 warehouses + ≥500 orders/day needs after Move #358 cross-warehouse-balance-engine + Move #358.1 cost-amortization-engine + Move #...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 59324,
+      "lastTouched": "2026-09-26"
+    },
+    {
       "file": "37-ai-site-search-merchandising.md",
       "name": "ai-site-search-merchandising",
       "title": "AI site search + merchandising",
@@ -67504,6 +67527,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "bd6f125",
+      "date": "2026-09-26T15:17:45Z",
+      "author": "hermesagent",
+      "subject": "docs: journal entry for Move #358.1 tick",
+      "body": ""
+    },
+    {
+      "sha": "889785c",
+      "date": "2026-09-26T15:16:13Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #358.1 cross-warehouse-balance-cost-amortization-engine + per-transfer ROI attribution + per-trigger payback-window + per-warehouse ledger",
+      "body": ""
+    },
+    {
       "sha": "ecaf056",
       "date": "2026-09-26T14:10:59Z",
       "author": "hermesagent",
@@ -68888,20 +68925,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #243 care-and-maintenance-knowledge-base-self-serve-deflection (FIRST Tier-1 + FIRST P0 in unique category care-and-maintenance-knowledge-base-self-serve-deflection; canonical care-and-maintenance-self-serve-deflection layer eve",
       "body": ""
-    },
-    {
-      "sha": "b39f8f3",
-      "date": "2026-09-20T13:25:00Z",
-      "author": "hermesagent",
-      "subject": "docs: journal entry for Move #242 assembly-knowledge-base-self-serve-deflection",
-      "body": ""
-    },
-    {
-      "sha": "baf14cc",
-      "date": "2026-09-20T13:24:07Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #242 assembly-knowledge-base-self-serve-deflection (FIRST Tier-1 + FIRST P0 in unique category assembly-knowledge-base-self-serve-deflection; canonical assembly-self-serve-deflection layer every $500k+ GMV DTC brand with >=150 a",
-      "body": ""
     }
   ],
   "counts": {
@@ -68910,8 +68933,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 17,
-    "skills": 357,
+    "journalEntries": 18,
+    "skills": 358,
     "gitCommits": 200
   }
 }
