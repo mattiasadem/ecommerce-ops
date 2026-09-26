@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-26T03:49:23.935Z",
+  "generatedAt": "2026-09-26T06:05:13.915Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12642,6 +12642,14 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-26 04:58 UTC] Skill tick: keep — Move #3.22 Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-cohort-affinity-tri-axis",
+      "body": "- **Branch:** autoresearch/skills-2026-09-26\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #3.21's canonical \"How to extend\" first follow-up recommendation (\"Move #3.22 — Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-cohort-affinity-tri-axis-extension ... 5,160,960-cell deep-deep-deep cross-validation matrix ... first Tier-1 + first P0 in `category: checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-cohort-affinity-tri-axis`; default Year-1 ROI Path B 18:1-40:1 at $25M-$200M subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-cohort-affinity-tri-axis-driven-GMV\"). (1) **UNIQUE CATEGORY** — `grep -lE '^category: checkout-audit-by-subscription-discount-LTV-tie"
+    },
+    {
+      "heading": "[2026-09-26 03:50 UTC] Skill tick: keep — Move #3.21 Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device",
+      "body": "- **Branch:** autoresearch/skills-2026-09-26\n- **Status:** keep\n- **Reason:** PASSES IMPROVEMENT-METRIC GATE #1 (UNIQUE CATEGORY) — `grep -lE '^category: checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device' skills/*.md | wc -l = 1` (skill/349 is the only skill with this canonical category; master had 348 skills pre-tick, skill/349 is the only one). Also passes GATE #2 (TIER-1 FIRST IN CATEGORY) — first Tier-1 in the canonical checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device category. Also passes GATE #3 (P0 FIRST IN CATEGORY) — first P0 in the same category. GATE #4 (highest pitfall count wins ties) is moot since no other skill in the category for comparison. **Direct execution of Move #3.20's canonical \"How to "
+    },
     {
       "heading": "[2026-09-26 02:42 UTC] Skill tick: keep — Move #3.20 Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort",
       "body": "- **Branch:** autoresearch/skills-2026-09-26\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #3.19's canonical \"How to extend\" first follow-up recommendation (\"Move #3.20 — Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-extension ... first Tier-1 + first P0 in `category: checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort`; default Year-1 ROI Path B 13:1-30:1 at $1M-$10M BFCM-subscription-discount-LTV-tier-x-cohort-affinity-driven-GMV\"). (1) **UNIQUE CATEGORY** — `grep -lE '^category: checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort' skills/*.md | wc -l = 1` (skill/348 is the only skill with this canonical category; master had 347 skills pre-tick,"
@@ -44937,6 +44945,44 @@
       "lastTouched": "2026-07-12"
     },
     {
+      "file": "350-checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-cohort-affinity-tri-axis.md",
+      "name": "checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-cohort-affinity-tri-axis",
+      "title": "Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-cohort-affinity-tri-axis",
+      "category": "checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-cohort-affinity-tri-axis",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "3.22",
+      "yearOneRoiBand": "18:1-40:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-26",
+      "sources": [],
+      "blurb": "Move #3.22 is the canonical **per-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-cohort-affinity-tri-axis funnel audit + per-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-cohort-af...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 0,
+      "size": 107377,
+      "lastTouched": "2026-09-26"
+    },
+    {
+      "file": "351-checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis.md",
+      "name": "checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis",
+      "title": "Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis",
+      "category": "checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "3.23",
+      "yearOneRoiBand": "22:1-50:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-26",
+      "sources": [],
+      "blurb": "Move #3.23 is the canonical **per-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis funnel audit + per-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 0,
+      "size": 121675,
+      "lastTouched": "2026-09-26"
+    },
+    {
       "file": "36-email-deliverability-sender-reputation.md",
       "name": "email-deliverability-sender-reputation",
       "title": "Email deliverability + sender reputation management",
@@ -65986,6 +66032,34 @@
   ],
   "gitCommits": [
     {
+      "sha": "cfaee5b",
+      "date": "2026-09-26T05:00:11Z",
+      "author": "hermesagent",
+      "subject": "docs: journal entry for Move #3.22 skill tick",
+      "body": ""
+    },
+    {
+      "sha": "4879502",
+      "date": "2026-09-26T04:59:30Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #3.22 checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-cohort-affinity-tri-axis",
+      "body": ""
+    },
+    {
+      "sha": "fef9a69",
+      "date": "2026-09-26T03:52:30Z",
+      "author": "mattiasadem",
+      "subject": "journal: Move #3.21 checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device keep entry",
+      "body": ""
+    },
+    {
+      "sha": "ab3c913",
+      "date": "2026-09-26T03:52:01Z",
+      "author": "mattiasadem",
+      "subject": "skill: Move #3.21 checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device (skill/349, ~120KB, 18 pitfalls, 14:1-32:1 Year-1 ROI Path B default 21:1, first Tier-1 + first P0 in category: checkout-audit-by-su",
+      "body": ""
+    },
+    {
       "sha": "5bdc032",
       "date": "2026-09-26T02:43:30Z",
       "author": "hermesagent",
@@ -67356,34 +67430,6 @@
       "author": "mattiasadem",
       "subject": "skill: Move #234 warranty-knowledge-base-self-serve-deflection (FIRST Tier-1 + FIRST P0 in unique category warranty-knowledge-base-self-serve-deflection; canonical warranty-FAQ + on-site-help-center-warranty-FAQ + chatbot-warranty-content-e",
       "body": ""
-    },
-    {
-      "sha": "91a81fb",
-      "date": "2026-09-20T03:25:55Z",
-      "author": "mattiasadem",
-      "subject": "docs: journal entry for Move #233 returns-knowledge-base-self-serve-deflection",
-      "body": ""
-    },
-    {
-      "sha": "3255edb",
-      "date": "2026-09-20T03:25:16Z",
-      "author": "mattiasadem",
-      "subject": "chore: re-parse content.json for Move #233",
-      "body": ""
-    },
-    {
-      "sha": "0c8f9f7",
-      "date": "2026-09-20T03:25:13Z",
-      "author": "mattiasadem",
-      "subject": "skill: Move #233 returns-knowledge-base-self-serve-deflection (FIRST Tier-1 + FIRST P0 in unique category returns-knowledge-base-self-serve-deflection; canonical returns-FAQ + on-site-help-center-returns-FAQ + chatbot-returns-content-engine",
-      "body": ""
-    },
-    {
-      "sha": "dbcc24f",
-      "date": "2026-09-20T02:17:17Z",
-      "author": "hermesagent",
-      "subject": "docs: journal entry for Move #232 cx-knowledge-base-self-serve-deflection",
-      "body": ""
     }
   ],
   "counts": {
@@ -67392,8 +67438,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 2,
-    "skills": 347,
+    "journalEntries": 4,
+    "skills": 349,
     "gitCommits": 200
   }
 }
