@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-26T14:06:47.536Z",
+  "generatedAt": "2026-09-26T15:12:59.178Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12642,6 +12642,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-26 13:30 UTC] Skill tick: keep — Move #358 Cross-warehouse-balance-engine — per-SKU multi-warehouse inventory allocation + auto-transfer + stockout-risk rebalance + per-region fulfillment pool + per-cohort-affinity routing-rule (cross-warehouse-balance-engine)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-26\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #357 (just shipped at 12:56 UTC) skill's canonical \"How to extend\" first follow-up recommendation (\"Move #357.1 — Per-SKU inventory allocation across multi-warehouse with cross-warehouse-balance-engine — given the per-warehouse-routing-rule, build the cross-warehouse-balance-engine that auto-transfers inventory when stockout-risk detected\"). **(1) UNIQUE CATEGORY** — `grep -lE '^category: cross-warehouse-balance-engine' skills/*.md | wc -l = 1` (Move #358 is the only skill with this canonical cross-warehouse-balance-engine category; pre-tick the dashboard had 355 skills but ZERO in this category — the inventory-execution layer Move #357 Pillar 3 per"
+    },
     {
       "heading": "[2026-09-26 12:56 UTC] Skill tick: keep — Move #357 Per-SKU inventory commitment + open-to-buy (OTB) budget + sell-through forecast + on-order vs on-hand allocation + replenishment cadence + per-channel-warehouse-routing + per-region-fulfillment-pool (per-sku-inventory-commitment)",
       "body": "- **Branch:** autoresearch/skills-2026-09-26\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #356 (skill/356)'s canonical \"How to extend\" first follow-up recommendation (\"Move #356.1 — Per-SKU-inventory-commitment-budget — given the hero-roster + halo-tier, compute the per-SKU inventory-buy-commitment + open-to-buy budget for the next quarter; interfaces with Move #29 inventory-forecasting-stockout-prevention + Move #86 dead-stock-liquidation + Move #96 demand-sensing-supply-chain-resilience\"). **(1) UNIQUE CATEGORY** — `grep -lE '^category: per-sku-inventory-commitment' skills/*.md | wc -l = 1` (skill/357 is the only skill with this canonical per-sku-inventory-commitment category; pre-tick the dashboard had 354 skills but ZERO in this cate"
@@ -46432,6 +46436,25 @@
       "lastTouched": "2026-09-26"
     },
     {
+      "file": "359-cross-warehouse-balance-cost-amortization-engine.md",
+      "name": "cross-warehouse-balance-cost-amortization-engine",
+      "title": "Cross-warehouse-balance cost-amortization-engine + per-transfer ROI attribution + per-transfer payback-window + per-trigger cost-vs-stockout-cost ledger",
+      "category": "cross-warehouse-balance-cost-amortization",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "358.1",
+      "yearOneRoiBand": "5:1–15:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-26",
+      "sources": [],
+      "blurb": "The cross-warehouse-balance-cost-amortization-engine + per-transfer-ROI-attribution-engine every DTC operator running ≥4 warehouses needs after Move #358 ships — given the per-transfer-balance-event-stream, build the ...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 26678,
+      "lastTouched": "2026-09-26"
+    },
+    {
       "file": "36-email-deliverability-sender-reputation.md",
       "name": "email-deliverability-sender-reputation",
       "title": "Email deliverability + sender reputation management",
@@ -67481,6 +67504,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "ecaf056",
+      "date": "2026-09-26T14:10:59Z",
+      "author": "hermesagent",
+      "subject": "journal: Move #358 cross-warehouse-balance-engine tick keep entry",
+      "body": ""
+    },
+    {
+      "sha": "d30a9bc",
+      "date": "2026-09-26T14:10:24Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #358 Cross-warehouse-balance-engine — per-SKU multi-warehouse inventory allocation + auto-transfer + stockout-risk rebalance + per-region fulfillment pool + per-cohort-affinity routing-rule (6-pillar cross-warehouse-balance fram",
+      "body": ""
+    },
+    {
       "sha": "1b66bde",
       "date": "2026-09-26T13:24:36Z",
       "author": "mattiasadem",
@@ -68865,20 +68902,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #242 assembly-knowledge-base-self-serve-deflection (FIRST Tier-1 + FIRST P0 in unique category assembly-knowledge-base-self-serve-deflection; canonical assembly-self-serve-deflection layer every $500k+ GMV DTC brand with >=150 a",
       "body": ""
-    },
-    {
-      "sha": "1da8ed3",
-      "date": "2026-09-20T12:19:24Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #241 installation-knowledge-base-self-serve-deflection (FIRST Tier-1 + FIRST P0 in unique category installation-knowledge-base-self-serve-deflection; canonical installation-self-serve-deflection layer every $500k+ GMV DTC brand ",
-      "body": ""
-    },
-    {
-      "sha": "7b5c1bb",
-      "date": "2026-09-20T11:13:20Z",
-      "author": "hermesagent",
-      "subject": "docs: journal entry for Move #240 order-tracking-knowledge-base-self-serve-deflection",
-      "body": ""
     }
   ],
   "counts": {
@@ -68887,8 +68910,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 16,
-    "skills": 356,
+    "journalEntries": 17,
+    "skills": 357,
     "gitCommits": 200
   }
 }
