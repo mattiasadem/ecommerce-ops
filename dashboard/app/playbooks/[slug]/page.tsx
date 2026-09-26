@@ -21,6 +21,13 @@ import { AttributionQualityAudit } from "@/components/attribution-quality-audit"
 import { TiktokAttributionAudit } from "@/components/tiktok-attribution-audit";
 import { SnapPinterestAttributionAudit } from "@/components/snap-pinterest-attribution-audit";
 import { AttributionHealthAlertCalculator } from "@/components/attribution-health-alert-calculator";
+import { InternationalPathCalculator } from "@/components/international-path-calculator";
+import { MarketplacePathCalculator } from "@/components/marketplace-path-calculator";
+import { SubscriptionPathCalculator } from "@/components/subscription-path-calculator";
+import { AffiliatePathCalculator } from "@/components/affiliate-path-calculator";
+import { B2BWholesalePathCalculator } from "@/components/b2b-wholesale-path-calculator";
+import { CreatorEconomyPathCalculator } from "@/components/creator-economy-path-calculator";
+import { PinterestSeoPathCalculator } from "@/components/pinterest-seo-path-calculator";
 
 const ROOT = "/data/workspace/ecommerce-ops";
 const BUILD_PLAYBOOKS = join(process.cwd(), "src/playbooks");
@@ -83,6 +90,34 @@ const CALCULATORS: Record<string, { node: React.ReactNode; label: string }> = {
   "10-ai-ad-creative-iteration": {
     node: <AiAdCreativeROICalculator />,
     label: "Forecast the lift + ROI of swapping in AI-generated creative variants.",
+  },
+  "11-international-rollout": {
+    node: <InternationalPathCalculator />,
+    label: "Pick your category + supply-chain complexity + operator capacity \u2192 see the canonical Move #11 Path A / B / C / C+ recommendation with Year-1 cost stack, contribution-margin impact, attribution share, and the 6-step build sequence.",
+  },
+  "13-marketplace-launch": {
+    node: <MarketplacePathCalculator />,
+    label: "Pick your US DTC GMV + AOV + contribution margin + category + fulfillment mode + registry status \u2192 see the canonical Move #13 Path A / B / C recommendation with Year-1 cost stack, attributed revenue, ROI, and the 5-step build sequence.",
+  },
+  "15-subscription-program-launch": {
+    node: <SubscriptionPathCalculator />,
+    label: "Pick your category + AOV + churn + subscriber LTV \u2192 see the canonical Move #15 Path A / B / C subscription-program recommendation with Year-1 cost stack, subscriber base, LTV/CAC, and the 6-step build sequence.",
+  },
+  "16-affiliate-program-launch": {
+    node: <AffiliatePathCalculator />,
+    label: "Pick your IQ zone + voice profile + commission tier + operator capacity \u2192 see the canonical Move #16 Path A / B / C affiliate-program recommendation with platform pick, Year-1 cost stack, attributed revenue, ROI, and cookie-deprecation recovery.",
+  },
+  "17-b2b-wholesale-launch": {
+    node: <B2BWholesalePathCalculator />,
+    label: "Pick your category + AOV + order count + MAP-policy strictness + ops capacity \u2192 see the canonical Move #17 Path A / B / C B2B-wholesale recommendation with Year-1 cost stack, wholesale revenue, ROI, and the 6-step build sequence.",
+  },
+  "19-creator-economy-launch": {
+    node: <CreatorEconomyPathCalculator />,
+    label: "Pick your category + AOV + creator fee structure + tracking stack \u2192 see the canonical Move #19 Path A / B / C creator-economy recommendation with platform pick, Year-1 cost stack, attributed revenue, ROI, and the 6-step build sequence.",
+  },
+  "20-pinterest-seo-launch": {
+    node: <PinterestSeoPathCalculator />,
+    label: "Pick your category + AOV + monthly traffic + conversion rate + UGC cadence \u2192 see the canonical Move #20 Path A / B / C Pinterest-SEO recommendation with Year-1 cost stack, attributed revenue, ROI, and the 6-step build sequence.",
   },
 };
 
