@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-26T00:21:21.732Z",
+  "generatedAt": "2026-09-26T02:38:55.927Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12643,6 +12643,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-09-26 01:30 UTC] Skill tick: keep — Move #3.19 Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity",
+      "body": "- **Branch:** autoresearch/skills-2026-09-26\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #3.18's canonical \"How to extend\" first follow-up recommendation (\"Move #3.19 — Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-extension ... first Tier-1 + first P0 in `category: checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity`; default Year-1 ROI Path B 11:1-26:1 at $1M-$10M subscription-LTV-tier-x-cohort-affinity-driven-GMV\"). (1) **UNIQUE CATEGORY** — `grep -lE '^category: checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity' skills/*.md | wc -l = 1` (skill/347 is the only skill with the canonical checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity category; master had 346 skills"
+    },
+    {
       "heading": "[2026-09-25 23:15 UTC] Skill tick: keep — Move #3.17 Checkout audit by subscription-discount-cohort",
       "body": "- **Branch:** autoresearch/skills-2026-09-25\n- **Status:** keep\n- **Reason:** PASSES ALL 3 IMPROVEMENT-METRIC FIRST-GATES per skill-builder-prompt.md metric: (1) **UNIQUE CATEGORY** — `grep -lE '^category: checkout-audit-by-subscription-discount-cohort' skills/*.md | wc -l = 1` (skill/345 is the only skill in `skills/` with this category; Move #3.16 = skill/344 explicitly named Move #3.17 as the canonical next-action in its \"How to extend\" roadmap line: \"Move #3.17 — Checkout audit by subscription-discount-cohort. Canonical Move #3.16 extension decomposing per-promo-discount-cohort-leak-rate into per-subscription-discount-cohort-leak-rate per Move #11 subscriptions: first-ship-discount / first-ship-25-off / first-ship-50-off / recurring-10-off / recurring-15-off / subscription-bundle-disco"
     },
@@ -12845,6 +12849,10 @@
     {
       "heading": "[2026-09-25 19:59 UTC] Skill tick: discard — Move #3.15 Per-shipping-policy-cohort 9-axis checkout-audit engine (Vercel deploy quota exhausted)",
       "body": "- **Branch:** autoresearch/skills-2026-09-25\n- **Status:** discard (deploy failed — Vercel free-tier daily quota exhausted, \"Resource is limited - try again in 24 hours (more than 100, code: api-deployments-free-day)\")\n- **Reason:** PASSES ALL 3 IMPROVEMENT-METRIC FIRST-GATES: (1) UNIQUE CATEGORY — `grep -lE '^category: checkout-audit-by-shipping-policy-cohort' skills/*.md | wc -l = 1` (no other skill in `skills/` has the canonical shipping-policy-cohort category; explicitly named in Move #342's \"How to extend this skill\" roadmap line \"Move #3.15 — Checkout audit by shipping-policy-cohort ... first Tier-1 + first P0 in `category: checkout-audit-by-shipping-policy-cohort`\"). (2) TIER-1 FIRST IN CATEGORY — `tier: 1` and the canonical 9-shipping-policy-cohort layer is the canonical Move #3.15"
+    },
+    {
+      "heading": "[2026-09-26 01:15 UTC] Dashboard-improver tick: keep — Attribution-Health Alert Path calculator on /playbooks/06.10-attribution-health-alert-webhook-launch (P0 interactive-tool + state-persistence)",
+      "body": "- **Branch:** autoresearch/dashboard-improver-2026-09-26-01\n- **Status:** keep\n- **Reason:** PASSES ALL DASHBOARD-IMPROVEMENT-METRIC GATES: (1) **NEW INTERACTIVE TOOL** — first interactive calculator on `/playbooks/06.10-attribution-health-alert-webhook-launch` (Move #6.10 Slack-compatible webhook dispatcher for the Move #6.8 cross-platform attribution rollup). Previously the 06.10 playbook shipped with the canonical \"Which alert-cadence fits your team\" Path A/B/C/D/E decision matrix + the canonical \"60:1 to 150:1 net annual ROI Path B at $1M-$5M GMV\" benchmark + the 5-decision-rule engine + the 13-field alert-payload contract + the 5 canonical webhook thresholds + the 5-pillar framework + the 6-step build sequence but ZERO interactive math — operators had to apply the deferral gates (low "
     }
   ],
   "skills": [
@@ -45029,6 +45037,44 @@
       "lastTouched": "2026-09-26"
     },
     {
+      "file": "347-checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity.md",
+      "name": "347-checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity",
+      "title": "Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-26",
+      "sources": [],
+      "blurb": "Move #3.19 is the canonical **per-subscription-discount-LTV-tier-x-cohort-affinity funnel audit + per-subscription-discount-LTV-tier-x-cohort-affinity completion-rate + per-subscription-discount-LTV-tier-x-cohort-affi...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 0,
+      "size": 94487,
+      "lastTouched": "2026-09-26"
+    },
+    {
+      "file": "348-checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort.md",
+      "name": "348-checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort",
+      "title": "Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-26",
+      "sources": [],
+      "blurb": "Move #3.20 is the canonical **per-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort funnel audit + per-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort completion-rate + per-subscription-dis...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 0,
+      "size": 99417,
+      "lastTouched": "2026-09-26"
+    },
+    {
       "file": "35-site-speed-core-web-vitals.md",
       "name": "site-speed-core-web-vitals",
       "title": "Site speed + Core Web Vitals",
@@ -66125,6 +66171,34 @@
   ],
   "gitCommits": [
     {
+      "sha": "0ce99a0",
+      "date": "2026-09-26T01:34:14Z",
+      "author": "mattiasadem",
+      "subject": "journal: Move #3.19 checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity keep entry",
+      "body": ""
+    },
+    {
+      "sha": "624d4f6",
+      "date": "2026-09-26T01:32:35Z",
+      "author": "mattiasadem",
+      "subject": "skill: Move #3.19 checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity (skill/347, ~95KB, 18 pitfalls, 11:1-26:1 Year-1 ROI Path B default 17:1, first Tier-1 + first P0 in category: checkout-audit-by-subscription-discount-LTV-",
+      "body": ""
+    },
+    {
+      "sha": "2bfafa4",
+      "date": "2026-09-26T01:15:52Z",
+      "author": "mattiasadem",
+      "subject": "feat(dashboard): Move #6.10 attribution-health alert path calculator (A/B/C/D/E scorer on /playbooks/06.10)",
+      "body": ""
+    },
+    {
+      "sha": "c05bb33",
+      "date": "2026-09-26T00:24:29Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #3.18 checkout-audit-by-subscription-discount-cohort-x-LTV-tier (Tier-1, P0, unique category, 18 pitfalls, 80KB, deploy live)",
+      "body": ""
+    },
+    {
       "sha": "b9c8b15",
       "date": "2026-09-25T23:17:51Z",
       "author": "hermesagent",
@@ -67495,34 +67569,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #232 CX knowledge-base + on-site-help-center + FAQ-engine + chatbot-content-engine + Gorgias-Automate-content-library (self-serve deflection layer, FIRST Tier-1 + FIRST P0 in unique category cx-knowledge-base-self-serve-deflecti",
       "body": ""
-    },
-    {
-      "sha": "64adbfa",
-      "date": "2026-09-20T01:10:24Z",
-      "author": "mattiasadem",
-      "subject": "skill: Move #231 ecommerce-ops-incident-response-runbook (FIRST unique category incident-response, 15 pitfalls, 8-incident war-room pattern)",
-      "body": ""
-    },
-    {
-      "sha": "730ecef",
-      "date": "2026-09-20T00:05:02Z",
-      "author": "hermesagent",
-      "subject": "journal: Move #14.2.6 subscription-segmented-paywall-engine tick record",
-      "body": ""
-    },
-    {
-      "sha": "9567db7",
-      "date": "2026-09-20T00:04:12Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #14.2.6 subscription-segmented-paywall-engine (FIRST Tier-1 + FIRST P0 in unique category)",
-      "body": ""
-    },
-    {
-      "sha": "10f454c",
-      "date": "2026-09-19T22:57:30Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #14.2.5 subscription-box curated-discovery-engine with surprise-and-delight unboxing + per-customer-curation-engine + lifestyle-DNA-onboarding-quiz (FIRST Tier-1 + FIRST P0 in unique category subscription-box-curated-discovery; ",
-      "body": ""
     }
   ],
   "counts": {
@@ -67531,8 +67577,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 51,
-    "skills": 344,
+    "journalEntries": 53,
+    "skills": 346,
     "gitCommits": 200
   }
 }
