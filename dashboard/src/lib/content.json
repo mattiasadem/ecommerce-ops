@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-26T16:21:59.109Z",
+  "generatedAt": "2026-09-26T18:37:12.190Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12642,6 +12642,14 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-26 17:30 UTC] Skill tick: keep — Move #358.3 Per-SKU supplier-drop-ship-engine + cross-warehouse-balance-supplier-bypass-decision-engine + per-SKU supplier-lead-time-vector + per-SKU transfer-lead-time-vector + per-SKU drop-ship-eligibility-decision-engine + per-supplier drop-ship-throughput-vector + per-SKU drop-ship-cost-vs-transfer-cost calculator + per-SKU drop-ship-rollback-decision-engine (per-sku-supplier-drop-ship)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-26\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #358.2 (skill/360) canonical \"How to extend\" first follow-up (\"Move #358.3 — Per-SKU cross-warehouse-balance-supplier-drop-ship-engine — given the Move #357 per-SKU-OTB-formula + the cross-warehouse-balance-engine, build the supplier-drop-ship-engine that bypasses warehouse transfer when supplier-lead-time < transfer-lead-time\"). **(1) UNIQUE CATEGORY** — `grep -lE '^category: per-sku-supplier-drop-ship' skills/*.md | wc -l = 1` (skill/361 is the only skill with this canonical category; pre-tick the dashboard had 358 skills, ZERO in this category). **(2) TIER-1 FIRST IN CATEGORY** — first Tier-1 in `category: per-sku-supplier-drop-ship`. **(3) P0 FI"
+    },
+    {
+      "heading": "[2026-09-26 16:23 UTC] Skill tick: keep — Move #358.2 Per-warehouse capacity-utilization-engine + cross-warehouse-overflow-engine + per-hour capacity-load-index + per-region overflow-routing-rule + per-warehouse SLA-breach-alert + per-warehouse-rollback-decision-engine (per-warehouse-capacity-utilization)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-26\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #358.1 (shipped at 15:17 UTC today) skill's canonical \"How to extend\" first follow-up recommendation (\"Move #358.2 — Per-warehouse capacity-utilization-engine + cross-warehouse-overflow-engine — given the per-warehouse-capacity-utilization-vector, build the overflow-engine that re-routes orders to a secondary warehouse when the primary is at-capacity (interfaces with Move #357 Pillar 3 per-warehouse-routing-rule + ShipBob-Fulfillment-API-2026 + LeanBox-Per-Channel-2026 + FBA-Multi-Channel-2026)\"). **(1) UNIQUE CATEGORY** — `grep -lE '^category: per-warehouse-capacity-utilization' skills/*.md | wc -l = 1` (skill/360 is the only skill with this canoni"
+    },
     {
       "heading": "[2026-09-26 15:17 UTC] Skill tick: keep — Move #358.1 Cross-warehouse-balance cost-amortization-engine + per-transfer ROI attribution + per-trigger payback-window + per-warehouse ledger",
       "body": "- **Branch:** autoresearch/skills-2026-09-26\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #358 (shipped at 15:11 UTC today) skill's canonical \"How to extend\" first follow-up recommendation. **(1) UNIQUE CATEGORY** — only skill in `category: cross-warehouse-balance-cost-amortization` (master had 357 skills, ZERO in this category). **(2) TIER-1 FIRST IN CATEGORY**. **(3) P0 FIRST IN CATEGORY**. **(4) HIGHEST PITFALL COUNT WINS TIES** — 18 numbered pitfalls (P1-P18) including Move #358.1-unique: P1 ship-without-event-stream, P2 ship-without-confidence-band, P3 no-per-trigger-payback-window, P4 no-per-tier-stockout-cost-weights, P5 no-3PL-cost-savings-attribution, P6 no-dead-stock-clearance-attribution, P7 no-BFCM-peak-uplift-attribution, P8"
@@ -46594,6 +46602,44 @@
       "lastTouched": "2026-09-26"
     },
     {
+      "file": "361-per-sku-supplier-drop-ship-engine-cross-warehouse-balance-supplier-bypass.md",
+      "name": "per-sku-supplier-drop-ship-engine-cross-warehouse-balance-supplier-bypass",
+      "title": "Per-SKU supplier-drop-ship-engine + cross-warehouse-balance-supplier-bypass-decision-engine",
+      "category": "per-sku-supplier-drop-ship",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "358.3",
+      "yearOneRoiBand": "6:1–18:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-26",
+      "sources": [],
+      "blurb": "The supplier-bypass + per-SKU-agility + per-supplier-risk-tier layer every $1M+ GMV DTC operator running ≥1 warehouse + ≥500 orders/month + ≥3 suppliers needs after Move #358 cross-warehouse-balance-engine + Move #358...",
+      "sectionCount": 8,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 53031,
+      "lastTouched": "2026-09-26"
+    },
+    {
+      "file": "362-per-region-cross-warehouse-balance-BFCM-stress-test-engine.md",
+      "name": "362-per-region-cross-warehouse-balance-BFCM-stress-test-engine",
+      "title": "Per-region cross-warehouse-balance-BFCM-stress-test-engine",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-26",
+      "sources": [],
+      "blurb": "The Q4-pre-positioning + per-region BFCM-resilience + per-region-stress-test layer every $1M+ GMV DTC operator running ≥2 regions + ≥1 warehouse + ≥500 orders/month needs after Move #89 BFCM-peak-pre-positioning + Mov...",
+      "sectionCount": 8,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 53321,
+      "lastTouched": "2026-09-26"
+    },
+    {
       "file": "37-ai-site-search-merchandising.md",
       "name": "ai-site-search-merchandising",
       "title": "AI site search + merchandising",
@@ -67527,6 +67573,27 @@
   ],
   "gitCommits": [
     {
+      "sha": "9b04d41",
+      "date": "2026-09-26T17:33:56Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #358.3 per-SKU supplier-drop-ship-engine + cross-warehouse-balance-supplier-bypass-decision-engine + 5-dim supplier-lead-time-vector + 4-dim transfer-lead-time-vector + 7-condition drop-ship-eligibility gate + per-supplier drop-",
+      "body": ""
+    },
+    {
+      "sha": "7259488",
+      "date": "2026-09-26T16:25:43Z",
+      "author": "mattiasadem",
+      "subject": "docs: journal entry for Move #358.2 tick keep",
+      "body": ""
+    },
+    {
+      "sha": "0bd6d87",
+      "date": "2026-09-26T16:24:52Z",
+      "author": "mattiasadem",
+      "subject": "skill: Move #358.2 per-warehouse capacity-utilization-engine + cross-warehouse-overflow-engine + 5-dim CLI + per-region overflow-routing-rule + per-warehouse SLA-breach-alert + Triple-Whale per-overflow-event-stream + 4-sub-rule rollback-de",
+      "body": ""
+    },
+    {
       "sha": "bd6f125",
       "date": "2026-09-26T15:17:45Z",
       "author": "hermesagent",
@@ -68904,27 +68971,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #246 dtc-vs-marketplace-cannibalization-monitoring (FIRST Tier-1 + FIRST P0 in unique category marketplace-cannibalization-monitoring; canonical DTC-traffic-erosion-monitoring layer every $1M+ GMV DTC brand with marketplace pres",
       "body": ""
-    },
-    {
-      "sha": "8d567a3",
-      "date": "2026-09-20T16:52:18Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #245 sizing-fit-knowledge-base-self-serve-deflection (FIRST Tier-1 + FIRST P0 in unique category sizing-fit-knowledge-base-self-serve-deflection; canonical sizing-fit-self-serve-deflection layer every $500k+ GMV apparel/footwear",
-      "body": ""
-    },
-    {
-      "sha": "237812e",
-      "date": "2026-09-20T15:39:59Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #244 troubleshooting-knowledge-base-self-serve-deflection (FIRST Tier-1 + FIRST P0 in unique category troubleshooting-knowledge-base-self-serve-deflection; canonical troubleshooting-self-serve-deflection layer every $500k+ GMV D",
-      "body": ""
-    },
-    {
-      "sha": "ff7f76c",
-      "date": "2026-09-20T14:31:22Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #243 care-and-maintenance-knowledge-base-self-serve-deflection (FIRST Tier-1 + FIRST P0 in unique category care-and-maintenance-knowledge-base-self-serve-deflection; canonical care-and-maintenance-self-serve-deflection layer eve",
-      "body": ""
     }
   ],
   "counts": {
@@ -68933,8 +68979,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 18,
-    "skills": 358,
+    "journalEntries": 20,
+    "skills": 360,
     "gitCommits": 200
   }
 }
