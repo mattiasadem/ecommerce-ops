@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-25T22:10:45.763Z",
+  "generatedAt": "2026-09-26T00:21:21.732Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -12642,6 +12642,14 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-25 23:15 UTC] Skill tick: keep — Move #3.17 Checkout audit by subscription-discount-cohort",
+      "body": "- **Branch:** autoresearch/skills-2026-09-25\n- **Status:** keep\n- **Reason:** PASSES ALL 3 IMPROVEMENT-METRIC FIRST-GATES per skill-builder-prompt.md metric: (1) **UNIQUE CATEGORY** — `grep -lE '^category: checkout-audit-by-subscription-discount-cohort' skills/*.md | wc -l = 1` (skill/345 is the only skill in `skills/` with this category; Move #3.16 = skill/344 explicitly named Move #3.17 as the canonical next-action in its \"How to extend\" roadmap line: \"Move #3.17 — Checkout audit by subscription-discount-cohort. Canonical Move #3.16 extension decomposing per-promo-discount-cohort-leak-rate into per-subscription-discount-cohort-leak-rate per Move #11 subscriptions: first-ship-discount / first-ship-25-off / first-ship-50-off / recurring-10-off / recurring-15-off / subscription-bundle-disco"
+    },
+    {
+      "heading": "[2026-09-25 22:10 UTC] Skill tick: keep — Move #3.15 Checkout audit by shipping-policy-cohort",
+      "body": "- **Branch:** autoresearch/skills-2026-09-25\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of the prior Move #3.16 keep entry (24e0b40)'s canonical next-action recommendation (\"Move #3.15 — Checkout audit by shipping-policy-cohort ... first Tier-1 + first P0 in `category: checkout-audit-by-shipping-policy-cohort`; default Year-1 ROI Path B 6:1-16:1 at $1M-$10M GMV; rebuildable at any future tick\"). Move #3.15 was originally authored at commit 9b13eba on 2026-09-25 18:58 UTC but DISCARDED for Vercel deploy-quota exhaustion (the 19:59 tick's journal entry e117428 explicitly logged \"Move #3.15 — Vercel deploy quota exhausted\"; the category `checkout-audit-by-shipping-policy-cohort` has been UNUSED on master since). This tick RETRIEVED the file from "
+    },
     {
       "heading": "[2026-09-25 21:09 UTC] Skill tick: keep — Move #3.16 Checkout audit by promo-discount-cohort (per-promo-discount-cohort funnel + per-promo-discount-cohort completion-rate + per-promo-discount-cohort leak-rate + per-promo-discount-cohort cause-diagnosis + per-promo-discount-cohort fix-recommendation + per-promo-discount-cohort attribution loop + Move #3 Baymard + Move #3.1 per-payment-method + Move #3.2 per-checkout-step + Move #3.3 per-checkout-friction-element + Move #3.4 per-device-cohort + Move #3.5 per-traffic-source + Move #3.6 per-BFCM-cohort + Move #3.7 per-AI-search-traffic-source + Move #3.8 per-sustainability-cohort + Move #3.9 per-social-search-traffic-source + Move #3.10 per-subscription-cohort + Move #3.11 per-creator-economy-cohort + Move #3.12 per-trust-signal-cohort + Move #3.13 per-inventory-availability-cohort + Move #3.14 per-returns-policy-cohort + Move #46 promotional-calendar-discount-strategy + Move #89 bfcm-season-engine + Move #6 Triple Whale attribution + Move #47 growth-experimentation, Move #3.16, 5-layer Path A/B/C/D, 7:1-18:1 Year-1 ROI Path B default 12:1, FIRST Tier-1 + FIRST P0 in `category: checkout-audit-by-promo-discount-cohort`)",
       "body": "- **Branch:** autoresearch/skills-2026-09-25\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of the prior tick (e117428 Move #3.15 discard)'s canonical next-action recommendation (\"Move #3.16 — Checkout audit by promo-discount-cohort (canonical 12-promo-discount-cohorts: percentage-off-5-percent / percentage-off-10-percent / percentage-off-15-percent / percentage-off-20-percent / percentage-off-25-percent / percentage-off-30-percent-plus / fixed-amount-off-5 / fixed-amount-off-10 / fixed-amount-off-25 / fixed-amount-off-50 / free-shipping-promo / bogo-buy-one-get-one; first Tier-1 + first P0 in unique category; default Year-1 ROI Path B 7:1-18:1 at $1M-$10M GMV)\"). (1) **UNIQUE CATEGORY** — `grep -lE '^category: checkout-audit-by-promo-discount-coh"
@@ -44983,6 +44991,44 @@
       "lastTouched": "2026-09-25"
     },
     {
+      "file": "345-checkout-audit-by-subscription-discount-cohort.md",
+      "name": "345-checkout-audit-by-subscription-discount-cohort",
+      "title": "Checkout audit by subscription-discount-cohort",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-25",
+      "sources": [],
+      "blurb": "Move #3.17 is the canonical **per-subscription-discount-cohort funnel audit + per-subscription-discount-cohort completion-rate + per-subscription-discount-cohort leak-rate + per-subscription-discount-cohort cause-diag...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 0,
+      "size": 73818,
+      "lastTouched": "2026-09-25"
+    },
+    {
+      "file": "346-checkout-audit-by-subscription-discount-cohort-x-LTV-tier.md",
+      "name": "346-checkout-audit-by-subscription-discount-cohort-x-LTV-tier",
+      "title": "Checkout audit by subscription-discount-cohort-x-LTV-tier",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-26",
+      "sources": [],
+      "blurb": "Move #3.18 is the canonical **per-subscription-discount-cohort-x-LTV-tier funnel audit + per-subscription-discount-cohort-x-LTV-tier completion-rate + per-subscription-discount-cohort-x-LTV-tier leak-rate + per-subscr...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 0,
+      "size": 81176,
+      "lastTouched": "2026-09-26"
+    },
+    {
       "file": "35-site-speed-core-web-vitals.md",
       "name": "site-speed-core-web-vitals",
       "title": "Site speed + Core Web Vitals",
@@ -66079,6 +66125,34 @@
   ],
   "gitCommits": [
     {
+      "sha": "b9c8b15",
+      "date": "2026-09-25T23:17:51Z",
+      "author": "hermesagent",
+      "subject": "journal: Move #3.17 subscription-discount-cohort skill tick keep entry",
+      "body": ""
+    },
+    {
+      "sha": "3f091d2",
+      "date": "2026-09-25T23:17:37Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #3.17 checkout-audit-by-subscription-discount-cohort (skill/345, ~74KB, 18 pitfalls, 8:1-20:1 Year-1 ROI Path B default 14:1, first Tier-1 + first P0 in checkout-audit-by-subscription-discount-cohort)",
+      "body": ""
+    },
+    {
+      "sha": "2c597aa",
+      "date": "2026-09-25T22:13:24Z",
+      "author": "hermesagent",
+      "subject": "journal: Move #3.15 shipping-policy-cohort skill tick keep entry",
+      "body": ""
+    },
+    {
+      "sha": "af38b9e",
+      "date": "2026-09-25T22:13:04Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #3.15 checkout-audit-by-shipping-policy-cohort (skill/343, ~66KB, 28 numbered pitfalls, 6:1-16:1 Year-1 ROI Path B default 11:1, first Tier-1 + first P0 in checkout-audit-by-shipping-policy-cohort, rebuilt after Move #3.15 deplo",
+      "body": ""
+    },
+    {
       "sha": "24e0b40",
       "date": "2026-09-25T21:09:31Z",
       "author": "hermesagent",
@@ -67449,34 +67523,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #14.2.5 subscription-box curated-discovery-engine with surprise-and-delight unboxing + per-customer-curation-engine + lifestyle-DNA-onboarding-quiz (FIRST Tier-1 + FIRST P0 in unique category subscription-box-curated-discovery; ",
       "body": ""
-    },
-    {
-      "sha": "5f21359",
-      "date": "2026-09-19T21:54:19Z",
-      "author": "hermesagent",
-      "subject": "feat(dashboard): add B2B MAP-policy self-check on /b2b (port of scripts/b2b_map_policy_check.py)",
-      "body": ""
-    },
-    {
-      "sha": "9d77449",
-      "date": "2026-09-19T19:46:00Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #14.2.4 subscription winback-discount-ladder for high-intent voluntary churn (FIRST Tier-1 + FIRST P0 in unique category subscription-winback-discount-ladder; canonical winback-discount-ladder + per-cancel-reason-discount-engine",
-      "body": ""
-    },
-    {
-      "sha": "552c0bc",
-      "date": "2026-09-19T18:38:11Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #14.2.3 subscription voluntary churn prevention + cancellation save-flow (FIRST Tier-1 + FIRST P0 in unique category subscription-voluntary-churn; canonical voluntary-churn-prevention + cancellation-save-flow layer for DTC subsc",
-      "body": ""
-    },
-    {
-      "sha": "ee17dfc",
-      "date": "2026-09-19T17:25:42Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #14.2.2 subscription multi-currency + cross-border dunning (FIRST Tier-1 + FIRST P0 in unique category subscription-cross-border-dunning; canonical multi-currency + cross-border dunning layer for DTC subscription brands shipping",
-      "body": ""
     }
   ],
   "counts": {
@@ -67485,8 +67531,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 49,
-    "skills": 342,
+    "journalEntries": 51,
+    "skills": 344,
     "gitCommits": 200
   }
 }
