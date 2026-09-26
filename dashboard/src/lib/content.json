@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-26T19:45:57.186Z",
+  "generatedAt": "2026-09-26T20:52:57.887Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-26 19:48 UTC] Skill tick: keep — Move #358.5 Per-region cross-warehouse-balance-supplier-stress-test-engine + per-region supplier-outage-scenario-engine + per-region supplier-lead-time-stress-vector + per-region cross-supplier-pool-allocation-engine + per-region supplier-overlap-coverage-table + per-region supplier-stress-test-rollback-decision-engine + Triple-Whale per-supplier-stress-test-event-stream (per-region-cross-warehouse-balance-supplier-stress-test)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-26\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #358.4 (shipped at 18:34 UTC today) skill's canonical \"How to extend\" first follow-up recommendation (\"Move #358.5 — Per-region cross-warehouse-balance-supplier-stress-test-engine — given the Move #358.4 BFCM-stress-test-engine + the supplier-drop-ship-engine from Move #358.3, build the supplier-stress-test-engine that simulates ≥2 simultaneous supplier outages and re-routes 100% of demand via cross-region-pool + cross-supplier-pool (interfaces with Move #358.3 Pillar 4 + ShipBob-BFCM-2026 + Printful-BFCM-2026 + Printify-BFCM-2026)\"). **(1) UNIQUE CATEGORY** — `grep -lE '^category: per-region-cross-warehouse-balance-supplier-stress-test' skills/*.md"
+    },
     {
       "heading": "2026-09-26 18:37 UTC — /playbooks: per-playbook phased progress tracker (16/30 playbooks decomposed into N actionable phases)",
       "body": "- **What shipped:** New `<PhasedProgress />` component on `/playbooks` between the ROI calculators and the binary \"Mark shipped\" tracker. Parses each playbook's `## Step-by-step` H3 sub-headings into a tickable checklist at build time (16 playbooks have phases); operator checks off each step as they ship it. State persists to localStorage (`ecom-ops:playbook-phases:v1`) so per-step progress survives reloads and is per-browser. Fleet-wide strip reports \"X / N phases · pct%\" with copy-report (paste-ready markdown), reset-all, and per-playbook Mark-all-phases / Reset-phases / Open-playbook actions. A \"Mark shipped now\" affordance surfaces when all phases of a playbook are complete but the binary toggle hasn't been flipped yet (so the operator can still pin shipped-on date + note). Compact `Ph"
@@ -47248,6 +47252,25 @@
       "lastTouched": "2026-09-26"
     },
     {
+      "file": "364-per-sku-supplier-stress-test-cohort-affinity.md",
+      "name": "per-sku-supplier-stress-test-cohort-affinity",
+      "title": "Per-SKU supplier-stress-test-cohort-affinity-extension",
+      "category": "per-sku-supplier-stress-test-cohort-affinity",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "358.5.1",
+      "yearOneRoiBand": "7:1–22:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-26",
+      "sources": [],
+      "blurb": "The per-cohort-affinity × per-supplier × per-region × per-SKU × per-stress-scenario × per-stress-cadence decomposition engine — given the Move #358.5 per-region cross-warehouse-balance-supplier-stress-test-engine + th...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 46977,
+      "lastTouched": "2026-09-26"
+    },
+    {
       "file": "37-ai-site-search-merchandising.md",
       "name": "ai-site-search-merchandising",
       "title": "AI site search + merchandising",
@@ -68181,6 +68204,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "eef4d19",
+      "date": "2026-09-26T19:50:17Z",
+      "author": "hermesagent",
+      "subject": "docs: journal entry for Move #358.5 per-region cross-warehouse-balance-supplier-stress-test-engine tick keep",
+      "body": ""
+    },
+    {
+      "sha": "b71726c",
+      "date": "2026-09-26T19:48:50Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #358.5 per-region cross-warehouse-balance-supplier-stress-test-engine + per-region supplier-outage-scenario-engine + per-region supplier-lead-time-stress-vector + per-region cross-supplier-pool-allocation-engine + per-region sup",
+      "body": ""
+    },
+    {
       "sha": "568b5a7",
       "date": "2026-09-26T19:33:02Z",
       "author": "hermesagent",
@@ -69565,20 +69602,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #248 journal entry for canonical keep decision + move #248 added to docs/journal.md",
       "body": ""
-    },
-    {
-      "sha": "9f1c583",
-      "date": "2026-09-20T21:16:39Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #248 per-sku-return-rate-forecasting-and-return-cost-attribution-engine (FIRST Tier-1 + FIRST P0 in unique category per-sku-return-rate-forecasting; canonical per-SKU return-rate-forecast + per-SKU-return-cost-of-goods-sold-engi",
-      "body": ""
-    },
-    {
-      "sha": "ef22f85",
-      "date": "2026-09-20T20:09:12Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #247 per-marketplace-promotion-budget-allocation-engine — journal entry for canonical keep decision + move #247 added to docs/journal.md",
-      "body": ""
     }
   ],
   "counts": {
@@ -69587,8 +69610,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 22,
-    "skills": 361,
+    "journalEntries": 23,
+    "skills": 362,
     "gitCommits": 200
   }
 }
