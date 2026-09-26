@@ -81,3 +81,5 @@ ls /data/workspace/cron-reports/ | tail
 ## 2026-09-24 18:34 UTC — Loyalty Program ROI calculator on /playbooks/07-loyalty-program-smile (P0+P1 interactive-tool + state-persistence + cross-page-intelligence). Live at https://ecommerce-ops-iota.vercel.app/playbooks/07-loyalty-program-smile. Commit bc98120 pushed (0389f0e..bc98120).
 
 ## 2026-09-25 00:53 UTC — SMS Welcome + Cart-Abandon 4-flow ROI calculator on /playbooks/06-sms-welcome-and-cart-abandon (P0 interactive-tool + state-persistence + cross-page-intelligence). Live at https://ecommerce-ops-iota.vercel.app/playbooks/06-sms-welcome-and-cart-abandon.
+
+## 2026-09-26 13:25 UTC — /pdp-ab-launch-plan generator (Move #9.5). One-click-action + state-persistence + cross-page-intelligence. Live at https://ecommerce-ops-iota.vercel.app/pdp-ab-launch-plan. Commit 24af78e.
