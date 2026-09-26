@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-26T19:27:51.034Z",
+  "generatedAt": "2026-09-26T19:45:57.186Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "2026-09-26 18:37 UTC — /playbooks: per-playbook phased progress tracker (16/30 playbooks decomposed into N actionable phases)",
+      "body": "- **What shipped:** New `<PhasedProgress />` component on `/playbooks` between the ROI calculators and the binary \"Mark shipped\" tracker. Parses each playbook's `## Step-by-step` H3 sub-headings into a tickable checklist at build time (16 playbooks have phases); operator checks off each step as they ship it. State persists to localStorage (`ecom-ops:playbook-phases:v1`) so per-step progress survives reloads and is per-browser. Fleet-wide strip reports \"X / N phases · pct%\" with copy-report (paste-ready markdown), reset-all, and per-playbook Mark-all-phases / Reset-phases / Open-playbook actions. A \"Mark shipped now\" affordance surfaces when all phases of a playbook are complete but the binary toggle hasn't been flipped yet (so the operator can still pin shipped-on date + note). Compact `Ph"
+    },
     {
       "heading": "[2026-09-26 18:34 UTC] Skill tick: keep — Move #358.4 Per-region cross-warehouse-balance-BFCM-stress-test-engine + per-region BFCM-peak-demand-forecast-vector + per-region pre-positioning-engine + per-region fulfillment-pool-allocation-engine + per-region SLA-target + per-region stress-test-scenario-engine + per-region rollback-decision-engine + Triple-Whale per-stress-test-event-stream (per-region-cross-warehouse-balance-BFCM-stress-test)",
       "body": "- **Branch:** autoresearch/skills-2026-09-26\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #358.3 (shipped at 17:30 UTC today) skill's canonical \"How to extend\" first follow-up recommendation (\"Move #358.4 — Per-region cross-warehouse-balance-BFCM-stress-test-engine — given the Move #89 BFCM-peak-multiplier + the cross-warehouse-balance-engine + the supplier-drop-ship-engine, build the BFCM-stress-test-engine that simulates 3× normal Q4 demand on each (SKU × warehouse × region × supplier) cell and pre-positions inventory 8 weeks pre-BFCM\"). **(1) UNIQUE CATEGORY** — `grep -lE '^category: per-region-cross-warehouse-balance-BFCM-stress-test' skills/*.md | wc -l = 1` (skill/362 is the only skill with this canonical category; pre-tick the das"
@@ -47225,6 +47229,25 @@
       "lastTouched": "2026-09-26"
     },
     {
+      "file": "363-per-region-cross-warehouse-balance-supplier-stress-test-engine.md",
+      "name": "363-per-region-cross-warehouse-balance-supplier-stress-test-engine",
+      "title": "Per-region cross-warehouse-balance-supplier-stress-test-engine",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-26",
+      "sources": [],
+      "blurb": "Move #358.5 — Per-region cross-warehouse-balance-supplier-stress-test-engine — given the Move #358.4 per-region BFCM-stress-test-engine + the Move #358.3 per-SKU-supplier-drop-ship-engine + the Move #358 per-region-fu...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 47518,
+      "lastTouched": "2026-09-26"
+    },
+    {
       "file": "37-ai-site-search-merchandising.md",
       "name": "ai-site-search-merchandising",
       "title": "AI site search + merchandising",
@@ -68158,6 +68181,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "568b5a7",
+      "date": "2026-09-26T19:33:02Z",
+      "author": "hermesagent",
+      "subject": "feat(dashboard): per-playbook phased progress tracker (16/30 playbooks, per-step checkboxes, fleet-wide %, cross-page-intelligence)",
+      "body": ""
+    },
+    {
       "sha": "ffe6e8f",
       "date": "2026-09-26T18:41:46Z",
       "author": "hermesagent",
@@ -69549,13 +69579,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #247 per-marketplace-promotion-budget-allocation-engine — journal entry for canonical keep decision + move #247 added to docs/journal.md",
       "body": ""
-    },
-    {
-      "sha": "e92f20a",
-      "date": "2026-09-20T20:06:40Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #247 per-marketplace-promotion-budget-allocation-engine (Tier-1 P0 in fresh category marketplace-promotion-budget-allocation; 6-pillar Path A/B/C/D/E/F framework with default 14:1 Year-1 ROI Path B at $5M GMV)",
-      "body": ""
     }
   ],
   "counts": {
@@ -69564,8 +69587,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 21,
-    "skills": 360,
+    "journalEntries": 22,
+    "skills": 361,
     "gitCommits": 200
   }
 }
