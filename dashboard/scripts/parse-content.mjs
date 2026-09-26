@@ -264,6 +264,41 @@ async function parsePlaybooks() {
     for (const s of sections) {
       if (/^\d+\./.test(s.heading)) numbered.push({ heading: s.heading, body: s.body.join("\n").trim() });
     }
+    // Phases — actionable H3 step sub-headings inside the canonical
+    // "## Step-by-step" section. splitSections() emits each H3 as its OWN
+    // top-level section (not nested), so we identify the run by walking
+    // the section list and grabbing H3 sections that immediately follow
+    // the "Step-by-step" H2 (stopping at the next H2). Used by /playbooks
+    // phased-progress tracker (ecom-ops:playbook-phases:v1).
+    const phases = [];
+    {
+      let inStep = false;
+      let counter = 0;
+      for (const s of sections) {
+        if (s.level === 2 && /^step[- ]?by[- ]?step$/i.test(s.heading)) {
+          inStep = true;
+          continue;
+        }
+        if (s.level === 2 && inStep) {
+          inStep = false;
+          break;
+        }
+        if (inStep && s.level === 3) {
+          counter += 1;
+          const heading = s.heading;
+          const baseId = heading
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-+|-+$/g, "")
+            .slice(0, 40);
+          phases.push({
+            id: `${counter}-${baseId || "step"}`,
+            order: counter,
+            heading,
+          });
+        }
+      }
+    }
     // Last-touched mtime for freshness badge — ISO date (YYYY-MM-DD).
     let lastTouched = null;
     try {
@@ -276,6 +311,7 @@ async function parsePlaybooks() {
       meta,
       sectionCount: sections.length,
       numberedSections: numbered.slice(0, 20),
+      phases,
       size: md.length,
       lastTouched,
     });

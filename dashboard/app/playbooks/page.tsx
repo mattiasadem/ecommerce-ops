@@ -12,6 +12,7 @@ import { PostPurchaseUpsellROICalculator } from "@/components/post-purchase-upse
 import { AiAdCreativeROICalculator } from "@/components/ai-ad-creative-roi";
 import { PdpAbTestCalculator } from "@/components/pdp-ab-test-calculator";
 import { ShippedPlaybooks as ShippedPlaybooksTracker } from "@/components/shipped-playbooks";
+import { PhasedProgress } from "@/components/phased-progress";
 import { PlaybookSearch } from "@/components/playbook-search";
 import { content, freshnessTier } from "@/lib/content";
 
@@ -74,6 +75,8 @@ export default function PlaybooksPage() {
       <AiAdCreativeROICalculator />
 
       <PdpAbTestCalculator />
+
+      <PhasedProgress playbooks={playbooks} />
 
       <ShippedPlaybooksTracker
         playbooks={playbooks.map((p) => ({

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-26T18:37:12.190Z",
+  "generatedAt": "2026-09-26T19:27:51.034Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -10466,6 +10466,53 @@
       ],
       "sectionCount": 18,
       "numberedSections": [],
+      "phases": [
+        {
+          "id": "1-step-1-wire-the-trigger",
+          "order": 1,
+          "heading": "Step 1 — Wire the trigger"
+        },
+        {
+          "id": "2-step-2-email-1-the-1-hour-reminder-no-di",
+          "order": 2,
+          "heading": "Step 2 — Email 1: the 1-hour reminder (no discount)"
+        },
+        {
+          "id": "3-step-3-email-2-the-24-hour-social-proof-",
+          "order": 3,
+          "heading": "Step 3 — Email 2: the 24-hour social-proof reminder"
+        },
+        {
+          "id": "4-step-4-email-3-the-48-72-hour-last-chanc",
+          "order": 4,
+          "heading": "Step 4 — Email 3: the 48–72-hour last-chance (with discount)"
+        },
+        {
+          "id": "5-step-5-add-sms-postscript",
+          "order": 5,
+          "heading": "Step 5 — Add SMS (Postscript)"
+        },
+        {
+          "id": "6-step-6-segmented-escalation-high-cart-va",
+          "order": 6,
+          "heading": "Step 6 — Segmented escalation: high-cart-value branch"
+        },
+        {
+          "id": "7-step-7-sunset-branch-repeat-abandoners",
+          "order": 7,
+          "heading": "Step 7 — Sunset branch: repeat abandoners"
+        },
+        {
+          "id": "8-step-8-suppression-sunset-flow",
+          "order": 8,
+          "heading": "Step 8 — Suppression + sunset flow"
+        },
+        {
+          "id": "9-step-9-turn-on-then-watch-for-48-hours-b",
+          "order": 9,
+          "heading": "Step 9 — Turn on, then watch for 48 hours before tuning"
+        }
+      ],
       "size": 16249,
       "lastTouched": "2026-06-23"
     },
@@ -10483,6 +10530,43 @@
       ],
       "sectionCount": 13,
       "numberedSections": [],
+      "phases": [
+        {
+          "id": "1-step-1-pick-the-app-and-plan-tier",
+          "order": 1,
+          "heading": "Step 1 — Pick the app and plan tier"
+        },
+        {
+          "id": "2-step-2-install-and-connect",
+          "order": 2,
+          "heading": "Step 2 — Install and connect"
+        },
+        {
+          "id": "3-step-3-build-the-offer-not-the-funnel-th",
+          "order": 3,
+          "heading": "Step 3 — Build the offer (NOT the funnel — the OFFER)"
+        },
+        {
+          "id": "4-step-4-build-the-page",
+          "order": 4,
+          "heading": "Step 4 — Build the page"
+        },
+        {
+          "id": "5-step-5-wire-the-discount-code-optional",
+          "order": 5,
+          "heading": "Step 5 — Wire the discount code (optional)"
+        },
+        {
+          "id": "6-step-6-test-the-funnel-end-to-end-before",
+          "order": 6,
+          "heading": "Step 6 — Test the funnel end-to-end BEFORE turning on real traffic"
+        },
+        {
+          "id": "7-step-7-enable-for-10-of-traffic-the-roll",
+          "order": 7,
+          "heading": "Step 7 — Enable for 10% of traffic (the rollout)"
+        }
+      ],
       "size": 15552,
       "lastTouched": "2026-06-24"
     },
@@ -10521,6 +10605,7 @@
           "body": "Once the score is ≥ 75 and CVR lift is ≥ 10%, switch to monthly re-audits. New checkout patterns (Shopify adds 2–3 features per quarter) regress your score. The companion script's input file makes re-auditing a 15-minute job."
         }
       ],
+      "phases": [],
       "size": 17567,
       "lastTouched": "2026-06-24"
     },
@@ -10538,6 +10623,58 @@
       ],
       "sectionCount": 25,
       "numberedSections": [],
+      "phases": [
+        {
+          "id": "1-step-1-wire-the-trigger-and-segments",
+          "order": 1,
+          "heading": "Step 1 — Wire the trigger and segments"
+        },
+        {
+          "id": "2-step-2-email-1-the-immediate-welcome-sen",
+          "order": 2,
+          "heading": "Step 2 — Email 1: the immediate welcome (sent 5 min after signup)"
+        },
+        {
+          "id": "3-step-3-email-2-the-brand-story-day-2",
+          "order": 3,
+          "heading": "Step 3 — Email 2: the brand story (Day 2)"
+        },
+        {
+          "id": "4-step-4-email-3-the-social-proof-bestsell",
+          "order": 4,
+          "heading": "Step 4 — Email 3: the social-proof + bestsellers (Day 4)"
+        },
+        {
+          "id": "5-step-5-email-4-the-objection-handler-day",
+          "order": 5,
+          "heading": "Step 5 — Email 4: the objection-handler (Day 7)"
+        },
+        {
+          "id": "6-step-6-email-5-the-last-chance-day-10",
+          "order": 6,
+          "heading": "Step 6 — Email 5: the last-chance (Day 10)"
+        },
+        {
+          "id": "7-step-7-add-the-sms-welcome-postscript",
+          "order": 7,
+          "heading": "Step 7 — Add the SMS welcome (Postscript)"
+        },
+        {
+          "id": "8-step-8-set-up-suppression-and-sunset-rul",
+          "order": 8,
+          "heading": "Step 8 — Set up suppression and sunset rules"
+        },
+        {
+          "id": "9-step-9-set-up-a-b-tests",
+          "order": 9,
+          "heading": "Step 9 — Set up A/B tests"
+        },
+        {
+          "id": "10-step-10-wire-to-attribution-triple-whale",
+          "order": 10,
+          "heading": "Step 10 — Wire to attribution (Triple Whale / Polar)"
+        }
+      ],
       "size": 23666,
       "lastTouched": "2026-06-24"
     },
@@ -10553,6 +10690,38 @@
       ],
       "sectionCount": 16,
       "numberedSections": [],
+      "phases": [
+        {
+          "id": "1-phase-1-audit-inventory-day-1-2-before-a",
+          "order": 1,
+          "heading": "Phase 1 — Audit & inventory (Day 1–2, before any migration work)"
+        },
+        {
+          "id": "2-phase-2-build-the-klaviyo-destination-da",
+          "order": 2,
+          "heading": "Phase 2 — Build the Klaviyo destination (Day 2–4, BEFORE importing contacts)"
+        },
+        {
+          "id": "3-phase-3-import-contacts-suppress-the-sou",
+          "order": 3,
+          "heading": "Phase 3 — Import contacts + suppress the source ESP (Day 4–5)"
+        },
+        {
+          "id": "4-phase-4-stand-up-postscript-add-sms-flow",
+          "order": 4,
+          "heading": "Phase 4 — Stand up Postscript + add SMS flows (Day 5–6)"
+        },
+        {
+          "id": "5-phase-5-cutover-monitor-day-6-7-the-48-7",
+          "order": 5,
+          "heading": "Phase 5 — Cutover + monitor (Day 6–7, the 48–72h window)"
+        },
+        {
+          "id": "6-phase-6-sunset-the-source-esp-day-30-aft",
+          "order": 6,
+          "heading": "Phase 6 — Sunset the source ESP (Day 30+, after successful cutover)"
+        }
+      ],
       "size": 31218,
       "lastTouched": "2026-06-24"
     },
@@ -10568,6 +10737,38 @@
       ],
       "sectionCount": 24,
       "numberedSections": [],
+      "phases": [
+        {
+          "id": "1-step-1-install-the-triple-whale-or-polar",
+          "order": 1,
+          "heading": "Step 1 — Install the Triple Whale (or Polar) app on Shopify"
+        },
+        {
+          "id": "2-step-2-install-the-pixel-conversions-api",
+          "order": 2,
+          "heading": "Step 2 — Install the pixel + Conversions API on every page"
+        },
+        {
+          "id": "3-step-3-enable-the-post-purchase-survey-t",
+          "order": 3,
+          "heading": "Step 3 — Enable the post-purchase survey (the highest-value attribution signal)"
+        },
+        {
+          "id": "4-step-4-connect-klaviyo-meta-ads-google-a",
+          "order": 4,
+          "heading": "Step 4 — Connect Klaviyo, Meta Ads, Google Ads, TikTok Ads (in that order)"
+        },
+        {
+          "id": "5-step-5-build-your-baseline-dashboard-coh",
+          "order": 5,
+          "heading": "Step 5 — Build your baseline dashboard + cohort view"
+        },
+        {
+          "id": "6-step-6-verify-end-to-end-the-7-gate-veri",
+          "order": 6,
+          "heading": "Step 6 — Verify end-to-end (the 7-gate verification)"
+        }
+      ],
       "size": 41672,
       "lastTouched": "2026-06-25"
     },
@@ -10582,6 +10783,43 @@
       ],
       "sectionCount": 16,
       "numberedSections": [],
+      "phases": [
+        {
+          "id": "1-step-1-connect-postscript-to-klaviyo",
+          "order": 1,
+          "heading": "Step 1 — Connect Postscript to Klaviyo"
+        },
+        {
+          "id": "2-step-2-build-sms-1-welcome",
+          "order": 2,
+          "heading": "Step 2 — Build SMS-1 (Welcome)"
+        },
+        {
+          "id": "3-step-3-build-sms-2-cart-abandon-reminder",
+          "order": 3,
+          "heading": "Step 3 — Build SMS-2 (Cart-Abandon Reminder 1)"
+        },
+        {
+          "id": "4-step-4-build-sms-3-cart-abandon-reminder",
+          "order": 4,
+          "heading": "Step 4 — Build SMS-3 (Cart-Abandon Reminder 2 — Escalation)"
+        },
+        {
+          "id": "5-step-5-build-sms-4-post-purchase-review-",
+          "order": 5,
+          "heading": "Step 5 — Build SMS-4 (Post-Purchase Review Request)"
+        },
+        {
+          "id": "6-step-6-configure-sender-name-a-b-test-pl",
+          "order": 6,
+          "heading": "Step 6 — Configure sender name + A/B test plan"
+        },
+        {
+          "id": "7-step-7-verify",
+          "order": 7,
+          "heading": "Step 7 — Verify"
+        }
+      ],
       "size": 30679,
       "lastTouched": "2026-06-25"
     },
@@ -10597,6 +10835,43 @@
       ],
       "sectionCount": 20,
       "numberedSections": [],
+      "phases": [
+        {
+          "id": "1-step-1-install-the-webhook-script-5-min",
+          "order": 1,
+          "heading": "Step 1 — Install the webhook script (5 min)"
+        },
+        {
+          "id": "2-step-2-bootstrap-the-archive-directory-2",
+          "order": 2,
+          "heading": "Step 2 — Bootstrap the archive directory (2 min)"
+        },
+        {
+          "id": "3-step-3-validate-the-canonical-thresholds",
+          "order": 3,
+          "heading": "Step 3 — Validate the canonical thresholds + alert shape (2 min)"
+        },
+        {
+          "id": "4-step-4-wire-the-cron-5-min",
+          "order": 4,
+          "heading": "Step 4 — Wire the cron (5 min)"
+        },
+        {
+          "id": "5-step-5-configure-slack-alert-format-5-mi",
+          "order": 5,
+          "heading": "Step 5 — Configure Slack alert format (5 min)"
+        },
+        {
+          "id": "6-step-6-investigate-any-failures-15-30-mi",
+          "order": 6,
+          "heading": "Step 6 — Investigate any failures (15-30 min per cycle)"
+        },
+        {
+          "id": "7-step-7-document-the-alert-routing-on-cal",
+          "order": 7,
+          "heading": "Step 7 — Document the alert-routing + on-call rotation (10 min, one-time)"
+        }
+      ],
       "size": 46450,
       "lastTouched": "2026-07-03"
     },
@@ -10613,6 +10888,38 @@
       ],
       "sectionCount": 16,
       "numberedSections": [],
+      "phases": [
+        {
+          "id": "1-step-1-export-the-6-diagnostic-json-file",
+          "order": 1,
+          "heading": "Step 1 — Export the 6 diagnostic JSON files (one-time, ~30 min)"
+        },
+        {
+          "id": "2-step-2-run-the-audit-one-time-recurring-",
+          "order": 2,
+          "heading": "Step 2 — Run the audit (one-time + recurring, ~5 min per run)"
+        },
+        {
+          "id": "3-step-3-set-the-alert-thresholds-one-time",
+          "order": 3,
+          "heading": "Step 3 — Set the alert thresholds (one-time, ~10 min)"
+        },
+        {
+          "id": "4-step-4-investigate-any-gate-failures-rec",
+          "order": 4,
+          "heading": "Step 4 — Investigate any gate failures (recurring, ~15 min per failure)"
+        },
+        {
+          "id": "5-step-5-document-the-weekly-audit-cadence",
+          "order": 5,
+          "heading": "Step 5 — Document the weekly audit cadence (one-time, ~15 min)"
+        },
+        {
+          "id": "6-step-6-quarterly-re-baseline-recurring-1",
+          "order": 6,
+          "heading": "Step 6 — Quarterly re-baseline (recurring, ~1 hr per quarter)"
+        }
+      ],
       "size": 39842,
       "lastTouched": "2026-06-25"
     },
@@ -10622,6 +10929,43 @@
       "meta": [],
       "sectionCount": 25,
       "numberedSections": [],
+      "phases": [
+        {
+          "id": "1-step-1-verify-the-script-and-tests-are-p",
+          "order": 1,
+          "heading": "Step 1 — Verify the script and tests are present (2 min)"
+        },
+        {
+          "id": "2-step-2-validate-the-canonical-thresholds",
+          "order": 2,
+          "heading": "Step 2 — Validate the canonical thresholds + alert shape (1 min)"
+        },
+        {
+          "id": "3-step-3-bootstrap-the-alert-archive-30-s",
+          "order": 3,
+          "heading": "Step 3 — Bootstrap the alert archive (30 s)"
+        },
+        {
+          "id": "4-step-4-wire-the-cron-5-min",
+          "order": 4,
+          "heading": "Step 4 — Wire the cron (5 min)"
+        },
+        {
+          "id": "5-step-5-configure-slack-alert-format-5-mi",
+          "order": 5,
+          "heading": "Step 5 — Configure Slack alert format (5 min)"
+        },
+        {
+          "id": "6-step-6-investigate-any-trend-fires-15-30",
+          "order": 6,
+          "heading": "Step 6 — Investigate any trend fires (15–30 min per cycle)"
+        },
+        {
+          "id": "7-step-7-document-the-weekly-cadence-on-ca",
+          "order": 7,
+          "heading": "Step 7 — Document the weekly cadence + on-call rotation (10 min, one-time)"
+        }
+      ],
       "size": 40628,
       "lastTouched": "2026-07-06"
     },
@@ -10636,6 +10980,33 @@
       ],
       "sectionCount": 19,
       "numberedSections": [],
+      "phases": [
+        {
+          "id": "1-step-1-export-the-4-diagnostic-json-file",
+          "order": 1,
+          "heading": "Step 1 — Export the 4 diagnostic JSON files (one-time, ~15 min)"
+        },
+        {
+          "id": "2-step-2-run-the-audit-one-time-5-min",
+          "order": 2,
+          "heading": "Step 2 — Run the audit (one-time, ~5 min)"
+        },
+        {
+          "id": "3-step-3-wire-the-cadence-one-time-5-min",
+          "order": 3,
+          "heading": "Step 3 — Wire the cadence (one-time, ~5 min)"
+        },
+        {
+          "id": "4-step-4-investigate-any-gate-failures-rec",
+          "order": 4,
+          "heading": "Step 4 — Investigate any gate failures (recurring, ~15 min per failure)"
+        },
+        {
+          "id": "5-step-5-document-cadence-on-call-rotation",
+          "order": 5,
+          "heading": "Step 5 — Document cadence + on-call rotation (one-time, ~10 min)"
+        }
+      ],
       "size": 30352,
       "lastTouched": "2026-06-25"
     },
@@ -10654,6 +11025,33 @@
       ],
       "sectionCount": 19,
       "numberedSections": [],
+      "phases": [
+        {
+          "id": "1-step-1-export-the-6-diagnostic-json-file",
+          "order": 1,
+          "heading": "Step 1 — Export the 6 diagnostic JSON files (one-time, ~15 min)"
+        },
+        {
+          "id": "2-step-2-run-the-audit-one-time-5-min",
+          "order": 2,
+          "heading": "Step 2 — Run the audit (one-time, ~5 min)"
+        },
+        {
+          "id": "3-step-3-wire-cron-slack-alerting-one-time",
+          "order": 3,
+          "heading": "Step 3 — Wire cron + Slack alerting (one-time, ~5 min)"
+        },
+        {
+          "id": "4-step-4-investigate-any-gate-failures-15-",
+          "order": 4,
+          "heading": "Step 4 — Investigate any gate failures (~15 min per failure)"
+        },
+        {
+          "id": "5-step-5-document-weekly-cadence-on-call-r",
+          "order": 5,
+          "heading": "Step 5 — Document weekly cadence + on-call rotation (~10 min)"
+        }
+      ],
       "size": 38096,
       "lastTouched": "2026-06-25"
     },
@@ -10669,6 +11067,43 @@
       ],
       "sectionCount": 18,
       "numberedSections": [],
+      "phases": [
+        {
+          "id": "1-step-1-install-the-rollup-script-10-min",
+          "order": 1,
+          "heading": "Step 1 — Install the rollup script (10 min)"
+        },
+        {
+          "id": "2-step-2-wire-the-cron-5-min",
+          "order": 2,
+          "heading": "Step 2 — Wire the cron (5 min)"
+        },
+        {
+          "id": "3-step-3-set-drift-detection-thresholds-10",
+          "order": 3,
+          "heading": "Step 3 — Set drift-detection thresholds (10 min)"
+        },
+        {
+          "id": "4-step-4-configure-slack-alert-format-5-mi",
+          "order": 4,
+          "heading": "Step 4 — Configure Slack alert format (5 min)"
+        },
+        {
+          "id": "5-step-5-configure-linear-ticket-format-5-",
+          "order": 5,
+          "heading": "Step 5 — Configure Linear ticket format (5 min)"
+        },
+        {
+          "id": "6-step-6-investigate-any-failures-15-30-mi",
+          "order": 6,
+          "heading": "Step 6 — Investigate any failures (15-30 min per cycle)"
+        },
+        {
+          "id": "7-step-7-document-the-weekly-cadence-on-ca",
+          "order": 7,
+          "heading": "Step 7 — Document the weekly cadence + on-call rotation (10 min, one-time)"
+        }
+      ],
       "size": 30423,
       "lastTouched": "2026-06-25"
     },
@@ -10685,6 +11120,38 @@
       ],
       "sectionCount": 21,
       "numberedSections": [],
+      "phases": [
+        {
+          "id": "1-step-1-install-the-loyalty-app-on-shopif",
+          "order": 1,
+          "heading": "Step 1 — Install the loyalty app on Shopify"
+        },
+        {
+          "id": "2-step-2-configure-points-vip-tiers-referr",
+          "order": 2,
+          "heading": "Step 2 — Configure points + VIP tiers + referrals"
+        },
+        {
+          "id": "3-step-3-wire-klaviyo-webhooks-the-critica",
+          "order": 3,
+          "heading": "Step 3 — Wire Klaviyo webhooks (the critical integration step)"
+        },
+        {
+          "id": "4-step-4-build-the-launch-email-sms-sequen",
+          "order": 4,
+          "heading": "Step 4 — Build the launch email + SMS sequence in Klaviyo"
+        },
+        {
+          "id": "5-step-5-launch-on-site",
+          "order": 5,
+          "heading": "Step 5 — Launch on-site"
+        },
+        {
+          "id": "6-step-6-verify",
+          "order": 6,
+          "heading": "Step 6 — Verify"
+        }
+      ],
       "size": 43376,
       "lastTouched": "2026-06-25"
     },
@@ -10700,6 +11167,43 @@
       ],
       "sectionCount": 24,
       "numberedSections": [],
+      "phases": [
+        {
+          "id": "1-step-1-baseline-theme-decision-day-1",
+          "order": 1,
+          "heading": "Step 1 — Baseline + theme decision (Day 1)"
+        },
+        {
+          "id": "2-step-2-image-optimization-pipeline-days-",
+          "order": 2,
+          "heading": "Step 2 — Image optimization pipeline (Days 2–4)"
+        },
+        {
+          "id": "3-step-3-above-the-fold-redesign-gallery-a",
+          "order": 3,
+          "heading": "Step 3 — Above-the-fold redesign: gallery + ATC + price (Days 5–7)"
+        },
+        {
+          "id": "4-step-4-sticky-atc-bar-on-scroll-day-8",
+          "order": 4,
+          "heading": "Step 4 — Sticky ATC bar on scroll (Day 8)"
+        },
+        {
+          "id": "5-step-5-below-the-fold-redesign-descripti",
+          "order": 5,
+          "heading": "Step 5 — Below-the-fold redesign: description + reviews + cross-sell (Days 9–11)"
+        },
+        {
+          "id": "6-step-6-speed-optimization-css-js-fonts-d",
+          "order": 6,
+          "heading": "Step 6 — Speed optimization: CSS, JS, fonts (Days 11–13)"
+        },
+        {
+          "id": "7-step-7-verification-measurement-day-14",
+          "order": 7,
+          "heading": "Step 7 — Verification + measurement (Day 14)"
+        }
+      ],
       "size": 36524,
       "lastTouched": "2026-06-25"
     },
@@ -10716,6 +11220,38 @@
       ],
       "sectionCount": 16,
       "numberedSections": [],
+      "phases": [
+        {
+          "id": "1-step-1-tool-setup-test-backlog-days-1-3",
+          "order": 1,
+          "heading": "Step 1 — Tool setup + test backlog (Days 1–3)"
+        },
+        {
+          "id": "2-step-2-pdp-test-element-matrix-days-4-5",
+          "order": 2,
+          "heading": "Step 2 — PDP test element matrix (Days 4–5)"
+        },
+        {
+          "id": "3-step-3-launch-the-first-test-days-6-7",
+          "order": 3,
+          "heading": "Step 3 — Launch the first test (Days 6–7)"
+        },
+        {
+          "id": "4-step-4-monitor-decide-days-8-21-recurrin",
+          "order": 4,
+          "heading": "Step 4 — Monitor + decide (Days 8–21, recurring)"
+        },
+        {
+          "id": "5-step-5-promote-the-winner-start-the-next",
+          "order": 5,
+          "heading": "Step 5 — Promote the winner + start the next test (Day 21–28)"
+        },
+        {
+          "id": "6-step-6-monthly-cadence-review-recurring",
+          "order": 6,
+          "heading": "Step 6 — Monthly cadence + review (recurring)"
+        }
+      ],
       "size": 34079,
       "lastTouched": "2026-06-25"
     },
@@ -10732,6 +11268,38 @@
       ],
       "sectionCount": 17,
       "numberedSections": [],
+      "phases": [
+        {
+          "id": "1-step-1-install-the-tool-and-run-the-onbo",
+          "order": 1,
+          "heading": "Step 1 — Install the tool and run the onboarding wizard (Day 1, ~1 hour)"
+        },
+        {
+          "id": "2-step-2-curate-the-first-10-variants-and-",
+          "order": 2,
+          "heading": "Step 2 — Curate the first 10 variants and write the copy (Day 2, ~2 hours)"
+        },
+        {
+          "id": "3-step-3-launch-in-meta-ads-manager-with-t",
+          "order": 3,
+          "heading": "Step 3 — Launch in Meta Ads Manager with the correct campaign structure (Day 3, ~1 hour)"
+        },
+        {
+          "id": "4-step-4-set-up-the-weekly-iteration-caden",
+          "order": 4,
+          "heading": "Step 4 — Set up the weekly iteration cadence (Days 4–7, ~30 min/day)"
+        },
+        {
+          "id": "5-step-5-wire-triple-whale-moby-klaviyo-sm",
+          "order": 5,
+          "heading": "Step 5 — Wire Triple Whale Moby → Klaviyo + Smile (Day 8, ~1 hour)"
+        },
+        {
+          "id": "6-step-6-run-the-8-week-measurement-sweep-",
+          "order": 6,
+          "heading": "Step 6 — Run the 8-week measurement sweep (Days 8–56, passive)"
+        }
+      ],
       "size": 33551,
       "lastTouched": "2026-06-25"
     },
@@ -10748,6 +11316,7 @@
       ],
       "sectionCount": 32,
       "numberedSections": [],
+      "phases": [],
       "size": 47564,
       "lastTouched": "2026-06-27"
     },
@@ -10766,6 +11335,7 @@
       ],
       "sectionCount": 47,
       "numberedSections": [],
+      "phases": [],
       "size": 61285,
       "lastTouched": "2026-06-27"
     },
@@ -10783,6 +11353,7 @@
       ],
       "sectionCount": 50,
       "numberedSections": [],
+      "phases": [],
       "size": 79695,
       "lastTouched": "2026-06-28"
     },
@@ -10880,6 +11451,7 @@
           "body": "For Path C with B2B wholesale customers, add B2B-fulfillment:\n\n1. **EDI-856 ASN setup** — Advance Ship Notice for B2B customers (wholesale + retail). Most B2B customers require EDI-856 + EDI-940 (warehouse shipping order) + EDI-945 (warehouse shipping advice).\n2. **EDI integration platform** — use a managed-EDI provider (SPS Commerce OR TrueCommerce OR DiCentral). Budget $500–$2k/mo per B2B customer.\n3. **Bulk-pick-pack workflow** — for B2B orders (typically case-packs of 12-144 units), the 3PL picks in bulk + palletizes + ships via LTL freight. Different SLA than DTC (typically 5-10 business days for B2B vs 1-3 days for DTC).\n4. **B2B-specific return handling** — B2B returns typically involve damaged-in-transit claims + vendor RMAs. The 3PL handles grade-and-resell or return-to-vendor per the contract."
         }
       ],
+      "phases": [],
       "size": 68454,
       "lastTouched": "2026-06-28"
     },
@@ -10977,6 +11549,7 @@
           "body": "1. **Retention-manager job description** — per `playbooks/14-3pl-migration.md` Phase 4 supply-chain-manager pattern. $70k-$100k FTE OR $200-$400/hr fractional consultant.\n2. **Retention-manager owns:** Triple Whale subscriber-cohort-LTV-trend review + churn-prevention + smart-cancellation-flow optimization + dunning-recovery + winback-recovery + replenishment-flow optimization + Smile.io subscriber-tier optimization + cross-sell-attachment-rate + quarterly subscriber-cohort-review-meetings.\n\n---"
         }
       ],
+      "phases": [],
       "size": 60167,
       "lastTouched": "2026-06-29"
     },
@@ -11076,6 +11649,7 @@
           "body": "The operator has 9 prereqs complete (the canonical 4th-gate has 9, not 10, because Phase 4 is \"tier-promotion + sustainable-mission-verifier + public listing\" rather than \"Phase 1 install\"):\n\n1. 4-trigger tier-promotion SOP live in Refersion / Levanta ✓\n2. Sustainable-mission-verifier script running weekly ✓\n3. Per-affiliate KPI dashboard live (10 metrics) ✓\n4. Quarterly compliance audit cadence set up ✓\n5. ≥50 active affiliates by end of Week 12 (Path B default) ✓\n6. $20k+ attributed revenue by end of Week 12 ✓\n7. Top-10 affiliates ≥$5,000 each in 90-day attributed revenue ✓\n8. Tier-2 + Tier-3 promotions live for top-decile affiliates ✓\n9. Path B → Path C upgrade-decision documented (Q+1 review) ✓\n\n**Time:** 60 minutes for verification.\n\n---"
         }
       ],
+      "phases": [],
       "size": 60616,
       "lastTouched": "2026-06-29"
     },
@@ -11173,6 +11747,7 @@
           "body": "Per research/10 Pitfall #13 + research/10 §Verification gates Gate C prerequisite 4; canonical dedicated sales-rep-capacity for distributor-onboarding sales-cycle.\n\n**Path B (Year-2+):** Hire 0.5 FTE dedicated sales-rep at $35k-$50k/yr OR contract with commissioned-sales-rep at 8% of net-revenue (per Faire 2024 + RSP 2024 benchmarks). Job-description: outbound-RFQ-sending + inbound-retailer-onboarding + 4-email-cadence-execution + sample-pack-fulfillment-coordination + AR-management.\n\n**Path C (Year-1+):** Hire 1.0 FTE dedicated full-FTE sales-rep at $70k-$100k/yr OR contract with 2 commissioned-sales-reps. Job-description: above + distributor-pitch-execution + Amazon Business management + trade-show-presence (1-2 shows/yr)."
         }
       ],
+      "phases": [],
       "size": 87880,
       "lastTouched": "2026-07-01"
     },
@@ -11269,6 +11844,7 @@
           "body": "Per research/11 Pillar 5 cohort-LTV-iteration.\n\n**Triple-Whale-LIVE-cohort-LTV-overlay (~1 hour setup + 2 hours/week iteration):**\n1. Triple-Whale admin → Cohorts → LIVE-driven-cohort (visitors-during-LIVE-window)\n2. Wire LIVE-cohort-LTV-overlay vs organic-DTC-cohort-LTV vs paid-Meta-cohort-LTV at 30/60/90-day windows\n3. Weekly-iteration: identify top-decile-LIVE-cohorts + boost them with Spark-Ads + creator-affiliate-reinvestment\n4. Path B target: LIVE-cohort-LTV 1.2-1.5× organic-DTC-cohort-LTV per TikTok-LIVE-2024-benchmarks"
         }
       ],
+      "phases": [],
       "size": 74069,
       "lastTouched": "2026-07-01"
     },
@@ -11361,6 +11937,7 @@
           "body": "Per research/12 §Verification gates Gate D prerequisite 8-9 + research/12 §Cost & ROI estimate.\n\n```\nYEAR-1-CREATOR-ECONOMY-REVENUE-VERIFICATION (paste-ready checklist)\n\n[ ] 1. Compute Year-1 incremental creator-economy-revenue via Triple-Whale-creator-economy-cohort-overlay:\n     - Sum of all creator-driven-attributed-revenue (across all active creators) for Year-1\n     - Target: $200k-$1M Path B at $500k-$5M US DTC base per research/12 §Cost & ROI\n[ ] 2. Compute Year-1 total creator-economy-cost-stack:\n     - Platform-fees (Aspire + GRIN/CreatorIQ + Triple-Whale + Klaviyo + content-licensing-template-legal-fees + whitelisting-ads-template-legal-fees)\n     - Creator-payouts (product-seeding + creator-payouts + content-licensing + whitelisting-ads + macro-flagship-campaigns)\n     - Dedicated-creator-economy-manager-cost (0.25-0.5 FTE Year-2+ if Path B → Path C upgrade)\n[ ] 3. Compute Year-1 ROI: creator-economy-revenue / creator-economy-cost-stack\n[ ] 4. Target: 8:1 default Year-1 ROI Path B at $2M US DTC base ($500k Path B median incremental creator-economy-revenue / $30k median annual cost = 16.7:1 gross; conservative-muted = 8:1 conservative nominal)\n[ ] 5. Compute 2-4× LTV-multiplier vs no-creator-economy-program:\n     - Compare creator-economy-cohort-LTV at 90-day windows vs organic-DTC-cohort-LTV at 90-day windows\n     - Target: creator-economy-cohort-LTV ≥2× organic-DTC-cohort-LTV per Tubular Labs 2024 + Aspire 2024 benchmarks\n[ ] 6. Document Year-1-creator-economy-revenue + ROI + LTV-multiplier in /shared-drive/creator-economy-year-1-summary/\n[ ] 7. Expected-outcome: Year-1 incremental creator-economy-revenue $200k-$1M Path B + 8:1 default Year-1 ROI + 2-4× LTV-multiplier vs no-creator-economy-program verified\n```"
         }
       ],
+      "phases": [],
       "size": 78787,
       "lastTouched": "2026-07-01"
     },
@@ -11437,6 +12014,7 @@
           "body": "Per research/13 Pillar 5 + Pitfall #12 operational-cross-cutting.\n\n```\nTRIPLE-WHALE-ORGANIC-LTV-ITERATION-CYCLE-QUARTERLY (decision tree)\n\nFor all paths (Path A / B / C):\n  → Run Triple-Whale-organic-LTV-iteration-cycle-quarterly:\n    1. Pull Pinterest-organic-driven-cohort-LTV at 30/60/90/180/365-day windows (quarterly-window-expansion)\n    2. Pull SEO-organic-driven-cohort-LTV at 30/60/90/180/365-day windows (quarterly-window-expansion)\n    3. Pull paid-Meta-cohort-LTV + paid-Google-cohort-LTV + paid-TikTok-cohort-LTV at 30/60/90/180/365-day windows\n    4. Run 5-way-comparison-cycle-quarterly: compare Pinterest-organic vs SEO-organic vs paid-Meta vs paid-Google vs paid-TikTok\n    5. Iterate SEO-content-cluster + Pinterest-vertical-pillar + Idea-Pin-cadence based on canonical-5-way-comparison-cycle-quarterly\n  → Maintain 12-24-month compounding-traffic-curve:\n    1. Year-1: 6:1 ROI + 5-15% incremental-traffic-contribution + 0.6-0.85× CAC vs paid-social\n    2. Year-2: 12-25:1 ROI + 15-25% incremental-traffic-contribution + 0.5-0.7× CAC vs paid-social\n    3. Year-3: 25-50:1 ROI + 25-35% incremental-traffic-contribution + 0.4-0.6× CAC vs paid-social\n  → Per Ahrefs 2024 + Pinterest 2024 + SEMrush 2024 benchmarks: brands with 12-24-month-compounding-traffic-curve-maintenance achieve 5-10× lower-CAC-Year-2+ vs paid-social per the canonical-organic-traffic-compounding-curve-vs-paid-social-saturation-curve\n```\n\n---"
         }
       ],
+      "phases": [],
       "size": 82193,
       "lastTouched": "2026-07-02"
     },
@@ -11493,6 +12071,7 @@
           "body": "Per research/14 Pillar 5 + Pitfall #8 DSP-marketing-team-capacity.\n\n```\n3RD-PARTY-AMAZON-DSP-MANAGER-OR-IN-HOUSE-TEAM-OR-FULLY-MANAGED-SERVICE-DECISION-RECIPE\n\n[ ] 1. Tier 1 — managed-service-with-Tinuiti-or-Pacvue-or-Helium-10-or-Perpetua-Enterprise ($2k-$10k/mo):\n       - For $5M+ brands with no-dedicated-Amazon-DSP-marketing-team OR <4-hr/wk-Amazon-DSP-marketing-team-capacity\n       - Best for mid-market Amazon-DSP-launch with 5-50 Amazon-listed hero SKUs + mature-Amazon-presence\n       - 50-70% better-performance-vs-self-serve-Amazon-Ads-Console per Tinuiti-2024 + Pacvue-2024 + Helium-10-2024-benchmarks\n\n[ ] 2. Tier 2 — in-house-Amazon-DSP-marketing-team ($10k-$25k/mo for $25M+ brands):\n       - For $25M+ brands with 8-16-hr/wk-Amazon-DSP-marketing-team-capacity + dedicated-Amazon-DSP-marketing-team\n       - Best for enterprise Amazon-DSP-orchestration with 50+ Amazon-listed hero SKUs + AMC-Enterprise-license\n       - 1.5-2× better-performance-vs-managed-service-Tier-1 per Pacvue-2024-Amazon-DSP-omnichannel-case-studies\n\n[ ] 3. Tier 3 — fully-managed-service-with-Pacvue-Enterprise-or-Helium-10-Enterprise ($5k-$25k/mo for $25M+ brands):\n       - For $25M+ brands with no-dedicated-Amazon-DSP-marketing-team OR with 50+ Amazon-listed hero SKUs + AMC-Enterprise-license\n       - Best for enterprise Amazon-DSP-orchestration with 50+ Amazon-listed hero SKUs + dedicated-Amazon-DSP-marketing-team-on-vacation\n       - 1.2-1.5× better-performance-vs-managed-service-Tier-1 per Pacvue-Enterprise-2024 + Helium-10-Enterprise-2024-benchmarks\n\n[ ] 4. Evaluate per Amazon-DSP-2024-canonical-launch-staffing-requirement + Amazon-DSP-marketing-team-capacity (4-8 hr/wk minimum per research/14 Pillar 5)\n\n[ ] 5. Brand-Analytics-engaged-daily-visitors-lift-monitoring-active-quarterly (per Phase-4-Step-4.1)\n\n[ ] 6. Triple-Whale-Amazon-cohort-LTV-overlay-iterating-Amazon-DSP-cohort-LTV-vs-paid-Meta-cohort-LTV-vs-paid-Google-cohort-LTV (per Phase-4-Step-4.1)\n\n[ ] 7. 12-24-month-Halo-defense-effective-rate-steady-state-typically-achieves-5-10× lower-CAC-year-2+ vs paid-social per Amazon-DSP-2024-canonical-3-way-comparison-cycle\n```\n\n**Decision criterion:** 3rd-party-Amazon-DSP-manager-or-in-house-team-or-fully-managed-service-decision-recipe should be evaluated per Amazon-DSP-marketing-team-capacity (4-8 hr/wk minimum). Brands that don't-have 4-8 hr/wk-Amazon-DSP-marketing-team-capacity should onboard managed-service-Tier-1-with-Tinuiti-or-Pacvue-or-Helium-10-or-Perpetua-Enterprise $2k-$10k/mo. Brands with 8-16 hr/wk-Amazon-DSP-marketing-team-capacity can use in-house-Amazon-DSP-marketing-team or fully-managed-service-Tier-3-with-Pacvue-Enterprise-or-Helium-10-Enterprise.\n\n---"
         }
       ],
+      "phases": [],
       "size": 96285,
       "lastTouched": "2026-07-02"
     },
@@ -11557,6 +12136,7 @@
           "body": "Per research/15 Pillar 5 + SMS-cost-stack-decision-recipe-launch + 12-24-month-compounding-SMS-orchestration-steady-state.\n\n```\nSMS-COST-STACK-DECISION-RECIPE + 12-24-MONTH-COMPOUNDING-SMS-ORCHESTRATION-STEADY-STATE (Phase 4 sub-step 4.2)\n\nStep 1: SMS-cost-stack-decision-recipe-launched per Tier 1 Postscript-primary + SMSBump-international-secondary $0-$2k/mo-for-$1M-$5M DTC+international-brands-baseline + Tier 2 Postscript-primary + SMSBump-international + Klaviyo-SMS-segment-overlay + Triple-Whale-SMS-merge $1k-$5k/mo-for-$5M-$25M DTC+international-brands-baseline + Tier 3 Attentive-enterprise-primary + SMSBump-international + Postscript-secondary $5k-$25k/mo-for-$25M+ DTC+international-brands-baseline + Tier 4 RCS-business-messaging-orchestration $5k-$50k/mo-for-$25M+-brands-with-mature-SMS-orchestration + global-RCS-rollout-baseline per Postscript-2024 + SMSBump-2024 + Klaviyo-2024 + Attentive-2024 + GSMA-RCS-2024 + Triple-Whale-2024 + Sailthru-2024 + Two-way-conversations-2024 + RCS-business-messaging-2024 + MMS-2024-canonical-launch-prerequisite\nStep 2: 3rd-party-SMS-orchestration-manager-or-in-house-team-or-fully-managed-service-decision-recipe-launched per Tier 1 managed-service-Tinuiti-or-Pacvue-or-Helium-10-or-Perpetua-Enterprise-SMS-orchestration-Wire $2k-$10k/mo-for-$5M+ DTC+international-brands-baseline + Tier 2 in-house-SMS-orchestration-team $10k-$25k/mo-for-$25M+ DTC+international-brands-baseline + Tier 3 fully-managed-service-Pacvue-or-Helium-10-Enterprise $5k-$25k/mo-for-$25M+ DTC+international-brands-baseline + Tier 4 SMS-orchestration-marketing-team-only-Wire-for-$25M+-brands-with-mature-SMS-orchestration-baseline\nStep 3: Locale-by-locale-DLR-quarterly-monitoring-Wire per SMSBump-DLR-monitoring-Wire + Postscript-DLR-monitoring-Wire + Attentive-DLR-monitoring-Wire-baseline + locale-specific-keyword-library-iteration-baseline-Wired + locale-specific-TCPA-compliance-baseline-Wired [90-day-cycle-iteration-baseline + 12-24-month-compounding-LTV-multiplier-baseline-Wired]\nStep 4: 12-24-month-compounding-SMS-orchestration-steady-state-baseline-Wire per 12-24-month-compounding-SMS-orchestration-LTV-multiplier-vs-SMS-only-baseline + 2-4× LTV-multiplier-year-2+ vs SMS-only-baseline per Postscript-2024-canonical-3-way-comparison-cycle [SMS-orchestration-cohort-LTV vs SMS-channel-only-cohort-LTV vs email-channel-only-cohort-LTV]\nStep 5: Quarterly-SMS-orchestration-pillar-publish-outcome-report-on-workspace-Wired [quarterly-SMS-orchestration-cohort-LTV-report + locale-by-locale-SMS-cohort-LTV-report + SMS-attrition-cohort-LTV-report + 5-way-comparison-cycle-report + 12-24-month-compounding-SMS-orchestration-LTV-multiplier-vs-SMS-only-baseline] per Triple-Whale-2024 + Sailthru-2024 + Postscript-2024 + Attentive-2024 + SMSBump-2024 + Klaviyo-2024 + GSMA-RCS-2024-canonical-launch-prerequisite\nStep 6: Quarterly-SMS-orchestration-pillar-2-4×-LTV-multiplier-year-2+-achieved-Wire per Postscript 2024 + Sailthru 2024 + Triple-Whale 2024 + Klaviyo 2024 canonical-2-4×-LTV-multiplier-year-2+-benchmarks\n```\n\nExpected outcome: SMS-cost-stack-decision-recipe-launched + 3rd-party-SMS-orchestration-manager-or-in-house-team-or-fully-managed-service-decision-recipe-launched + 12-24-month-compounding-SMS-orchestration-steady-state-baseline-active + Quarterly-SMS-orchestration-pillar-publish-outcome-report-on-workspace-active + 2-4× LTV-multiplier-year-2+-achieved. Per Postscript 2024 + SMSBump 2024 + Klaviyo 2024 + Attentive 2024 + GSMA-RCS 2024 + Triple-Whale 2024 + Sailthru 2024 + Two-way-conversations 2024 + RCS-business-messaging 2024 + MMS 2024 benchmarks: 12-24-month-compounding-SMS-orchestration-steady-state-baseline typically achieves 2-4× LTV-multiplier-year-2+ vs SMS-only-baseline per Postscript-2024 + Sailthru-2024-canonical-launch-prerequisite.\n\n---"
         }
       ],
+      "phases": [],
       "size": 126359,
       "lastTouched": "2026-07-03"
     },
@@ -11605,6 +12185,7 @@
           "body": "Per research/16 Pillar 5 + Pitfall #9 quarterly-iteration-prereq.\n\n```bash\n# custom-trained-LLM-on-brand-voice-data-quarterly-iteration (5 steps)\nStep 1: Re-train-quarterly on new-brand-content (50-100 fresh prompts-and-responses)\nStep 2: Brand-voice-drift-monitoring (alert if drift > 10% vs baseline)\nStep 3: Verify 5-15% brand-voice-consistency-lift-per-quarter\n\n# AI-orchestration-engine-quarterly-iteration (5 steps)\nStep 1: Re-tune-quarterly-creative-iteration-cadence based on weekly-velocity-data\nStep 2: AI-creative-velocity-tracking (50+-creatives/week-baseline + 2-4× velocity multiplier)\nStep 3: Verify 10-30% creative-iteration-velocity-lift-per-quarter\n\n# creative-cadence-automation-quarterly (5 steps)\nStep 1: AI-creative-cadence-automation-iteration\nStep 2: Per-voice-cadence-automation (5-voice × 5-format = 25 voice-format cadences)\nStep 3: Verify 10-30% creative-cadence-automation-lift-per-quarter\n\n# creative-iteration-cycle-quarterly (6 steps)\nStep 1: AI-creative-iteration-cycle-quarterly-review\nStep 2: AI-creative-iteration-cycle-vs-control-set-of-no-AI-iteration-cohort\nStep 3: 3-way-comparison-cycle-launch per Triple-Whale-2024-canonical-3-way-comparison-cycle\nStep 4: Verify 5-15% creative-iteration-cycle-CVR-lift-per-quarter\nStep 5: 12-24-month-compounding-AI-engine-steady-state-baseline-Wire\nStep 6: Quarterly-AI-engine-pillar-publish-outcome-report-on-workspace\n\n# Expected outcome: Steady-state AI-engine live + 4-quarterly-iteration-cycles-active\n# Per AdCreative.ai 2024 + Moby 2024 + Pencil 2024 + Jasper 2024 + Typeface 2024 + Midjourney 2024 + Runway 2024 + Sora 2024 + Copy.ai 2024 + ElevenLabs 2024 + Smartwriter 2024 + Triple-Whale 2024 + Sailthru 2024 + OpenAI 2024 + Anthropic 2024 benchmarks: custom-trained-LLM-on-brand-voice-data-quarterly-iteration typically achieves +5-15% brand-voice-consistency-lift-per-quarter; AI-orchestration-engine-quarterly-iteration typically achieves +10-30% creative-iteration-velocity-lift-per-quarter; creative-cadence-automation-quarterly typically identifies 30-50% creative-cadence-automation-gap that no-cadence-automation-typically-misses; 12-24-month-compounding-AI-engine-steady-state typically achieves 2-4× LTV-multiplier-year-2+ vs AI-only-baseline.\n```\n\n---"
         }
       ],
+      "phases": [],
       "size": 96127,
       "lastTouched": "2026-07-06"
     }
@@ -12642,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-26 18:34 UTC] Skill tick: keep — Move #358.4 Per-region cross-warehouse-balance-BFCM-stress-test-engine + per-region BFCM-peak-demand-forecast-vector + per-region pre-positioning-engine + per-region fulfillment-pool-allocation-engine + per-region SLA-target + per-region stress-test-scenario-engine + per-region rollback-decision-engine + Triple-Whale per-stress-test-event-stream (per-region-cross-warehouse-balance-BFCM-stress-test)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-26\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #358.3 (shipped at 17:30 UTC today) skill's canonical \"How to extend\" first follow-up recommendation (\"Move #358.4 — Per-region cross-warehouse-balance-BFCM-stress-test-engine — given the Move #89 BFCM-peak-multiplier + the cross-warehouse-balance-engine + the supplier-drop-ship-engine, build the BFCM-stress-test-engine that simulates 3× normal Q4 demand on each (SKU × warehouse × region × supplier) cell and pre-positions inventory 8 weeks pre-BFCM\"). **(1) UNIQUE CATEGORY** — `grep -lE '^category: per-region-cross-warehouse-balance-BFCM-stress-test' skills/*.md | wc -l = 1` (skill/362 is the only skill with this canonical category; pre-tick the das"
+    },
     {
       "heading": "[2026-09-26 17:30 UTC] Skill tick: keep — Move #358.3 Per-SKU supplier-drop-ship-engine + cross-warehouse-balance-supplier-bypass-decision-engine + per-SKU supplier-lead-time-vector + per-SKU transfer-lead-time-vector + per-SKU drop-ship-eligibility-decision-engine + per-supplier drop-ship-throughput-vector + per-SKU drop-ship-cost-vs-transfer-cost calculator + per-SKU drop-ship-rollback-decision-engine (per-sku-supplier-drop-ship)",
       "body": "- **Branch:** autoresearch/skills-2026-09-26\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #358.2 (skill/360) canonical \"How to extend\" first follow-up (\"Move #358.3 — Per-SKU cross-warehouse-balance-supplier-drop-ship-engine — given the Move #357 per-SKU-OTB-formula + the cross-warehouse-balance-engine, build the supplier-drop-ship-engine that bypasses warehouse transfer when supplier-lead-time < transfer-lead-time\"). **(1) UNIQUE CATEGORY** — `grep -lE '^category: per-sku-supplier-drop-ship' skills/*.md | wc -l = 1` (skill/361 is the only skill with this canonical category; pre-tick the dashboard had 358 skills, ZERO in this category). **(2) TIER-1 FIRST IN CATEGORY** — first Tier-1 in `category: per-sku-supplier-drop-ship`. **(3) P0 FI"
@@ -67573,6 +68158,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "ffe6e8f",
+      "date": "2026-09-26T18:41:46Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #358.4 per-region cross-warehouse-balance-BFCM-stress-test-engine + per-region BFCM-peak-demand-forecast-vector 5-dim + per-region pre-positioning-engine 4-tuple + per-region fulfillment-pool-allocation-engine 4-tuple + per-regi",
+      "body": ""
+    },
+    {
       "sha": "9b04d41",
       "date": "2026-09-26T17:33:56Z",
       "author": "hermesagent",
@@ -68964,13 +69556,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #247 per-marketplace-promotion-budget-allocation-engine (Tier-1 P0 in fresh category marketplace-promotion-budget-allocation; 6-pillar Path A/B/C/D/E/F framework with default 14:1 Year-1 ROI Path B at $5M GMV)",
       "body": ""
-    },
-    {
-      "sha": "9e31b27",
-      "date": "2026-09-20T19:01:52Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #246 dtc-vs-marketplace-cannibalization-monitoring (FIRST Tier-1 + FIRST P0 in unique category marketplace-cannibalization-monitoring; canonical DTC-traffic-erosion-monitoring layer every $1M+ GMV DTC brand with marketplace pres",
-      "body": ""
     }
   ],
   "counts": {
@@ -68979,7 +69564,7 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 20,
+    "journalEntries": 21,
     "skills": 360,
     "gitCommits": 200
   }

@@ -26,12 +26,21 @@ export interface ResearchDoc {
   lastTouched?: string | null;
 }
 
+export interface PlaybookPhase {
+  /** Stable id derived from heading slug + 1-based order prefix. */
+  id: string;
+  /** 1-based order within the playbook's Step-by-step section. */
+  order: number;
+  /** The H3 heading text. */
+  heading: string;
+}
 export interface Playbook {
   file: string;
   title: string;
   meta: string[];
   sectionCount: number;
   numberedSections: { heading: string; body: string }[];
+  phases?: PlaybookPhase[];
   size: number;
   lastTouched?: string;
 }

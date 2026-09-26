@@ -12,6 +12,7 @@ import { Bar } from "@/components/bar";
 import { YourStoreCard } from "@/components/your-store-card";
 import { BenchmarkDial } from "@/components/benchmark-dial";
 import { ShippedProgressStrip } from "@/components/shipped-playbooks";
+import { PhasedProgressStrip } from "@/components/phased-progress";
 import { NextMoveCard } from "@/components/next-move";
 import { NextMoveOverridePill } from "@/components/next-move-override-pill";
 import { IkasLiveCard } from "@/components/ikas-live-card";
@@ -342,6 +343,8 @@ export default function Home() {
               title: p.title,
             }))}
           />
+
+          <PhasedProgressStrip playbooks={playbooks} />
 
           <a
             href="/top-10"
