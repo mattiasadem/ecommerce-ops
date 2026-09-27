@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-27T09:08:55.332Z",
+  "generatedAt": "2026-09-27T10:21:12.445Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13224,6 +13224,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-09-27 09:06 UTC] Skill tick: keep — Move #358.5.12 per-sku-supplier-stress-test-LTV-cohort-decay-window-quarterly-board-pack-investor-deck-AI-agent",
+      "body": "- **Branch:** autoresearch/skills-2026-09-27\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #358.5.11's canonical \"How to extend\" first follow-up recommendation (\"Move #358.5.12 per-sku-supplier-stress-test-LTV-cohort-decay-window-quarterly-board-pack-investor-deck-AI-agent — adds an investor-deck-specific quarterly-rollup generator with anonymized cohort-LTV-preservation + aggregated net-avoided-loss + competitive-benchmark context for fundraising or board-meeting contexts, extending Move #358.5.7 C7 INVESTOR-DECK-OPTIONAL channel into a fully-fleshed investor-deck-generator\"). (1) **UNIQUE CATEGORY** — `grep -lE '^category: per-sku-supplier-stress-test-LTV-cohort-decay-window-quarterly-board-pack-investor-deck-AI-agent' skills/*.md | wc "
+    },
+    {
       "heading": "[2026-09-27 08:01 UTC] Skill tick: keep — Move #358.5.11 Per-SKU supplier-stress-test-LTV-cohort-decay-window-AI-agent-counterfactual-rollback-engine",
       "body": "- **Branch:** autoresearch/skills-2026-09-27\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #358.5.10 (shipped at 06:55 UTC today) skill's canonical \"How to extend\" first follow-up recommendation (\"Move #358.5.11 per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-counterfactual-rollback-engine — adds a counterfactual-rollback-engine that simulates 'what if RR1-RR6 had fired 7d earlier' to quantify the avoided-loss opportunity cost of late rollbacks, fed back into Move #358.5.7 Q6 ROLLBACK-ACTIVITY as a counterfactual-rollback-baseline\"). **(1) UNIQUE CATEGORY** — `grep -lE '^category: per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-counterfactual-rollback-engine' skills/*.md | wc -l = 1` (skill/374 is the only skil"
     },
@@ -13234,6 +13238,10 @@
     {
       "heading": "[2026-09-27 05:43 UTC] Skill tick: keep — Move #358.5.9 Per-SKU supplier-stress-test-LTV-cohort-decay-window-AI-agent-stress-test-engine",
       "body": "- **Branch:** autoresearch/skills-2026-09-27\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #358.5.8 (shipped at 04:42 UTC today) skill's canonical \"How to extend\" first follow-up recommendation (\"Move #358.5.9 per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-stress-test-engine — adds a stress-test-engine that simulates ≥2 simultaneous multi-supplier-rollover events on the same cohort-tier and stress-tests the MR1-MR6 agent under multi-rollover pressure, with results fed back into Move #358.5.7 Q5 ROLLER-WINDOW-CHRONOLOGY as a forward-looking-risk-section\"). **(1) UNIQUE CATEGORY** — `grep -lE '^category: per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-stress-test-engine' skills/*.md | wc -l = 1` (skill/372 is th"
+    },
+    {
+      "heading": "[2026-09-27 09:06 UTC] Skill tick: keep — Move #358.5.12 per-sku-supplier-stress-test-LTV-cohort-decay-window-quarterly-board-pack-investor-deck-AI-agent",
+      "body": "- **Branch:** autoresearch/skills-2026-09-27\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #358.5.11's canonical \"How to extend\" first follow-up recommendation (\"Move #358.5.12 per-sku-supplier-stress-test-LTV-cohort-decay-window-quarterly-board-pack-investor-deck-AI-agent — adds an investor-deck-specific quarterly-rollup generator with anonymized cohort-LTV-preservation + aggregated net-avoided-loss + competitive-benchmark context for fundraising or board-meeting contexts, extending Move #358.5.7 C7 INVESTOR-DECK-OPTIONAL channel into a fully-fleshed investor-deck-generator\"). (1) **UNIQUE CATEGORY** — `grep -lE '^category: per-sku-supplier-stress-test-LTV-cohort-decay-window-quarterly-board-pack-investor-deck-AI-agent' skills/*.md | wc "
     },
     {
       "heading": "[2026-09-27 04:42 UTC] Skill tick: keep — Move #358.5.8 Per-SKU supplier-stress-test-LTV-cohort-decay-window-counterfactual-AI-agent-simulator",
@@ -47666,6 +47674,25 @@
       "lastTouched": "2026-09-27"
     },
     {
+      "file": "376-per-sku-supplier-stress-test-LTV-cohort-decay-window-counterfactual-AI-agent-cross-quarter-window-extension.md",
+      "name": "per-sku-supplier-stress-test-LTV-cohort-decay-window-counterfactual-AI-agent-cross-quarter-window-extension",
+      "title": "Per-SKU supplier-stress-test-LTV-cohort-decay-window-counterfactual-AI-agent-cross-quarter-window-extension",
+      "category": "per-sku-supplier-stress-test-LTV-cohort-decay-window-counterfactual-AI-agent-cross-quarter-window-extension",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "358.5.13",
+      "yearOneRoiBand": "10:1–24:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-27",
+      "sources": [],
+      "blurb": "The cross-quarter-window-extension layer every $5M+ GMV DTC operator running ≥6 LTV-cohort-tiers + ≥2 active regions + ≥3 active suppliers + multi-supplier-rollover-cadence ≥1 rollover/quarter + ≥4 complete quarterly ...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 0,
+      "size": 72818,
+      "lastTouched": "2026-09-27"
+    },
+    {
       "file": "38-checkout-payments-bnpl-optimization.md",
       "name": "checkout-payments-bnpl-optimization",
       "title": "Checkout payments + BNPL optimization",
@@ -68465,6 +68492,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "c39c239",
+      "date": "2026-09-27T09:15:39Z",
+      "author": "hermesagent",
+      "subject": "docs: journal entry for Move #358.5.12 investor-deck-AI-agent skill tick",
+      "body": ""
+    },
+    {
+      "sha": "2be91ab",
+      "date": "2026-09-27T09:14:28Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #358.5.12 per-sku-supplier-stress-test-LTV-cohort-decay-window-quarterly-board-pack-investor-deck-AI-agent",
+      "body": ""
+    },
+    {
       "sha": "d657618",
       "date": "2026-09-27T08:05:27Z",
       "author": "hermesagent",
@@ -69849,20 +69890,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #258 per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-ltv-attribution-engine (FIRST Tier-1 + FIRST P0 in unique category; 6-axis with-experiment LTV-attribution extending Move #257 with-warehouse)",
       "body": ""
-    },
-    {
-      "sha": "e1f6aa4",
-      "date": "2026-09-21T08:21:02Z",
-      "author": "hermesagent",
-      "subject": "docs: Move #257 journal entry for canonical keep decision + move #257 added to docs/journal.md",
-      "body": ""
-    },
-    {
-      "sha": "675fec5",
-      "date": "2026-09-21T08:20:14Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #257 per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-warehouse-ltv-attribution-engine (FIRST Tier-1 + FIRST P0 in unique category per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-wareho",
-      "body": ""
     }
   ],
   "counts": {
@@ -69871,8 +69898,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 36,
-    "skills": 373,
+    "journalEntries": 38,
+    "skills": 374,
     "gitCommits": 200
   }
 }
