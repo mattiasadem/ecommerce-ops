@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/card";
 import { ResearchTable } from "@/components/research-table";
 import { InventoryCostComparator } from "@/components/inventory-cost-comparator";
+import { StockoutRiskCalculator } from "@/components/stockout-risk-calculator";
 import { content, findTable } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -36,6 +37,13 @@ export default function InventoryPage() {
       {/* Interactive 3PL-vs-In-house Cost Comparator — closes the loop from
           static reference tables to "what does this do to my numbers". */}
       <InventoryCostComparator />
+
+      {/* Interactive stockout-risk calculator — turns the /inventory page
+          from a static reference into the operator's actual weekly-stockout
+          dashboard. Reads AOV/orders/margin from Your-store (cross-page
+          intelligence), persists to localStorage (state-persistence), and
+          emits a paste-ready audit report (one-click-action). */}
+      <StockoutRiskCalculator />
 
       <Card>
         <CardHeader>
