@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-27T03:34:49.091Z",
+  "generatedAt": "2026-09-27T04:40:04.258Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-27 03:32 UTC] Skill tick: keep — Move #358.5.7 Per-SKU supplier-stress-test-LTV-cohort-decay-window-quarterly-board-pack-AI-agent-rollup",
+      "body": "- **Branch:** autoresearch/skills-2026-09-27\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #358.5.6 (shipped at 02:30 UTC today) skill's canonical \"How to extend\" first follow-up recommendation (\"Move #358.5.7 per-sku-supplier-stress-test-LTV-cohort-decay-window-quarterly-board-pack-AI-agent-rollup — adds a quarterly-board-pack rollup that summarizes multi-supplier-rollover-AI-agent-tuning savings per cohort-pair per CCD1-CCD6 pattern per quarter per region per supplier for CFO board-pack distribution\"). **(1) UNIQUE CATEGORY** — `grep -lE '^category: per-sku-supplier-stress-test-LTV-cohort-decay-window-quarterly-board-pack-AI-agent-rollup' skills/*.md | wc -l = 1` (skill/370 is the only skill with this canonical category; pre-tick master"
+    },
     {
       "heading": "[2026-09-27 02:30 UTC] Skill tick: keep — Move #358.5.6 Per-SKU supplier-stress-test-LTV-cohort-decay-window-multi-supplier-rollover-AI-agent-extension",
       "body": "- **Branch:** autoresearch/skills-2026-09-27\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #358.5.5 (shipped at 01:21 UTC today) skill's canonical \"How to extend\" first follow-up recommendation (\"Move #358.5.6 per-sku-supplier-stress-test-LTV-cohort-decay-window-multi-supplier-rollover-AI-agent-extension — extends the AI-agent-tuning to multi-supplier-rollover scenarios (one supplier decays out, one rolls in, AI-agent must tune the CRO1-CRO6 weights during transition; CCD1-CCD6 pattern-classification may shift during rollover)\"). **(1) UNIQUE CATEGORY** — `grep -lE '^category: per-sku-supplier-stress-test-LTV-cohort-decay-window-multi-supplier-rollover-AI-agent-extension' skills/*.md | wc -l = 1` (skill/369 is the only skill with this can"
@@ -47547,6 +47551,25 @@
       "lastTouched": "2026-09-27"
     },
     {
+      "file": "371-per-sku-supplier-stress-test-LTV-cohort-decay-window-counterfactual-AI-agent-simulator.md",
+      "name": "per-sku-supplier-stress-test-LTV-cohort-decay-window-counterfactual-AI-agent-simulator",
+      "title": "Per-SKU supplier-stress-test-LTV-cohort-decay-window-counterfactual-AI-agent-simulator",
+      "category": "per-sku-supplier-stress-test-LTV-cohort-decay-window-counterfactual-AI-agent-simulator",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "358.5.8",
+      "yearOneRoiBand": "8:1–20:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-27",
+      "sources": [],
+      "blurb": "The counterfactual-AI-agent-simulator layer every $5M+ GMV DTC operator running ≥6 LTV-cohort-tiers + ≥2 active regions + ≥3 active suppliers + multi-supplier-rollover-cadence ≥1 rollover/quarter + ≥2 quarters of hist...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 0,
+      "size": 53858,
+      "lastTouched": "2026-09-27"
+    },
+    {
       "file": "38-checkout-payments-bnpl-optimization.md",
       "name": "checkout-payments-bnpl-optimization",
       "title": "Checkout payments + BNPL optimization",
@@ -68346,6 +68369,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "65090a9",
+      "date": "2026-09-27T03:37:38Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #358.5.7 quarterly-board-pack-AI-agent-rollup",
+      "body": ""
+    },
+    {
       "sha": "7b35b1e",
       "date": "2026-09-27T02:31:55Z",
       "author": "hermesagent",
@@ -69737,13 +69767,6 @@
       "author": "hermesagent",
       "subject": "docs: Move #253 journal entry for canonical keep decision + move #253 added to docs/journal.md",
       "body": ""
-    },
-    {
-      "sha": "5f9a83d",
-      "date": "2026-09-21T03:53:31Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #253 back-in-stock-restock-notification-engine (FIRST Tier-1 + FIRST P0 in unique category back-in-stock-restock-notification; canonical sold-out-recovery layer every $500k+ GMV apparel/footwear/beauty/supplements/home/electroni",
-      "body": ""
     }
   ],
   "counts": {
@@ -69752,8 +69775,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 30,
-    "skills": 368,
+    "journalEntries": 31,
+    "skills": 369,
     "gitCommits": 200
   }
 }
