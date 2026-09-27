@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-27T18:21:31.492Z",
+  "generatedAt": "2026-09-27T19:32:11.352Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-27 17:14 UTC] Skill tick: keep — Move #358.5.19 per-sku-supplier-stress-test-LTV-cohort-decay-window-counterfactual-rollback-cross-region-extension",
+      "body": "- **Branch:** autoresearch/skills-2026-09-27\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #358.5.18 (shipped at 14:55 UTC today) skill's canonical \"How to extend\" first follow-up recommendation (\"Move #358.5.19 per-sku-supplier-stress-test-LTV-cohort-decay-window-counterfactual-rollback-cross-region-extension — extends Move #358.5.11 counterfactual-rollback-engine from per-region to cross-region with cross-region-counterfactual-rollback-coverage-validation + cross-region-counterfactual-rollback-confidence-band-boost + cross-region-counterfactual-rollback-baseline-stability-check; first Tier-1 + first P0 in `category: per-sku-supplier-stress-test-LTV-cohort-decay-window-counterfactual-rollback-cross-region-extension`\"). **(1) UNIQUE CATEG"
+    },
     {
       "heading": "[2026-09-25 04:48 UTC] Skill tick: keep — Move #3.3 Checkout audit by checkout-friction-element (per-checkout-friction-element funnel + per-checkout-friction-element completion-rate + per-checkout-friction-element leak-rate + per-checkout-friction-element cause-diagnosis + per-checkout-friction-element fix-recommendation + per-checkout-friction-element attribution loop + Move #3 Baymard + Move #3.1 per-payment-method + Move #3.2 per-checkout-step + Move #6 Triple Whale attribution + Move #47 growth-experimentation)",
       "body": "- **Branch:** autoresearch/skills-2026-09-25\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of the 01:32 UTC Move #3.2 skill/328 keep entry's canonical next-action recommendation (\"Move #3.3 — Checkout audit by checkout-friction-element ... first Tier-1 + first P0 in `category: checkout-audit-by-checkout-friction-element`; default Year-1 ROI Path B 6:1-20:1 at $1M-$10M GMV\"). (1) UNIQUE CATEGORY — `grep -lE '^category: checkout-audit-by-checkout-friction-element' skills/*.md | wc -l = 1` (skill/331 is the only skill with the canonical checkout-audit-by-checkout-friction-element category; master had 328 skills pre-tick, skill/331 is the only one with this category). (2) TIER-1 FIRST IN CATEGORY — first Tier-1 in the canonical checkout-audit-by-chec"
@@ -47928,6 +47932,25 @@
       "lastTouched": "2026-09-27"
     },
     {
+      "file": "383-checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-octonary.md",
+      "name": "383-checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-octonary",
+      "title": "Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-octonary",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-27",
+      "sources": [],
+      "blurb": "Move #3.28 ships now because Move #3.27 (already shipped as `skills/355-checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-septenary....",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 0,
+      "size": 108664,
+      "lastTouched": "2026-09-27"
+    },
+    {
       "file": "39-catalog-pim-dam-operations.md",
       "name": "catalog-pim-dam-operations",
       "title": "Catalog / PIM / DAM operations (Move #26)",
@@ -68646,6 +68669,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "7f1bcb8",
+      "date": "2026-09-27T18:27:40Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #358.5.19 per-sku-supplier-stress-test-LTV-cohort-decay-window-counterfactual-rollback-cross-region-extension",
+      "body": ""
+    },
+    {
       "sha": "a708223",
       "date": "2026-09-27T17:15:36Z",
       "author": "hermesagent",
@@ -70037,13 +70067,6 @@
       "author": "hermesagent",
       "subject": "feat(dashboard): Move #6.10 attribution-health-alert calculator gains Your-store personalised recovery projection (cross-page-intelligence)",
       "body": ""
-    },
-    {
-      "sha": "17ced0c",
-      "date": "2026-09-21T16:17:14Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #264 per-payment-method × per-channel × per-SKU × per-daypart × per-creative × per-cohort × per-experiment × per-warehouse × per-carrier × per-zone × per-product-discovery × per-affiliate 12-axis LTV attribution engine (FIRST Ti",
-      "body": ""
     }
   ],
   "counts": {
@@ -70052,8 +70075,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 48,
-    "skills": 380,
+    "journalEntries": 49,
+    "skills": 381,
     "gitCommits": 200
   }
 }
