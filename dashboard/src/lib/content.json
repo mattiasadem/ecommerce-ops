@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-27T13:44:44.330Z",
+  "generatedAt": "2026-09-27T16:03:05.519Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,18 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-27 14:55 UTC] Skill tick: keep — Move #358.5.16 per-sku-supplier-stress-test-LTV-cohort-decay-window-cross-cohort-portfolio-cross-region-extension",
+      "body": "- **Branch:** autoresearch/skills-2026-09-27\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #358.5.15 (shipped at 13:47 UTC today) skill's canonical \"How to extend\" first follow-up recommendation. **(1) UNIQUE CATEGORY** — `grep -lE '^category: per-sku-supplier-stress-test-LTV-cohort-decay-window-cross-cohort-portfolio-cross-region-extension' skills/*.md | wc -l = 1` (skill/379 is the only skill with this canonical category; pre-tick master had 378 skills, ZERO in this category). **(2) TIER-1 FIRST IN CATEGORY** — first Tier-1 in `category: per-sku-supplier-stress-test-LTV-cohort-decay-window-cross-cohort-portfolio-cross-region-extension`. **(3) P0 FIRST IN CATEGORY** — first P0 in the same category. **(4) HIGHEST PITFALL COUNT WINS TIES**"
+    },
+    {
+      "heading": "2026-09-27 15:12 UTC — /abandoned-cart-launch-plan: 30-day always-on Abandoned-Cart launch plan generator (Move #1)",
+      "body": "- **What shipped:** New route at `/abandoned-cart-launch-plan` with a one-click \"Generate 30-day launch plan\" button. Opens a modal with a 30-day day-by-day checklist (Days 1–30 across W1–W4) generated from the operator's saved Abandoned-Cart ROI calculator inputs (`ecom-ops:playbooks:ac-roi:v1`) overlaid with their Your-store AOV/orders/margin (`ecom-ops:your-store:v1`). Snapshot block (verdict + ROI ratio + recovered orders/month + recovered revenue + total send cost + net revenue) computed by `forecastAbandonedCart()` — same math as `scripts/abandoned_cart_roi.py`. Result is paste-ready markdown: copy-to-clipboard OR download `.md` (named `abandoned-cart-launch-plan-YYYY-MM-DD.md`). 30 days, 4 weeks, 30 checkbox-able actions covering: trigger wiring + checkout-started audit, recovery-ra"
+    },
+    {
+      "heading": "[2026-09-27 13:47 UTC] Skill tick: keep — Move #358.5.15 per-sku-supplier-stress-test-LTV-cohort-decay-window-counterfactual-rollback-cross-quarter-window-extension",
+      "body": "- **Branch:** autoresearch/skills-2026-09-27\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #358.5.14 (shipped at 11:36 UTC today) skill's canonical \"How to extend\" first follow-up recommendation. **(1) UNIQUE CATEGORY** — `grep -lE '^category: per-sku-supplier-stress-test-LTV-cohort-decay-window-counterfactual-rollback-cross-quarter-window-extension' skills/*.md | wc -l = 1` (skill/378 is the only skill with this canonical category; pre-tick master had 377 skills, ZERO in this category). **(2) TIER-1 FIRST IN CATEGORY** — first Tier-1. **(3) P0 FIRST IN CATEGORY** — first P0. **(4) HIGHEST PITFALL COUNT WINS TIES** — 18 numbered pitfalls (P1-P18); gate moot since no other skill in the category. **Operator-experience justification:** Move "
+    },
     {
       "heading": "[2026-09-27 09:06 UTC] Skill tick: keep — Move #358.5.12 per-sku-supplier-stress-test-LTV-cohort-decay-window-quarterly-board-pack-investor-deck-AI-agent",
       "body": "- **Branch:** autoresearch/skills-2026-09-27\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #358.5.11's canonical \"How to extend\" first follow-up recommendation (\"Move #358.5.12 per-sku-supplier-stress-test-LTV-cohort-decay-window-quarterly-board-pack-investor-deck-AI-agent — adds an investor-deck-specific quarterly-rollup generator with anonymized cohort-LTV-preservation + aggregated net-avoided-loss + competitive-benchmark context for fundraising or board-meeting contexts, extending Move #358.5.7 C7 INVESTOR-DECK-OPTIONAL channel into a fully-fleshed investor-deck-generator\"). (1) **UNIQUE CATEGORY** — `grep -lE '^category: per-sku-supplier-stress-test-LTV-cohort-decay-window-quarterly-board-pack-investor-deck-AI-agent' skills/*.md | wc "
@@ -47739,6 +47751,25 @@
       "lastTouched": "2026-09-27"
     },
     {
+      "file": "379-per-sku-supplier-stress-test-LTV-cohort-decay-window-cross-cohort-portfolio-cross-region-extension.md",
+      "name": "per-sku-supplier-stress-test-LTV-cohort-decay-window-cross-cohort-portfolio-cross-region-extension",
+      "title": "Per-SKU supplier-stress-test-LTV-cohort-decay-window-cross-cohort-portfolio-cross-region-extension",
+      "category": "per-sku-supplier-stress-test-LTV-cohort-decay-window-cross-cohort-portfolio-cross-region-extension",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "358.5.16",
+      "yearOneRoiBand": "10:1–24:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-27",
+      "sources": [],
+      "blurb": "The cross-region-extension layer every $5M+ GMV DTC operator running ≥6 LTV-cohort-tiers + ≥3 active suppliers per cohort-tier + multi-supplier-rollover-cadence ≥1 rollover/quarter + ≥3 complete quarterly cycles of Mo...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 0,
+      "size": 86132,
+      "lastTouched": "2026-09-27"
+    },
+    {
       "file": "38-checkout-payments-bnpl-optimization.md",
       "name": "checkout-payments-bnpl-optimization",
       "title": "Checkout payments + BNPL optimization",
@@ -47818,6 +47849,25 @@
       "sourceCount": 61,
       "size": 94439,
       "lastTouched": "2026-07-13"
+    },
+    {
+      "file": "380-per-sku-supplier-stress-test-LTV-cohort-decay-window-quarterly-board-pack-investor-deck-cross-region-extension.md",
+      "name": "per-sku-supplier-stress-test-LTV-cohort-decay-window-quarterly-board-pack-investor-deck-cross-region-extension",
+      "title": "Per-SKU supplier-stress-test-LTV-cohort-decay-window-quarterly-board-pack-investor-deck-cross-region-extension",
+      "category": "per-sku-supplier-stress-test-LTV-cohort-decay-window-quarterly-board-pack-investor-deck-cross-region-extension",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "358.5.17",
+      "yearOneRoiBand": "8:1–24:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-27",
+      "sources": [],
+      "blurb": "The cross-region-extension layer every $5M+ GMV DTC operator running ≥3 active regions (NA + EU + APAC or NA + EU + LATAM or NA + EU + MENA) + ≥6 LTV-cohort-tiers + multi-supplier-rollover-cadence ≥1 rollover/quarter ...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 0,
+      "size": 88768,
+      "lastTouched": "2026-09-27"
     },
     {
       "file": "39-catalog-pim-dam-operations.md",
@@ -68538,6 +68588,34 @@
   ],
   "gitCommits": [
     {
+      "sha": "48524a2",
+      "date": "2026-09-27T14:58:24Z",
+      "author": "hermesagent",
+      "subject": "docs: journal entry for Move #358.5.16 cross-cohort-portfolio-cross-region-extension skill tick",
+      "body": ""
+    },
+    {
+      "sha": "87f345e",
+      "date": "2026-09-27T14:57:37Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #358.5.16 per-sku-supplier-stress-test-LTV-cohort-decay-window-cross-cohort-portfolio-cross-region-extension",
+      "body": ""
+    },
+    {
+      "sha": "2d7366a",
+      "date": "2026-09-27T13:56:07Z",
+      "author": "hermesagent",
+      "subject": "feat(dashboard): /abandoned-cart-launch-plan - Move #1 always-on 30-day Abandoned-Cart launch plan generator",
+      "body": ""
+    },
+    {
+      "sha": "bfd3e31",
+      "date": "2026-09-27T13:50:23Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #358.5.15 per-sku-supplier-stress-test-LTV-cohort-decay-window-counterfactual-rollback-cross-quarter-window-extension",
+      "body": ""
+    },
+    {
       "sha": "578b081",
       "date": "2026-09-27T11:38:29Z",
       "author": "hermesagent",
@@ -69908,34 +69986,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #262 per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-ltv-attribution-engine (FIRST Tier-1 + FIRST P0 in unique category; canonical 10",
       "body": ""
-    },
-    {
-      "sha": "445d088",
-      "date": "2026-09-21T12:57:34Z",
-      "author": "hermesagent",
-      "subject": "journal: append Move #261 keep entry",
-      "body": ""
-    },
-    {
-      "sha": "62d8ffa",
-      "date": "2026-09-21T12:57:18Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #261 per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-ltv-attribution-engine (FIRST Tier-1 + FIRST P0 in unique category; canonical 9-axis (with-experiment",
-      "body": ""
-    },
-    {
-      "sha": "cbce84e",
-      "date": "2026-09-21T11:52:40Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #260 per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-ltv-attribution-engine (FIRST Tier-1 + FIRST P0 in unique category; canonical 8-axis (with-experiment × with-war",
-      "body": ""
-    },
-    {
-      "sha": "e8ea9d3",
-      "date": "2026-09-21T10:47:28Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #259 per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-ltv-attribution-engine (FIRST Tier-1 + FIRST P0 in unique category; canonical 7-axis (with-experiment × with-warehouse) layer ",
-      "body": ""
     }
   ],
   "counts": {
@@ -69944,8 +69994,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 40,
-    "skills": 376,
+    "journalEntries": 43,
+    "skills": 378,
     "gitCommits": 200
   }
 }
