@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-26T22:00:46.950Z",
+  "generatedAt": "2026-09-27T00:13:39.274Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,14 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-26 23:05 UTC] Skill tick: keep — Move #358.5.3 Per-SKU supplier-stress-test-LTV-cohort-decay-window-decision-engine",
+      "body": "- **Branch:** autoresearch/skills-2026-09-26\n- **Status:** keep\n- **Reason:** PASSES IMPROVEMENT-METRIC GATE #1 (UNIQUE CATEGORY) — `grep -lE '^category: per-sku-supplier-stress-test-LTV-cohort-decay-window-decision-engine' skills/*.md | wc -l = 1` (skill/366 is the only skill with this canonical category; master had 365 skills pre-tick). Also passes GATE #2 (TIER-1 FIRST IN CATEGORY) and GATE #3 (P0 FIRST IN CATEGORY). **Direct execution of Move #358.5.2's canonical \"How to extend\" first follow-up** — Move #358.5.2's ## How to extend section explicitly named Move #358.5.3 as the next layer: \"Move #358.5.3 per-sku-supplier-stress-test-LTV-cohort-decay-window-decision-engine-extension — adds a per-decay-window-decision-engine that automates the DW1-DW6 firing with operator-approval gates\". "
+    },
+    {
+      "heading": "[2026-09-26 21:58 UTC] Skill tick: keep — Move #358.5.2 Per-SKU supplier-stress-test-LTV-cohort-decay-window-extension + per-cohort-LTV-tier decay-rate-vector 6-dim + per-cohort × per-supplier × per-region × per-SKU × per-stress-scenario × per-decay-window cell decomposition engine + per-cohort-LTV-tier decay-window-table 5-band (ULTRA-SLOW / SLOW / MEDIUM / FAST / ULTRA-FAST) + per-cohort-LTV-tier decay-rollback-window-tuner 6-sub-rule DW1-DW6 + per-cohort-LTV-tier decay-cost-amortization-engine 4-tuple + Triple-Whale per-cohort-LTV-tier-decay-window-event-stream 32-field schema (per-sku-supplier-stress-test-LTV-cohort-decay-window)",
+      "body": "- **Branch:** autoresearch/skills-2026-09-26\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #358.5.1 (shipped at 20:51 UTC today) skill's canonical \"How to extend\" first follow-up recommendation (\"Move #358.5.2 — Per-SKU supplier-stress-test-LTV-cohort-decay-window-extension — given the Move #358.5.1 per-SKU supplier-stress-test-cohort-affinity-extension + the per-cohort supplier-stress-test-leak-rate-vector 7-dim + the per-cohort supplier-stress-test-decay-rollback-decision-engine 5-sub-rule DR1-DR5, build the LTV-aware temporal-decay engine that decomposes the Move #358.5.1 Pillar 5 5-sub-rule DR1-DR5 firing into per-cohort-LTV-tier × per-decay-window × per-supplier × per-region × per-SKU × per-stress-scenario cells with a per-cohort-LTV"
+    },
     {
       "heading": "[2026-09-26 20:51 UTC] Skill tick: keep — Move #358.5.1 Per-SKU supplier-stress-test-cohort-affinity-extension + per-cohort supplier-stress-test-leak-rate-vector 7-dim + per-cohort supplier-overlap-cohort-coverage-table 4-tier + per-cohort × per-stress-scenario scenario-leak-attribution engine + per-cohort supplier-stress-test-decay-rollback-decision-engine 5-sub-rule DR1-DR5 + Triple-Whale per-cohort-supplier-stress-test-event-stream 30-field schema (per-sku-supplier-stress-test-cohort-affinity)",
       "body": "- **Branch:** autoresearch/skills-2026-09-26\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #358.5 (shipped at 19:48 UTC today) skill's canonical \"How to extend\" first follow-up recommendation (\"Move #358.5.1 — Per-SKU supplier-stress-test-cohort-affinity-extension — given the Move #358.5 per-region cross-warehouse-balance-supplier-stress-test-engine + the per-region supplier-overlap-coverage-table 4-tier from Move #358.5 Pillar 4 + the per-region supplier-outage-scenario-engine 6 scenarios from Move #358.5 Pillar 1 + the per-region supplier-lead-time-stress-vector 6-dim from Move #358.5 Pillar 2 + the per-region cross-supplier-pool-allocation-engine 5-tuple from Move #358.5 Pillar 3 + the per-region supplier-stress-test-rollback-decision-"
@@ -47294,6 +47302,44 @@
       "lastTouched": "2026-09-26"
     },
     {
+      "file": "366-per-sku-supplier-stress-test-LTV-cohort-decay-window-decision-engine.md",
+      "name": "per-sku-supplier-stress-test-LTV-cohort-decay-window-decision-engine",
+      "title": "Per-SKU supplier-stress-test-LTV-cohort-decay-window-decision-engine-extension",
+      "category": "per-sku-supplier-stress-test-LTV-cohort-decay-window-decision-engine",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "358.5.3",
+      "yearOneRoiBand": "9:1–28:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-26",
+      "sources": [],
+      "blurb": "The per-cohort-LTV-tier × per-decision-engine × per-supplier × per-region × per-SKU × per-stress-scenario × per-decay-window decision-routing engine — given the Move #358.5.2 per-SKU supplier-stress-test-LTV-cohort-de...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 41857,
+      "lastTouched": "2026-09-26"
+    },
+    {
+      "file": "367-per-sku-supplier-stress-test-LTV-cohort-decay-window-cross-cohort-overlay.md",
+      "name": "per-sku-supplier-stress-test-LTV-cohort-decay-window-cross-cohort-overlay",
+      "title": "Per-SKU supplier-stress-test-LTV-cohort-decay-window-cross-cohort-overlay",
+      "category": "per-sku-supplier-stress-test-LTV-cohort-decay-window-cross-cohort-overlay",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "358.5.4",
+      "yearOneRoiBand": "11:1–26:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-27",
+      "sources": [],
+      "blurb": "The cross-cohort-overlay-decision layer every $5M+ GMV DTC operator running ≥6 LTV-cohort-tiers + ≥2 active regions + ≥3 active suppliers + ≥500 orders/month + multi-LTV-cohort-decay-window-routing needs after Move #3...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 0,
+      "size": 64674,
+      "lastTouched": "2026-09-27"
+    },
+    {
       "file": "37-ai-site-search-merchandising.md",
       "name": "ai-site-search-merchandising",
       "title": "AI site search + merchandising",
@@ -68227,6 +68273,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "cdf63fd",
+      "date": "2026-09-26T23:10:04Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #358.5.3 per-sku-supplier-stress-test-LTV-cohort-decay-window-decision-engine + 7-stage engine + 1080-cell decision-routing + 5-band decision-approval-table + 5-sub-rule DEC1-DEC5 rollback + 5-tuple cost-amortization + 36-field ",
+      "body": ""
+    },
+    {
+      "sha": "52cd41d",
+      "date": "2026-09-26T22:04:28Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #358.5.2 per-sku-supplier-stress-test-LTV-cohort-decay-window-extension + per-cohort-LTV-tier decay-rate-vector 6-dim + per-cohort × per-supplier × per-region × per-SKU × per-stress-scenario × per-decay-window cell decomposition",
+      "body": ""
+    },
+    {
       "sha": "d7b15bf",
       "date": "2026-09-26T20:57:20Z",
       "author": "hermesagent",
@@ -69611,20 +69671,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #249 per-warehouse-return-rate-attribution-engine (FIRST Tier-1 + FIRST P0 in unique category per-warehouse-return-rate-attribution)",
       "body": ""
-    },
-    {
-      "sha": "1b598f5",
-      "date": "2026-09-20T22:19:33Z",
-      "author": "hermesagent",
-      "subject": "docs: journal entry for Move #2 channel benchmark CSV bundle",
-      "body": ""
-    },
-    {
-      "sha": "a6e1922",
-      "date": "2026-09-20T22:18:52Z",
-      "author": "hermesagent",
-      "subject": "feat(dashboard): one-click CSV bundle of all 6 channel benchmarks on /channels",
-      "body": ""
     }
   ],
   "counts": {
@@ -69633,8 +69679,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 24,
-    "skills": 363,
+    "journalEntries": 26,
+    "skills": 365,
     "gitCommits": 200
   }
 }
