@@ -12,6 +12,7 @@ import {
   healthBandShort,
 } from "@/lib/abandoned-cart-roi";
 import { CopyButton } from "@/components/copy-button";
+import { AbandonedCartLaunchPlanButton } from "@/components/abandoned-cart-launch-plan-button";
 import { loadYourStore, mergeFromYourStore } from "@/lib/your-store";
 import { cn } from "@/lib/utils";
 
@@ -223,6 +224,7 @@ export function AbandonedCartROICalculator() {
           >
             Reset defaults
           </button>
+          <AbandonedCartLaunchPlanButton />
           <button
             type="button"
             onClick={copyReport}
