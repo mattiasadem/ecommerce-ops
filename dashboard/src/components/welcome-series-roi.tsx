@@ -266,6 +266,12 @@ export function WelcomeSeriesROICalculator() {
           >
             Reset defaults
           </button>
+          <a
+            href="/welcome-series-launch-plan"
+            className="inline-flex items-center rounded-md border border-accent/40 bg-accent/10 px-3 py-1.5 text-xs font-medium text-accent hover:bg-accent/20 transition-colors"
+          >
+            📅 30-day launch plan
+          </a>
           <button
             type="button"
             onClick={copyReport}
