@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-27T01:21:44.302Z",
+  "generatedAt": "2026-09-27T02:28:08.234Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,14 @@
     ]
   },
   "journal": [
+    {
+      "heading": "2026-09-27 06:00 UTC — /inventory 3PL vs In-house Cost Comparator (interactive-tool + state-persistence + cross-page-intelligence).",
+      "body": "- **What shipped:** New interactive calculator mounted on `/inventory` between the page hero and the static 3PL-vs-in-house / Major-3PLs / Forecasting / CCC cards. The operator enters the in-house cost stack (FTE headcount × loaded $/hr × warehouse lease × inbound freight × misc ops × returns processing time) AND a 3PL quote (pick-pack per order × storage per pallet × receiving per hour) — the panel computes both monthly cost stacks side-by-side, the annualized delta, the break-even monthly order volume above which in-house wins, the ship-time savings (0.5–3.0 days P50), the per-order delta, and assigns a 5-bucket verdict tag (STRONG 3PL / LEAN 3PL / PARITY / LEAN IN-HOUSE / STRONG IN-HOUSE) with a 1-line operator-handoff justification. Defaults match research/05 §3PL-vs-in-house canonical"
+    },
+    {
+      "heading": "[2026-09-27 01:21 UTC] Skill tick: keep — Move #358.5.5 Per-SKU supplier-stress-test-LTV-cohort-decay-window-AI-agent-extension",
+      "body": "- **Branch:** autoresearch/skills-2026-09-27\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #358.5.4 (shipped at 00:11 UTC today) skill's canonical \"How to extend\" first follow-up recommendation (\"Move #358.5.5 per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-extension — adds an AI-agent layer that autonomously suggests per-cohort-LTV-tier-cross-cohort-overlay-tuning based on weekly cohort-LTV drift + CCD1-CCD6 firing-pattern drift (target Q2 2027)\"). **(1) UNIQUE CATEGORY** — `grep -lE '^category: per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-extension' skills/*.md | wc -l = 1` (skill/368 is the only skill with this canonical category; pre-tick master had 367 skills, ZERO in this category). **(2) TIER-1 FIRST "
+    },
     {
       "heading": "[2026-09-27 00:11 UTC] Skill tick: keep — Move #358.5.4 Per-SKU supplier-stress-test-LTV-cohort-decay-window-cross-cohort-overlay",
       "body": "- **Branch:** autoresearch/skills-2026-09-27\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #358.5.3 (shipped at 23:05 UTC yesterday) skill's canonical \"How to extend\" first follow-up recommendation (\"Move #358.5.4 per-sku-supplier-stress-test-LTV-cohort-decay-window-cross-cohort-overlay — adds a cross-cohort-overlay that detects when high-LTV-cohort and low-LTV-cohort decision-routings collide on the same SKU and triggers a cross-cohort-rebalancing\"). **(1) UNIQUE CATEGORY** — `grep -lE '^category: per-sku-supplier-stress-test-LTV-cohort-decay-window-cross-cohort-overlay' skills/*.md | wc -l = 1` (skill/367 is the only skill with this canonical category; master had 366 skills pre-tick, ZERO in this category). **(2) TIER-1 FIRST IN CATEGOR"
@@ -47363,6 +47371,25 @@
       "lastTouched": "2026-09-27"
     },
     {
+      "file": "369-per-sku-supplier-stress-test-LTV-cohort-decay-window-multi-supplier-rollover-AI-agent-extension.md",
+      "name": "per-sku-supplier-stress-test-LTV-cohort-decay-window-multi-supplier-rollover-AI-agent-extension",
+      "title": "Per-SKU supplier-stress-test-LTV-cohort-decay-window-multi-supplier-rollover-AI-agent-extension",
+      "category": "per-sku-supplier-stress-test-LTV-cohort-decay-window-multi-supplier-rollover-AI-agent-extension",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "358.5.6",
+      "yearOneRoiBand": "8:1–20:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-27",
+      "sources": [],
+      "blurb": "The AI-agent-extension layer every $5M+ GMV DTC operator running ≥6 LTV-cohort-tiers + ≥2 active regions + ≥3 active suppliers + multi-supplier-rollover-cadence ≥1 rollover/quarter + cross-cohort-overlay-decision-engi...",
+      "sectionCount": 8,
+      "pitfallCount": 0,
+      "sourceCount": 0,
+      "size": 46130,
+      "lastTouched": "2026-09-27"
+    },
+    {
       "file": "37-ai-site-search-merchandising.md",
       "name": "ai-site-search-merchandising",
       "title": "AI site search + merchandising",
@@ -68296,6 +68323,27 @@
   ],
   "gitCommits": [
     {
+      "sha": "8adbab1",
+      "date": "2026-09-27T01:43:45Z",
+      "author": "hermesagent",
+      "subject": "docs: journal entry for /inventory 3PL vs In-house Cost Comparator tick",
+      "body": ""
+    },
+    {
+      "sha": "cb85660",
+      "date": "2026-09-27T01:43:26Z",
+      "author": "hermesagent",
+      "subject": "feat(dashboard): 3PL vs In-house Cost Comparator on /inventory",
+      "body": "- Lib: src/lib/inventory-cost-comparator.ts — pure rule engine that takes\n  in-house cost stack (FTE × loaded $/hr × lease × misc × returns) and a\n  3PL quote (pick-pack/order + storage/pallet + receiving/hr) and computes\n  monthly cost for both, annualized delta, break-even monthly order\n  volume, ship-time savings, and a 5-bucket verdict (STRONG 3PL / LEAN 3PL\n  / PARITY / LEAN IN-HOUSE / STRONG IN-HOUSE).\n- Defaults: research/05 §3PL-vs-in-house canonical bench (2,500 orders/mo,\n  $75 AOV, 3 FTE × $28/hr loaded, $8,500/mo lease, 12 pallets, ShipBob\n  Mid-Market quoted at $5.10 pick+pack + $35/pallet storage + $40/hr\n  receiving → STRONG 3PL with \\~$4.15/order advantage).\n- Cross-page intelligence: reads ecom-ops:your-store:v1 on first mount\n  (pre-fills monthlyOrders + aov), re-hydrates on focus if Overview's\n  your-store is updated.\n- State-persistence: writes to ecom-ops:inventory-cost-comparator:v1.\n- Component: src/components/inventory-cost-comparator.tsx with input grid\n  (10 in-house + 4 3PL fields), side-by-side cost stack output, 4-metric\n  delta bar (per-order / monthly / annual / break-even), verdict tag, copy\n  report.\n- Test: 42 pure-rule-engine assertions (defaults, 5 verdict buckets,\n  break-even logic, storage merge, validation, markdown render).\n- Mounted on /inventory between the page hero and the static 3PL-vs-in-\n  house / Major-3PLs benchmark tables — closes the loop from 'industry\n  median' to 'MY actual numbers'."
+    },
+    {
+      "sha": "a8257ae",
+      "date": "2026-09-27T01:24:49Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #358.5.5 per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-extension",
+      "body": ""
+    },
+    {
       "sha": "94add6f",
       "date": "2026-09-27T00:17:59Z",
       "author": "hermesagent",
@@ -69673,27 +69721,6 @@
       "author": "hermesagent",
       "subject": "journal: tick 2026-09-21 02:46 — Move #252 per-warehouse × per-SKU-LTV-attribution-engine shipped (FIRST Tier-1 + FIRST P0 in unique category per-warehouse-x-per-sku-ltv-attribution; cross-matrix layer extending Move #251 + Move #248 + Move",
       "body": ""
-    },
-    {
-      "sha": "0e06b73",
-      "date": "2026-09-21T02:46:18Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #252 per-warehouse × per-SKU LTV attribution engine (cross-matrix layer extending Move #251 + Move #248 + Move #249 + Move #250 with the per-SKU × per-warehouse dimension; FIRST Tier-1 + FIRST P0 in unique category per-warehouse",
-      "body": ""
-    },
-    {
-      "sha": "28f2de1",
-      "date": "2026-09-21T01:41:02Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #251 per-warehouse-cohort-ltv-attribution-engine (FIRST Tier-1 + FIRST P0 in unique category per-warehouse-cohort-ltv-attribution; canonical per-warehouse cohort-LTV attribution + per-warehouse 12-month-LTV-overlay + per-warehou",
-      "body": ""
-    },
-    {
-      "sha": "9203167",
-      "date": "2026-09-20T23:31:26Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #250 per-carrier-return-rate-attribution-engine (FIRST Tier-1 + FIRST P0 in unique category per-carrier-return-rate-attribution; canonical 6-phase 14-28 day build with 17 pitfalls + 17 gates A-Q covering per-carrier-damaged-in-t",
-      "body": ""
     }
   ],
   "counts": {
@@ -69702,8 +69729,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 27,
-    "skills": 366,
+    "journalEntries": 29,
+    "skills": 367,
     "gitCommits": 200
   }
 }
