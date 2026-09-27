@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-27T21:53:55.862Z",
+  "generatedAt": "2026-09-27T23:03:28.227Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-27 21:49 UTC] Skill tick: keep — Move #3.30 Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-decimal",
+      "body": "- **Branch:** autoresearch/skills-2026-09-27\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #3.29 (skill/384, shipped at 20:36 UTC today) `## How to extend` first follow-up recommendation (\"Move #3.30 — Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-decimal-extension ... 2,597,596,220,620,800-cell deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-decimal cross-validation matrix ... first Tier-1 + first P0 in `category: checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-decimal`; default Year-1 ROI Path B 55:1-120:1 at $30B-$300B subscription-discount-LTV-tier-x-cohort-af"
+    },
     {
       "heading": "[2026-09-27 20:36 UTC] Skill tick: keep — Move #3.29 Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-nonarary",
       "body": "- **Branch:** autoresearch/skills-2026-09-27\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #3.28 (skill/383, shipped at 19:35 UTC today) `## How to extend` first follow-up recommendation (\"Move #3.29 — Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-nonarary-extension ... 324,699,527,577,600-cell deep-deep-deep-deep-deep-deep-deep-deep-deep-deep cross-validation matrix ... first Tier-1 + first P0 in `category: checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-nonarary`; default Year-1 ROI Path B 50:1-110:1 at $20B-$200B subscription-discount-LTV-tier-x-cohort-affinity-x"
@@ -48001,6 +48005,25 @@
       "lastTouched": "2026-09-27"
     },
     {
+      "file": "386-checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-undecimal.md",
+      "name": "checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-undecimal",
+      "title": "Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-undecimal",
+      "category": "checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-undecimal",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "3.31",
+      "yearOneRoiBand": "60:1-130:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-27",
+      "sources": [],
+      "blurb": "Move #3.31 ships now because Move #3.30 (already shipped as `skills/385-checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-decimal.md...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 0,
+      "size": 117425,
+      "lastTouched": "2026-09-27"
+    },
+    {
       "file": "39-catalog-pim-dam-operations.md",
       "name": "catalog-pim-dam-operations",
       "title": "Catalog / PIM / DAM operations (Move #26)",
@@ -68719,6 +68742,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "bf4e7f6",
+      "date": "2026-09-27T21:57:53Z",
+      "author": "hermesagent",
+      "subject": "docs: journal entry for Move #3.30 cohort-affinity-decimal-axis skill tick",
+      "body": ""
+    },
+    {
+      "sha": "d84fd08",
+      "date": "2026-09-27T21:57:15Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #3.30 checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-decimal",
+      "body": ""
+    },
+    {
       "sha": "a8dc06a",
       "date": "2026-09-27T20:49:00Z",
       "author": "hermesagent",
@@ -70103,20 +70140,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #269 Per-payment-method × Per-channel × Per-SKU × Per-daypart × Per-creative × Per-cohort × Per-experiment × Per-warehouse × Per-carrier × Per-zone × Per-product-discovery × Per-affiliate × Per-affiliate-network × Per-affiliate-",
       "body": ""
-    },
-    {
-      "sha": "f45d6d5",
-      "date": "2026-09-21T20:39:56Z",
-      "author": "hermesagent",
-      "subject": "journal: Move #268 keep — 16-axis with per-affiliate-payout-cadence",
-      "body": ""
-    },
-    {
-      "sha": "e23f0d0",
-      "date": "2026-09-21T20:39:02Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #268 16-axis LTV attribution (per-affiliate-payout-cadence extension)",
-      "body": ""
     }
   ],
   "counts": {
@@ -70125,8 +70148,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 52,
-    "skills": 383,
+    "journalEntries": 53,
+    "skills": 384,
     "gitCommits": 200
   }
 }
