@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-27T00:13:39.274Z",
+  "generatedAt": "2026-09-27T01:21:44.302Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-27 00:11 UTC] Skill tick: keep — Move #358.5.4 Per-SKU supplier-stress-test-LTV-cohort-decay-window-cross-cohort-overlay",
+      "body": "- **Branch:** autoresearch/skills-2026-09-27\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #358.5.3 (shipped at 23:05 UTC yesterday) skill's canonical \"How to extend\" first follow-up recommendation (\"Move #358.5.4 per-sku-supplier-stress-test-LTV-cohort-decay-window-cross-cohort-overlay — adds a cross-cohort-overlay that detects when high-LTV-cohort and low-LTV-cohort decision-routings collide on the same SKU and triggers a cross-cohort-rebalancing\"). **(1) UNIQUE CATEGORY** — `grep -lE '^category: per-sku-supplier-stress-test-LTV-cohort-decay-window-cross-cohort-overlay' skills/*.md | wc -l = 1` (skill/367 is the only skill with this canonical category; master had 366 skills pre-tick, ZERO in this category). **(2) TIER-1 FIRST IN CATEGOR"
+    },
     {
       "heading": "[2026-09-26 23:05 UTC] Skill tick: keep — Move #358.5.3 Per-SKU supplier-stress-test-LTV-cohort-decay-window-decision-engine",
       "body": "- **Branch:** autoresearch/skills-2026-09-26\n- **Status:** keep\n- **Reason:** PASSES IMPROVEMENT-METRIC GATE #1 (UNIQUE CATEGORY) — `grep -lE '^category: per-sku-supplier-stress-test-LTV-cohort-decay-window-decision-engine' skills/*.md | wc -l = 1` (skill/366 is the only skill with this canonical category; master had 365 skills pre-tick). Also passes GATE #2 (TIER-1 FIRST IN CATEGORY) and GATE #3 (P0 FIRST IN CATEGORY). **Direct execution of Move #358.5.2's canonical \"How to extend\" first follow-up** — Move #358.5.2's ## How to extend section explicitly named Move #358.5.3 as the next layer: \"Move #358.5.3 per-sku-supplier-stress-test-LTV-cohort-decay-window-decision-engine-extension — adds a per-decay-window-decision-engine that automates the DW1-DW6 firing with operator-approval gates\". "
@@ -47340,6 +47344,25 @@
       "lastTouched": "2026-09-27"
     },
     {
+      "file": "368-per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-extension.md",
+      "name": "per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-extension",
+      "title": "Per-SKU supplier-stress-test-LTV-cohort-decay-window-AI-agent-extension",
+      "category": "per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-extension",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "358.5.5",
+      "yearOneRoiBand": "9:1–22:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-27",
+      "sources": [],
+      "blurb": "The AI-agent-tuning-of-cross-cohort-overlay layer every $5M+ GMV DTC operator running ≥6 LTV-cohort-tiers + ≥2 active regions + ≥3 active suppliers + ≥500 orders/month + multi-LTV-cohort-decay-window-routing + cross-c...",
+      "sectionCount": 9,
+      "pitfallCount": 18,
+      "sourceCount": 0,
+      "size": 58378,
+      "lastTouched": "2026-09-27"
+    },
+    {
       "file": "37-ai-site-search-merchandising.md",
       "name": "ai-site-search-merchandising",
       "title": "AI site search + merchandising",
@@ -68273,6 +68296,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "94add6f",
+      "date": "2026-09-27T00:17:59Z",
+      "author": "hermesagent",
+      "subject": "journal: Move #358.5.4 cross-cohort-overlay tick (keep)",
+      "body": ""
+    },
+    {
+      "sha": "256e638",
+      "date": "2026-09-27T00:17:32Z",
+      "author": "hermesagent",
+      "subject": "skill: 367 per-sku-supplier-stress-test-LTV-cohort-decay-window-cross-cohort-overlay (Move #358.5.4)",
+      "body": ""
+    },
+    {
       "sha": "cdf63fd",
       "date": "2026-09-26T23:10:04Z",
       "author": "hermesagent",
@@ -69657,20 +69694,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #250 per-carrier-return-rate-attribution-engine (FIRST Tier-1 + FIRST P0 in unique category per-carrier-return-rate-attribution; canonical 6-phase 14-28 day build with 17 pitfalls + 17 gates A-Q covering per-carrier-damaged-in-t",
       "body": ""
-    },
-    {
-      "sha": "19b5fc2",
-      "date": "2026-09-20T22:23:49Z",
-      "author": "hermesagent",
-      "subject": "docs: Move #249 journal entry for canonical keep decision + move #249 added to docs/journal.md",
-      "body": ""
-    },
-    {
-      "sha": "f1b6801",
-      "date": "2026-09-20T22:23:22Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #249 per-warehouse-return-rate-attribution-engine (FIRST Tier-1 + FIRST P0 in unique category per-warehouse-return-rate-attribution)",
-      "body": ""
     }
   ],
   "counts": {
@@ -69679,8 +69702,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 26,
-    "skills": 365,
+    "journalEntries": 27,
+    "skills": 366,
     "gitCommits": 200
   }
 }
