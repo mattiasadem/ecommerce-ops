@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-27T05:45:40.897Z",
+  "generatedAt": "2026-09-27T06:53:43.544Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-27 05:43 UTC] Skill tick: keep — Move #358.5.9 Per-SKU supplier-stress-test-LTV-cohort-decay-window-AI-agent-stress-test-engine",
+      "body": "- **Branch:** autoresearch/skills-2026-09-27\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #358.5.8 (shipped at 04:42 UTC today) skill's canonical \"How to extend\" first follow-up recommendation (\"Move #358.5.9 per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-stress-test-engine — adds a stress-test-engine that simulates ≥2 simultaneous multi-supplier-rollover events on the same cohort-tier and stress-tests the MR1-MR6 agent under multi-rollover pressure, with results fed back into Move #358.5.7 Q5 ROLLER-WINDOW-CHRONOLOGY as a forward-looking-risk-section\"). **(1) UNIQUE CATEGORY** — `grep -lE '^category: per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-stress-test-engine' skills/*.md | wc -l = 1` (skill/372 is th"
+    },
     {
       "heading": "[2026-09-27 04:42 UTC] Skill tick: keep — Move #358.5.8 Per-SKU supplier-stress-test-LTV-cohort-decay-window-counterfactual-AI-agent-simulator",
       "body": "- **Branch:** autoresearch/skills-2026-09-27\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #358.5.7 (shipped at 03:32 UTC today) skill's canonical \"How to extend\" first follow-up recommendation (\"Move #358.5.8 per-sku-supplier-stress-test-LTV-cohort-decay-window-counterfactual-AI-agent-simulator — adds a counterfactual-AI-agent-simulator that runs 'what-if' MR3 PROPOSE-CRO-REWEIGHT scenarios on historical multi-supplier-rollover events to quantify the avoided-loss opportunity cost of past AI-agent-tuning decisions, fed back into Move #358.5.7 Q8 NEXT-QUARTER-RECOMMENDATIONS as a counterfactual-baseline\"). **(1) UNIQUE CATEGORY** — `grep -lE '^category: per-sku-supplier-stress-test-LTV-cohort-decay-window-counterfactual-AI-agent-simulator'"
@@ -47593,6 +47597,25 @@
       "lastTouched": "2026-09-27"
     },
     {
+      "file": "373-per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-cross-cohort-portfolio-extension.md",
+      "name": "per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-cross-cohort-portfolio-extension",
+      "title": "Per-SKU supplier-stress-test-LTV-cohort-decay-window-AI-agent-cross-cohort-portfolio-extension",
+      "category": "per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-cross-cohort-portfolio-extension",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "358.5.10",
+      "yearOneRoiBand": "10:1–24:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-27",
+      "sources": [],
+      "blurb": "The portfolio-level multi-supplier-rollover-AI-agent layer every $5M+ GMV DTC operator running ≥6 LTV-cohort-tiers + ≥2 active regions + ≥3 active suppliers + portfolio-CRO-tuning-cadence ≥1 portfolio-tuning-cycle/wee...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 0,
+      "size": 62129,
+      "lastTouched": "2026-09-27"
+    },
+    {
       "file": "38-checkout-payments-bnpl-optimization.md",
       "name": "checkout-payments-bnpl-optimization",
       "title": "Checkout payments + BNPL optimization",
@@ -68392,6 +68415,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "3e45810",
+      "date": "2026-09-27T05:48:42Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #358.5.9 per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-stress-test-engine",
+      "body": ""
+    },
+    {
       "sha": "e6dcb69",
       "date": "2026-09-27T04:43:01Z",
       "author": "hermesagent",
@@ -69783,13 +69813,6 @@
       "author": "hermesagent",
       "subject": "journal: tick 2026-09-21 12:00 UTC — Move #254 per-channel-x-per-sku-ltv-attribution-engine shipped (FIRST Tier-1 + FIRST P0 in unique category per-channel-x-per-sku-ltv-attribution; cross-matrix layer extending Move #252 + Move #248 with t",
       "body": ""
-    },
-    {
-      "sha": "196fabf",
-      "date": "2026-09-21T04:59:04Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #254 per-channel-x-per-sku-ltv-attribution-engine (FIRST Tier-1 + FIRST P0 in unique category per-channel-x-per-sku-ltv-attribution; canonical cross-matrix layer extending Move #252 with the per-CHANNEL dimension AND Move #248 w",
-      "body": ""
     }
   ],
   "counts": {
@@ -69798,8 +69821,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 32,
-    "skills": 370,
+    "journalEntries": 33,
+    "skills": 371,
     "gitCommits": 200
   }
 }
