@@ -6,6 +6,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ResearchTable } from "@/components/research-table";
+import { InventoryCostComparator } from "@/components/inventory-cost-comparator";
 import { content, findTable } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -27,9 +28,14 @@ export default function InventoryPage() {
         <h1 className="text-3xl font-semibold tracking-tight">Inventory & Operations</h1>
         <p className="text-sm text-muted-foreground max-w-3xl">
           3PL vs in-house, the major 3PL cost stack, demand forecasting basics, and
-          cash conversion cycle for DTC.
+          cash conversion cycle for DTC. The calculator below turns those benchmarks
+          into YOUR monthly cost stack + a 5-bucket verdict + break-even volume.
         </p>
       </header>
+
+      {/* Interactive 3PL-vs-In-house Cost Comparator — closes the loop from
+          static reference tables to "what does this do to my numbers". */}
+      <InventoryCostComparator />
 
       <Card>
         <CardHeader>
