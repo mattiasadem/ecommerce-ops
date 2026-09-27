@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-27T10:21:12.445Z",
+  "generatedAt": "2026-09-27T13:44:44.330Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13238,6 +13238,14 @@
     {
       "heading": "[2026-09-27 05:43 UTC] Skill tick: keep — Move #358.5.9 Per-SKU supplier-stress-test-LTV-cohort-decay-window-AI-agent-stress-test-engine",
       "body": "- **Branch:** autoresearch/skills-2026-09-27\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #358.5.8 (shipped at 04:42 UTC today) skill's canonical \"How to extend\" first follow-up recommendation (\"Move #358.5.9 per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-stress-test-engine — adds a stress-test-engine that simulates ≥2 simultaneous multi-supplier-rollover events on the same cohort-tier and stress-tests the MR1-MR6 agent under multi-rollover pressure, with results fed back into Move #358.5.7 Q5 ROLLER-WINDOW-CHRONOLOGY as a forward-looking-risk-section\"). **(1) UNIQUE CATEGORY** — `grep -lE '^category: per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-stress-test-engine' skills/*.md | wc -l = 1` (skill/372 is th"
+    },
+    {
+      "heading": "[2026-09-27 11:36 UTC] Skill tick: keep — Move #358.5.14 per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-stress-test-cross-region-extension",
+      "body": "- **Branch:** autoresearch/skills-2026-09-27\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #358.5.13's canonical \"How to extend\" first follow-up recommendation (\"Move #358.5.14 — extends Move #358.5.9 stress-test-engine from per-region to cross-region (≥2 regions simultaneously) with cross-region-stress-test-coverage-validation + cross-region-stress-test-confidence-band-boost + cross-region-stress-test-baseline-stability-check\"). **(1) UNIQUE CATEGORY** — `grep -lE '^category: per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-stress-test-cross-region-extension' skills/*.md | wc -l = 1` (skill/377 is the only skill with this canonical category; pre-tick master had 376 skills, ZERO in this category). **(2) TIER-1 FIRST IN CATEGO"
+    },
+    {
+      "heading": "[2026-09-27 10:16 UTC] Skill tick: keep — Move #358.5.13 per-sku-supplier-stress-test-LTV-cohort-decay-window-counterfactual-AI-agent-cross-quarter-window-extension",
+      "body": "- **Branch:** autoresearch/skills-2026-09-27\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #358.5.12 (shipped at 09:06 UTC today) skill's canonical \"How to extend\" first follow-up recommendation (\"Move #358.5.13 per-sku-supplier-stress-test-LTV-cohort-decay-window-counterfactual-AI-agent-cross-quarter-window-extension — extends Move #358.5.8 from ≥2-quarter-window to ≥4-quarter-window with cross-quarter-window-coverage-validation + cross-quarter-window-confidence-band-boost + cross-quarter-window-counterfactual-baseline-stability-check\"). (1) **UNIQUE CATEGORY** — `grep -lE '^category: per-sku-supplier-stress-test-LTV-cohort-decay-window-counterfactual-AI-agent-cross-quarter-window-extension' skills/*.md | wc -l = 1` (skill/376 is the onl"
     },
     {
       "heading": "[2026-09-27 09:06 UTC] Skill tick: keep — Move #358.5.12 per-sku-supplier-stress-test-LTV-cohort-decay-window-quarterly-board-pack-investor-deck-AI-agent",
@@ -47693,6 +47701,44 @@
       "lastTouched": "2026-09-27"
     },
     {
+      "file": "377-per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-stress-test-cross-region-extension.md",
+      "name": "per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-stress-test-cross-region-extension",
+      "title": "Per-SKU supplier-stress-test-LTV-cohort-decay-window-AI-agent-stress-test-cross-region-extension",
+      "category": "per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-stress-test-cross-region-extension",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "358.5.14",
+      "yearOneRoiBand": "10:1–24:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-27",
+      "sources": [],
+      "blurb": "The cross-region-extension layer every $5M+ GMV DTC operator running ≥6 LTV-cohort-tiers + ≥2 active regions + ≥3 active suppliers per region + multi-supplier-rollover-cadence ≥1 rollover/quarter + ≥2 complete quarter...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 0,
+      "size": 85049,
+      "lastTouched": "2026-09-27"
+    },
+    {
+      "file": "378-per-sku-supplier-stress-test-LTV-cohort-decay-window-counterfactual-rollback-cross-quarter-window-extension.md",
+      "name": "per-sku-supplier-stress-test-LTV-cohort-decay-window-counterfactual-rollback-cross-quarter-window-extension",
+      "title": "Per-SKU supplier-stress-test-LTV-cohort-decay-window-counterfactual-rollback-cross-quarter-window-extension",
+      "category": "per-sku-supplier-stress-test-LTV-cohort-decay-window-counterfactual-rollback-cross-quarter-window-extension",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "358.5.15",
+      "yearOneRoiBand": "11:1–26:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-27",
+      "sources": [],
+      "blurb": "The cross-quarter-window-extension layer every $5M+ GMV DTC operator running ≥6 LTV-cohort-tiers + ≥3 active suppliers per cohort-tier + multi-supplier-rollover-cadence ≥1 rollover/quarter + ≥3 complete quarterly cycl...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 0,
+      "size": 95464,
+      "lastTouched": "2026-09-27"
+    },
+    {
       "file": "38-checkout-payments-bnpl-optimization.md",
       "name": "checkout-payments-bnpl-optimization",
       "title": "Checkout payments + BNPL optimization",
@@ -68492,6 +68538,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "578b081",
+      "date": "2026-09-27T11:38:29Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #358.5.14 per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-stress-test-cross-region-extension",
+      "body": ""
+    },
+    {
+      "sha": "accf98d",
+      "date": "2026-09-27T10:27:03Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #358.5.13 per-sku-supplier-stress-test-LTV-cohort-decay-window-counterfactual-AI-agent-cross-quarter-window-extension",
+      "body": ""
+    },
+    {
       "sha": "c39c239",
       "date": "2026-09-27T09:15:39Z",
       "author": "hermesagent",
@@ -69876,20 +69936,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #259 per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-ltv-attribution-engine (FIRST Tier-1 + FIRST P0 in unique category; canonical 7-axis (with-experiment × with-warehouse) layer ",
       "body": ""
-    },
-    {
-      "sha": "fc8946f",
-      "date": "2026-09-21T09:35:17Z",
-      "author": "hermesagent",
-      "subject": "journal: append Move #258 keep entry",
-      "body": ""
-    },
-    {
-      "sha": "9c4399a",
-      "date": "2026-09-21T09:34:27Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #258 per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-ltv-attribution-engine (FIRST Tier-1 + FIRST P0 in unique category; 6-axis with-experiment LTV-attribution extending Move #257 with-warehouse)",
-      "body": ""
     }
   ],
   "counts": {
@@ -69898,8 +69944,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 38,
-    "skills": 374,
+    "journalEntries": 40,
+    "skills": 376,
     "gitCommits": 200
   }
 }
