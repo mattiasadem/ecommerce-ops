@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-27T06:53:43.544Z",
+  "generatedAt": "2026-09-27T09:08:55.332Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13224,6 +13224,14 @@
   },
   "journal": [
     {
+      "heading": "[2026-09-27 08:01 UTC] Skill tick: keep — Move #358.5.11 Per-SKU supplier-stress-test-LTV-cohort-decay-window-AI-agent-counterfactual-rollback-engine",
+      "body": "- **Branch:** autoresearch/skills-2026-09-27\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #358.5.10 (shipped at 06:55 UTC today) skill's canonical \"How to extend\" first follow-up recommendation (\"Move #358.5.11 per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-counterfactual-rollback-engine — adds a counterfactual-rollback-engine that simulates 'what if RR1-RR6 had fired 7d earlier' to quantify the avoided-loss opportunity cost of late rollbacks, fed back into Move #358.5.7 Q6 ROLLBACK-ACTIVITY as a counterfactual-rollback-baseline\"). **(1) UNIQUE CATEGORY** — `grep -lE '^category: per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-counterfactual-rollback-engine' skills/*.md | wc -l = 1` (skill/374 is the only skil"
+    },
+    {
+      "heading": "[2026-09-27 06:55 UTC] Skill tick: keep — Move #358.5.10 Per-SKU supplier-stress-test-LTV-cohort-decay-window-AI-agent-cross-cohort-portfolio-extension",
+      "body": "- **Branch:** autoresearch/skills-2026-09-27\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #358.5.9 (shipped at 05:43 UTC today) skill's canonical \"How to extend\" first follow-up recommendation (\"Move #358.5.10 per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-cross-cohort-portfolio-extension — adds a portfolio-level multi-supplier-rollover-AI-agent that tunes CRO1-CRO6 weights across ≥6 cohort-tiers simultaneously (vs Move #358.5.6's per-cohort-pair-per-week cycle), with portfolio-level rollups extending Move #358.5.7 Q2 COHORT-PAIR-BREAKDOWN to a portfolio-breakdown\"). **(1) UNIQUE CATEGORY** — `grep -lE '^category: per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-cross-cohort-portfolio-extension' skills/*.md | "
+    },
+    {
       "heading": "[2026-09-27 05:43 UTC] Skill tick: keep — Move #358.5.9 Per-SKU supplier-stress-test-LTV-cohort-decay-window-AI-agent-stress-test-engine",
       "body": "- **Branch:** autoresearch/skills-2026-09-27\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #358.5.8 (shipped at 04:42 UTC today) skill's canonical \"How to extend\" first follow-up recommendation (\"Move #358.5.9 per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-stress-test-engine — adds a stress-test-engine that simulates ≥2 simultaneous multi-supplier-rollover events on the same cohort-tier and stress-tests the MR1-MR6 agent under multi-rollover pressure, with results fed back into Move #358.5.7 Q5 ROLLER-WINDOW-CHRONOLOGY as a forward-looking-risk-section\"). **(1) UNIQUE CATEGORY** — `grep -lE '^category: per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-stress-test-engine' skills/*.md | wc -l = 1` (skill/372 is th"
     },
@@ -13354,6 +13362,10 @@
     {
       "heading": "2026-09-26 13:25 UTC — /pdp-ab-launch-plan: 30-day always-on PDP A/B launch plan generator (Move #9.5)",
       "body": "- **What shipped:** New route at `/pdp-ab-launch-plan` with a one-click \"Generate 30-day launch plan\" button. Opens a modal with a 4-week day-by-day checklist (Days 1–30 across W1–W4) generated from the operator's saved PDP A/B calculator inputs (`ecom-ops:playbooks:pdp-ab:v1`) overlaid with their Your-store AOV/orders/margin (`ecom-ops:your-store:v1`). Snapshot block (verdict + annualized ratio + AOV + margin + sessions + tests/month) computed by `forecastPdpAbTest()` — same math as `scripts/pdp_ab_test.py`. Result is paste-ready markdown: copy-to-clipboard OR download `.md` (named `pdp-ab-launch-plan-YYYY-MM-DD.md`). 30 days, 4 weeks, 30 checkbox-able actions covering: tool selection, analytics instrumentation, baseline metrics, hypothesis backlog, variant build, QA across breakpoints, m"
+    },
+    {
+      "heading": "2026-09-27 14:50 UTC — /welcome-series-launch-plan: 30-day always-on Welcome Series launch plan generator (Move #3.4)",
+      "body": "- **What shipped:** New route at `/welcome-series-launch-plan` with a one-click \"Generate 30-day launch plan\" button. Opens a modal with a 30-day day-by-day checklist (Days 1–30 across W1–W4) generated from the operator's saved Welcome Series ROI calculator inputs (`ecom-ops:playbooks:ws-roi:v1`) overlaid with their Your-store AOV/orders/margin (`ecom-ops:your-store:v1`). Snapshot block (verdict + ROI ratio + net/month + breakeven CVR + opt-ins/AOV/margin/discount/send-cost) computed by `forecastWelcomeSeries()` — same math as `scripts/welcome_series_roi.py`. Result is paste-ready markdown: copy-to-clipboard OR download `.md` (named `welcome-series-launch-plan-YYYY-MM-DD.md`). 30 days, 4 weeks, 30 checkbox-able actions covering: opt-in source audit, welcome-discount decision, Klaviyo + Pos"
     }
   ],
   "skills": [
@@ -47616,6 +47628,44 @@
       "lastTouched": "2026-09-27"
     },
     {
+      "file": "374-per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-counterfactual-rollback-engine.md",
+      "name": "per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-counterfactual-rollback-engine",
+      "title": "Per-SKU supplier-stress-test-LTV-cohort-decay-window-AI-agent-counterfactual-rollback-engine",
+      "category": "per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-counterfactual-rollback-engine",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "358.5.11",
+      "yearOneRoiBand": "11:1–26:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-27",
+      "sources": [],
+      "blurb": "The counterfactual-rollback layer every $5M+ GMV DTC operator running ≥6 LTV-cohort-tiers + ≥2 active regions + ≥3 active suppliers + ≥4 historical-rollback-events per quarter + RR1-RR6 rollback-engine + Move #358.5.7...",
+      "sectionCount": 8,
+      "pitfallCount": 0,
+      "sourceCount": 0,
+      "size": 55006,
+      "lastTouched": "2026-09-27"
+    },
+    {
+      "file": "375-per-sku-supplier-stress-test-LTV-cohort-decay-window-quarterly-board-pack-investor-deck-AI-agent.md",
+      "name": "per-sku-supplier-stress-test-LTV-cohort-decay-window-quarterly-board-pack-investor-deck-AI-agent",
+      "title": "Per-SKU supplier-stress-test-LTV-cohort-decay-window-quarterly-board-pack-investor-deck-AI-agent",
+      "category": "per-sku-supplier-stress-test-LTV-cohort-decay-window-quarterly-board-pack-investor-deck-AI-agent",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "358.5.12",
+      "yearOneRoiBand": "8:1–20:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-27",
+      "sources": [],
+      "blurb": "The AI-agent quarterly-board-pack investor-deck layer every $5M+ GMV DTC operator running ≥6 LTV-cohort-tiers + ≥2 active regions + ≥3 active suppliers + multi-supplier-rollover-cadence ≥1 rollover/quarter + Move #358...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 0,
+      "size": 51488,
+      "lastTouched": "2026-09-27"
+    },
+    {
       "file": "38-checkout-payments-bnpl-optimization.md",
       "name": "checkout-payments-bnpl-optimization",
       "title": "Checkout payments + BNPL optimization",
@@ -68415,6 +68465,34 @@
   ],
   "gitCommits": [
     {
+      "sha": "d657618",
+      "date": "2026-09-27T08:05:27Z",
+      "author": "hermesagent",
+      "subject": "docs: journal entry for Move #358.5.11 counterfactual-rollback-engine skill tick",
+      "body": ""
+    },
+    {
+      "sha": "fa968e8",
+      "date": "2026-09-27T08:04:29Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #358.5.11 per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-counterfactual-rollback-engine",
+      "body": ""
+    },
+    {
+      "sha": "9956abf",
+      "date": "2026-09-27T07:49:30Z",
+      "author": "hermesagent",
+      "subject": "feat(dashboard): /welcome-series-launch-plan — Move #3.4 always-on 30-day Welcome Series launch plan generator",
+      "body": ""
+    },
+    {
+      "sha": "1d7dc7f",
+      "date": "2026-09-27T06:57:02Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #358.5.10 per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-cross-cohort-portfolio-extension",
+      "body": ""
+    },
+    {
       "sha": "3e45810",
       "date": "2026-09-27T05:48:42Z",
       "author": "hermesagent",
@@ -69785,34 +69863,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #257 per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-warehouse-ltv-attribution-engine (FIRST Tier-1 + FIRST P0 in unique category per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-wareho",
       "body": ""
-    },
-    {
-      "sha": "eaee298",
-      "date": "2026-09-21T07:13:36Z",
-      "author": "hermesagent",
-      "subject": "journal: tick 2026-09-21 07:12 UTC — Move #256 5-axis LTV-attribution (per-channel × per-SKU × per-daypart × per-creative × per-cohort) shipped (FIRST Tier-1 + FIRST P0 in unique category; 5-axis extension of Move #255 with per-COHORT; 17 p",
-      "body": ""
-    },
-    {
-      "sha": "e0d853f",
-      "date": "2026-09-21T07:12:23Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #256 per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-ltv-attribution-engine (FIRST Tier-1 + FIRST P0 in unique category; 5-axis extension of Move #255 with per-COHORT; 17 pitfalls + 17 gates A-Q; 11:1-28:1 Year-1",
-      "body": ""
-    },
-    {
-      "sha": "c1a0edc",
-      "date": "2026-09-21T06:06:24Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #255 per-channel-x-per-sku-x-per-daypart-x-per-creative LTV attribution (4-axis extension of Move #254; FIRST Tier-1 + FIRST P0 in unique category; 9:1-24:1 Year-1 ROI Path B; 17 pitfalls + 17 gates + 207 sources; 99KB / 222 lin",
-      "body": ""
-    },
-    {
-      "sha": "f1636e0",
-      "date": "2026-09-21T05:00:00Z",
-      "author": "hermesagent",
-      "subject": "journal: tick 2026-09-21 12:00 UTC — Move #254 per-channel-x-per-sku-ltv-attribution-engine shipped (FIRST Tier-1 + FIRST P0 in unique category per-channel-x-per-sku-ltv-attribution; cross-matrix layer extending Move #252 + Move #248 with t",
-      "body": ""
     }
   ],
   "counts": {
@@ -69821,8 +69871,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 33,
-    "skills": 371,
+    "journalEntries": 36,
+    "skills": 373,
     "gitCommits": 200
   }
 }
