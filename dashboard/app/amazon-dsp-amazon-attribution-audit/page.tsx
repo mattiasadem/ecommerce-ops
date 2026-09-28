@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ResearchTable } from "@/components/research-table";
+import { AmazonDspPathCalculator } from "@/components/amazon-dsp-path-calculator";
 import { content, findDoc, findTable } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -193,6 +194,13 @@ export default function AmazonDspAmazonAttributionAuditPage() {
           </CardContent>
         </Card>
       </div>
+
+      {/* === Interactive Path A/B/C picker — closes the loop from static
+          reference tables to "what does MY brand project in Year-1 ROI". 12
+          inputs, 4-integration gates, 5-voice matrix, 6-step build sequence.
+          State persists to localStorage. Same math as
+          scripts/amazon_dsp_amazon_attribution_audit_unit_economics.py. === */}
+      <AmazonDspPathCalculator />
 
       {/* === TL;DR (from research/14) === */}
       {r14 && (
