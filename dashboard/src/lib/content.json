@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-28T17:46:56.033Z",
+  "generatedAt": "2026-09-28T18:52:04.485Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-28 17:45 UTC] Skill tick: keep — Gift card program operations (Move #36)",
+      "body": "- **What shipped:** New Tier-1 / P0 skill in unique category `gift-card-program-operations` at `skills/393-gift-card-program-operations.md` (53 KB, 18 numbered pitfalls + 9 canonical sections). The Move #36 5-pillar build: (Pillar 1) digital gift cards via Rise.ai / Gift Up / Givex / Shopify-native + scheduled-delivery + Apple-Wallet-pass + branded-landing-page + balance-inquiry; (Pillar 2) physical gift cards via Blackhawk / InComm / National Gift Card / Tillo retail-rack-distribution + on-demand-printing for the 35-55 age demographic; (Pillar 3) gift cards as loyalty rewards via Smile / LoyaltyLion / Yotpo with 25-40% higher redemption vs percentage-discount-rewards; (Pillar 4) corporate gifting B2B portal via Tillo / Giftbit / Rybbon / Blackhawk-Corporate capturing 5-10× AOV ($300-$500 "
+    },
     {
       "heading": "[2026-09-28 18:30 UTC] Skill tick: keep — Move #3.37 Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-quinquagesimal",
       "body": "- **Branch:** autoresearch/skills-2026-09-28\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #3.36 (shipped 2026-09-28 15:35 UTC, skill/391) `## How to extend` first follow-up recommendation (\"Move #3.37 — Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-quinquagesimal-extension ... 811,071,192,541,894,999,040,000-cell deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep cross-validation matrix; first Tier-1 + first P0 in `category: checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-quinquagesimal`; default Year-1 ROI Path B 90:1-190:1 a"
@@ -48470,6 +48474,25 @@
       "lastTouched": "2026-09-28"
     },
     {
+      "file": "394-checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-sexagesimal.md",
+      "name": "checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-sexagesimal",
+      "title": "Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-sexagesimal",
+      "category": "checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-sexagesimal",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "3.38",
+      "yearOneRoiBand": "95:1-200:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-28",
+      "sources": [],
+      "blurb": "Move #3.38 — the canonical 20,276,779,813,547,374,976,000,000-cell cohort-affinity-sexagesimal-axis-specific funnel-audit + per-cohort-affinity-sexagesimal-axis-completion-rate + per-cohort-affinity-sexagesimal-axis-l...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 0,
+      "size": 95126,
+      "lastTouched": "2026-09-28"
+    },
+    {
       "file": "40-sustainability-esg-operations.md",
       "name": "sustainability-esg-operations",
       "title": "Sustainability / ESG operations (Move #27)",
@@ -69137,6 +69160,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "be7c259",
+      "date": "2026-09-28T17:49:44Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #36 gift-card-program-operations (5-pillar Path B 11:1 default Year-1 ROI)",
+      "body": ""
+    },
+    {
       "sha": "96edec2",
       "date": "2026-09-28T16:44:31Z",
       "author": "hermesagent",
@@ -70528,13 +70558,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #277 Per-affiliate-region 24-axis decision-rollback engine",
       "body": ""
-    },
-    {
-      "sha": "8e78e47",
-      "date": "2026-09-22T07:35:08Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #276 per-payment-method × ... × per-affiliate-refund-abuse-window 23-axis decision-rollback engine (FIRST Tier-1 + FIRST P0 in unique category; compounds Move #275 with per-AFFILIATE-REFUND-ABUSE-WINDOW dimension; 33 pitfalls + ",
-      "body": ""
     }
   ],
   "counts": {
@@ -70543,8 +70566,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 60,
-    "skills": 391,
+    "journalEntries": 61,
+    "skills": 392,
     "gitCommits": 200
   }
 }
