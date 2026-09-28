@@ -11,6 +11,7 @@ import {
 import { formatInt, formatUsd } from "@/lib/format";
 import { loadYourStore, mergeFromYourStore } from "@/lib/your-store";
 import { CopyButton } from "@/components/copy-button";
+import { LoyaltyLaunchPlanButton } from "@/components/loyalty-launch-plan-button";
 import { cn } from "@/lib/utils";
 
 /**
@@ -330,6 +331,7 @@ export function LoyaltyROICalculator() {
           >
             Reset defaults
           </button>
+          <LoyaltyLaunchPlanButton />
           <button
             type="button"
             onClick={copyReport}
