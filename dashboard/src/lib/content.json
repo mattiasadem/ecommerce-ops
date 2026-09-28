@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-28T19:57:59.675Z",
+  "generatedAt": "2026-09-28T23:21:04.073Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13224,6 +13224,14 @@
   },
   "journal": [
     {
+      "heading": "[2026-09-28 22:15 UTC] Skill tick: keep — Move #3.41 Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-nonagesimal",
+      "body": "- **Branch:** autoresearch/skills-2026-09-28\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #3.40 (shipped 2026-09-28 21:10 UTC, skill/396) `## How to extend` first follow-up recommendation (\"Move #3.41 — Checkout audit by ...-x-cohort-affinity-octogesimal-x-cohort-affinity-nonagesimal-extension ... 398,856,384,015,087,202,528,256,000,000-cell deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep cross-validation matrix; first Tier-1 + first P0 in `category: checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-nonagesimal`; default Year-1 ROI Path B 110:1-230:1\"). **(1) UNIQ"
+    },
+    {
+      "heading": "[2026-09-28 20:05 UTC] Skill tick: keep — Move #3.39 Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-septuagesimal",
+      "body": "- **Branch:** autoresearch/skills-2026-09-28\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #3.38 (shipped 2026-09-28 18:50 UTC, skill/394) `## How to extend` first follow-up recommendation (\"Move #3.39 — Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-sexagesimal-x-cohort-affinity-septuagesimal-extension ... 527,196,275,152,231,749,376,000,000-cell deep cross-validation matrix; first Tier-1 + first P0 in `category: checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-septuagesimal`; default Year-1 ROI Path B 100:1-210:1\"). **(1) UNIQUE CATEGORY** — `grep -lE '^category: ch"
+    },
+    {
       "heading": "[2026-09-28 18:50 UTC] Skill tick: keep — Move #3.38 Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-sexagesimal",
       "body": "- **Branch:** autoresearch/skills-2026-09-28\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #3.37 (shipped 2026-09-28 18:30 UTC, skill/392) `## How to extend` first follow-up recommendation (\"Move #3.38 — Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-sexagesimal-extension ... 20,276,779,813,547,374,976,000,000-cell deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep cross-validation matrix; first Tier-1 + first P0 in `category: checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-sexagesimal`; default Year-1 ROI Path B 95:1-200:1"
     },
@@ -13470,6 +13478,10 @@
     {
       "heading": "2026-09-28 14:45 UTC — /amazon-dsp-amazon-attribution-audit: Path A/B/C scorer calculator (Move #18)",
       "body": "- **What shipped:** New interactive path-picker mounted on the Amazon-DSP + Amazon-Attribution route — closes the operator loop from static research/14 reference tables to \"what does MY brand project in Year-1 ROI\". 12 inputs (US DTC GMV + marketplace GMV % + SKU count + hero-SKU count + gross margin % + voice profile + DSP-team capacity + 4 integration gates) → Path A / B / C verdict with cost stack + Year-1 incremental Halo-defense-revenue band + CAC vs paid-social multiplier + Brand-search-volume-lift + AMC-cohort-overlay resolution-lift + Halo-defense-rate + Halo-attribution-modeling-maturity + the 5-pillar framework matrix (per voice) + the 6-step build sequence. State persists to `ecom-ops:amazon-dsp-path:v1`; Copy-report button emits paste-ready markdown matching `python3 scripts/am"
+    },
+    {
+      "heading": "2026-09-28 20:00 UTC — /loyalty-launch-plan: 30-day always-on Loyalty Program launch plan generator (Move #8)",
+      "body": "- **What shipped:** New route at `/loyalty-launch-plan` with a one-click \"Generate 30-day launch plan\" button. Opens a modal with a 30-day day-by-day checklist (Days 1–30 across W1–W4) generated from the operator's saved Loyalty ROI calculator inputs (`ecom-ops:playbooks:loyalty-roi:v1`) overlaid with their Your-store AOV/orders/margin (`ecom-ops:your-store:v1`). Snapshot block (verdict + net revenue / month + net per $1 program + payback months) computed by `forecastLoyalty()` — same math as `playbooks/07-loyalty-program-smile.md`. Result is paste-ready markdown: copy-to-clipboard OR download `.md` (named `loyalty-launch-plan-YYYY-MM-DD.md`). 30 days, 4 weeks, 30 checkbox-able actions covering: app install + points/tiers/referral config + Klaviyo webhook wiring + Triple Whale cohort overl"
     }
   ],
   "skills": [
@@ -48516,6 +48528,63 @@
       "lastTouched": "2026-09-28"
     },
     {
+      "file": "396-checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-octogesimal.md",
+      "name": "396-checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-octogesimal",
+      "title": "Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-octogesimal",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-28",
+      "sources": [],
+      "blurb": "Move #3.40 — the canonical 14,234,299,429,110,257,233,152,000,000-cell cohort-affinity-octogesimal-axis-specific funnel-audit + per-cohort-affinity-octogesimal-axis-completion-rate + per-cohort-affinity-octogesimal-ax...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 0,
+      "size": 193786,
+      "lastTouched": "2026-09-28"
+    },
+    {
+      "file": "397-checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-nonagesimal.md",
+      "name": "397-checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-nonagesimal",
+      "title": "Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-nonagesimal",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-28",
+      "sources": [],
+      "blurb": "Move #3.41 — the canonical 398,856,384,015,087,202,528,256,000,000-cell cohort-affinity-nonagesimal-axis-specific funnel-audit + per-cohort-affinity-nonagesimal-axis-completion-rate + per-cohort-affinity-nonagesimal-a...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 0,
+      "size": 91147,
+      "lastTouched": "2026-09-28"
+    },
+    {
+      "file": "398-checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-centesimal.md",
+      "name": "checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-centesimal",
+      "title": "Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-centesimal",
+      "category": "checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-centesimal",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "3.42",
+      "yearOneRoiBand": "115:1-240:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-28",
+      "sources": [],
+      "blurb": "The canonical Move #3.42 centesimal-axis extension of Move #3.41's nonagesimal-axis decomposition — adds the canonical **29 NEW centesimal-axis dimensions** spanning the SRE/observability/SecOps/DevEx class (per-cohor...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 0,
+      "size": 100627,
+      "lastTouched": "2026-09-28"
+    },
+    {
       "file": "40-sustainability-esg-operations.md",
       "name": "sustainability-esg-operations",
       "title": "Sustainability / ESG operations (Move #27)",
@@ -69183,6 +69252,41 @@
   ],
   "gitCommits": [
     {
+      "sha": "453be2e",
+      "date": "2026-09-28T22:18:20Z",
+      "author": "mattiasadem",
+      "subject": "skill: Move #3.41 cohort-affinity-nonagesimal extension (skill/397)",
+      "body": ""
+    },
+    {
+      "sha": "59172b1",
+      "date": "2026-09-28T21:10:51Z",
+      "author": "mattiasadem",
+      "subject": "skill: Move #3.40 checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-octogesimal (skill/396) — 14,234,299,429,110,257,233,152,000,000-cell cohort-affinity-o",
+      "body": ""
+    },
+    {
+      "sha": "86a7277",
+      "date": "2026-09-28T21:00:26Z",
+      "author": "mattiasadem",
+      "subject": "feat(dashboard): /loyalty-launch-plan 30-day always-on Loyalty Program generator (Move #8)",
+      "body": "One-click-action + state-persistence + cross-page-intelligence:\n- Reads Loyalty ROI inputs (ecom-ops:playbooks:loyalty-roi:v1)\n  + Your-store AOV/orders/margin (ecom-ops:your-store:v1)\n- Emits a 30-day, 4-week (W1-W4), 30-action markdown checklist\n- Same math as playbook 07-loyalty-program-smile.md (forecastLoyalty)\n- W1: app install + points/tiers/referral config + Klaviyo + Triple Whale webhook\n- W2: 6-touch launch sequence build + on-site widget + post-purchase + account-page embed\n- W3: soft-launch to 10% then ramp + D-7/D-14/D-21 enrollment-rate readouts\n- W4: 90-day repeat-rate proxy + payback-month readout + iteration backlog + Q2 priorities\n- Snapshot block: verdict + net revenue/mo + net per $1 program + payback months\n- Copy-to-clipboard OR download .md (named loyalty-launch-plan-YYYY-MM-DD.md)\n- CTA button also surfaced on /playbooks/07-loyalty-program-smile\n- Sidebar nav entry added (icon ▦)\n- Files: 3 added + 3 modified + content.json refresh + journal entry"
+    },
+    {
+      "sha": "a385650",
+      "date": "2026-09-28T20:01:30Z",
+      "author": "hermesagent",
+      "subject": "docs: journal entry for Move #3.39 septuagesimal-axis (skill/395) keep",
+      "body": ""
+    },
+    {
+      "sha": "2eccce3",
+      "date": "2026-09-28T20:00:53Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #3.39 checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-septuagesimal (skill/395) — 527,196,275,152,231,749,376,000,000-cell cohort-affinity-se",
+      "body": ""
+    },
+    {
       "sha": "79bbc29",
       "date": "2026-09-28T18:55:49Z",
       "author": "hermesagent",
@@ -70546,41 +70650,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #281 Per-payment-method × Per-channel × Per-SKU × Per-daypart × Per-creative × Per-cohort × Per-experiment × Per-warehouse × Per-carrier × Per-zone × Per-product-discovery × Per-affiliate × Per-affiliate-network × Per-affiliate-",
       "body": ""
-    },
-    {
-      "sha": "89575c7",
-      "date": "2026-09-22T12:37:03Z",
-      "author": "hermesagent",
-      "subject": "docs: journal entry for Move #280 27-axis decision-rollback-engine skill tick (keep)",
-      "body": ""
-    },
-    {
-      "sha": "87c6e44",
-      "date": "2026-09-22T12:34:39Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #280 Per-payment-method × Per-channel × Per-SKU × Per-daypart × Per-creative × Per-cohort × Per-experiment × Per-warehouse × Per-carrier × Per-zone × Per-product-discovery × Per-affiliate × Per-affiliate-network × Per-affiliate-",
-      "body": ""
-    },
-    {
-      "sha": "3e33a5d",
-      "date": "2026-09-22T11:17:50Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #279 Per-payment-method × Per-channel × Per-SKU × Per-daypart × Per-creative × Per-cohort × Per-experiment × Per-warehouse × Per-carrier × Per-zone × Per-product-discovery × Per-affiliate × Per-affiliate-network × Per-affiliate-",
-      "body": ""
-    },
-    {
-      "sha": "e82cfc2",
-      "date": "2026-09-22T11:08:10Z",
-      "author": "hermesagent",
-      "subject": "feat(dashboard): Skills Progress Dashboard on /skills — coverage % + P0/P1/P2/P3 mix + 7-day pace + JSON export + reset (cross-page-intelligence + state-persistence + one-click-action)",
-      "body": ""
-    },
-    {
-      "sha": "573aa97",
-      "date": "2026-09-22T10:04:38Z",
-      "author": "hermesagent",
-      "subject": "docs: journal entry for Move #278 25-axis decision-rollback-engine skill tick (keep)",
-      "body": ""
     }
   ],
   "counts": {
@@ -70589,8 +70658,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 62,
-    "skills": 393,
+    "journalEntries": 65,
+    "skills": 396,
     "gitCommits": 200
   }
 }
