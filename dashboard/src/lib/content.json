@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-27T23:03:28.227Z",
+  "generatedAt": "2026-09-28T02:53:01.588Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-27 23:03 UTC] Skill tick: keep — Move #3.31 Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-undecimal",
+      "body": "- **Branch:** autoresearch/skills-2026-09-27\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #3.30 (skill/385, shipped 21:49 UTC today) `## How to extend` first follow-up recommendation (\"Move #3.31 — Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-undecimal-extension ... 20,780,769,764,966,400-cell deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep cross-validation matrix ... first Tier-1 + first P0 in `category: checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-undecimal`; default Year-1 ROI Path B 60:1-130:1 at $40B-$400B subscription-discount-LTV-tier-x-cohor"
+    },
     {
       "heading": "[2026-09-27 21:49 UTC] Skill tick: keep — Move #3.30 Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-decimal",
       "body": "- **Branch:** autoresearch/skills-2026-09-27\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #3.29 (skill/384, shipped at 20:36 UTC today) `## How to extend` first follow-up recommendation (\"Move #3.30 — Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-decimal-extension ... 2,597,596,220,620,800-cell deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-decimal cross-validation matrix ... first Tier-1 + first P0 in `category: checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-decimal`; default Year-1 ROI Path B 55:1-120:1 at $30B-$300B subscription-discount-LTV-tier-x-cohort-af"
@@ -48024,6 +48028,25 @@
       "lastTouched": "2026-09-27"
     },
     {
+      "file": "387-checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-duodecimal.md",
+      "name": "387-checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-duodecimal",
+      "title": "Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-duodecimal (Move #3.32)",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-28",
+      "sources": [],
+      "blurb": "The canonical 166,246,158,119,731,200-cell cohort-affinity-duodecimal-axis-specific funnel-audit + per-cohort-affinity-duodecimal-axis-completion-rate + per-cohort-affinity-duodecimal-axis-leak-rate + per-cohort-affin...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 0,
+      "size": 101071,
+      "lastTouched": "2026-09-28"
+    },
+    {
       "file": "39-catalog-pim-dam-operations.md",
       "name": "catalog-pim-dam-operations",
       "title": "Catalog / PIM / DAM operations (Move #26)",
@@ -68742,6 +68765,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "691568c",
+      "date": "2026-09-27T23:07:40Z",
+      "author": "hermesagent",
+      "subject": "docs: journal entry for Move #3.31 undecimal-axis skill tick",
+      "body": ""
+    },
+    {
+      "sha": "dd8e735",
+      "date": "2026-09-27T23:06:16Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #3.31 checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-undecimal",
+      "body": ""
+    },
+    {
       "sha": "bf4e7f6",
       "date": "2026-09-27T21:57:53Z",
       "author": "hermesagent",
@@ -70126,20 +70163,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #270 Per-payment-method × Per-channel × Per-SKU × Per-daypart × Per-creative × Per-cohort × Per-experiment × Per-warehouse × Per-carrier × Per-zone × Per-product-discovery × Per-affiliate × Per-affiliate-network × Per-affiliate-",
       "body": "Canonical 17-axis decision-rollback engine compounding Move #269 with the Per-affiliate-content-type dimension (blog-post ↔ video-review ↔ Instagram-post ↔ TikTok-video ↔ YouTube-long-form ↔ podcast-mention ↔ Twitter-thread ↔ Pinterest-pin ↔ Reddit-post ↔ LinkedIn-post ↔ Instagram-reel ↔ TikTok-live ↔ YouTube-short ↔ LinkedIn-article ↔ Twitter-X-post ↔ podcast-long-form ↔ live-stream-shopping ↔ brand-journalism ↔ community-generated ↔ partner-curated). FIRST Tier-1 + FIRST P0 in unique category 'per-payment-method-x-per-channel-x-per-sku-x-per-daypart-x-per-creative-x-per-cohort-x-per-experiment-x-per-warehouse-x-per-carrier-x-per-zone-x-per-product-discovery-x-per-affiliate-x-per-affiliate-network-x-per-affiliate-commission-structure-x-per-affiliate-cohort-tier-x-per-affiliate-payout-cadence-x-per-affiliate-content-type-decision-rollback'. 27 prereqs + 17 anti-patterns + 27 best-in-class features + 19-row benchmarks + 5-phase 72-124 day build + 27 numbered pitfalls + 27 verification gates A-Z + AA (per-affiliate-content-type-mis-routing-rollback-engine) + 3 extensions + 30 cross-references + 20 source tokens. Compounds Move #269 + Move #268 + Move #267 + Move #266 + Move #264 + Move #263 + Move #180 + Move #119 + Move #122 + Move #116 + Move #95 + Move #85 + Move #74 + Move #68 + Move #59 + Move #50 + Move #49 + Move #48 + Move #45 + Move #33 + Move #25 + Move #21 + Move #16 + Move #14 + Move #9 + Move #6 + Move #1 + YouTube-Content-ID + Audible-Magic + Pex + Vobile + Spotify-Podcast-Ads + Megaphone + Acast + Triton-Digital + iHeart-Podcast + Spreaker + Podcast-Ads-Network. Default Year-1 ROI Path B 50:1-104:1 at $3M GMV; Path C 62:1-142:1 at $5M GMV."
-    },
-    {
-      "sha": "b1c5661",
-      "date": "2026-09-21T22:52:45Z",
-      "author": "hermesagent",
-      "subject": "feat(dashboard): /playbooks/[slug] detail route with mark-as-shipped toggle (cross-page-intelligence)",
-      "body": "- New app/playbooks/[slug]/page.tsx renders each of 30 playbooks as a\n  fully styled SSR page (H1, freshness/section badges, Goal bullets,\n  full markdown body with H2/H3 anchors + lists + tables + blockquotes\n  + code + inline links, copy-link button, back-to-index footer).\n- New src/components/playbook-shipped-toggle.tsx writes to the same\n  ecom-ops:shipped-playbooks:v1 localStorage key the /playbooks tracker\n  and / RecentlyShippedPlaybooksCard already use; cross-tab sync via\n  the ecom-ops:shipped-playbooks:update custom event so flipping the\n  toggle on a detail page instantly reflects on the index + Overview.\n- Wrap card title and /playbooks/{file} slug line in next/link on the\n  /playbooks index so every card is one click from a detail page.\n- parse-content.mjs: new syncPlaybookCopies() mirrors playbooks/*.md\n  into src/playbooks/ at build time (same pattern as src/skills/).\n- Build: 30 detail pages prerendered (was 0), 0 regressions on 22\n  existing routes, canonical alias rotated in 957ms per v2.99.26 fix."
-    },
-    {
-      "sha": "65adc4a",
-      "date": "2026-09-21T21:42:48Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #269 Per-payment-method × Per-channel × Per-SKU × Per-daypart × Per-creative × Per-cohort × Per-experiment × Per-warehouse × Per-carrier × Per-zone × Per-product-discovery × Per-affiliate × Per-affiliate-network × Per-affiliate-",
-      "body": ""
     }
   ],
   "counts": {
@@ -70148,8 +70171,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 53,
-    "skills": 384,
+    "journalEntries": 54,
+    "skills": 385,
     "gitCommits": 200
   }
 }
