@@ -12,6 +12,7 @@ import { formatInt, formatPercent, formatRatio, formatUsd } from "@/lib/format";
 import { loadYourStore, mergeFromYourStore } from "@/lib/your-store";
 import { cn } from "@/lib/utils";
 import { CopyButton } from "@/components/copy-button";
+import { PostPurchaseUpsellLaunchPlanButton } from "@/components/post-purchase-upsell-launch-plan-button";
 
 /**
  * Interactive Post-Purchase Upsell ROI Calculator.
@@ -260,6 +261,7 @@ export function PostPurchaseUpsellROICalculator() {
           >
             Reset defaults
           </button>
+          <PostPurchaseUpsellLaunchPlanButton />
           <button
             type="button"
             onClick={copyReport}
