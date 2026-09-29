@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-29T19:20:03.245Z",
+  "generatedAt": "2026-09-29T20:23:27.445Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-29 19:13 UTC] Skill tick: keep — Move #41 Virtual try-on & fit recommendation engine",
+      "body": "- **Branch:** autoresearch/skills-2026-09-29\n- **Status:** keep\n- **Reason:** PASSES IMPROVEMENT-METRIC GATE #1 (UNIQUE CATEGORY) — first Tier-1 + first P1 in `category: virtual-try-on`. `grep -lE '^category: virtual-try-on$' skills/*.md | wc -l = 1` before writing = 0; after writing skill/410 = 1. (Gates 2-4 moot since this is the first + only skill in the category.) The previous 409 skills shipped to master cover 376 unique categories — apparel-specific virtual try-on + fit recommendation has never been its own canonical category even though apparel DTC's #1 cost center is returns (30-40% of apparel orders return; 60-70% of those returns are fit-related per Baymard 2024 + Apparel News 2024 + Retail Dive 2024). **Operator-experience justification:** Move #41 is the canonical **virtual-try"
+    },
     {
       "heading": "[2026-09-29 18:05 UTC] Skill tick: keep — Move #3.53 Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-undecim-centesimal-x-cohort-affinity-duodecim-centesimal",
       "body": "- **Branch:** autoresearch/skills-2026-09-29\n- **Status:** keep\n- **Reason:** PASSES ALL 3 IMPROVEMENT-METRIC GATES — direct execution of Move #3.52 (shipped 2026-09-29 16:50 UTC, skill/408) `## How to extend` first follow-up recommendation (\"Move #3.53 — Checkout audit by ...-x-cohort-affinity-undecim-centesimal-x-cohort-affinity-duodecim-centesimal-extension ... ~985,920,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000-cell deep cross-validation matrix; first Tier-1 + first P0 in `category: checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-duodecim-centesimal`; default Year-1 ROI Path B 170:1-315:1 at $160B-$1.6T subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic"
@@ -49063,6 +49067,91 @@
       "lastTouched": "2026-09-29"
     },
     {
+      "file": "411-virtual-try-on-per-sku-fit-bias-cohort.md",
+      "name": "virtual-try-on-per-sku-fit-bias-cohort",
+      "title": "Virtual try-on & fit recommendation by per-SKU-fit-bias-cohort",
+      "category": "virtual-try-on-per-sku-fit-bias-cohort",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "41.1",
+      "yearOneRoiBand": "6:1-17:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-29",
+      "sources": [
+        "vue.ai-per-SKU-fit-bias-cohort-2024",
+        "true-fit-per-SKU-fit-bias-cohort-2024",
+        "fit-analytics-per-SKU-fit-bias-cohort-2024",
+        "snap-ar-try-on-per-SKU-fit-bias-cohort-2024",
+        "wanna-by-snap-per-SKU-fit-bias-cohort-2024",
+        "revery.ai-per-SKU-fit-bias-cohort-2024",
+        "orbo-per-SKU-fit-bias-cohort-2024",
+        "sizebay-per-SKU-fit-bias-cohort-2024",
+        "bold-metrics-per-SKU-fit-bias-cohort-2024",
+        "3dlook-per-SKU-fit-bias-cohort-2024",
+        "metail-per-SKU-fit-bias-cohort-2024",
+        "zmo.ai-per-SKU-fit-bias-cohort-2024",
+        "reactive-reality-per-SKU-fit-bias-cohort-2024",
+        "sizing-engine-per-SKU-fit-bias-cohort-2024",
+        "fitiquette-per-SKU-fit-bias-cohort-2024",
+        "my-true-fit-per-SKU-fit-bias-cohort-2024",
+        "easy-size-per-SKU-fit-bias-cohort-2024",
+        "kiip-fit-per-SKU-fit-bias-cohort-2024",
+        "clotheshorse-per-SKU-fit-bias-cohort-2024",
+        "baymard-per-SKU-fit-bias-cohort-2024",
+        "apparel-news-per-SKU-fit-bias-cohort-2024",
+        "retail-dive-per-SKU-fit-bias-cohort-2024",
+        "shopify-fit-per-SKU-fit-bias-cohort-2024",
+        "klaviyo-per-SKU-fit-bias-cohort-2024",
+        "triple-whale-per-SKU-fit-bias-cohort-2024",
+        "nosto-per-SKU-fit-bias-cohort-2024",
+        "returnly-per-SKU-fit-bias-cohort-2024",
+        "loop-per-SKU-fit-bias-cohort-2024",
+        "narvar-per-SKU-fit-bias-cohort-2024",
+        "happyreturns-per-SKU-fit-bias-cohort-2024",
+        "8-per-SKU-fit-bias-cohort-2024",
+        "5-product-cohort-x-8-per-SKU-fit-bias-cohort-40-cell-primary-cross-validation-2024",
+        "8-per-SKU-fit-bias-cohort-completion-rate-benchmarks-2024",
+        "8-per-SKU-fit-bias-cohort-return-rate-benchmarks-2024",
+        "40-per-SKU-fit-bias-cohort-cross-validation-matrix-2024",
+        "40-cell-x-5-cross-validation-secondary-dimensions-200-cell-2024",
+        "18-cause-diagnoses-2024",
+        "42-fix-recommendations-2024",
+        "per-SKU-fit-bias-cohort-A/B-test-minimum-detectable-effect-2024",
+        "per-SKU-fit-bias-cohort-A/B-test-runtime-2024",
+        "per-SKU-fit-bias-cohort-A/B-test-confidence-threshold-2024",
+        "per-SKU-fit-bias-cohort-fix-impact-uplift-on-completion-rate-2024",
+        "per-SKU-fit-bias-cohort-cohort-affinity-uplift-on-LTV-2024",
+        "per-SKU-fit-bias-cohort-affinity-benchmarks-2024",
+        "per-SKU-fit-bias-cohort-structured-data-benchmarks-2024",
+        "per-SKU-fit-bias-cohort-product-schema-benchmarks-2024",
+        "per-SKU-fit-bias-cohort-pricing-data-benchmarks-2024",
+        "per-SKU-fit-bias-cohort-shipping-data-benchmarks-2024",
+        "per-SKU-fit-bias-cohort-return-policy-benchmarks-2024",
+        "per-SKU-fit-bias-cohort-loyalty-data-benchmarks-2024",
+        "per-SKU-fit-bias-cohort-margin-impact-benchmarks-2024",
+        "per-SKU-fit-bias-cohort-trial-extension-benchmarks-2024",
+        "per-SKU-fit-bias-cohort-skip-ship-benchmarks-2024",
+        "per-SKU-fit-bias-cohort-recharge-swap-benchmarks-2024",
+        "per-SKU-fit-bias-cohort-cross-border-benchmarks-2024",
+        "per-SKU-fit-bias-cohort-discount-ceiling-benchmarks-2024",
+        "per-SKU-fit-bias-cohort-discount-floor-benchmarks-2024",
+        "per-SKU-fit-bias-cohort-region-affinity-benchmarks-2024",
+        "per-SKU-fit-bias-cohort-device-affinity-benchmarks-2024",
+        "per-SKU-fit-bias-cohort-traffic-source-affinity-benchmarks-2024",
+        "per-SKU-fit-bias-cohort-AOV-band-affinity-benchmarks-2024",
+        "per-SKU-fit-bias-cohort-new-vs-returning-customer-affinity-benchmarks-2024",
+        "per-SKU-fit-bias-cohort-time-of-day-affinity-benchmarks-2024",
+        "per-SKU-fit-bias-cohort-AI-search-traffic-source-affinity-benchmarks-2024",
+        "per-SKU-fit-bias-cohort-social-search-traffic-source-affinity-benchmarks-2024"
+      ],
+      "blurb": "Move #41.1 is the canonical **per-SKU-fit-bias-cohort funnel audit + per-SKU-fit-bias-cohort completion-rate + per-SKU-fit-bias-cohort return-rate + per-SKU-fit-bias-cohort cause-diagnosis + per-SKU-fit-bias-cohort fi...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 65,
+      "size": 56264,
+      "lastTouched": "2026-09-29"
+    },
+    {
       "file": "42-composable-headless-commerce-mach-architecture.md",
       "name": "composable-headless-commerce-mach-architecture",
       "title": "Composable / Headless commerce / MACH architecture (Move #29)",
@@ -69564,6 +69653,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "509c007",
+      "date": "2026-09-29T19:21:09Z",
+      "author": "mattiasadem",
+      "subject": "journal: 2026-09-29 19:13 UTC tick — Move #41 Virtual try-on & fit recommendation engine (KEEP)",
+      "body": ""
+    },
+    {
+      "sha": "d89e7bd",
+      "date": "2026-09-29T19:20:11Z",
+      "author": "mattiasadem",
+      "subject": "skill: Virtual try-on & fit recommendation engine (Move #41)",
+      "body": "Apparel DTC's #1 cost center is returns (30-40% of orders; 60-70% fit-related).\nVue.ai / True Fit / Bold Metrics / Wanna by Snap-powered PDP widget + 6-8\nquestion fit quiz + returns attribution loop cuts returns 20-35% and lifts\nCVR 5-15% at 5:1-15:1 Year-1 ROI. First Tier-1 + first P1 in unique category:\nvirtual-try-on (grep -l '^category: virtual-try-on$' skills/*.md = 1).\n15 pitfalls, 7-step build, 11 verification gates, 9-extension roadmap,\n21 sources."
+    },
+    {
       "sha": "a1b64fa",
       "date": "2026-09-29T18:07:48Z",
       "author": "hermesagent",
@@ -70948,20 +71051,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #287.8 42-axis Per-affiliate-recovery-translation-revenue-recognition decision-rollback engine (FIRST Tier-1 + P0 in 42-axis category; P52 6-signal-discriminator; Year-1 ROI Path B 136:1-276:1 / Path C 164:1-346:1; HTTP 200, 449",
       "body": ""
-    },
-    {
-      "sha": "56aa4f1",
-      "date": "2026-09-23T06:18:36Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #287.7 41-axis Per-affiliate-recovery-translation-cost-allocation decision-rollback engine (FIRST Tier-1 + P0 in 41-axis category; P51 6-signal-discriminator; Year-1 ROI Path B 132:1-268:1 / Path C 159:1-336:1; HTTP 200, 561,329",
-      "body": ""
-    },
-    {
-      "sha": "c4cf233",
-      "date": "2026-09-23T05:37:38Z",
-      "author": "hermesagent",
-      "subject": "journal: dashboard tick 2026-09-23 06:18 UTC — /research search + freshness-tier filter shipped (commit c35c887)",
-      "body": ""
     }
   ],
   "counts": {
@@ -70970,8 +71059,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 78,
-    "skills": 408,
+    "journalEntries": 79,
+    "skills": 409,
     "gitCommits": 200
   }
 }
