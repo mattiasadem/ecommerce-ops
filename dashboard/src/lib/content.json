@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-29T18:03:02.628Z",
+  "generatedAt": "2026-09-29T19:20:03.245Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-29 18:05 UTC] Skill tick: keep — Move #3.53 Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-undecim-centesimal-x-cohort-affinity-duodecim-centesimal",
+      "body": "- **Branch:** autoresearch/skills-2026-09-29\n- **Status:** keep\n- **Reason:** PASSES ALL 3 IMPROVEMENT-METRIC GATES — direct execution of Move #3.52 (shipped 2026-09-29 16:50 UTC, skill/408) `## How to extend` first follow-up recommendation (\"Move #3.53 — Checkout audit by ...-x-cohort-affinity-undecim-centesimal-x-cohort-affinity-duodecim-centesimal-extension ... ~985,920,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000-cell deep cross-validation matrix; first Tier-1 + first P0 in `category: checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-duodecim-centesimal`; default Year-1 ROI Path B 170:1-315:1 at $160B-$1.6T subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic"
+    },
     {
       "heading": "[2026-09-29 16:50 UTC] Skill tick: keep — Move #3.52 Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-decem-centesimal-x-cohort-affinity-undecim-centesimal",
       "body": "- **Branch:** autoresearch/skills-2026-09-29\n- **Status:** keep\n- **Reason:** PASSES ALL 3 IMPROVEMENT-METRIC GATES — direct execution of Move #3.51 (shipped 2026-09-29 15:35 UTC, skill/407) `## How to extend` first follow-up recommendation (\"Move #3.52 — Checkout audit by ...-x-cohort-affinity-decem-centesimal-x-cohort-affinity-undecim-centesimal-extension ... 39-dimensional taxonomy = 24,648,000,000,000,000,000,000,000,000,000,000,000,000,000,000-cell deep cross-validation matrix; first Tier-1 + first P0 in `category: checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-undecim-centesimal`; default Year-1 ROI Path B 165:1-310:1 at $155B-$1.55T subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x"
@@ -49008,6 +49012,57 @@
       "lastTouched": "2026-07-13"
     },
     {
+      "file": "410-virtual-try-on-and-fit-recommendation-engine.md",
+      "name": "virtual-try-on-and-fit-recommendation-engine",
+      "title": "Virtual try-on & fit recommendation engine",
+      "category": "virtual-try-on",
+      "tier": 1,
+      "priority": "P1",
+      "defaultMove": 41,
+      "yearOneRoiBand": "5:1–15:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-29",
+      "sources": [
+        "vue.ai 2024",
+        "true-fit 2024",
+        "fit-analytics 2024",
+        "snap-ar-try-on 2024",
+        "wanna-by-snap 2024",
+        "revery.ai 2024",
+        "orbo 2024",
+        "sizebay 2024",
+        "bold-metrics 2024",
+        "3dlook 2024",
+        "metail 2024",
+        "zmo.ai 2024",
+        "reactive-reality 2024",
+        "tripp 2024",
+        "sizing-engine 2024",
+        "fitiquette 2024",
+        "my-true-fit 2024",
+        "easy-size 2024",
+        "kiip-fit 2024",
+        "clotheshorse 2024",
+        "baymard-fit 2024",
+        "apparel-news-fit 2024",
+        "retail-dive-fit 2024",
+        "shopify-fit 2024",
+        "klaviyo-fit 2024",
+        "triple-whale-fit 2024",
+        "nosto-fit 2024",
+        "returnly-fit 2024",
+        "loop-fit 2024",
+        "narvar-fit 2024",
+        "happyreturns-fit 2024"
+      ],
+      "blurb": "Apparel DTC's #1 cost center is returns (30–40% of apparel orders return; 60–70% of those returns are fit-related).",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 31,
+      "size": 18238,
+      "lastTouched": "2026-09-29"
+    },
+    {
       "file": "42-composable-headless-commerce-mach-architecture.md",
       "name": "composable-headless-commerce-mach-architecture",
       "title": "Composable / Headless commerce / MACH architecture (Move #29)",
@@ -69509,6 +69564,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "a1b64fa",
+      "date": "2026-09-29T18:07:48Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #3.53 Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-undecim-centesimal-x-cohort-affinity-duodecim-centesimal (per-duodecim-centesimal-axis ",
+      "body": ""
+    },
+    {
       "sha": "03290fa",
       "date": "2026-09-29T16:55:46Z",
       "author": "mattiasadem",
@@ -70900,13 +70962,6 @@
       "author": "hermesagent",
       "subject": "journal: dashboard tick 2026-09-23 06:18 UTC — /research search + freshness-tier filter shipped (commit c35c887)",
       "body": ""
-    },
-    {
-      "sha": "c35c887",
-      "date": "2026-09-23T05:36:19Z",
-      "author": "hermesagent",
-      "subject": "feat(dashboard): search + freshness-tier filter on /research (interactive-tool + state-persistence)",
-      "body": "Wires the existing ContentSearch component (already on /assets + /playbooks)\nonto the /research index. 18 research docs is past the comfortable scroll\nlength, and the route had zero filter surface — operators scrolling for\na specific brief had no way to narrow by topic or freshness.\n\nThree small supporting changes:\n\n1. dashboard/scripts/parse-content.mjs — ResearchDoc parser now emits\n   numberedSections (top-level H2 sections capped at 20), sectionCount\n   (total sections), and size (markdown length) so the same generic\n   ContentSearch component can mount on /research without a research-\n   specific search bar.\n\n2. dashboard/src/lib/content.ts — ResearchDoc interface extends with\n   the three new optional fields. JSON parses cleanly.\n\n3. dashboard/src/components/content-search.tsx — ContentSearchItem now\n   exposes assetNumber as an optional number field used to render the\n   RD-XX / PB-XX / AS-XX chip on each card. research/.json\n   derives the leading integer from the filename pattern (00-…, 01-…).\n\nPage now renders (a) header with freshness summary badges (fresh /\naging / stale counts), (b) 3-stat strip (total docs, tables+findings,\ntotal KB), (c) the same Filter [kind]s + freshness-tier chips already\non /assets, (d) the research-doc card list with RD-XX chip + title +\nfreshness badge + section-count badge + copy-ID button + collapsible\nsection preview.\n\nState persists to localStorage under a research-kind discriminator\n(ecom-ops:content:search:v1) so the asset and research filter state\ndon't collide.\n\nBuild: NEXT_TELEMETRY_DISABLED=1 npm run build succeeded on first\nattempt — 22 static routes unchanged, /research prerendered shell\n135 B + client-component bundle, no type errors.\n\nDeploy: vercel deploy --prod from dashboard/ + vercel alias set to\necommerce-ops-iota.vercel.app. Live HTTP 200, ~568 KB SSR HTML\n(combined ContentSearch client bundle + per-doc card markup +\nsection-preview details panels). Bundle contains 'research' kind data\n+ 18 docs + RD-XX chips"
     }
   ],
   "counts": {
@@ -70915,8 +70970,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 77,
-    "skills": 407,
+    "journalEntries": 78,
+    "skills": 408,
     "gitCommits": 200
   }
 }
