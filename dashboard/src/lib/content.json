@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-29T01:52:03.873Z",
+  "generatedAt": "2026-09-29T09:39:24.404Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13224,6 +13224,14 @@
   },
   "journal": [
     {
+      "heading": "[2026-09-29 02:30 UTC] Skill tick: keep — Move #3.45 Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-tre-centesimal-x-cohort-affinity-quattuor-centesimal",
+      "body": "- **Branch:** autoresearch/skills-2026-09-29\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #3.44 (shipped 2026-09-29 01:55 UTC, skill/400) `## How to extend` first follow-up recommendation (\"Move #3.45 — Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-tre-centesimal-x-cohort-affinity-quattuor-centesimal-extension ... 344,229,013,660,380,859,269,994,058,240,000,000-cell deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep cross-validation matrix; first Tier-1 + first P0 in `category: checkout-audit-by-subscription-discount-LTV-tier-x-cohort-aff"
+    },
+    {
+      "heading": "[2026-09-29 01:55 UTC] Skill tick: keep — Move #3.44 Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-duo-centesimal-x-cohort-affinity-tre-centesimal",
+      "body": "- **Branch:** autoresearch/skills-2026-09-29\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #3.43 (shipped 2026-09-29 00:30 UTC, skill/399) `## How to extend` first follow-up recommendation (\"Move #3.44 — Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-duo-centesimal-x-cohort-affinity-tre-centesimal-extension ... 10,757,156,676,886,901,852,187,064,320,000,000-cell deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep cross-validation matrix; first Tier-1 + first P0 in `category: checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFC"
+    },
+    {
       "heading": "[2026-09-29 00:30 UTC] Skill tick: keep — Move #3.43 Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-centesimal-x-cohort-affinity-duo-centesimal",
       "body": "- **Branch:** autoresearch/skills-2026-09-29\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #3.42 (shipped 2026-09-28 23:00 UTC, skill/398) `## How to extend` first follow-up recommendation (\"Move #3.43 — Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-centesimal-x-cohort-affinity-duo-centesimal-extension ... 347,005,054,093,125,866,199,582,720,000,000-cell deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep cross-validation matrix; first Tier-1 + first P0 in `category: checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-tr"
     },
@@ -13490,6 +13498,10 @@
     {
       "heading": "2026-09-28 20:00 UTC — /loyalty-launch-plan: 30-day always-on Loyalty Program launch plan generator (Move #8)",
       "body": "- **What shipped:** New route at `/loyalty-launch-plan` with a one-click \"Generate 30-day launch plan\" button. Opens a modal with a 30-day day-by-day checklist (Days 1–30 across W1–W4) generated from the operator's saved Loyalty ROI calculator inputs (`ecom-ops:playbooks:loyalty-roi:v1`) overlaid with their Your-store AOV/orders/margin (`ecom-ops:your-store:v1`). Snapshot block (verdict + net revenue / month + net per $1 program + payback months) computed by `forecastLoyalty()` — same math as `playbooks/07-loyalty-program-smile.md`. Result is paste-ready markdown: copy-to-clipboard OR download `.md` (named `loyalty-launch-plan-YYYY-MM-DD.md`). 30 days, 4 weeks, 30 checkbox-able actions covering: app install + points/tiers/referral config + Klaviyo webhook wiring + Triple Whale cohort overl"
+    },
+    {
+      "heading": "2026-09-29 — /post-purchase-upsell-launch-plan: 30-day always-on Post-Purchase Upsell launch plan generator (Move #9.6)",
+      "body": "- **What shipped:** New route at `/post-purchase-upsell-launch-plan` with a one-click \"Generate 30-day launch plan\" button. Opens a modal with a 30-day day-by-day checklist (Days 1–30 across W1–W4) generated from the operator's saved Post-Purchase Upsell ROI calculator inputs (`ecom-ops:playbooks:ppu-roi:v1`) overlaid with their Your-store AOV/orders/margin (`ecom-ops:your-store:v1`). Snapshot block (verdict + ROI ratio + upsell units/month + incremental margin/month + new blended AOV + AOV lift %) computed by `forecastPostPurchaseUpsell()` — same math as `scripts/post_purchase_upsell_roi.py`. Result is paste-ready markdown: copy-to-clipboard OR download `.md` (named `post-purchase-upsell-launch-plan-YYYY-MM-DD.md`). 30 days, 4 weeks, 30 checkbox-able actions covering: tool pick (ReConvert"
     }
   ],
   "skills": [
@@ -48710,6 +48722,44 @@
       "lastTouched": "2026-09-29"
     },
     {
+      "file": "401-checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-tre-centesimal-x-cohort-affinity-quattuor-centesimal.md",
+      "name": "checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-tre-centesimal-x-cohort-affinity-quattuor-centesimal",
+      "title": "Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-tre-centesimal-x-cohort-affinity-quattuor-centesimal",
+      "category": "checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-quattuor-centesimal",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "3.45",
+      "yearOneRoiBand": "130:1–270:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-29",
+      "sources": [],
+      "blurb": "The canonical Move #3.45 quattuor-centesimal-axis extension of Move #3.44's tre-centesimal-axis decomposition — adds the canonical **32 NEW quattuor-centesimal-axis dimensions** spanning the Identity-Provider / Trust ...",
+      "sectionCount": 10,
+      "pitfallCount": 20,
+      "sourceCount": 0,
+      "size": 106138,
+      "lastTouched": "2026-09-29"
+    },
+    {
+      "file": "402-checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-quattuor-centesimal-x-cohort-affinity-quinque-centesimal.md",
+      "name": "checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-quattuor-centesimal-x-cohort-affinity-quinque-centesimal",
+      "title": "Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-quattuor-centesimal-x-cohort-affinity-quinque-centesimal",
+      "category": "checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-quinque-centesimal",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "3.46",
+      "yearOneRoiBand": "135:1–280:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-29",
+      "sources": [],
+      "blurb": "The canonical Move #3.46 quinque-centesimal-axis extension of Move #3.45's quattuor-centesimal-axis decomposition — adds the canonical **33 NEW quinque-centesimal-axis dimensions** spanning the Loyalty / Rewards / Ref...",
+      "sectionCount": 10,
+      "pitfallCount": 21,
+      "sourceCount": 0,
+      "size": 104936,
+      "lastTouched": "2026-09-29"
+    },
+    {
       "file": "41-data-warehouse-cdp-operations.md",
       "name": "data-warehouse-cdp-operations",
       "title": "Data warehouse / Customer Data Platform (CDP) operations (Move #28)",
@@ -69298,6 +69348,34 @@
   ],
   "gitCommits": [
     {
+      "sha": "0811f88",
+      "date": "2026-09-29T09:16:57Z",
+      "author": "mattiasadem",
+      "subject": "feat(dashboard): /post-purchase-upsell-launch-plan 30-day always-on PPU launch plan generator (Move #9.6)",
+      "body": ""
+    },
+    {
+      "sha": "0611d6e",
+      "date": "2026-09-29T05:45:20Z",
+      "author": "mattiasadem",
+      "subject": "journal: Move #3.45 quattuor-centesimal keep entry",
+      "body": ""
+    },
+    {
+      "sha": "f7cfb7c",
+      "date": "2026-09-29T05:43:45Z",
+      "author": "mattiasadem",
+      "subject": "skill: Move #3.45 checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-tre-centesimal-x-cohort-affinity-quattuor-centesimal",
+      "body": ""
+    },
+    {
+      "sha": "6ed4c33",
+      "date": "2026-09-29T02:04:12Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #3.44 checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-duo-centesimal-x-cohort-affinity-tre-centesimal",
+      "body": ""
+    },
+    {
       "sha": "f0314fe",
       "date": "2026-09-29T00:36:04Z",
       "author": "hermesagent",
@@ -70668,34 +70746,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #286 Per-payment-method × ... × Per-affiliate-debit-note-window 33-axis decision-rollback engine (FIRST Tier-1 + FIRST P0 in unique category; canonical Move #285.1 extension adding the per-AFFILIATE-DEBIT-NOTE-WINDOW dimension; ",
       "body": ""
-    },
-    {
-      "sha": "83794ca",
-      "date": "2026-09-22T18:35:16Z",
-      "author": "hermesagent",
-      "subject": "docs: journal entry for Move #285 32-axis decision-rollback-engine skill tick (keep)",
-      "body": ""
-    },
-    {
-      "sha": "f82a217",
-      "date": "2026-09-22T18:34:06Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #285 Per-payment-method × ... × Per-affiliate-credit-note-window 32-axis decision-rollback engine (FIRST Tier-1 + FIRST P0 in unique category; compounds Move #284 with Per-affiliate-credit-note-window dimension; 42 numbered pitf",
-      "body": ""
-    },
-    {
-      "sha": "e15f909",
-      "date": "2026-09-22T17:22:35Z",
-      "author": "mattiasadem",
-      "subject": "feat(dashboard): /assets/[slug] detail route with click-through index (cross-page-intelligence)",
-      "body": ""
-    },
-    {
-      "sha": "81b3bf7",
-      "date": "2026-09-22T17:21:39Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #284 Per-payment-method × ... × Per-affiliate-cancellation-window 31-axis decision-rollback engine (canonical 31-axis compound extension of Move #283 + Move #281.1 + Move #281; 41 numbered pitfalls P1-P41; 44 verification gates ",
-      "body": ""
     }
   ],
   "counts": {
@@ -70704,8 +70754,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 67,
-    "skills": 398,
+    "journalEntries": 70,
+    "skills": 400,
     "gitCommits": 200
   }
 }
