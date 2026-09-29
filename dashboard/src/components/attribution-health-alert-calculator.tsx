@@ -14,6 +14,7 @@ import {
   validateAttributionAlertInputs,
 } from "@/lib/attribution-health-alert";
 import { CopyButton } from "@/components/copy-button";
+import { AttributionHealthAlertLaunchPlanButton } from "@/components/attribution-health-alert-launch-plan-button";
 import { cn } from "@/lib/utils";
 
 /**
@@ -757,6 +758,7 @@ export function AttributionHealthAlertCalculator() {
         {/* Action row */}
         <div className="flex flex-wrap items-center gap-2 pt-1">
           <CopyButton value={report} label="Copy report" />
+          <AttributionHealthAlertLaunchPlanButton />
           <button
             type="button"
             onClick={resetDefaults}
