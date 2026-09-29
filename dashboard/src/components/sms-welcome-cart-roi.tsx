@@ -11,6 +11,7 @@ import { formatInt, formatPercent, formatRatio, formatUsd } from "@/lib/format";
 import { loadYourStore, mergeFromYourStore } from "@/lib/your-store";
 import { cn } from "@/lib/utils";
 import { CopyButton } from "@/components/copy-button";
+import { SmsWelcomeCartLaunchPlanButton } from "@/components/sms-welcome-cart-launch-plan-button";
 
 /**
  * Interactive SMS Welcome + Cart-Abandon 4-Flow ROI Calculator.
@@ -466,7 +467,10 @@ export function SmsWelcomeCartROICalculator() {
           <code className="font-mono text-[11px]">06-sms-welcome-and-cart-abandon</code>
           {" "}below for the paste-ready 4-flow build sequence.
         </span>
-        <CopyButton value="06-sms-welcome-and-cart-abandon" label="Copy playbook ID" />
+        <div className="flex items-center gap-2">
+          <SmsWelcomeCartLaunchPlanButton />
+          <CopyButton value="06-sms-welcome-and-cart-abandon" label="Copy playbook ID" />
+        </div>
       </div>
     </div>
   );

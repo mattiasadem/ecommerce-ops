@@ -60,6 +60,7 @@ const NAV_GROUPS = [
       { href: "/abandoned-cart-launch-plan", label: "Abandoned-Cart launch plan", icon: "▦" },
       { href: "/loyalty-launch-plan", label: "Loyalty launch plan", icon: "▦" },
       { href: "/post-purchase-upsell-launch-plan", label: "Upsell launch plan", icon: "▦" },
+      { href: "/sms-welcome-cart-launch-plan", label: "SMS-WC launch plan", icon: "▦" },
       { href: "/settings", label: "Settings", icon: "✱" },
     ],
   },
