@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-30T14:39:10.778Z",
+  "generatedAt": "2026-09-30T15:48:11.592Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-30 14:39 UTC] Skill tick: keep — Move #41.15 Virtual try-on per-SKU-fit-bias-cohort × BFCM-cohort × subscription-replenishment × mobile-PDP × region × returns-portal × currency × refund-state × affiliate-channel × store-pickup-extension",
+      "body": "- **Branch:** autoresearch/skills-2026-09-30\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #41.14 (shipped 2026-09-30 as skill/424) `## How to extend` first follow-up recommendation (\"Move #41.15 — Virtual try-on per-SKU-fit-bias-cohort × BFCM-cohort × subscription-replenishment × mobile-PDP × region × returns-portal × currency × refund-state × affiliate-channel × store-pickup-extension ... 237,817,036,800-cell × 8-store-pickup-event = 1,902,536,294,400-cell deep cross-validation matrix; first Tier-1 + first P0 in `category: virtual-try-on-per-sku-fit-bias-cohort-x-bfcm-cohort-x-subscription-replenishment-x-mobile-pdp-x-region-x-returns-portal-x-currency-x-refund-state-x-affiliate-channel-x-store-pickup`; default Year-1 ROI Path B 28:1-54"
+    },
     {
       "heading": "[2026-09-30 13:30 UTC] Skill tick: keep — Move #41.14 Virtual try-on per-SKU-fit-bias-cohort × BFCM-cohort × subscription-replenishment × mobile-PDP × region × returns-portal × currency × refund-state × affiliate-channel-extension",
       "body": "- **Branch:** autoresearch/skills-2026-09-30\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #41.13 (shipped 2026-09-30 as skill/423) `## How to extend` first follow-up recommendation (\"Move #41.14 — Virtual try-on per-SKU-fit-bias-cohort × BFCM-cohort × subscription-replenishment × mobile-PDP × region × returns-portal × currency × refund-state × affiliate-channel-extension ... 14,863,564,800-cell × 16-affiliate-channel = 237,817,036,800-cell deep cross-validation matrix; first Tier-1 + first P0 in `category: virtual-try-on-per-sku-fit-bias-cohort-x-bfcm-cohort-x-subscription-replenishment-x-mobile-pdp-x-region-x-returns-portal-x-currency-x-refund-state-x-affiliate-channel`; default Year-1 ROI Path B 27:1-52:1\"). **(1) UNIQUE CATEGORY** — `"
@@ -51363,6 +51367,25 @@
       "lastTouched": "2026-09-30"
     },
     {
+      "file": "426-virtual-try-on-per-sku-fit-bias-cohort-x-bfcm-cohort-x-subscription-replenishment-x-mobile-pdp-x-region-x-returns-portal-x-currency-x-refund-state-x-affiliate-channel-x-store-pickup-x-influencer-tier.md",
+      "name": "426-virtual-try-on-per-sku-fit-bias-cohort-x-bfcm-cohort-x-subscription-replenishment-x-mobile-pdp-x-region-x-returns-portal-x-currency-x-refund-state-x-affiliate-channel-x-store-pickup-x-influencer-tier",
+      "title": "Virtual try-on & fit recommendation by per-SKU-fit-bias-cohort × BFCM-cohort × subscription-replenishment × mobile-PDP × region × returns-portal × currency × refund-state × affiliate-channel × store-pickup × influencer-tier",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-30",
+      "sources": [],
+      "blurb": "Move #41.16 — the layer that decomposes per-SKU-fit-bias-cohort × BFCM-cohort × subscription-replenishment × mobile-PDP × region × returns-portal × currency × refund-state × affiliate-channel × store-pickup-wrong-fit-...",
+      "sectionCount": 7,
+      "pitfallCount": 15,
+      "sourceCount": 0,
+      "size": 150656,
+      "lastTouched": "2026-09-30"
+    },
+    {
       "file": "43-product-reviews-ugc-social-proof.md",
       "name": "product-reviews-ugc-social-proof",
       "title": "Product reviews + UGC + social proof (Move #30)",
@@ -71775,6 +71798,27 @@
   ],
   "gitCommits": [
     {
+      "sha": "0103725",
+      "date": "2026-09-30T14:43:16Z",
+      "author": "hermesagent",
+      "subject": "journal: log Move #41.15 store-pickup-extension tick (skill/425, 1,902,536,294,400-cell)",
+      "body": ""
+    },
+    {
+      "sha": "2f07b66",
+      "date": "2026-09-30T14:42:36Z",
+      "author": "hermesagent",
+      "subject": "content: re-parse with Move #41.15 (423 skills)",
+      "body": ""
+    },
+    {
+      "sha": "e4179c3",
+      "date": "2026-09-30T14:42:30Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #41.15 virtual-try-on per-SKU-fit-bias-cohort × BFCM-cohort × subscription-replenishment × mobile-PDP × region × returns-portal × currency × refund-state × affiliate-channel × store-pickup-extension (1,902,536,294,400-cell deep ",
+      "body": ""
+    },
+    {
       "sha": "8034898",
       "date": "2026-09-30T13:34:30Z",
       "author": "hermesagent",
@@ -73152,27 +73196,6 @@
       "author": "mattiasadem",
       "subject": "journal: append 2026-09-24 05:29 UTC Move #287.25 59-axis skill tick keep entry",
       "body": ""
-    },
-    {
-      "sha": "d2e63e1",
-      "date": "2026-09-24T05:29:28Z",
-      "author": "mattiasadem",
-      "subject": "skill: Move #287.25 Per-affiliate-recovery-translation-state-emergency-procedure-extension-renewal-revocation-reinstatement-jurisdictional-rule-restatement 59-axis decision-rollback engine (FIRST Tier-1 + P0 in unique 59-axis category; P69 ",
-      "body": ""
-    },
-    {
-      "sha": "3893fe4",
-      "date": "2026-09-24T04:19:18Z",
-      "author": "mattiasadem",
-      "subject": "skill: Move #287.24 Per-affiliate-recovery-translation-state-emergency-procedure-extension-renewal-revocation-jurisdictional-rule-restatement 58-axis decision-rollback engine (FIRST Tier-1 + P0 in unique 58-axis category; P68 68-signal-disc",
-      "body": ""
-    },
-    {
-      "sha": "0602a2c",
-      "date": "2026-09-24T02:00:48Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #287.23 Per-affiliate-recovery-translation-state-emergency-procedure-extension-renewal-jurisdictional-rule-restatement 57-axis decision-rollback engine (FIRST Tier-1 + P0 in unique 57-axis category; P67 67-signal-discriminator; ",
-      "body": ""
     }
   ],
   "counts": {
@@ -73181,8 +73204,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 97,
-    "skills": 423,
+    "journalEntries": 98,
+    "skills": 424,
     "gitCommits": 200
   }
 }
