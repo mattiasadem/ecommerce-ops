@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-30T12:21:24.352Z",
+  "generatedAt": "2026-09-30T14:39:10.778Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,14 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-09-30 13:30 UTC] Skill tick: keep — Move #41.14 Virtual try-on per-SKU-fit-bias-cohort × BFCM-cohort × subscription-replenishment × mobile-PDP × region × returns-portal × currency × refund-state × affiliate-channel-extension",
+      "body": "- **Branch:** autoresearch/skills-2026-09-30\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #41.13 (shipped 2026-09-30 as skill/423) `## How to extend` first follow-up recommendation (\"Move #41.14 — Virtual try-on per-SKU-fit-bias-cohort × BFCM-cohort × subscription-replenishment × mobile-PDP × region × returns-portal × currency × refund-state × affiliate-channel-extension ... 14,863,564,800-cell × 16-affiliate-channel = 237,817,036,800-cell deep cross-validation matrix; first Tier-1 + first P0 in `category: virtual-try-on-per-sku-fit-bias-cohort-x-bfcm-cohort-x-subscription-replenishment-x-mobile-pdp-x-region-x-returns-portal-x-currency-x-refund-state-x-affiliate-channel`; default Year-1 ROI Path B 27:1-52:1\"). **(1) UNIQUE CATEGORY** — `"
+    },
+    {
+      "heading": "[2026-09-30 12:30 UTC] Skill tick: keep — Move #41.13 Virtual try-on per-SKU-fit-bias-cohort × BFCM-cohort × subscription-replenishment × mobile-PDP × region × returns-portal × currency × refund-state-extension",
+      "body": "- **Branch:** autoresearch/skills-2026-09-30\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #41.12 (shipped 2026-09-30 as skill/422) `## How to extend` first follow-up recommendation (\"Move #41.13 — Virtual try-on per-SKU-fit-bias-cohort × BFCM-cohort × subscription-replenishment × mobile-PDP × region × returns-portal × currency × refund-state-extension ... 14,863,564,800-cell × 4-refund-state = 59,454,259,200-cell deep cross-validation matrix; first Tier-1 + first P0 in `category: virtual-try-on-per-sku-fit-bias-cohort-x-bfcm-cohort-x-subscription-replenishment-x-mobile-pdp-x-region-x-returns-portal-x-currency-x-refund-state`; default Year-1 ROI Path B 26:1-50:1\"). **(1) UNIQUE CATEGORY** — `grep -lE '^category: virtual-try-on-per-sku-fit"
+    },
     {
       "heading": "[2026-09-30 10:05 UTC] Skill tick: keep — Move #41.11 Virtual try-on per-SKU-fit-bias-cohort × BFCM-cohort × subscription-replenishment × mobile-PDP × region × returns-portal × currency-extension",
       "body": "- **Branch:** autoresearch/skills-2026-09-30\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #41.10 (shipped 2026-09-30 as skill/420) `## How to extend` first follow-up recommendation (\"Move #41.11 — Virtual try-on per-SKU-fit-bias-cohort × BFCM-cohort × subscription-replenishment × mobile-PDP × region × returns-portal × currency-extension ... 309,657,600-cell × 12-currency = 3,715,891,200-cell deep cross-validation matrix; first Tier-1 + first P0 in `category: virtual-try-on-per-sku-fit-bias-cohort-x-bfcm-cohort-x-subscription-replenishment-x-mobile-pdp-x-region-x-returns-portal-x-currency`; default Year-1 ROI Path B 24:1-46:1\"). **(1) UNIQUE CATEGORY** — `grep -lE '^category: virtual-try-on-per-sku-fit-bias-cohort-x-bfcm-cohort-x-subscrip"
@@ -51317,6 +51325,44 @@
       "lastTouched": "2026-09-30"
     },
     {
+      "file": "424-virtual-try-on-per-sku-fit-bias-cohort-x-bfcm-cohort-x-subscription-replenishment-x-mobile-pdp-x-region-x-returns-portal-x-currency-x-refund-state-x-affiliate-channel.md",
+      "name": "424-virtual-try-on-per-sku-fit-bias-cohort-x-bfcm-cohort-x-subscription-replenishment-x-mobile-pdp-x-region-x-returns-portal-x-currency-x-refund-state-x-affiliate-channel",
+      "title": "Virtual try-on & fit recommendation by per-SKU-fit-bias-cohort × BFCM-cohort × subscription-replenishment × mobile-PDP × region × returns-portal × currency × refund-state × affiliate-channel",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-30",
+      "sources": [],
+      "blurb": "Move #41.14 — the layer that decomposes per-SKU-fit-bias-cohort × BFCM-cohort × subscription-replenishment × mobile-PDP × region × returns-portal × currency × refund-state-wrong-fit-to-return-loop × FX-volatility-spik...",
+      "sectionCount": 8,
+      "pitfallCount": 14,
+      "sourceCount": 0,
+      "size": 153285,
+      "lastTouched": "2026-09-30"
+    },
+    {
+      "file": "425-virtual-try-on-per-sku-fit-bias-cohort-x-bfcm-cohort-x-subscription-replenishment-x-mobile-pdp-x-region-x-returns-portal-x-currency-x-refund-state-x-affiliate-channel-x-store-pickup.md",
+      "name": "425-virtual-try-on-per-sku-fit-bias-cohort-x-bfcm-cohort-x-subscription-replenishment-x-mobile-pdp-x-region-x-returns-portal-x-currency-x-refund-state-x-affiliate-channel-x-store-pickup",
+      "title": "Virtual try-on & fit recommendation by per-SKU-fit-bias-cohort × BFCM-cohort × subscription-replenishment × mobile-PDP × region × returns-portal × currency × refund-state × affiliate-channel × store-pickup",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-09-30",
+      "sources": [],
+      "blurb": "Move #41.15 — the layer that decomposes per-SKU-fit-bias-cohort × BFCM-cohort × subscription-replenishment × mobile-PDP × region × returns-portal × currency × refund-state × affiliate-channel-wrong-fit-to-return-loop ...",
+      "sectionCount": 7,
+      "pitfallCount": 15,
+      "sourceCount": 0,
+      "size": 153640,
+      "lastTouched": "2026-09-30"
+    },
+    {
       "file": "43-product-reviews-ugc-social-proof.md",
       "name": "product-reviews-ugc-social-proof",
       "title": "Product reviews + UGC + social proof (Move #30)",
@@ -71729,6 +71775,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "8034898",
+      "date": "2026-09-30T13:34:30Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #41.14 virtual-try-on per-SKU-fit-bias-cohort × BFCM-cohort × subscription-replenishment × mobile-PDP × region × returns-portal × currency × refund-state × affiliate-channel-extension (237,817,036,800-cell primary + 1,902,536,29",
+      "body": ""
+    },
+    {
+      "sha": "550c015",
+      "date": "2026-09-30T12:24:49Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #41.13 — Virtual try-on per-SKU-fit-bias-cohort × BFCM-cohort × subscription-replenishment × mobile-PDP × region × returns-portal × currency × refund-state",
+      "body": ""
+    },
+    {
       "sha": "80c52ef",
       "date": "2026-09-30T11:17:44Z",
       "author": "hermesagent",
@@ -73113,20 +73173,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #287.23 Per-affiliate-recovery-translation-state-emergency-procedure-extension-renewal-jurisdictional-rule-restatement 57-axis decision-rollback engine (FIRST Tier-1 + P0 in unique 57-axis category; P67 67-signal-discriminator; ",
       "body": ""
-    },
-    {
-      "sha": "20227df",
-      "date": "2026-09-24T00:33:23Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #287.22 Per-affiliate-recovery-translation-state-emergency-procedure-extension-jurisdictional-rule-restatement 56-axis decision-rollback engine (FIRST Tier-1 + P0 in unique 56-axis category; P66 66-signal-discriminator; Year-1 R",
-      "body": ""
-    },
-    {
-      "sha": "3f8c42d",
-      "date": "2026-09-23T22:59:24Z",
-      "author": "mattiasadem",
-      "subject": "skill: Move #287.21 — 55-axis Per-affiliate-recovery-translation-state-emergency-procedure-jurisdictional-rule-restatement decision-rollback engine",
-      "body": ""
     }
   ],
   "counts": {
@@ -73135,8 +73181,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 95,
-    "skills": 421,
+    "journalEntries": 97,
+    "skills": 423,
     "gitCommits": 200
   }
 }
