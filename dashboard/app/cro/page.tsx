@@ -84,6 +84,15 @@ export default function CroPage() {
         </CardHeader>
         <CardContent>
           <CheckoutAuditWithExport />
+          <div className="mt-3 flex flex-wrap items-center gap-2">
+            <a
+              href="/checkout-audit-launch-plan"
+              className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background px-3 py-1.5 text-xs font-medium hover:bg-muted transition-colors"
+            >
+              <span aria-hidden>📅</span>
+              <span>Open 30-day launch plan</span>
+            </a>
+          </div>
         </CardContent>
       </Card>
 

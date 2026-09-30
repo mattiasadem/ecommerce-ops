@@ -63,6 +63,8 @@ const NAV_GROUPS = [
       { href: "/sms-welcome-cart-launch-plan", label: "SMS-WC launch plan", icon: "▦" },
       { href: "/attribution-health-alert-launch-plan", label: "Attribution-Alert launch plan", icon: "▦" },
       { href: "/subscription-launch-plan", label: "Subscription launch plan", icon: "▦" },
+      { href: "/3pl-launch-plan", label: "3PL launch plan", icon: "▦" },
+      { href: "/checkout-audit-launch-plan", label: "Checkout Audit launch plan", icon: "▦" },
       { href: "/settings", label: "Settings", icon: "✱" },
     ],
   },
