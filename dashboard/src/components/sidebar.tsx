@@ -65,6 +65,7 @@ const NAV_GROUPS = [
       { href: "/subscription-launch-plan", label: "Subscription launch plan", icon: "▦" },
       { href: "/3pl-launch-plan", label: "3PL launch plan", icon: "▦" },
       { href: "/checkout-audit-launch-plan", label: "Checkout Audit launch plan", icon: "▦" },
+      { href: "/master-rollout-calendar", label: "Master Rollout Calendar", icon: "▦" },
       { href: "/settings", label: "Settings", icon: "✱" },
     ],
   },
