@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { CopyButton } from "@/components/copy-button";
+import { SubscriptionLaunchPlanButton } from "@/components/subscription-launch-plan-button";
 import {
   SUBSCRIPTION_DEFAULTS,
   SubscriptionCategory,
@@ -473,6 +474,7 @@ export function SubscriptionPathCalculator() {
 
       <div className="flex flex-wrap items-center gap-2 border-t border-border pt-3">
         <CopyButton value={report} label="Copy recommendation" />
+        <SubscriptionLaunchPlanButton />
         <button
           type="button"
           onClick={downloadJson}
