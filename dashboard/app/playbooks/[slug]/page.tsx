@@ -28,6 +28,9 @@ import { AffiliatePathCalculator } from "@/components/affiliate-path-calculator"
 import { B2BWholesalePathCalculator } from "@/components/b2b-wholesale-path-calculator";
 import { CreatorEconomyPathCalculator } from "@/components/creator-economy-path-calculator";
 import { PinterestSeoPathCalculator } from "@/components/pinterest-seo-path-calculator";
+import { ThreeplPathCalculator } from "@/components/threepl-path-calculator";
+import { TikTokShopPathCalculator } from "@/components/tiktok-shop-path-calculator";
+import { MobilePdpAudit } from "@/components/mobile-pdp-audit";
 
 const ROOT = "/data/workspace/ecommerce-ops";
 const BUILD_PLAYBOOKS = join(process.cwd(), "src/playbooks");
@@ -118,6 +121,18 @@ const CALCULATORS: Record<string, { node: React.ReactNode; label: string }> = {
   "20-pinterest-seo-launch": {
     node: <PinterestSeoPathCalculator />,
     label: "Pick your category + AOV + monthly traffic + conversion rate + UGC cadence \u2192 see the canonical Move #20 Path A / B / C Pinterest-SEO recommendation with Year-1 cost stack, attributed revenue, ROI, and the 6-step build sequence.",
+  },
+  "09-mobile-pdp-redesign": {
+    node: <MobilePdpAudit />,
+    label: "Score your mobile PDP against the Move #9 audit checklist (load speed + checkout + gallery + reviews + trust signals), get a prioritized fix list, and forecast incremental revenue from each fix tier.",
+  },
+  "14-3pl-migration": {
+    node: <ThreeplPathCalculator />,
+    label: "Pick your US DTC GMV + AOV + SKU count + category \u2192 see the canonical Move #14 Path A / B / C 3PL migration with ship-cost savings %, ship-time improvement, Year-1 net, and the 6-step build sequence.",
+  },
+  "18-tiktok-shop-live-launch": {
+    node: <TikTokShopPathCalculator />,
+    label: "Pick your US DTC GMV + SKU count + gross margin + creator-affiliate-pool + voice profile + LIVE capacity \u2192 see the canonical Move #18 Path A / B / C TikTok-Shop launch with attributed revenue, Year-1 ROI, and the 6-step build sequence.",
   },
 };
 
