@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-01T14:18:49.669Z",
+  "generatedAt": "2026-10-01T15:29:33.894Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-10-01 14:25 UTC] Skill tick: keep — Move #6.10 Attribution health alert webhook + on-call rotation",
+      "body": "- **Branch:** autoresearch/skills-2026-10-01\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — Move #6.10 is the canonical missing follow-up to the Move #6 attribution substrate: every shipped Move #6.x (Triple Whale + #6.5 Meta/Google/GA4 audit + #6.6 TikTok audit + #6.7 Snap/Pinterest audit + #6.8 cross-platform rollup + #6.9 dashboard) produces daily JSON to `scripts/results/` but **nothing closes the loop** — the operator runs the weekly cadence but the actual breakage hides between audits. Move #6.10 wires the alerting layer (Slack + Linear + PagerDuty/Twilio on-call) that fires within 30 minutes of a Meta CAPI match drop below 90% / TikTok EAPI dedup-ratio breach / Klaviyo↔TW cohort-roundtrip fall under 95% / cross-platform drift detection / Triple Whale webhoo"
+    },
     {
       "heading": "[2026-10-01 13:05 UTC] Skill tick: keep — Move #41.30 Virtual try-on per-SKU-fit-bias-cohort × BFCM-cohort × subscription-replenishment × mobile-PDP × region × returns-portal × currency × refund-state × affiliate-channel × store-pickup × influencer-tier × FTC-disclosure-tier × store-state × creator-cohort-cross-creator-economy-cohort-overlay",
       "body": "- **Branch:** autoresearch/skills-2026-10-01\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #41.29 (shipped 2026-10-01 11:00 UTC as skill/439) `## How to extend` first follow-up recommendation (\"Move #41.30 — creator-cohort-cross-creator-economy-cohort-overlay ... 8 creator-cohort × 6 creator-economy-cohort = 48 combinations × 7 sub-segments × Move #41.29's 1,930,515,705,997,130,803,200-cell × 8 = **7,722,062,823,988,523,212,800-cell primary cross-validation matrix**; first Tier-1 + first P0 in `category: virtual-try-on-per-sku-fit-bias-cohort-x-bfcm-cohort-x-subscription-replenishment-x-mobile-pdp-x-region-x-returns-portal-x-currency-x-refund-state-x-affiliate-channel-x-store-pickup-x-influencer-tier-x-ftc-disclosure-tier-x-store-state-x-"
@@ -53915,6 +53919,52 @@
       "lastTouched": "2026-10-01"
     },
     {
+      "file": "442-real-time-triple-whale-webhook-stream-subscription.md",
+      "name": "real-time-triple-whale-webhook-stream-subscription",
+      "title": "Real-time Triple Whale webhook stream subscription + sub-minute alert latency (Move #6.11)",
+      "category": "real-time-attribution-streaming",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "6.11",
+      "yearOneRoiBand": "16:1–44:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-10-01",
+      "sources": [
+        "triple-whale-webhooks-2024",
+        "polar-analytics-streaming-api-2024",
+        "northbeam-realtime-2024",
+        "meta-capi-real-time-2024",
+        "tiktok-events-api-real-time-2024",
+        "snap-pixel-webhook-2024",
+        "pinterest-conversions-api-real-time-2024",
+        "klaviyo-event-webhooks-2024",
+        "segment-cdp-real-time-2024",
+        "rudderstack-real-time-streaming-2024",
+        "kafka-2024",
+        "confluent-cloud-2024",
+        "aws-eventbridge-2024",
+        "slack-block-kit-webhooks-2024",
+        "pagerduty-events-api-2024",
+        "opsgenie-webhooks-2024",
+        "datadog-log-management-2024",
+        "hightouch-real-time-sync-2024",
+        "census-realtime-sync-2024",
+        "attio-webhooks-2024",
+        "webhook-relay-svix-2024",
+        "ngrok-2024",
+        "cloudflare-tunnels-2024",
+        "ngrok-webhook-edge-2024",
+        "idempotency-keys-2024",
+        "dead-letter-queue-sqs-2024"
+      ],
+      "blurb": "Move #6.10 closes the loop on attribution breaches via a **30-min cron cadence** — alerts fire every 30 minutes during business hours, 60 minutes overnight. That is the floor for \"acceptable lag\" but it is NOT real-ti...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 26,
+      "size": 22959,
+      "lastTouched": "2026-10-01"
+    },
+    {
       "file": "45-warehouse-management-fulfillment-orchestration.md",
       "name": "warehouse-management-fulfillment-orchestration",
       "title": "Warehouse management + multi-node fulfillment orchestration + shipping carrier rate shopping (Move #21.5)",
@@ -73876,6 +73926,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "f9b7e15",
+      "date": "2026-10-01T14:24:03Z",
+      "author": "hermesagent",
+      "subject": "docs: journal entry for skill/441 Move #6.10 keep tick",
+      "body": ""
+    },
+    {
+      "sha": "57260f3",
+      "date": "2026-10-01T14:23:23Z",
+      "author": "hermesagent",
+      "subject": "skill: 441 Move #6.10 attribution-health-alert-webhook + on-call rotation (12:1–38:1 ROI)",
+      "body": ""
+    },
+    {
       "sha": "dbc80b7",
       "date": "2026-10-01T13:14:35Z",
       "author": "hermesagent",
@@ -75260,20 +75324,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #3.2 Checkout audit by checkout-step (per-checkout-step funnel + per-checkout-step completion-rate + per-checkout-step leak-rate + per-checkout-step cause-diagnosis + per-checkout-step fix-recommendation + per-checkout-step attr",
       "body": ""
-    },
-    {
-      "sha": "abf8b91",
-      "date": "2026-09-25T00:53:59Z",
-      "author": "hermesagent",
-      "subject": "feat(dashboard): SMS Welcome + Cart-Abandon 4-flow ROI calculator on /playbooks/06",
-      "body": ""
-    },
-    {
-      "sha": "eb20f4d",
-      "date": "2026-09-25T00:30:43Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #3.1 Checkout audit by payment method (5-layer Path A/B/C/D + per-payment-method-funnel-instrumentation-engine + per-PSP-decline-code-mapping + per-cohort-payment-method-affinity + 30-fix-recommendations + per-payment-method-att",
-      "body": ""
     }
   ],
   "counts": {
@@ -75282,8 +75332,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 116,
-    "skills": 439,
+    "journalEntries": 117,
+    "skills": 440,
     "gitCommits": 200
   }
 }
