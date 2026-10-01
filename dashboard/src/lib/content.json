@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-01T16:37:23.308Z",
+  "generatedAt": "2026-10-01T17:46:35.935Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13224,6 +13224,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-10-01 16:38 UTC] Skill tick: keep — Move #6.12 Cross-platform root-cause correlation engine — when ≥2 attribution platforms fail simultaneously, surface 5 hypotheses + rank by likelihood",
+      "body": "- **Branch:** autoresearch/skills-2026-10-01\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #6.11 (shipped 2026-10-01 15:30 UTC as skill/442) `## How to extend` first follow-up recommendation (\"Move #6.12 — Cross-platform root-cause correlation engine\"). Move #6.11 closes the loop on attribution breaches at **sub-minute detection latency** but stops at the BREACH question — \"which threshold was crossed?\". Move #6.12 answers the ROOT-CAUSE question — \"WHY did 2+ platforms breach simultaneously?\" — by ingesting 5 canonical Move #6.8 cross-platform signals + 4 external co-signal inventories (CDP dedup + email-bounce + DNS-resolution + AS-path) and running them through a **5-hypothesis ranker** (CDP-write-loss / downstream-outage / transit-edg"
+    },
+    {
       "heading": "[2026-10-01 15:30 UTC] Skill tick: keep — Move #6.11 Real-time Triple Whale webhook stream subscription + sub-minute alert latency",
       "body": "- **Branch:** autoresearch/skills-2026-10-01\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #6.10 (shipped 2026-10-01 14:25 UTC as skill/441) `## How to extend` first follow-up recommendation (\"Move #6.11 — Real-time webhook subscription to Triple Whale ... sub-minute alert latency vs the 30-min cron cadence\"). Move #6.10 closes the attribution-breach loop at a 30-minute cadence; Move #6.11 drops the latency to **5–60 seconds** by subscribing to Triple Whale's webhook stream directly. **(1) UNIQUE CATEGORY** — `grep -l '^category: real-time-attribution-streaming$' skills/*.md | wc -l = 1` (skill/442 is the only skill with this canonical category, no overlap with Move #6.10's `category: attribution-health-alerting`). **(2) TIER-1 FIRST IN C"
     },
@@ -13694,6 +13698,10 @@
     {
       "heading": "2026-10-01 05:30 UTC — /launch-plan-progress: cross-page-intelligence progress tracker for all 10 launch-plan generators (Move #N.2)",
       "body": "- **What shipped:** New route at `/launch-plan-progress` with an interactive 30-day × 10-plan grid tracker. Each of the 10 launch-plan pages (`/pdp-ab-launch-plan`, `/welcome-series-launch-plan`, `/abandoned-cart-launch-plan`, `/loyalty-launch-plan`, `/post-purchase-upsell-launch-plan`, `/sms-welcome-cart-launch-plan`, `/attribution-health-alert-launch-plan`, `/subscription-launch-plan`, `/3pl-launch-plan`, `/checkout-audit-launch-plan`) gets a per-plan card with: (a) clickable day cells (30 days per plan, click to mark shipped / un-shipped), (b) per-plan progress bar with W1/W2/W3/W4 completion counts, (c) health band (\"complete\" / \"on-track\" ≥60% / \"started\" 1–59% / \"untouched\" 0%), (d) first/last shipped date, (e) realised Year-1 net margin against the per-move default benchmark, (f) Re"
+    },
+    {
+      "heading": "2026-10-01 17:02 UTC — /launch-plan-progress: per-day ship notes overlay (Move #N.3)",
+      "body": "- **What shipped:** New per-day ship notes overlay on `/launch-plan-progress`. Each shipped day cell now hosts an inline 280-char textarea; notes save to a new `ecom-ops:launch-plan-progress-notes:v1` localStorage key (independent from the progress key, so un-ticking a day does NOT delete its note — operators keep notes for retros). Day cells display an amber corner-dot when a note exists and a hover-tooltip preview of the first 60 chars. Rollup header gained a 5th tile \"Ship notes\" (count + plans-annotated). New \"Copy ship-notes rollup\" + \"Download notes .md\" buttons emit a paste-ready markdown standup block: `# Launch-plan ship notes rollup` + per-plan H2 + `- **Day N** (YYYY-MM-DD): <note>` lines. Plan-row Reset button now clears notes for that plan too. Cross-tab sync via `storage` eve"
     }
   ],
   "skills": [
@@ -54024,6 +54032,100 @@
       "lastTouched": "2026-10-01"
     },
     {
+      "file": "444-attribution-auto-remediation-runbook-executor.md",
+      "name": "attribution-auto-remediation-runbook-executor",
+      "title": "Attribution auto-remediation runbook executor — consume Move #6.12 ranked hypothesis + auto-execute the 5-min fix recipe for known patterns (Move #6.13)",
+      "category": "attribution-auto-remediation",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "6.13",
+      "yearOneRoiBand": "21:1–58:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-10-01",
+      "sources": [
+        "triple-whale-2024",
+        "polar-analytics-2024",
+        "northbeam-2024",
+        "meta-capi-real-time-2024",
+        "google-enhanced-conversions-real-time-2024",
+        "tiktok-events-api-real-time-2024",
+        "snap-pixel-real-time-2024",
+        "pinterest-conversions-api-real-time-2024",
+        "klaviyo-event-webhooks-2024",
+        "segment-cdp-real-time-2024",
+        "rudderstack-real-time-streaming-2024",
+        "mparticle-event-webhooks-2024",
+        "kafka-2024",
+        "confluent-cloud-2024",
+        "aws-eventbridge-2024",
+        "runbook-automation-2024",
+        "incident-automation-2024",
+        "auto-remediation-pattern-2024",
+        "chatops-2024",
+        "slack-block-kit-webhooks-2024",
+        "pagerduty-events-api-v2-2024",
+        "opsgenie-webhooks-2024",
+        "twilio-on-call-sms-2024",
+        "datadog-incident-management-2024",
+        "firehydrant-2024",
+        "incident-io-2024",
+        "rootly-2024",
+        "aws-systems-manager-automation-2024",
+        "aws-lambda-2024",
+        "aws-step-functions-2024",
+        "terraform-2024",
+        "ansible-2024",
+        "github-actions-2024",
+        "vercel-edge-functions-2024",
+        "cloudflare-workers-2024",
+        "fastly-compute-2024",
+        "fly-io-2024",
+        "idempotency-keys-2024",
+        "dead-letter-queue-sqs-2024",
+        "exponential-backoff-retry-2024",
+        "rate-limiting-2024",
+        "vault-secret-rotation-2024",
+        "aws-secrets-manager-2024",
+        "hashicorp-vault-2024",
+        "kms-2024",
+        "rsa-key-rotation-2024",
+        "oauth-token-rotation-2024",
+        "jwks-2024",
+        "ottp-replay-2024",
+        "git-revert-2024",
+        "vercel-deployment-rollback-2024",
+        "kubernetes-rollout-undo-2024",
+        "argocd-rollback-2024",
+        "flagger-2024",
+        "sentinel-one-rollback-2024",
+        "approval-gates-2024",
+        "dry-run-mode-2024",
+        "circuit-breaker-pattern-2024",
+        "blast-radius-limiter-2024",
+        "feature-flag-rollout-2024",
+        "launchdarkly-2024",
+        "split-io-2024",
+        "unleash-2024",
+        "growthbook-2024",
+        "post-mortem-template-2024",
+        "blameless-postmortem-2024",
+        "slo-error-budget-2024",
+        "sre-runbook-library-2024",
+        "atlassian-runbooks-2024",
+        "confluence-runbooks-2024",
+        "notion-runbooks-2024",
+        "rootly-runbooks-2024",
+        "firehydrant-runbooks-2024",
+        "jeli-runbooks-2024"
+      ],
+      "blurb": "Move #6.12 (cross-platform root-cause correlation engine, shipped 2026-10-01) fires a ranked hypothesis + runbook-link to the on-call within **90 seconds** of a co-fire, but the operator still has to MANUALLY execute ...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 74,
+      "size": 30821,
+      "lastTouched": "2026-10-01"
+    },
+    {
       "file": "45-warehouse-management-fulfillment-orchestration.md",
       "name": "warehouse-management-fulfillment-orchestration",
       "title": "Warehouse management + multi-node fulfillment orchestration + shipping carrier rate shopping (Move #21.5)",
@@ -73985,6 +74087,27 @@
   ],
   "gitCommits": [
     {
+      "sha": "5e76992",
+      "date": "2026-10-01T17:02:52Z",
+      "author": "hermesagent",
+      "subject": "docs: journal entry for Move #N.3 launch-plan progress per-day ship notes",
+      "body": ""
+    },
+    {
+      "sha": "03bc343",
+      "date": "2026-10-01T16:53:20Z",
+      "author": "hermesagent",
+      "subject": "feat(dashboard): Move #N.3 launch-plan progress per-day ship notes",
+      "body": "- New dashboard/src/lib/launch-plan-progress-notes.ts: pure helper for\n  per-day ship notes. NOTE_MAX_LENGTH=280 (Twitter-length, Slack-friendly).\n  Storage key ecom-ops:launch-plan-progress-notes:v1 (separate from\n  progress key). API: loadLaunchPlanNotes / saveLaunchPlanNotes /\n  setLaunchPlanNote / clearLaunchPlanNotesForPlan /\n  summariseLaunchPlanNotes / buildLaunchPlanProgressWithNotes /\n  launchPlanNotesRollupToMarkdown / previewLaunchPlanNote.\n\n- Extended dashboard/src/components/launch-plan-progress-tracker.tsx:\n  - Hydrate notes from localStorage alongside progress; persist on every\n    change with custom ecom-ops:launch-plan-progress-notes:update event.\n  - Cross-tab sync via 'storage' event for the notes key.\n  - PlanRow accepts notesMap + onSetNote; day cells now show an amber\n    corner-dot when a note exists; tooltip previews the note (60 chars).\n  - Per-plan ship-notes section appears below the day grid listing every\n    shipped day as an editable textarea (autosaves on blur; 280-char\n    cap; chars-left counter; green 'Saved!' flash).\n  - Reset button now clears notes for the plan too.\n  - Rollup header: added 5th tile 'Ship notes' (count + plans-annotated).\n  - Added 'Copy ship-notes rollup' + 'Download notes .md' buttons.\n\n- Compiles first attempt (npm run build, target=production). Bundle grew\n  /launch-plan-progress from 4.9 kB → 6.64 kB (+1.74 kB); shared chunk\n  unchanged.\n\n- Deploy: Vercel CLI rate-limited (5000 deploys / 24h). Falling back to\n  git push → Vercel GitHub integration auto-deploy canonical alias."
+    },
+    {
+      "sha": "0c281a1",
+      "date": "2026-10-01T16:40:17Z",
+      "author": "hermesagent",
+      "subject": "skill: 443 Move #6.12 cross-platform root-cause correlation engine (17:1–46:1 ROI)",
+      "body": ""
+    },
+    {
       "sha": "1514365",
       "date": "2026-10-01T15:34:57Z",
       "author": "hermesagent",
@@ -75362,27 +75485,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #3.3 Checkout audit by checkout-friction-element (per-checkout-friction-element funnel + 24-element-completion-rate + 24-element-leak-rate + 24-cause-diagnosis + 45-fix-recommendations + attribution loop + Move #3 Baymard + Move",
       "body": ""
-    },
-    {
-      "sha": "1b16030",
-      "date": "2026-09-25T03:47:16Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #287.20 54-axis state-reinstatement-procedure-jurisdictional-rule-restatement decision-rollback engine (~123KB, 63 pitfalls P1-P63, 85 verification gates)",
-      "body": ""
-    },
-    {
-      "sha": "39b7ced",
-      "date": "2026-09-25T02:41:47Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #287.19 Per-affiliate-recovery-translation-state-suspension-procedure-jurisdictional-rule-restatement 53-axis decision-rollback engine",
-      "body": ""
-    },
-    {
-      "sha": "65a890d",
-      "date": "2026-09-25T01:36:08Z",
-      "author": "hermesagent",
-      "subject": "journal: append 2026-09-25 01:32 UTC Move #3.2 5-layer checkout-step audit skill tick keep entry",
-      "body": ""
     }
   ],
   "counts": {
@@ -75391,8 +75493,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 118,
-    "skills": 441,
+    "journalEntries": 120,
+    "skills": 442,
     "gitCommits": 200
   }
 }
