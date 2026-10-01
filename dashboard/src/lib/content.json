@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-01T20:13:34.582Z",
+  "generatedAt": "2026-10-01T21:30:31.118Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-10-01 19:05 UTC] Skill tick: keep — Move #6.15 Attribution accuracy tracker + auto-tuning — close the Move #6 feedback loop, auto-tune Move #6.12 ranker weights + Move #6.13 blast-radius scores + Move #6.14 per-recipe-affected-platform-set",
+      "body": "- **Branch:** autoresearch/skills-2026-10-01\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #6.14 (shipped 2026-10-01 18:56 UTC as skill/445) `## How to extend` first follow-up recommendation (\\\"Move #6.15 — Hypothesis accuracy tracker + auto-tuning\\\"). Move #6.12 (cross-platform root-cause correlation engine, skill/443) fires a ranked hypothesis within 90s of a co-fire, but its ranker weights are STATIC. Move #6.13 (attribution auto-remediation runbook executor, skill/444) auto-executes the 5-min fix recipe, but its blast-radius scores are STATIC. Move #6.14 (per-event revenue-impact attribution, skill/445) computes the dollar-value of every Move #6.13 execution, but its per-recipe-affected-platform-set is STATIC. **All three layers are b"
+    },
     {
       "heading": "[2026-10-01 18:56 UTC] Skill tick: keep — Move #6.14 Per-event revenue-impact attribution — on every Move #6.13 fix-recipe execution, compute the dollar-value of the breach that was auto-fixed",
       "body": "- **Branch:** autoresearch/skills-2026-10-01\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #6.13 (shipped 2026-10-01 17:42 UTC as skill/444) `## How to extend` first follow-up recommendation (\\\"Move #6.14 — Per-event revenue-impact attribution\\\"). Move #6.13 auto-executes the 5-min fix recipe for the 5 known attribution-breach patterns within **90 seconds** of Move #6.12's ranked hypothesis, dropping median time-to-recovery from ~45 min to ~5 min. **But Move #6.13 alone doesn't tell the operator what the breach COST.** Move #6.14 closes the financial-loop: on every Move #6.13 fix-recipe execution, it (1) **reconstructs the breach window** (Move #6.12 detection-timestamp → Move #6.13 execution-timestamp, typically 1–14 min), (2) **computes"
@@ -54402,6 +54406,95 @@
       "lastTouched": "2026-10-01"
     },
     {
+      "file": "447-cross-channel-auto-remediation-cascade.md",
+      "name": "cross-channel-auto-remediation-cascade",
+      "title": "Cross-channel auto-remediation cascade — when R1+H1 fires (CDP-key-rotation), auto-fire R4 for SPECIFIC ad-platforms that depend on the failing CDP-write (Move #6.16)",
+      "category": "cross-channel-auto-remediation-cascade",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "6.16",
+      "yearOneRoiBand": "14:1–42:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-10-01",
+      "sources": [
+        "triple-whale-2024",
+        "polar-analytics-2024",
+        "northbeam-2024",
+        "lifitimely-2024",
+        "peel-2024",
+        "shopify-analytics-2024",
+        "shopify-flow-2024",
+        "klaviyo-cohort-ltv-2024",
+        "postscript-revenue-2024",
+        "ga4-monetization-2024",
+        "meta-capi-purchase-2024",
+        "google-ads-enhanced-conversions-2024",
+        "tiktok-events-api-purchase-2024",
+        "snap-pixel-purchase-2024",
+        "pinterest-capi-purchase-2024",
+        "segment-cdp-real-time-2024",
+        "rudderstack-real-time-streaming-2024",
+        "mparticle-event-webhooks-2024",
+        "kafka-2024",
+        "confluent-cloud-2024",
+        "aws-eventbridge-2024",
+        "aws-kinesis-data-streams-2024",
+        "clickhouse-2024",
+        "postgres-2024",
+        "timescale-2024",
+        "duckdb-2024",
+        "snowflake-revenue-2024",
+        "bigquery-revenue-2024",
+        "hashicorp-vault-2024",
+        "aws-secrets-manager-2024",
+        "doppler-2024",
+        "slack-block-kit-webhooks-2024",
+        "pagerduty-events-api-v2-2024",
+        "opsgenie-webhooks-2024",
+        "runbook-automation-2024",
+        "incident-automation-2024",
+        "auto-remediation-pattern-2024",
+        "chatops-2024",
+        "aws-systems-manager-automation-2024",
+        "aws-lambda-2024",
+        "aws-step-functions-2024",
+        "terraform-2024",
+        "ansible-2024",
+        "github-actions-2024",
+        "vercel-edge-functions-2024",
+        "cloudflare-workers-2024",
+        "idempotency-keys-2024",
+        "dead-letter-queue-sqs-2024",
+        "exponential-backoff-retry-2024",
+        "rate-limiting-2024",
+        "vault-secret-rotation-2024",
+        "oauth-token-rotation-2024",
+        "jwks-2024",
+        "launchdarkly-2024",
+        "split-io-2024",
+        "unleash-2024",
+        "growthbook-2024",
+        "post-mortem-template-2024",
+        "blameless-postmortem-2024",
+        "slo-error-budget-2024",
+        "sre-runbook-library-2024",
+        "rootly-2024",
+        "firehydrant-2024",
+        "incident-io-2024",
+        "jeli-2024",
+        "datadog-incident-management-2024",
+        "okta-token-rotation-2024",
+        "auth0-rotation-2024",
+        "workos-rotation-2024"
+      ],
+      "blurb": "Move #6.13 (attribution auto-remediation runbook executor, shipped 2026-10-01 17:42 UTC as skill/444) auto-executes ONE recipe at a time — when Move #6.12 ranks H1 (CDP-write-loss), Move #6.13 fires R1 (rotate CDP API...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 69,
+      "size": 37600,
+      "lastTouched": "2026-10-01"
+    },
+    {
       "file": "45-warehouse-management-fulfillment-orchestration.md",
       "name": "warehouse-management-fulfillment-orchestration",
       "title": "Warehouse management + multi-node fulfillment orchestration + shipping carrier rate shopping (Move #21.5)",
@@ -74363,6 +74456,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "5861855",
+      "date": "2026-10-01T20:17:22Z",
+      "author": "hermesagent",
+      "subject": "skill: 446 Move #6.15 attribution accuracy tracker + auto-tuning (11:1–32:1 ROI)",
+      "body": ""
+    },
+    {
       "sha": "79d5b1b",
       "date": "2026-10-01T19:05:22Z",
       "author": "hermesagent",
@@ -75754,13 +75854,6 @@
       "author": "hermesagent",
       "subject": "journal: append 2026-09-25 05:53 UTC Move #3.4 5-layer per-device-cohort checkout-audit skill tick keep entry",
       "body": ""
-    },
-    {
-      "sha": "99a0a89",
-      "date": "2026-09-25T05:56:15Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #3.4 Checkout audit by device-cohort (per-device-cohort funnel + 15-device-cohort completion-rate + 15-device-cohort leak-rate + 15-cause-diagnosis + 45-fix-recommendations + 360-cell Move #3.3 cross-validation + Move #3 + Move ",
-      "body": ""
     }
   ],
   "counts": {
@@ -75769,8 +75862,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 122,
-    "skills": 444,
+    "journalEntries": 123,
+    "skills": 445,
     "gitCommits": 200
   }
 }
