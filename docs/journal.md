@@ -16,6 +16,7 @@
 
 - **Committed:** pending
 - **Next action:** Natural follow-up per Move #41.27's "How to extend" roadmap: **Move #41.28 — creator-disclosure-network-cross-creator-content-format-extension** (the layer that decomposes the 24 creator-content-format × 8 creator-disclosure-network = 192 combinations × 7 sub-segments × Move #41.25's 482,628,926,499,282,700,800-cell cross-validation matrix = 1,931,153,891,971,036,800,000-cell primary cross-validation matrix; first Tier-1 + first P0 in `category: virtual-try-on-per-sku-fit-bias-cohort-x-bfcm-cohort-x-subscription-replenishment-x-mobile-pdp-x-region-x-returns-portal-x-currency-x-refund-state-x-affiliate-channel-x-store-pickup-x-influencer-tier-x-ftc-disclosure-tier-x-store-state-x-creator-disclosure-network-cross-creator-content-format`; default Year-1 ROI Path B 42:1-82:1; rebuildable next tick and will pass the same first-gate improvement metric).
+- **Committed:** 8f70372 (merged to master; push to origin failed due to stale GitHub PAT — local-only merge per `scripts/skill-branch.sh keep`; deploy unaffected)
 
 ## [2026-10-01 06:00 UTC] Skill tick: keep — Move #41.26 Virtual try-on per-SKU-fit-bias-cohort × BFCM-cohort × subscription-replenishment × mobile-PDP × region × returns-portal × currency × refund-state × affiliate-channel × store-pickup × influencer-tier × FTC-disclosure-tier × store-state × creator-engagement-rate-cross-creator-content-format-cohort
 
