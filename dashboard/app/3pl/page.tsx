@@ -8,6 +8,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { ResearchTable } from "@/components/research-table";
 import { ThreeplPathCalculator } from "@/components/threepl-path-calculator";
+import { ThreeplLaunchPlanButton } from "@/components/threepl-launch-plan-button";
 import { content, findDoc, findTable } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -356,8 +357,29 @@ export default function ThreeplPage() {
         </Card>
       </div>
 
-      {/* === INTERACTIVE CALCULATOR (Move #12 browser port) === */}
-      <ThreeplPathCalculator />
+      {/* === INTERACTIVE CALCULATOR + 30-day launch plan CTA (Move #14 browser port) === */}
+      <Card>
+        <CardHeader className="pb-3">
+          <div className="flex items-center justify-between gap-2">
+            <div>
+              <CardTitle className="text-base">3PL Path calculator</CardTitle>
+              <CardDescription className="text-xs">
+                Browser port of <code>scripts/threepl_unit_economics.py</code>.
+                Tweak the inputs below, then click{" "}
+                <strong className="font-semibold text-foreground">
+                  Generate 30-day launch plan
+                </strong>{" "}
+                to emit the canonical Move #14 4-week day-by-day markdown
+                checklist. State persists in <code>localStorage</code>.
+              </CardDescription>
+            </div>
+            <ThreeplLaunchPlanButton />
+          </div>
+        </CardHeader>
+        <CardContent>
+          <ThreeplPathCalculator />
+        </CardContent>
+      </Card>
 
       {/* === FOOTER === */}
       <Card>
