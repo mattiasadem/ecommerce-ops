@@ -83,3 +83,5 @@ ls /data/workspace/cron-reports/ | tail
 ## 2026-09-25 00:53 UTC — SMS Welcome + Cart-Abandon 4-flow ROI calculator on /playbooks/06-sms-welcome-and-cart-abandon (P0 interactive-tool + state-persistence + cross-page-intelligence). Live at https://ecommerce-ops-iota.vercel.app/playbooks/06-sms-welcome-and-cart-abandon.
 
 ## 2026-09-26 13:25 UTC — /pdp-ab-launch-plan generator (Move #9.5). One-click-action + state-persistence + cross-page-intelligence. Live at https://ecommerce-ops-iota.vercel.app/pdp-ab-launch-plan. Commit 24af78e.
+
+## 2026-10-02 02:30 UTC — /launch-plan-progress: per-day ship notes full-text search (Move #N.4). Cross-page-intelligence + state-persistence + one-click-action. Live at https://ecommerce-ops-iota.vercel.app/launch-plan-progress — scroll to "Search ship notes" panel below the tracker. Type "blocked" / "Klaviyo" (or click a chip) to see ranked, highlighted matches across all 10 launch-plan notes.

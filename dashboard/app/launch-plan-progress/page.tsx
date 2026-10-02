@@ -1,4 +1,5 @@
 import { LaunchPlanProgressTracker } from "@/components/launch-plan-progress-tracker";
+import { ShipNotesSearch } from "@/components/ship-notes-search";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -76,6 +77,26 @@ export default function LaunchPlanProgressPage() {
           Tracker
         </h2>
         <LaunchPlanProgressTracker />
+      </section>
+
+      <Separator />
+
+      <section className="flex flex-col gap-3">
+        <h2 className="text-lg font-semibold tracking-tight">
+          Search ship notes
+        </h2>
+        <p className="text-sm text-muted-foreground max-w-3xl">
+          Free-text search across every note attached to a ticked day on
+          all 10 launch-plan pages. Use this to find every{" "}
+          <code className="rounded bg-muted px-1 text-foreground">
+            blocked
+          </code>{" "}
+          mention, every <code>Klaviyo</code> reference, every note where
+          a specific teammate is <code>@-mentioned</code>. Multi-term
+          queries are AND-joined; quoted phrases match literally. Reads
+          the same two localStorage keys as the tracker above.
+        </p>
+        <ShipNotesSearch />
       </section>
 
       <Separator />
