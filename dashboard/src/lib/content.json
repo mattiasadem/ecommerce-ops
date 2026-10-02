@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-02T11:58:35.398Z",
+  "generatedAt": "2026-10-02T13:16:19.440Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-10-02 12:02 UTC] Skill tick: keep — Move #6.24 Per-Move-#6.21-recommended-action-attribution-correctness tracker — on every Move #6.21 recommended-action emitted to Move #6.20, track whether the operator actually applied the fix within the Move #6.21 SLA window AND whether the post-fix correctness-score improved by ≥0.15 (the canonical success-threshold), then emit a `discount_code_attribution_fix_outcome_accuracy` to Move #6.15's accuracy-ledger with `accuracy_layer=\"move_6_24_recommended_action_outcome_accuracy\"` tag + a per-recommended-action `outcome_label` ∈ {`applied_with_lift`, `applied_no_lift`, `not_applied_within_sla`, `rolled_back_after_apply`, `reassigned_to_new_owner`} (Move #6.24)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-02\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #6.23 (shipped 2026-10-02 10:36 UTC as skill/454) `## How to extend` first follow-up recommendation (\"Move #6.24 — Per-Move-#6.21-recommended-action-attribution-correctness tracker ... the layer that, on every Move #6.21 recommended-action emitted to Move #6.20, tracks whether the operator actually applied the fix within 28 days AND whether the post-fix correctness-score improved by ≥0.15 (the success threshold); emits a `discount_code_attribution_fix_outcome_accuracy` to Move #6.15's accuracy-ledger with `accuracy_layer=\"move_6_24_recommended_action_outcome_accuracy\"` tag; consumes Move #6.23's cluster-level priority-boost to weight the per-recomme"
+    },
     {
       "heading": "[2026-10-02 10:36 UTC] Skill tick: keep — Move #6.23 Cross-incident postmortem-cluster detector — on every Move #6.20 per-cascade per-cohort incident-postmortem, cluster similar post-mortems (3+ post-mortems in a 7-day window sharing `influencer_category` + `platform` + `recipe_id` + `discount_code_attribution_leakage_case`), emit a `cross_incident_postmortem_cluster_alert` to Slack with the combined `breach_cost` + a Move #6.16 cascade-eligibility-ladder re-tuning hint + a Move #6.21 recommended-action priority boost for the cluster root-cause",
       "body": "- **Branch:** autoresearch/skills-2026-10-02\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #6.22 (shipped 2026-10-02 09:30 UTC as skill/453) `## How to extend` first follow-up recommendation (\"Move #6.23 — Cross-incident postmortem-cluster detector ... the layer that, on every Move #6.20 per-cohort+per-influencer+per-cascade post-mortem, clusters similar post-mortems (e.g. 3+ post-mortems in the same 7-day window involving the same `influencer_category=mid_tier` + same `platform=Google` + same `recipe_id=R1` + same `discount_code_attribution_leakage_case=pass4_fbclid_override`) and emits a `cross_incident_postmortem_cluster_alert` to Slack with the cluster's combined-`breach_cost`. Year-1 ROI band 7:1–18:1. Ship AFTER Move #6.20 + Move #6"
@@ -55986,6 +55990,87 @@
       "lastTouched": "2026-10-02"
     },
     {
+      "file": "456-on-site-behavior-analytics-session-replay-heatmap-engine.md",
+      "name": "on-site-behavior-analytics-session-replay-heatmap-engine",
+      "title": "On-site behavior analytics + session replay + heatmap + funnel-engine (Move #10.5, Hotjar + Microsoft Clarity + FullStory + LogRocket + PostHog + June.so + Mixpanel + Amplitude + Heap + Datadog RUM + Lucky Orange + Smartlook + Crazy Egg + Mouseflow + Inspectput + the one Move every QA ≥ 25k sessions/wk needs)",
+      "category": "on-site-behavior-analytics",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "10.5",
+      "yearOneRoiBand": "8:1–26:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-10-02",
+      "sources": [
+        "hotjar 2024",
+        "microsoft-clarity 2024",
+        "fullstory 2024",
+        "logrocket 2024",
+        "posthog 2024",
+        "june 2024",
+        "mixpanel 2024",
+        "amplitude 2024",
+        "heap 2024",
+        "datadog-rum 2024",
+        "lucky-orange 2024",
+        "smartlook 2024",
+        "crazy-egg 2024",
+        "mouseflow 2024",
+        "inspectlet 2024",
+        "klaviyo 2024",
+        "triple-whale 2024",
+        "ga4 2024",
+        "shopify-analytics 2024",
+        "shopify-markets 2024",
+        "hotjar-engage 2024",
+        "fullstory-for-ecommerce 2024",
+        "logrocket-galileo 2024",
+        "june-auto-events 2024",
+        "posthog-feature-flags 2024",
+        "posthog-session-replay 2024",
+        "posthog-funnels 2024",
+        "mixpanel-funnels 2024",
+        "amplitude-funnels-2024",
+        "hotjar-heatmaps 2024",
+        "hotjar-recordings 2024",
+        "fullstory-rage-click 2024",
+        "fullstory-dead-click 2024",
+        "clarity-rage-click 2024",
+        "clarity-recording 2024",
+        "crazy-egg-confetti 2024",
+        "crazy-egg-scrollmap 2024",
+        "mouseflow-form-analytics 2024",
+        "inspectlet-form-analytics 2024",
+        "klaviyo-segment 2024",
+        "klaviyo-cohort-overlay 2024",
+        "triple-whale-cohort-ltv 2024",
+        "triple-whale-source-attribution 2024",
+        "triple-whale-device-cohort 2024",
+        "triple-whale-funnel-overlay 2024",
+        "segment-cdp 2024",
+        "mparticle 2024",
+        "rudderstack 2024",
+        "lytics 2024",
+        "hightouch 2024",
+        "census 2024",
+        "segment-protocols 2024",
+        "segment-replay 2024",
+        "segment-funnel 2024",
+        "mixpanel-jql 2024",
+        "amplitude-cohort 2024",
+        "hotjar-survey 2024",
+        "clarity-survey 2024",
+        "fullstory-nps 2024",
+        "hotjar-feedback-widget 2024",
+        "clarity-feedback-widget 2024"
+      ],
+      "blurb": "Move #10.5 is the canonical **on-site-behavior-analytics layer** for $100k–$50M GMV Shopify-DTC brands — the move that adds the **session-replay + heatmap + funnel-analysis + rage-click-detection + dead-click-detectio...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 61,
+      "size": 52040,
+      "lastTouched": "2026-10-02"
+    },
+    {
       "file": "46-promotional-calendar-discount-strategy.md",
       "name": "promotional-calendar-discount-strategy",
       "title": "Promotional calendar + discount strategy + markdown management (Move #13)",
@@ -75782,6 +75867,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "8e315a9",
+      "date": "2026-10-02T12:07:08Z",
+      "author": "hermesagent",
+      "subject": "journal: 2026-10-02 12:02 UTC — keep Move #6.24 per-move-6-21-recommended-action-attribution-correctness-tracker",
+      "body": ""
+    },
+    {
+      "sha": "14d7899",
+      "date": "2026-10-02T12:02:31Z",
+      "author": "hermesagent",
+      "subject": "skill: 455-Move-6.24-per-move-6-21-recommended-action-attribution-correctness-tracker",
+      "body": ""
+    },
+    {
       "sha": "8e0bf45",
       "date": "2026-10-02T11:27:02Z",
       "author": "hermesagent",
@@ -77166,20 +77265,6 @@
       "author": "hermesagent",
       "subject": "feat(dashboard): wire AttributionQualityAudit + Tiktok + SnapPinterest calculators into /playbooks/[slug] (06.5/06.6/06.7)",
       "body": ""
-    },
-    {
-      "sha": "5b19e5f",
-      "date": "2026-09-25T16:51:12Z",
-      "author": "hermesagent",
-      "subject": "journal: Move #3.14 checkout-audit-by-returns-policy-cohort skill tick keep entry",
-      "body": ""
-    },
-    {
-      "sha": "9f940f2",
-      "date": "2026-09-25T16:51:00Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #3.14 checkout-audit-by-returns-policy-cohort (skill/342, ~65KB, 18 pitfalls, 5:1-15:1 Year-1 ROI Path B default 10:1, first Tier-1 + first P0 in checkout-audit-by-returns-policy-cohort)",
-      "body": ""
     }
   ],
   "counts": {
@@ -77188,8 +77273,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 133,
-    "skills": 453,
+    "journalEntries": 134,
+    "skills": 454,
     "gitCommits": 200
   }
 }
