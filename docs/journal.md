@@ -13,7 +13,7 @@
 
 - **Deploy status:** **DEPLOY SUCCEEDED + CANONICAL ALIAS ROTATED.** Live URL serves the canonical Move #1.2 cross-channel dark-site auto-deploy + 13-component best-in-class matrix + 8-row × 3-deployment-scenario benchmark table + 4-phase ~12-20-hour build + 16-pitfall list + 7-gate A-G verification + 3-extension roadmap live. Sister-cron's untracked work in `mobile-pdp-audit.tsx` + `tiktok-shop-path-calculator.tsx` + `mobile-pdp-audit.ts` + `tiktok-shop-path.ts` was NOT included in this commit (they belong to the 6h `dashboard-improver` tick or 60m `improve-ecommerce-ops` tick).
 
-- **Committed:** (pending — branch autoresearch/skills-2026-10-02, this tick's commit to be created then merged to master via `skill-branch.sh keep`)
+- **Committed:** 8d8f493 (merged to master; GitHub PAT push pending canonical `github_pat_` refresh — same as skill/462's prior tick)
 
 - **Next action:** Natural follow-up per Move #1.2's "How to extend" roadmap: **Move #1.3 — Per-creator crisis-coordination-mode** (the layer that, on every Move #1.2 dark-site deploy, broadcasts the dark-site-link + holding-statement to all active creators via GRIN / Aspire / CreatorIQ "crisis-mode" toggle within 30 minutes; first Tier-1 + first P0 in `category: per-creator-crisis-coordination-mode`; default Year-1 ROI Path B 6:1-18:1; rebuildable next tick and will pass the same first-gate improvement metric).
 
