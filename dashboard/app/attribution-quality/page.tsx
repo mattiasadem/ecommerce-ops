@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { ResearchTable } from "@/components/research-table";
 import { AttributionQualityAudit } from "@/components/attribution-quality-audit";
 import { AttributionDriftRollup } from "@/components/attribution-drift-rollup";
+import { AttributionWeeklyTrend } from "@/components/attribution-weekly-trend";
 import { content, findDoc, findTable } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -63,6 +64,9 @@ export default function AttributionQualityPage() {
 
       {/* ===== Interactive Move #6.8 cross-platform rollup ===== */}
       <AttributionDriftRollup />
+
+      {/* ===== Interactive Move #6.5 weekly trend tracker (12-week) ===== */}
+      <AttributionWeeklyTrend />
 
       {/* ===== Substrate context cards ===== */}
       <div className="grid gap-4 lg:grid-cols-3">
@@ -228,6 +232,8 @@ export default function AttributionQualityPage() {
           <Badge variant="outline">Klaviyo cohort roundtrip</Badge>
           <Badge variant="outline">Drift monitoring</Badge>
           <Badge variant="outline">D1 / D2 / D3 scorer</Badge>
+          <Badge variant="outline">12-week trend</Badge>
+          <Badge variant="outline">Slow-erosion detector</Badge>
         </CardContent>
       </Card>
     </div>
