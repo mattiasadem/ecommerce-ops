@@ -18,6 +18,7 @@ import { NextMoveOverridePill } from "@/components/next-move-override-pill";
 import { IkasLiveCard } from "@/components/ikas-live-card";
 import { RealizedRoiPanel } from "@/components/realized-roi";
 import { RealizedRoiLedgerRollup } from "@/components/realized-roi-ledger";
+import { LifecycleFleetRollup } from "@/components/lifecycle-fleet-rollup";
 import { Top10ShippedOverviewCard } from "@/components/top10-shipped-overview-card";
 import { Top10ExportButton } from "@/components/top10-export-button";
 import { RecentlyShippedPlaybooksCard } from "@/components/recently-shipped-playbooks-card";
@@ -358,6 +359,22 @@ export default function Home() {
           rollup. */}
       <section id="realized-roi-ledger">
         <RealizedRoiLedgerRollup />
+      </section>
+
+      {/* === LIFECYCLE FLEET HEALTH — Move #N.8 =========================
+          Cross-page-intelligence: reads the same KPI snapshot the
+          /lifecycle Lifecycle Flow Health Audit writes
+          (`ecom-ops:lifecycle-flow-health:v1`) and surfaces the fleet
+          rollup on the Overview home page — flows scored (X / 13),
+          verdict mix (PASS / WARN / NEEDS_WORK / FAIL), at-risk revenue
+          over the last 30d, and the worst-3 flows by score (revenue
+          tie-break). Empty-state CTA nudges the operator to
+          /lifecycle when no KPIs are stored yet. Updates within ~1s
+          when the operator edits KPIs on /lifecycle (cross-tab `storage`
+          event + same-tab `ecom-ops:lifecycle-flow-health:update`
+          custom event). */}
+      <section id="lifecycle-fleet-rollup">
+        <LifecycleFleetRollup />
       </section>
 
       {/* === TRAJECTORY — 12-month revenue curve based on phased Top-10 rollout === */}
