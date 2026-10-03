@@ -17,6 +17,7 @@ import { NextMoveCard } from "@/components/next-move";
 import { NextMoveOverridePill } from "@/components/next-move-override-pill";
 import { IkasLiveCard } from "@/components/ikas-live-card";
 import { RealizedRoiPanel } from "@/components/realized-roi";
+import { RealizedRoiLedgerRollup } from "@/components/realized-roi-ledger";
 import { Top10ShippedOverviewCard } from "@/components/top10-shipped-overview-card";
 import { Top10ExportButton } from "@/components/top10-export-button";
 import { RecentlyShippedPlaybooksCard } from "@/components/recently-shipped-playbooks-card";
@@ -231,6 +232,16 @@ export default function Home() {
       {/* === REALIZED ROI — captured vs potential from shipped playbooks === */}
       <section id="realized-roi">
         <RealizedRoiPanel />
+      </section>
+
+      {/* === REALIZED ROI LEDGER — operator's actuals log (Move #N.7) ===
+          Per-playbook real revenue / cost / orders tracking, persistent
+          across reloads, with underperforming / on-target / outperforming
+          rollup. The detail input form lives on each /playbooks/[slug]
+          page; this widget is read-only and surfaces the cross-playbook
+          rollup. */}
+      <section id="realized-roi-ledger">
+        <RealizedRoiLedgerRollup />
       </section>
 
       {/* === TRAJECTORY — 12-month revenue curve based on phased Top-10 rollout === */}

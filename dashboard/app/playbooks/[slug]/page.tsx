@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { CopyButton } from "@/components/copy-button";
 import { PlaybookShippedToggle } from "@/components/playbook-shipped-toggle";
+import { RealizedRoiLedgerPanel } from "@/components/realized-roi-ledger";
 import { AbandonedCartROICalculator } from "@/components/abandoned-cart-roi";
 import { PostPurchaseUpsellROICalculator } from "@/components/post-purchase-upsell-roi";
 import { WelcomeSeriesROICalculator } from "@/components/welcome-series-roi";
@@ -490,6 +491,17 @@ export default async function PlaybookDetailPage({
           same localStorage key as the /playbooks index, so a toggle here
           instantly reflects on the index's tracker + the Overview card. */}
       <PlaybookShippedToggle
+        playbookId={playbook.file.replace(/\.md$/, "")}
+        playbookTitle={playbook.title}
+      />
+
+      {/* Realized ROI ledger — per-playbook actual-revenue tracker
+          (Move #N.7). Reads + writes the dedicated `ecom-ops:realized-roi:v1`
+          key; cross-tab + cross-component updates via `ecom-ops:realized-roi:update`
+          event. Renders a guided input form when no actuals are logged, the
+          summary tile + Edit/Clear buttons once they are, and the gap-vs-
+          projected badge when a projection band is supplied. */}
+      <RealizedRoiLedgerPanel
         playbookId={playbook.file.replace(/\.md$/, "")}
         playbookTitle={playbook.title}
       />
