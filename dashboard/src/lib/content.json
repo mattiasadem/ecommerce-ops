@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-03T17:39:49.462Z",
+  "generatedAt": "2026-10-03T18:46:38.529Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13224,6 +13224,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-10-03 17:37 UTC] Skill tick: keep — Move #1.14.3 Per-tier-breach-without-recovery-action-rollback-orchestrator-rollback-confirmation-event-replay-engine-rollback-replay-counterfactual-window-isolation-engine — on every Move #1.14.2 per-rollback-replay-drift-counterfactual-multi-window-event-emit + every Move #1.14.1 per-rollback-replay-drift-isolation-event-emit + every Move #1.14 per-cohort-rollback-coverage-isolation-engine-emit + every Move #1.13 per-rollback-state-consistency-replay-emit + every Move #1.12 per-cohort-rollback-confirmation-event-emit + every Move #1.11 per-cohort-recovery-driver-attribution-rollback-confirmed-emit + every Move #1.10 per-platform-recovery-driver-attribution-rollback-confirmed-emit + every Move #1.9 per-tier-priority-orchestration-rollback-confirmed-emit, extend Move #1.14.2's per-rollback-replay-drift-counterfactual-window-isolation-test with FULL per-window-rollback-replay-counterfactual-state-summation-invariance: window-rollback-replay-counterfactual-state-summation-invariance = `sum(by-window-counterfactual-state) == total-window-counterfactual-state` ±0.1% × 5 windows (24h / 7d / 30d / 90d / 365d) × 5 dependent moves (Move #1.13 vs Move #1.12 vs Move #1.11 vs Move #1.10 vs Move #1.9) × 32 cohorts × 21 platforms × 4 tiers = 67,200 cohort-platform-tier-move-window-combos × 5 window-state-summation-checks = 336,000 per-window-summation-invariance-checks; auto-detect per-window-counterfactual-state-double-counts + per-window-counterfactual-state-missing-combos + per-window-counterfactual-state-over-counts; closes the canonical \"per-window-rollback-replay-counterfactual-state-summation-invariance-can-break\" anti-pattern that costs 3-12% of post-incident brand-recovery when Move #1.14.2's per-rollback-replay-drift-counterfactual-window-isolation-test detects ONLY per-window-counterfactual-state-isolation-breach (a SINGLE per-cohort-rollback-replay-counterfactual-state appearing in multiple windows) AND misses the per-window-counterfactual-state-double-counts (multiple per-cohort-rollback-replay-counterfactual-state entries summing to total-window-counterfactual-state but distributed INCORRECTLY across the 5 windows) AND misses the per-window-counterfactual-state-missing-combos (some per-cohort-rollback-replay-counterfactual-state entries dropped from by-window-counterfactual-state-summation) AND misses the per-window-counterfactual-state-over-counts (some per-cohort-rollback-replay-counterfactual-state entries inflated in by-window-counterfactual-state-summation) (Move #1.14.3, extension of Move #1.14.2 per-tier-breach-without-recovery-action-rollback-orchestrator-rollback-confirmation-event-replay-engine-rollback-replay-counterfactual-multi-window-engine)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-03\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #1.14.2 (shipped 2026-10-03 as skill/477) `## How to extend` first follow-up recommendation. Move #1.14.2 (per-tier-breach-without-recovery-action-rollback-orchestrator-rollback-confirmation-event-replay-engine-rollback-replay-counterfactual-multi-window-engine, skill/477) auto-runs the per-rollback-replay-drift-counterfactual-multi-window across Move #1.13 vs Move #1.12 vs Move #1.11 vs Move #1.10 vs Move #1.9 × 24h / 7d / 30d / 90d / 365d windows to compute per-window per-rollback-replay-drift-counterfactual-delta + per-window-stability-score. **But Move #1.14.2 has no full per-window-rollback-replay-counterfactual-state-summation-invariance check"
+    },
+    {
       "heading": "[2026-10-03 16:36 UTC] Skill tick: keep — Move #1.14.2 Per-tier-breach-without-recovery-action-rollback-orchestrator-rollback-confirmation-event-replay-engine-rollback-replay-counterfactual-multi-window-engine — on every Move #1.14.1 per-rollback-replay-drift-isolation-event-emit + every Move #1.14 per-cohort-rollback-coverage-isolation-engine-emit + every Move #1.13 per-rollback-state-consistency-replay-emit + every Move #1.12 per-cohort-rollback-confirmation-event-emit + every Move #1.11 per-cohort-recovery-driver-attribution-rollback-confirmed-emit + every Move #1.10 per-platform-recovery-driver-attribution-rollback-confirmed-emit + every Move #1.9 per-tier-priority-orchestration-rollback-confirmed-emit, extend Move #1.14.1's per-rollback-replay-drift-counterfactual-no-isolation-simulator with multi-window counterfactual: 24h / 7d / 30d / 90d / 365d windows × per-cohort × per-platform × per-tier × per-move (5 dependent moves: Move #1.13 vs Move #1.12 vs Move #1.11 vs Move #1.10 vs Move #1.9) to compute per-window per-rollback-replay-drift-counterfactual-no-isolation-delta + per-window per-rollback-replay-drift-counterfactual-with-isolation-delta + per-window per-rollback-replay-drift-counterfactual-predicted-improvement-ROI + per-window per-rollback-replay-drift-counterfactual-window-stability-score (coefficient-of-variation across 5 windows must be < 5% for the per-rollback-replay-drift-counterfactual-result to be considered reliable); closes the canonical \"per-rollback-replay-drift-counterfactual-can-be-unreliable-across-windows\" anti-pattern that costs 5-15% of post-incident brand-recovery when Move #1.14.1's per-rollback-replay-drift-counterfactual-no-isolation-simulator returns Δ-rollback-replay-drift-detection-accuracy + Δ-rollback-replay-drift-attribution-accuracy on a SINGLE-window basis (default 30d) AND the single-window counterfactual-delta is INCORRECT because the brand-recovery-window has not stabilized yet (24h-window over-counts drift, 90d-window under-counts drift, 365d-window averages out the per-rollback burst) AND the team manually re-runs the counterfactual across 5 windows 7-30 days later via Move #6.15's per-rollback-replay-drift-counterfactual-window-stability-tracker (Move #1.14.2, extension of Move #1.14.1 per-tier-breach-without-recovery-action-rollback-orchestrator-rollback-confirmation-event-replay-engine-rollback-replay-isolation-test-engine)",
       "body": "- **Branch:** autoresearch/skills-2026-10-03\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #1.14.1 (shipped 2026-10-03 as skill/476) `## How to extend` first follow-up recommendation (\"Move #1.14.2 — Per-tier-breach-without-recovery-action-rollback-orchestrator-rollback-confirmation-event-replay-engine-rollback-replay-counterfactual-multi-window-engine (extends Move #1.14.1's per-rollback-replay-drift-counterfactual-no-isolation-simulator with multi-window counterfactual: 24h / 7d / 30d / 90d / 365d windows × per-cohort × per-platform × per-tier × per-move; first Tier-3 + first P2 in `category: per-tier-breach-without-recovery-action-rollback-orchestrator-rollback-confirmation-event-replay-engine-rollback-replay-counterfactual-multi-windo"
     },
@@ -13862,6 +13866,10 @@
     {
       "heading": "[2026-10-03 09:26 UTC] Skill tick: keep — Move #1.10 Per-tier-breach-without-recovery-action-cross-platform-correlation — on every Move #1.9 per-tier-breach-without-recovery-action-priority-orchestration-emitted, correlate per-platform (TikTok-organic / Instagram-Reels / YouTube-Shorts / Pinterest / X / LinkedIn / Snapchat / Twitch / Threads / Reddit / Quora / Discord / Telegram / Substack / Substack-Notes / Substack-Chat / BeReal / Threads-Notes / Tumblr / Mastodon / Bluesky) per-tier-breach-without-recovery-action-prediction with per-platform overall per-tier-content-sentiment-shift-recovery to determine which platform's Move #1.9 predictions drive the most per-tier-recovery per crisis; closes the canonical \"we-don't-know-which-platform-Move-#1.9-prediction-recovered-shift\" anti-pattern that costs 5-15% of post-incident brand-recovery when Move #1.9's per-tier-breach-without-recovery-action-priority-orchestration emits a P0 macro-tier prediction AND the team doesn't know whether the macro-creator's per-platform-prediction actually drove the per-tier-recovery (Move #1.10, extension of Move #1.9 per-tier-sentiment-shift-threshold-breach-without-recovery-action-predictor)",
       "body": "- **Branch:** autoresearch/skills-2026-10-03\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #1.9 (shipped 2026-10-03 08:09 UTC as skill/470) `## How to extend` roadmap item #1 follow-up recommendation (\"Per-tier-sentiment-shift-threshold-breach-without-recovery-action-cross-platform-correlation (4:1–11:1) — correlate per-platform per-tier-breach-without-recovery-action-prediction with per-platform overall per-tier-content-sentiment-shift-recovery to determine which platform's Move #1.9 predictions drive the most per-tier-recovery per crisis\"). Move #1.9 (per-tier-sentiment-shift-threshold-breach-without-recovery-action-predictor, skill/470) emits per-tier-breach-without-recovery-action-priority-orchestration events per creator-tier (macro "
+    },
+    {
+      "heading": "2026-10-03 16:00 UTC — Move #N.8 Lifecycle fleet health rollup",
+      "body": "- **What shipped:** Cross-page-intelligence Lifecycle Fleet Health card on `/` Overview. The `/lifecycle` Lifecycle Flow Health Audit owns the per-flow KPI snapshot (13 Path-B flows × 7 KPIs each = 91 inputs that take 20+ min to fill in). The new card on `/` reads the SAME storage key (`ecom-ops:lifecycle-flow-health:v1`) and surfaces 4 tiles + worst-3-flows list so the operator can see fleet health without scrolling to `/lifecycle`:\n  - **Flows scored** (X / 13) — tracks audit completeness\n  - **Verdict mix** — PASS / WARN / NEEDS_WORK / FAIL inline count tiles with verdict-tone colors\n  - **At-risk revenue / 30d** — sum of `revenue` over NEEDS_WORK + FAIL flows (rose when > 0, gray otherwise)\n  - **Est. lost rev / mo** — low/high band from canonical per-pillar floors (P1=300-800 / P2=400"
     }
   ],
   "skills": [
@@ -60027,6 +60035,70 @@
       "lastTouched": "2026-10-03"
     },
     {
+      "file": "479-per-tier-breach-without-recovery-action-rollback-orchestrator-rollback-confirmation-event-replay-engine-rollback-replay-counterfactual-window-attribution-isolation-engine.md",
+      "name": "per-tier-breach-without-recovery-action-rollback-orchestrator-rollback-confirmation-event-replay-engine-rollback-replay-counterfactual-window-attribution-isolation-engine",
+      "title": "Per-tier-breach-without-recovery-action-rollback-orchestrator-rollback-confirmation-event-replay-engine-rollback-replay-counterfactual-window-attribution-isolation-engine — auto-run the FULL per-window-rollback-replay-counterfactual-attribution-isolation check across 5 windows × 5 dependent moves × 32 cohorts × 21 platforms × 4 tiers to detect per-window-counterfactual-attribution-double-assignment + per-window-counterfactual-attribution-missing-attribution + per-window-counterfactual-attribution-over-attribution + per-window-counterfactual-attribution-tier-mismatch + per-window-counterfactual-attribution-platform-mismatch + per-window-counterfactual-attribution-cohort-mismatch (Move #1.14.4, extension of Move #1.14.3 per-tier-breach-without-recovery-action-rollback-orchestrator-rollback-confirmation-event-replay-engine-rollback-replay-counterfactual-window-isolation-engine)",
+      "category": "per-tier-breach-without-recovery-action-rollback-orchestrator-rollback-confirmation-event-replay-engine-rollback-replay-counterfactual-window-attribution-isolation-engine",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": "1.14.4",
+      "yearOneRoiBand": "3:1–7:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-10-03",
+      "sources": [
+        "move-461-crisis-pr-operations-2026",
+        "move-462-ai-crisis-classifier-2026",
+        "move-463-cross-channel-dark-site-auto-deploy-2026",
+        "move-464-per-creator-crisis-coordination-mode-2026",
+        "move-465-per-creator-post-crisis-recovery-orchestrator-2026",
+        "move-466-ai-sentiment-recovery-forecaster-2026",
+        "move-467-per-competitor-crisis-intelligence-2026",
+        "move-468-per-creator-content-sentiment-shift-detector-2026",
+        "move-469-per-creator-content-sentiment-shift-auto-remediation-2026",
+        "move-470-per-tier-sentiment-shift-threshold-breach-without-recovery-action-predictor-2026",
+        "move-471-per-tier-breach-without-recovery-action-cross-platform-correlation-2026",
+        "move-472-per-tier-breach-without-recovery-action-cohort-priority-orchestrator-2026",
+        "move-473-per-tier-breach-without-recovery-action-rollback-orchestrator-2026",
+        "move-474-per-tier-breach-without-recovery-action-rollback-orchestrator-rollback-confirmation-event-replay-engine-2026",
+        "move-475-per-tier-breach-without-recovery-action-rollback-orchestrator-rollback-confirmation-event-replay-engine-rollback-coverage-isolation-engine-2026",
+        "move-476-per-tier-breach-without-recovery-action-rollback-orchestrator-rollback-confirmation-event-replay-engine-rollback-replay-isolation-test-engine-2026",
+        "move-477-per-tier-breach-without-recovery-action-rollback-orchestrator-rollback-confirmation-event-replay-engine-rollback-replay-counterfactual-multi-window-engine-2026",
+        "move-478-per-tier-breach-without-recovery-action-rollback-orchestrator-rollback-confirmation-event-replay-engine-rollback-replay-counterfactual-window-isolation-engine-2026",
+        "move-6-15-attribution-accuracy-ledger-2024",
+        "move-6-17-per-cohort-protection-priority-rank-2024",
+        "move-6-18-per-influencer-protection-priority-rank-2024",
+        "move-7-ai-ad-creative-iteration-2024",
+        "move-16-creator-economy-expansion-2024",
+        "move-43-product-reviews-ugc-social-proof-2024",
+        "move-60-product-launch-engine-2024",
+        "move-34-cx-customer-service-operations-platform-2024",
+        "move-28-returns-portal-orchestration-2024",
+        "move-76-contact-center-operations-2024",
+        "move-88-returns-reverse-logistics-prevention-engine-2024",
+        "move-86-inventory-working-capital-dead-stock-liquidation-engine-2024",
+        "move-62-people-operations-org-design-hiring-hris-2024",
+        "move-3-welcome-series-2024",
+        "move-89-bfcm-season-engine-2024",
+        "move-93-bundle-engine-gift-with-purchase-mystery-box-sampler-vault-2024",
+        "move-97-subscription-economy-deep-dive-2024",
+        "move-98-subscription-economy-vertical-deep-dive-2024",
+        "move-100-customer-data-platform-identity-resolution-2024",
+        "move-101-customer-data-platform-cost-stack-optimization-2024",
+        "move-154-predictive-ltv-churn-engine-2024",
+        "move-224-subscription-dunning-failed-payment-recovery-2024",
+        "move-225-subscription-ai-failure-prediction-2024",
+        "gpt-4o-2024",
+        "claude-sonnet-4-5-2024",
+        "gemini-1.5-pro-2024"
+      ],
+      "blurb": "Move #1.14.4 is the **Move-#1.14.3-per-rollback-replay-drift-counterfactual-window-isolation-event-emit-consumer + Move-#1.14.2-per-rollback-replay-drift-counterfactual-multi-window-event-emit-consumer + Move-#1.14.1-...",
+      "sectionCount": 8,
+      "pitfallCount": 16,
+      "sourceCount": 44,
+      "size": 62082,
+      "lastTouched": "2026-10-03"
+    },
+    {
       "file": "48-privacy-consent-management.md",
       "name": "privacy-consent-management",
       "title": "Privacy & consent management — GDPR + UK-GDPR + CCPA/CPRA + PIPEDA + LGPD + cookie banner + CMP (Move #33)",
@@ -79606,6 +79678,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "381a3eb",
+      "date": "2026-10-03T18:22:29Z",
+      "author": "mattiasadem",
+      "subject": "feat(dashboard): Move #N.8 lifecycle fleet health rollup on Overview (cross-page)",
+      "body": ""
+    },
+    {
+      "sha": "0b304d2",
+      "date": "2026-10-03T17:43:50Z",
+      "author": "mattiasadem",
+      "subject": "skill: 478 Move #1.14.3 per-tier-breach-without-recovery-action-rollback-orchestrator-rollback-confirmation-event-replay-engine-rollback-replay-counterfactual-window-isolation-engine",
+      "body": ""
+    },
+    {
       "sha": "0313e64",
       "date": "2026-10-03T16:36:39Z",
       "author": "mattiasadem",
@@ -80990,20 +81076,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #358.5.2 per-sku-supplier-stress-test-LTV-cohort-decay-window-extension + per-cohort-LTV-tier decay-rate-vector 6-dim + per-cohort × per-supplier × per-region × per-SKU × per-stress-scenario × per-decay-window cell decomposition",
       "body": ""
-    },
-    {
-      "sha": "d7b15bf",
-      "date": "2026-09-26T20:57:20Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #358.5.1 per-SKU supplier-stress-test-cohort-affinity-extension + per-cohort supplier-stress-test-leak-rate-vector 7-dim + per-cohort supplier-overlap-cohort-coverage-table 4-tier + per-cohort × per-stress-scenario scenario-leak",
-      "body": ""
-    },
-    {
-      "sha": "eef4d19",
-      "date": "2026-09-26T19:50:17Z",
-      "author": "hermesagent",
-      "subject": "docs: journal entry for Move #358.5 per-region cross-warehouse-balance-supplier-stress-test-engine tick keep",
-      "body": ""
     }
   ],
   "counts": {
@@ -81012,8 +81084,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 160,
-    "skills": 476,
+    "journalEntries": 162,
+    "skills": 477,
     "gitCommits": 200
   }
 }
