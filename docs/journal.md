@@ -13,7 +13,7 @@
 
 - **Deploy status:** **DEPLOY SUCCEEDED + CANONICAL ALIAS ROTATED.** Live URL serves the new Overview "Personalize with Your store" 9-card strip + the 3 newly-wired calculator badges live. This continues the cross-page-intelligence family (Card #1 Your-store 2026-08-08 + Card #2 /playbooks/01-AC auto-prefill + Card #3 /3pl + /pdp-ab + /creators auto-prefill) — adding Card #4: /tiktok + /playbooks/09-mobile-pdp + /top-10 move-difficulty-impact.
 
-- **Committed:** pending (local commit only; canonical `github_pat_` push pending token refresh — same as prior ticks).
+- **Committed:** 3e81393 (merged to master; GitHub PAT push pending canonical `github_pat_` refresh — same as prior 6 ticks; production is current via `vercel deploy --prod` from this tick).
 
 
 - **Branch:** autoresearch/skills-2026-10-03
