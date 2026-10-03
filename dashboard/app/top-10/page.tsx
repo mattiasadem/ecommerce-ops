@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Top10ProjectionPanel } from "@/components/top10-projection";
 import { Top10RowToggle, Top10ShippedProgress } from "@/components/top10-shipped-tracker";
 import { Top10ExportButton } from "@/components/top10-export-button";
+import { MoveDifficultyImpactMap as MoveDifficultyImpactMapPanel } from "@/components/move-difficulty-impact";
 import { content } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -39,6 +40,14 @@ export default function Top10Page() {
 
       {/* === TOP-10 ROLLOUT PROJECTION (personalized to operator's store) === */}
       <Top10ProjectionPanel />
+
+      {/* === MOVE DIFFICULTY × IMPACT 2D BUBBLE CHART ===
+          Plots all 10 Top-10 moves by days-to-ship (X) vs $ lift/month (Y)
+          with bubble size = cost. Color-codes shipped/eligible/blocked.
+          Below the chart: a "blocker chain" banner that says which move
+          unblocks the most downstream moves. Cross-page-intelligence +
+          interactive-tool. */}
+      <MoveDifficultyImpactMapPanel />
 
       <Card>
         <CardHeader>

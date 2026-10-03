@@ -204,6 +204,122 @@ export default function Home() {
           </CardHeader>
           <CardContent>
             <YourStoreCard />
+            {/* Personalize-with-Your-store cross-link strip: lists the 9 calculators that
+                now auto-prefill from Your-store so the operator can jump straight to
+                the personalized forecast instead of editing the same 3 numbers again. */}
+            <div
+              id="your-store-personalizes"
+              className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3"
+            >
+              <a
+                href="/playbooks/01-abandoned-cart-flow-klaviyo"
+                className="group rounded-md border border-border bg-background/40 px-3 py-2 text-xs hover:border-accent/50 hover:bg-accent/5 transition-colors"
+                data-testid="ys-cta-ac"
+              >
+                <div className="font-medium text-foreground group-hover:text-accent">
+                  Abandoned-cart ROI →
+                </div>
+                <div className="text-[10px] text-muted-foreground">
+                  AOV + orders → lost-cart recovery
+                </div>
+              </a>
+              <a
+                href="/playbooks/02-welcome-series-klaviyo"
+                className="group rounded-md border border-border bg-background/40 px-3 py-2 text-xs hover:border-accent/50 hover:bg-accent/5 transition-colors"
+                data-testid="ys-cta-ws"
+              >
+                <div className="font-medium text-foreground group-hover:text-accent">
+                  Welcome-series ROI →
+                </div>
+                <div className="text-[10px] text-muted-foreground">
+                  Opt-ins + margin → first-purchase lift
+                </div>
+              </a>
+              <a
+                href="/playbooks/05-post-purchase-upsell"
+                className="group rounded-md border border-border bg-background/40 px-3 py-2 text-xs hover:border-accent/50 hover:bg-accent/5 transition-colors"
+                data-testid="ys-cta-ppu"
+              >
+                <div className="font-medium text-foreground group-hover:text-accent">
+                  Post-purchase upsell ROI →
+                </div>
+                <div className="text-[10px] text-muted-foreground">
+                  AOV + margin → upsell net
+                </div>
+              </a>
+              <a
+                href="/3pl"
+                className="group rounded-md border border-border bg-background/40 px-3 py-2 text-xs hover:border-accent/50 hover:bg-accent/5 transition-colors"
+                data-testid="ys-cta-3pl"
+              >
+                <div className="font-medium text-foreground group-hover:text-accent">
+                  3PL path A/B/C →
+                </div>
+                <div className="text-[10px] text-muted-foreground">
+                  Orders/mo → warehouse decision
+                </div>
+              </a>
+              <a
+                href="/playbooks/04-pdp-a-b-testing"
+                className="group rounded-md border border-border bg-background/40 px-3 py-2 text-xs hover:border-accent/50 hover:bg-accent/5 transition-colors"
+                data-testid="ys-cta-pdp"
+              >
+                <div className="font-medium text-foreground group-hover:text-accent">
+                  PDP A/B testing →
+                </div>
+                <div className="text-[10px] text-muted-foreground">
+                  AOV + margin → test-prioritization
+                </div>
+              </a>
+              <a
+                href="/creators"
+                className="group rounded-md border border-border bg-background/40 px-3 py-2 text-xs hover:border-accent/50 hover:bg-accent/5 transition-colors"
+                data-testid="ys-cta-ce"
+              >
+                <div className="font-medium text-foreground group-hover:text-accent">
+                  Creator-economy path →
+                </div>
+                <div className="text-[10px] text-muted-foreground">
+                  GMV + margin → creator-program tier
+                </div>
+              </a>
+              <a
+                href="/tiktok"
+                className="group rounded-md border border-border bg-background/40 px-3 py-2 text-xs hover:border-accent/50 hover:bg-accent/5 transition-colors"
+                data-testid="ys-cta-tt"
+              >
+                <div className="font-medium text-foreground group-hover:text-accent">
+                  TikTok Shop path →
+                </div>
+                <div className="text-[10px] text-muted-foreground">
+                  usDtcGmv + margin% → Path A/B/C
+                </div>
+              </a>
+              <a
+                href="/playbooks/09-mobile-pdp-redesign"
+                className="group rounded-md border border-border bg-background/40 px-3 py-2 text-xs hover:border-accent/50 hover:bg-accent/5 transition-colors"
+                data-testid="ys-cta-mpdp"
+              >
+                <div className="font-medium text-foreground group-hover:text-accent">
+                  Mobile-PDP audit →
+                </div>
+                <div className="text-[10px] text-muted-foreground">
+                  AOV + orders → CVR-lift forecast
+                </div>
+              </a>
+              <a
+                href="/top-10"
+                className="group rounded-md border border-border bg-background/40 px-3 py-2 text-xs hover:border-accent/50 hover:bg-accent/5 transition-colors"
+                data-testid="ys-cta-top10"
+              >
+                <div className="font-medium text-foreground group-hover:text-accent">
+                  Move difficulty × impact →
+                </div>
+                <div className="text-[10px] text-muted-foreground">
+                  AOV + orders → $/mo per move
+                </div>
+              </a>
+            </div>
           </CardContent>
         </Card>
       </section>

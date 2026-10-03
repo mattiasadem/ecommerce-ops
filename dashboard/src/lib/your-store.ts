@@ -80,9 +80,9 @@ export function clearYourStore(): void {
  * `mergeFromYourStore(DEFAULTS, yourStore)`.
  *
  * The shared key map:
- *   aov           -> .aov (ac/ws) | .baseAov (ppu)
- *   monthlyOrders -> .checkoutsPerMonth (ac) | .ordersPerMonth (ppu/ws optins)
- *   grossMargin   -> .grossMargin (ws) | .margin (PDP A/B) | .upsellMargin (ppu, falls back)
+ *   aov           -> .aov (ac/ws) | .baseAov (ppu) | .usDtcGmv (TikTok Path, computed: aov * monthlyOrders * 12)
+ *   monthlyOrders -> .checkoutsPerMonth (ac) | .ordersPerMonth (ppu/ws optins) | (TikTok Path derives usDtcGmv from aov + monthlyOrders)
+ *   grossMargin   -> .grossMargin (ws) | .margin (PDP A/B) | .upsellMargin (ppu) | .grossMarginPct (TikTok Path, 0-100)
  *
  * `extra` lets a calculator map additional fields (e.g. ws reads optins).
  */
@@ -104,10 +104,15 @@ export function mergeFromYourStore<T>(
     merged.optinsPerMonth = yourStore.monthlyOrders;
   }
   // Gross margin — welcome-series uses `grossMargin`; PDP A/B uses `margin`;
-  // post-purchase uses `upsellMargin`.
+  // post-purchase uses `upsellMargin`; TikTok Path uses `grossMarginPct` (0-100).
   if ("grossMargin" in merged) merged.grossMargin = yourStore.grossMargin;
   if ("margin" in merged) merged.margin = yourStore.grossMargin;
   if ("upsellMargin" in merged) merged.upsellMargin = yourStore.grossMargin;
+  if ("grossMarginPct" in merged) merged.grossMarginPct = yourStore.grossMargin * 100;
+  // TikTok Path uses `usDtcGmv` — derived from AOV × monthlyOrders × 12.
+  if ("usDtcGmv" in merged) {
+    merged.usDtcGmv = Math.max(0, yourStore.aov * yourStore.monthlyOrders * 12);
+  }
   if (extra) {
     for (const [k, v] of Object.entries(extra as Record<string, unknown>)) {
       if (v !== undefined) merged[k] = v;
