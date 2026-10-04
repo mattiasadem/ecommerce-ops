@@ -15,6 +15,7 @@ import { YourStoreCard } from "@/components/your-store-card";
 import { NextMoveCard } from "@/components/next-move";
 import { IkasLiveCard } from "@/components/ikas-live-card";
 import { CronHealthCard } from "@/components/cron-health-card";
+import { OperatorActionDigest } from "@/components/operator-action-digest";
 import { ProgressExportButton } from "@/components/progress-export-button";
 import { ProgressImportButton } from "@/components/progress-import-button";
 import { ProgressImportMarkdownButton } from "@/components/progress-import-markdown-button";
@@ -187,6 +188,27 @@ export default function TodayPage() {
           playbooksCount={counts.playbooks}
           researchCount={counts.researchDocs}
           assetsCount={counts.assets}
+        />
+      </section>
+
+      {/* === Operator action digest — Move #N.9 — prioritized cross-tool checklist ===
+          Synthesizes state from shipped-playbooks / realized-roi / lifecycle /
+          your-store + the build-time Top-10 + playbook catalog into one
+          ordered "what should I work on next?" list. The card sits between
+          CronHealthCard (system status) and NextMoveCard (cron's pick) so the
+          operator sees their personal queue without scrolling past the ROI
+          calculators below. */}
+      <section>
+        <OperatorActionDigest
+          top10PendingMoves={top10.status
+            .filter((s) => s.pending)
+            .map((s) => ({ move: s.move, status: s.status }))}
+          playbookTitlesById={Object.fromEntries(
+            content.playbooks.map((p) => [
+              p.file.replace(/\.md$/, ""),
+              p.title,
+            ])
+          )}
         />
       </section>
 
