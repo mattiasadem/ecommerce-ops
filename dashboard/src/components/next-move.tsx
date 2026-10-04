@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import {
+  MOVE_RECOMMENDATIONS,
   MoveRecommendation,
   NextMoveResult,
   pickNextMove,
@@ -23,6 +24,17 @@ import {
   loadNextMoveOverride,
   saveNextMoveOverride,
 } from "@/lib/next-move-override";
+import {
+  type NextMoveSortMode,
+  type NextMoveSroi,
+  computeSroiRanking,
+  formatBreakevenDays,
+  formatSroiPerDay,
+  loadNextMoveSort,
+  saveNextMoveSort,
+  sortCandidatesByMode,
+  sroiToneClass,
+} from "@/lib/next-move-sroi";
 import { CopyButton } from "@/components/copy-button";
 import { cn } from "@/lib/utils";
 
@@ -140,6 +152,7 @@ export function NextMoveCard() {
   const [store, setStore] = useState<YourStoreInputs | null>(null);
   const [shipped, setShipped] = useState<ShippedMap>({});
   const [override, setOverride] = useState<NextMoveOverride | null>(null);
+  const [sortMode, setSortMode] = useState<NextMoveSortMode>("priority");
   const [hydrated, setHydrated] = useState(false);
 
   // Hydrate both localStorage keys on mount. Server renders with empty
@@ -149,6 +162,7 @@ export function NextMoveCard() {
     setStore(loadYourStore());
     setShipped(loadShippedPlaybooks());
     setOverride(loadNextMoveOverride());
+    setSortMode(loadNextMoveSort());
     setHydrated(true);
     // Cross-tab sync: another tab may write or clear the override.
     function handleStorage(e: StorageEvent) {
@@ -158,6 +172,9 @@ export function NextMoveCard() {
       if (e.key && e.key === "ecom-ops:shipped-playbooks:v1") {
         setShipped(loadShippedPlaybooks());
       }
+      if (e.key && e.key === "ecom-ops:next-move-sort:v1") {
+        setSortMode(loadNextMoveSort());
+      }
     }
     // Same-tab broadcast: a saveNextMoveOverride call from this same
     // component already updates local state, but this lets any future
@@ -165,16 +182,27 @@ export function NextMoveCard() {
     function handleSameTabOverride() {
       setOverride(loadNextMoveOverride());
     }
+    function handleSameTabSort() {
+      setSortMode(loadNextMoveSort());
+    }
     window.addEventListener("storage", handleStorage);
     window.addEventListener(
       "ecom-ops:next-move-override:update",
       handleSameTabOverride as EventListener
+    );
+    window.addEventListener(
+      "ecom-ops:next-move-sort:update",
+      handleSameTabSort as EventListener
     );
     return () => {
       window.removeEventListener("storage", handleStorage);
       window.removeEventListener(
         "ecom-ops:next-move-override:update",
         handleSameTabOverride as EventListener
+      );
+      window.removeEventListener(
+        "ecom-ops:next-move-sort:update",
+        handleSameTabSort as EventListener
       );
     };
   }, []);
@@ -186,12 +214,34 @@ export function NextMoveCard() {
     [store, shipped, override]
   );
 
+  // Move #N.10: SROI ranking (per-move $/day) + per-mode sorted candidates.
+  // Computed against the same Your-store inputs as the projection.
+  const sroiRanking = useMemo(
+    () => computeSroiRanking(store),
+    [store]
+  );
+  const sroiByMoveId = useMemo(() => {
+    const map: Record<string, NextMoveSroi> = {};
+    for (const r of sroiRanking) map[r.moveId] = r;
+    return map;
+  }, [sroiRanking]);
+  const sortedCandidates = useMemo(
+    () => sortCandidatesByMode(result.topCandidates, sroiByMoveId, sortMode),
+    [result.topCandidates, sroiByMoveId, sortMode]
+  );
+
   const usedDefaults = !store;
   const effectiveStore = store ?? YOUR_STORE_DEFAULTS;
   const summary = useMemo(
     () => renderSummary(result.move, result, effectiveStore, effectiveStore.monthlyOrders),
     [result, effectiveStore]
   );
+
+  function handleChangeSort(mode: NextMoveSortMode) {
+    if (mode === sortMode) return;
+    setSortMode(mode);
+    saveNextMoveSort(mode);
+  }
 
   function handleMarkShipped() {
     if (!result.move) return;
@@ -241,12 +291,28 @@ export function NextMoveCard() {
           ) : null}
         </div>
         {result.move ? (
-          <span
-            className="inline-flex shrink-0 items-center rounded-md border border-accent/30 bg-accent/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-accent"
-            aria-label={`Move number ${result.move.priorityRank}`}
-          >
-            Move #{result.move.priorityRank}
-          </span>
+          <div className="flex flex-col items-end gap-1">
+            <span
+              className="inline-flex shrink-0 items-center rounded-md border border-accent/30 bg-accent/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-accent"
+              aria-label={`Move number ${result.move.priorityRank}`}
+              data-testid="next-move-priority-pill"
+            >
+              Move #{result.move.priorityRank}
+            </span>
+            {sroiByMoveId[result.move.id] ? (
+              <span
+                className={cn(
+                  "inline-flex shrink-0 items-center rounded-md border px-2 py-0.5 text-[10px] font-semibold tabular-nums",
+                  sroiToneClass(sroiByMoveId[result.move.id].sroiUsdPerDay)
+                )}
+                aria-label={`SROI ${formatSroiPerDay(sroiByMoveId[result.move.id].sroiUsdPerDay)}`}
+                title={`SROI rank ${sroiByMoveId[result.move.id].sroiRank} of ${sroiRanking.length} — projected lift midpoint ÷ days to ship`}
+                data-testid="next-move-sroi-pill"
+              >
+                SROI {formatSroiPerDay(sroiByMoveId[result.move.id].sroiUsdPerDay)}
+              </span>
+            ) : null}
+          </div>
         ) : null}
       </header>
 
@@ -347,9 +413,10 @@ export function NextMoveCard() {
           ) : null}
 
           {/* Compare top candidates — operator decision support.
-              Shows up to 3 eligible moves ranked by priorityRank with
-              projected lift, days-to-ship, cost band, and rationale.
-              The algorithm's #1 pick is highlighted; alternatives are
+              Shows up to 3 eligible moves ranked by the chosen sort mode
+              (Priority = canonical Top-10, SROI = $/day-of-projected-lift
+              against Your-store baseline). The algorithm's #1 pick is
+              always highlighted regardless of sort. Alternatives are
               clickable deep-links to /playbooks. */}
           {result.topCandidates.length > 1 ? (
             <details
@@ -362,9 +429,59 @@ export function NextMoveCard() {
                   {result.eligibleCount > result.topCandidates.length
                     ? ` (of ${result.eligibleCount} eligible)`
                     : ""}
+                  {" · sort: "}
+                  <span data-testid="next-move-sort-label" className="font-semibold text-foreground">
+                    {sortMode === "sroi" ? "$/day (SROI)" : "Priority"}
+                  </span>
                 </span>
                 <span aria-hidden="true" className="text-[10px]">▾</span>
               </summary>
+              <div
+                className="mt-2 flex flex-wrap items-center gap-1.5"
+                data-testid="next-move-sort-toggle"
+                role="group"
+                aria-label="Sort compare table by"
+              >
+                <span className="text-[10px] uppercase tracking-widest text-muted-foreground mr-1">
+                  Sort:
+                </span>
+                <button
+                  type="button"
+                  onClick={() => handleChangeSort("priority")}
+                  className={cn(
+                    "inline-flex items-center rounded-md border px-2 py-1 text-[10px] font-semibold uppercase tracking-wider transition-colors",
+                    sortMode === "priority"
+                      ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300"
+                      : "border-border bg-background text-muted-foreground hover:bg-muted"
+                  )}
+                  data-testid="next-move-sort-priority"
+                  aria-pressed={sortMode === "priority"}
+                >
+                  Priority
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleChangeSort("sroi")}
+                  className={cn(
+                    "inline-flex items-center rounded-md border px-2 py-1 text-[10px] font-semibold uppercase tracking-wider transition-colors",
+                    sortMode === "sroi"
+                      ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300"
+                      : "border-border bg-background text-muted-foreground hover:bg-muted"
+                  )}
+                  data-testid="next-move-sort-sroi"
+                  aria-pressed={sortMode === "sroi"}
+                >
+                  $/day (SROI)
+                </button>
+                {sortMode === "sroi" && sroiRanking[0] ? (
+                  <span
+                    className="ml-1 inline-flex items-center rounded-md border border-emerald-500/30 bg-emerald-500/5 px-2 py-1 text-[10px] font-medium text-emerald-700 dark:text-emerald-300"
+                    data-testid="next-move-best-sroi-pill"
+                  >
+                    Best $/day: Move #{MOVE_RECOMMENDATIONS.find((m) => m.id === sroiRanking[0].moveId)?.priorityRank ?? "?"} — {formatSroiPerDay(sroiRanking[0].sroiUsdPerDay)}
+                  </span>
+                ) : null}
+              </div>
               <div className="mt-3 overflow-x-auto">
                 <table className="w-full text-[11px]">
                   <thead>
@@ -374,15 +491,18 @@ export function NextMoveCard() {
                       <th className="font-medium pb-1.5 pr-2 w-24 text-right">Lift / mo</th>
                       <th className="font-medium pb-1.5 pr-2 w-16 text-right">Days</th>
                       <th className="font-medium pb-1.5 pr-2 w-24 text-right">Cost / mo</th>
+                      <th className="font-medium pb-1.5 pr-2 w-24 text-right">$/day (SROI)</th>
+                      <th className="font-medium pb-1.5 pr-2 w-20 text-right">Breakeven</th>
                       <th className="font-medium pb-1.5">Rationale</th>
                       <th className="font-medium pb-1.5 w-28 text-right">Action</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-border">
-                    {result.topCandidates.map((cand) => {
+                    {sortedCandidates.map((cand) => {
                       const isTop = result.move?.id === cand.id;
                       const candLiftLow = result.monthlyRevenue * cand.liftLow;
                       const candLiftHigh = result.monthlyRevenue * cand.liftHigh;
+                      const candSroi = sroiByMoveId[cand.id];
                       const isCurrentOverride =
                         result.overrideApplied && isTop;
                       const actionLabel = isCurrentOverride
@@ -401,16 +521,30 @@ export function NextMoveCard() {
                           data-testid={`compare-row-${cand.id}`}
                         >
                           <td className="py-1.5 pr-2 align-top">
-                            <span
-                              className={
-                                isTop
-                                  ? "inline-flex items-center rounded-md border border-emerald-500/40 bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-semibold text-emerald-700 dark:text-emerald-300"
-                                  : "inline-flex items-center rounded-md border border-border bg-background px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground tabular-nums"
-                              }
-                            >
-                              #{cand.priorityRank}
-                              {isTop ? " ★" : ""}
-                            </span>
+                            <div className="flex flex-col gap-1 items-start">
+                              <span
+                                className={
+                                  isTop
+                                    ? "inline-flex items-center rounded-md border border-emerald-500/40 bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-semibold text-emerald-700 dark:text-emerald-300"
+                                    : "inline-flex items-center rounded-md border border-border bg-background px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground tabular-nums"
+                                }
+                              >
+                                #{cand.priorityRank}
+                                {isTop ? " ★" : ""}
+                              </span>
+                              {sortMode === "sroi" && candSroi ? (
+                                <span
+                                  className={cn(
+                                    "inline-flex items-center rounded-md border px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider tabular-nums",
+                                    sroiToneClass(candSroi.sroiUsdPerDay)
+                                  )}
+                                  data-testid={`compare-sroi-rank-${cand.id}`}
+                                  aria-label={`SROI rank ${candSroi.sroiRank} of ${sroiRanking.length}`}
+                                >
+                                  #{candSroi.sroiRank}/{sroiRanking.length} SROI
+                                </span>
+                              ) : null}
+                            </div>
                           </td>
                           <td className="py-1.5 pr-2 align-top">
                             <a
@@ -428,6 +562,23 @@ export function NextMoveCard() {
                           </td>
                           <td className="py-1.5 pr-2 align-top text-right tabular-nums">
                             {fmtCost(cand.costLow)}–{fmtCost(cand.costHigh)}
+                          </td>
+                          <td className="py-1.5 pr-2 align-top text-right tabular-nums">
+                            {candSroi ? (
+                              <span
+                                className={cn(
+                                  "inline-flex items-center rounded-md border px-1.5 py-0.5 text-[10px] font-semibold",
+                                  sroiToneClass(candSroi.sroiUsdPerDay)
+                                )}
+                                data-testid={`compare-sroi-${cand.id}`}
+                                title={`$${candSroi.sroiUsdPerDay.toFixed(0)}/day of projected lift`}
+                              >
+                                {formatSroiPerDay(candSroi.sroiUsdPerDay)}
+                              </span>
+                            ) : "—"}
+                          </td>
+                          <td className="py-1.5 pr-2 align-top text-right tabular-nums text-muted-foreground">
+                            {candSroi ? formatBreakevenDays(candSroi.breakevenDays) : "—"}
                           </td>
                           <td className="py-1.5 align-top text-muted-foreground">
                             {cand.rationale}
@@ -457,9 +608,7 @@ export function NextMoveCard() {
                 </table>
               </div>
               <p className="mt-2 text-[10px] text-muted-foreground">
-                ★ marks the algorithmic pick. Click <em>Pick this instead</em> to
-                pin any candidate as your next move (overrides the algorithm
-                until cleared). Click any name to open its playbook.
+                ★ marks the algorithmic pick. <strong>$/day (SROI)</strong> = projected monthly lift midpoint ÷ days to ship — higher = faster payback. <em>Breakeven</em> = how many days the projected lift takes to cover the move's monthly cost. Click <em>Pick this instead</em> to pin any candidate as your next move (overrides the algorithm until cleared). Click any name to open its playbook.
               </p>
             </details>
           ) : null}
