@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T16:52:11.673Z",
+  "generatedAt": "2026-10-04T18:01:22.395Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-10-04 16:52 UTC] Skill tick: keep — Per-network fee-modeling for Visa VAMP + Mastercard ECM/HECM + Amex RED/ICPR + Discover DMP + MATCH-list risk + acquirer reserve opportunity cost + per-network acquirer pass-through fines + ROAD-TO-COMPLIANCE cost projection (Move #167.3)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-04\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES. **(1) UNIQUE CATEGORY** — `grep -l '^category: per-network-fee-modeling$' skills/*.md | wc -l = 0` before writing → 1 after writing skill/497. **(2) FIRST TIER-1 IN CATEGORY** — moot, skill/497 is `tier: 1`, only entry in category. **(3) FIRST P0 IN CATEGORY** — moot, skill/497 is `priority: P0`, only entry in category. **(4) HIGHEST PITFALL COUNT WINS TIES** — 15 numbered pitfalls in ## Common pitfalls (P1-P15 enumerated, the canonical minimum), 31 total pitfall mentions across the file. Skill is the natural Day-30+ follow-up to Move #167 (chargeback-management) + Move #167.1 (CE 3.0 evidence-pack automation) + Move #167.2 (Subscription Account Updater audit) — the per-netw"
+    },
     {
       "heading": "[2026-10-04 15:42 UTC] Skill tick: keep — Subscription Account Updater audit + Visa VAU + Mastercard ABU + subscription card-on-file auto-refresh (Move #167.2)",
       "body": "- **Branch:** autoresearch/skills-2026-10-04\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES. **(1) UNIQUE CATEGORY** — `grep -l '^category: subscription-account-updater-audit$' skills/*.md | wc -l = 0` before writing → 1 after writing skill/496. **(2) FIRST TIER-1 IN CATEGORY** — moot, skill/496 is `tier: 1`, only entry in category. **(3) FIRST P0 IN CATEGORY** — moot, skill/496 is `priority: P0`, only entry in category. **(4) HIGHEST PITFALL COUNT WINS TIES** — 15 numbered pitfalls in ## Common pitfalls (P1-P15 enumerated, the canonical minimum). Skill is the natural Day-30+ follow-up to Move #167.1 (CE 3.0 evidence-pack automation) + Move #52 (subscription replenishment) + Move #224 (subscription churn defense) — the subscription-specific complement that auto-refr"
@@ -63306,6 +63310,92 @@
       "lastTouched": "2026-10-04"
     },
     {
+      "file": "498-3ds-frictionless-ce3-fallback-with-3ds-authentication-as-supporting-evidence.md",
+      "name": "3ds-frictionless-ce3-fallback-with-3ds-authentication-as-supporting-evidence",
+      "title": "3DS-frictionless CE 3.0 fallback — special path for 3DS-frictionless transactions that still receive 10.4 disputes (Move #167.4)",
+      "category": "3ds-frictionless-ce3-fallback",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "167.4",
+      "yearOneRoiBand": "6:1–18:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-10-04",
+      "sources": [
+        "visa-3ds-2024",
+        "visa-3ds-frictionless-2024",
+        "visa-ce-3-0-2025",
+        "visa-ce-3-0-effective-2025",
+        "visa-evolution-of-compelling-evidence-2023",
+        "visa-ce-3-0-merchant-readiness-2025",
+        "emvco-3ds-2024",
+        "emvco-3ds-2-3-0-2024",
+        "emvco-3ds-protocol-2-3-0-2024",
+        "emvco-3ds-frictionless-flow-2024",
+        "emvco-3ds-challenge-flow-2024",
+        "emvco-3ds-data-fields-2024",
+        "mastercard-3ds-2024",
+        "mastercard-identity-check-2024",
+        "mastercard-3ds-frictionless-2024",
+        "mastercard-3ds-2-0-2024",
+        "amex-3ds-safe-2024",
+        "amex-3ds-2024",
+        "discover-3ds-2024",
+        "stripe-3ds-frictionless-2025",
+        "stripe-radar-3ds-rules-2025",
+        "stripe-3ds-optimization-2025",
+        "adyen-dynamic-3d-secure-2025",
+        "adyen-3ds-frictionless-2025",
+        "adyen-3ds-exemption-engine-2025",
+        "checkout-com-3ds-2025",
+        "braintree-3ds-2025",
+        "worldpay-3ds-2025",
+        "authnet-3ds-2025",
+        "verifi-cdrn-2025",
+        "ethoca-2025",
+        "visa-rdr-2025",
+        "mastercard-collaboration-2025",
+        "chargeflow-ce3-2025",
+        "chargeflow-3ds-frictionless-2025",
+        "justt-ce3-2025",
+        "justt-3ds-fallback-2025",
+        "midmetrics-3ds-2025",
+        "nofraud-3ds-2025",
+        "signifyd-3ds-2025",
+        "kount-3ds-2025",
+        "sift-3ds-2025",
+        "riskified-3ds-2025",
+        "stripe-chargeback-protection-2025",
+        "adyen-dispute-2025",
+        "shopify-dispute-2025",
+        "chargebacks911-2026",
+        "juniper-research-friendly-fraud-2026",
+        "mrc-global-ecommerce-fraud-2026",
+        "lexisnexis-true-cost-of-fraud-2025",
+        "nilson-report-2025",
+        "datos-insights-chargeback-2026",
+        "chargeback-gurus-2025",
+        "redress-compliance-2025",
+        "redress-match-removal-2025",
+        "visa-2025-global-ecommerce-payments-fraud-report",
+        "mastercard-datos-2025",
+        "javelin-chargeback-2025",
+        "lendingtree-cardholder-survey-2024",
+        "emvco-3ds-frictionless-rules-2024",
+        "emvco-3ds-merchant-data-2024",
+        "visa-ce-3-0-data-fields-2025",
+        "visa-3ds-authentication-data-2024",
+        "mrc-3ds-best-practices-2024",
+        "mrc-3ds-conversion-impact-2024",
+        "mrc-3ds-frictionless-rates-2024"
+      ],
+      "blurb": "A best-in-class **3DS-frictionless CE 3.0 fallback** layer closes the canonical \"we have 3DS frictionless coverage at 75% and yet 8% of frictionless transactions still receive 10.4 fraud disputes because the issuer di...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 66,
+      "size": 67854,
+      "lastTouched": "2026-10-04"
+    },
+    {
       "file": "50-conversational-commerce-orchestration.md",
       "name": "conversational-commerce-orchestration",
       "title": "Conversational commerce orchestration",
@@ -82541,6 +82631,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "6717eaf",
+      "date": "2026-10-04T16:56:17Z",
+      "author": "mattiasadem",
+      "subject": "journal: append 2026-10-04 16:52 UTC skill tick (skill/497 per-network fee-modeling Move #167.3)",
+      "body": ""
+    },
+    {
+      "sha": "5050d82",
+      "date": "2026-10-04T16:55:40Z",
+      "author": "mattiasadem",
+      "subject": "skill: 497 — Per-network fee-modeling for VAMP/ECM/HECM/RED/ICPR/DMP (Move #167.3, FIRST Tier-1 P0 in category: per-network-fee-modeling, Year-1 ROI 5:1-15:1)",
+      "body": ""
+    },
+    {
       "sha": "6c1c0c4",
       "date": "2026-10-04T15:46:37Z",
       "author": "hermesagent",
@@ -83925,20 +84029,6 @@
       "author": "hermesagent",
       "subject": "journal: skill tick 2026-09-28 02:55 UTC — Move #3.32 keep",
       "body": ""
-    },
-    {
-      "sha": "693a597",
-      "date": "2026-09-28T02:55:58Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #3.32 checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-duodecimal",
-      "body": ""
-    },
-    {
-      "sha": "691568c",
-      "date": "2026-09-27T23:07:40Z",
-      "author": "hermesagent",
-      "subject": "docs: journal entry for Move #3.31 undecimal-axis skill tick",
-      "body": ""
     }
   ],
   "counts": {
@@ -83947,8 +84037,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 184,
-    "skills": 496,
+    "journalEntries": 185,
+    "skills": 497,
     "gitCommits": 200
   }
 }
