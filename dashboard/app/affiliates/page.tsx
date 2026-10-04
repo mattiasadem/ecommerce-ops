@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { ResearchTable } from "@/components/research-table";
 import { content, findDoc, findTable } from "@/lib/content";
 import { AffiliatePathCalculator } from "@/components/affiliate-path-calculator";
+import { AffiliateLaunchPlanButton } from "@/components/affiliate-launch-plan-button";
 
 export const dynamic = "force-static";
 
@@ -424,6 +425,36 @@ export default function AffiliatesPage() {
 
       {/* === INTERACTIVE CALCULATOR (Move #15 browser-side port) === */}
       <AffiliatePathCalculator />
+
+      {/* === MOVE #16 — ONE-CLAICK 30-day launch plan generator ===
+          Reads the operator's saved `BrandAffiliateInputs` from the
+          path-calculator above, overlays the Your-store AOV / orders /
+          margin when present, and produces a paste-ready 30-day markdown
+          checklist grouped into 4 weeks. Click the button → modal opens
+          with copy-to-clipboard + download-as-markdown + a link to the
+          full /affiliate-program-launch-plan page. */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-base">
+            Move #16 — 30-day Affiliate Program launch plan
+          </CardTitle>
+          <CardDescription>
+            One-click generator. Reads the path-calculator inputs above +
+            Your-store AOV / orders / margin (when present). Produces a
+            day-by-day, 4-week, paste-ready markdown checklist.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="flex flex-wrap items-center gap-2">
+          <AffiliateLaunchPlanButton />
+          <a
+            href="/affiliate-program-launch-plan"
+            className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background px-3 py-1.5 text-xs font-medium hover:bg-muted transition-colors"
+          >
+            <span aria-hidden>↗</span>
+            <span>Open full plan page</span>
+          </a>
+        </CardContent>
+      </Card>
 
       {/* === FOOTER === */}
       <Card>

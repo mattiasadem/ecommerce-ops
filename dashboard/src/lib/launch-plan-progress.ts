@@ -120,6 +120,14 @@ export const LAUNCH_PLAN_CATALOG: LaunchPlanCatalogEntry[] = [
     days: 30,
     defaultYear1NetMarginUsd: 168000,
   },
+  {
+    id: "affiliate-program",
+    title: "Affiliate Program launch plan",
+    href: "/affiliate-program-launch-plan",
+    moveRef: "#16",
+    days: 30,
+    defaultYear1NetMarginUsd: 144000,
+  },
 ];
 
 /** LocalStorage key holding the progress map. */

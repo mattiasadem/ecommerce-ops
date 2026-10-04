@@ -82,7 +82,8 @@ export interface RolloutCatalogEntry {
     | "subscription-program"
     | "attribution-instrumentation"
     | "ops-3pl"
-    | "post-purchase-upsell";
+    | "post-purchase-upsell"
+    | "affiliate-program";
   /** Canonical Phase — week 1 = foundation, week 4 = CRO, etc. */
   buildPhase: 1 | 2 | 3 | 4;
   /** Walk order within phase (lower runs first) */
@@ -242,6 +243,20 @@ export const ROLLOUT_CATALOG: RolloutCatalogEntry[] = [
     defaultYear1RoiRatio: 5.0,
     defaultYear1NetMarginUsd: 50000,
     defaultYear1CostUsd: 10000,
+  },
+  {
+    id: "affiliate-program",
+    title: "Affiliate Program (Refersion / Levanta / Impact)",
+    moveRef: "#16",
+    storageKey: "ecom-ops:affiliate-path:v1",
+    category: "affiliate-program",
+    buildPhase: 4,
+    phaseOrder: 5,
+    durationDays: 30,
+    icsSummary: () => "Affiliate Program launch — Refersion / Levanta",
+    defaultYear1RoiRatio: 6.0,
+    defaultYear1NetMarginUsd: 144000,
+    defaultYear1CostUsd: 24000,
   },
 ];
 
