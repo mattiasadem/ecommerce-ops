@@ -1,5 +1,6 @@
 import { LaunchPlanProgressTracker } from "@/components/launch-plan-progress-tracker";
 import { ShipNotesSearch } from "@/components/ship-notes-search";
+import { ShippingActivityHeatmap } from "@/components/shipping-activity-heatmap";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -77,6 +78,21 @@ export default function LaunchPlanProgressPage() {
           Tracker
         </h2>
         <LaunchPlanProgressTracker />
+      </section>
+
+      <Separator />
+
+      <section className="flex flex-col gap-3">
+        <h2 className="text-lg font-semibold tracking-tight">
+          Shipping activity heatmap
+        </h2>
+        <p className="text-sm text-muted-foreground max-w-3xl">
+          A 13-week calendar view of WHEN you shipped — current streak,
+          longest streak, days since last ship, 30/60/90-day windows, and
+          a 7-vs-30-day velocity reading. Reads the same localStorage key
+          the tracker writes, so edits propagate here within ~1 second.
+        </p>
+        <ShippingActivityHeatmap />
       </section>
 
       <Separator />
