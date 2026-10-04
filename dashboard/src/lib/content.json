@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T18:01:22.395Z",
+  "generatedAt": "2026-10-04T19:10:03.299Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13224,6 +13224,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-10-04 18:05 UTC] Skill tick: keep — 3DS-frictionless CE 3.0 fallback — special path for transactions that passed EMV 3DS frictionless authentication but still receive 10.4 fraud disputes + 3DS authentication data as supporting evidence in the CE 3.0 evidence pack + frictionless vs challenge split per-cohort + per-issuer frictionless-acceptance rate + per-MID 3DS fallback win-rate + 3DS-authentication-data CE 3.0 fallback composer (Move #167.4)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-04\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES. **(1) UNIQUE CATEGORY** — `grep -l '^category: 3ds-frictionless-ce3-fallback$' skills/*.md | wc -l = 0` before writing → 1 after writing skill/498. **(2) FIRST TIER-1 IN CATEGORY** — moot, skill/498 is `tier: 1`, only entry in category. **(3) FIRST P0 IN CATEGORY** — moot, skill/498 is `priority: P0`, only entry in category. **(4) HIGHEST PITFALL COUNT WINS TIES** — 15 numbered pitfalls in ## Common pitfalls (P1-P15 enumerated, the canonical minimum), 31 total pitfall mentions across the file. Skill is the natural Day-30+ follow-up to Move #167 (chargeback-management) + Move #167.1 (CE 3.0 evidence-pack automation) + Move #167.2 (Subscription Account Updater audit) + Move #1"
+    },
+    {
       "heading": "[2026-10-04 16:52 UTC] Skill tick: keep — Per-network fee-modeling for Visa VAMP + Mastercard ECM/HECM + Amex RED/ICPR + Discover DMP + MATCH-list risk + acquirer reserve opportunity cost + per-network acquirer pass-through fines + ROAD-TO-COMPLIANCE cost projection (Move #167.3)",
       "body": "- **Branch:** autoresearch/skills-2026-10-04\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES. **(1) UNIQUE CATEGORY** — `grep -l '^category: per-network-fee-modeling$' skills/*.md | wc -l = 0` before writing → 1 after writing skill/497. **(2) FIRST TIER-1 IN CATEGORY** — moot, skill/497 is `tier: 1`, only entry in category. **(3) FIRST P0 IN CATEGORY** — moot, skill/497 is `priority: P0`, only entry in category. **(4) HIGHEST PITFALL COUNT WINS TIES** — 15 numbered pitfalls in ## Common pitfalls (P1-P15 enumerated, the canonical minimum), 31 total pitfall mentions across the file. Skill is the natural Day-30+ follow-up to Move #167 (chargeback-management) + Move #167.1 (CE 3.0 evidence-pack automation) + Move #167.2 (Subscription Account Updater audit) — the per-netw"
     },
@@ -13962,6 +13966,10 @@
     {
       "heading": "2026-10-04 12:48 UTC — Move #N.10 Next-move SROI ($/day) ranking + sort toggle",
       "body": "- **What shipped:** Per-move **SROI (Speed-of-Return-On-Investment)** scoring on the next-move card. SROI = projected monthly lift midpoint ÷ days-to-ship, computed live against Your-store's monthly revenue. Every Top-10 move gets a SROI ($/day) badge + a SROI rank (1 = highest $/day). The compare-table gains a new **sort toggle** (\"Priority\" / \"$/day (SROI)\") — when the operator picks SROI mode, the table re-sorts by $/day desc (priorityRank is the stable tie-break), shows a per-row \"SROI rank\" pill (#N/10), and a header pill \"Best $/day: Move #X — $Y/d\". A new **SROI pill** in the card header (next to the Move #X pill) surfaces the recommended move's $/day + rank on first load. The sort preference persists in `ecom-ops:next-move-sort:v1` and survives reloads + cross-tab sync (storage eve"
+    },
+    {
+      "heading": "2026-10-04 19:08 UTC — Move #N.11 Shipping activity heatmap on /launch-plan-progress",
+      "body": "- **What shipped:** Cross-page-intelligence temporal view of launch-plan shipping on `/launch-plan-progress`. The tracker records WHICH (plan, day) pair shipped; this widget turns the same `ecom-ops:launch-plan-progress:v1` localStorage key into a GitHub-style 13-week activity heatmap plus the 4 momentum metrics operators actually need to know. Five panels: (1) **Momentum strip** with 4 tiles — current streak, longest streak, last ship (\"today\" / \"yesterday\" / \"5 days ago\" / \"—\"), velocity (7d vs 30d) as \"accelerating\" / \"steady\" / \"slowing\" / \"stalled\" / \"idle\" / \"new\"; (2) **30/60/90-day windows** with progress bars + counts; (3) **13×7 heatmap grid** (91 days ending today, 5-level intensity bucket 0 ships→muted / 1→faint / 2→light / 3-4→medium / 5+→deep emerald, future cells dimmed 30%,"
     }
   ],
   "skills": [
@@ -63396,6 +63404,135 @@
       "lastTouched": "2026-10-04"
     },
     {
+      "file": "499-cross-platform-mid-orchestrator-merchant-vs-mid-dispute-ratio.md",
+      "name": "cross-platform-mid-orchestrator-merchant-vs-mid-dispute-ratio",
+      "title": "Cross-platform MID-orchestrator — per-MID dispute ratio + per-platform 3DS coverage + per-platform CE 3.0 evidence composer + cross-platform 10.4 dispute correlation (Move #167.5)",
+      "category": "cross-platform-mid-orchestrator",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "167.5",
+      "yearOneRoiBand": "4:1–12:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-10-04",
+      "sources": [
+        "visa-vamp-2025",
+        "visa-vamp-fact-sheet-2025",
+        "visa-ce-3-0-2025",
+        "visa-ce-3-0-effective-2025",
+        "visa-ce-3-0-merchant-readiness-2025",
+        "visa-ce-3-0-data-fields-2025",
+        "visa-evolution-of-compelling-evidence-2023",
+        "visa-3ds-2024",
+        "visa-3ds-frictionless-2024",
+        "visa-3ds-authentication-data-2024",
+        "visa-rdr-2025",
+        "visa-2025-global-ecommerce-payments-fraud-report",
+        "mastercard-ecm-2025",
+        "mastercard-ecp-2025",
+        "mastercard-ecm-merchant-2025",
+        "mastercard-hecm-2025",
+        "mastercard-identity-check-2024",
+        "mastercard-3ds-2024",
+        "mastercard-3ds-frictionless-2024",
+        "mastercard-collaboration-2025",
+        "mastercard-datos-2025",
+        "mastercard-match-pro-2025",
+        "amex-red-2025",
+        "amex-icpr-2025",
+        "amex-3ds-2025",
+        "amex-3ds-safe-2024",
+        "discover-dmp-2025",
+        "discover-3ds-2024",
+        "stripe-radar-3ds-rules-2025",
+        "stripe-3ds-optimization-2025",
+        "stripe-chargeback-protection-2025",
+        "adyen-dynamic-3d-secure-2025",
+        "adyen-3ds-frictionless-2025",
+        "adyen-dispute-2025",
+        "checkout-com-3ds-2025",
+        "braintree-3ds-2025",
+        "braintree-2025",
+        "worldpay-3ds-2025",
+        "authnet-3ds-2025",
+        "verifi-cdrn-2025",
+        "verifi-order-insight-2025",
+        "ethoca-2025",
+        "ethoca-dispute-2025",
+        "chargeflow-ce3-2025",
+        "chargeflow-3ds-frictionless-2025",
+        "chargeflow-2026",
+        "justt-ce3-2025",
+        "justt-3ds-fallback-2025",
+        "justt-2025",
+        "midmetrics-3ds-2025",
+        "midmetrics-multi-mid-2025",
+        "nofraud-3ds-2025",
+        "signifyd-3ds-2025",
+        "signifyd-2025",
+        "kount-3ds-2025",
+        "sift-3ds-2025",
+        "riskified-3ds-2025",
+        "riskified-2025",
+        "shopify-dispute-2025",
+        "shopify-3ds-2025",
+        "shopify-payments-dispute-2025",
+        "amazon-seller-central-dispute-2025",
+        "amazon-pay-2025",
+        "amazon-pay-dispute-2025",
+        "amazon-pay-3ds-2025",
+        "ebay-managed-payments-2025",
+        "ebay-dispute-2025",
+        "ebay-snr-2025",
+        "walmart-marketplace-payments-2025",
+        "walmart-dispute-2025",
+        "walmart-3ds-2025",
+        "tiktok-shop-dispute-2025",
+        "tiktok-shop-3ds-2025",
+        "tiktok-shop-seller-2025",
+        "target-plus-2025",
+        "etsy-payments-2025",
+        "etsy-dispute-2025",
+        "chargebacks911-2026",
+        "chargebacks911-multi-mid-2025",
+        "chargeback-gurus-2025",
+        "redress-compliance-2025",
+        "redress-match-removal-2025",
+        "redress-multi-mid-2025",
+        "datos-insights-chargeback-2026",
+        "javelin-chargeback-2025",
+        "mrc-global-ecommerce-fraud-2026",
+        "mrc-3ds-best-practices-2024",
+        "mrc-3ds-frictionless-rates-2024",
+        "mrc-3ds-conversion-impact-2024",
+        "juniper-research-friendly-fraud-2026",
+        "lexisnexis-true-cost-of-fraud-2025",
+        "nilson-report-2025",
+        "lendingtree-cardholder-survey-2024",
+        "emvco-3ds-2024",
+        "emvco-3ds-2-3-0-2024",
+        "emvco-3ds-frictionless-flow-2024",
+        "emvco-3ds-challenge-flow-2024",
+        "emvco-3ds-data-fields-2024",
+        "emvco-3ds-merchant-data-2024",
+        "acquirer-pass-through-2025",
+        "acquirer-portfolio-2025",
+        "acquirer-reserve-2025",
+        "redress-acquirer-2025",
+        "chargeflow-acquirer-2025",
+        "refund-policy-2025",
+        "partial-refund-2025",
+        "multi-platform-merchant-2025",
+        "omnichannel-chargeback-2025",
+        "cross-border-3ds-2025"
+      ],
+      "blurb": "A best-in-class **Cross-platform MID-orchestrator** closes the canonical \"we sell on Shopify + Amazon + eBay + Walmart + TikTok Shop, our 3DS coverage is 80% blended but only 65% on TikTok Shop + our 10.4 dispute rate...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 109,
+      "size": 50077,
+      "lastTouched": "2026-10-04"
+    },
+    {
       "file": "50-conversational-commerce-orchestration.md",
       "name": "conversational-commerce-orchestration",
       "title": "Conversational commerce orchestration",
@@ -82631,6 +82768,27 @@
   ],
   "gitCommits": [
     {
+      "sha": "f6936ec",
+      "date": "2026-10-04T19:08:51Z",
+      "author": "mattiasadem",
+      "subject": "docs(journal): Move #N.11 shipping activity heatmap tick",
+      "body": ""
+    },
+    {
+      "sha": "6e0480a",
+      "date": "2026-10-04T19:08:03Z",
+      "author": "mattiasadem",
+      "subject": "feat(dashboard): Move #N.11 shipping activity heatmap + momentum on /launch-plan-progress",
+      "body": ""
+    },
+    {
+      "sha": "9105658",
+      "date": "2026-10-04T18:06:14Z",
+      "author": "mattiasadem",
+      "subject": "skill: 498 — 3DS-frictionless CE 3.0 fallback (Move #167.4, FIRST Tier-1 P0 in category: 3ds-frictionless-ce3-fallback, Year-1 ROI 6:1-18:1)",
+      "body": ""
+    },
+    {
       "sha": "6717eaf",
       "date": "2026-10-04T16:56:17Z",
       "author": "mattiasadem",
@@ -84008,27 +84166,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #3.34 checkout-audit-by-...-x-cohort-affinity-vicesimal (389th skill)",
       "body": ""
-    },
-    {
-      "sha": "1d49a9a",
-      "date": "2026-09-28T06:43:18Z",
-      "author": "hermesagent",
-      "subject": "journal: skill tick 2026-09-28 06:42 UTC — Move #3.33 keep",
-      "body": ""
-    },
-    {
-      "sha": "d67d71b",
-      "date": "2026-09-28T06:42:18Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #3.33 checkout-audit-by-...-x-cohort-affinity-vigintiangular (388th skill)",
-      "body": ""
-    },
-    {
-      "sha": "09d9685",
-      "date": "2026-09-28T02:57:42Z",
-      "author": "hermesagent",
-      "subject": "journal: skill tick 2026-09-28 02:55 UTC — Move #3.32 keep",
-      "body": ""
     }
   ],
   "counts": {
@@ -84037,8 +84174,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 185,
-    "skills": 497,
+    "journalEntries": 187,
+    "skills": 498,
     "gitCommits": 200
   }
 }
