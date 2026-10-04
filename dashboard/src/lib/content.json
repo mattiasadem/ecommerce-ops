@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T15:42:08.212Z",
+  "generatedAt": "2026-10-04T16:52:11.673Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-10-04 15:42 UTC] Skill tick: keep — Subscription Account Updater audit + Visa VAU + Mastercard ABU + subscription card-on-file auto-refresh (Move #167.2)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-04\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES. **(1) UNIQUE CATEGORY** — `grep -l '^category: subscription-account-updater-audit$' skills/*.md | wc -l = 0` before writing → 1 after writing skill/496. **(2) FIRST TIER-1 IN CATEGORY** — moot, skill/496 is `tier: 1`, only entry in category. **(3) FIRST P0 IN CATEGORY** — moot, skill/496 is `priority: P0`, only entry in category. **(4) HIGHEST PITFALL COUNT WINS TIES** — 15 numbered pitfalls in ## Common pitfalls (P1-P15 enumerated, the canonical minimum). Skill is the natural Day-30+ follow-up to Move #167.1 (CE 3.0 evidence-pack automation) + Move #52 (subscription replenishment) + Move #224 (subscription churn defense) — the subscription-specific complement that auto-refr"
+    },
     {
       "heading": "[2026-10-04 14:35 UTC] Skill tick: keep — Compelling Evidence 3.0 evidence-pack automation (Move #167.1)",
       "body": "- **Branch:** autoresearch/skills-2026-10-04\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES. **(1) UNIQUE CATEGORY** — `grep -l '^category: compelling-evidence-automation$' skills/*.md | wc -l = 0` before writing → 1 after writing skill/495. **(2) FIRST TIER-1 IN CATEGORY** — moot, skill/495 is `tier: 1`, only entry in category. **(3) FIRST P0 IN CATEGORY** — moot, skill/495 is `priority: P0`, only entry in category. **(4) HIGHEST PITFALL COUNT WINS TIES** — 15 numbered pitfalls in ## Common pitfalls (P1-P15 enumerated, the canonical minimum) + 23 total pitfall mentions across the file. Skill is the natural Day-30+ follow-up to Move #167 (chargeback-management) — the per-dispute automation layer that ships (a) a CE 3.0 evidence composer (Stripe/Adyen/Shopify/Chargef"
@@ -63203,6 +63207,105 @@
       "lastTouched": "2026-10-04"
     },
     {
+      "file": "497-per-network-fee-modeling-vamp-ecm-red-monitoring-programs.md",
+      "name": "per-network-fee-modeling-vamp-ecm-red-monitoring-programs",
+      "title": "Per-network fee-modeling for Visa VAMP + Mastercard ECM/HECM + Amex RED/ICPR + Discover DMP + MATCH-list risk + acquirer reserve opportunity cost + per-network acquirer pass-through fines + ROAD-TO-COMPLIANCE cost projection (Move #167.3)",
+      "category": "per-network-fee-modeling",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "167.3",
+      "yearOneRoiBand": "5:1–15:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-10-04",
+      "sources": [
+        "visa-acquirer-monitoring-program-2025",
+        "visa-vamp-factsheet-2025",
+        "visa-vamp-faq-2025",
+        "visa-vamp-april-2026-150bps",
+        "visa-vamp-braintree-2025",
+        "visa-ce-3-0-2025",
+        "visa-rdr-2025",
+        "mastercard-ecp-2025",
+        "mastercard-ecm-2025",
+        "mastercard-hecm-2025",
+        "mastercard-efm-2025",
+        "mastercard-acmp-2025",
+        "mastercard-gmap-2025",
+        "mastercard-issuer-recovery-assessment-2025",
+        "mastercard-match-2024",
+        "visa-match-2024",
+        "amex-red-2025",
+        "amex-fraud-full-recourse-2025",
+        "amex-immediate-chargeback-program-2025",
+        "amex-partial-icpr-2025",
+        "amex-adr-2025",
+        "amex-excessive-chargeback-fee-2025",
+        "discover-dmp-2025",
+        "discover-dispute-resolution-2025",
+        "capital-one-discover-2025",
+        "antom-network-programs-2026",
+        "payments-and-risk-network-programs-2026",
+        "cside-vamp-2026",
+        "chargeflow-vamp-2026",
+        "chargeflow-thresholds-2026",
+        "redo-mastercard-ecm-2026",
+        "multi-flow-chargeback-ratio-2026",
+        "chargeback-gurus-vamp-2025",
+        "chargeback-gurus-match-2026",
+        "chargeback-gurus-amex-2025",
+        "chargeback-stop-amex-2025",
+        "solidgate-amex-2025",
+        "chargehit-amex-2025",
+        "verifi-cdrn-2025",
+        "ethoca-2025",
+        "midmetrics-2025",
+        "chargeflow-2025",
+        "justt-2025",
+        "signifiyd-2025",
+        "stripe-chargeback-protection-2025",
+        "adyen-dispute-2025",
+        "shopify-dispute-2025",
+        "chargebacks911-2026",
+        "juniper-research-friendly-fraud-2026",
+        "mrc-global-ecommerce-fraud-2026",
+        "lexisnexis-true-cost-of-fraud-2025",
+        "nilson-report-2025",
+        "datos-insights-chargeback-2026",
+        "chargeback-gurus-2025",
+        "chargebee-chargeback-2025",
+        "recurly-chargeback-2025",
+        "redress-compliance-2025",
+        "verifi-order-insight-2025",
+        "redress-match-removal-2025",
+        "global-legal-match-2025",
+        "legitaudit-2025",
+        "brookside-payments-2025",
+        "mastercard-ecom-2025",
+        "braintree-card-brand-2025",
+        "paypal-braintree-monitoring-2025",
+        "visa-2025-global-ecommerce-payments-fraud-report",
+        "mastercard-datos-2025",
+        "javelin-chargeback-2025",
+        "lendingtree-cardholder-survey-2024",
+        "visa-evolution-of-compelling-evidence-2023",
+        "visa-ce-3-0-effective-2025",
+        "chargeback-io-2025",
+        "visa-2026-150bps-eu-ap-canada-us",
+        "mastercard-issuer-recovery-300-chargebacks-2025",
+        "acquirer-reserve-2025",
+        "acquirer-pass-through-fines-2025",
+        "lac-region-vamp-2026",
+        "emea-region-vamp-2026",
+        "fintech-zoom-2026-vamp-thresholds"
+      ],
+      "blurb": "A best-in-class **Per-network fee-modeling** layer converts the operator's static chargeback-management flow (Move #167) + CE 3.0 evidence-pack automation (Move #167.1) + Subscription Account Updater audit (Move #167....",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 79,
+      "size": 66170,
+      "lastTouched": "2026-10-04"
+    },
+    {
       "file": "50-conversational-commerce-orchestration.md",
       "name": "conversational-commerce-orchestration",
       "title": "Conversational commerce orchestration",
@@ -82438,6 +82541,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "6c1c0c4",
+      "date": "2026-10-04T15:46:37Z",
+      "author": "hermesagent",
+      "subject": "skill: 496 — Subscription Account Updater audit (Move #167.2, FIRST Tier-1 P0 in category: subscription-account-updater-audit, Year-1 ROI 8:1-22:1)",
+      "body": ""
+    },
+    {
       "sha": "338e404",
       "date": "2026-10-04T14:38:38Z",
       "author": "mattiasadem",
@@ -83829,13 +83939,6 @@
       "author": "hermesagent",
       "subject": "docs: journal entry for Move #3.31 undecimal-axis skill tick",
       "body": ""
-    },
-    {
-      "sha": "dd8e735",
-      "date": "2026-09-27T23:06:16Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #3.31 checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-undecimal",
-      "body": ""
     }
   ],
   "counts": {
@@ -83844,8 +83947,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 183,
-    "skills": 495,
+    "journalEntries": 184,
+    "skills": 496,
     "gitCommits": 200
   }
 }
