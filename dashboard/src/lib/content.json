@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T14:34:48.291Z",
+  "generatedAt": "2026-10-04T15:42:08.212Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-10-04 14:35 UTC] Skill tick: keep — Compelling Evidence 3.0 evidence-pack automation (Move #167.1)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-04\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES. **(1) UNIQUE CATEGORY** — `grep -l '^category: compelling-evidence-automation$' skills/*.md | wc -l = 0` before writing → 1 after writing skill/495. **(2) FIRST TIER-1 IN CATEGORY** — moot, skill/495 is `tier: 1`, only entry in category. **(3) FIRST P0 IN CATEGORY** — moot, skill/495 is `priority: P0`, only entry in category. **(4) HIGHEST PITFALL COUNT WINS TIES** — 15 numbered pitfalls in ## Common pitfalls (P1-P15 enumerated, the canonical minimum) + 23 total pitfall mentions across the file. Skill is the natural Day-30+ follow-up to Move #167 (chargeback-management) — the per-dispute automation layer that ships (a) a CE 3.0 evidence composer (Stripe/Adyen/Shopify/Chargef"
+    },
     {
       "heading": "[2026-10-04 13:25 UTC] Skill tick: keep — Chargeback management + dispute recovery + VAMP / ECM / CE 3.0 / RDR / CDRN defense (Move #167)",
       "body": "- **Branch:** autoresearch/skills-2026-10-04\n- **Status:** keep\n- **Reason:** PASSES THE UNIQUE-CATEGORY GATE OF THE IMPROVEMENT METRIC. **`grep -l '^category: chargeback-management$' skills/*.md | wc -l` was 0 before this tick → 1 after writing skill/167.** This is the **first Tier-1 + first P0 + first entry in `category: chargeback-management`** in the entire skill library. Skill fills a real operational gap that the existing 492 skills did not cover: the **2025–2026 card-network rule change** (Visa VAMP effective Apr 2025 with merchant Excessive threshold dropping 2.2% → 1.5% on Apr 1 2026; Mastercard ECM at 1.5% + 100 chargebacks/month; Amex RED at 1.0%) means every $1M+ GMV operator is now at MATCH-list risk if they don't track their dispute ratio. The skill provides: the canonical 6-"
@@ -63137,6 +63141,68 @@
       "lastTouched": "2026-10-04"
     },
     {
+      "file": "496-subscription-account-updater-audit.md",
+      "name": "subscription-account-updater-audit",
+      "title": "Subscription Account Updater audit + Visa VAU + Mastercard ABU + subscription card-on-file auto-refresh (Move #167.2)",
+      "category": "subscription-account-updater-audit",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "167.2",
+      "yearOneRoiBand": "8:1–22:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-10-04",
+      "sources": [
+        "visa-account-updater-2024",
+        "visa-account-updater-merchant-implementation-2024",
+        "mastercard-automatic-billing-updater-2024",
+        "mastercard-abu-merchant-integration-2024",
+        "discover-account-updater-2024",
+        "american-express-card-refresher-2024",
+        "american-express-billing-token-2024",
+        "recharge-account-updater-2024",
+        "recharge-billing-automation-2024",
+        "stripe-billing-account-updater-2024",
+        "stripe-smart-retries-2024",
+        "recurly-account-updater-2024",
+        "chargebee-account-updater-2024",
+        "authorize-net-card-updater-2024",
+        "braintree-account-updater-2024",
+        "adyen-account-updater-2024",
+        "worldpay-account-updater-2024",
+        "square-account-updater-2024",
+        "checkoutcom-account-updater-2024",
+        "paypal-account-updater-2024",
+        "zuora-account-updater-2024",
+        "ordway-account-updater-2024",
+        "chargekeep-account-updater-2024",
+        "subscriptions-benchmarks-recharge-2024",
+        "subscriptions-benchmarks-baremetrics-2024",
+        "subscriptions-benchmarks-profitwell-2024",
+        "subscriptions-benchmarks-subbly-2024",
+        "involuntary-churn-benchmarks-recharge-2024",
+        "involuntary-churn-benchmarks-stripe-2024",
+        "mverve-card-on-file-renewal-2024",
+        "pymnts-subscription-billing-2024",
+        "visa-vts-token-2024",
+        "mastercard-mdes-token-2024",
+        "network-tokenization-visa-2024",
+        "network-tokenization-emvco-2024",
+        "kount-account-updater-fraud-2024",
+        "kount-customer-outreach-2024",
+        "recurly-revenue-recovery-2024",
+        "profitwell-revenue-recovery-2024",
+        "baremetrics-revenue-recovery-2024",
+        "mrr-impact-account-updater-2024",
+        "mrr-impact-involuntary-churn-2024"
+      ],
+      "blurb": "A best-in-class **Subscription Account Updater audit + Visa VAU + Mastercard ABU + Discover DAA + Amex ABT integration layer** converts the operator's static subscription-billing flow (Move #52 / Move #224) into a **p...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 42,
+      "size": 42662,
+      "lastTouched": "2026-10-04"
+    },
+    {
       "file": "50-conversational-commerce-orchestration.md",
       "name": "conversational-commerce-orchestration",
       "title": "Conversational commerce orchestration",
@@ -82372,6 +82438,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "338e404",
+      "date": "2026-10-04T14:38:38Z",
+      "author": "mattiasadem",
+      "subject": "journal: append 2026-10-04 14:35 UTC skill tick (skill/495 CE 3.0 evidence-pack automation)",
+      "body": ""
+    },
+    {
+      "sha": "ba7eebe",
+      "date": "2026-10-04T14:38:05Z",
+      "author": "mattiasadem",
+      "subject": "skill: 495 — CE 3.0 evidence-pack automation (Move #167.1, FIRST Tier-1 P0 in category: compelling-evidence-automation, Year-1 ROI 10:1-55:1)",
+      "body": ""
+    },
+    {
       "sha": "56947f1",
       "date": "2026-10-04T13:29:50Z",
       "author": "mattiasadem",
@@ -83756,20 +83836,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #3.31 checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-undecimal",
       "body": ""
-    },
-    {
-      "sha": "bf4e7f6",
-      "date": "2026-09-27T21:57:53Z",
-      "author": "hermesagent",
-      "subject": "docs: journal entry for Move #3.30 cohort-affinity-decimal-axis skill tick",
-      "body": ""
-    },
-    {
-      "sha": "d84fd08",
-      "date": "2026-09-27T21:57:15Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #3.30 checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-decimal",
-      "body": ""
     }
   ],
   "counts": {
@@ -83778,8 +83844,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 182,
-    "skills": 494,
+    "journalEntries": 183,
+    "skills": 495,
     "gitCommits": 200
   }
 }
