@@ -8,6 +8,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { ResearchTable } from "@/components/research-table";
 import { LifecycleFlowAuditWithExport } from "@/components/lifecycle-flow-audit-with-export";
+import { FlowFixRecipeCard } from "@/components/flow-fix-recipe";
 import { content, findDoc, findTable } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -317,6 +318,11 @@ export default function LifecyclePage() {
       {/* === INTERACTIVE LIFECYCLE FLOW HEALTH AUDIT === */}
       <div className="border-t border-border/60 pt-6">
         <LifecycleFlowAuditWithExport />
+      </div>
+
+      {/* === PER-FLOW FIX RECIPE (Move #N.12) === */}
+      <div className="border-t border-border/60 pt-6">
+        <FlowFixRecipeCard />
       </div>
 
       {/* === FOOTER === */}
