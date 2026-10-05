@@ -37,6 +37,7 @@ import {
 } from "@/lib/next-move-sroi";
 import { CopyButton } from "@/components/copy-button";
 import { NextMoveWhatIf } from "@/components/next-move-what-if";
+import { NextMovePlanCalendar } from "@/components/next-move-plan-calendar";
 import { cn } from "@/lib/utils";
 
 /**
@@ -671,6 +672,14 @@ export function NextMoveCard() {
           `ecom-ops:shipped-playbooks:v1` so the operator can experiment
           without affecting their actual shipped tracker. */}
       <NextMoveWhatIf />
+
+      {/* Move #N.14 — per-move ship-by date + ICS export. Reads the
+          same what-if map and turns it into a concrete timeline with
+          one all-day event per move + a master "Plan start" event.
+          Plan start date is in `ecom-ops:next-move-plan-start:v1`. */}
+      <div className="mt-3">
+        <NextMovePlanCalendar />
+      </div>
     </div>
   );
 }
