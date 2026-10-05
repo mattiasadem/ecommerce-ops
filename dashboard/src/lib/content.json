@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-05T06:48:05.552Z",
+  "generatedAt": "2026-10-05T09:12:58.174Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13224,6 +13224,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-10-05 06:50 UTC] Skill tick: keep — Per-acquirer cadencer MCP integration (Move #167.5.12.1)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-05\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES. **(1) UNIQUE CATEGORY** — `grep -l '^category: per-acquirer-cadencer-mcp-integration$' skills/*.md | wc -l` returns **1** after writing skill/508. **(2) TIER-1 FIRST in category** — skill/508 is `tier: 1`, only entry in `category: per-acquirer-cadencer-mcp-integration`. **(3) P0 FIRST in category** — skill/508 is `priority: P0`, only entry in `category: per-acquirer-cadencer-mcp-integration`. **(4) HIGHEST PITFALL COUNT** — 15 numbered pitfalls in ## Common pitfalls (the canonical minimum; P1-P15 enumerated). Move #167.5.12.1 is the canonical chat-agent-native MCP-integration layer for the Move #167.5.12 per-acquirer governance cadencer (the 8-component per-acquirer cadencer"
+    },
+    {
       "heading": "[2026-10-05 05:33 UTC] Skill tick: keep — Per-platform acquirer portfolio governance cadencer (Move #167.5.12)",
       "body": "- **Branch:** autoresearch/skills-2026-10-05\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES. **(1) UNIQUE CATEGORY** — `grep -l '^category: per-platform-acquirer-governance-cadence$' skills/*.md | wc -l` returns **1** after writing skill/507. **(2) TIER-1 FIRST in category** — skill/507 is `tier: 1`, only entry in `category: per-platform-acquirer-governance-cadence`. **(3) P0 FIRST in category** — skill/507 is `priority: P0`, only entry in `category: per-platform-acquirer-governance-cadence`. **(4) HIGHEST PITFALL COUNT** — 18 numbered pitfalls in ## Common pitfalls (the canonical minimum; P1-P18 enumerated). Move #167.5.12 is the canonical TIME-TRIGGERED GOVERNANCE ENGINE that fires the Move #167.5.7-#167.5.11 per-acquirer playbooks (per-acquirer MATCH-removal + pe"
     },
@@ -14006,6 +14010,10 @@
     {
       "heading": "2026-10-05 01:20 UTC — Move #N.12 Per-flow fix recipe drilldown on /lifecycle",
       "body": "- **What shipped:** New `<FlowFixRecipeCard />` on `/lifecycle` (mounted below the audit panel) that turns every failed lifecycle flow into a **prioritized fix recipe**. Two views: (1) **All-flows table** — verdict badge · score · failed-gate count · top-fix gate · top-fix SROI · $ at risk /mo · click-to-drill, sorted FAIL → NEEDS_WORK → WARN → PASS; (2) **Per-flow drilldown** (auto-shown when the URL has `/lifecycle#<flow-id>`, e.g. from Move #N.9's P0 BLOCK deep-link) — 3-tile summary (top-fix $/1k sent + SROI + total $ at risk) + \"Read first\" playbook card + prioritized gate-fix list (ranked by expected lift $/1k sent desc, SROI tie-break) with measured message + diagnostic Klaviyo/Postscript tab + 1-3 concrete changes per gate + \"Copy recipe\" markdown export.\n\n- **Why it matters:** Clo"
+    },
+    {
+      "heading": "2026-10-05 07:32 UTC — Move #N.13 What-if scenario simulator on /",
+      "body": "- **What shipped:** A new **what-if scenario simulator** card on the Overview next-move card. The operator can toggle 0..N \"hypothetical\" moves (the ones they plan to ship next) from a 10-button grid. The simulator re-runs `pickNextMove` against the merged (shipped + plan) map and surfaces: (1) **cumulative monthly lift** across the plan (low/high $), (2) **cumulative calendar days** (serial, no parallelization), (3) **cumulative cost / month** (midpoint of low/high band), (4) **best-$/day delta** — tone-coded emerald/sky/amber/rose pill showing whether the plan consumes the high-SROI moves, (5) **top-move-changed banner** — sky-tinted alert when the algorithmic #1 changes after the plan ships, (6) **per-move SROI pill** on each toggle button (rendered against the same `sroiToneClass` as t"
     }
   ],
   "skills": [
@@ -65271,6 +65279,127 @@
       "lastTouched": "2026-10-05"
     },
     {
+      "file": "509-per-acquirer-cadencer-operator-skill-library.md",
+      "name": "per-acquirer-cadencer-operator-skill-library",
+      "title": "Per-acquirer cadencer operator skill library (Move #167.5.12.1.6)",
+      "category": "per-acquirer-cadencer-operator-skill-library",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "167.5.12.1.6",
+      "yearOneRoiBand": "3:1–10:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-10-05",
+      "sources": [
+        "acquirer-mcp-2026",
+        "mcp-anthropic-2025",
+        "mcp-specification-2025",
+        "mcp-server-sdk-2025",
+        "mcp-tool-calling-2025",
+        "mcp-resource-access-2025",
+        "mcp-prompt-templates-2025",
+        "hermes-agent-2026",
+        "hermes-agent-skill-2026",
+        "hermes-agent-mcp-2026",
+        "chat-agent-2026",
+        "operator-chat-agent-2026",
+        "hermes-curator-2026",
+        "hermes-skill-authoring-2026",
+        "hermes-cron-2026",
+        "hermes-webhook-2026",
+        "hermes-kanban-2026",
+        "hermes-delegation-2026",
+        "hermes-memory-2026",
+        "hermes-session-search-2026",
+        "hermes-config-2026",
+        "hermes-cli-2026",
+        "hermes-gateway-2026",
+        "agentic-payments-2026",
+        "agentic-chargeback-2026",
+        "agentic-acquirer-2026",
+        "agentic-per-acquirer-2026",
+        "acquirer-cadencer-2026",
+        "acquirer-cadencer-operator-skill-2026",
+        "acquirer-cadencer-MCP-integration-2026",
+        "acquirer-MATCH-removal-2026",
+        "acquirer-reserve-release-2026",
+        "acquirer-pass-through-benchmarker-2026",
+        "acquirer-migration-orchestrator-2026",
+        "acquirer-renegotiation-playbook-2026",
+        "acquirer-rfp-2026",
+        "acquirer-rate-ratchet-2026",
+        "acquirer-auto-renew-2026",
+        "acquirer-rate-notice-2026",
+        "acquirer-network-program-2026",
+        "acquirer-VAMP-2026",
+        "acquirer-ECM-2026",
+        "acquirer-RED-2026",
+        "acquirer-DMP-2026",
+        "acquirer-portfolio-defense-2026",
+        "acquirer-portfolio-insurance-2026",
+        "acquirer-portfolio-governance-2026",
+        "acquirer-portfolio-cadence-2026",
+        "acquirer-QBR-2026",
+        "acquirer-portfolio-dashboard-2026",
+        "acquirer-portfolio-audit-2026",
+        "acquirer-portfolio-SOP-2026",
+        "adyen-multi-MID-2026",
+        "braintree-2026",
+        "stripe-pass-through-2026",
+        "worldpay-2026",
+        "auth-net-2026",
+        "verifi-2026",
+        "ethoca-2026",
+        "chargeflow-2026",
+        "kount-2026",
+        "riskified-2026",
+        "signifyd-2026",
+        "nofraud-2026",
+        "midmetrics-2026",
+        "redress-acquirer-2026",
+        "redress-acquirer-portfolio-defense-2026",
+        "redress-acquirer-passthrough-2026",
+        "redress-acquirer-rfp-2026",
+        "redress-acquirer-migration-2026",
+        "redress-acquirer-renegotiation-2026",
+        "redress-acquirer-cadencer-2026",
+        "redress-acquirer-governance-2026",
+        "redress-acquirer-auto-renew-2026",
+        "redress-acquirer-rate-notice-2026",
+        "redress-acquirer-rate-ratchet-2026",
+        "redress-acquirer-network-program-update-2026",
+        "redress-acquirer-qbr-2026",
+        "redress-acquirer-dashboard-2026",
+        "redress-acquirer-audit-2026",
+        "redress-acquirer-sop-2026",
+        "hermes-agent-skill-loader-2026",
+        "hermes-skill-browse-2026",
+        "hermes-skill-install-2026",
+        "hermes-skill-update-2026",
+        "hermes-skill-uninstall-2026",
+        "hermes-skill-publish-2026",
+        "hermes-skill-tap-2026",
+        "hermes-skill-hub-2026",
+        "hermes-skill-provenance-2026",
+        "hermes-curator-status-2026",
+        "hermes-curator-run-2026",
+        "hermes-curator-pin-2026",
+        "hermes-curator-archive-2026",
+        "hermes-curator-prune-2026",
+        "hermes-curator-backup-2026",
+        "hermes-curator-rollback-2026",
+        "agentic-per-acquirer-skill-2026",
+        "agentic-per-acquirer-skill-loader-2026",
+        "agentic-per-acquirer-skill-hub-2026",
+        "agentic-per-acquirer-curator-2026"
+      ],
+      "blurb": "A best-in-class **Per-acquirer cadencer operator skill library** extends the operator's per-acquirer governance cadencer (Move #167.5.12) and its 8 components + the per-acquirer cadencer MCP integration (Move #167.5.1...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 101,
+      "size": 82737,
+      "lastTouched": "2026-10-05"
+    },
+    {
       "file": "51-web-push-mobile-push-orchestration.md",
       "name": "web-push-mobile-push-orchestration",
       "title": "Web push + mobile push + app push orchestration",
@@ -84365,6 +84494,27 @@
   ],
   "gitCommits": [
     {
+      "sha": "77570a1",
+      "date": "2026-10-05T07:33:23Z",
+      "author": "hermesagent",
+      "subject": "feat(dashboard): Move #N.13 what-if scenario simulator on /",
+      "body": ""
+    },
+    {
+      "sha": "89a61fc",
+      "date": "2026-10-05T06:52:10Z",
+      "author": "hermesagent",
+      "subject": "journal: append 2026-10-05 06:50 UTC skill tick (skill/508 per-acquirer cadencer MCP integration Move #167.5.12.1)",
+      "body": ""
+    },
+    {
+      "sha": "8ba091d",
+      "date": "2026-10-05T06:51:18Z",
+      "author": "hermesagent",
+      "subject": "skill: Per-acquirer cadencer MCP integration (Move #167.5.12.1) — 8-component MCP-server layer for Move #167.5.12 cadencer",
+      "body": ""
+    },
+    {
       "sha": "e44ddc1",
       "date": "2026-10-05T05:42:04Z",
       "author": "hermesagent",
@@ -85742,27 +85892,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #3.44 checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-duo-centesimal-x-cohort-affinity-tre-centesimal",
       "body": ""
-    },
-    {
-      "sha": "f0314fe",
-      "date": "2026-09-29T00:36:04Z",
-      "author": "hermesagent",
-      "subject": "journal: Move #3.43 duo-centesimal keep entry",
-      "body": ""
-    },
-    {
-      "sha": "b8d8db7",
-      "date": "2026-09-29T00:34:56Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #3.43 checkout-audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-centesimal-x-cohort-affinity-duo-centesimal",
-      "body": ""
-    },
-    {
-      "sha": "6c6c75e",
-      "date": "2026-09-28T23:25:48Z",
-      "author": "mattiasadem",
-      "subject": "journal: Move #3.42 centesimal tick keep",
-      "body": ""
     }
   ],
   "counts": {
@@ -85771,8 +85900,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 196,
-    "skills": 507,
+    "journalEntries": 198,
+    "skills": 508,
     "gitCommits": 200
   }
 }
