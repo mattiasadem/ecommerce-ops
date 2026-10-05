@@ -36,6 +36,7 @@ import {
   sroiToneClass,
 } from "@/lib/next-move-sroi";
 import { CopyButton } from "@/components/copy-button";
+import { NextMoveWhatIf } from "@/components/next-move-what-if";
 import { cn } from "@/lib/utils";
 
 /**
@@ -661,6 +662,15 @@ export function NextMoveCard() {
             : "Every remaining Top-10 move is blocked by a prerequisite. Open /playbooks#shipped-progress to confirm the prerequisite IDs are ticked."}
         </div>
       )}
+
+      {/* Move #N.13 — what-if scenario simulator. Renders a planning
+          tool that lets the operator toggle "hypothetical" moves (the
+          ones they plan to ship next) and re-runs the algorithm against
+          the merged shipped+plan map. State is in
+          `ecom-ops:next-move-what-if:v1`, separate from
+          `ecom-ops:shipped-playbooks:v1` so the operator can experiment
+          without affecting their actual shipped tracker. */}
+      <NextMoveWhatIf />
     </div>
   );
 }

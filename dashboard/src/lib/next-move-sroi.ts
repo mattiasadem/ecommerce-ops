@@ -138,13 +138,21 @@ export function computeNextMoveSroi(
 
 /** Compute SROI for every move in the canonical Top-10 set, then rank
  *  by `sroiUsdPerDay` desc (ties broken by `priorityRank` asc — the
- *  canonical ordering is the tie-break so the table stays stable). */
+ *  canonical ordering is the tie-break so the table stays stable).
+ *
+ *  Pass `shippedSet` to exclude already-shipped moves from the ranking
+ *  (used by the what-if simulator to compare baseline vs post-plan SROI). */
 export function computeSroiRanking(
-  store: YourStoreInputs | null
+  store: YourStoreInputs | null,
+  shipped?: Record<string, unknown> | null
 ): NextMoveSroi[] {
   const effective = store ?? YOUR_STORE_DEFAULTS;
   const monthlyRevenue = effective.aov * effective.monthlyOrders;
-  const scores = MOVE_RECOMMENDATIONS.map((m) => computeNextMoveSroi(m, monthlyRevenue));
+  const shippedIds = new Set(shipped ? Object.keys(shipped) : []);
+  const candidatePool = shippedIds.size
+    ? MOVE_RECOMMENDATIONS.filter((m) => !shippedIds.has(m.id))
+    : MOVE_RECOMMENDATIONS;
+  const scores = candidatePool.map((m) => computeNextMoveSroi(m, monthlyRevenue));
   scores.sort((a, b) => {
     if (b.sroiUsdPerDay !== a.sroiUsdPerDay) {
       return b.sroiUsdPerDay - a.sroiUsdPerDay;
