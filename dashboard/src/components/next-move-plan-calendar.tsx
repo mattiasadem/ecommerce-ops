@@ -38,6 +38,7 @@ import {
   type PlanCalendarWithSroi,
 } from "@/lib/next-move-plan-calendar";
 import { formatUsd } from "@/lib/format";
+import { NextMovePlanShare } from "@/components/next-move-plan-share";
 
 /**
  * `Next-move plan calendar` — Move #N.14 — per-move ship-by date + ICS export
@@ -373,6 +374,14 @@ export function NextMovePlanCalendar() {
         (plan) · Drag the .ics into Google / Apple / Outlook to add every
         move as a calendar event.
       </div>
+
+      {/* Move #N.15 — Plan share-link via URL hash. Encodes the current
+          what-if map + plan-start date into the URL hash so the operator
+          can paste a link into Slack / Linear / Notion and have the
+          recipient see the same plan auto-loaded. Pure consumer of the
+          Move #N.13 plan + Move #N.14 plan-start; writes only on
+          auto-import from a fresh hash payload. */}
+      <NextMovePlanShare />
     </div>
   );
 }
