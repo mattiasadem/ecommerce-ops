@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-06T12:11:40.614Z",
+  "generatedAt": "2026-10-06T13:25:15.806Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-10-06 12:18 UTC] Skill tick: keep — PDP review-highlight cross-channel LLM-generated snippet (Move #47.5.1.1.1.2)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-06\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES. **(1) UNIQUE CATEGORY** — `grep -l '^category: pdp-review-highlight-cross-channel-llm-generated-snippet$' skills/*.md | wc -l` returns **1** after writing skill/531 (no other skill in the dashboard covers the per-cohort × per-channel LLM-generated snippet / per-cohort × per-channel LLM-armed-bandit / per-cohort × per-channel multi-provider LLM fallback chain / per-cohort × per-channel RAG-grounded snippet generation / per-cohort × per-channel LLM-as-judge ensemble / per-cohort × per-channel 7-layer prompt architecture / per-cohort × per-channel 16-locale LLM coverage / per-cohort × per-channel LLM cost tiering / per-cohort × per-channel LLM disclosure banner per Italy 2025 A"
+    },
     {
       "heading": "[2026-10-06 11:30 UTC] Skill tick: keep — PDP review-highlight cross-channel multi-arm bandit picker (Move #47.5.1.1.1.1)",
       "body": "- **Branch:** autoresearch/skills-2026-10-06\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES. **(1) UNIQUE CATEGORY** — `grep -l '^category: pdp-review-highlight-cross-channel-multi-arm-bandit-picker$' skills/*.md | wc -l` returns **1** after writing skill/530 (no other skill in the dashboard covers the per-cohort × per-channel Thompson sampling / UCB1 / LinUCB contextual bandit picker / per-cohort × per-channel BanditLP multi-stakeholder constrained bandit / per-cohort × per-channel hierarchical bandit rollup / per-cohort × per-channel always-valid p-values / per-cohort × per-channel batched bTS / per-cohort × per-channel 196-feature contextual bandit / per-cohort × per-channel warm-up floor / per-cohort × per-channel cross-channel consistency guardrail / per-cohort"
@@ -70916,6 +70920,103 @@
       "lastTouched": "2026-10-06"
     },
     {
+      "file": "532-pdp-review-highlight-cross-channel-product-velocity.md",
+      "name": "pdp-review-highlight-cross-channel-product-velocity",
+      "title": "Per-cohort PDP review-highlight cross-channel product-velocity",
+      "category": "pdp-review-highlight-cross-channel-product-velocity",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "47.5.1.1.1.3",
+      "yearOneRoiBand": "3:1-10:1",
+      "smsFriendly": true,
+      "lastUpdated": "2026-10-06",
+      "sources": [
+        "openai-2026",
+        "anthropic-2026",
+        "cohere-2026",
+        "mistral-large-2026",
+        "meta-llama-2026",
+        "ai21-2026",
+        "deepseek-2026",
+        "deepl-2026",
+        "google-translate-2026",
+        "klaviyo-2026",
+        "postscript-2026",
+        "iterable-2026",
+        "customerio-2026",
+        "onesignal-2026",
+        "attentive-2026",
+        "meta-2026",
+        "tiktok-2026",
+        "google-ads-2026",
+        "pinterest-2026",
+        "snapchat-2026",
+        "reddit-2026",
+        "yotpo-2026",
+        "loox-2026",
+        "judgeme-2026",
+        "stamped-2026",
+        "junip-2026",
+        "okendo-2026",
+        "eppo-2026",
+        "kameleoon-2026",
+        "optimizely-2026",
+        "monetate-2026",
+        "vwo-2026",
+        "statsig-2026",
+        "ab-tasty-2026",
+        "adobe-target-2026",
+        "launchdarkly-2026",
+        "growthbook-2026",
+        "splitio-2026",
+        "amazon-personalize-2026",
+        "sage-maker-2026",
+        "lottes-on-2026",
+        "storytel-2026",
+        "linkedin-banditlp-2026",
+        "home-depot-2026",
+        "mckinsey-2026",
+        "bcg-2026",
+        "accenture-2026",
+        "gartner-2026",
+        "forrester-2026",
+        "cxl-2026",
+        "litmus-2026",
+        "return-path-2026",
+        "validity-2026",
+        "twilio-2026",
+        "messagebird-2026",
+        "onetrust-2026",
+        "trustarc-2026",
+        "cookiebot-2026",
+        "gdpr-2026",
+        "ccpa-2026",
+        "lgpd-2026",
+        "pipeda-2026",
+        "cnil-2026",
+        "ico-2026",
+        "fcc-tcpa-2026",
+        "ctia-2026",
+        "mparticle-2026",
+        "segment-cdp-2026",
+        "salesforce-cdp-2026",
+        "triple-whale-2026",
+        "polar-2026",
+        "northbeam-2026",
+        "nosto-2026",
+        "dynamic-yield-2026",
+        "bloomreach-2026",
+        "rebuy-2026",
+        "limespot-2026"
+      ],
+      "blurb": "Move #47.5.1.1.1.3 — a per-cohort × per-channel × per-product-velocity LLM-generated review snippet (OpenAI / Anthropic / Cohere / Mistral / DeepSeek / Llama 3.1 / AI21) that the multi-arm bandit (from Move #47.5.1.1....",
+      "sectionCount": 10,
+      "pitfallCount": 15,
+      "sourceCount": 77,
+      "size": 75620,
+      "lastTouched": "2026-10-06"
+    },
+    {
       "file": "54-gift-cards-and-store-credit.md",
       "name": "gift-cards-and-store-credit",
       "title": "Gift cards + store credit + gift messaging + corporate gifting + Q4 BFCM gift-card-engine (Move #45)",
@@ -89478,6 +89579,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "f72c968",
+      "date": "2026-10-06T12:19:23Z",
+      "author": "hermesagent",
+      "subject": "skill: 531 PDP review-highlight cross-channel LLM-generated snippet Move #47.5.1.1.1.2",
+      "body": ""
+    },
+    {
       "sha": "a266eb3",
       "date": "2026-10-06T11:07:39Z",
       "author": "mattiasadem",
@@ -90869,13 +90977,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #41.10 virtual-try-on returns-portal-event-extension (309,657,600-cell + 2,477,260,800-cell)",
       "body": ""
-    },
-    {
-      "sha": "5d60272",
-      "date": "2026-09-30T07:21:24Z",
-      "author": "hermesagent",
-      "subject": "journal: Move #41.9 ship log entry",
-      "body": ""
     }
   ],
   "counts": {
@@ -90884,8 +90985,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 228,
-    "skills": 530,
+    "journalEntries": 229,
+    "skills": 531,
     "gitCommits": 200
   }
 }
