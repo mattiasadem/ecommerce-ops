@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-06T05:12:45.682Z",
+  "generatedAt": "2026-10-06T06:19:34.145Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-10-06 05:30 UTC] Skill tick: keep — Merchandising-rule email-channel A/B (Move #47.4.1)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-06\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES. **(1) UNIQUE CATEGORY** — `grep -l '^category: merchandising-email-ab-testing$' skills/*.md | wc -l` returns **1** after writing skill/525 (no other skill in the dashboard covers the merchandising-email-channel A/B / Klaviyo+Postscript+Iterable+Customer.io+Mailchimp+Sendlane+Omnisend+Drip+ActiveCampaign+ConvertKit+Beehiiv+Mailerlite+Moosend+Brevo+Mailjet+Sendgrid+Postmark+Amazon+Sparkpost+SMTP / per-cohort email-merchandising-rank A/B / per-cohort email-merchandising-product A/B / per-cohort email-merchandising-subject-line A/B / per-cohort email-merchandising-sender A/B / per-cohort email-merchandising-send-time A/B / per-cohort email-merchandising-frequency-cap A/B / per-c"
+    },
     {
       "heading": "[2026-10-06 04:30 UTC] Skill tick: keep — Merchandising A/B testing (Move #47.4)",
       "body": "- **Branch:** autoresearch/skills-2026-10-06\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES. **(1) UNIQUE CATEGORY** — `grep -l '^category: merchandising-ab-testing$' skills/*.md | wc -l` returns **1** after writing skill/524 (no other skill in the dashboard covers the merchandising-ab-testing/per-cohort-merchandising-rank-A/B/per-cohort-merchandising-facet-A/B/per-cohort-merchandising-badge-A/B/per-cohort-merchandising-sort-A/B/per-cohort-merchandising-redirect-A/B/per-cohort-merchandising-personalization-A/B/per-cohort-merchandising-iterator-loop/cohort-LTV-overlay-merchandising-rule-A/B category). **(2) TIER-1 FIRST in category** — skill/524 is `tier: 1`, only entry in `category: merchandising-ab-testing`. **(3) P0 FIRST in category** — skill/524 is `priority: P0"
@@ -70149,6 +70153,51 @@
       "lastTouched": "2026-10-06"
     },
     {
+      "file": "526-plp-personalization-per-cohort-dynamic-yield-nosto-constructor-klevu.md",
+      "name": "plp-personalization-per-cohort-dynamic-yield-nosto-constructor-klevu",
+      "title": "PLP personalization — per-cohort dynamic sort + facets + featured + recommendations on the product listing page",
+      "category": "plp-personalization",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "47.5",
+      "yearOneRoiBand": "4:1–12:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-10-06",
+      "sources": [
+        "dynamic-yield-2024",
+        "nosto-2024",
+        "constructor-2024",
+        "klevu-2024",
+        "algolia-2024",
+        "bloomreach-2024",
+        "shopify-search-discovery-2024",
+        "shopify-plus-2024",
+        "bigcommerce-2024",
+        "woocommerce-2024",
+        "salesforce-commerce-cloud-2024",
+        "commercetools-2024",
+        "klaviyo-segment-2024",
+        "triple-whale-cohort-2024",
+        "polar-2024",
+        "northbeam-2024",
+        "optimizely-2024",
+        "monetate-2024",
+        "baymard-plp-2024",
+        "nielsen-normann-group-plp-personalization-2024",
+        "forrester-personalization-engine-2024",
+        "gartner-personalization-engine-2024",
+        "mckinsey-personalization-2024",
+        "bcg-personalization-2024",
+        "accenture-personalization-2024"
+      ],
+      "blurb": "The cohort-LTV overlay on top of Move #47 (search + filter + sort + PLP).",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 25,
+      "size": 26786,
+      "lastTouched": "2026-10-06"
+    },
+    {
       "file": "53-financial-operations-unit-economics.md",
       "name": "financial-operations-unit-economics",
       "title": "Financial operations + unit-economics P&L automation (Move #40)",
@@ -88962,6 +89011,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "dc9e643",
+      "date": "2026-10-06T05:16:56Z",
+      "author": "mattiasadem",
+      "subject": "skill: Move #47.4.1 merchandising-rule email-channel A/B (525)",
+      "body": ""
+    },
+    {
       "sha": "4a3aea8",
       "date": "2026-10-06T04:03:21Z",
       "author": "mattiasadem",
@@ -90353,13 +90409,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #41.6 virtual-try-on-per-sku-fit-bias-cohort-x-bfcm-cohort-x-subscription-replenishment-x-mobile-pdp-x-cohort-affinity-quaternary (460,800-cell primary + 3,686,400-cell deep + 1,843,200-cell secondary cross-validation matrix; 17",
       "body": ""
-    },
-    {
-      "sha": "2fbdeb8",
-      "date": "2026-09-30T02:20:48Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #41.5 virtual-try-on-per-sku-fit-bias-cohort-x-bfcm-cohort-x-subscription-replenishment-x-mobile-pdp (57,600-cell primary + 460,800-cell deep + 230,400-cell secondary cross-validation matrix; 14:1-30:1 Year-1 ROI Path B default ",
-      "body": ""
     }
   ],
   "counts": {
@@ -90368,8 +90417,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 222,
-    "skills": 524,
+    "journalEntries": 223,
+    "skills": 525,
     "gitCommits": 200
   }
 }
