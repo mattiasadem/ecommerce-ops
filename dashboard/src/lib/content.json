@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-06T07:28:25.557Z",
+  "generatedAt": "2026-10-06T08:37:21.454Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-10-06 07:30 UTC] Skill tick: keep — PDP personalization (Move #47.5.1)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-06\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES. **(1) UNIQUE CATEGORY** — `grep -l '^category: pdp-personalization$' skills/*.md | wc -l` returns **1** after writing skill/527 (no other skill in the dashboard covers the per-cohort PDP personalization / per-cohort variant default / per-cohort social-proof / per-cohort recommendation / per-cohort bundle / per-cohort size-color-fit / per-cohort pricing display / per-cohort urgency / per-cohort OG-image / cohort-LTV overlay on the product detail page category). **(2) TIER-1 FIRST in category** — skill/527 is `tier: 1`, only entry in `category: pdp-personalization`. **(3) P0 FIRST in category** — skill/527 is `priority: P0`, only entry. **(4) HIGHEST PITFALL COUNT** — **15 num"
+    },
     {
       "heading": "[2026-10-06 06:20 UTC] Skill tick: keep — PLP personalization (Move #47.5)",
       "body": "- **Branch:** autoresearch/skills-2026-10-06\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES. **(1) UNIQUE CATEGORY** — `grep -l '^category: plp-personalization$' skills/*.md | wc -l` returns **1** after writing skill/526 (no other skill covers the PLP-personalization / per-cohort dynamic sort + per-cohort facets + per-cohort featured row + per-cohort recommendations on the product listing page category; the parent Move #47 / skill/520 is cohort-agnostic and only adds facets/sort/badges — it does NOT personalize per cohort). **(2) TIER-1 FIRST in category** — skill/526 is `tier: 1`, only entry. **(3) P0 FIRST in category** — skill/526 is `priority: P0`, only entry. **(4) HIGHEST PITFALL COUNT** — **15 numbered pitfalls** in `## Common pitfalls` (P1–P15; the canonical"
@@ -70257,6 +70261,56 @@
       "lastTouched": "2026-10-06"
     },
     {
+      "file": "528-pdp-review-highlight-per-cohort-yotpo-loox-judge-me-stamped-rebuy-limespot-cohort-ltv-overlay.md",
+      "name": "pdp-review-highlight-per-cohort-yotpo-loox-judge-me-stamped-rebuy-limespot-cohort-ltv-overlay",
+      "title": "PDP review-highlight — per-cohort ML-driven review snippet picker",
+      "category": "pdp-review-highlight-per-cohort",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "47.5.1.1",
+      "yearOneRoiBand": "3:1–10:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-10-06",
+      "sources": [
+        "yotpo-2024",
+        "loox-2024",
+        "judge-me-2024",
+        "stamped-2024",
+        "junip-2024",
+        "repster-2024",
+        "reviews-io-2024",
+        "okendo-2024",
+        "rebuy-2024",
+        "limespot-2024",
+        "nosto-2024",
+        "klaviyo-segment-2024",
+        "triple-whale-cohort-2024",
+        "polar-2024",
+        "northbeam-2024",
+        "dynamic-yield-2024",
+        "bloomreach-2024",
+        "shopify-plus-2024",
+        "baymard-pdp-2024",
+        "nielsen-normann-group-pdp-2024",
+        "forrester-social-proof-2024",
+        "gartner-social-proof-2024",
+        "mckinsey-personalization-2024",
+        "bcg-personalization-2024",
+        "accenture-personalization-2024",
+        "sparktoro-social-proof-2024",
+        "wireshark-conversion-rate-optimization-2024",
+        "cxl-conversion-rate-optimization-2024",
+        "unbounce-social-proof-2024",
+        "optimizely-experimentation-2024"
+      ],
+      "blurb": "The cohort-LTV overlay on top of Move #47.5.1 (PDP personalization) AND the canonical Move #8 (PDP A/B testing) extension. Without per-cohort review-highlight, the same \"★★★★★ 1,234 reviews\" badge + the same top-3 rev...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 30,
+      "size": 49992,
+      "lastTouched": "2026-10-06"
+    },
+    {
       "file": "53-financial-operations-unit-economics.md",
       "name": "financial-operations-unit-economics",
       "title": "Financial operations + unit-economics P&L automation (Move #40)",
@@ -89070,6 +89124,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "f75c4ae",
+      "date": "2026-10-06T07:32:59Z",
+      "author": "mattiasadem",
+      "subject": "skill: 527 PDP personalization per-cohort variant+social-proof+rec+bundle+size-fit Move #47.5.1",
+      "body": ""
+    },
+    {
       "sha": "0989b75",
       "date": "2026-10-06T06:24:30Z",
       "author": "mattiasadem",
@@ -90461,13 +90522,6 @@
       "author": "hermesagent",
       "subject": "skill: 417 Move #41.7 virtual-try-on per-SKU-fit-bias-cohort × BFCM-cohort × subscription-replenishment × mobile-PDP × traffic-source",
       "body": ""
-    },
-    {
-      "sha": "e0f7a13",
-      "date": "2026-09-30T03:43:41Z",
-      "author": "hermesagent",
-      "subject": "feat(dashboard): /subscription-launch-plan 30-day always-on Move #11 Subscription Program launch plan generator",
-      "body": ""
     }
   ],
   "counts": {
@@ -90476,8 +90530,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 224,
-    "skills": 526,
+    "journalEntries": 225,
+    "skills": 527,
     "gitCommits": 200
   }
 }
