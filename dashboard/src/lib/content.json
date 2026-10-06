@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-06T06:19:34.145Z",
+  "generatedAt": "2026-10-06T07:28:25.557Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-10-06 06:20 UTC] Skill tick: keep — PLP personalization (Move #47.5)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-06\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES. **(1) UNIQUE CATEGORY** — `grep -l '^category: plp-personalization$' skills/*.md | wc -l` returns **1** after writing skill/526 (no other skill covers the PLP-personalization / per-cohort dynamic sort + per-cohort facets + per-cohort featured row + per-cohort recommendations on the product listing page category; the parent Move #47 / skill/520 is cohort-agnostic and only adds facets/sort/badges — it does NOT personalize per cohort). **(2) TIER-1 FIRST in category** — skill/526 is `tier: 1`, only entry. **(3) P0 FIRST in category** — skill/526 is `priority: P0`, only entry. **(4) HIGHEST PITFALL COUNT** — **15 numbered pitfalls** in `## Common pitfalls` (P1–P15; the canonical"
+    },
     {
       "heading": "[2026-10-06 05:30 UTC] Skill tick: keep — Merchandising-rule email-channel A/B (Move #47.4.1)",
       "body": "- **Branch:** autoresearch/skills-2026-10-06\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES. **(1) UNIQUE CATEGORY** — `grep -l '^category: merchandising-email-ab-testing$' skills/*.md | wc -l` returns **1** after writing skill/525 (no other skill in the dashboard covers the merchandising-email-channel A/B / Klaviyo+Postscript+Iterable+Customer.io+Mailchimp+Sendlane+Omnisend+Drip+ActiveCampaign+ConvertKit+Beehiiv+Mailerlite+Moosend+Brevo+Mailjet+Sendgrid+Postmark+Amazon+Sparkpost+SMTP / per-cohort email-merchandising-rank A/B / per-cohort email-merchandising-product A/B / per-cohort email-merchandising-subject-line A/B / per-cohort email-merchandising-sender A/B / per-cohort email-merchandising-send-time A/B / per-cohort email-merchandising-frequency-cap A/B / per-c"
@@ -70198,6 +70202,61 @@
       "lastTouched": "2026-10-06"
     },
     {
+      "file": "527-pdp-personalization-per-cohort-variant-social-proof-recommendation-bundle-size-color-fit-dynamic-yield-nosto-constructor-klevu-algolia-bloomreach-cohort-ltv-overlay.md",
+      "name": "pdp-personalization-per-cohort-variant-social-proof-recommendation-bundle-size-color-fit-dynamic-yield-nosto-constructor-klevu-algolia-bloomreach-cohort-ltv-overlay",
+      "title": "PDP personalization — per-cohort variant + social-proof + recommendation + bundle + size/color/fit on the product detail page",
+      "category": "pdp-personalization",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "47.5.1",
+      "yearOneRoiBand": "5:1–18:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-10-06",
+      "sources": [
+        "dynamic-yield-2024",
+        "nosto-2024",
+        "constructor-2024",
+        "klevu-2024",
+        "algolia-2024",
+        "bloomreach-2024",
+        "rebuy-2024",
+        "limespot-2024",
+        "octane-ai-2024",
+        "shopify-search-discovery-2024",
+        "shopify-plus-2024",
+        "bigcommerce-2024",
+        "woocommerce-2024",
+        "salesforce-commerce-cloud-2024",
+        "commercetools-2024",
+        "klaviyo-segment-2024",
+        "triple-whale-cohort-2024",
+        "polar-2024",
+        "northbeam-2024",
+        "optimizely-2024",
+        "monetate-2024",
+        "baymard-pdp-2024",
+        "nielsen-normann-group-pdp-2024",
+        "forrester-personalization-engine-2024",
+        "gartner-personalization-engine-2024",
+        "mckinsey-personalization-2024",
+        "bcg-personalization-2024",
+        "accenture-personalization-2024",
+        "yotpo-2024",
+        "loox-2024",
+        "judge-me-2024",
+        "stamped-2024",
+        "fit-finder-2024",
+        "true-fit-2024",
+        "fit-analytics-2024"
+      ],
+      "blurb": "The cohort-LTV overlay on top of Move #47.5 (PLP personalization) AND the canonical Move #8 (PDP A/B testing) extension. Without PDP personalization, the same PDP shows the same default variant, the same generic socia...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 35,
+      "size": 45637,
+      "lastTouched": "2026-10-06"
+    },
+    {
       "file": "53-financial-operations-unit-economics.md",
       "name": "financial-operations-unit-economics",
       "title": "Financial operations + unit-economics P&L automation (Move #40)",
@@ -89011,6 +89070,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "0989b75",
+      "date": "2026-10-06T06:24:30Z",
+      "author": "mattiasadem",
+      "subject": "journal: append 2026-10-06 06:20 UTC skill tick (skill/526 Move #47.5 PLP personalization per-cohort Dynamic Yield + Nosto + Constructor + Klevu + Algolia + Bloomreach)",
+      "body": ""
+    },
+    {
+      "sha": "e929f9b",
+      "date": "2026-10-06T06:23:25Z",
+      "author": "mattiasadem",
+      "subject": "skill: 526 — PLP personalization per cohort (Move #47.5, FIRST Tier-1 P0 in category: plp-personalization, Dynamic Yield + Nosto + Constructor + Klevu + Algolia + Bloomreach, 6-pillar architecture, 15 pitfalls, 12 verification gates A-L, 25",
+      "body": ""
+    },
+    {
       "sha": "dc9e643",
       "date": "2026-10-06T05:16:56Z",
       "author": "mattiasadem",
@@ -90395,20 +90468,6 @@
       "author": "hermesagent",
       "subject": "feat(dashboard): /subscription-launch-plan 30-day always-on Move #11 Subscription Program launch plan generator",
       "body": ""
-    },
-    {
-      "sha": "1f40774",
-      "date": "2026-09-30T03:42:38Z",
-      "author": "hermesagent",
-      "subject": "journal: Move #41.6 virtual-try-on-per-sku-fit-bias-cohort-x-bfcm-cohort-x-subscription-replenishment-x-mobile-pdp-x-cohort-affinity-quaternary (17:1-34:1, 460,800-cell primary cross-validation matrix)",
-      "body": ""
-    },
-    {
-      "sha": "989d204",
-      "date": "2026-09-30T03:41:57Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #41.6 virtual-try-on-per-sku-fit-bias-cohort-x-bfcm-cohort-x-subscription-replenishment-x-mobile-pdp-x-cohort-affinity-quaternary (460,800-cell primary + 3,686,400-cell deep + 1,843,200-cell secondary cross-validation matrix; 17",
-      "body": ""
     }
   ],
   "counts": {
@@ -90417,8 +90476,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 223,
-    "skills": 525,
+    "journalEntries": 224,
+    "skills": 526,
     "gitCommits": 200
   }
 }
