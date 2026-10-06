@@ -23,6 +23,8 @@ import { Top10ShippedOverviewCard } from "@/components/top10-shipped-overview-ca
 import { Top10ExportButton } from "@/components/top10-export-button";
 import { RecentlyShippedPlaybooksCard } from "@/components/recently-shipped-playbooks-card";
 import { ShippedFreshnessDriftCard } from "@/components/shipped-freshness-drift";
+import { DriftFixRecipeRollup } from "@/components/drift-fix-recipe-rollup";
+import { CalculatorCoverageCard } from "@/components/calculator-coverage-card";
 import { ProgressExportButton } from "@/components/progress-export-button";
 import { TrajectoryPanel } from "@/components/trajectory-projection-panel";
 import { TrajectoryScenarioComparator } from "@/components/trajectory-scenario-comparator";
@@ -422,6 +424,20 @@ export default function Home() {
       {playbooks.length > 0 && (
         <section id="shipped-freshness-drift">
           <ShippedFreshnessDriftCard playbooks={content.playbooks} />
+        </section>
+      )}
+
+      {/* === DRIFT FIX RECIPE — read-first section links for each drifted shipped playbook === */}
+      {playbooks.length > 0 && (
+        <section id="drift-fix-recipe">
+          <DriftFixRecipeRollup playbooks={content.playbooks} />
+        </section>
+      )}
+
+      {/* === CALCULATOR COVERAGE — playbook × calculator cross-page-intelligence === */}
+      {playbooks.length > 0 && (
+        <section id="calculator-coverage">
+          <CalculatorCoverageCard playbooks={content.playbooks} />
         </section>
       )}
 
