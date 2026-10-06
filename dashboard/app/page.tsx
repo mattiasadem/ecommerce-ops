@@ -22,6 +22,7 @@ import { LifecycleFleetRollup } from "@/components/lifecycle-fleet-rollup";
 import { Top10ShippedOverviewCard } from "@/components/top10-shipped-overview-card";
 import { Top10ExportButton } from "@/components/top10-export-button";
 import { RecentlyShippedPlaybooksCard } from "@/components/recently-shipped-playbooks-card";
+import { ShippedFreshnessDriftCard } from "@/components/shipped-freshness-drift";
 import { ProgressExportButton } from "@/components/progress-export-button";
 import { TrajectoryPanel } from "@/components/trajectory-projection-panel";
 import { TrajectoryScenarioComparator } from "@/components/trajectory-scenario-comparator";
@@ -414,6 +415,13 @@ export default function Home() {
               title: p.title,
             }))}
           />
+        </section>
+      )}
+
+      {/* === SHIPPED FRESHNESS DRIFT — shipped-vs-playbook-update drift detector === */}
+      {playbooks.length > 0 && (
+        <section id="shipped-freshness-drift">
+          <ShippedFreshnessDriftCard playbooks={content.playbooks} />
         </section>
       )}
 

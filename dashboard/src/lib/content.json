@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-06T00:28:45.756Z",
+  "generatedAt": "2026-10-06T01:38:45.833Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13224,6 +13224,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-10-06 00:30 UTC] Skill tick: keep — On-site visual + voice + image search (Move #47.1)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-06\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES. **(1) UNIQUE CATEGORY** — `grep -l '^category: visual-search$' skills/*.md | wc -l` returns **1** after writing skill/521 (no other skill in the dashboard covers the visual-search/voice-search/image-search/camera-search/barcode-scan category). **(2) TIER-1 FIRST in category** — skill/521 is `tier: 1`, only entry in `category: visual-search`. **(3) P0 FIRST in category** — skill/521 is `priority: P0`, only entry. **(4) HIGHEST PITFALL COUNT** — **18 numbered pitfalls** in ## Common pitfalls (P1-P18; matches the canonical Move #47-class maximum of 18 pitfalls). Skill is the natural first follow-up to Move #47 (skill/520 on-site merchandising — search + filter + sort + PLP + co"
+    },
+    {
       "heading": "2026-10-05 20:30 UTC — Skill tick: keep — On-site merchandising (Move #47)",
       "body": "- **Branch:** autoresearch/skills-2026-10-05\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — fills a real operator gap NOT covered by any of the 519 prior skills. (1) UNIQUE CATEGORY — `grep -lE '^category: merchandising$' skills/*.md | wc -l = 1` (skill/520 is the only skill in the canonical `merchandising` category; pre-tick the dashboard had 519 skills across 200+ unique categories but ZERO skills on the on-site-discovery layer that determines PLP-ATC conversion via search + filter + sort + facets + badges + merchandising-rank). (2) TIER-1 FIRST IN CATEGORY — first Tier-1 in `category: merchandising`. (3) P0 FIRST IN CATEGORY — first P0 in the same category. (4) HIGHEST PITFALL COUNT WINS TIES — 18 numbered pitfalls (canonical ceiling matching Move #47-class mov"
     },
@@ -13696,6 +13700,10 @@
       "body": "- **Branch:** autoresearch/skills-2026-09-28\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #3.41 (shipped 2026-09-28 22:15 UTC, skill/397) `## How to extend` first follow-up recommendation (\"Move #3.42 — Checkout audit by subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-source-quad-axis-x-cohort-affinity-nonagesimal-x-cohort-affinity-centesimal-extension ... 11,566,835,136,437,528,873,319,424,000,000-cell deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep-deep cross-validation matrix; first Tier-1 + first P0 in `category: checkout-audit-by-subscription-discount-LTV-tier-x-cohort-affinity-x-BFCM-cohort-x-device-x-traffic-sou"
     },
     {
+      "heading": "[2026-10-06 00:30 UTC] Skill tick: keep — On-site visual + voice + image search (Move #47.1)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-06\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES. **(1) UNIQUE CATEGORY** — `grep -l '^category: visual-search$' skills/*.md | wc -l` returns **1** after writing skill/521 (no other skill in the dashboard covers the visual-search/voice-search/image-search/camera-search/barcode-scan category). **(2) TIER-1 FIRST in category** — skill/521 is `tier: 1`, only entry in `category: visual-search`. **(3) P0 FIRST in category** — skill/521 is `priority: P0`, only entry. **(4) HIGHEST PITFALL COUNT** — **18 numbered pitfalls** in ## Common pitfalls (P1-P18; matches the canonical Move #47-class maximum of 18 pitfalls). Skill is the natural first follow-up to Move #47 (skill/520 on-site merchandising — search + filter + sort + PLP + co"
+    },
+    {
       "heading": "2026-10-05 20:30 UTC — Skill tick: keep — On-site merchandising (Move #47)",
       "body": "- **Branch:** autoresearch/skills-2026-10-05\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — fills a real operator gap NOT covered by any of the 519 prior skills. (1) UNIQUE CATEGORY — `grep -lE '^category: merchandising$' skills/*.md | wc -l = 1` (skill/520 is the only skill in the canonical `merchandising` category; pre-tick the dashboard had 519 skills across 200+ unique categories but ZERO skills on the on-site-discovery layer that determines PLP-ATC conversion via search + filter + sort + facets + badges + merchandising-rank). (2) TIER-1 FIRST IN CATEGORY — first Tier-1 in `category: merchandising`. (3) P0 FIRST IN CATEGORY — first P0 in the same category. (4) HIGHEST PITFALL COUNT WINS TIES — 18 numbered pitfalls (canonical ceiling matching Move #47-class mov"
     },
@@ -13802,6 +13810,10 @@
     {
       "heading": "[2026-09-27 05:43 UTC] Skill tick: keep — Move #358.5.9 Per-SKU supplier-stress-test-LTV-cohort-decay-window-AI-agent-stress-test-engine",
       "body": "- **Branch:** autoresearch/skills-2026-09-27\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES — direct execution of Move #358.5.8 (shipped at 04:42 UTC today) skill's canonical \"How to extend\" first follow-up recommendation (\"Move #358.5.9 per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-stress-test-engine — adds a stress-test-engine that simulates ≥2 simultaneous multi-supplier-rollover events on the same cohort-tier and stress-tests the MR1-MR6 agent under multi-rollover pressure, with results fed back into Move #358.5.7 Q5 ROLLER-WINDOW-CHRONOLOGY as a forward-looking-risk-section\"). **(1) UNIQUE CATEGORY** — `grep -lE '^category: per-sku-supplier-stress-test-LTV-cohort-decay-window-AI-agent-stress-test-engine' skills/*.md | wc -l = 1` (skill/372 is th"
+    },
+    {
+      "heading": "[2026-10-06 00:30 UTC] Skill tick: keep — On-site visual + voice + image search (Move #47.1)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-06\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES. **(1) UNIQUE CATEGORY** — `grep -l '^category: visual-search$' skills/*.md | wc -l` returns **1** after writing skill/521 (no other skill in the dashboard covers the visual-search/voice-search/image-search/camera-search/barcode-scan category). **(2) TIER-1 FIRST in category** — skill/521 is `tier: 1`, only entry in `category: visual-search`. **(3) P0 FIRST in category** — skill/521 is `priority: P0`, only entry. **(4) HIGHEST PITFALL COUNT** — **18 numbered pitfalls** in ## Common pitfalls (P1-P18; matches the canonical Move #47-class maximum of 18 pitfalls). Skill is the natural first follow-up to Move #47 (skill/520 on-site merchandising — search + filter + sort + PLP + co"
     },
     {
       "heading": "2026-10-05 20:30 UTC — Skill tick: keep — On-site merchandising (Move #47)",
@@ -14022,6 +14034,10 @@
     {
       "heading": "[2026-10-02 18:30 UTC — skill-builder tick appended] Skill tick: keep — Move #458 Returns fraud and abuse management (wardrobing, bracketing, serial returners, empty-box, false damage)",
       "body": "- **Branch:** autoresearch/skills-2026-10-02\n- **Status:** keep\n- **Reason:** NEW unique category `returns-fraud` (count=1, only file). FIRST Tier-1 in category. FIRST P0 in category. Skill #458 of 456 in the library. The existing `category: returns` skills cover the LEGITIMATE-returns path (Move #28 returns-portal-orchestration, Move #88 reverse-logistics-prevention, Move #233 returns-knowledge-base-deflection, Move #79 cross-border-returns) — none cover the ABUSE / FRAUD side. NRF 2024: 16.5% of all retail returns are fraudulent/abusive; apparel 25%+ return rate. NRA: 10–20% of return processing cost is unmanaged abuse loss. Best-in-class recovers 8% of GMV at 15:1+ ROI.\n- **What shipped:** skills/458-returns-fraud-and-abuse-management.md (~19.7 KB, 569 insertions) — 9-section runbook (W"
+    },
+    {
+      "heading": "[2026-10-06 00:30 UTC] Skill tick: keep — On-site visual + voice + image search (Move #47.1)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-06\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES. **(1) UNIQUE CATEGORY** — `grep -l '^category: visual-search$' skills/*.md | wc -l` returns **1** after writing skill/521 (no other skill in the dashboard covers the visual-search/voice-search/image-search/camera-search/barcode-scan category). **(2) TIER-1 FIRST in category** — skill/521 is `tier: 1`, only entry in `category: visual-search`. **(3) P0 FIRST in category** — skill/521 is `priority: P0`, only entry. **(4) HIGHEST PITFALL COUNT** — **18 numbered pitfalls** in ## Common pitfalls (P1-P18; matches the canonical Move #47-class maximum of 18 pitfalls). Skill is the natural first follow-up to Move #47 (skill/520 on-site merchandising — search + filter + sort + PLP + co"
     },
     {
       "heading": "2026-10-05 20:30 UTC — Skill tick: keep — On-site merchandising (Move #47)",
@@ -68851,6 +68867,83 @@
       "lastTouched": "2026-10-06"
     },
     {
+      "file": "522-per-cohort-merchandising-rule-engine-vip-vs-new-visitor-rank-personalization.md",
+      "name": "per-cohort-merchandising-rule-engine-vip-vs-new-visitor-rank-personalization",
+      "title": "Per-cohort merchandising-rule engine — VIP vs new-visitor vs LTV-tier vs source-channel vs geo-cohort rank + facet + badging + PDP-rank personalization",
+      "category": "per-cohort-merchandising-rule-engine",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "47.2",
+      "yearOneRoiBand": "4:1–12:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-10-06",
+      "sources": [
+        "algolia-2024",
+        "searchspring-2024",
+        "klevu-2024",
+        "bloomreach-2024",
+        "constructor-2024",
+        "findify-2024",
+        "boost-ai-2024",
+        "shopify-search-discovery-2024",
+        "nosto-2024",
+        "dynamic-yield-2024",
+        "optimizely-search-2024",
+        "klevu-smart-categories-2024",
+        "klevu-merchandising-2024",
+        "searchspring-category-merchandising-2024",
+        "shopify-smart-collections-2024",
+        "shopify-collections-2024",
+        "triple-whale-merchandising-attribution-2024",
+        "klaviyo-merchandising-segment-2024",
+        "klaviyo-cohort-sync-2024",
+        "klaviyo-segment-api-2024",
+        "klaviyo-on-site-behavior-2024",
+        "klaviyo-attribution-2024",
+        "segment-cdp-2024",
+        "segment-personas-2024",
+        "mparticle-audiences-2024",
+        "salesforce-cdp-2024",
+        "bloomreach-engagement-2024",
+        "braze-canvas-2024",
+        "iterable-2024",
+        "customerio-2024",
+        "gorgias-merchandising-tier-2024",
+        "polar-merchandising-2024",
+        "northbeam-merchandising-overlay-2024",
+        "yotpo-merchandising-2024",
+        "rebloom-2024",
+        "reploit-2024",
+        "definer-2024",
+        "vwo-2024",
+        "optimizely-2024",
+        "statsig-2024",
+        "launchdarkly-2024",
+        "ab-tasty-2024",
+        "google-optimize-replacement-2024",
+        "postscript-2024",
+        "sms-bump-2024",
+        "recart-2024",
+        "privy-2024",
+        "octane-ai-2024",
+        "heap-2024",
+        "amplitude-2024",
+        "mixpanel-2024",
+        "fullstory-2024",
+        "hotjar-2024",
+        "microsoft-clarity-2024",
+        "lucky-orange-2024",
+        "contentsquare-2024",
+        "quantum-metric-2024"
+      ],
+      "blurb": "The canonical per-cohort merchandising-rule engine every $1M+ GMV DTC brand needs after Move #47 (on-site merchandising) + Move #47.1 (visual+voice search) + Move #61 (personalization) + Move #6 (Triple Whale attribut...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 57,
+      "size": 61226,
+      "lastTouched": "2026-10-06"
+    },
+    {
       "file": "53-financial-operations-unit-economics.md",
       "name": "financial-operations-unit-economics",
       "title": "Financial operations + unit-economics P&L automation (Move #40)",
@@ -87664,6 +87757,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "af43e8c",
+      "date": "2026-10-06T00:33:25Z",
+      "author": "hermesagent",
+      "subject": "skill: 521 — on-site visual+voice+image+barcode+QR+screenshot+camera+microphone+speaker+watch search (Move #47.1, FIRST Tier-1 P0 in category: visual-search, 6-pillar architecture, 18 pitfalls, 8 verification gates A-H)",
+      "body": ""
+    },
+    {
       "sha": "dd23af2",
       "date": "2026-10-05T23:20:00Z",
       "author": "hermesagent",
@@ -89055,13 +89155,6 @@
       "author": "hermesagent",
       "subject": "feat(dashboard): /attribution-health-alert-launch-plan 30-day always-on Move #6.10 launch plan generator (Move #6.10.1)",
       "body": ""
-    },
-    {
-      "sha": "ecba43c",
-      "date": "2026-09-29T20:29:04Z",
-      "author": "mattiasadem",
-      "subject": "journal: skill tick 2026-09-29 20:25 — keep Move #41.1 virtual-try-on-per-sku-fit-bias-cohort",
-      "body": ""
     }
   ],
   "counts": {
@@ -89070,8 +89163,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 214,
-    "skills": 520,
+    "journalEntries": 218,
+    "skills": 521,
     "gitCommits": 200
   }
 }
