@@ -13,11 +13,11 @@ import { Badge } from "@/components/ui/badge";
 import { CopyButton } from "@/components/copy-button";
 import {
   SHIPPED_PLAYBOOKS_STORAGE_KEY,
+  SHIPPED_PLAYBOOKS_UPDATE_EVENT,
   ShippedMap,
   loadShippedPlaybooks,
 } from "@/lib/shipped-playbooks";
 
-const SHIPPED_PLAYBOOKS_UPDATE_EVENT = "ecom-ops:shipped-playbooks:update";
 import {
   buildDriftFixRecipe,
   recipeHeadline,

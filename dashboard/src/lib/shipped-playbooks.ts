@@ -19,6 +19,13 @@ export type ShippedMap = Record<string, ShippedEntry>;
 
 export const SHIPPED_PLAYBOOKS_STORAGE_KEY = "ecom-ops:shipped-playbooks:v1";
 
+/** Same-tab CustomEvent name — fired whenever the operator's shipped
+ *  map changes in this tab so siblings (drift card, recipe card,
+ *  re-read progress) can re-read `ecom-ops:shipped-playbooks:v1`
+ *  without waiting for the `storage` event (which only fires across
+ *  tabs, not within the same tab). */
+export const SHIPPED_PLAYBOOKS_UPDATE_EVENT = "ecom-ops:shipped-playbooks:update";
+
 export function loadShippedPlaybooks(): ShippedMap {
   if (typeof window === "undefined") return {};
   try {
