@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-07T09:54:35.497Z",
+  "generatedAt": "2026-10-07T11:03:16.663Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-10-07 09:56 UTC] Skill tick: keep — PDP review-highlight cross-channel creator-region-tier-bias (Move #47.5.1.1.1.20)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-07\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES. **(1) UNIQUE CATEGORY** — `grep -lE '^category: pdp-review-highlight-cross-channel-creator-region-tier-bias$' skills/*.md | wc -l` returns **1** after writing skill/548. **(2) TIER-1 FIRST in category** — skill/548 is `tier: 1`, only entry. **(3) P0 FIRST in category** — skill/548 is `priority: P0`, only entry. **(4) HIGHEST PITFALL COUNT** — **15 numbered pitfalls** in `## Common pitfalls` (P1-P15; matches the canonical Move #47-class floor). Skill is the natural first follow-up per Move #47.5.1.1.1.19 / skill/547's `## How to extend this skill` roadmap which explicitly recommended Move #47.5.1.1.1.20 creator-region-tier-bias as the next step.\n- **What shipped:** `skills/54"
+    },
     {
       "heading": "2026-10-07 08:50 UTC — Move #47.5.1.1.1.19 shipped: creator-language-tier-bias",
       "body": "- **What shipped:** A new **Per-cohort PDP review-highlight cross-channel creator-language-tier-bias** skill (#547, ~44 KB) — an **8-tier creator-language taxonomy** (LG1 en-US + LG2 en-GB + LG3 de-DE + LG4 fr-FR + LG5 es-ES + LG6 it-IT + LG7 ja-JP + LG8 zh-CN) + 16-source language library (CaptiveA Creator-CID 2026 + CaptiveA Creator Cohort Analysis 2026 + CreatorIQ 2025 + Lumanu 2026 + Fyllo Creator 2026 + Influencer Marketing Hub 2024 + Pinterest Predicts 2026 + Meta 2026 + Instagram Creator 2026 + TikTok Creator 2026 + YouTube Creator Academy 2026 + LinkedIn Creator 2026 + Substack Creator 2026 + Medium Partner 2026 + DeepL 2026 + Google Translate 2026) + 21st-dimension LLM-judge creator-language-resonance scoring (Anthropic Claude 3.5 Sonnet + OpenAI GPT-4o + DeepMind Gemini 2.0 + cus"
@@ -73711,6 +73715,25 @@
       "lastTouched": "2026-10-07"
     },
     {
+      "file": "549-pdp-review-highlight-cross-channel-creator-cohort-affinity-bias.md",
+      "name": "549-pdp-review-highlight-cross-channel-creator-cohort-affinity-bias",
+      "title": "Per-cohort PDP review-highlight cross-channel creator-cohort-affinity-bias",
+      "category": "general",
+      "tier": 3,
+      "priority": "P2",
+      "defaultMove": null,
+      "yearOneRoiBand": null,
+      "smsFriendly": false,
+      "lastUpdated": "2026-10-07",
+      "sources": [],
+      "blurb": "Move #47.5.1.1.1.21 — a **4-tier creator-cohort-affinity taxonomy (CA1 first-time-visitor + CA2 repeat-visitor + CA3 VIP + CA4 dormant)** + 14-source cohort-affinity library (CaptiveA Creator-CID 2026 + CaptiveA Creat...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 0,
+      "size": 44929,
+      "lastTouched": "2026-10-07"
+    },
+    {
       "file": "55-packaging-engineering-dimensional-weight-unboxing.md",
       "name": "packaging-engineering-dimensional-weight-unboxing",
       "title": "Branded packaging engineering + dimensional weight optimization + unboxing experience + branded inserts + returns packaging + subscription packaging + multi-SKU packaging orchestration + packaging-attribution-overlay (Move #46)",
@@ -92070,6 +92093,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "cca38bb",
+      "date": "2026-10-07T09:59:42Z",
+      "author": "hermesagent",
+      "subject": "journal: append 2026-10-07 09:56 UTC skill tick (skill/548 Move #47.5.1.1.1.20 creator-region-tier-bias)",
+      "body": ""
+    },
+    {
+      "sha": "11abaad",
+      "date": "2026-10-07T09:58:37Z",
+      "author": "hermesagent",
+      "subject": "skill: 548 PDP review-highlight cross-channel creator-region-tier-bias (Move #47.5.1.1.1.20) — 6-tier CR1-CR6 region taxonomy + 12-source region library + 22nd-dim LLM-judge creator-region-resonance + 31-dim per-arm creator-region-resonant ",
+      "body": ""
+    },
+    {
       "sha": "6a6bd66",
       "date": "2026-10-07T08:59:16Z",
       "author": "hermesagent",
@@ -93454,20 +93491,6 @@
       "author": "hermesagent",
       "subject": "skill: 435 Move #41.25 creator-content-format-cross-FTC-disclosure-tier (482,628,926,499,282,700,800-cell)",
       "body": ""
-    },
-    {
-      "sha": "ae19553",
-      "date": "2026-10-01T04:33:00Z",
-      "author": "hermesagent",
-      "subject": "docs(journal): addendum — push blocked by stale GitHub PAT; deploy unaffected",
-      "body": ""
-    },
-    {
-      "sha": "d01bca0",
-      "date": "2026-10-01T04:32:52Z",
-      "author": "hermesagent",
-      "subject": "feat(dashboard): /launch-plan-progress — cross-page-intelligence 10-plan tracker + per-plan 30-day cell grid + copy/download markdown rollup",
-      "body": ""
     }
   ],
   "counts": {
@@ -93476,8 +93499,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 248,
-    "skills": 547,
+    "journalEntries": 249,
+    "skills": 548,
     "gitCommits": 200
   }
 }
