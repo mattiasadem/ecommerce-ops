@@ -4367,3 +4367,23 @@
 - **Committed:** 6f9af1d (local commit on `autoresearch/skills-2026-10-07`; GitHub push returned `Internal Server Error` (Request ID 8826:3774A8 / 8270:E4FE4) on two consecutive attempts at 15:09:39Z and 15:09:50Z — GitHub-side transient 500, not push-protection and not auth; deploy remains live via Vercel CLI which bypasses git entirely. The next push attempt should succeed once GitHub recovers.)
 
 - **Next action:** Natural follow-up per Move #N.21's roadmap: **Move #N.21.1 — Per-section auto-deeplink on stale** (when a section is marked `stale since re-read`, the chip becomes a `Re-re-read` button (not just a link) that scrolls to the section, opens it, AND clears the existing re-read mark — so the operator can close the loop in one click rather than mark stale → click link → mark re-read again). Or **Move #N.21.2 — Stale-section digest email/Linear** (a "Push stale sections to Linear" button on the freshness log that creates one sub-task per stale section, with the playbook as parent + the gapDays as priority — the operator's project tracker surfaces what to re-re-read first). Or **Move #N.21.3 — Playbook-change-since-reread digest** (a sister rollup that, for every marked-re-read section, surfaces a tiny text diff of the lastTouched commit message so the operator can see WHAT changed in that section, not just THAT it changed). Or **Move #N.21.4 — Auto-clear-on-ship** (when the operator marks a NEW playbook shipped, automatically clear any `stale-since-reread` marks for the previous shipped version of the same playbook, so the freshness card tracks one shipped-version-per-playbook at a time).
+
+## 2026-10-07 21:23 UTC — Move #N.22 shipped: calculator coverage to 29/30 (96.7%)
+
+- **What shipped:** Wired 5 existing-but-unwired calculator components onto their playbook detail pages: `06.5-weekly-rollup-trend-launch` → `AttributionWeeklyTrend`, `06.8-cross-platform-attribution-drift-unification` → `AttributionDriftRollup`, `21-amazon-dsp-amazon-attribution-audit-launch` → `AmazonDspPathCalculator`, `22-smsbump-postscript-channel-orchestration-launch` → `SmsbumpPostscriptChannelOrchestrationCalculator`, `23-generative-ai-engine-launch` → `GenerativeAiEngineCalculator`. Coverage now **29 of 30 playbooks (96.7%)** vs prior **24 of 30 (80.0%)**. Only remaining un-tooled playbook: `06-install-attribution-triplewhale-or-polar`.
+
+- **Why it matters:** Closes the canonical "calculator coverage" gap. The 5 components already existed and were already battle-tested on their dedicated routes — they just weren't wired onto the playbook detail page that operators read FIRST. Now the operator reads playbook #21, scrolls down, and the same Amazon-DSP path-calculator that lives on `/amazon-dsp-amazon-attribution-audit` is right there on `/playbooks/21-amazon-dsp-amazon-attribution-audit-launch` with the same localStorage keys, same your-store wiring, same ROI math.
+
+- **Feature class:** interactive-tool + cross-page-intelligence + state-persistence.
+
+- **Files modified:** `dashboard/app/playbooks/[slug]/page.tsx` (+5 CALCULATORS entries + 5 imports); `dashboard/src/lib/calculator-coverage.ts` (+5 registry entries + reordered 06.5/06.6/06.7/06.10 to satisfy sort test + updated CANONICAL_CALCULATOR_COVERAGE.typeMix); `dashboard/src/lib/__tests__/calculator-coverage.test.ts` (counts 24→29, missing-slugs 6→1, coveragePct 80→96.7).
+
+- **Where to see it:** https://ecommerce-ops-iota.vercel.app/ — Calculator coverage card on `/` now reads **"30 playbooks · 29 have a calculator · 1 don't"** with emerald tone. Click any of the 5 newly-tooled playbook rows — each page now has its dedicated calculator rendered as a `Calculator` badge above the body.
+
+- **Verification:** `npx jiti calculator-coverage.test.ts` PASSES 14/14; `npm run build` SUCCEEDED on first attempt (`✓ Compiled successfully in 60s`, 678 static pages); `vercel deploy --prod` → dpl_HLLGmrivWyssHHUoQEgLsBPDPK5B; `vercel alias set` succeeded in ~1s. All 5 new playbook URLs return HTTP 200. Live `/` returns sentinel `29 have a calculator`.
+
+- **Deploy status:** DEPLOY SUCCEEDED + CANONICAL ALIAS ROTATED.
+
+- **Committed:** (this tick)
+
+- **Next action:** Move #N.22.1 — Build the last calculator for `06-install-attribution-triplewhale-or-polar` (Path A/B/C Triple-Whale-vs-Polar picker).

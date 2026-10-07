@@ -33,6 +33,11 @@ import { PinterestSeoPathCalculator } from "@/components/pinterest-seo-path-calc
 import { ThreeplPathCalculator } from "@/components/threepl-path-calculator";
 import { TikTokShopPathCalculator } from "@/components/tiktok-shop-path-calculator";
 import { MobilePdpAudit } from "@/components/mobile-pdp-audit";
+import { AttributionWeeklyTrend } from "@/components/attribution-weekly-trend";
+import { AttributionDriftRollup } from "@/components/attribution-drift-rollup";
+import { AmazonDspPathCalculator } from "@/components/amazon-dsp-path-calculator";
+import { SmsbumpPostscriptChannelOrchestrationCalculator } from "@/components/smsbump-postscript-path-calculator";
+import { GenerativeAiEngineCalculator } from "@/components/generative-ai-engine-calculator";
 
 const ROOT = "/data/workspace/ecommerce-ops";
 const BUILD_PLAYBOOKS = join(process.cwd(), "src/playbooks");
@@ -139,6 +144,26 @@ const CALCULATORS: Record<string, { node: React.ReactNode; label: string }> = {
   "18-tiktok-shop-live-launch": {
     node: <TikTokShopPathCalculator />,
     label: "Pick your US DTC GMV + SKU count + gross margin + creator-affiliate-pool + voice profile + LIVE capacity \u2192 see the canonical Move #18 Path A / B / C TikTok-Shop launch with attributed revenue, Year-1 ROI, and the 6-step build sequence.",
+  },
+  "06.5-weekly-rollup-trend-launch": {
+    node: <AttributionWeeklyTrend />,
+    label: "Enter last 8 weeks of cross-platform match-rate snapshots \u2192 get a stable-trend / drift / stress-fail verdict per platform + an 8-week line chart + per-platform slope in pp/week, the canonical Move #6.5 weekly-rollup-trend sentinel that catches slow erosion the 1-vs-1 drift detector misses.",
+  },
+  "06.8-cross-platform-attribution-drift-unification": {
+    node: <AttributionDriftRollup />,
+    label: "Enter current + previous week match-rate + coverage across Meta + TikTok + Snap+Pinterest \u2192 get a per-platform drift verdict (PASS/DRIFT-HIGH/DRIFT-CRITICAL) + a rollup PASS/WARN/NEEDS_WORK/FAIL + remediation steps, the canonical Move #6.8 cross-platform attribution-drift unification rollup that joins the Meta+GA4 / TikTok / Snap+Pinterest quality audits into a single drift signal.",
+  },
+  "21-amazon-dsp-amazon-attribution-audit-launch": {
+    node: <AmazonDspPathCalculator />,
+    label: "Pick your US DTC GMV + Amazon-attribution maturity + halo signal-in-the-game + creative-rotation cadence + ops capacity \u2192 see the canonical Move #21 Path A / B / C Amazon-DSP + Amazon-Attribution launch with Year-1 cost stack, attributed halo revenue, ROI, and the 6-step build sequence.",
+  },
+  "22-smsbump-postscript-channel-orchestration-launch": {
+    node: <SmsbumpPostscriptChannelOrchestrationCalculator />,
+    label: "Pick your SMS provider (Postscript vs SMSBump) + ESP stack + list size + revenue concentration \u2192 see the canonical Move #22 Path A / B / C channel-orchestration recommendation with Year-1 cost stack, attribution-recovery uplift, ROI, and the 6-step build sequence.",
+  },
+  "23-generative-ai-engine-launch": {
+    node: <GenerativeAiEngineCalculator />,
+    label: "Pick your category + monthly content volume + brand-voice maturity + operator capacity \u2192 see the canonical Move #23 Path A / B / C generative-AI-engine recommendation with engine pick, Year-1 cost stack, attributed content velocity, ROI, and the 6-step build sequence.",
   },
 };
 

@@ -100,8 +100,10 @@ export const CALCULATOR_REGISTRY: CalculatorTypeMeta[] = [
   { slug: "06-sms-welcome-and-cart-abandon", calculatorKey: "SmsWelcomeCartROICalculator", type: "roi-projection" },
   { slug: "06.10-attribution-health-alert-webhook-launch", calculatorKey: "AttributionHealthAlertCalculator", type: "path-abc" },
   { slug: "06.5-attribution-quality-audit", calculatorKey: "AttributionQualityAudit", type: "audit-scorer" },
+  { slug: "06.5-weekly-rollup-trend-launch", calculatorKey: "AttributionWeeklyTrend", type: "audit-scorer" },
   { slug: "06.6-tiktok-attribution-quality-audit", calculatorKey: "TiktokAttributionAudit", type: "audit-scorer" },
   { slug: "06.7-snap-pinterest-attribution-quality-audit", calculatorKey: "SnapPinterestAttributionAudit", type: "audit-scorer" },
+  { slug: "06.8-cross-platform-attribution-drift-unification", calculatorKey: "AttributionDriftRollup", type: "audit-scorer" },
   { slug: "07-loyalty-program-smile", calculatorKey: "LoyaltyROICalculator", type: "roi-projection" },
   { slug: "09-mobile-pdp-redesign", calculatorKey: "MobilePdpAudit", type: "audit-scorer" },
   { slug: "09.5-pdp-ab-testing-program", calculatorKey: "PdpAbTestCalculator", type: "size-test" },
@@ -116,6 +118,9 @@ export const CALCULATOR_REGISTRY: CalculatorTypeMeta[] = [
   { slug: "18-tiktok-shop-live-launch", calculatorKey: "TikTokShopPathCalculator", type: "path-abc" },
   { slug: "19-creator-economy-launch", calculatorKey: "CreatorEconomyPathCalculator", type: "path-abc" },
   { slug: "20-pinterest-seo-launch", calculatorKey: "PinterestSeoPathCalculator", type: "path-abc" },
+  { slug: "21-amazon-dsp-amazon-attribution-audit-launch", calculatorKey: "AmazonDspPathCalculator", type: "path-abc" },
+  { slug: "22-smsbump-postscript-channel-orchestration-launch", calculatorKey: "SmsbumpPostscriptChannelOrchestrationCalculator", type: "path-abc" },
+  { slug: "23-generative-ai-engine-launch", calculatorKey: "GenerativeAiEngineCalculator", type: "path-abc" },
 ];
 
 const CALCULATOR_BY_SLUG: Record<string, CalculatorTypeMeta> = Object.fromEntries(
@@ -269,10 +274,10 @@ export const CANONICAL_CALCULATOR_COVERAGE = {
   withCalculator: CALCULATOR_REGISTRY.length,
   typeMix: {
     "roi-projection": 6,
-    "path-abc": 10,
-    "audit-scorer": 6,
+    "path-abc": 13,
+    "audit-scorer": 8,
     "size-test": 1,
     "savings": 1,
-    "none": 6,
+    "none": 1,
   },
 } as const;
