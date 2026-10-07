@@ -25,6 +25,7 @@ import { RecentlyShippedPlaybooksCard } from "@/components/recently-shipped-play
 import { ShippedFreshnessDriftCard } from "@/components/shipped-freshness-drift";
 import { DriftFixRecipeRollup } from "@/components/drift-fix-recipe-rollup";
 import { RecipeRereadProgress } from "@/components/recipe-reread-progress";
+import { RereadFreshnessGap } from "@/components/reread-freshness-gap";
 import { CalculatorCoverageCard } from "@/components/calculator-coverage-card";
 import { ProgressExportButton } from "@/components/progress-export-button";
 import { TrajectoryPanel } from "@/components/trajectory-projection-panel";
@@ -439,6 +440,13 @@ export default function Home() {
       {playbooks.length > 0 && (
         <section id="recipe-reread-progress">
           <RecipeRereadProgress playbooks={content.playbooks} />
+        </section>
+      )}
+
+      {/* === RE-READ FRESHNESS GAP — for every marked re-read section, is the playbook still current? === */}
+      {playbooks.length > 0 && (
+        <section id="reread-freshness-gap">
+          <RereadFreshnessGap playbooks={content.playbooks} />
         </section>
       )}
 
