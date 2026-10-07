@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-07T14:39:40.995Z",
+  "generatedAt": "2026-10-07T15:47:46.590Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -14230,6 +14230,10 @@
     {
       "heading": "2026-10-07 08:30 UTC — Move #N.20 shipped: recipe re-read progress tracker",
       "body": "- **What shipped:** A new **Re-read progress** card on the Overview (`/`) directly below the Move #N.18 drift fix recipe card. For every drifted shipped playbook, the card surfaces an inline **X of Y re-read** progress bar + a chain of section chips (one per recipe section) with **Mark re-read** / **Unmark** buttons so the operator can close the loop on actual re-learning — not just \"drift detected\" or \"here's a recipe\" but \"I've now re-read 2 of the 3 sections on Move #1, the third is the one I was avoiding\". Each section chip is the same hash-anchored link to `/playbooks/[slug]#[hash]` as the recipe card, so the operator can click straight from progress → section. Card border tone scales by the worst-case percent-incomplete across rows (rose ≥75% / amber 35-74% / emerald <35% / emerald w"
+    },
+    {
+      "heading": "2026-10-07 15:08 UTC — Move #N.21 shipped: re-read freshness gap",
+      "body": "- **What shipped:** A new **Re-read freshness gap** card on the Overview (`/`) directly below the Move #N.20 re-read progress card. For every section the operator has marked re-read, the card compares the mark's `reReadAt` to the playbook's `lastTouched` and surfaces a per-section verdict — `stale since re-read` (rose, when the playbook was updated after the mark, e.g. \"+17d since re-read\"), `current as of re-read` (emerald, when the mark is still authoritative), or `no lastTouched on playbook` (amber / unknown). The card headline answers the canonical \"I re-read this a month ago, has the playbook changed since?\" question with a single line: \"N of M marked sections stale (playbook updated since re-read) · worst Kd since re-read\". Per-row a `stale / current / unknown` badge trio + a `worst "
     }
   ],
   "skills": [
@@ -93257,6 +93261,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "36b6e54",
+      "date": "2026-10-07T15:10:09Z",
+      "author": "mattiasadem-5021s",
+      "subject": "journal: Move #N.21 commit SHA + push status",
+      "body": ""
+    },
+    {
+      "sha": "6f9af1d",
+      "date": "2026-10-07T15:09:19Z",
+      "author": "mattiasadem-5021s",
+      "subject": "feat(dashboard): Move #N.21 re-read freshness gap (drift+recipe+re-read+gap quartet)",
+      "body": ""
+    },
+    {
       "sha": "1a7292a",
       "date": "2026-10-07T13:31:17Z",
       "author": "hermesagent",
@@ -94641,20 +94659,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #41.29 creator-engagement-rate-tier-cross-FTC-disclosure-tier-overlay (1,930,515,705,997,130,803,200-cell)",
       "body": ""
-    },
-    {
-      "sha": "a0c70e1",
-      "date": "2026-10-01T08:33:23Z",
-      "author": "hermesagent",
-      "subject": "docs(journal): add Move #41.28 keep entry — 438 creator-disclosure-network-cross-creator-content-format (1,931,153,891,971,036,800,000-cell)",
-      "body": ""
-    },
-    {
-      "sha": "b3332be",
-      "date": "2026-10-01T08:32:00Z",
-      "author": "hermesagent",
-      "subject": "skill: 438 Move #41.28 creator-disclosure-network-cross-creator-content-format (1,931,153,891,971,036,800,000-cell primary cross-validation matrix; 192-cell primary matrix; 8-creator-disclosure-network × 24-creator-content-format taxonomy)",
-      "body": ""
     }
   ],
   "counts": {
@@ -94663,7 +94667,7 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 252,
+    "journalEntries": 253,
     "skills": 551,
     "gitCommits": 200
   }
