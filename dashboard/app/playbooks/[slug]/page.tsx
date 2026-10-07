@@ -24,6 +24,7 @@ import { SnapPinterestAttributionAudit } from "@/components/snap-pinterest-attri
 import { AttributionHealthAlertCalculator } from "@/components/attribution-health-alert-calculator";
 import { InternationalPathCalculator } from "@/components/international-path-calculator";
 import { MarketplacePathCalculator } from "@/components/marketplace-path-calculator";
+import { LifecycleFlowHealthAudit } from "@/components/lifecycle-flow-health-audit";
 import { SubscriptionPathCalculator } from "@/components/subscription-path-calculator";
 import { AffiliatePathCalculator } from "@/components/affiliate-path-calculator";
 import { B2BWholesalePathCalculator } from "@/components/b2b-wholesale-path-calculator";
@@ -98,6 +99,10 @@ const CALCULATORS: Record<string, { node: React.ReactNode; label: string }> = {
   "11-international-rollout": {
     node: <InternationalPathCalculator />,
     label: "Pick your category + supply-chain complexity + operator capacity \u2192 see the canonical Move #11 Path A / B / C / C+ recommendation with Year-1 cost stack, contribution-margin impact, attribution share, and the 6-step build sequence.",
+  },
+  "12-lifecycle-flow-library": {
+    node: <LifecycleFlowHealthAudit />,
+    label: "Enter per-flow 30-day KPI snapshots for the 13 Path-B flows \u2192 get a 0\u2013100 score + PASS/WARN/NEEDS_WORK/FAIL verdict per flow + a fleet-wide 6-gate audit (open / click / CVR / unsub / revenue/1k / attribution match).",
   },
   "13-marketplace-launch": {
     node: <MarketplacePathCalculator />,

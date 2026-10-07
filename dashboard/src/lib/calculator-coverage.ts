@@ -85,7 +85,7 @@ export const CALCULATOR_TYPE_GLYPH: Record<CalculatorType, string> = {
 };
 
 /**
- * Canonical 22-entry calculator registry.
+ * Canonical 24-entry calculator registry.
  *
  * Source of truth for the per-page calculator map in
  * `dashboard/app/playbooks/[slug]/page.tsx`. Order is preserved by slug
@@ -107,7 +107,9 @@ export const CALCULATOR_REGISTRY: CalculatorTypeMeta[] = [
   { slug: "09.5-pdp-ab-testing-program", calculatorKey: "PdpAbTestCalculator", type: "size-test" },
   { slug: "10-ai-ad-creative-iteration", calculatorKey: "AiAdCreativeROICalculator", type: "roi-projection" },
   { slug: "11-international-rollout", calculatorKey: "InternationalPathCalculator", type: "path-abc" },
+  { slug: "12-lifecycle-flow-library", calculatorKey: "LifecycleFlowHealthAudit", type: "audit-scorer" },
   { slug: "13-marketplace-launch", calculatorKey: "MarketplacePathCalculator", type: "path-abc" },
+  { slug: "14-3pl-migration", calculatorKey: "ThreeplPathCalculator", type: "path-abc" },
   { slug: "15-subscription-program-launch", calculatorKey: "SubscriptionPathCalculator", type: "path-abc" },
   { slug: "16-affiliate-program-launch", calculatorKey: "AffiliatePathCalculator", type: "path-abc" },
   { slug: "17-b2b-wholesale-launch", calculatorKey: "B2BWholesalePathCalculator", type: "path-abc" },
@@ -267,10 +269,10 @@ export const CANONICAL_CALCULATOR_COVERAGE = {
   withCalculator: CALCULATOR_REGISTRY.length,
   typeMix: {
     "roi-projection": 6,
-    "path-abc": 9,
-    "audit-scorer": 5,
+    "path-abc": 10,
+    "audit-scorer": 6,
     "size-test": 1,
     "savings": 1,
-    "none": 8,
+    "none": 6,
   },
 } as const;
