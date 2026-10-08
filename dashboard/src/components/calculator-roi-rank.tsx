@@ -10,6 +10,22 @@
  * `CALCULATOR_REGISTRY` × `YourStoreInputs` and surfaces the top-N ranked
  * by projected annual lift (high band) on the operator's numbers.
  *
+ * **Move #N.23.1 — cohort split (this file's added behavior).** The card
+ * now ALSO reads `ecom-ops:shipped-playbooks:v1` (the canonical operator-
+ * owned shipped map from the `/playbooks` toggle) and splits the top-N
+ * rows into two cohorts:
+ *
+ *   1. **On the table** — `unshippedRows`. The calculator-backed move
+ *      that the operator has NOT yet shipped. This is the canonical
+ *      "open WHICH calculator first?" answer.
+ *   2. **Already shipped** — `shippedRows`. The calculator-backed move
+ *      that the operator has already shipped in their store. Doubles as
+ *      a "what I've captured" reminder.
+ *
+ * Both lists are projected on the operator's `YourStoreInputs` — so the
+ * operator sees: "I shipped 2 of the top 5 ($405k/yr captured) — 3 still
+ * on the table ($230k/yr to put on the board)".
+ *
  * Hydration-safe: SSR uses `YourStoreInputs | null` → renders a stub or
  * a defaults-on-amber variant. Once mounted, the client reads
  * `ecom-ops:your-store:v1` and re-computes live. Cross-tab `storage`
@@ -37,10 +53,21 @@ import {
   formatRoiRankUsd,
   type CalculatorRoiRankSummary,
 } from "@/lib/calculator-roi-rank";
+import {
+  buildCalculatorRoiCohort,
+  calculatorRoiCohortHeadline,
+  calculatorRoiCohortToneClass,
+  formatCohortCount,
+  type CalculatorRoiCohort,
+} from "@/lib/calculator-roi-cohort";
 import { loadYourStore, YOUR_STORE_STORAGE_KEY, type YourStoreInputs } from "@/lib/your-store";
+import {
+  loadShippedPlaybooks,
+  SHIPPED_PLAYBOOKS_STORAGE_KEY,
+  SHIPPED_PLAYBOOKS_UPDATE_EVENT,
+  type ShippedMap,
+} from "@/lib/shipped-playbooks";
 import { cn } from "@/lib/utils";
-
-
 
 interface Props {
   /** Number of top rows to surface. Default 5. */
@@ -50,10 +77,12 @@ interface Props {
 export function CalculatorRoiRank({ maxRows = 5 }: Props) {
   const [hydrated, setHydrated] = useState(false);
   const [store, setStore] = useState<YourStoreInputs | null>(null);
+  const [shipped, setShipped] = useState<ShippedMap>({});
 
   // Hydrate from localStorage on mount.
   useEffect(() => {
     setStore(loadYourStore());
+    setShipped(loadShippedPlaybooks());
     setHydrated(true);
   }, []);
 
@@ -62,15 +91,26 @@ export function CalculatorRoiRank({ maxRows = 5 }: Props) {
   useEffect(() => {
     if (typeof window === "undefined") return;
     const onStorage = (e: StorageEvent) => {
-      if (e.key === YOUR_STORE_STORAGE_KEY || e.key === null) {
+      if (e.key === YOUR_STORE_STORAGE_KEY || e.key === SHIPPED_PLAYBOOKS_STORAGE_KEY || e.key === null) {
         setStore(loadYourStore());
+        setShipped(loadShippedPlaybooks());
       }
     };
     window.addEventListener("storage", onStorage);
     return () => window.removeEventListener("storage", onStorage);
   }, []);
 
+  // Same-tab CustomEvent for the shipped key (storage only fires across
+  // tabs, not within the same tab — see `shipped-playbooks.ts`).
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const onUpdate = () => setShipped(loadShippedPlaybooks());
+    window.addEventListener(SHIPPED_PLAYBOOKS_UPDATE_EVENT, onUpdate);
+    return () => window.removeEventListener(SHIPPED_PLAYBOOKS_UPDATE_EVENT, onUpdate);
+  }, []);
+
   const summary: CalculatorRoiRankSummary = buildCalculatorRoiRank(store);
+  const cohort: CalculatorRoiCohort = buildCalculatorRoiCohort(summary, shipped, maxRows);
 
   // Defensive: no matches → render nothing.
   if (summary.matchingMoves === 0) return null;
@@ -80,7 +120,7 @@ export function CalculatorRoiRank({ maxRows = 5 }: Props) {
 
   const toneClass = calculatorRoiRankToneClass(summary);
   const headline = calculatorRoiRankHeadline(summary);
-  const top = summary.rows.slice(0, maxRows);
+  const cohortHeadline = calculatorRoiCohortHeadline(cohort, maxRows);
 
   return (
     <Card
@@ -150,95 +190,201 @@ export function CalculatorRoiRank({ maxRows = 5 }: Props) {
             >
               {hydrated
                 ? formatRoiRankUsd(
-                    top.reduce((s, r) => s + r.annualLiftHigh, 0),
+                    summary.rows.slice(0, maxRows).reduce((s, r) => s + r.annualLiftHigh, 0),
                   )
                 : "—"}
             </div>
             <div className="text-[10px] text-muted-foreground">
               {summary.usingDefaults
                 ? "Set your AOV / orders on / to personalize"
-                : `Across top ${top.length} calculator-backed moves`}
+                : `Across top ${maxRows} calculator-backed moves`}
             </div>
           </div>
         </div>
 
         <Separator />
 
-        {/* === RANKED ROWS =============================================
-            Each row is the playbook calculator that, on the operator's
-            CURRENT `YourStoreInputs`, projects the highest annual lift
-            (high band). Each row links to `/playbooks/[slug]` so the
-            operator can drill in. */}
-        <ul className="space-y-1.5" data-testid="calculator-roi-rank-list">
-          {top.map((row) => (
-            <li
-              key={row.slug}
-              className="flex items-center justify-between gap-2 rounded-md border border-border bg-background/50 px-2 py-1.5"
-              data-testid={`calculator-roi-rank-row-${row.slug}`}
-            >
-              <div className="flex min-w-0 flex-1 flex-col gap-0.5">
-                <div className="flex items-center gap-2">
-                  <span className="font-mono text-[10px] text-muted-foreground">
-                    #{row.rank}
-                  </span>
-                  <span
-                    className="truncate text-xs font-medium"
-                    title={row.name}
-                  >
-                    {row.name}
-                  </span>
-                  <Badge
-                    variant="outline"
-                    className="ml-auto text-[10px] font-mono"
-                  >
-                    {row.daysToShip}d
-                  </Badge>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="font-mono text-[10px] text-muted-foreground">
-                    {row.calculator.calculatorKey}
-                  </span>
-                  <span className="text-[10px] text-muted-foreground line-clamp-1">
-                    {row.rationale}
-                  </span>
-                </div>
-              </div>
-              <div className="flex shrink-0 items-center gap-2">
-                <div className="flex flex-col items-end gap-0.5">
-                  <span
-                    className="font-mono text-xs font-semibold tabular-nums text-emerald-700 dark:text-emerald-300"
-                    data-testid={`calculator-roi-rank-lift-${row.slug}`}
-                  >
-                    {hydrated ? `+${formatRoiRankUsd(row.annualLiftHigh)}/yr` : "—"}
-                  </span>
-                  <span className="font-mono text-[10px] text-muted-foreground">
-                    {hydrated
-                      ? `low ${formatRoiRankUsd(row.annualLiftLow)}`
-                      : "—"}
-                  </span>
-                </div>
-                <Link
-                  href={`/playbooks/${row.slug}`}
-                  className="inline-flex items-center gap-1 rounded-md border border-border bg-card px-2 py-1 text-[10px] font-medium hover:bg-muted transition-colors"
-                  aria-label={`Open ${row.name} calculator`}
+        {/* === COHORT SUB-HEADER (Move #N.23.1) ========================
+            Mirrors the cohort split: "N of M shipped — K still on the
+            table". Defaults-badge-style treatment for shipped count.
+            Renders nothing when both cohorts are empty. */}
+        {hydrated && (cohort.shippedCount > 0 || cohort.unshippedCount > 0) && (
+          <div
+            className={cn(
+              "flex items-center justify-between rounded-md border p-2",
+              calculatorRoiCohortToneClass(cohort),
+            )}
+            data-testid="calculator-roi-rank-cohort-summary"
+          >
+            <div className="flex items-center gap-2">
+              <span
+                className={cn(
+                  "inline-block h-1.5 w-1.5 rounded-full",
+                  cohort.shippedCount === 0 ? "bg-emerald-500" : "bg-sky-500",
+                )}
+                aria-hidden="true"
+              />
+              <span className="text-[11px] font-medium tabular-nums">
+                {cohortHeadline}
+              </span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              {cohort.shippedCount > 0 && (
+                <Badge
+                  variant="outline"
+                  className="text-[10px] border-sky-500/30 text-sky-700 dark:text-sky-300"
                 >
-                  Open ↗
-                </Link>
-              </div>
-            </li>
-          ))}
-        </ul>
+                  captured {formatRoiRankUsd(cohort.shippedAnnualLiftHigh)}/yr
+                </Badge>
+              )}
+              {cohort.unshippedCount > 0 && (
+                <Badge
+                  variant="outline"
+                  className="text-[10px] border-emerald-500/30 text-emerald-700 dark:text-emerald-300"
+                >
+                  on the table {formatRoiRankUsd(cohort.unshippedAnnualLiftHigh)}/yr
+                </Badge>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* === ON-THE-TABLE COHORT (unshipped) =========================
+            The canonical "open WHICH calculator first?" rows. Ranked
+            by `annualLiftHigh DESC` and limited to `maxRows`. */}
+        {cohort.unshippedRows.length > 0 && (
+          <div className="space-y-1.5" data-testid="calculator-roi-rank-cohort-unshipped">
+            <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-wider text-emerald-700 dark:text-emerald-300">
+              <span className="inline-block h-1 w-3 rounded-sm bg-emerald-500" />
+              On the table
+              <span className="font-mono text-muted-foreground normal-case tracking-normal">
+                ({formatCohortCount(cohort.unshippedRows.length, maxRows)} shown)
+              </span>
+            </div>
+            <ul className="space-y-1.5" data-testid="calculator-roi-rank-list-unshipped">
+              {cohort.unshippedRows.map((row) => (
+                <li
+                  key={row.slug}
+                  className="flex items-center justify-between gap-2 rounded-md border border-emerald-500/20 bg-emerald-500/5 px-2 py-1.5"
+                  data-testid={`calculator-roi-rank-row-${row.slug}`}
+                >
+                  <RoiRankRowBody row={row} hydrated={hydrated} accent="emerald" />
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* === SHIPPED COHORT =========================================
+            Playbooks the operator has marked shipped via
+            `ecom-ops:shipped-playbooks:v1`. Doubles as a
+            "what I've captured" reminder with the projected lift
+            frozen to the calculator's high-band figure. Renders only
+            when at least one shipped row is present. */}
+        {cohort.shippedRows.length > 0 && (
+          <div className="space-y-1.5" data-testid="calculator-roi-rank-cohort-shipped">
+            <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-wider text-sky-700 dark:text-sky-300">
+              <span className="inline-block h-1 w-3 rounded-sm bg-sky-500" />
+              Already shipped
+              <span className="font-mono text-muted-foreground normal-case tracking-normal">
+                ({formatCohortCount(cohort.shippedRows.length, maxRows)} of {maxRows})
+              </span>
+            </div>
+            <ul className="space-y-1.5" data-testid="calculator-roi-rank-list-shipped">
+              {cohort.shippedRows.map((row) => (
+                <li
+                  key={row.slug}
+                  className="flex items-center justify-between gap-2 rounded-md border border-sky-500/20 bg-sky-500/5 px-2 py-1.5 opacity-90"
+                  data-testid={`calculator-roi-rank-row-shipped-${row.slug}`}
+                >
+                  <RoiRankRowBody row={row} hydrated={hydrated} accent="sky" />
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         {/* === FOOTER ====================================================
-            Explains the math + the cross-tab sync + the storage key. */}
+            Explains the math + the cross-tab sync + the storage keys. */}
         <div className="text-[10px] text-muted-foreground">
           Lift = your AOV × monthly orders × 12 × move&apos;s high-band lift %.
           Reads <span className="font-mono">{YOUR_STORE_STORAGE_KEY}</span> +
+          <span className="font-mono"> {SHIPPED_PLAYBOOKS_STORAGE_KEY}</span> +
           cross-tab <span className="font-mono">storage</span>. Set your
           numbers on the <Link href="#your-store" className="underline">Your-store card</Link> to
-          personalize.
+          personalize · mark shipped on <Link href="/playbooks#shipped-progress" className="underline">/playbooks</Link>.
         </div>
       </CardContent>
     </Card>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Sub-component: a single ROI rank row.                              */
+/* ------------------------------------------------------------------ */
+
+interface RoiRankRowBodyProps {
+  row: import("@/lib/calculator-roi-rank").CalculatorRoiRankRow;
+  hydrated: boolean;
+  accent: "emerald" | "sky";
+}
+
+function RoiRankRowBody({ row, hydrated, accent }: RoiRankRowBodyProps) {
+  const liftClass =
+    accent === "sky"
+      ? "text-sky-700 dark:text-sky-300"
+      : "text-emerald-700 dark:text-emerald-300";
+  return (
+    <>
+      <div className="flex min-w-0 flex-1 flex-col gap-0.5">
+        <div className="flex items-center gap-2">
+          <span className="font-mono text-[10px] text-muted-foreground">
+            #{row.rank}
+          </span>
+          <span
+            className="truncate text-xs font-medium"
+            title={row.name}
+          >
+            {row.name}
+          </span>
+          <Badge
+            variant="outline"
+            className="ml-auto text-[10px] font-mono"
+          >
+            {row.daysToShip}d
+          </Badge>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="font-mono text-[10px] text-muted-foreground">
+            {row.calculator.calculatorKey}
+          </span>
+          <span className="text-[10px] text-muted-foreground line-clamp-1">
+            {row.rationale}
+          </span>
+        </div>
+      </div>
+      <div className="flex shrink-0 items-center gap-2">
+        <div className="flex flex-col items-end gap-0.5">
+          <span
+            className={cn("font-mono text-xs font-semibold tabular-nums", liftClass)}
+            data-testid={`calculator-roi-rank-lift-${row.slug}`}
+          >
+            {hydrated ? `+${formatRoiRankUsd(row.annualLiftHigh)}/yr` : "—"}
+          </span>
+          <span className="font-mono text-[10px] text-muted-foreground">
+            {hydrated
+              ? `low ${formatRoiRankUsd(row.annualLiftLow)}`
+              : "—"}
+          </span>
+        </div>
+        <Link
+          href={`/playbooks/${row.slug}`}
+          className="inline-flex items-center gap-1 rounded-md border border-border bg-card px-2 py-1 text-[10px] font-medium hover:bg-muted transition-colors"
+          aria-label={`Open ${row.name} calculator`}
+        >
+          Open ↗
+        </Link>
+      </div>
+    </>
   );
 }
