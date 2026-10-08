@@ -97,6 +97,7 @@ export const CALCULATOR_REGISTRY: CalculatorTypeMeta[] = [
   { slug: "03-checkout-audit-baymard", calculatorKey: "CheckoutAudit", type: "audit-scorer" },
   { slug: "04-welcome-series-klaviyo", calculatorKey: "WelcomeSeriesROICalculator", type: "roi-projection" },
   { slug: "05-migrate-to-klaviyo-postscript", calculatorKey: "MigrationSavingsCalculator", type: "savings" },
+  { slug: "06-install-attribution-triplewhale-or-polar", calculatorKey: "TripleWhaleAttributionCalculator", type: "path-abc" },
   { slug: "06-sms-welcome-and-cart-abandon", calculatorKey: "SmsWelcomeCartROICalculator", type: "roi-projection" },
   { slug: "06.10-attribution-health-alert-webhook-launch", calculatorKey: "AttributionHealthAlertCalculator", type: "path-abc" },
   { slug: "06.5-attribution-quality-audit", calculatorKey: "AttributionQualityAudit", type: "audit-scorer" },
@@ -274,10 +275,10 @@ export const CANONICAL_CALCULATOR_COVERAGE = {
   withCalculator: CALCULATOR_REGISTRY.length,
   typeMix: {
     "roi-projection": 6,
-    "path-abc": 13,
+    "path-abc": 14,
     "audit-scorer": 8,
     "size-test": 1,
     "savings": 1,
-    "none": 1,
+    "none": 0,
   },
 } as const;

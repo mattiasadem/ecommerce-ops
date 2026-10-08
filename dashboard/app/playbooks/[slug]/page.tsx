@@ -38,6 +38,7 @@ import { AttributionDriftRollup } from "@/components/attribution-drift-rollup";
 import { AmazonDspPathCalculator } from "@/components/amazon-dsp-path-calculator";
 import { SmsbumpPostscriptChannelOrchestrationCalculator } from "@/components/smsbump-postscript-path-calculator";
 import { GenerativeAiEngineCalculator } from "@/components/generative-ai-engine-calculator";
+import { TripleWhaleAttributionCalculator } from "@/components/triple-whale-attribution-calculator";
 
 const ROOT = "/data/workspace/ecommerce-ops";
 const BUILD_PLAYBOOKS = join(process.cwd(), "src/playbooks");
@@ -72,6 +73,10 @@ const CALCULATORS: Record<string, { node: React.ReactNode; label: string }> = {
   "06-sms-welcome-and-cart-abandon": {
     node: <SmsWelcomeCartROICalculator />,
     label: "Project per-flow orders + send cost + net margin across 4 Postscript SMS flows (Welcome + Cart-Soft + Cart-Escalation + Review).",
+  },
+  "06-install-attribution-triplewhale-or-polar": {
+    node: <TripleWhaleAttributionCalculator />,
+    label: "Pick your store size + cart platform + paid spend → see the canonical Path A (Polar Starter) / B (TW Starter) / C (TW Pro) / D (Polar Pro non-Shopify) / E (free) recommendation with 6-row capability matrix, Year-1 attribution lift, Year-1 net, breakeven, 5-step build sequence, and 7-gate verification contract.",
   },
   "06.5-attribution-quality-audit": {
     node: <AttributionQualityAudit />,

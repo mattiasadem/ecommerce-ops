@@ -1,7 +1,7 @@
 /**
  * Move #N.17 — `calculator-coverage.ts` test suite.
  *
- * Pins the canonical calculator registry: 29 of 30 playbooks have an
+ * Pins the canonical calculator registry: 30 of 30 playbooks have an
  * in-browser calculator wired on their detail page. The remaining 1
  * falls through to the playbook markdown + the Python CLI script in
  * `scripts/`. The test asserts the type-mix + missing-slug list stays
@@ -67,8 +67,8 @@ const SYNTHETIC_CATALOG = ALL_PLAYBOOK_SLUGS.map((slug) => ({
   lastTouched: "2026-10-01T00:00:00Z",
 }));
 
-test("calculator-coverage: canonical registry has exactly 29 entries", () => {
-  assert.equal(CALCULATOR_REGISTRY.length, 29);
+test("calculator-coverage: canonical registry has exactly 30 entries", () => {
+  assert.equal(CALCULATOR_REGISTRY.length, 30);
 });
 
 test("calculator-coverage: canonical counts match CANONICAL_CALCULATOR_COVERAGE", () => {
@@ -101,24 +101,21 @@ test("calculator-coverage: every calculator entry has a non-empty type + key", (
 test("calculator-coverage: buildCalculatorCoverage happy path", () => {
   const summary = buildCalculatorCoverage(SYNTHETIC_CATALOG);
   assert.equal(summary.total, 30);
-  assert.equal(summary.withCalculator, 29);
-  assert.equal(summary.withoutCalculator, 1);
-  assert.equal(summary.coveragePct, 96.7);
+  assert.equal(summary.withCalculator, 30);
+  assert.equal(summary.missingSlugs.length, 0);
+  assert.equal(summary.coveragePct, 100);
   // type-mix matches canonical (30 = 29 + 1).
   assert.equal(summary.typeMix["roi-projection"], 6);
-  assert.equal(summary.typeMix["path-abc"], 13);
+  assert.equal(summary.typeMix["path-abc"], 14);
   assert.equal(summary.typeMix["audit-scorer"], 8);
   assert.equal(summary.typeMix["size-test"], 1);
   assert.equal(summary.typeMix["savings"], 1);
-  assert.equal(summary.typeMix.none, 1);
+  assert.equal(summary.typeMix.none, 0);
 });
 
-test("calculator-coverage: missingSlugs list is sorted + complete", () => {
+test("calculator-coverage: missingSlugs list is empty (full coverage)", () => {
   const summary = buildCalculatorCoverage(SYNTHETIC_CATALOG);
-  const expectedMissing = [
-    "06-install-attribution-triplewhale-or-polar",
-  ];
-  assert.deepEqual(summary.missingSlugs, expectedMissing);
+  assert.equal(summary.missingSlugs.length, 0);
   // Each missing slug is NOT in the registry.
   const regSlugs = new Set(CALCULATOR_REGISTRY.map((r) => r.slug));
   for (const m of summary.missingSlugs) {
@@ -128,12 +125,9 @@ test("calculator-coverage: missingSlugs list is sorted + complete", () => {
 
 test("calculator-coverage: rows are sorted with-calc-first then alphabetical", () => {
   const summary = buildCalculatorCoverage(SYNTHETIC_CATALOG);
-  // First 29 rows have a calculator; last 1 does not.
-  for (let i = 0; i < 29; i++) {
+  // All 30 rows have a calculator.
+  for (let i = 0; i < 30; i++) {
     assert.ok(summary.rows[i].calculator !== null, `row ${i} should have a calculator`);
-  }
-  for (let i = 29; i < 30; i++) {
-    assert.equal(summary.rows[i].calculator, null, `row ${i} should not have a calculator`);
   }
 });
 
@@ -167,11 +161,9 @@ test("calculator-coverage: defensive against missing file field", () => {
 
 test("calculator-coverage: headline strings for 3 coverage states", () => {
   const summary = buildCalculatorCoverage(SYNTHETIC_CATALOG);
-  // 29/30 = "X · Y have a calculator · M don't".
+  // 30/30 = full coverage → "All 30 playbooks have an in-browser calculator".
   const h1 = coverageHeadline(summary);
-  assert.match(h1, /^30 playbooks/);
-  assert.match(h1, /29 have a calculator/);
-  assert.match(h1, /1 don.t$/);
+  assert.match(h1, /^All 30 playbooks/);
 
   // 0/0 = empty.
   const empty = buildCalculatorCoverage([]);
@@ -187,11 +179,30 @@ test("calculator-coverage: headline strings for 3 coverage states", () => {
     size: 0,
   }));
   const full = buildCalculatorCoverage(fullCatalog);
-  assert.match(coverageHeadline(full), /^All 29 playbooks/);
+  assert.match(coverageHeadline(full), /^All 30 playbooks/);
+
+  // Partial coverage (29 of 30) → "X · Y have a calculator · M don't".
+  // Replace one catalog entry's slug with a not-in-registry slug, so
+  // 29 of 30 entries map to a calculator.
+  const partialCatalog = SYNTHETIC_CATALOG.map((p) =>
+    p.file === "23-generative-ai-engine-launch.md"
+      ? {
+          ...p,
+          file: "99-untooled-future-playbook.md",
+          title: "Future Untooled Playbook",
+        }
+      : p,
+  );
+  const partial = buildCalculatorCoverage(partialCatalog);
+  assert.equal(partial.total, 30);
+  const hPartial = coverageHeadline(partial);
+  assert.match(hPartial, /^30 playbooks/);
+  assert.match(hPartial, /29 have a calculator/);
+  assert.match(hPartial, /1 don.t$/);
 });
 
 test("calculator-coverage: tone class picks emerald / amber / rose", () => {
-  // 29/30 = 96.7% → emerald.
+  // 30/30 = 100% → emerald.
   const emerald = buildCalculatorCoverage(SYNTHETIC_CATALOG);
   const t1 = coverageToneClass(emerald);
   assert.match(t1, /emerald/);

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-08T00:54:03.465Z",
+  "generatedAt": "2026-10-08T03:52:21.353Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,14 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-10-08 01:58 UTC] Skill tick: keep — Per-cohort PDP review-highlight cross-channel creator-payout-tax-form-bias (Move #47.5.1.1.1.33 / skill/561)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-08\n- **Status:** keep\n- **Reason:** All 4 metric gates pass. (1) Unique category: `pdp-review-highlight-cross-channel-creator-payout-tax-form-bias` does not exist in any other skill file (`grep -l '^category: pdp-review-highlight-cross-channel-creator-payout-tax-form-bias$' skills/*.md | wc -l = 1`). (2) First Tier-1 in its category. (3) First P0 in its category. (4) 15 numbered pitfalls with 15 `Fix:` controls, 22 cross-axis compositions (per-TF-tier × per-CCF-tier + per-PN-tier + per-DM-tier + per-W-tier + per-ER-tier + per-AE-tier + per-LG-tier + per-CR-tier + per-CA-tier + per-FT-tier + per-CC-tier + per-CF-tier + per-CV-tier + per-CVD-tier + per-CMM-tier + per-PR-tier + per-DC-tier + per-PF-tier + per-J-tier + per-DT-tier + per-creator-tier + "
+    },
+    {
+      "heading": "[2026-10-08 00:57 UTC] Skill tick: keep — Per-cohort PDP review-highlight cross-channel creator-disclosure-tooling-bias (Move #47.5.1.1.1.32 / skill/560)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-08\n- **Status:** keep\n- **Reason:** All 4 metric gates pass. (1) Unique category: `pdp-review-highlight-cross-channel-creator-disclosure-tooling-bias` does not exist in any other skill file (`grep -l '^category: pdp-review-highlight-cross-channel-creator-disclosure-tooling-bias$' skills/*.md | wc -l = 1`). (2) First Tier-1 in its category. (3) First P0 in its category. (4) 15 numbered pitfalls with 15 `Fix:` controls, 21 cross-axis compositions (per-DT-tier × per-creator-tier + per-CCF-tier + per-PN-tier + per-DM-tier + per-W-tier + per-ER-tier + per-AE-tier + per-LG-tier + per-CR-tier + per-CA-tier + per-FT-tier + per-CC-tier + per-CF-tier + per-CV-tier + per-CVD-tier + per-CMM-tier + per-PR-tier + per-DC-tier + per-PF-tier + per-J-tier + per-coho"
+    },
     {
       "heading": "[2026-10-07 23:46 UTC] Skill tick: keep — Per-cohort PDP review-highlight cross-channel creator-disclosure-jurisdiction-bias (Move #47.5.1.1.1.31 / skill/559)",
       "body": "- **Branch:** autoresearch/skills-2026-10-07\n- **Status:** keep\n- **Reason:** All 4 metric gates pass. (1) Unique category: `pdp-review-highlight-cross-channel-creator-disclosure-jurisdiction-bias` does not exist in any other skill file (`grep -l '^category: pdp-review-highlight-cross-channel-creator-disclosure-jurisdiction-bias$' skills/*.md | wc -l = 1`). (2) First Tier-1 in its category. (3) First P0 in its category. (4) 15 numbered pitfalls with 15 `Fix:` controls, 20 cross-axis compositions (per-J-tier x per-CCF-tier + per-PN-tier + per-DM-tier + per-W-tier + per-ER-tier + per-AE-tier + per-LG-tier + per-CR-tier + per-CA-tier + per-FT-tier + per-CC-tier + per-CF-tier + per-CV-tier + per-CVD-tier + per-CMM-tier + per-PR-tier + per-DC-tier + per-PF-tier + per-creator-tier + per-cohort-L"
@@ -76777,6 +76785,90 @@
       "lastTouched": "2026-10-08"
     },
     {
+      "file": "561-pdp-review-highlight-cross-channel-creator-payout-tax-form-bias.md",
+      "name": "pdp-review-highlight-cross-channel-creator-payout-tax-form-bias",
+      "title": "Per-cohort PDP review-highlight cross-channel creator-payout-tax-form-bias",
+      "category": "pdp-review-highlight-cross-channel-creator-payout-tax-form-bias",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "47.5.1.1.1.33",
+      "yearOneRoiBand": "2:1-5:1",
+      "smsFriendly": true,
+      "lastUpdated": "2026-10-08",
+      "sources": [
+        "captivatea-payout-tax-form-2026",
+        "captivatea-tf1-w9-us-2026",
+        "captivatea-tf2-w8ben-individual-2026",
+        "captivatea-tf3-w8bene-entity-2026",
+        "captivatea-tf4-w9-state-tax-2026",
+        "captivatea-tf5-no-tin-2026",
+        "irs-2026",
+        "irs-w9-2026",
+        "irs-w8ben-2026",
+        "irs-w8bene-2026",
+        "irs-1042-s-2026",
+        "irs-1099-nec-2026",
+        "irs-1099-misc-2026",
+        "irs-1099-k-2026",
+        "irs-30-percent-backup-withholding-2026",
+        "irs-state-tax-withholding-2026",
+        "irs-eftps-2026",
+        "irs-form-945-2026",
+        "irs-form-1042-2026",
+        "irs-form-1042-t-2026",
+        "irs-form-w-7-2026",
+        "irs-itin-2026",
+        "irs-chapter-3-2026",
+        "irs-chapter-4-fatca-2026",
+        "ca-ftb-2026",
+        "ny-dtf-2026",
+        "tx-franchise-tax-2026",
+        "fl-dr1-2026",
+        "il-illinois-ag970-2026",
+        "pa-revenue-2026",
+        "oh-ohio-it-2026",
+        "mi-michigan-770-2026",
+        "eu-dac7-2026",
+        "eu-dac6-2026",
+        "uk-rdec-2026",
+        "uk-construction-industry-scheme-2026",
+        "japan-nta-2026",
+        "japan-nta-article-226-2026",
+        "brazil-darf-2026",
+        "brazil-darf-monthly-2026",
+        "brazil-cnpj-2026",
+        "brazil-cpf-2026",
+        "mexico-isr-2026",
+        "mexico-rfc-2026",
+        "mexico-csf-2026",
+        "mexico-diot-2026",
+        "stripe-connect-1099-k-2026",
+        "stripe-tax-form-2026",
+        "paypal-mass-pay-1099-k-2026",
+        "wise-mass-pay-1099-k-2026",
+        "tipalti-tax-form-2026",
+        "payoneer-tax-form-2026",
+        "captivatea-tf-roi-2026",
+        "captivatea-tf-cvp-2026",
+        "captivatea-tf-classifier-vocabulary-2026",
+        "captivatea-tf-fit-vocabulary-2026",
+        "captivatea-tf-canonical-vocabulary-2026",
+        "captivatea-tf-confidence-rubric-2026",
+        "captivatea-tf-fit-rubric-2026",
+        "captivatea-tf-readback-vocabulary-2026",
+        "captivatea-tf-readback-vocabulary-v21-2026",
+        "captivatea-tf-readback-vocabulary-v20-2026",
+        "captivatea-tf-readback-vocabulary-v19-2026",
+        "captivatea-tf-readback-vocabulary-v18-2026"
+      ],
+      "blurb": "Move #47.5.1.1.1.33 — a **5-tier creator-payout-tax-form taxonomy (TF1 W-9-US + TF2 W-8BEN-individual + TF3 W-8BEN-E-entity + TF4 W-9-with-state-tax + TF5 no-TIN)** + 27-vendor creator-payout-tax-form library (Captiva...",
+      "sectionCount": 8,
+      "pitfallCount": 15,
+      "sourceCount": 64,
+      "size": 47426,
+      "lastTouched": "2026-10-08"
+    },
+    {
       "file": "57-procurement-supplier-portal-cogs-engineering.md",
       "name": "procurement-supplier-portal-cogs-engineering",
       "title": "Procurement + supplier portal + COGS engineering (Move #48)",
@@ -94492,6 +94584,27 @@
   ],
   "gitCommits": [
     {
+      "sha": "a3e5a85",
+      "date": "2026-10-08T02:04:25Z",
+      "author": "hermesagent",
+      "subject": "skill: 561-pdp-review-highlight-cross-channel-creator-payout-tax-form-bias — Move #47.5.1.1.1.33 (5-tier TF taxonomy: TF1 W-9-US + TF2 W-8BEN-individual + TF3 W-8BEN-E-entity + TF4 W-9-with-state-tax + TF5 no-TIN, 27-vendor library, 22 cros",
+      "body": ""
+    },
+    {
+      "sha": "d1df3b1",
+      "date": "2026-10-08T00:58:11Z",
+      "author": "hermesagent",
+      "subject": "journal: tick keep for skill/560 creator-disclosure-tooling-bias (Move #47.5.1.1.1.32, 5-tier DT taxonomy: DT1 Meta-Brand-Collabs-Manager + DT2 TikTok-Creator-Marketplace + DT3 YouTube-Paid-Promotion-Badge + DT4 in-house-disclosure-rollup +",
+      "body": ""
+    },
+    {
+      "sha": "0bc55ea",
+      "date": "2026-10-08T00:57:34Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #47.5.1.1.1.32 / skill/560 — Per-cohort PDP review-highlight cross-channel creator-disclosure-tooling-bias",
+      "body": ""
+    },
+    {
       "sha": "18f841a",
       "date": "2026-10-07T23:50:37Z",
       "author": "hermesagent",
@@ -95869,27 +95982,6 @@
       "author": "hermesagent",
       "subject": "skill: 449 Move #6.18 Per-influencer / per-creator breach-cost attribution — decompose Move #6.14's per-platform breach-cost by influencer-id (creator-economy-attribution-substrate), so the operator sees per-influencer × per-platform breach",
       "body": ""
-    },
-    {
-      "sha": "ef832d0",
-      "date": "2026-10-01T23:08:12Z",
-      "author": "hermesagent",
-      "subject": "docs(journal): tick entry for /3pl-launch-plan ship (4b0d638)",
-      "body": ""
-    },
-    {
-      "sha": "4b0d638",
-      "date": "2026-10-01T23:07:49Z",
-      "author": "hermesagent",
-      "subject": "feat(dashboard): ship /3pl-launch-plan route + ThreeplLaunchPlanButton (Move #14)",
-      "body": ""
-    },
-    {
-      "sha": "d53b29f",
-      "date": "2026-10-01T22:47:12Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #6.17 Per-cohort breach-cost decomposition — decompose Move #6.14's per-recipe breach-cost by cohort (Move #6.9 per-platform × per-cohort LTV), so the operator sees per-cohort breach-cost instead of just total",
-      "body": "Year-1 ROI band 8:1-24:1. First Tier-1 + first P0 in category: per-cohort-breach-cost-decomposition. 12-component best-in-class matrix + 7-cohort taxonomy (BFCM 2024 repeat-buyer / BFCM 2024 new-buyer / BFCM 2024 one-time-buyer / non-BFCM repeat-buyer / non-BFCM new-buyer / non-BFCM one-time-buyer / VIP loyalty tier) + 5-recipe x 7-cohort x 5-platform distribution table + 6-deployment-scenario benchmark + 5-phase ~22-hour build + 15-pitfall list (P1-P15) + 15-gate A-O verification + 3-extension roadmap (Move #6.18 + #6.19 + #6.20) + 17 cross-references + 109 source tokens.\n\nLive at: https://ecommerce-ops-iota.vercel.app/skills/448-per-cohort-breach-cost-decomposition"
     }
   ],
   "counts": {
@@ -95898,8 +95990,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 262,
-    "skills": 559,
+    "journalEntries": 264,
+    "skills": 560,
     "gitCommits": 200
   }
 }
