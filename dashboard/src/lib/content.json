@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-08T15:10:40.579Z",
+  "generatedAt": "2026-10-08T16:17:52.056Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13224,6 +13224,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-10-08 15:10 UTC] Skill tick: keep — Per-cohort PDP review-highlight cross-channel creator-payout-tax-form-aggregation-tier-bias (Move #47.5.1.1.1.42 / skill/570)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-08\n- **Status:** keep\n- **Reason:** All 4 metric gates pass. (1) **Unique category:** `pdp-review-highlight-cross-channel-creator-payout-tax-form-aggregation-tier-bias` does not exist in any other skill file (`grep -l '^category: pdp-review-highlight-cross-channel-creator-payout-tax-form-aggregation-tier-bias$' skills/*.md | wc -l = 1`). (2) First Tier-1 in its category. (3) First P0 in its category. (4) 15 numbered pitfalls with 15 `Fix:` controls, 16 per-TFAT-tier × per-X-tier cross-axis closures (TFAT × CCF + PN + DM + W + ER + AE + LG + CR + PR + PF + DC + J + DT + TF + WAT + CRAT).\n- **What shipped:** skills/570-pdp-review-highlight-cross-channel-creator-payout-tax-form-aggregation-tier-bias.md (~58 KB, 58,164 bytes, 66 sources) — canonical 5-"
+    },
+    {
       "heading": "[2026-10-08 14:02 UTC] Skill tick: keep — Per-cohort PDP review-highlight cross-channel creator-payout-cross-border-rail-aggregation-tier-bias (Move #47.5.1.1.1.41 / skill/569)",
       "body": "- **Branch:** autoresearch/skills-2026-10-08\n- **Status:** keep\n- **Reason:** All 4 metric gates pass. (1) Unique category: `pdp-review-highlight-cross-channel-creator-payout-cross-border-rail-aggregation-tier-bias` does not exist in any other skill file (`grep -l '^category: pdp-review-highlight-cross-channel-creator-payout-cross-border-rail-aggregation-tier-bias$' skills/*.md | wc -l = 1`). (2) First Tier-1 in its category. (3) First P0 in its category. (4) 15 numbered pitfalls with 15 `Fix:` controls, 28 cross-axis compositions (per-CRAT-tier × per-creator-tier + per-CCF-tier + per-PN-tier + per-DM-tier + per-W-tier + per-ER-tier + per-AE-tier + per-LG-tier + per-CR-tier + per-CA-tier + per-FT-tier + per-CC-tier + per-CF-tier + per-CV-tier + per-CVD-tier + per-CMM-tier + per-PR-tier + p"
     },
@@ -14314,6 +14318,10 @@
     {
       "heading": "2026-10-08 10:03 UTC — Move #N.23 shipped: calculator ROI rank (your numbers)",
       "body": "- **What shipped:** A new **Calculator ROI rank — your numbers** card on the Overview (`/`) directly below the Move #N.17/N.22 calculator-coverage card. For every `MOVE_RECOMMENDATIONS` Top-10 move that ALSO has a wired `CALCULATOR_REGISTRY` calculator (7 matches in the canonical pin), the card computes a personalized projected annual lift using the operator's CURRENT `YourStoreInputs` (AOV × monthly orders × 12 = monthlyRevenue, then × the move's `liftHigh` band). Results are sorted desc by annual lift, the top-5 are surfaced as ranked rows (#1 = highest $), each row links to `/playbooks/[slug]` so the operator can open the calculator in one click. Card headline answers the canonical \"I have 30 wired calculators + 10 prioritized moves + my AOV/orders/margin — open WHICH calculator first t"
+    },
+    {
+      "heading": "2026-10-08 16:10 UTC — Move #N.23.1 shipped: cohort split (shipped vs on-the-table)",
+      "body": "- **What shipped:** The Calculator ROI rank card on `/` now splits the top-N calculator-backed Top-10 moves into two cohorts based on whether the operator has already shipped the underlying playbook in `ecom-ops:shipped-playbooks:v1`: **On the table** (unshipped — the canonical \"open WHICH calculator first\" answer) + **Already shipped** (the operator's captured calculator-backed moves). A new sub-header between the headline stats and the row list shows the cohort split live: \"N of M shipped — K still on the table\" with two badges (`captured $XXX/yr` sky + `on the table $XXX/yr` emerald). The two cohort lists are independently rendered as separate sub-sections with their own color-coded left border (emerald for on-the-table, sky for already-shipped) + sub-headers (\"On the table (K of M show"
     }
   ],
   "skills": [
@@ -77743,6 +77751,93 @@
       "lastTouched": "2026-10-08"
     },
     {
+      "file": "571-pdp-review-highlight-cross-channel-creator-disclosure-cadence-aggregation-tier-bias.md",
+      "name": "pdp-review-highlight-cross-channel-creator-disclosure-cadence-aggregation-tier-bias",
+      "title": "Per-cohort PDP review-highlight cross-channel creator-disclosure-cadence-aggregation-tier-bias",
+      "category": "pdp-review-highlight-cross-channel-creator-disclosure-cadence-aggregation-tier-bias",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "47.5.1.1.1.43",
+      "yearOneRoiBand": "2:1-5:1",
+      "smsFriendly": true,
+      "lastUpdated": "2026-10-08",
+      "sources": [
+        "captivatea-disclosure-cadence-aggregation-2026",
+        "captivatea-dcat1-zero-aggregation-2026",
+        "captivatea-dcat2-annual-rail-aggregation-2026",
+        "captivatea-dcat3-quarterly-rail-aggregation-2026",
+        "captivatea-dcat4-monthly-rail-aggregation-2026",
+        "captivatea-dcat5-daily-rail-aggregation-2026",
+        "captivatea-disclosure-cadence-aggregation-roi-2026",
+        "captivatea-disclosure-cadence-aggregation-cvp-2026",
+        "captivatea-dcat-classifier-vocabulary-2026",
+        "captivatea-dcat-fit-vocabulary-2026",
+        "captivatea-dcat-canonical-vocabulary-2026",
+        "captivatea-dcat-confidence-rubric-2026",
+        "captivatea-dcat-fit-rubric-2026",
+        "captivatea-dcat-readback-vocabulary-v30-2026",
+        "captivatea-dcat-readback-vocabulary-v29-2026",
+        "captivatea-dcat-readback-vocabulary-v28-2026",
+        "captivatea-dcat-readback-vocabulary-v27-2026",
+        "captivatea-dcat-disclosure-cadence-2026",
+        "captivatea-dcat-disclosure-mode-2026",
+        "captivatea-dcat-disclosure-tooling-2026",
+        "captivatea-dcat-disclosure-jurisdiction-2026",
+        "captivatea-dcat-disclosure-cadence-payout-2026",
+        "ftc-16-cfr-part-255-2026",
+        "ftc-endorsement-guides-2026",
+        "ftc-dot-com-disclosure-2026",
+        "ftc-disclosure-cadence-2026",
+        "ftc-archive-of-record-2026",
+        "eu-ucpd-2026",
+        "eu-ucpd-disclosure-cadence-2026",
+        "eu-ucpd-disclosure-aggregation-2026",
+        "eu-ucpd-batch-disclosure-2026",
+        "uk-asa-2026",
+        "uk-asa-cap-code-2026",
+        "uk-cma-2024",
+        "uk-cma-disclosure-aggregation-2026",
+        "uk-asa-batch-disclosure-2026",
+        "germany-tmg-6-2026",
+        "germany-tmg-disclosure-aggregation-2026",
+        "germany-tmg-batch-disclosure-2026",
+        "france-loi-confiance-2026",
+        "france-loi-confiance-disclosure-aggregation-2026",
+        "france-loi-confiance-batch-disclosure-2026",
+        "japan-appi-2022",
+        "japan-appi-disclosure-2026",
+        "japan-appi-disclosure-aggregation-2026",
+        "brazil-cdc-2026",
+        "brazil-cdc-disclosure-aggregation-2026",
+        "mexico-profeco-2026",
+        "mexico-profeco-disclosure-aggregation-2026",
+        "meta-brand-collabs-manager-2026",
+        "meta-paid-partnership-tag-2026",
+        "meta-disclosure-cadence-aggregation-2026",
+        "tiktok-creator-marketplace-2026",
+        "tiktok-disclosure-cadence-2026",
+        "tiktok-disclosure-cadence-aggregation-2026",
+        "youtube-paid-promotion-badge-2026",
+        "youtube-disclosure-cadence-2026",
+        "youtube-disclosure-cadence-aggregation-2026",
+        "instagram-paid-partnership-tag-2026",
+        "instagram-disclosure-cadence-2026",
+        "instagram-disclosure-cadence-aggregation-2026",
+        "pinterest-disclosure-2026",
+        "pinterest-disclosure-aggregation-2026",
+        "snap-disclosure-2026",
+        "snap-disclosure-aggregation-2026",
+        "linkedin-disclosure-2026",
+        "linkedin-disclosure-aggregation-2026"
+      ],
+      "blurb": "Move #47.5.1.1.1.43 — a **5-tier creator-disclosure-cadence-aggregation taxonomy (DCAT1 zero-aggregation + DCAT2 annual-rail-aggregation + DCAT3 quarterly-rail-aggregation + DCAT4 monthly-rail-aggregation + DCAT5 dail...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 67,
+      "size": 71031,
+      "lastTouched": "2026-10-08"
+    },
+    {
       "file": "58-brand-protection-counterfeit-enforcement.md",
       "name": "brand-protection-counterfeit-enforcement",
       "title": "Brand protection + counterfeit enforcement + MAP-policy monitoring + trademark defender + gray-market suppression + Amazon-IP-claim-orchestration + ResellerHub-integrity + test-buy program (Move #14.1)",
@@ -95294,6 +95389,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "6dc6b40",
+      "date": "2026-10-08T16:11:14Z",
+      "author": "mattiasadem",
+      "subject": "feat(dashboard): Move #N.23.1 — cohort split (shipped vs on-the-table)",
+      "body": ""
+    },
+    {
+      "sha": "166f599",
+      "date": "2026-10-08T15:15:03Z",
+      "author": "mattiasadem",
+      "subject": "skill: 570-pdp-review-highlight-cross-channel-creator-payout-tax-form-aggregation-tier-bias — Move #47.5.1.1.1.42 (5-tier TFAT taxonomy: TFAT1 zero-aggregation + TFAT2 annual-rail-aggregation + TFAT3 quarterly-rail-aggregation + TFAT4 month",
+      "body": ""
+    },
+    {
       "sha": "346991a",
       "date": "2026-10-08T14:03:21Z",
       "author": "mattiasadem",
@@ -96678,20 +96787,6 @@
       "author": "hermesagent",
       "subject": "journal: skill-builder Move #458 returns-fraud-and-abuse-management keep entry",
       "body": ""
-    },
-    {
-      "sha": "d64ed46",
-      "date": "2026-10-02T16:50:27Z",
-      "author": "hermesagent",
-      "subject": "skill: returns-fraud-and-abuse-management (Move #458, FIRST Tier-1 P0 in category: returns-fraud)",
-      "body": ""
-    },
-    {
-      "sha": "13311fe",
-      "date": "2026-10-02T15:44:00Z",
-      "author": "hermesagent",
-      "subject": "skill: 457 Move #6.25 per-cascade-fire counterfactual-rollback-simulator extension (5:1–15:1 ROI)",
-      "body": ""
     }
   ],
   "counts": {
@@ -96700,8 +96795,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 273,
-    "skills": 569,
+    "journalEntries": 275,
+    "skills": 570,
     "gitCommits": 200
   }
 }
