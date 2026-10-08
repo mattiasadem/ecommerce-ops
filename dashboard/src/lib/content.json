@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-08T22:01:14.603Z",
+  "generatedAt": "2026-10-08T23:12:56.975Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13224,6 +13224,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-10-08 22:01 UTC] Skill tick: keep — Per-cohort PDP review-highlight cross-channel creator-disclosure-engagement-rate-aggregation-tier-bias (Move #47.5.1.1.1.48 / skill/576)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-08\n- **Status:** keep\n- **Reason:** All 4 metric gates pass. (1) **Unique category:** `pdp-review-highlight-cross-channel-creator-disclosure-engagement-rate-aggregation-tier-bias` does not exist in any other skill file (`grep -l '^category: pdp-review-highlight-cross-channel-creator-disclosure-engagement-rate-aggregation-tier-bias$' skills/*.md | wc -l = 1`). (2) First Tier-1 in its category. (3) First P0 in its category. (4) 15 numbered pitfalls with 15 `Fix:` controls, 36 per-ERAT-tier × per-X-tier cross-axis closures (per-ERAT-tier × per-creator-tier + per-ER-tier + per-PN-tier + per-DC-tier + per-DM-tier + per-DT-tier + per-J-tier + per-CCF-tier + per-DCAT-tier + per-DMAT-tier + per-DTAT-tier + per-JAT-tier + per-PNAT-tier + per-W-tier + per-AE"
+    },
+    {
       "heading": "[2026-10-08 21:00 UTC] Skill tick: keep — Per-cohort PDP review-highlight cross-channel creator-disclosure-platform-native-aggregation-tier-bias (Move #47.5.1.1.1.47 / skill/575)",
       "body": "- **Branch:** autoresearch/skills-2026-10-08\n- **Status:** keep\n- **Reason:** Unique category — `pdp-review-highlight-cross-channel-creator-disclosure-platform-native-aggregation-tier-bias` (no other skill carries this `category:` in `skills/*.md`; `grep -l '^category: pdp-review-highlight-cross-channel-creator-disclosure-platform-native-aggregation-tier-bias$' skills/*.md | wc -l = 1`). Also first Tier-1 / first P0 in this category. Highest pitfall count (15) at tier-1 / P0. Follows the canonical recommendation in skill/574 §How to extend: \"the natural next-axis creator-disclosure-platform-native-aggregation add-on is **Move #47.5.1.1.1.47 / skill/575 — creator-disclosure-platform-native-aggregation-tier-bias**\".\n- **What shipped:** `skills/575-pdp-review-highlight-cross-channel-creator-d"
     },
@@ -14342,6 +14346,10 @@
     {
       "heading": "2026-10-08 16:10 UTC — Move #N.23.1 shipped: cohort split (shipped vs on-the-table)",
       "body": "- **What shipped:** The Calculator ROI rank card on `/` now splits the top-N calculator-backed Top-10 moves into two cohorts based on whether the operator has already shipped the underlying playbook in `ecom-ops:shipped-playbooks:v1`: **On the table** (unshipped — the canonical \"open WHICH calculator first\" answer) + **Already shipped** (the operator's captured calculator-backed moves). A new sub-header between the headline stats and the row list shows the cohort split live: \"N of M shipped — K still on the table\" with two badges (`captured $XXX/yr` sky + `on the table $XXX/yr` emerald). The two cohort lists are independently rendered as separate sub-sections with their own color-coded left border (emerald for on-the-table, sky for already-shipped) + sub-headers (\"On the table (K of M show"
+    },
+    {
+      "heading": "2026-10-08 22:18 UTC — Move #N.23.4 shipped: payback-period chip on ROI rank rows",
+      "body": "- **What shipped:** Every Calculator ROI rank row on `/` (both the **On the table** cohort and the **Already shipped** cohort, Move #N.23.1) now carries a **`⏱ Xmo`** payback chip directly to the right of the existing `Xd` days-to-ship badge. The chip answers the operator's canonical \"open the highest-leverage calculator first\" follow-up: **\"how fast does the tool pay for itself at the projected lift?\"**. The math is `costHigh ÷ monthlyLiftHigh = months until projected lift covers the operator's tool cost`. Free tools (costHigh = 0 — e.g. Move #3-checkout-audit-baymard's $0/mo Baymard checklist) display **`⏱ ∞`** in emerald tone with the tooltip \"Free tool — no payback needed\". Moves where the projected lift is zero (defensive edge — `monthlyLiftHigh <= 0`) display **`⏱ —`** in muted tone "
     }
   ],
   "skills": [
@@ -78418,6 +78426,136 @@
       "lastTouched": "2026-10-08"
     },
     {
+      "file": "577-pdp-review-highlight-cross-channel-creator-disclosure-aesthetic-aggregation-tier-bias.md",
+      "name": "pdp-review-highlight-cross-channel-creator-disclosure-aesthetic-aggregation-tier-bias",
+      "title": "Per-cohort PDP review-highlight cross-channel creator-disclosure-aesthetic-aggregation-tier-bias",
+      "category": "pdp-review-highlight-cross-channel-creator-disclosure-aesthetic-aggregation-tier-bias",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "47.5.1.1.1.49",
+      "yearOneRoiBand": "2:1-5:1",
+      "smsFriendly": true,
+      "lastUpdated": "2026-10-08",
+      "sources": [
+        "captivatea-disclosure-aesthetic-aggregation-2026",
+        "captivatea-aeat1-zero-aggregation-2026",
+        "captivatea-aeat2-annual-rail-aggregation-2026",
+        "captivatea-aeat3-quarterly-rail-aggregation-2026",
+        "captivatea-aeat4-monthly-rail-aggregation-2026",
+        "captivatea-aeat5-daily-rail-aggregation-2026",
+        "captivatea-disclosure-aesthetic-aggregation-roi-2026",
+        "captivatea-disclosure-aesthetic-aggregation-cvp-2026",
+        "captivatea-aeat-classifier-vocabulary-2026",
+        "captivatea-aeat-fit-vocabulary-2026",
+        "captivatea-aeat-canonical-vocabulary-2026",
+        "captivatea-aeat-confidence-rubric-2026",
+        "captivatea-aeat-fit-rubric-2026",
+        "captivatea-aeat-readback-vocabulary-v36-2026",
+        "captivatea-aeat-readback-vocabulary-v35-2026",
+        "captivatea-aeat-readback-vocabulary-v34-2026",
+        "captivatea-aeat-readback-vocabulary-v33-2026",
+        "captivatea-aeat-disclosure-cadence-2026",
+        "captivatea-aeat-disclosure-mode-2026",
+        "captivatea-aeat-disclosure-tooling-2026",
+        "captivatea-aeat-disclosure-jurisdiction-2026",
+        "captivatea-aeat-disclosure-mode-aggregation-2026",
+        "captivatea-aeat-disclosure-platform-native-aggregation-2026",
+        "captivatea-aeat-disclosure-engagement-rate-aggregation-2026",
+        "captivatea-creator-aesthetic-2026",
+        "captivatea-ae1-minimalist-2026",
+        "captivatea-ae2-maximalist-2026",
+        "captivatea-ae3-vintage-2026",
+        "captivatea-ae4-modern-2026",
+        "captivatea-ae5-boho-2026",
+        "captivatea-ae6-coastal-2026",
+        "captivatea-ae7-urban-2026",
+        "captivatea-ae8-rustic-2026",
+        "captivatea-ae9-clinical-dressing-2026",
+        "captivatea-ae-fit-rubric-2026",
+        "captivatea-ae-confidence-rubric-2026",
+        "ftc-16-cfr-part-255-2026",
+        "ftc-endorsement-guides-2026",
+        "ftc-dot-com-disclosure-2026",
+        "ftc-disclosure-aesthetic-aggregation-2026",
+        "ftc-archive-of-record-2026",
+        "eu-ucpd-2026",
+        "eu-ucpd-disclosure-aesthetic-aggregation-2026",
+        "eu-ucpd-disclosure-aggregation-2026",
+        "eu-ucpd-batch-disclosure-2026",
+        "eu-ucpd-aesthetic-aggregation-rollup-2026",
+        "uk-asa-2026",
+        "uk-asa-cap-code-2026",
+        "uk-cma-2024",
+        "uk-cma-disclosure-aggregation-2026",
+        "uk-asa-batch-disclosure-2026",
+        "uk-cma-aesthetic-aggregation-rollup-2026",
+        "germany-tmg-6-2026",
+        "germany-tmg-disclosure-aggregation-2026",
+        "germany-tmg-batch-disclosure-2026",
+        "germany-tmg-aesthetic-aggregation-rollup-2026",
+        "france-loi-confiance-2026",
+        "france-loi-confiance-disclosure-aggregation-2026",
+        "france-loi-confiance-batch-disclosure-2026",
+        "france-loi-confiance-aesthetic-aggregation-rollup-2026",
+        "japan-appi-2022",
+        "japan-appi-disclosure-2026",
+        "japan-appi-disclosure-aggregation-2026",
+        "japan-appi-aesthetic-aggregation-rollup-2026",
+        "brazil-cdc-2026",
+        "brazil-cdc-disclosure-aggregation-2026",
+        "brazil-cdc-aesthetic-aggregation-rollup-2026",
+        "mexico-profeco-2026",
+        "mexico-profeco-disclosure-aggregation-2026",
+        "mexico-profeco-aesthetic-aggregation-rollup-2026",
+        "meta-brand-collabs-manager-2026",
+        "meta-paid-partnership-tag-2026",
+        "meta-disclosure-aesthetic-aggregation-2026",
+        "meta-branded-content-tool-2026",
+        "meta-reach-and-engagement-disclosure-2026",
+        "tiktok-creator-marketplace-2026",
+        "tiktok-branded-mission-2026",
+        "tiktok-green-dot-branded-content-tag-2026",
+        "tiktok-content-mission-disclosure-2026",
+        "tiktok-disclosure-aesthetic-aggregation-2026",
+        "tiktok-creator-aesthetic-2026",
+        "youtube-paid-promotion-badge-2026",
+        "youtube-paid-promotion-badge-api-2026",
+        "youtube-includes-paid-promotion-shell-2026",
+        "youtube-disclosure-aesthetic-aggregation-2026",
+        "youtube-creator-aesthetic-2026",
+        "instagram-paid-partnership-tag-2026",
+        "instagram-disclosure-aesthetic-aggregation-2026",
+        "instagram-creator-aesthetic-2026",
+        "linkedin-paid-promotion-2026",
+        "linkedin-disclosure-aesthetic-aggregation-2026",
+        "linkedin-creator-aesthetic-2026",
+        "pinterest-paid-promotion-2026",
+        "pinterest-predicts-2026",
+        "pinterest-disclosure-aesthetic-aggregation-2026",
+        "pinterest-creator-aesthetic-2026",
+        "snap-sponsored-content-2026",
+        "snap-sponsored-content-api-2026",
+        "snap-disclosure-aesthetic-aggregation-2026",
+        "snap-creator-aesthetic-2026",
+        "creatoriq-creator-aesthetic-2026",
+        "ltk-aesthetic-2026",
+        "liketoknowit-aesthetic-2026",
+        "captivatea-aeat-cross-aesthetic-aggregation-mart-2026",
+        "captivatea-aeat-ccpa-cpra-2026",
+        "captivatea-aeat-pipeda-2026",
+        "captivatea-aeat-lgpd-2026",
+        "captivatea-aeat-pdpa-sg-2026",
+        "captivatea-aeat-cross-aesthetic-aggregation-attestation-2026",
+        "captivatea-aeat-aesthetic-aggregation-rollup-deadline-2026"
+      ],
+      "blurb": "Move #47.5.1.1.1.49 — a **5-tier creator-disclosure-aesthetic-aggregation taxonomy (AEAT1 zero-aggregation + AEAT2 annual-rail-aggregation + AEAT3 quarterly-rail-aggregation + AEAT4 monthly-rail-aggregation + AEAT5 da...",
+      "sectionCount": 8,
+      "pitfallCount": 15,
+      "sourceCount": 110,
+      "size": 75658,
+      "lastTouched": "2026-10-08"
+    },
+    {
       "file": "58-brand-protection-counterfeit-enforcement.md",
       "name": "brand-protection-counterfeit-enforcement",
       "title": "Brand protection + counterfeit enforcement + MAP-policy monitoring + trademark defender + gray-market suppression + Amazon-IP-claim-orchestration + ResellerHub-integrity + test-buy program (Move #14.1)",
@@ -95969,6 +96107,27 @@
   ],
   "gitCommits": [
     {
+      "sha": "f7052c8",
+      "date": "2026-10-08T22:18:30Z",
+      "author": "mattiasadem",
+      "subject": "feat(dashboard): calculator ROI rank payback-period chip (Move #N.23.4)",
+      "body": "Adds a '⏱ Xmo' payback chip to every Calculator ROI rank row (both\non-the-table and already-shipped cohorts) that surfaces how fast the\noperator's tool cost pays for itself at the projected lift. Math:\ncostHigh ÷ monthlyLiftHigh. Tone bands: emerald < 3mo, sky < 6mo,\namber < 12mo, rose >= 12mo. Free tools render '∞', zero-lift edges\nrender '—'. Joins MOVE_RECOMMENDATIONS.costHigh with the existing\nCalculatorRoiRankRow.monthlyLiftHigh + your-store inputs."
+    },
+    {
+      "sha": "096526d",
+      "date": "2026-10-08T22:10:54Z",
+      "author": "mattiasadem",
+      "subject": "journal: tick 2026-10-08 22:01 UTC — keep skill/576 ERAT creator-disclosure-engagement-rate-aggregation-tier-bias",
+      "body": ""
+    },
+    {
+      "sha": "48be20a",
+      "date": "2026-10-08T22:10:34Z",
+      "author": "mattiasadem",
+      "subject": "skill: Move #47.5.1.1.1.48 / skill/576 — Per-cohort PDP review-highlight cross-channel creator-disclosure-engagement-rate-aggregation-tier-bias (5-tier ERAT1-ERAT5 taxonomy + 81-vendor library + 53-dimension v35 readback schema + 36 cross-a",
+      "body": ""
+    },
+    {
       "sha": "3eb7eb2",
       "date": "2026-10-08T20:59:14Z",
       "author": "mattiasadem",
@@ -97346,27 +97505,6 @@
       "author": "hermesagent",
       "subject": "docs(journal): tick entry for Move #1.2 cross-channel-dark-site-auto-deploy ship (8d8f493)",
       "body": ""
-    },
-    {
-      "sha": "8d8f493",
-      "date": "2026-10-02T22:35:07Z",
-      "author": "hermesagent",
-      "subject": "skill: 463 Move #1.2 cross-channel-dark-site-auto-deploy (FIRST Tier-1 P0 in category, 8:1-25:1 ROI)",
-      "body": ""
-    },
-    {
-      "sha": "161b773",
-      "date": "2026-10-02T21:27:03Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #1.1 AI crisis-classifier — auto-route social-sentiment-monitor alerts into 4 lanes (product harm / brand reputation / operational / creator) with custom NLP + Move #1 4-lane handoff",
-      "body": ""
-    },
-    {
-      "sha": "742beae",
-      "date": "2026-10-02T20:18:30Z",
-      "author": "hermesagent",
-      "subject": "journal: skill-builder Move #461 crisis-pr-operations keep entry",
-      "body": ""
     }
   ],
   "counts": {
@@ -97375,8 +97513,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 280,
-    "skills": 575,
+    "journalEntries": 282,
+    "skills": 576,
     "gitCommits": 200
   }
 }
