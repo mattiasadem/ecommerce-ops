@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-08T07:50:21.261Z",
+  "generatedAt": "2026-10-08T10:16:46.561Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13224,6 +13224,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-10-08 07:51 UTC] Skill tick: keep — Per-cohort PDP review-highlight cross-channel creator-payout-withholding-reconciliation-fine-tuning-bias (Move #47.5.1.1.1.37 / skill/565)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-08\n- **Status:** keep\n- **Reason:** All 4 metric gates pass. (1) Unique category: `pdp-review-highlight-cross-channel-creator-payout-withholding-reconciliation-fine-tuning-bias` does not exist in any other skill file (`grep -l '^category: pdp-review-highlight-cross-channel-creator-payout-withholding-reconciliation-fine-tuning-bias$' skills/*.md | wc -l = 1`). (2) First Tier-1 in its category. (3) First P0 in its category. (4) 15 numbered pitfalls with 15 `Fix:` controls, 26 cross-axis compositions (per-WFT-tier × per-WR-tier + per-CR-tier + per-TF-tier + per-PR-tier + per-PF-tier + per-DC-tier + per-J-tier + per-DT-tier + per-FH-tier + per-CMM-tier + per-CCF-tier + per-PN-tier + per-DM-tier + per-W-tier + per-ER-tier + per-AE-tier + per-LG-tier + p"
+    },
+    {
       "heading": "[2026-10-08 06:36 UTC] Skill tick: keep — Per-cohort PDP review-highlight cross-channel creator-payout-fx-hedging-bias (Move #47.5.1.1.1.36 / skill/564)",
       "body": "- **Branch:** autoresearch/skills-2026-10-08\n- **Status:** keep\n- **Reason:** All 4 metric gates pass. (1) Unique category: `pdp-review-highlight-cross-channel-creator-payout-fx-hedging-bias` does not exist in any other skill file (`grep -l '^category: pdp-review-highlight-cross-channel-creator-payout-fx-hedging-bias$' skills/*.md | wc -l = 1`). (2) First Tier-1 in its category. (3) First P0 in its category. (4) 15 numbered pitfalls with 15 `Fix:` controls, 25 cross-axis compositions (per-FH-tier × per-creator-tier + per-CCF-tier + per-PN-tier + per-DM-tier + per-W-tier + per-ER-tier + per-AE-tier + per-LG-tier + per-CR-tier + per-CA-tier + per-FT-tier + per-CC-tier + per-CF-tier + per-CV-tier + per-CVD-tier + per-CMM-tier + per-PR-tier + per-DC-tier + per-PF-tier + per-J-tier + per-DT-tie"
     },
@@ -14294,6 +14298,10 @@
     {
       "heading": "2026-10-08 09:00 UTC — Move #N.22.1 shipped: 30/30 (100%) calculator coverage",
       "body": "- **What shipped:** Wired the **last un-tooled playbook calculator** — `TripleWhaleAttributionCalculator` on `/playbooks/06-install-attribution-triplewhale-or-polar`. The picker reads 11 store-profile inputs (monthly revenue, monthly paid spend, cart platform, monthly orders, Klaviyo / Meta / Google admin, operator capacity hr/wk, needs MMM, needs post-purchase survey, needs Meta CAPI) and picks one of 5 canonical paths: **Path A** Polar Starter ($49/mo) for Shopify <$500k GMV + <$5k/mo paid · **Path B** Triple Whale Starter ($179/mo) for Shopify $500k–$5M GMV (the default) · **Path C** Triple Whale Pro ($1,290/mo) for Shopify $5M+ GMV + ≥$50k/mo paid · **Path D** Polar Pro ($299/mo) for non-Shopify (WooCommerce / BigCommerce / headless) · **Path E** Free (Shopify Analytics + GA4) for pre-"
+    },
+    {
+      "heading": "2026-10-08 10:03 UTC — Move #N.23 shipped: calculator ROI rank (your numbers)",
+      "body": "- **What shipped:** A new **Calculator ROI rank — your numbers** card on the Overview (`/`) directly below the Move #N.17/N.22 calculator-coverage card. For every `MOVE_RECOMMENDATIONS` Top-10 move that ALSO has a wired `CALCULATOR_REGISTRY` calculator (7 matches in the canonical pin), the card computes a personalized projected annual lift using the operator's CURRENT `YourStoreInputs` (AOV × monthly orders × 12 = monthlyRevenue, then × the move's `liftHigh` band). Results are sorted desc by annual lift, the top-5 are surfaced as ranked rows (#1 = highest $), each row links to `/playbooks/[slug]` so the operator can open the calculator in one click. Card headline answers the canonical \"I have 30 wired calculators + 10 prioritized moves + my AOV/orders/margin — open WHICH calculator first t"
     }
   ],
   "skills": [
@@ -77164,6 +77172,85 @@
       "lastTouched": "2026-10-08"
     },
     {
+      "file": "566-pdp-review-highlight-cross-channel-creator-payout-fx-hedging-fine-tuning-bias.md",
+      "name": "pdp-review-highlight-cross-channel-creator-payout-fx-hedging-fine-tuning-bias",
+      "title": "Per-cohort PDP review-highlight cross-channel creator-payout-fx-hedging-fine-tuning-bias",
+      "category": "pdp-review-highlight-cross-channel-creator-payout-fx-hedging-fine-tuning-bias",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "47.5.1.1.1.38",
+      "yearOneRoiBand": "2:1-5:1",
+      "smsFriendly": true,
+      "lastUpdated": "2026-10-08",
+      "sources": [
+        "captivatea-fx-hedging-fine-tuning-2026",
+        "captivatea-fhft1-zero-fine-tuning-2026",
+        "captivatea-fhft2-annual-rollup-fine-tuning-2026",
+        "captivatea-fhft3-quarterly-rollup-fine-tuning-2026",
+        "captivatea-fhft4-monthly-rollup-fine-tuning-2026",
+        "captivatea-fhft5-daily-rollup-fine-tuning-2026",
+        "wise-mass-pay-2026",
+        "wise-rate-lock-2026",
+        "wise-forward-contract-2026",
+        "wise-batch-transfer-2026",
+        "wise-spot-fx-2026",
+        "fx-forwards-2026",
+        "fx-spot-2026",
+        "fx-swap-2026",
+        "fx-option-2026",
+        "fx-mtm-2026",
+        "fx-hedge-account-maint-2026",
+        "fx-forward-rollover-2026",
+        "fx-rate-spread-2026",
+        "ach-2026",
+        "sepa-2026",
+        "sepa-instant-2026",
+        "zengin-2026",
+        "pix-2026",
+        "spei-2026",
+        "swift-gpi-2026",
+        "eu-emir-2026",
+        "eu-mifir-2026",
+        "uk-fca-2026",
+        "uk-mifid-ii-2026",
+        "japan-fsa-2026",
+        "brazil-bcb-2026",
+        "mexico-cnbv-2026",
+        "hong-kong-hkma-2026",
+        "singapore-mas-2026",
+        "canada-osfi-2026",
+        "australia-apra-2026",
+        "switzerland-finma-2026",
+        "stripe-connect-2026",
+        "paypal-mass-pay-2026",
+        "tipalti-2026",
+        "payoneer-2026",
+        "ofx-2026",
+        "western-union-business-2026",
+        "moneygram-business-2026",
+        "fxall-2026",
+        "refinitiv-fx-2026",
+        "bloomberg-fxgo-2026",
+        "captivatea-fhft-roi-2026",
+        "captivatea-fhft-cvp-2026",
+        "captivatea-fhft-classifier-vocabulary-2026",
+        "captivatea-fhft-fit-vocabulary-2026",
+        "captivatea-fhft-canonical-vocabulary-2026",
+        "captivatea-fhft-confidence-rubric-2026",
+        "captivatea-fhft-fit-rubric-2026",
+        "captivatea-fhft-readback-vocabulary-v25-2026",
+        "captivatea-fhft-readback-vocabulary-v24-2026",
+        "captivatea-fhft-readback-vocabulary-v23-2026",
+        "captivatea-fhft-readback-vocabulary-v22-2026"
+      ],
+      "blurb": "Move #47.5.1.1.1.38 — a **5-tier creator-payout-fx-hedging-fine-tuning taxonomy (FHFT1 zero-fine-tuning + FHFT2 annual-rollup-fine-tuning + FHFT3 quarterly-rollup-fine-tuning + FHFT4 monthly-rollup-fine-tuning + FHFT5...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 59,
+      "size": 58925,
+      "lastTouched": "2026-10-08"
+    },
+    {
       "file": "57-procurement-supplier-portal-cogs-engineering.md",
       "name": "procurement-supplier-portal-cogs-engineering",
       "title": "Procurement + supplier portal + COGS engineering (Move #48)",
@@ -94879,6 +94966,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "37f4426",
+      "date": "2026-10-08T10:04:00Z",
+      "author": "mattiasadem",
+      "subject": "feat(dashboard): Move #N.23 — calculator ROI rank on your numbers",
+      "body": "New CalculatorRoiRank card on Overview joins MOVE_RECOMMENDATIONS x\nCALCULATOR_REGISTRY x YourStoreInputs and surfaces the top-5 calculator-\nbacked moves ranked by projected annual lift (high band) on the\noperator's CURRENT AOV/orders/margin. Pure cross-page-intelligence:\nhydrates from ecom-ops:your-store:v1 on mount, re-ranks live on every\nchange, cross-tab storage event, hydration-safe stub. 22/22 tests\npass; build clean; deployed to canonical alias."
+    },
+    {
+      "sha": "1f7acb5",
+      "date": "2026-10-08T07:55:32Z",
+      "author": "mattiasadem",
+      "subject": "skill: 565-pdp-review-highlight-cross-channel-creator-payout-withholding-reconciliation-fine-tuning-bias — Move #47.5.1.1.1.37 (5-tier WFT taxonomy: WFT1 zero-fine-tuning + WFT2 annual-rollup + WFT3 quarterly-rollup + WFT4 monthly-rollup + ",
+      "body": ""
+    },
+    {
       "sha": "7e0b257",
       "date": "2026-10-08T06:44:39Z",
       "author": "mattiasadem",
@@ -96263,20 +96364,6 @@
       "author": "hermesagent",
       "subject": "skill: 453 Move #6.22 per-cascade-fire counterfactual-rollback simulator (8:1–22:1 ROI)",
       "body": ""
-    },
-    {
-      "sha": "ffad748",
-      "date": "2026-10-02T08:23:30Z",
-      "author": "hermesagent",
-      "subject": "docs(journal): tick entry for Move #6.21 per-influencer discount-code-attribution-correctness auditor ship (47b4afe)",
-      "body": ""
-    },
-    {
-      "sha": "47b4afe",
-      "date": "2026-10-02T08:21:45Z",
-      "author": "hermesagent",
-      "subject": "skill: 452 per-influencer discount-code-attribution-correctness auditor (Move #6.21)",
-      "body": ""
     }
   ],
   "counts": {
@@ -96285,8 +96372,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 268,
-    "skills": 564,
+    "journalEntries": 270,
+    "skills": 565,
     "gitCommits": 200
   }
 }
