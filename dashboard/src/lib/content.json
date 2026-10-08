@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-08T04:16:43.162Z",
+  "generatedAt": "2026-10-08T06:39:14.399Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,14 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-10-08 05:30 UTC] Skill tick: keep — Per-cohort PDP review-highlight cross-channel creator-payout-withholding-reconciliation-bias (Move #47.5.1.1.1.35 / skill/563)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-08\n- **Status:** keep\n- **Reason:** All 4 metric gates pass. (1) Unique category: `pdp-review-highlight-cross-channel-creator-payout-withholding-reconciliation-bias` does not exist in any other skill file (`grep -l '^category: pdp-review-highlight-cross-channel-creator-payout-withholding-reconciliation-bias$' skills/*.md | wc -l = 1`). (2) First Tier-1 in its category. (3) First P0 in its category. (4) 15 numbered pitfalls with 15 `Fix:` controls, 24 cross-axis compositions (per-WR-tier × per-TF-tier + per-CR-tier + per-PR-tier + per-PF-tier + per-DC-tier + per-J-tier + per-DT-tier + per-CMM-tier + per-CCF-tier + per-PN-tier + per-DM-tier + per-W-tier + per-ER-tier + per-AE-tier + per-LG-tier + per-CA-tier + per-FT-tier + per-CC-tier + per-CF-tier "
+    },
+    {
+      "heading": "[2026-10-08 04:18 UTC] Skill tick: keep — Per-cohort PDP review-highlight cross-channel creator-payout-cross-border-rail-bias (Move #47.5.1.1.1.34 / skill/562)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-08\n- **Status:** keep\n- **Reason:** All 4 metric gates pass. (1) Unique category: `pdp-review-highlight-cross-channel-creator-payout-cross-border-rail-bias` does not exist in any other skill file (`grep -l '^category: pdp-review-highlight-cross-channel-creator-payout-cross-border-rail-bias$' skills/*.md | wc -l = 1`). (2) First Tier-1 in its category. (3) First P0 in its category. (4) 15 numbered pitfalls with 15 `Fix:` controls, 22 cross-axis compositions (per-CR-tier × per-CCF-tier + per-PN-tier + per-DM-tier + per-W-tier + per-ER-tier + per-AE-tier + per-LG-tier + per-CA-tier + per-FT-tier + per-CC-tier + per-CF-tier + per-CV-tier + per-CVD-tier + per-CMM-tier + per-PR-tier + per-DC-tier + per-PF-tier + per-J-tier + per-DT-tier + per-TF-tier + p"
+    },
     {
       "heading": "[2026-10-08 01:58 UTC] Skill tick: keep — Per-cohort PDP review-highlight cross-channel creator-payout-tax-form-bias (Move #47.5.1.1.1.33 / skill/561)",
       "body": "- **Branch:** autoresearch/skills-2026-10-08\n- **Status:** keep\n- **Reason:** All 4 metric gates pass. (1) Unique category: `pdp-review-highlight-cross-channel-creator-payout-tax-form-bias` does not exist in any other skill file (`grep -l '^category: pdp-review-highlight-cross-channel-creator-payout-tax-form-bias$' skills/*.md | wc -l = 1`). (2) First Tier-1 in its category. (3) First P0 in its category. (4) 15 numbered pitfalls with 15 `Fix:` controls, 22 cross-axis compositions (per-TF-tier × per-CCF-tier + per-PN-tier + per-DM-tier + per-W-tier + per-ER-tier + per-AE-tier + per-LG-tier + per-CR-tier + per-CA-tier + per-FT-tier + per-CC-tier + per-CF-tier + per-CV-tier + per-CVD-tier + per-CMM-tier + per-PR-tier + per-DC-tier + per-PF-tier + per-J-tier + per-DT-tier + per-creator-tier + "
@@ -76936,6 +76944,144 @@
       "lastTouched": "2026-10-08"
     },
     {
+      "file": "563-pdp-review-highlight-cross-channel-creator-payout-withholding-reconciliation-bias.md",
+      "name": "pdp-review-highlight-cross-channel-creator-payout-withholding-reconciliation-bias",
+      "title": "Per-cohort PDP review-highlight cross-channel creator-payout-withholding-reconciliation-bias",
+      "category": "pdp-review-highlight-cross-channel-creator-payout-withholding-reconciliation-bias",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "47.5.1.1.1.35",
+      "yearOneRoiBand": "2:1-5:1",
+      "smsFriendly": true,
+      "lastUpdated": "2026-10-08",
+      "sources": [
+        "captivatea-withholding-reconciliation-2026",
+        "captivatea-wr1-zero-withholding-2026",
+        "captivatea-wr2-treaty-rate-withholding-2026",
+        "captivatea-wr3-entity-rate-withholding-2026",
+        "captivatea-wr4-state-withholding-only-2026",
+        "captivatea-wr5-30-backup-withholding-2026",
+        "irs-2026",
+        "irs-form-945-2026",
+        "irs-form-1042-2026",
+        "irs-form-1042-t-2026",
+        "irs-form-1042-s-2026",
+        "irs-form-1099-nec-2026",
+        "irs-form-1099-misc-2026",
+        "irs-form-1099-k-2026",
+        "irs-form-w-9-2026",
+        "irs-form-w-8ben-2026",
+        "irs-form-w-8ben-e-2026",
+        "irs-form-w-4-2026",
+        "irs-form-w-8imy-2026",
+        "irs-30-backup-withholding-2026",
+        "irs-24-published-rate-2026",
+        "irs-chapter-3-withholding-2026",
+        "irs-chapter-4-fatca-2026",
+        "eu-dac7-2026",
+        "eu-dac6-2026",
+        "uk-rdec-2026",
+        "japan-nta-2026",
+        "japan-nta-article-226-2026",
+        "brazil-darf-2026",
+        "mexico-isr-2026",
+        "stripe-connect-1099-k-2026",
+        "paypal-mass-pay-1099-k-2026",
+        "wise-mass-pay-1099-k-2026",
+        "stripe-tax-form-2026",
+        "tipalti-tax-form-2026",
+        "payoneer-tax-form-2026",
+        "captivatea-wr-roi-2026",
+        "captivatea-wr-cvp-2026",
+        "captivatea-wr-classifier-vocabulary-2026",
+        "captivatea-wr-fit-vocabulary-2026",
+        "captivatea-wr-canonical-vocabulary-2026",
+        "captivatea-wr-confidence-rubric-2026",
+        "captivatea-wr-fit-rubric-2026",
+        "captivatea-wr-readback-vocabulary-v23-2026",
+        "captivatea-wr-readback-vocabulary-v22-2026",
+        "captivatea-wr-readback-vocabulary-v21-2026",
+        "captivatea-wr-readback-vocabulary-v20-2026"
+      ],
+      "blurb": "Move #47.5.1.1.1.35 — a **5-tier creator-payout-withholding-reconciliation taxonomy (WR1 zero-withholding + WR2 treaty-rate-withholding + WR3 entity-rate-withholding + WR4 state-withholding-only + WR5 30%-backup-withh...",
+      "sectionCount": 8,
+      "pitfallCount": 15,
+      "sourceCount": 47,
+      "size": 53990,
+      "lastTouched": "2026-10-08"
+    },
+    {
+      "file": "564-pdp-review-highlight-cross-channel-creator-payout-fx-hedging-bias.md",
+      "name": "pdp-review-highlight-cross-channel-creator-payout-fx-hedging-bias",
+      "title": "Per-cohort PDP review-highlight cross-channel creator-payout-fx-hedging-bias",
+      "category": "pdp-review-highlight-cross-channel-creator-payout-fx-hedging-bias",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "47.5.1.1.1.36",
+      "yearOneRoiBand": "2:1-5:1",
+      "smsFriendly": true,
+      "lastUpdated": "2026-10-08",
+      "sources": [
+        "captivatea-fx-hedging-2026",
+        "captivatea-fh1-zero-hedge-2026",
+        "captivatea-fh2-spot-hedge-2026",
+        "captivatea-fh3-forward-30-day-hedge-2026",
+        "captivatea-fh4-forward-90-day-hedge-2026",
+        "captivatea-fh5-forward-180-day-hedge-2026",
+        "wise-mass-pay-2026",
+        "wise-batch-transfer-2026",
+        "wise-rate-lock-2026",
+        "wise-forward-contract-2026",
+        "fx-forwards-2026",
+        "fx-spot-2026",
+        "fx-swap-2026",
+        "fx-option-2026",
+        "fx-mtm-2026",
+        "fx-hedge-account-maint-2026",
+        "fx-forward-rollover-2026",
+        "fx-rate-spread-2026",
+        "ach-2026",
+        "sepa-2026",
+        "sepa-instant-2026",
+        "zengin-2026",
+        "pix-2026",
+        "spei-2026",
+        "swift-2026",
+        "stripe-connect-2026",
+        "paypal-mass-pay-2026",
+        "stripe-treasury-2026",
+        "brex-fx-hedge-2026",
+        "mercury-fx-hedge-2026",
+        "wise-business-2026",
+        "wise-api-2026",
+        "wise-sepa-2026",
+        "wise-faster-payments-2026",
+        "eu-emir-2026",
+        "eu-mifir-2026",
+        "uk-fca-2026",
+        "japan-fsa-2026",
+        "brazil-bcb-2026",
+        "mexico-cnbv-2026",
+        "captivatea-fh-roi-2026",
+        "captivatea-fh-cvp-2026",
+        "captivatea-fh-classifier-vocabulary-2026",
+        "captivatea-fh-fit-vocabulary-2026",
+        "captivatea-fh-canonical-vocabulary-2026",
+        "captivatea-fh-confidence-rubric-2026",
+        "captivatea-fh-fit-rubric-2026",
+        "captivatea-fh-readback-vocabulary-v24-2026",
+        "captivatea-fh-readback-vocabulary-v23-2026",
+        "captivatea-fh-readback-vocabulary-v22-2026",
+        "captivatea-fh-readback-vocabulary-v21-2026"
+      ],
+      "blurb": "Move #47.5.1.1.1.36 — a **5-tier creator-payout-fx-hedging taxonomy (FH1 zero-hedge + FH2 spot-hedge + FH3 forward-30-day-hedge + FH4 forward-90-day-hedge + FH5 forward-180-day-hedge)** + 47-vendor creator-payout-fx-h...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 51,
+      "size": 60523,
+      "lastTouched": "2026-10-08"
+    },
+    {
       "file": "57-procurement-supplier-portal-cogs-engineering.md",
       "name": "procurement-supplier-portal-cogs-engineering",
       "title": "Procurement + supplier portal + COGS engineering (Move #48)",
@@ -94651,6 +94797,27 @@
   ],
   "gitCommits": [
     {
+      "sha": "1b3be7f",
+      "date": "2026-10-08T05:33:25Z",
+      "author": "mattiasadem",
+      "subject": "skill: 563-pdp-review-highlight-cross-channel-creator-payout-withholding-reconciliation-bias — Move #47.5.1.1.1.35 (5-tier WR taxonomy: WR1 zero-withholding + WR2 treaty-rate + WR3 entity-rate + WR4 state-only + WR5 30%-backup, 47-vendor li",
+      "body": ""
+    },
+    {
+      "sha": "fe13203",
+      "date": "2026-10-08T04:23:16Z",
+      "author": "hermesagent",
+      "subject": "chore(journal): skill/562 cross-border-rail-bias keep entry",
+      "body": ""
+    },
+    {
+      "sha": "15a5188",
+      "date": "2026-10-08T04:22:35Z",
+      "author": "hermesagent",
+      "subject": "skill: 562-pdp-review-highlight-cross-channel-creator-payout-cross-border-rail-bias — Move #47.5.1.1.1.34 (5-tier CR taxonomy: CR1 USD-domestic + CR2 USD-EU + CR3 USD-JP + CR4 USD-BR + CR5 USD-MX, 32-vendor library, 22 cross-axis closures, ",
+      "body": ""
+    },
+    {
       "sha": "d589e61",
       "date": "2026-10-08T03:55:26Z",
       "author": "mattiasadem",
@@ -96028,27 +96195,6 @@
       "author": "hermesagent",
       "subject": "docs(journal): tick entry for Move #6.20 per-cohort incident-postmortem auto-generator ship (e60ea37)",
       "body": ""
-    },
-    {
-      "sha": "e60ea37",
-      "date": "2026-10-02T07:13:34Z",
-      "author": "hermesagent",
-      "subject": "skill: 451 per-cohort incident-postmortem auto-generator (Move #6.20)",
-      "body": "On every Move #6.17 per-cohort breach-cost computation OR Move #6.18\nper-influencer breach-cost attribution OR Move #6.19 cascade-net-benefit\ncomputation, auto-generates a per-cohort OR per-influencer OR per-cascade\nincident-postmortem template with cohort/influencer/cascade id + breach\ncost + LTV multiplier + recipe cascade + protection priority + recovery\ndecision + recommended-action chain (top-1 operator-actionable item).\n\nFirst Tier-1 + first P0 in category: per-cohort-incident-postmortem-auto-generator.\nDefault Year-1 ROI band 5:1-14:1.\n\nNatural follow-up per skill/450's 'How to extend' section."
-    },
-    {
-      "sha": "b7c2aab",
-      "date": "2026-10-02T03:48:35Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #6.19 cascade-effect-on-other-cohorts-and-influencers prediction engine (skill/450, tier-1 P0, 6:1–18:1 ROI)",
-      "body": ""
-    },
-    {
-      "sha": "5812afe",
-      "date": "2026-10-01T23:58:00Z",
-      "author": "hermesagent",
-      "subject": "docs(journal): tick entry for Move #6.18 per-influencer breach-cost attribution ship (279b47f)",
-      "body": ""
     }
   ],
   "counts": {
@@ -96057,8 +96203,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 265,
-    "skills": 561,
+    "journalEntries": 267,
+    "skills": 563,
     "gitCommits": 200
   }
 }
