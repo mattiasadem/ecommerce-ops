@@ -60,6 +60,7 @@ import {
   formatCohortCount,
   type CalculatorRoiCohort,
 } from "@/lib/calculator-roi-cohort";
+import { buildPaybackEnrichment } from "@/lib/calculator-roi-payback";
 import { loadYourStore, YOUR_STORE_STORAGE_KEY, type YourStoreInputs } from "@/lib/your-store";
 import {
   loadShippedPlaybooks,
@@ -313,6 +314,7 @@ export function CalculatorRoiRank({ maxRows = 5 }: Props) {
           cross-tab <span className="font-mono">storage</span>. Set your
           numbers on the <Link href="#your-store" className="underline">Your-store card</Link> to
           personalize · mark shipped on <Link href="/playbooks#shipped-progress" className="underline">/playbooks</Link>.
+          Payback = tool cost ÷ projected monthly lift.
         </div>
       </CardContent>
     </Card>
@@ -334,6 +336,8 @@ function RoiRankRowBody({ row, hydrated, accent }: RoiRankRowBodyProps) {
     accent === "sky"
       ? "text-sky-700 dark:text-sky-300"
       : "text-emerald-700 dark:text-emerald-300";
+  // Move #N.23.4 — payback-period enrichment. costHigh / (annualLiftHigh/12).
+  const payback = buildPaybackEnrichment(row);
   return (
     <>
       <div className="flex min-w-0 flex-1 flex-col gap-0.5">
@@ -353,6 +357,26 @@ function RoiRankRowBody({ row, hydrated, accent }: RoiRankRowBodyProps) {
           >
             {row.daysToShip}d
           </Badge>
+          {hydrated && (
+            <Badge
+              variant="outline"
+              className={cn(
+                "text-[10px] font-mono tabular-nums",
+                payback.toneClass,
+              )}
+              data-testid={`calculator-roi-rank-payback-${row.slug}`}
+              title={
+                payback.paybackMonths === null
+                  ? "Payback period not measurable (zero projected lift)"
+                  : payback.paybackMonths === Infinity
+                    ? "Free tool — no payback needed"
+                    : `Pays back tool cost in ${payback.paybackMonths.toFixed(1)} months at projected lift`
+              }
+              aria-label={`Payback ${payback.display}`}
+            >
+              ⏱ {payback.display}
+            </Badge>
+          )}
         </div>
         <div className="flex items-center gap-2">
           <span className="font-mono text-[10px] text-muted-foreground">
