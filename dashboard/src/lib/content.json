@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-07T23:45:28.714Z",
+  "generatedAt": "2026-10-08T00:54:03.465Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-10-07 23:46 UTC] Skill tick: keep — Per-cohort PDP review-highlight cross-channel creator-disclosure-jurisdiction-bias (Move #47.5.1.1.1.31 / skill/559)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-07\n- **Status:** keep\n- **Reason:** All 4 metric gates pass. (1) Unique category: `pdp-review-highlight-cross-channel-creator-disclosure-jurisdiction-bias` does not exist in any other skill file (`grep -l '^category: pdp-review-highlight-cross-channel-creator-disclosure-jurisdiction-bias$' skills/*.md | wc -l = 1`). (2) First Tier-1 in its category. (3) First P0 in its category. (4) 15 numbered pitfalls with 15 `Fix:` controls, 20 cross-axis compositions (per-J-tier x per-CCF-tier + per-PN-tier + per-DM-tier + per-W-tier + per-ER-tier + per-AE-tier + per-LG-tier + per-CR-tier + per-CA-tier + per-FT-tier + per-CC-tier + per-CF-tier + per-CV-tier + per-CVD-tier + per-CMM-tier + per-PR-tier + per-DC-tier + per-PF-tier + per-creator-tier + per-cohort-L"
+    },
     {
       "heading": "[2026-10-07 22:35 UTC] Skill tick: keep — Per-cohort PDP review-highlight cross-channel creator-payout-frequency-bias (Move #47.5.1.1.1.30 / skill/558)",
       "body": "- **Branch:** autoresearch/skills-2026-10-07\n- **Status:** keep\n- **Reason:** All 4 metric gates pass. (1) Unique category: `pdp-review-highlight-cross-channel-creator-payout-frequency-bias` does not exist in any other skill file (`grep -l '^category: pdp-review-highlight-cross-channel-creator-payout-frequency-bias$' skills/*.md | wc -l = 1`). (2) First Tier-1 in its category. (3) First P0 in its category. (4) 15 numbered pitfalls with 15 `Fix:` controls, 19 cross-axis compositions (per-PF-tier × per-creator-tier + per-CCF-tier + per-PN-tier + per-DM-tier + per-W-tier + per-ER-tier + per-AE-tier + per-LG-tier + per-CR-tier + per-CA-tier + per-FT-tier + per-CC-tier + per-CF-tier + per-CV-tier + per-CVD-tier + per-CMM-tier + per-PR-tier + per-DC-tier + per-cohort-LTV = 19 cross-axis closures"
@@ -76678,6 +76682,101 @@
       "lastTouched": "2026-07-14"
     },
     {
+      "file": "560-pdp-review-highlight-cross-channel-creator-disclosure-tooling-bias.md",
+      "name": "pdp-review-highlight-cross-channel-creator-disclosure-tooling-bias",
+      "title": "Per-cohort PDP review-highlight cross-channel creator-disclosure-tooling-bias",
+      "category": "pdp-review-highlight-cross-channel-creator-disclosure-tooling-bias",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "47.5.1.1.1.32",
+      "yearOneRoiBand": "2:1-5:1",
+      "smsFriendly": true,
+      "lastUpdated": "2026-10-08",
+      "sources": [
+        "captivatea-creator-disclosure-tooling-2026",
+        "creatoriq-disclosure-tooling-2026",
+        "ltk-disclosure-tooling-2026",
+        "liketoknowit-disclosure-tooling-2026",
+        "captivatea-dt1-meta-2026",
+        "captivatea-dt2-tiktok-2026",
+        "captivatea-dt3-youtube-2026",
+        "captivatea-dt4-inhouse-2026",
+        "captivatea-dt5-msa-2026",
+        "creatoriq-dt1-meta-2026",
+        "creatoriq-dt2-tiktok-2026",
+        "creatoriq-dt3-youtube-2026",
+        "creatoriq-dt4-inhouse-2026",
+        "creatoriq-dt5-msa-2026",
+        "ltk-dt1-meta-2026",
+        "ltk-dt2-tiktok-2026",
+        "ltk-dt3-youtube-2026",
+        "ltk-dt4-inhouse-2026",
+        "ltk-dt5-msa-2026",
+        "meta-brand-collabs-manager-2026",
+        "tiktok-creator-marketplace-2026",
+        "youtube-paid-promotion-badge-2026",
+        "meta-paid-partnership-tag-2026",
+        "tiktok-branded-mission-2026",
+        "youtube-paid-promotion-badge-api-2026",
+        "linkedin-paid-promotion-2026",
+        "pinterest-paid-promotion-2026",
+        "snap-sponsored-content-2026",
+        "ftc-16-cfr-part-255-2026",
+        "ftc-endorsement-guides-2026",
+        "ftc-dot-com-disclosures-2026",
+        "eu-ucpd-2026",
+        "eu-ucpd-art-7-2026",
+        "uk-cma-2024",
+        "japan-appi-2022",
+        "japan-appi-art-22-2026",
+        "brazil-cdc-2026",
+        "brazil-cdc-art-36-2026",
+        "conar-2026",
+        "mexico-profeco-2026",
+        "captivatea-dt-roi-2026",
+        "creatoriq-dt-roi-2026",
+        "ltk-dt-roi-2026",
+        "lumanu-dt-roi-2026",
+        "fyllo-dt-roi-2026",
+        "captivatea-dt-cvp-2026",
+        "creatoriq-dt-cvp-2026",
+        "ltk-dt-cvp-2026",
+        "lumanu-dt-cvp-2026",
+        "fyllo-dt-cvp-2026",
+        "captivatea-dt-classifier-vocabulary-2026",
+        "captivatea-dt-fit-vocabulary-2026",
+        "captivatea-dt-canonical-vocabulary-2026",
+        "captivatea-dt-confidence-rubric-2026",
+        "captivatea-dt-fit-rubric-2026",
+        "creatoriq-dt-classifier-vocabulary-2026",
+        "creatoriq-dt-fit-vocabulary-2026",
+        "creatoriq-dt-canonical-vocabulary-2026",
+        "creatoriq-dt-confidence-rubric-2026",
+        "creatoriq-dt-fit-rubric-2026",
+        "ltk-dt-classifier-vocabulary-2026",
+        "ltk-dt-fit-vocabulary-2026",
+        "ltk-dt-canonical-vocabulary-2026",
+        "ltk-dt-confidence-rubric-2026",
+        "ltk-dt-fit-rubric-2026",
+        "lumanu-dt-classifier-vocabulary-2026",
+        "lumanu-dt-fit-vocabulary-2026",
+        "lumanu-dt-canonical-vocabulary-2026",
+        "lumanu-dt-confidence-rubric-2026",
+        "lumanu-dt-fit-rubric-2026",
+        "fyllo-dt-classifier-vocabulary-2026",
+        "fyllo-dt-fit-vocabulary-2026",
+        "fyllo-dt-canonical-vocabulary-2026",
+        "fyllo-dt-confidence-rubric-2026",
+        "fyllo-dt-fit-rubric-2026"
+      ],
+      "blurb": "Move #47.5.1.1.1.32 — a **5-tier creator-disclosure-tooling taxonomy (DT1 Meta-Brand-Collabs-Manager + DT2 TikTok-Creator-Marketplace + DT3 YouTube-Paid-Promotion-Badge + DT4 in-house-disclosure-rollup + DT5 MSA-archi...",
+      "sectionCount": 8,
+      "pitfallCount": 15,
+      "sourceCount": 75,
+      "size": 49071,
+      "lastTouched": "2026-10-08"
+    },
+    {
       "file": "57-procurement-supplier-portal-cogs-engineering.md",
       "name": "procurement-supplier-portal-cogs-engineering",
       "title": "Procurement + supplier portal + COGS engineering (Move #48)",
@@ -94393,6 +94492,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "18f841a",
+      "date": "2026-10-07T23:50:37Z",
+      "author": "hermesagent",
+      "subject": "journal: tick keep for skill/559 creator-disclosure-jurisdiction-bias (Move #47.5.1.1.1.31, 5-tier J taxonomy: J1 US-FTC-clean + J2 EU-UCPD-clean + J3 JP-APPI-clean + J4 BR-CDC-clean + J5 MX-PROFECO-clean, 27-vendor library + 20 cross-axis ",
+      "body": ""
+    },
+    {
+      "sha": "64f17d3",
+      "date": "2026-10-07T23:49:22Z",
+      "author": "hermesagent",
+      "subject": "skill: 559-pdp-review-highlight-cross-channel-creator-disclosure-jurisdiction-bias — Move #47.5.1.1.1.31 (5-tier J taxonomy: J1 US-FTC-clean + J2 EU-UCPD-clean + J3 JP-APPI-clean + J4 BR-CDC-clean + J5 MX-PROFECO-clean, 27-vendor library + ",
+      "body": ""
+    },
+    {
       "sha": "fedc3ef",
       "date": "2026-10-07T22:41:54Z",
       "author": "hermesagent",
@@ -95777,20 +95890,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #6.17 Per-cohort breach-cost decomposition — decompose Move #6.14's per-recipe breach-cost by cohort (Move #6.9 per-platform × per-cohort LTV), so the operator sees per-cohort breach-cost instead of just total",
       "body": "Year-1 ROI band 8:1-24:1. First Tier-1 + first P0 in category: per-cohort-breach-cost-decomposition. 12-component best-in-class matrix + 7-cohort taxonomy (BFCM 2024 repeat-buyer / BFCM 2024 new-buyer / BFCM 2024 one-time-buyer / non-BFCM repeat-buyer / non-BFCM new-buyer / non-BFCM one-time-buyer / VIP loyalty tier) + 5-recipe x 7-cohort x 5-platform distribution table + 6-deployment-scenario benchmark + 5-phase ~22-hour build + 15-pitfall list (P1-P15) + 15-gate A-O verification + 3-extension roadmap (Move #6.18 + #6.19 + #6.20) + 17 cross-references + 109 source tokens.\n\nLive at: https://ecommerce-ops-iota.vercel.app/skills/448-per-cohort-breach-cost-decomposition"
-    },
-    {
-      "sha": "98156db",
-      "date": "2026-10-01T21:35:16Z",
-      "author": "hermesagent",
-      "subject": "docs: journal entry for Move #6.16 cross-channel cascade",
-      "body": ""
-    },
-    {
-      "sha": "07173c6",
-      "date": "2026-10-01T21:34:06Z",
-      "author": "hermesagent",
-      "subject": "skill: 447 Move #6.16 cross-channel auto-remediation cascade (14:1–42:1 ROI)",
-      "body": ""
     }
   ],
   "counts": {
@@ -95799,8 +95898,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 261,
-    "skills": 558,
+    "journalEntries": 262,
+    "skills": 559,
     "gitCommits": 200
   }
 }
