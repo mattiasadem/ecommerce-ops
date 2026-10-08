@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-08T16:17:52.056Z",
+  "generatedAt": "2026-10-08T17:28:18.004Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-10-08 16:25 UTC] Skill tick: keep — Per-cohort PDP review-highlight cross-channel creator-disclosure-cadence-aggregation-tier-bias (Move #47.5.1.1.1.43 / skill/571)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-08\n- **Status:** keep\n- **Reason:** All 4 metric gates pass. (1) **Unique category:** `pdp-review-highlight-cross-channel-creator-disclosure-cadence-aggregation-tier-bias` does not exist in any other skill file (`grep -l '^category: pdp-review-highlight-cross-channel-creator-disclosure-cadence-aggregation-tier-bias$' skills/*.md | wc -l = 1`). (2) First Tier-1 in its category. (3) First P0 in its category. (4) 15 numbered pitfalls with 15 `Fix:` controls, 31 cross-axis compositions (per-DCAT-tier × per-DC-tier + per-DM-tier + per-DT-tier + per-CCF-tier + per-PN-tier + per-W-tier + per-ER-tier + per-AE-tier + per-LG-tier + per-CA-tier + per-FT-tier + per-CC-tier + per-CF-tier + per-CV-tier + per-CVD-tier + per-CMM-tier + per-PR-tier + per-PF-tier + "
+    },
     {
       "heading": "[2026-10-08 15:10 UTC] Skill tick: keep — Per-cohort PDP review-highlight cross-channel creator-payout-tax-form-aggregation-tier-bias (Move #47.5.1.1.1.42 / skill/570)",
       "body": "- **Branch:** autoresearch/skills-2026-10-08\n- **Status:** keep\n- **Reason:** All 4 metric gates pass. (1) **Unique category:** `pdp-review-highlight-cross-channel-creator-payout-tax-form-aggregation-tier-bias` does not exist in any other skill file (`grep -l '^category: pdp-review-highlight-cross-channel-creator-payout-tax-form-aggregation-tier-bias$' skills/*.md | wc -l = 1`). (2) First Tier-1 in its category. (3) First P0 in its category. (4) 15 numbered pitfalls with 15 `Fix:` controls, 16 per-TFAT-tier × per-X-tier cross-axis closures (TFAT × CCF + PN + DM + W + ER + AE + LG + CR + PR + PF + DC + J + DT + TF + WAT + CRAT).\n- **What shipped:** skills/570-pdp-review-highlight-cross-channel-creator-payout-tax-form-aggregation-tier-bias.md (~58 KB, 58,164 bytes, 66 sources) — canonical 5-"
@@ -77838,6 +77842,102 @@
       "lastTouched": "2026-10-08"
     },
     {
+      "file": "572-pdp-review-highlight-cross-channel-creator-disclosure-tooling-aggregation-tier-bias.md",
+      "name": "pdp-review-highlight-cross-channel-creator-disclosure-tooling-aggregation-tier-bias",
+      "title": "Per-cohort PDP review-highlight cross-channel creator-disclosure-tooling-aggregation-tier-bias",
+      "category": "pdp-review-highlight-cross-channel-creator-disclosure-tooling-aggregation-tier-bias",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "47.5.1.1.1.44",
+      "yearOneRoiBand": "2:1-5:1",
+      "smsFriendly": true,
+      "lastUpdated": "2026-10-08",
+      "sources": [
+        "captivatea-disclosure-tooling-aggregation-2026",
+        "captivatea-dtat1-zero-aggregation-2026",
+        "captivatea-dtat2-annual-rail-aggregation-2026",
+        "captivatea-dtat3-quarterly-rail-aggregation-2026",
+        "captivatea-dtat4-monthly-rail-aggregation-2026",
+        "captivatea-dtat5-daily-rail-aggregation-2026",
+        "captivatea-disclosure-tooling-aggregation-roi-2026",
+        "captivatea-disclosure-tooling-aggregation-cvp-2026",
+        "captivatea-dtat-classifier-vocabulary-2026",
+        "captivatea-dtat-fit-vocabulary-2026",
+        "captivatea-dtat-canonical-vocabulary-2026",
+        "captivatea-dtat-confidence-rubric-2026",
+        "captivatea-dtat-fit-rubric-2026",
+        "captivatea-dtat-readback-vocabulary-v31-2026",
+        "captivatea-dtat-readback-vocabulary-v30-2026",
+        "captivatea-dtat-readback-vocabulary-v29-2026",
+        "captivatea-dtat-readback-vocabulary-v28-2026",
+        "captivatea-dtat-disclosure-cadence-2026",
+        "captivatea-dtat-disclosure-mode-2026",
+        "captivatea-dtat-disclosure-tooling-2026",
+        "captivatea-dtat-disclosure-jurisdiction-2026",
+        "captivatea-dtat-disclosure-tooling-payout-2026",
+        "meta-brand-collabs-manager-2026",
+        "meta-paid-partnership-tag-2026",
+        "meta-disclosure-tooling-aggregation-2026",
+        "meta-branded-content-tool-2026",
+        "meta-reach-and-engagement-disclosure-2026",
+        "tiktok-creator-marketplace-2026",
+        "tiktok-branded-mission-2026",
+        "tiktok-green-dot-branded-content-tag-2026",
+        "tiktok-content-mission-disclosure-2026",
+        "tiktok-disclosure-tooling-aggregation-2026",
+        "youtube-paid-promotion-badge-2026",
+        "youtube-paid-promotion-badge-api-2026",
+        "youtube-includes-paid-promotion-shell-2026",
+        "youtube-disclosure-tooling-aggregation-2026",
+        "instagram-paid-partnership-tag-2026",
+        "instagram-disclosure-tooling-aggregation-2026",
+        "linkedin-paid-promotion-2026",
+        "linkedin-disclosure-tooling-aggregation-2026",
+        "pinterest-paid-promotion-2026",
+        "pinterest-predicts-2026",
+        "pinterest-disclosure-tooling-aggregation-2026",
+        "snap-sponsored-content-2026",
+        "snap-sponsored-content-api-2026",
+        "snap-disclosure-tooling-aggregation-2026",
+        "creatoriq-creator-disclosure-tooling-2026",
+        "ltk-disclosure-tooling-2026",
+        "liketoknowit-disclosure-tooling-2026",
+        "ftc-16-cfr-part-255-2026",
+        "ftc-endorsement-guides-2026",
+        "ftc-dot-com-disclosure-2026",
+        "ftc-disclosure-tooling-2026",
+        "ftc-archive-of-record-2026",
+        "eu-ucpd-2026",
+        "eu-ucpd-disclosure-tooling-2026",
+        "eu-ucpd-disclosure-aggregation-2026",
+        "eu-ucpd-batch-disclosure-2026",
+        "uk-asa-2026",
+        "uk-asa-cap-code-2026",
+        "uk-cma-2024",
+        "uk-cma-disclosure-aggregation-2026",
+        "uk-asa-batch-disclosure-2026",
+        "germany-tmg-6-2026",
+        "germany-tmg-disclosure-aggregation-2026",
+        "germany-tmg-batch-disclosure-2026",
+        "france-loi-confiance-2026",
+        "france-loi-confiance-disclosure-aggregation-2026",
+        "france-loi-confiance-batch-disclosure-2026",
+        "japan-appi-2022",
+        "japan-appi-disclosure-2026",
+        "japan-appi-disclosure-aggregation-2026",
+        "brazil-cdc-2026",
+        "brazil-cdc-disclosure-aggregation-2026",
+        "mexico-profeco-2026",
+        "mexico-profeco-disclosure-aggregation-2026"
+      ],
+      "blurb": "Move #47.5.1.1.1.44 — a **5-tier creator-disclosure-tooling-aggregation taxonomy (DTAT1 zero-aggregation + DTAT2 annual-rail-aggregation + DTAT3 quarterly-rail-aggregation + DTAT4 monthly-rail-aggregation + DTAT5 dail...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 76,
+      "size": 77034,
+      "lastTouched": "2026-10-08"
+    },
+    {
       "file": "58-brand-protection-counterfeit-enforcement.md",
       "name": "brand-protection-counterfeit-enforcement",
       "title": "Brand protection + counterfeit enforcement + MAP-policy monitoring + trademark defender + gray-market suppression + Amazon-IP-claim-orchestration + ResellerHub-integrity + test-buy program (Move #14.1)",
@@ -95389,6 +95489,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "30c5fc3",
+      "date": "2026-10-08T16:24:49Z",
+      "author": "mattiasadem",
+      "subject": "journal: 571 keep — creator-disclosure-cadence-aggregation-tier-bias",
+      "body": ""
+    },
+    {
+      "sha": "3c767be",
+      "date": "2026-10-08T16:24:19Z",
+      "author": "mattiasadem",
+      "subject": "skill: 571-pdp-review-highlight-cross-channel-creator-disclosure-cadence-aggregation-tier-bias — Move #47.5.1.1.1.43 (5-tier DCAT taxonomy: DCAT1 zero-aggregation + DCAT2 annual-rail-aggregation + DCAT3 quarterly-rail-aggregation + DCAT4 mo",
+      "body": ""
+    },
+    {
       "sha": "6dc6b40",
       "date": "2026-10-08T16:11:14Z",
       "author": "mattiasadem",
@@ -96773,20 +96887,6 @@
       "author": "mattiasadem-5021s",
       "subject": "journal: 2026-10-02 17:35 UTC — dashboard-improver Move #6.5 weekly-rollup-trend shipped",
       "body": ""
-    },
-    {
-      "sha": "98e4e43",
-      "date": "2026-10-02T17:35:52Z",
-      "author": "mattiasadem-5021s",
-      "subject": "feat(dashboard): attribution weekly 12-week trend tracker on /attribution-quality",
-      "body": "Ports scripts/attribution_weekly_rollup_trend.py to the browser. Operator\nenters up to 12 weekly rollups (per-platform match-rate + coverage), the\npanel computes cumulative_delta + consecutive_decline_weeks + direction\nper platform, and fires-or-not vs the canonical thresholds (3.0pp match,\n2.0pp coverage, 4-week consecutive decline). Closes the slow-erosion\ndetection gap that the 1-vs-1 cross-platform drift detector misses\n(individual weeks can stay under 3.0pp while the trend is clearly\nnegative).\n\nNew files:\n- dashboard/src/lib/attribution-weekly-trend.ts (14 KB pure scoring core;\n  same thresholds + remediation texts as the Python CLI — no drift)\n- dashboard/src/components/attribution-weekly-trend.tsx (21 KB React\n  panel with per-week editable table, severity badges, per-platform\n  trend cards with sparklines, copy-as-markdown report, localStorage\n  persistence at ecom-ops:attribution-weekly-trend:v1, Load stable\n  seed + Load fail-all seed buttons)\n\nModified:\n- dashboard/app/attribution-quality/page.tsx (mounts <AttributionWeeklyTrend />\n  after <AttributionDriftRollup />, adds 12-week trend + slow-erosion\n  detector badges)"
-    },
-    {
-      "sha": "9e4b04c",
-      "date": "2026-10-02T16:51:53Z",
-      "author": "hermesagent",
-      "subject": "journal: skill-builder Move #458 returns-fraud-and-abuse-management keep entry",
-      "body": ""
     }
   ],
   "counts": {
@@ -96795,8 +96895,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 275,
-    "skills": 570,
+    "journalEntries": 276,
+    "skills": 571,
     "gitCommits": 200
   }
 }
