@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-08T06:39:14.399Z",
+  "generatedAt": "2026-10-08T07:50:21.261Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-10-08 06:36 UTC] Skill tick: keep — Per-cohort PDP review-highlight cross-channel creator-payout-fx-hedging-bias (Move #47.5.1.1.1.36 / skill/564)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-08\n- **Status:** keep\n- **Reason:** All 4 metric gates pass. (1) Unique category: `pdp-review-highlight-cross-channel-creator-payout-fx-hedging-bias` does not exist in any other skill file (`grep -l '^category: pdp-review-highlight-cross-channel-creator-payout-fx-hedging-bias$' skills/*.md | wc -l = 1`). (2) First Tier-1 in its category. (3) First P0 in its category. (4) 15 numbered pitfalls with 15 `Fix:` controls, 25 cross-axis compositions (per-FH-tier × per-creator-tier + per-CCF-tier + per-PN-tier + per-DM-tier + per-W-tier + per-ER-tier + per-AE-tier + per-LG-tier + per-CR-tier + per-CA-tier + per-FT-tier + per-CC-tier + per-CF-tier + per-CV-tier + per-CVD-tier + per-CMM-tier + per-PR-tier + per-DC-tier + per-PF-tier + per-J-tier + per-DT-tie"
+    },
     {
       "heading": "[2026-10-08 05:30 UTC] Skill tick: keep — Per-cohort PDP review-highlight cross-channel creator-payout-withholding-reconciliation-bias (Move #47.5.1.1.1.35 / skill/563)",
       "body": "- **Branch:** autoresearch/skills-2026-10-08\n- **Status:** keep\n- **Reason:** All 4 metric gates pass. (1) Unique category: `pdp-review-highlight-cross-channel-creator-payout-withholding-reconciliation-bias` does not exist in any other skill file (`grep -l '^category: pdp-review-highlight-cross-channel-creator-payout-withholding-reconciliation-bias$' skills/*.md | wc -l = 1`). (2) First Tier-1 in its category. (3) First P0 in its category. (4) 15 numbered pitfalls with 15 `Fix:` controls, 24 cross-axis compositions (per-WR-tier × per-TF-tier + per-CR-tier + per-PR-tier + per-PF-tier + per-DC-tier + per-J-tier + per-DT-tier + per-CMM-tier + per-CCF-tier + per-PN-tier + per-DM-tier + per-W-tier + per-ER-tier + per-AE-tier + per-LG-tier + per-CA-tier + per-FT-tier + per-CC-tier + per-CF-tier "
@@ -77082,6 +77086,84 @@
       "lastTouched": "2026-10-08"
     },
     {
+      "file": "565-pdp-review-highlight-cross-channel-creator-payout-withholding-reconciliation-fine-tuning-bias.md",
+      "name": "pdp-review-highlight-cross-channel-creator-payout-withholding-reconciliation-fine-tuning-bias",
+      "title": "Per-cohort PDP review-highlight cross-channel creator-payout-withholding-reconciliation-fine-tuning-bias",
+      "category": "pdp-review-highlight-cross-channel-creator-payout-withholding-reconciliation-fine-tuning-bias",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "47.5.1.1.1.37",
+      "yearOneRoiBand": "2:1-5:1",
+      "smsFriendly": true,
+      "lastUpdated": "2026-10-08",
+      "sources": [
+        "captivatea-withholding-reconciliation-fine-tuning-2026",
+        "captivatea-wft1-zero-fine-tuning-2026",
+        "captivatea-wft2-annual-rollup-fine-tuning-2026",
+        "captivatea-wft3-quarterly-rollup-fine-tuning-2026",
+        "captivatea-wft4-monthly-rollup-fine-tuning-2026",
+        "captivatea-wft5-daily-rollup-fine-tuning-2026",
+        "irs-form-945-2026",
+        "irs-form-1042-2026",
+        "irs-form-1042-t-2026",
+        "irs-form-1042-s-2026",
+        "irs-form-1099-nec-2026",
+        "irs-form-1099-misc-2026",
+        "irs-form-1099-k-2026",
+        "irs-form-w-9-2026",
+        "irs-form-w-8ben-2026",
+        "irs-form-w-8ben-e-2026",
+        "irs-form-w-4-2026",
+        "irs-form-w-8imy-2026",
+        "irs-30-percent-backup-withholding-2026",
+        "irs-24-percent-published-rate-2026",
+        "irs-chapter-3-withholding-2026",
+        "irs-chapter-4-fatca-2026",
+        "irs-tin-matching-system-2026",
+        "irs-b-notice-2026",
+        "irs-form-w-8ben-e-2026",
+        "irs-withholding-reconciliation-2026",
+        "irs-form-1099-r-2026",
+        "irs-form-1099-int-2026",
+        "irs-form-schedule-c-2026",
+        "irs-form-schedule-k-1-2026",
+        "irs-publication-515-2026",
+        "irs-publication-519-2026",
+        "irs-publication-901-2026",
+        "irs-publication-505-2026",
+        "eu-dac7-2026",
+        "eu-dac6-2026",
+        "uk-rdec-2026",
+        "japan-nta-2026",
+        "japan-nta-article-226-2026",
+        "brazil-darf-2026",
+        "mexico-isr-2026",
+        "stripe-connect-1099-k-2026",
+        "paypal-mass-pay-1099-k-2026",
+        "wise-mass-pay-1099-k-2026",
+        "stripe-tax-form-2026",
+        "tipalti-tax-form-2026",
+        "payoneer-tax-form-2026",
+        "captivatea-wft-roi-2026",
+        "captivatea-wft-cvp-2026",
+        "captivatea-wft-classifier-vocabulary-2026",
+        "captivatea-wft-fit-vocabulary-2026",
+        "captivatea-wft-canonical-vocabulary-2026",
+        "captivatea-wft-confidence-rubric-2026",
+        "captivatea-wft-fit-rubric-2026",
+        "captivatea-wft-readback-vocabulary-v25-2026",
+        "captivatea-wft-readback-vocabulary-v24-2026",
+        "captivatea-wft-readback-vocabulary-v23-2026",
+        "captivatea-wft-readback-vocabulary-v22-2026"
+      ],
+      "blurb": "Move #47.5.1.1.1.37 — a **5-tier creator-payout-withholding-reconciliation-fine-tuning taxonomy (WFT1 zero-fine-tuning + WFT2 annual-rollup-fine-tuning + WFT3 quarterly-rollup-fine-tuning + WFT4 monthly-rollup-fine-tu...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 58,
+      "size": 64025,
+      "lastTouched": "2026-10-08"
+    },
+    {
       "file": "57-procurement-supplier-portal-cogs-engineering.md",
       "name": "procurement-supplier-portal-cogs-engineering",
       "title": "Procurement + supplier portal + COGS engineering (Move #48)",
@@ -94797,6 +94879,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "7e0b257",
+      "date": "2026-10-08T06:44:39Z",
+      "author": "mattiasadem",
+      "subject": "skill: 564-pdp-review-highlight-cross-channel-creator-payout-fx-hedging-bias — Move #47.5.1.1.1.36 (5-tier FH taxonomy: FH1 zero-hedge + FH2 spot-hedge + FH3 forward-30-day + FH4 forward-90-day + FH5 forward-180-day, 47-vendor library, 25 c",
+      "body": ""
+    },
+    {
       "sha": "1b3be7f",
       "date": "2026-10-08T05:33:25Z",
       "author": "mattiasadem",
@@ -96188,13 +96277,6 @@
       "author": "hermesagent",
       "subject": "skill: 452 per-influencer discount-code-attribution-correctness auditor (Move #6.21)",
       "body": ""
-    },
-    {
-      "sha": "534bdcb",
-      "date": "2026-10-02T07:14:27Z",
-      "author": "hermesagent",
-      "subject": "docs(journal): tick entry for Move #6.20 per-cohort incident-postmortem auto-generator ship (e60ea37)",
-      "body": ""
     }
   ],
   "counts": {
@@ -96203,8 +96285,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 267,
-    "skills": 563,
+    "journalEntries": 268,
+    "skills": 564,
     "gitCommits": 200
   }
 }
