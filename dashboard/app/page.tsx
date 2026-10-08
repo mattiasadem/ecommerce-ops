@@ -27,6 +27,7 @@ import { DriftFixRecipeRollup } from "@/components/drift-fix-recipe-rollup";
 import { RecipeRereadProgress } from "@/components/recipe-reread-progress";
 import { RereadFreshnessGap } from "@/components/reread-freshness-gap";
 import { CalculatorCoverageCard } from "@/components/calculator-coverage-card";
+import { CalculatorRoiRank } from "@/components/calculator-roi-rank";
 import { ProgressExportButton } from "@/components/progress-export-button";
 import { TrajectoryPanel } from "@/components/trajectory-projection-panel";
 import { TrajectoryScenarioComparator } from "@/components/trajectory-scenario-comparator";
@@ -456,6 +457,19 @@ export default function Home() {
           <CalculatorCoverageCard playbooks={content.playbooks} />
         </section>
       )}
+
+      {/* === CALCULATOR ROI RANK — Move #N.23 =========================
+          Closes the canonical "calculator-to-roi gap": operator has 30 wired
+          calculators + 10 Top-10 moves + their own AOV/orders/margin, but no
+          single answer to "open WHICH calculator first to put the most
+          dollars on the board?". The card joins `MOVE_RECOMMENDATIONS` ×
+          `CALCULATOR_REGISTRY` × `YourStoreInputs` and surfaces the top-5
+          ranked by projected annual lift (high band) on the operator's
+          numbers. Pure cross-page-intelligence: re-computes on every change
+          to `ecom-ops:your-store:v1`. */}
+      <section id="calculator-roi-rank">
+        <CalculatorRoiRank maxRows={5} />
+      </section>
 
       {/* === PROGRESS EXPORT — one-click JSON / CSV handoff for the 3 trackers ===
           Bundles Top-10 shipped × shipped-playbooks × next-move override into a
