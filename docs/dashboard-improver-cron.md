@@ -85,3 +85,5 @@ ls /data/workspace/cron-reports/ | tail
 ## 2026-09-26 13:25 UTC — /pdp-ab-launch-plan generator (Move #9.5). One-click-action + state-persistence + cross-page-intelligence. Live at https://ecommerce-ops-iota.vercel.app/pdp-ab-launch-plan. Commit 24af78e.
 
 ## 2026-10-02 02:30 UTC — /launch-plan-progress: per-day ship notes full-text search (Move #N.4). Cross-page-intelligence + state-persistence + one-click-action. Live at https://ecommerce-ops-iota.vercel.app/launch-plan-progress — scroll to "Search ship notes" panel below the tracker. Type "blocked" / "Klaviyo" (or click a chip) to see ranked, highlighted matches across all 10 launch-plan notes.
+
+## 2026-10-08 09:00 UTC — Move #N.22.1 Triple Whale vs Polar Path picker on /playbooks/06-install-attribution-triplewhale-or-polar (P0 interactive-tool + cross-page-intelligence + state-persistence). Coverage now 30/30 = 100% (emerald). Live at https://ecommerce-ops-iota.vercel.app/playbooks/06-install-attribution-triplewhale-or-polar. Commit d589e61 pushed to autoresearch/skills-2026-10-08.
