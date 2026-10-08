@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-08T11:25:26.617Z",
+  "generatedAt": "2026-10-08T12:34:14.183Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-10-08 11:25 UTC] Skill tick: keep — Per-cohort PDP review-highlight cross-channel creator-payout-withholding-reconciliation-aggregation-tier-bias (Move #47.5.1.1.1.39 / skill/567)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-08\n- **Status:** keep\n- **Reason:** All 4 metric gates pass. (1) Unique category: `pdp-review-highlight-cross-channel-creator-payout-withholding-reconciliation-aggregation-tier-bias` does not exist in any other skill file (`grep -l '^category: pdp-review-highlight-cross-channel-creator-payout-withholding-reconciliation-aggregation-tier-bias$' skills/*.md | wc -l = 1`). (2) First Tier-1 in its category. (3) First P0 in its category. (4) 15 numbered pitfalls with 15 `Fix:` controls, 27 cross-axis compositions (per-WAT-tier × per-WR-tier + per-WFT-tier + per-FH-tier + per-CR-tier + per-TF-tier + per-PR-tier + per-PF-tier + per-DC-tier + per-J-tier + per-DT-tier + per-CMM-tier + per-CCF-tier + per-PN-tier + per-DM-tier + per-W-tier + per-ER-tier + per-"
+    },
     {
       "heading": "[2026-10-08 10:18 UTC] Skill tick: keep — Per-cohort PDP review-highlight cross-channel creator-payout-fx-hedging-fine-tuning-bias (Move #47.5.1.1.1.38 / skill/566)",
       "body": "- **Branch:** autoresearch/skills-2026-10-08\n- **Status:** keep\n- **Reason:** All 4 metric gates pass. (1) Unique category: `pdp-review-highlight-cross-channel-creator-payout-fx-hedging-fine-tuning-bias` does not exist in any other skill file (`grep -l '^category: pdp-review-highlight-cross-channel-creator-payout-fx-hedging-fine-tuning-bias$' skills/*.md | wc -l = 1`). (2) First Tier-1 in its category. (3) First P0 in its category. (4) 15 numbered pitfalls with 15 `Fix:` controls, 26 cross-axis compositions (per-FHFT-tier × per-FH-tier + per-CR-tier + per-TF-tier + per-WR-tier + per-PR-tier + per-PF-tier + per-DC-tier + per-J-tier + per-DT-tier + per-CMM-tier + per-CCF-tier + per-PN-tier + per-DM-tier + per-W-tier + per-ER-tier + per-AE-tier + per-LG-tier + per-CA-tier + per-FT-tier + per-"
@@ -77334,6 +77338,73 @@
       "lastTouched": "2026-10-08"
     },
     {
+      "file": "568-pdp-review-highlight-cross-channel-creator-payout-fx-hedging-aggregation-tier-bias.md",
+      "name": "pdp-review-highlight-cross-channel-creator-payout-fx-hedging-aggregation-tier-bias",
+      "title": "Per-cohort PDP review-highlight cross-channel creator-payout-fx-hedging-aggregation-tier-bias",
+      "category": "pdp-review-highlight-cross-channel-creator-payout-fx-hedging-aggregation-tier-bias",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "47.5.1.1.1.40",
+      "yearOneRoiBand": "2:1-5:1",
+      "smsFriendly": true,
+      "lastUpdated": "2026-10-08",
+      "sources": [
+        "captivatea-fx-hedging-aggregation-2026",
+        "captivatea-fhat1-zero-aggregation-2026",
+        "captivatea-fhat2-daily-pool-aggregation-2026",
+        "captivatea-fhat3-weekly-pool-aggregation-2026",
+        "captivatea-fhat4-monthly-pool-aggregation-2026",
+        "captivatea-fhat5-quarterly-pool-aggregation-2026",
+        "fx-mtm-2026",
+        "fx-forward-rollover-2026",
+        "fx-rate-spread-2026",
+        "wise-rate-lock-2026",
+        "eu-emir-2026",
+        "eu-mifir-2026",
+        "wise-multi-currency-pool-2026",
+        "stripe-connect-multi-currency-2026",
+        "paypal-mass-pay-fx-2026",
+        "wise-mass-pay-fx-2026",
+        "stripe-connect-fx-2026",
+        "paypal-fx-margin-2026",
+        "wise-fx-margin-2026",
+        "fx-hedging-baseline-2026",
+        "fx-spot-hedge-2026",
+        "fx-forward-30-day-2026",
+        "fx-forward-90-day-2026",
+        "fx-forward-180-day-2026",
+        "jp-fx-margin-rules-2026",
+        "eu-emir-refit-2026",
+        "eu-mifir-ii-2026",
+        "uk-fca-handbook-2026",
+        "bcb-circular-3-978-2020",
+        "bcb-circular-4-373-2026",
+        "brazil-cvm-2026",
+        "mexico-banxico-2026",
+        "mexico-cnbv-2026",
+        "jp-fsa-2026",
+        "jp-mof-fx-2026",
+        "captivatea-fhat-roi-2026",
+        "captivatea-fhat-cvp-2026",
+        "captivatea-fhat-classifier-vocabulary-2026",
+        "captivatea-fhat-fit-vocabulary-2026",
+        "captivatea-fhat-canonical-vocabulary-2026",
+        "captivatea-fhat-confidence-rubric-2026",
+        "captivatea-fhat-fit-rubric-2026",
+        "captivatea-fhat-readback-vocabulary-v27-2026",
+        "captivatea-fhat-readback-vocabulary-v26-2026",
+        "captivatea-fhat-readback-vocabulary-v25-2026",
+        "captivatea-fhat-readback-vocabulary-v24-2026",
+        "captivatea-fhat-readback-vocabulary-v23-2026"
+      ],
+      "blurb": "Move #47.5.1.1.1.40 — a **5-tier creator-payout-fx-hedging-aggregation taxonomy (FHAT1 zero-aggregation + FHAT2 daily-pool-aggregation + FHAT3 weekly-pool-aggregation + FHAT4 monthly-pool-aggregation + FHAT5 quarterly...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 47,
+      "size": 54415,
+      "lastTouched": "2026-10-08"
+    },
+    {
       "file": "57-procurement-supplier-portal-cogs-engineering.md",
       "name": "procurement-supplier-portal-cogs-engineering",
       "title": "Procurement + supplier portal + COGS engineering (Move #48)",
@@ -95049,6 +95120,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "90544b0",
+      "date": "2026-10-08T11:31:48Z",
+      "author": "mattiasadem",
+      "subject": "skill: 567-pdp-review-highlight-cross-channel-creator-payout-withholding-reconciliation-aggregation-tier-bias — Move #47.5.1.1.1.39 (5-tier WAT taxonomy: WAT1 zero-aggregation + WAT2 payer-level-aggregation + WAT3 entity-level-aggregation +",
+      "body": ""
+    },
+    {
       "sha": "58aaa37",
       "date": "2026-10-08T10:22:51Z",
       "author": "mattiasadem",
@@ -96440,13 +96518,6 @@
       "author": "hermesagent",
       "subject": "feat(dashboard): Move #N.4 launch-plan ship-notes full-text search",
       "body": ""
-    },
-    {
-      "sha": "7e09b53",
-      "date": "2026-10-02T10:45:06Z",
-      "author": "hermesagent",
-      "subject": "skill: 454 Move #6.23 cross-incident postmortem-cluster detector (7:1–18:1 ROI)",
-      "body": ""
     }
   ],
   "counts": {
@@ -96455,8 +96526,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 270,
-    "skills": 566,
+    "journalEntries": 271,
+    "skills": 567,
     "gitCommits": 200
   }
 }
