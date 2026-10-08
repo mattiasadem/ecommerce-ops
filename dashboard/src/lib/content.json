@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-08T03:52:21.353Z",
+  "generatedAt": "2026-10-08T04:16:43.162Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -14278,6 +14278,10 @@
     {
       "heading": "2026-10-07 21:23 UTC — Move #N.22 shipped: calculator coverage to 29/30 (96.7%)",
       "body": "- **What shipped:** Wired 5 existing-but-unwired calculator components onto their playbook detail pages: `06.5-weekly-rollup-trend-launch` → `AttributionWeeklyTrend`, `06.8-cross-platform-attribution-drift-unification` → `AttributionDriftRollup`, `21-amazon-dsp-amazon-attribution-audit-launch` → `AmazonDspPathCalculator`, `22-smsbump-postscript-channel-orchestration-launch` → `SmsbumpPostscriptChannelOrchestrationCalculator`, `23-generative-ai-engine-launch` → `GenerativeAiEngineCalculator`. Coverage now **29 of 30 playbooks (96.7%)** vs prior **24 of 30 (80.0%)**. Only remaining un-tooled playbook: `06-install-attribution-triplewhale-or-polar`.\n\n- **Why it matters:** Closes the canonical \"calculator coverage\" gap. The 5 components already existed and were already battle-tested on their de"
+    },
+    {
+      "heading": "2026-10-08 09:00 UTC — Move #N.22.1 shipped: 30/30 (100%) calculator coverage",
+      "body": "- **What shipped:** Wired the **last un-tooled playbook calculator** — `TripleWhaleAttributionCalculator` on `/playbooks/06-install-attribution-triplewhale-or-polar`. The picker reads 11 store-profile inputs (monthly revenue, monthly paid spend, cart platform, monthly orders, Klaviyo / Meta / Google admin, operator capacity hr/wk, needs MMM, needs post-purchase survey, needs Meta CAPI) and picks one of 5 canonical paths: **Path A** Polar Starter ($49/mo) for Shopify <$500k GMV + <$5k/mo paid · **Path B** Triple Whale Starter ($179/mo) for Shopify $500k–$5M GMV (the default) · **Path C** Triple Whale Pro ($1,290/mo) for Shopify $5M+ GMV + ≥$50k/mo paid · **Path D** Polar Pro ($299/mo) for non-Shopify (WooCommerce / BigCommerce / headless) · **Path E** Free (Shopify Analytics + GA4) for pre-"
     }
   ],
   "skills": [
@@ -76869,6 +76873,69 @@
       "lastTouched": "2026-10-08"
     },
     {
+      "file": "562-pdp-review-highlight-cross-channel-creator-payout-cross-border-rail-bias.md",
+      "name": "pdp-review-highlight-cross-channel-creator-payout-cross-border-rail-bias",
+      "title": "Per-cohort PDP review-highlight cross-channel creator-payout-cross-border-rail-bias",
+      "category": "pdp-review-highlight-cross-channel-creator-payout-cross-border-rail-bias",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "47.5.1.1.1.34",
+      "yearOneRoiBand": "2:1-5:1",
+      "smsFriendly": true,
+      "lastUpdated": "2026-10-08",
+      "sources": [
+        "captivatea-cross-border-rail-2026",
+        "captivatea-cr1-usd-domestic-2026",
+        "captivatea-cr2-usd-eu-2026",
+        "captivatea-cr3-usd-jp-2026",
+        "captivatea-cr4-usd-br-2026",
+        "captivatea-cr5-usd-mx-2026",
+        "stripe-connect-2026",
+        "paypal-mass-pay-2026",
+        "wise-mass-pay-2026",
+        "ach-2026",
+        "sepa-2026",
+        "sepa-instant-2026",
+        "zengin-2026",
+        "zengin-teleclearance-2026",
+        "pix-2026",
+        "bcb-circular-3-978-2020",
+        "spei-2026",
+        "banxico-circular-14-2024",
+        "wire-2026",
+        "swift-mt103-2026",
+        "swift-gpi-2026",
+        "fedwire-2026",
+        "fedwire-funds-service-2026",
+        "eu-sepa-credit-transfer-2026",
+        "eu-sepa-instant-credit-transfer-2026",
+        "uk-faster-payments-2026",
+        "uk-chaps-2026",
+        "zengin-system-2026",
+        "japan-zengin-system-2026",
+        "brazil-spi-2026",
+        "brazil-pix-2026",
+        "mexico-spei-2026",
+        "captivatea-cr-roi-2026",
+        "captivatea-cr-cvp-2026",
+        "captivatea-cr-classifier-vocabulary-2026",
+        "captivatea-cr-fit-vocabulary-2026",
+        "captivatea-cr-canonical-vocabulary-2026",
+        "captivatea-cr-confidence-rubric-2026",
+        "captivatea-cr-fit-rubric-2026",
+        "captivatea-cr-readback-vocabulary-v22-2026",
+        "captivatea-cr-readback-vocabulary-v21-2026",
+        "captivatea-cr-readback-vocabulary-v20-2026",
+        "captivatea-cr-readback-vocabulary-v19-2026"
+      ],
+      "blurb": "Move #47.5.1.1.1.34 — a **5-tier creator-payout-cross-border-rail taxonomy (CR1 USD-domestic + CR2 USD-EU-cross-border + CR3 USD-JP-cross-border + CR4 USD-BR-cross-border + CR5 USD-MX-cross-border)** + 32-vendor creat...",
+      "sectionCount": 8,
+      "pitfallCount": 15,
+      "sourceCount": 43,
+      "size": 48843,
+      "lastTouched": "2026-10-08"
+    },
+    {
       "file": "57-procurement-supplier-portal-cogs-engineering.md",
       "name": "procurement-supplier-portal-cogs-engineering",
       "title": "Procurement + supplier portal + COGS engineering (Move #48)",
@@ -94584,6 +94651,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "d589e61",
+      "date": "2026-10-08T03:55:26Z",
+      "author": "mattiasadem",
+      "subject": "feat(dashboard): Move #N.22.1 — Triple Whale vs Polar Path A/B/C/D/E picker (calculator coverage 30/30 = 100%)",
+      "body": ""
+    },
+    {
       "sha": "a3e5a85",
       "date": "2026-10-08T02:04:25Z",
       "author": "hermesagent",
@@ -95975,13 +96049,6 @@
       "author": "hermesagent",
       "subject": "docs(journal): tick entry for Move #6.18 per-influencer breach-cost attribution ship (279b47f)",
       "body": ""
-    },
-    {
-      "sha": "279b47f",
-      "date": "2026-10-01T23:56:39Z",
-      "author": "hermesagent",
-      "subject": "skill: 449 Move #6.18 Per-influencer / per-creator breach-cost attribution — decompose Move #6.14's per-platform breach-cost by influencer-id (creator-economy-attribution-substrate), so the operator sees per-influencer × per-platform breach",
-      "body": ""
     }
   ],
   "counts": {
@@ -95990,8 +96057,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 264,
-    "skills": 560,
+    "journalEntries": 265,
+    "skills": 561,
     "gitCommits": 200
   }
 }
