@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-09T09:03:37.141Z",
+  "generatedAt": "2026-10-09T10:17:37.813Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13226,6 +13226,10 @@
     {
       "heading": "[2026-10-09 06:53 UTC] Skill tick: keep — Calculator Portfolio — realized vs on-the-table split by 4-pillar framework (Move #N.24 / skill/582)",
       "body": "- **Branch:** autoresearch/skills-2026-10-09\n- **Status:** keep\n- **Reason:** All 3 of the metric's first-Tier / first-P0 / unique-category gates pass. (1) **Unique category:** `calculator-portfolio-pillar-attribution` does not exist in any other skill file (`grep -l '^category: calculator-portfolio-pillar-attribution$' skills/*.md | wc -l = 1`). (2) First Tier-1 in its category. (3) First P0 in its category. The previous 580 skills were axis-deepening variants of `pdp-review-highlight-*` (CFAT/PNAT/DCAT/etc.). This 582 pivot moves into a new capability family — calculator portfolio rollup — compounding Move #N.17 (calculator-coverage) + Move #N.23 (ROI rank) + Move #N.23.1 (cohort split) + Move #N.23.4 (payback chip) + Move #N.23.5 (payback-aware sort toggle) into a per-pillar (Acquisitio"
+    },
+    {
+      "heading": "[2026-10-09 08:10 UTC] Skill tick: keep — Calculator Portfolio — cross-quarter pillar trajectory with quarterly decay-window (Move #N.26 / skill/584)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-09\n- **Status:** keep\n- **Reason:** All 4 metric gates pass. (1) **Unique category:** `calculator-portfolio-cross-quarter-trajectory` does not exist in any other skill file (`grep -l '^category: calculator-portfolio-cross-quarter-trajectory$' skills/*.md | wc -l = 1`). (2) First Tier-1 in its category (`grep -l '^category: calculator-portfolio-cross-quarter-trajectory$' skills/*.md | xargs grep -l '^tier: 1$' | wc -l = 1`). (3) First P0 in its category (`grep -l '^category: calculator-portfolio-cross-quarter-trajectory$' skills/*.md | xargs grep -l '^priority: P0$' | wc -l = 1`). (4) **21 numbered pitfalls** (highest of all 3 calculator-portfolio skills: skill/582=22, skill/583=23, skill/584=21 — all in the canonical 15-25 pitfall depth band, well "
     },
     {
       "heading": "[2026-10-09 05:40 UTC] Skill tick: keep — Per-cohort PDP review-highlight cross-channel creator-disclosure-content-freshness-aggregation-tier-bias (Move #47.5.1.1.1.53 / skill/581)",
@@ -79369,6 +79373,41 @@
       "lastTouched": "2026-10-09"
     },
     {
+      "file": "585-calculator-portfolio-per-pillar-ship-backlog.md",
+      "name": "calculator-portfolio-per-pillar-ship-backlog",
+      "title": "Calculator Portfolio — per-pillar ship-backlog with 90-day acceleration plan (Move #N.27)",
+      "category": "calculator-portfolio-per-pillar-ship-backlog",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "N.27",
+      "yearOneRoiBand": "5:1–25:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-10-09",
+      "sources": [
+        "klaviyo 2024",
+        "postscript 2024",
+        "smile 2024",
+        "recharge 2024",
+        "triple-whale 2024",
+        "baymard 2024",
+        "gartner-cmo-spend-2024",
+        "forrester-cross-channel-2024",
+        "six-pillar-attribution-2024",
+        "mckinsey-growth-marketing-2024",
+        "northwestern-attribution-2024",
+        "hbr-quarterly-cadence-2024",
+        "hbr-90-day-execution-2024",
+        "bcg-priority-roadmap-2024",
+        "bain-velocity-vs-backlog-2024"
+      ],
+      "blurb": "A best-in-class **Per-Pillar Ship-Backlog** layer answers the operator's canonical Day-3 question that the per-pillar portfolio (Move #N.24 / skill/582) + the cannibalization audit (Move #N.25 / skill/583) + the traje...",
+      "sectionCount": 9,
+      "pitfallCount": 16,
+      "sourceCount": 15,
+      "size": 38216,
+      "lastTouched": "2026-10-09"
+    },
+    {
       "file": "59-shipping-carrier-mix-parcel-routing-engine.md",
       "name": "shipping-carrier-mix-parcel-routing-engine",
       "title": "Shipping carrier mix + parcel routing engine + multi-carrier rate shopping + label automation + lost-package recovery + delivery experience + carrier scorecards + dimensional weight + parcel audit + ship-cost analytics + carrier negotiation (Move #38)",
@@ -96757,6 +96796,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "3cb6516",
+      "date": "2026-10-09T09:11:39Z",
+      "author": "mattiasadem",
+      "subject": "skill: 584-calculator-portfolio-cross-quarter-pillar-trajectory — Move #N.26 (5-class trajectory classifier + 4-quarter sparkline + decay-rate + re-engagement map + 21 pitfalls + 7 verification gates)",
+      "body": ""
+    },
+    {
       "sha": "9a4e8f7",
       "date": "2026-10-09T06:53:10Z",
       "author": "mattiasadem",
@@ -98148,13 +98194,6 @@
       "author": "mattiasadem",
       "subject": "skill: Move #1.8 per-creator-content-sentiment-shift-auto-remediation",
       "body": ""
-    },
-    {
-      "sha": "58a511c",
-      "date": "2026-10-03T06:04:32Z",
-      "author": "mattiasadem",
-      "subject": "feat(dashboard): Move #N.7 per-playbook realized-ROI ledger",
-      "body": "Adds an operator-owned per-playbook actual-revenue tracker (state-\npersistence + cross-page-intelligence + one-click-action):\n\n  - New localStorage key 'ecom-ops:realized-roi:v1' stores per-playbook\n    actualMonthlyRevenueLift + actualMonthlyCost + actualMonthlyOrdersLift\n    + measurementWindowDays + confidence + notes + loggedAt + updatedAt.\n  - <RealizedRoiLedgerPanel /> mounted on /playbooks/[slug] below the\n    shipped-toggle. Three states: pre-hydration stub, unshipped nudge,\n    guided input form (revenue / cost / orders / window / confidence /\n    notes), and summary tile with Edit/Clear actions + gap-vs-projected\n    badge (UNDERWIDE / UNDER / ON-TARGET / OVER / UNMEASURED).\n  - <RealizedRoiLedgerRollup /> mounted on /. Read-only cross-playbook\n    rollup showing total entries logged, net monthly / annualized,\n    average ROI multiple, total orders recovered, and a 3-tile\n    underperforming / on-target / outperforming breakdown.\n  - Pure-logic helpers in src/lib/realized-roi-ledger.ts: load/save,\n    setRealizedRoiEntry (preserves loggedAt on update; sanitizes\n    numeric), clearRealizedRoiEntry, entryNetMonthlyLift,\n    entryAnnualizedLift, entryRoiMultiple (handles Infinity cleanly),\n    formatRoiMultiple, classifyGapVsProjected, gapVsProjected,\n    aggregateLedger, ledgerToMarkdown, ledgerToCsv, ledgerSnapshot,\n    daysSince. Cross-tab sync via 'storage' event + same-tab\n    'ecom-ops:realized-roi:update' CustomEvent.\n  - 73/73 unit assertions pass via 'npx jiti src/lib/__tests__/\n    realized-roi-ledger.test.ts' (load/save round-trip, sanitization,\n    classification, gap math, aggregate stats, daysSince, markdown,\n    CSV escaping, snapshot).\n  - Build passes; /playbooks/01-abandoned-cart-flow-klaviyo and /\n    return HTTP 200 with sentinels ('Realized ROI ledger', 'Log actual\n    revenue', 'Actuals log', 'Move #N.7', 'Loading actuals',\n    'ecom-ops:realized-roi:v1').\n  - Deployed to canonical alias ecommerce-ops-iota.vercel.app via\n    'vercel depl"
     }
   ],
   "counts": {
@@ -98163,8 +98202,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 289,
-    "skills": 583,
+    "journalEntries": 290,
+    "skills": 584,
     "gitCommits": 200
   }
 }
