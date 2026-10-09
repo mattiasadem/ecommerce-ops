@@ -61,6 +61,16 @@ import {
   type CalculatorRoiCohort,
 } from "@/lib/calculator-roi-cohort";
 import { buildPaybackEnrichment } from "@/lib/calculator-roi-payback";
+import {
+  calculatorRoiSortLabel,
+  CALCULATOR_ROI_SORT_OPTIONS,
+  CALCULATOR_ROI_SORT_STORAGE_KEY,
+  CALCULATOR_ROI_SORT_UPDATE_EVENT,
+  loadCalculatorRoiSort,
+  saveCalculatorRoiSort,
+  sortCalculatorRoiRankRows,
+  type CalculatorRoiSortMode,
+} from "@/lib/calculator-roi-sort";
 import { loadYourStore, YOUR_STORE_STORAGE_KEY, type YourStoreInputs } from "@/lib/your-store";
 import {
   loadShippedPlaybooks,
@@ -79,11 +89,13 @@ export function CalculatorRoiRank({ maxRows = 5 }: Props) {
   const [hydrated, setHydrated] = useState(false);
   const [store, setStore] = useState<YourStoreInputs | null>(null);
   const [shipped, setShipped] = useState<ShippedMap>({});
+  const [sortMode, setSortMode] = useState<CalculatorRoiSortMode>("lift");
 
   // Hydrate from localStorage on mount.
   useEffect(() => {
     setStore(loadYourStore());
     setShipped(loadShippedPlaybooks());
+    setSortMode(loadCalculatorRoiSort());
     setHydrated(true);
   }, []);
 
@@ -95,6 +107,9 @@ export function CalculatorRoiRank({ maxRows = 5 }: Props) {
       if (e.key === YOUR_STORE_STORAGE_KEY || e.key === SHIPPED_PLAYBOOKS_STORAGE_KEY || e.key === null) {
         setStore(loadYourStore());
         setShipped(loadShippedPlaybooks());
+      }
+      if (e.key === CALCULATOR_ROI_SORT_STORAGE_KEY || e.key === null) {
+        setSortMode(loadCalculatorRoiSort());
       }
     };
     window.addEventListener("storage", onStorage);
@@ -110,8 +125,38 @@ export function CalculatorRoiRank({ maxRows = 5 }: Props) {
     return () => window.removeEventListener(SHIPPED_PLAYBOOKS_UPDATE_EVENT, onUpdate);
   }, []);
 
+  // Same-tab CustomEvent for the sort toggle (Move #N.23.5). When the
+  // operator clicks the By $ / By payback button, `saveCalculatorRoiSort`
+  // dispatches this event so the card re-renders without waiting for a
+  // `storage` event (which only fires cross-tab).
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const onSortUpdate = () => setSortMode(loadCalculatorRoiSort());
+    window.addEventListener(CALCULATOR_ROI_SORT_UPDATE_EVENT, onSortUpdate);
+    return () =>
+      window.removeEventListener(CALCULATOR_ROI_SORT_UPDATE_EVENT, onSortUpdate);
+  }, []);
+
+  function handleChangeSort(mode: CalculatorRoiSortMode) {
+    if (mode === sortMode) return;
+    setSortMode(mode);
+    saveCalculatorRoiSort(mode);
+  }
+
+  // Move #N.23.5 — re-sort the canonical rank by the operator's chosen
+  // sort mode BEFORE passing to the cohort builder. The cohort split is
+  // order-preserving, so swapping the sort here ripples through both
+  // the on-the-table + already-shipped sub-sections.
   const summary: CalculatorRoiRankSummary = buildCalculatorRoiRank(store);
-  const cohort: CalculatorRoiCohort = buildCalculatorRoiCohort(summary, shipped, maxRows);
+  const sortedSummary: CalculatorRoiRankSummary = {
+    ...summary,
+    rows: sortCalculatorRoiRankRows(summary.rows, sortMode),
+  };
+  const cohort: CalculatorRoiCohort = buildCalculatorRoiCohort(
+    sortedSummary,
+    shipped,
+    maxRows,
+  );
 
   // Defensive: no matches → render nothing.
   if (summary.matchingMoves === 0) return null;
@@ -250,9 +295,62 @@ export function CalculatorRoiRank({ maxRows = 5 }: Props) {
           </div>
         )}
 
+        {/* === SORT TOGGLE (Move #N.23.5) =================================
+            The operator can flip between "By $" (canonical, default —
+            highest projected annual lift first) and "By payback" (fast-
+            ROI lens — moves with the lowest costHigh ÷ monthlyLiftHigh
+            sort first; free tools float to the top). Persisted to
+            `ecom-ops:calculator-roi-sort:v1` via the same `load`/
+            `save` + `storage` event pattern as `next-move.ts`. The
+            toggle sits between the cohort sub-header and the on-the-
+            table row list so the operator's eye reads:
+            "N shipped — K on the table — sort by $ or payback?" */}
+        {hydrated && (cohort.shippedCount > 0 || cohort.unshippedCount > 0) && (
+          <div
+            className="flex flex-wrap items-center gap-1.5"
+            data-testid="calculator-roi-rank-sort-toggle"
+            role="group"
+            aria-label="Sort calculator ROI rank by"
+          >
+            <span className="text-[10px] uppercase tracking-widest text-muted-foreground mr-1">
+              Sort:
+            </span>
+            {CALCULATOR_ROI_SORT_OPTIONS.map((mode) => {
+              const isActive = mode === sortMode;
+              return (
+                <button
+                  key={mode}
+                  type="button"
+                  onClick={() => handleChangeSort(mode)}
+                  className={cn(
+                    "inline-flex items-center rounded-md border px-2 py-1 text-[10px] font-semibold uppercase tracking-wider transition-colors",
+                    isActive
+                      ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300"
+                      : "border-border bg-background text-muted-foreground hover:bg-muted",
+                  )}
+                  data-testid={`calculator-roi-rank-sort-${mode}`}
+                  aria-pressed={isActive}
+                >
+                  {calculatorRoiSortLabel(mode)}
+                </button>
+              );
+            })}
+            {sortMode === "payback" && (
+              <span
+                className="ml-1 inline-flex items-center rounded-md border border-emerald-500/30 bg-emerald-500/5 px-2 py-1 text-[10px] font-medium text-emerald-700 dark:text-emerald-300"
+                data-testid="calculator-roi-rank-fastest-payback-pill"
+                title={`Free tools (∞ payback) + lowest payback months rank first; $${cohort.unshippedRows[0]?.annualLiftHigh.toLocaleString() ?? 0}/yr projected at top`}
+              >
+                Fastest payback first
+              </span>
+            )}
+          </div>
+        )}
+
         {/* === ON-THE-TABLE COHORT (unshipped) =========================
             The canonical "open WHICH calculator first?" rows. Ranked
-            by `annualLiftHigh DESC` and limited to `maxRows`. */}
+            by the operator's chosen `sortMode` (lift or payback) and
+            limited to `maxRows`. */}
         {cohort.unshippedRows.length > 0 && (
           <div className="space-y-1.5" data-testid="calculator-roi-rank-cohort-unshipped">
             <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-wider text-emerald-700 dark:text-emerald-300">
@@ -309,12 +407,15 @@ export function CalculatorRoiRank({ maxRows = 5 }: Props) {
             Explains the math + the cross-tab sync + the storage keys. */}
         <div className="text-[10px] text-muted-foreground">
           Lift = your AOV × monthly orders × 12 × move&apos;s high-band lift %.
+          Payback = tool cost ÷ projected monthly lift.
           Reads <span className="font-mono">{YOUR_STORE_STORAGE_KEY}</span> +
           <span className="font-mono"> {SHIPPED_PLAYBOOKS_STORAGE_KEY}</span> +
+          <span className="font-mono"> {CALCULATOR_ROI_SORT_STORAGE_KEY}</span> +
           cross-tab <span className="font-mono">storage</span>. Set your
           numbers on the <Link href="#your-store" className="underline">Your-store card</Link> to
-          personalize · mark shipped on <Link href="/playbooks#shipped-progress" className="underline">/playbooks</Link>.
-          Payback = tool cost ÷ projected monthly lift.
+          personalize · mark shipped on <Link href="/playbooks#shipped-progress" className="underline">/playbooks</Link> ·
+          toggle sort with the <span className="font-mono">By $</span> /
+          <span className="font-mono"> By payback</span> buttons above.
         </div>
       </CardContent>
     </Card>
