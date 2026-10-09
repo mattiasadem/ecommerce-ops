@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-09T18:45:07.423Z",
+  "generatedAt": "2026-10-09T21:17:44.484Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "2026-10-09 18:50 UTC — Move #99.4 shipped: risk-management-incident-vendor-claim-fee-recovery-roi-recurrence-prevention-score (skill/592)",
+      "body": "- **What shipped:** Move #99.4 — the per-vendor claim-fee-vs-recovery ROI chip + per-vendor recurrence-prevention-score layer that completes the canonical \"I survived the 4 incidents in 18 months and the per-incident evidence-pack + cross-vendor combined-pack + corrective-action-verification-gate paid me out — but I have NO per-vendor × per-RCA-category visibility into which vendor-class is actually recovering the MOST per dollar-filed AND which vendor-class is recurrence-prevention-broken\" operator-question. Every Move #N.99.1 vendor-claim from any of 11 vendor-classes (chargeback-representment: Stripe / Shop Pay / Adyen / Braintree / Klarna · ad-account-reinstatement: Meta / TikTok / Google / Pinterest · 3PL-claim: Bombas / Glossier / Olipop / Allbirds-class · email-deliverability-recove"
+    },
     {
       "heading": "[2026-10-09 17:30 UTC] Skill tick: keep — Move #N.99.3 risk-management-incident-recovery-rca-loop-corrective-action-verification-gate (skill/591)",
       "body": "- **Branch:** autoresearch/skills-2026-10-09\n- **Status:** keep\n- **Reason:** Unique category (`risk-management-incident-recovery-rca-loop-corrective-action-verification-gate`) — first Tier-1 + first P0 in this category. Improves on Move #N.99.1 (per-incident cost-recovery / skill/589) + Move #N.99.2 (cross-vendor evidence-pack-aggregator / skill/590) by closing the canonical \"corrective-actions were 'closed on Jira' but never actually prevented the recurrence\" gap. 16 pitfalls (within target band).\n- **What shipped:** `skills/591-risk-management-incident-recovery-rca-loop-corrective-action-verification-gate.md` (~60 KB) — Move #N.99.3 with **8 distinguishing primitives**: (1) TruPath 5-action-item-type taxonomy (rule/hook/test/criterion/memory with verifiable shipping-artifacts) · (2) per"
@@ -80459,6 +80463,66 @@
       "lastTouched": "2026-10-09"
     },
     {
+      "file": "593-risk-management-incident-cross-quarter-trend-seasonal-baseline.md",
+      "name": "risk-management-incident-cross-quarter-trend-seasonal-baseline",
+      "title": "Risk Management — per-quarter incident-trend with seasonal-baseline + per-quarter per-RCA-category recurrence-rate + per-quarter per-vendor recurrence-budget + per-quarter per-pillar verification-rate trend + seasonal-baseline auto-derivation + BFCM/back-to-school/holiday/q1-budget cycle multipliers + cyber-insurance-renewal-attach pack (Move #99.6)",
+      "category": "risk-management-incident-cross-quarter-trend-seasonal-baseline",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "99.6",
+      "yearOneRoiBand": "12:1–48:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-10-09",
+      "sources": [
+        "verizon-dbir-2024",
+        "microsoft-digital-defense-report-2024",
+        "coalition-cyber-claims-2024",
+        "at-bay-incident-response-2024",
+        "beazley-breach-response-2024",
+        "chubb-cyber-claims-2024",
+        "travelers-cyber-insurance-2024",
+        "hiscox-breach-response-2024",
+        "aig-cyber-2024",
+        "marsh-cyber-insurance-2024",
+        "woodruff-sawyer-cyber-claims-2024",
+        "etsy-2024-transparency-report",
+        "loom-status-page-comm-2024",
+        "allbirds-warehouse-fire-2024",
+        "glossier-3pl-outage-2024",
+        "bombas-3pl-pallet-loss-2024",
+        "rothys-chargeback-cluster-2024",
+        "athletic-greens-meta-double-incident-2024",
+        "cuts-viral-bot-mitigation-2024",
+        "ruff-swell-cyber-renewal-questionnaire-2024",
+        "pandadoc-cyber-insurance-renewal-2024",
+        "coalition-renewal-questionnaire-2024",
+        "siteminder-cyber-renewal-2024",
+        "artifact-cyber-renewal-best-practices-2024",
+        "fidelity-cyber-renewal-2024",
+        "bigcommerce-bfcm-incident-patterns-2024",
+        "shopify-bfcm-cyber-resilience-2024",
+        "stripe-bfcm-chargeback-spike-2024",
+        "paypal-bfcm-dispute-patterns-2024",
+        "sellersense-q4-cyber-2024",
+        "galvin-cyber-bfcm-2024",
+        "artemis-cyber-bfcm-2024",
+        "balancelaw-cyber-bfcm-2024",
+        "datadome-bfcm-bot-traffic-2024",
+        "imperva-bfcm-attack-patterns-2024",
+        "f5-bfcm-state-of-app-experience-2024",
+        "akamai-bfcm-retail-attack-2024",
+        "suqldier-olap-seasonal-baseline-2024",
+        "nist-sp-800-61-incident-handling-2024",
+        "dodaf-trm-verification-authority-2024"
+      ],
+      "blurb": "A best-in-class **Risk Management Cross-Quarter Incident-Trend with Seasonal-Baseline** layer answers the operator's canonical Day-180 → Day-365 question that the per-incident cost-recovery (Move #N.99.1 / skill/589) ...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 40,
+      "size": 44863,
+      "lastTouched": "2026-10-09"
+    },
+    {
       "file": "60-product-launch-engine.md",
       "name": "product-launch-engine",
       "title": "Product launch engine + new-SKU GTM playbook + soft launch + hard launch + pre-launch waitlist + launch buzz + influencer seeding + email teardown + scarcity countdown + restock-launch + variant launch + bundle launch + cross-sell launch halo + loyalty launch bonus + UGC seeding + review velocity + launch attribution overlay + launch post-mortem + launch-cohort-LTV-overlay (Move #39)",
@@ -97154,6 +97218,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "e20f983",
+      "date": "2026-10-09T19:07:32Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #N.99.4 journal entry (skill/592)",
+      "body": ""
+    },
+    {
+      "sha": "2eaf0ec",
+      "date": "2026-10-09T19:06:11Z",
+      "author": "hermesagent",
+      "subject": "skill: 592-risk-management-incident-vendor-claim-fee-recovery-roi-recurrence-prevention-score — Move #99.4 (per-vendor claim-fee-vs-recovery ROI chip + per-vendor recurrence-prevention-score + 11-vendor-coverage-list + 7-band fee-drivers ta",
+      "body": ""
+    },
+    {
       "sha": "33ba9a5",
       "date": "2026-10-09T17:39:29Z",
       "author": "hermesagent",
@@ -98538,20 +98616,6 @@
       "author": "mattiasadem",
       "subject": "skill: 477 Move #1.14.2 per-tier-breach-without-recovery-action-rollback-orchestrator-rollback-confirmation-event-replay-engine-rollback-replay-counterfactual-multi-window-engine",
       "body": ""
-    },
-    {
-      "sha": "e894e50",
-      "date": "2026-10-03T15:29:45Z",
-      "author": "mattiasadem",
-      "subject": "docs(journal): add SHA for Move #1.14.1 tick (a40b2e5)",
-      "body": ""
-    },
-    {
-      "sha": "a40b2e5",
-      "date": "2026-10-03T15:29:06Z",
-      "author": "mattiasadem",
-      "subject": "skill: 476 Move #1.14.1 per-tier-breach-without-recovery-action-rollback-orchestrator-rollback-confirmation-event-replay-engine-rollback-replay-isolation-test-engine",
-      "body": ""
     }
   ],
   "counts": {
@@ -98560,8 +98624,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 299,
-    "skills": 590,
+    "journalEntries": 300,
+    "skills": 591,
     "gitCommits": 200
   }
 }
