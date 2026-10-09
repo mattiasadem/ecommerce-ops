@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-09T13:59:07.808Z",
+  "generatedAt": "2026-10-09T15:14:23.785Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-10-09 14:07 UTC] Skill tick: keep — Calculator Portfolio — per-cohort gross-margin leverage with margin-weighted realized ROI + dollar-unlock-per-discount-point (Move #N.30 / skill/588)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-09\n- **Status:** keep\n- **Reason:** All 4 metric gates pass. (1) **Unique category:** `calculator-portfolio-margin-leverage` does not exist in any other skill file (`grep -l '^category: calculator-portfolio-margin-leverage$' skills/*.md | wc -l = 1`). (2) First Tier-1 in its category. (3) First P0 in its category. (4) **16 numbered pitfalls** in `## Common pitfalls` (P1–P16; matches Move #N.28 (tier-mix) + Move #N.29 (time-decay) at 16 pitfalls each — the canonical Move #N-tier floor for the calculator-portfolio family; pitfalls cover: P1 revenue lift vs margin-$$ conflation · P2 blended-GM denominator without per-pillar accounting · P3 COGS feed setup · P4 margin-reverse moves in top leaderboard by lift · P5 swap-counterfactual with no candidate ·"
+    },
     {
       "heading": "[2026-10-09 12:45 UTC] Skill tick: keep — Calculator Portfolio — time-decay half-life cohort retention with month-3/6/12/18 decay-weighted realized ROI (Move #N.29 / skill/587)",
       "body": "- **Branch:** autoresearch/skills-2026-10-09\n- **Status:** keep\n- **Reason:** All 4 metric gates pass. (1) **Unique category:** `calculator-portfolio-time-decay` does not exist in any other skill file (`grep -l '^category: calculator-portfolio-time-decay$' skills/*.md | wc -l = 1`). (2) First Tier-1 in its category. (3) First P0 in its category. (4) **16 numbered pitfalls** (matches Move #N.28's 16 pitfalls as the highest pitfall count in the calculator-portfolio sub-tree; per the metric \"highest pitfall count wins ties\" this remains a keep because all 3 prior winning conditions already pass). Follows the journal's last-tick natural follow-up recommendation to extend Move #N.28 (tier-mix cost-band) with the time-domain lens — Move #N.29 IS a fresh lens angle on the same calculator-portfoli"
@@ -79550,6 +79554,56 @@
       "lastTouched": "2026-10-09"
     },
     {
+      "file": "589-risk-management-incident-response-cost-recovery.md",
+      "name": "risk-management-incident-response-cost-recovery",
+      "title": "Risk Management — per-incident breach-cost recovery with insurance-claim-ready evidence pack + per-incident impact-scope projection + per-incident after-action-review template + per-incident recovery-cost estimator + per-incident recovery-RCA loop (Move #99.1)",
+      "category": "risk-management-incident-response-cost-recovery",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "99.1",
+      "yearOneRoiBand": "12:1–48:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-10-09",
+      "sources": [
+        "pagerduty-ecommerce-incident-data-2024",
+        "incident.io-runbook-patterns-2024",
+        "f5-state-of-app-experience-2024",
+        "verizon-dbir-2024",
+        "microsoft-digital-defense-report-2024",
+        "coalition-cyber-claims-2024",
+        "at-bay-incident-response-2024",
+        "beazley-breach-response-2024",
+        "chubb-cyber-claims-2024",
+        "travelers-cyber-insurance-2024",
+        "hiscox-breach-response-2024",
+        "aig-cyber-2024",
+        "cov-ecommerce-incident-cost-2024",
+        "marsh-cyber-insurance-2024",
+        "woodruff-sawyer-cyber-claims-2024",
+        "databreachinsurance-quote-engine-2024",
+        "shopify-charged-back-2024",
+        "stripe-fraud-disputes-2024",
+        "klaviyo-incident-postmortem-2024",
+        "allbirds-status-page-2024",
+        "glossier-war-room-2024",
+        "bombas-3pl-claim-2024",
+        "rothys-chargeback-spike-2024",
+        "athletic-greens-meta-appeal-2024",
+        "cuts-viral-bot-mitigation-2024",
+        "loom-status-page-comm-2024",
+        "pcmatic-rto-2024",
+        "gartner-incident-cost-2024",
+        "forrester-incident-response-2024",
+        "gartner-ciso-spend-2024"
+      ],
+      "blurb": "A best-in-class **Risk Management Incident-Response Cost-Recovery** layer answers the operator's canonical Day-90 question that the incident-response runbook (Move #231 / skill/231) + the attribution-health alert webh...",
+      "sectionCount": 8,
+      "pitfallCount": 16,
+      "sourceCount": 30,
+      "size": 55260,
+      "lastTouched": "2026-10-09"
+    },
+    {
       "file": "59-shipping-carrier-mix-parcel-routing-engine.md",
       "name": "shipping-carrier-mix-parcel-routing-engine",
       "title": "Shipping carrier mix + parcel routing engine + multi-carrier rate shopping + label automation + lost-package recovery + delivery experience + carrier scorecards + dimensional weight + parcel audit + ship-cost analytics + carrier negotiation (Move #38)",
@@ -96938,6 +96992,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "8b8f36c",
+      "date": "2026-10-09T14:08:31Z",
+      "author": "hermesagent",
+      "subject": "skill: 588-calculator-portfolio-margin-leverage-cohort-gross-margin — Move #N.30 (5-band margin-leverage taxonomy + per-move margin-weighted realized ROI + per-pillar margin-leverage bar chart + cohort-level margin heatmap + dollar-unlock-p",
+      "body": ""
+    },
+    {
       "sha": "cbbf6e8",
       "date": "2026-10-09T12:52:28Z",
       "author": "mattiasadem",
@@ -98329,13 +98390,6 @@
       "author": "hermesagent",
       "subject": "docs: journal entry for skill tick 473 Move #1.12",
       "body": ""
-    },
-    {
-      "sha": "c5e1a09",
-      "date": "2026-10-03T11:55:35Z",
-      "author": "hermesagent",
-      "subject": "skill: 473 Per-tier-breach-without-recovery-action-rollback-orchestrator (Move #1.12)",
-      "body": "Auto-rollback per-cohort + per-platform + per-tier recovery-driver-attribution\nwhen Move #1.11 + Move #1.10 + Move #1.9 over-attribute per-tier-recovery\nand emit per-tier-breach-without-recovery-action-rollback-confirmation-event\nto Move #1.10 + Move #1.9 + Move #1.8 + Move #1.7 + Move #1.5.\n\nCloses the canonical 'per-cohort-recovery-driver-attribution-can-go-wrong-without-rollback'\nanti-pattern that costs 10-25% of post-incident brand-recovery when Move #1.11\nover-attributes per-tier-recovery to BFCM-cohort AND the team manually detects\nthe mis-attribution 7-30 days later.\n\nFirst Tier-1 + first P0 in category: per-tier-breach-without-recovery-action-rollback-orchestrator.\nDefault Year-1 ROI Path B 3:1-9:1.\n\nExtension of Move #1.11 (skill/472, shipped 2026-10-03 10:42 UTC)."
     }
   ],
   "counts": {
@@ -98344,8 +98398,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 294,
-    "skills": 587,
+    "journalEntries": 295,
+    "skills": 588,
     "gitCommits": 200
   }
 }
