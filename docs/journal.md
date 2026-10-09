@@ -25,6 +25,8 @@
 
 - **Next action:** Natural follow-ups per Move #N.23.5's roadmap: **Move #N.23.6 — Payback-aware sort on individual `/playbooks/[slug]` pages** (mirror the `By $ / By payback` toggle on each playbook detail page's calculator section so the operator can flip the calculator's own inputs/sort lens inline with the card). Or **Move #N.23.7 — Top-by-payback highlight** (when the operator's Your-store produces a payback > 12 months for the top-1 row in payback mode, surface a small "your fastest payback is X but X.0 months at this scale — adjust AOV/orders to see faster?" hint). Or **Move #N.23.8 — Payback-vs-lift 2-axis scatter** (a tiny inline scatter on the card: x-axis = payback months, y-axis = $ annual lift; each dot is one move; click a dot to expand the row — gives the operator a true Pareto frontier at a glance instead of forcing a single-axis choice). Or **Move #N.24 — Calculator ROI rank on `/playbooks`** (mirror the entire card on `/playbooks` index with the same payback chips + sort toggle so the operator can compare playbooks side-by-side at the catalog level with both $ + payback dimensions).
 
+- **Committed:** 8c2a552 — `feat(dashboard): calculator ROI rank payback-aware sort toggle (Move #N.23.5)`
+
 ## [2026-10-09 04:15 UTC] Skill tick: keep — Per-cohort PDP review-highlight cross-channel creator-disclosure-payment-frequency-aggregation-tier-bias (Move #47.5.1.1.1.52 / skill/580)
 
 - **Branch:** autoresearch/skills-2026-10-09
