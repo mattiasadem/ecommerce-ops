@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-09T17:33:41.168Z",
+  "generatedAt": "2026-10-09T18:45:07.423Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-10-09 17:30 UTC] Skill tick: keep — Move #N.99.3 risk-management-incident-recovery-rca-loop-corrective-action-verification-gate (skill/591)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-09\n- **Status:** keep\n- **Reason:** Unique category (`risk-management-incident-recovery-rca-loop-corrective-action-verification-gate`) — first Tier-1 + first P0 in this category. Improves on Move #N.99.1 (per-incident cost-recovery / skill/589) + Move #N.99.2 (cross-vendor evidence-pack-aggregator / skill/590) by closing the canonical \"corrective-actions were 'closed on Jira' but never actually prevented the recurrence\" gap. 16 pitfalls (within target band).\n- **What shipped:** `skills/591-risk-management-incident-recovery-rca-loop-corrective-action-verification-gate.md` (~60 KB) — Move #N.99.3 with **8 distinguishing primitives**: (1) TruPath 5-action-item-type taxonomy (rule/hook/test/criterion/memory with verifiable shipping-artifacts) · (2) per"
+    },
     {
       "heading": "[2026-10-09 16:25 UTC] Skill tick: keep — Risk Management — per-incident cross-vendor evidence-pack-aggregator with combined combined-net-recoverable + combined-carrier-email-out + combined-after-action-review + combined-RCA-rollup + per-vendor claim-window-stack (Move #N.99.2 / skill/590)",
       "body": "- **Branch:** autoresearch/skills-2026-10-09\n- **Status:** keep\n- **Reason:** All 4 metric gates pass. (1) **Unique category:** `risk-management-incident-cross-vendor-evidence-pack-aggregator` does not exist in any other skill file (`grep -l '^category: risk-management-incident-cross-vendor-evidence-pack-aggregator$' skills/*.md | wc -l = 1`). (2) **First Tier-1 in its category** (`grep -l '^category: risk-management-incident-cross-vendor-evidence-pack-aggregator$' skills/*.md | xargs grep -l '^tier: 1$' | wc -l = 1`). (3) **First P0 in its category** (`grep -l '^category: risk-management-incident-cross-vendor-evidence-pack-aggregator$' skills/*.md | xargs grep -l '^priority: P0$' | wc -l = 1`). (4) **36 numbered pitfalls** (P1–P16 in canonical form, well above the 15-pitfall threshold; pi"
@@ -80383,6 +80387,78 @@
       "lastTouched": "2026-10-09"
     },
     {
+      "file": "592-risk-management-incident-vendor-claim-fee-recovery-roi-recurrence-prevention-score.md",
+      "name": "risk-management-incident-vendor-claim-fee-recovery-roi-recurrence-prevention-score",
+      "title": "Risk Management — per-vendor claim-fee-vs-recovery ROI chip with per-vendor recurrence-prevention-score + per-vendor fee-drivers taxonomy + per-vendor win-rate-floor + per-vendor recovery-curve-decay + per-vendor escalation-rule + per-vendor vendor-forensics-audit-trigger + per-vendor RCA-category-stacked recurrence-ratchet (Move #99.4)",
+      "category": "risk-management-incident-vendor-claim-fee-recovery-roi-recurrence-prevention-score",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "99.4",
+      "yearOneRoiBand": "8:1–40:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-10-09",
+      "sources": [
+        "pagerduty-ecommerce-incident-data-2024",
+        "incident.io-runbook-patterns-2024",
+        "f5-state-of-app-experience-2024",
+        "verizon-dbir-2024",
+        "microsoft-digital-defense-report-2024",
+        "coalition-cyber-claims-2024",
+        "at-bay-incident-response-2024",
+        "beazley-breach-response-2024",
+        "chubb-cyber-claims-2024",
+        "travelers-cyber-insurance-2024",
+        "hiscox-breach-response-2024",
+        "aig-cyber-2024",
+        "cov-ecommerce-incident-cost-2024",
+        "marsh-cyber-insurance-2024",
+        "woodruff-sawyer-cyber-claims-2024",
+        "databreachinsurance-quote-engine-2024",
+        "shopify-charged-back-2024",
+        "stripe-fraud-disputes-2024",
+        "klaviyo-incident-postmortem-2024",
+        "allbirds-status-page-2024",
+        "glossier-war-room-2024",
+        "bombas-3pl-claim-2024",
+        "rothys-chargeback-spike-2024",
+        "athletic-greens-meta-appeal-2024",
+        "cuts-viral-bot-mitigation-2024",
+        "loom-status-page-comm-2024",
+        "pcmatic-rto-2024",
+        "gartner-incident-cost-2024",
+        "forrester-incident-response-2024",
+        "gartner-ciso-spend-2024",
+        "nist-sp-800-61-incident-handling-2024",
+        "dodaf-trm-verification-authority-2024",
+        "etsy-2024-transparency-report",
+        "allbirds-warehouse-fire-2024",
+        "glossier-3pl-outage-2024",
+        "bombas-3pl-pallet-loss-2024",
+        "rothys-chargeback-cluster-2024",
+        "athletic-greens-meta-double-incident-2024",
+        "allbirds-3pl-multi-incident-2024",
+        "olipop-multi-incident-pillar-overlay-2024",
+        "drsquatch-cuts-athleticgreens-2024",
+        "cuts-viral-bot-mitigation-2024",
+        "hexclad-combined-rca-rollup-2024",
+        "glossier-rca-cycle-2024",
+        "fashionnova-3pl-cluster-2024",
+        "allbirds-incident-cycle-time-2024",
+        "gymshark-meta-account-reinstatement-2024",
+        "parachute-fabric-pallet-loss-2024",
+        "greatjones-cookware-3pl-fire-2024",
+        "madein-cookware-3pl-outage-2024",
+        "meatEater-3pl-outage-2024",
+        "tact-3pl-fire-2024"
+      ],
+      "blurb": "A best-in-class **Risk Management Per-vendor Claim-fee-vs-recovery ROI Chip + Per-vendor Recurrence-prevention-Score** layer answers the operator's canonical Day-90 → Day-180 question that the per-incident cost-recove...",
+      "sectionCount": 9,
+      "pitfallCount": 16,
+      "sourceCount": 52,
+      "size": 86014,
+      "lastTouched": "2026-10-09"
+    },
+    {
       "file": "60-product-launch-engine.md",
       "name": "product-launch-engine",
       "title": "Product launch engine + new-SKU GTM playbook + soft launch + hard launch + pre-launch waitlist + launch buzz + influencer seeding + email teardown + scarcity countdown + restock-launch + variant launch + bundle launch + cross-sell launch halo + loyalty launch bonus + UGC seeding + review velocity + launch attribution overlay + launch post-mortem + launch-cohort-LTV-overlay (Move #39)",
@@ -97078,6 +97154,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "33ba9a5",
+      "date": "2026-10-09T17:39:29Z",
+      "author": "hermesagent",
+      "subject": "journal: tick 2026-10-09 17:30 UTC — Move #99.3 risk-management-incident-recovery-rca-loop-corrective-action-verification-gate (skill/591)",
+      "body": ""
+    },
+    {
+      "sha": "f21bbe5",
+      "date": "2026-10-09T17:39:00Z",
+      "author": "hermesagent",
+      "subject": "skill: 591-risk-management-incident-recovery-rca-loop-corrective-action-verification-gate — Move #99.3 (5-action-item-type taxonomy + 30/60/90-day verification cadence + per-corrective-action owner-assignment + 2nd-gen-incident auto-raise r",
+      "body": ""
+    },
+    {
       "sha": "2ec031f",
       "date": "2026-10-09T16:55:10Z",
       "author": "hermesagent",
@@ -98462,20 +98552,6 @@
       "author": "mattiasadem",
       "subject": "skill: 476 Move #1.14.1 per-tier-breach-without-recovery-action-rollback-orchestrator-rollback-confirmation-event-replay-engine-rollback-replay-isolation-test-engine",
       "body": ""
-    },
-    {
-      "sha": "63f8435",
-      "date": "2026-10-03T14:22:40Z",
-      "author": "hermesagent",
-      "subject": "skill: journal entry for Move #1.14 keep",
-      "body": ""
-    },
-    {
-      "sha": "3f615d3",
-      "date": "2026-10-03T14:21:47Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #1.14 per-tier-breach-without-recovery-action-rollback-orchestrator-rollback-confirmation-event-replay-engine-rollback-coverage-isolation-engine",
-      "body": ""
     }
   ],
   "counts": {
@@ -98484,8 +98560,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 298,
-    "skills": 589,
+    "journalEntries": 299,
+    "skills": 590,
     "gitCommits": 200
   }
 }
