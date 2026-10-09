@@ -9,6 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { CopyButton } from "@/components/copy-button";
 import { PlaybookShippedToggle } from "@/components/playbook-shipped-toggle";
 import { RealizedRoiLedgerPanel } from "@/components/realized-roi-ledger";
+import { CalculatorRoiChip } from "@/components/calculator-roi-chip";
 import { AbandonedCartROICalculator } from "@/components/abandoned-cart-roi";
 import { PostPurchaseUpsellROICalculator } from "@/components/post-purchase-upsell-roi";
 import { WelcomeSeriesROICalculator } from "@/components/welcome-series-roi";
@@ -540,6 +541,13 @@ export default async function PlaybookDetailPage({
         playbookId={playbook.file.replace(/\.md$/, "")}
         playbookTitle={playbook.title}
       />
+
+      {/* Calculator ROI chip — Move #N.25 per-playbook cross-page-intelligence.
+          Surfaces projected annual lift + payback + cohort marker on this
+          single playbook BEFORE the operator opens the calculator. Renders
+          null for slugs not in the calculator-backed Top-10 so non-Top-10
+          playbooks get no visual noise. */}
+      <CalculatorRoiChip slug={slug} />
 
       {/* Embedded calculator — same component + math + your-store wiring as
           the corresponding /playbooks or /cro surface; lets operators project
