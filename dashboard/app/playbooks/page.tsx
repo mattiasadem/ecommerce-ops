@@ -14,6 +14,7 @@ import { PdpAbTestCalculator } from "@/components/pdp-ab-test-calculator";
 import { ShippedPlaybooks as ShippedPlaybooksTracker } from "@/components/shipped-playbooks";
 import { PhasedProgress } from "@/components/phased-progress";
 import { PlaybookSearch } from "@/components/playbook-search";
+import { CalculatorRoiSpotlight } from "@/components/calculator-roi-spotlight";
 import { content, freshnessTier } from "@/lib/content";
 
 export const dynamic = "force-static";
@@ -65,6 +66,8 @@ export default function PlaybooksPage() {
           </span>
         </div>
       </header>
+
+      <CalculatorRoiSpotlight maxRows={3} />
 
       <AbandonedCartROICalculator />
 
