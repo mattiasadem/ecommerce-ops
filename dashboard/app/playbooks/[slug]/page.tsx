@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { CopyButton } from "@/components/copy-button";
 import { PlaybookShippedToggle } from "@/components/playbook-shipped-toggle";
+import { NextPlaybookNav } from "@/components/next-playbook-nav";
 import { RealizedRoiLedgerPanel } from "@/components/realized-roi-ledger";
 import { CalculatorRoiChip } from "@/components/calculator-roi-chip";
 import { AbandonedCartROICalculator } from "@/components/abandoned-cart-roi";
@@ -573,6 +574,13 @@ export default async function PlaybookDetailPage({
       <article className="prose prose-sm max-w-none">
         {renderMarkdown(body)}
       </article>
+
+      <Separator />
+
+      {/* Next playbook nav — Move #N.X cross-page-intelligence footer
+          that lets the operator step from playbook #N to #N+1 without
+          bouncing back to /playbooks and re-scanning the catalog. */}
+      <NextPlaybookNav playbooks={content.playbooks} currentSlug={slug} />
 
       <Separator />
 
