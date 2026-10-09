@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-09T15:14:23.785Z",
+  "generatedAt": "2026-10-09T16:23:36.211Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-10-09 15:15 UTC] Skill tick: keep — Risk Management — per-incident breach-cost recovery with insurance-claim-ready evidence pack + per-incident impact-scope projection + per-incident after-action-review template + per-incident recovery-cost estimator + per-incident recovery-RCA loop (Move #N.99.1 / skill/589)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-09\n- **Status:** keep\n- **Reason:** All 4 metric gates pass. (1) **Unique category:** `risk-management-incident-response-cost-recovery` does not exist in any other skill file (`grep -l '^category: risk-management-incident-response-cost-recovery$' skills/*.md | wc -l = 1`). (2) **First Tier-1 in its category** (`grep -l '^category: risk-management-incident-response-cost-recovery$' skills/*.md | xargs grep -l '^tier: 1$' | wc -l = 1`). (3) **First P0 in its category** (`grep -l '^category: risk-management-incident-response-cost-recovery$' skills/*.md | xargs grep -l '^priority: P0$' | wc -l = 1`). (4) **16 numbered pitfalls** in `## Common pitfalls` (P1–P16; matches the canonical Move #N-tier floor of 16 pitfalls for the calculator-portfolio family; "
+    },
     {
       "heading": "[2026-10-09 14:07 UTC] Skill tick: keep — Calculator Portfolio — per-cohort gross-margin leverage with margin-weighted realized ROI + dollar-unlock-per-discount-point (Move #N.30 / skill/588)",
       "body": "- **Branch:** autoresearch/skills-2026-10-09\n- **Status:** keep\n- **Reason:** All 4 metric gates pass. (1) **Unique category:** `calculator-portfolio-margin-leverage` does not exist in any other skill file (`grep -l '^category: calculator-portfolio-margin-leverage$' skills/*.md | wc -l = 1`). (2) First Tier-1 in its category. (3) First P0 in its category. (4) **16 numbered pitfalls** in `## Common pitfalls` (P1–P16; matches Move #N.28 (tier-mix) + Move #N.29 (time-decay) at 16 pitfalls each — the canonical Move #N-tier floor for the calculator-portfolio family; pitfalls cover: P1 revenue lift vs margin-$$ conflation · P2 blended-GM denominator without per-pillar accounting · P3 COGS feed setup · P4 margin-reverse moves in top leaderboard by lift · P5 swap-counterfactual with no candidate ·"
@@ -80297,6 +80301,61 @@
       "lastTouched": "2026-07-14"
     },
     {
+      "file": "590-risk-management-incident-cross-vendor-evidence-pack-aggregator.md",
+      "name": "risk-management-incident-cross-vendor-evidence-pack-aggregator",
+      "title": "Risk Management — per-incident cross-vendor evidence-pack-aggregator with combined combined-net-recoverable + combined-carrier-email-out + combined-after-action-review + combined-RCA-rollup + per-vendor claim-window-stack (Move #99.2)",
+      "category": "risk-management-incident-cross-vendor-evidence-pack-aggregator",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "99.2",
+      "yearOneRoiBand": "10:1–40:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-10-09",
+      "sources": [
+        "pagerduty-ecommerce-incident-data-2024",
+        "incident.io-runbook-patterns-2024",
+        "f5-state-of-app-experience-2024",
+        "verizon-dbir-2024",
+        "microsoft-digital-defense-report-2024",
+        "coalition-cyber-claims-2024",
+        "at-bay-incident-response-2024",
+        "beazley-breach-response-2024",
+        "chubb-cyber-claims-2024",
+        "travelers-cyber-insurance-2024",
+        "hiscox-breach-response-2024",
+        "aig-cyber-2024",
+        "cov-ecommerce-incident-cost-2024",
+        "marsh-cyber-insurance-2024",
+        "woodruff-sawyer-cyber-claims-2024",
+        "databreachinsurance-quote-engine-2024",
+        "shopify-charged-back-2024",
+        "stripe-fraud-disputes-2024",
+        "klaviyo-incident-postmortem-2024",
+        "allbirds-status-page-2024",
+        "glossier-war-room-2024",
+        "bombas-3pl-claim-2024",
+        "rothys-chargeback-spike-2024",
+        "athletic-greens-meta-appeal-2024",
+        "cuts-viral-bot-mitigation-2024",
+        "loom-status-page-comm-2024",
+        "pcmatic-rto-2024",
+        "gartner-incident-cost-2024",
+        "forrester-incident-response-2024",
+        "gartner-ciso-spend-2024",
+        "allbirds-warehouse-fire-2024",
+        "glossier-3pl-outage-2024",
+        "bombas-3pl-pallet-loss-2024",
+        "rothys-chargeback-cluster-2024",
+        "athletic-greens-meta-double-incident-2024"
+      ],
+      "blurb": "A best-in-class **Risk Management Per-incident Cross-vendor Evidence-pack Aggregator** layer answers the operator's canonical Day-90 question that the per-incident evidence pack (Move #N.99.1 / skill/589) **silently l...",
+      "sectionCount": 9,
+      "pitfallCount": 16,
+      "sourceCount": 35,
+      "size": 63831,
+      "lastTouched": "2026-10-09"
+    },
+    {
       "file": "60-product-launch-engine.md",
       "name": "product-launch-engine",
       "title": "Product launch engine + new-SKU GTM playbook + soft launch + hard launch + pre-launch waitlist + launch buzz + influencer seeding + email teardown + scarcity countdown + restock-launch + variant launch + bundle launch + cross-sell launch halo + loyalty launch bonus + UGC seeding + review velocity + launch attribution overlay + launch post-mortem + launch-cohort-LTV-overlay (Move #39)",
@@ -96992,6 +97051,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "24ffc2b",
+      "date": "2026-10-09T15:18:25Z",
+      "author": "hermesagent",
+      "subject": "journal: tick 2026-10-09 15:15 UTC — Move #N.99.1 risk-management-incident-response-cost-recovery (skill/589)",
+      "body": ""
+    },
+    {
+      "sha": "e709762",
+      "date": "2026-10-09T15:17:51Z",
+      "author": "hermesagent",
+      "subject": "skill: 589-risk-management-incident-response-cost-recovery — Move #N.99.1 (8-band cost-recovery taxonomy + per-incident impact-scope projection at minute-15 + 12-artifact insurance-claim-ready evidence pack + vendor-claim window tracker + p",
+      "body": ""
+    },
+    {
       "sha": "8b8f36c",
       "date": "2026-10-09T14:08:31Z",
       "author": "hermesagent",
@@ -98376,20 +98449,6 @@
       "author": "hermesagent",
       "subject": "docs(journal): add SHA for Cross-page-intelligence #4 tick (3e81393)",
       "body": ""
-    },
-    {
-      "sha": "3e81393",
-      "date": "2026-10-03T12:12:44Z",
-      "author": "hermesagent",
-      "subject": "feat(dashboard): complete Your-store cross-page wiring on TikTok-Path + Mobile-PDP + Move-difficulty-impact (Cross-page-intelligence #4: 6→9 auto-prefill calculators)",
-      "body": ""
-    },
-    {
-      "sha": "56be2d5",
-      "date": "2026-10-03T11:57:16Z",
-      "author": "hermesagent",
-      "subject": "docs: journal entry for skill tick 473 Move #1.12",
-      "body": ""
     }
   ],
   "counts": {
@@ -98398,8 +98457,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 295,
-    "skills": 588,
+    "journalEntries": 296,
+    "skills": 589,
     "gitCommits": 200
   }
 }
