@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-09T16:23:36.211Z",
+  "generatedAt": "2026-10-09T17:33:41.168Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13224,6 +13224,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-10-09 16:25 UTC] Skill tick: keep — Risk Management — per-incident cross-vendor evidence-pack-aggregator with combined combined-net-recoverable + combined-carrier-email-out + combined-after-action-review + combined-RCA-rollup + per-vendor claim-window-stack (Move #N.99.2 / skill/590)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-09\n- **Status:** keep\n- **Reason:** All 4 metric gates pass. (1) **Unique category:** `risk-management-incident-cross-vendor-evidence-pack-aggregator` does not exist in any other skill file (`grep -l '^category: risk-management-incident-cross-vendor-evidence-pack-aggregator$' skills/*.md | wc -l = 1`). (2) **First Tier-1 in its category** (`grep -l '^category: risk-management-incident-cross-vendor-evidence-pack-aggregator$' skills/*.md | xargs grep -l '^tier: 1$' | wc -l = 1`). (3) **First P0 in its category** (`grep -l '^category: risk-management-incident-cross-vendor-evidence-pack-aggregator$' skills/*.md | xargs grep -l '^priority: P0$' | wc -l = 1`). (4) **36 numbered pitfalls** (P1–P16 in canonical form, well above the 15-pitfall threshold; pi"
+    },
+    {
       "heading": "[2026-10-09 15:15 UTC] Skill tick: keep — Risk Management — per-incident breach-cost recovery with insurance-claim-ready evidence pack + per-incident impact-scope projection + per-incident after-action-review template + per-incident recovery-cost estimator + per-incident recovery-RCA loop (Move #N.99.1 / skill/589)",
       "body": "- **Branch:** autoresearch/skills-2026-10-09\n- **Status:** keep\n- **Reason:** All 4 metric gates pass. (1) **Unique category:** `risk-management-incident-response-cost-recovery` does not exist in any other skill file (`grep -l '^category: risk-management-incident-response-cost-recovery$' skills/*.md | wc -l = 1`). (2) **First Tier-1 in its category** (`grep -l '^category: risk-management-incident-response-cost-recovery$' skills/*.md | xargs grep -l '^tier: 1$' | wc -l = 1`). (3) **First P0 in its category** (`grep -l '^category: risk-management-incident-response-cost-recovery$' skills/*.md | xargs grep -l '^priority: P0$' | wc -l = 1`). (4) **16 numbered pitfalls** in `## Common pitfalls` (P1–P16; matches the canonical Move #N-tier floor of 16 pitfalls for the calculator-portfolio family; "
     },
@@ -14406,6 +14410,10 @@
     {
       "heading": "2026-10-09 10:44 UTC — Move #N.24 shipped: calculator ROI spotlight on /playbooks",
       "body": "- **What shipped:** A compact top-3 **Calculator ROI spotlight — your numbers** card now sits directly below the Freshness header on `/playbooks` (above the inline ROI calculators). It mirrors the canonical Calculator ROI rank card on `/` (Move #N.23 + N.23.1 cohort split + N.23.4 payback chip + N.23.5 sort toggle) but in a catalog-level strip: top-3 ranked by `annualLiftHigh DESC`, no sort toggle (catalog users are browsing, not picking), with one-line headline + per-row mini-card (`#1 | name | shipped? | +$X/yr | ⏱ Xmo`). The card answers the operator's canonical \"browsing the catalog — which calculator should I open first on MY numbers, and which have I already shipped?\" question without bouncing to `/`.\n\n- **Why it matters:** Closes the canonical \"calculator ROI rank only lives on /\" g"
+    },
+    {
+      "heading": "2026-10-09 22:50 UTC — Move #N.25 shipped: calculator ROI chip on /playbooks/[slug]",
+      "body": "- **What shipped:** A compact `Calculator ROI chip` now sits directly above the embedded calculator on every `/playbooks/[slug]` page (the 30 wired playbooks). It answers the canonical \"before I open this calculator, what's this move projected to make on MY numbers? — and how fast does the tool pay for itself?\" question in one row of chips. Per-page contents: `+$XXX/yr` projected annual lift (high band) · `low $XX/yr` (defensive floor) · `⏱ Xmo` payback chip (Move #N.23.4 enrichment — emerald / sky / amber / rose with `∞` for free tools + `—` for not-measurable) · `#N of 7` rank-within-calculator-backed-Top-10 chip · `Xd` days-to-ship badge · `On the table` / `Shipped` cohort badge (reads `ecom-ops:shipped-playbooks:v1`) · `Defaults` badge in header when operator is on `YOUR_STORE_DEFAULTS"
     }
   ],
   "skills": [
@@ -79330,38 +79338,6 @@
       "lastTouched": "2026-10-09"
     },
     {
-      "file": "583-calculator-portfolio-cross-pillar-cannibalization-audit.md",
-      "name": "calculator-portfolio-cross-pillar-cannibalization-audit",
-      "title": "Calculator Portfolio — cross-pillar cannibalization audit (Move #N.25)",
-      "category": "calculator-portfolio-cannibalization-audit",
-      "tier": 1,
-      "priority": "P0",
-      "defaultMove": "N.25",
-      "yearOneRoiBand": "4:1–18:1",
-      "smsFriendly": false,
-      "lastUpdated": "2026-10-09",
-      "sources": [
-        "klaviyo 2024",
-        "postscript 2024",
-        "smile 2024",
-        "recharge 2024",
-        "triple-whale 2024",
-        "baymard 2024",
-        "gartner-cmo-spend-2024",
-        "forrester-cross-channel-2024",
-        "six-pillar-attribution-2024",
-        "mckinsey-growth-marketing-2024",
-        "northwestern-attribution-2024",
-        "hbr-cannibalization-2024"
-      ],
-      "blurb": "A best-in-class **Cross-Pillar Cannibalization Audit** layer answers the operator's canonical Day-2 question that the per-pillar portfolio view (Move #N.24 / skill/582) **silently leaves on the table**: **\"I shipped M...",
-      "sectionCount": 9,
-      "pitfallCount": 16,
-      "sourceCount": 12,
-      "size": 31134,
-      "lastTouched": "2026-10-09"
-    },
-    {
       "file": "584-calculator-portfolio-cross-quarter-pillar-trajectory.md",
       "name": "calculator-portfolio-cross-quarter-pillar-trajectory",
       "title": "Calculator Portfolio — cross-quarter pillar trajectory with quarterly decay-window (Move #N.26)",
@@ -80353,6 +80329,57 @@
       "pitfallCount": 16,
       "sourceCount": 35,
       "size": 63831,
+      "lastTouched": "2026-10-09"
+    },
+    {
+      "file": "591-risk-management-incident-recovery-rca-loop-corrective-action-verification-gate.md",
+      "name": "risk-management-incident-recovery-rca-loop-corrective-action-verification-gate",
+      "title": "Risk Management — per-incident recovery-RCA-loop with corrective-action-verification-gate + per-corrective-action 30/60/90-day verification-cadence + per-corrective-action owner-assignment + per-corrective-action escalation-rule + per-corrective-action recurrence-prevention-loop + per-RCA-category 2nd-generation-incident-raise-ratchet + per-pillar corrective-action-rollup (Move #99.3)",
+      "category": "risk-management-incident-recovery-rca-loop-corrective-action-verification-gate",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "99.3",
+      "yearOneRoiBand": "14:1–55:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-10-09",
+      "sources": [
+        "sre-google-postmortem-culture-2024",
+        "beefed-rca-action-tracking-2024",
+        "atlassian-incident-postmortem-2024",
+        "pagerduty-ecommerce-incident-data-2024",
+        "incident.io-runbook-patterns-2024",
+        "f5-state-of-app-experience-2024",
+        "verizon-dbir-2024",
+        "microsoft-digital-defense-report-2024",
+        "coalition-cyber-claims-2024",
+        "at-bay-incident-response-2024",
+        "beazley-breach-response-2024",
+        "chubb-cyber-claims-2024",
+        "travelers-cyber-insurance-2024",
+        "hiscox-breach-response-2024",
+        "aig-cyber-2024",
+        "cov-ecommerce-incident-cost-2024",
+        "marsh-cyber-insurance-2024",
+        "woodruff-sawyer-cyber-claims-2024",
+        "gartner-incident-cost-2024",
+        "forrester-incident-response-2024",
+        "gartner-ciso-spend-2024",
+        "nist-sp-800-61-incident-handling-2024",
+        "dodaf-trm-verification-authority-2024",
+        "etsy-2024-transparency-report",
+        "loom-status-page-comm-2024",
+        "allbirds-warehouse-fire-2024",
+        "glossier-3pl-outage-2024",
+        "bombas-3pl-pallet-loss-2024",
+        "rothys-chargeback-cluster-2024",
+        "athletic-greens-meta-double-incident-2024",
+        "cuts-viral-bot-mitigation-2024"
+      ],
+      "blurb": "A best-in-class **Risk Management Recovery-RCA-loop with Verification-gate** layer answers the operator's canonical Day-90 → Day-180 question that the per-incident cost-recovery (Move #N.99.1 / skill/589) + the cross-...",
+      "sectionCount": 9,
+      "pitfallCount": 16,
+      "sourceCount": 31,
+      "size": 57778,
       "lastTouched": "2026-10-09"
     },
     {
@@ -97051,6 +97078,27 @@
   ],
   "gitCommits": [
     {
+      "sha": "2ec031f",
+      "date": "2026-10-09T16:55:10Z",
+      "author": "hermesagent",
+      "subject": "feat(dashboard): Move #N.25 — Calculator ROI chip on /playbooks/[slug]",
+      "body": ""
+    },
+    {
+      "sha": "1d89135",
+      "date": "2026-10-09T16:29:02Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #N.99.2 journal entry (skill/590)",
+      "body": ""
+    },
+    {
+      "sha": "97faef5",
+      "date": "2026-10-09T16:28:12Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #N.99.2 — per-incident cross-vendor evidence-pack-aggregator (skill/590)",
+      "body": ""
+    },
+    {
       "sha": "24ffc2b",
       "date": "2026-10-09T15:18:25Z",
       "author": "hermesagent",
@@ -98428,27 +98476,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #1.14 per-tier-breach-without-recovery-action-rollback-orchestrator-rollback-confirmation-event-replay-engine-rollback-coverage-isolation-engine",
       "body": ""
-    },
-    {
-      "sha": "baf52ff",
-      "date": "2026-10-03T13:07:53Z",
-      "author": "mattiasadem",
-      "subject": "docs(journal): add SHA for Move #1.13 tick (bad4fd1)",
-      "body": ""
-    },
-    {
-      "sha": "bad4fd1",
-      "date": "2026-10-03T13:05:49Z",
-      "author": "mattiasadem",
-      "subject": "skill: 474 Move #1.13 per-tier-breach-without-recovery-action-rollback-orchestrator-rollback-confirmation-event-replay-engine (extension of Move #1.12)",
-      "body": ""
-    },
-    {
-      "sha": "6665e77",
-      "date": "2026-10-03T12:12:55Z",
-      "author": "hermesagent",
-      "subject": "docs(journal): add SHA for Cross-page-intelligence #4 tick (3e81393)",
-      "body": ""
     }
   ],
   "counts": {
@@ -98457,7 +98484,7 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 296,
+    "journalEntries": 298,
     "skills": 589,
     "gitCommits": 200
   }
