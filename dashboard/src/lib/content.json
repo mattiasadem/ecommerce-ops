@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-09T21:17:44.484Z",
+  "generatedAt": "2026-10-09T22:28:49.517Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-10-09 21:21 UTC] Skill tick: keep — Move #99.6 risk-management-incident-cross-quarter-trend-seasonal-baseline (skill/593)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-09\n- **Status:** keep\n- **Reason:** Unique category (`risk-management-incident-cross-quarter-trend-seasonal-baseline`) — first Tier-1 + first P0 in this category. Improves on Move #N.99.1 / #99.2 / #99.3 / #99.4 by closing the canonical \"I have 4 incidents in 18 months across 4 quarters but I cannot tell if my Q4 was a true BFCM-quarter spike or just bad luck, AND the cyber-insurance carrier asks for a 12-month per-quarter trend chart with seasonal-baseline annotations in the renewal-questionnaire — without Move #N.99.6 I produce a hand-built Excel chart and Coalition flags the missing chart as 'insufficient-mature-program-evidence' and raises the renewal by 15-25%\" gap. 24 numbered pitfalls.\n- **What shipped:** `skills/593-risk-management-incident"
+    },
     {
       "heading": "2026-10-09 18:50 UTC — Move #99.4 shipped: risk-management-incident-vendor-claim-fee-recovery-roi-recurrence-prevention-score (skill/592)",
       "body": "- **What shipped:** Move #99.4 — the per-vendor claim-fee-vs-recovery ROI chip + per-vendor recurrence-prevention-score layer that completes the canonical \"I survived the 4 incidents in 18 months and the per-incident evidence-pack + cross-vendor combined-pack + corrective-action-verification-gate paid me out — but I have NO per-vendor × per-RCA-category visibility into which vendor-class is actually recovering the MOST per dollar-filed AND which vendor-class is recurrence-prevention-broken\" operator-question. Every Move #N.99.1 vendor-claim from any of 11 vendor-classes (chargeback-representment: Stripe / Shop Pay / Adyen / Braintree / Klarna · ad-account-reinstatement: Meta / TikTok / Google / Pinterest · 3PL-claim: Bombas / Glossier / Olipop / Allbirds-class · email-deliverability-recove"
@@ -80523,6 +80527,82 @@
       "lastTouched": "2026-10-09"
     },
     {
+      "file": "594-risk-management-incident-per-cohort-trend.md",
+      "name": "risk-management-incident-per-cohort-quarterly-trend",
+      "title": "Risk Management — per-quarter per-cohort incident-rate trend (Move #99.7)",
+      "category": "risk-management-incident-per-cohort-quarterly-trend",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "99.7",
+      "yearOneRoiBand": "10:1–44:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-10-09",
+      "sources": [
+        "verizon-dbir-2024",
+        "microsoft-digital-defense-report-2024",
+        "coalition-cyber-claims-2024",
+        "at-bay-incident-response-2024",
+        "beazley-breach-response-2024",
+        "chubb-cyber-claims-2024",
+        "travelers-cyber-insurance-2024",
+        "hiscox-breach-response-2024",
+        "aig-cyber-2024",
+        "nas-cyber-insurance-2024",
+        "marsh-cyber-insurance-2024",
+        "woodruff-sawyer-cyber-claims-2024",
+        "etsy-2024-transparency-report",
+        "loom-status-page-comm-2024",
+        "allbirds-warehouse-fire-2024",
+        "glossier-3pl-outage-2024",
+        "bombas-3pl-pallet-loss-2024",
+        "rothys-chargeback-cluster-2024",
+        "athletic-greens-meta-double-incident-2024",
+        "cuts-viral-bot-mitigation-2024",
+        "ruff-swell-cyber-renewal-questionnaire-2024",
+        "pandadoc-cyber-insurance-renewal-2024",
+        "coalition-renewal-questionnaire-2024",
+        "siteminder-cyber-renewal-2024",
+        "artifact-cyber-renewal-best-practices-2024",
+        "fidelity-cyber-renewal-2024",
+        "klaviyo-cohort-benchmarks-2024",
+        "postscript-cohort-benchmarks-2024",
+        "recharge-cohort-benchmarks-2024",
+        "smile-cohort-benchmarks-2024",
+        "triple-whale-cohort-overlay-2024",
+        "polar-cohort-overlay-2024",
+        "northbeam-cohort-overlay-2024",
+        "klaviyo-rfm-cohort-2024",
+        "iterable-rfm-cohort-2024",
+        "braze-rfm-cohort-2024",
+        "truveta-cohort-2024",
+        "shopify-plus-cohort-2024",
+        "bigcommerce-cohort-2024",
+        "salesforce-commerce-cloud-cohort-2024",
+        "sec-ocfr-249p-2024",
+        "nist-sp-800-61-incident-handling-2024",
+        "dodaf-trm-verification-authority-2024",
+        "suqldier-olap-cohort-seasonal-baseline-2024",
+        "cuts-clothing-cohort-incident-rate-2024",
+        "f5-cohort-bfcm-2024",
+        "akamai-retail-cohort-attack-2024",
+        "stripe-cohort-chargeback-2024",
+        "shop-pay-cohort-chargeback-2024",
+        "klarna-cohort-dispute-2024",
+        "adyen-cohort-chargeback-2024",
+        "braintree-cohort-chargeback-2024",
+        "meta-cohort-ad-account-disable-2024",
+        "tiktok-cohort-ad-account-disable-2024",
+        "google-cohort-ad-account-disable-2024",
+        "pinterest-cohort-ad-account-disable-2024"
+      ],
+      "blurb": "A best-in-class **Risk Management Per-Quarter Per-Cohort Incident-Rate Trend** layer answers the operator's canonical Day-180 → Day-365 question that the per-quarter × per-RCA-category trend (Move #N.99.6 / skill/593)...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 56,
+      "size": 58477,
+      "lastTouched": "2026-10-09"
+    },
+    {
       "file": "60-product-launch-engine.md",
       "name": "product-launch-engine",
       "title": "Product launch engine + new-SKU GTM playbook + soft launch + hard launch + pre-launch waitlist + launch buzz + influencer seeding + email teardown + scarcity countdown + restock-launch + variant launch + bundle launch + cross-sell launch halo + loyalty launch bonus + UGC seeding + review velocity + launch attribution overlay + launch post-mortem + launch-cohort-LTV-overlay (Move #39)",
@@ -97218,6 +97298,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "83093d8",
+      "date": "2026-10-09T21:21:32Z",
+      "author": "hermesagent",
+      "subject": "skill: 593-risk-management-incident-cross-quarter-trend-seasonal-baseline — Move #99.6 (8-quarter × 14-RCA-category heatmap + seasonal-baseline-blend 60/40 industry+operator × per-vendor recurrence-budget × per-pillar verification-rate tren",
+      "body": ""
+    },
+    {
       "sha": "e20f983",
       "date": "2026-10-09T19:07:32Z",
       "author": "hermesagent",
@@ -98609,13 +98696,6 @@
       "author": "mattiasadem",
       "subject": "docs(journal): add SHA for Move #1.14.2 tick (1d08ccc)",
       "body": ""
-    },
-    {
-      "sha": "1d08ccc",
-      "date": "2026-10-03T16:36:02Z",
-      "author": "mattiasadem",
-      "subject": "skill: 477 Move #1.14.2 per-tier-breach-without-recovery-action-rollback-orchestrator-rollback-confirmation-event-replay-engine-rollback-replay-counterfactual-multi-window-engine",
-      "body": ""
     }
   ],
   "counts": {
@@ -98624,8 +98704,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 300,
-    "skills": 591,
+    "journalEntries": 301,
+    "skills": 592,
     "gitCommits": 200
   }
 }
