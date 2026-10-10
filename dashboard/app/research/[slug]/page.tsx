@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { CopyButton } from "@/components/copy-button";
+import { DocumentOutline } from "@/components/document-outline";
 
 const ROOT = "/data/workspace/ecommerce-ops";
 const BUILD_RESEARCH = join(process.cwd(), "src/research");
@@ -323,8 +324,8 @@ export default async function ResearchDetailPage({
   const topFindings = (doc.findings ?? []).slice(0, 6);
 
   return (
-    <div className="flex flex-col gap-6 max-w-3xl">
-      {/* Header */}
+    <div className="flex flex-col gap-6 max-w-5xl">
+      {/* Header — full width above the 2-column grid */}
       <header className="flex flex-col gap-3">
         <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-muted-foreground">
           <Link href="/" className="hover:text-foreground">
@@ -373,40 +374,56 @@ export default async function ResearchDetailPage({
 
       <Separator />
 
-      {/* Top takeaways from the Findings section (parsed by parse-content.mjs).
-          Same wire-up as /playbooks/[slug]'s Goal bullets. */}
-      {topFindings.length > 0 ? (
-        <Card>
-          <CardContent className="pt-5">
-            <div className="mb-2 text-[10px] uppercase tracking-widest text-muted-foreground">
-              Findings
-            </div>
-            <ul className="space-y-1 text-sm leading-relaxed text-foreground/90 list-disc pl-5">
-              {topFindings.map((m, j) => (
-                <li key={j}>{m}</li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
-      ) : null}
+      {/* Body — 2-column grid: sticky DocumentOutline sidebar on the
+          left at md+ breakpoint, content column on the right. On mobile
+          (<md) the layout collapses to a single column with the
+          outline at the top. Move #N.26 cross-page-intelligence:
+          TOC anchors resolve via the existing `scroll-mt-24` + `id=...`
+          on the H2/H3 elements rendered by `renderMarkdown` below. */}
+      <div className="grid grid-cols-1 md:grid-cols-[220px_minmax(0,1fr)] gap-6">
+        <div className="order-1 md:order-1">
+          <DocumentOutline markdown={body} sticky={true} />
+        </div>
+        <div className="order-2 md:order-2 flex flex-col gap-6 max-w-3xl">
+          {/* Top takeaways from the Findings section (parsed by parse-content.mjs).
+              Same wire-up as /playbooks/[slug]'s Goal bullets. */}
+          {topFindings.length > 0 ? (
+            <Card>
+              <CardContent className="pt-5">
+                <div className="mb-2 text-[10px] uppercase tracking-widest text-muted-foreground">
+                  Findings
+                </div>
+                <ul className="space-y-1 text-sm leading-relaxed text-foreground/90 list-disc pl-5">
+                  {topFindings.map((m, j) => (
+                    <li key={j}>{m}</li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+          ) : null}
 
-      <Separator />
+          <Separator />
 
-      {/* Rendered markdown body */}
-      <article className="prose prose-sm max-w-none">
-        {renderMarkdown(body)}
-      </article>
+          {/* Rendered markdown body. The `data-document-body="true"`
+              attribute scopes the DocumentOutline's IntersectionObserver
+              so it only picks up H2/H3 from THIS article (not sibling
+              cards above). */}
+          <article data-document-body="true" className="prose prose-sm max-w-none">
+            {renderMarkdown(body)}
+          </article>
 
-      <Separator />
+          <Separator />
 
-      {/* Footer */}
-      <div className="flex items-center justify-between text-xs text-muted-foreground">
-        <Link href="/" className="hover:text-foreground">
-          ← Back to overview
-        </Link>
-        <span className="font-mono">
-          research/{doc.file} · {sectionsCount} sections · {tablesCount} tables
-        </span>
+          {/* Footer */}
+          <div className="flex items-center justify-between text-xs text-muted-foreground">
+            <Link href="/" className="hover:text-foreground">
+              ← Back to overview
+            </Link>
+            <span className="font-mono">
+              research/{doc.file} · {sectionsCount} sections · {tablesCount} tables
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   );

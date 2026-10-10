@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { SkillDetailToggle } from "@/components/skill-detail-toggle";
+import { DocumentOutline } from "@/components/document-outline";
 import Link from "next/link";
 
 const ROOT = "/data/workspace/ecommerce-ops";
@@ -73,13 +74,16 @@ function renderMarkdown(md: string): React.ReactNode[] {
       continue;
     }
 
-    // Headings
+    // Headings. Each H2/H3 gets an id + scroll-mt-24 so the
+    // DocumentOutline TOC sidebar can anchor to it (Move #N.26).
+    // The slugify() function mirrors the one in document-outline.ts.
     const h2 = /^##\s+(.+?)\s*$/.exec(line);
     if (h2) {
       out.push(
         <h2
           key={key++}
-          className="text-base font-semibold tracking-tight border-b border-border pb-1 mt-6 first:mt-0"
+          id={slugify(h2[1])}
+          className="text-base font-semibold tracking-tight border-b border-border pb-1 mt-6 first:mt-0 scroll-mt-24"
         >
           {h2[1]}
         </h2>
@@ -90,7 +94,11 @@ function renderMarkdown(md: string): React.ReactNode[] {
     const h3 = /^###\s+(.+?)\s*$/.exec(line);
     if (h3) {
       out.push(
-        <h3 key={key++} className="text-sm font-semibold mt-4">
+        <h3
+          key={key++}
+          id={slugify(h3[1])}
+          className="text-sm font-semibold mt-4 scroll-mt-24"
+        >
           {h3[1]}
         </h3>
       );
@@ -252,6 +260,18 @@ function renderMarkdown(md: string): React.ReactNode[] {
   return out;
 }
 
+// Slugify a heading into a URL hash fragment. Mirrors the helper
+// in app/research/[slug]/page.tsx and app/playbooks/[slug]/page.tsx
+// byte-for-byte so the DocumentOutline TOC sidebar anchors resolve
+// to the same id the markdown renderer assigns to the H2/H3.
+function slugify(s: string): string {
+  return s
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 80);
+}
+
 // Inline: bold, italic, inline code, links
 function inline(s: string): React.ReactNode {
   // Tokenize via regex pass — keep it simple, no full AST.
@@ -326,8 +346,8 @@ export default async function SkillDetailPage({
   const { meta, body } = parseFrontmatter(raw);
 
   return (
-    <div className="flex flex-col gap-6 max-w-3xl">
-      {/* Header */}
+    <div className="flex flex-col gap-6 max-w-5xl">
+      {/* Header — full width above the 2-column grid */}
       <header className="flex flex-col gap-3">
         <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-muted-foreground">
           <Link href="/skills" className="hover:text-foreground">
@@ -378,38 +398,54 @@ export default async function SkillDetailPage({
 
       <Separator />
 
-      {/* Rendered markdown body */}
-      <article className="prose prose-sm max-w-none">
-        {renderMarkdown(body)}
-      </article>
+      {/* Body — 2-column grid: sticky DocumentOutline sidebar on the
+          left at md+ breakpoint, content column on the right. On mobile
+          (<md) the layout collapses to a single column with the
+          outline at the top. Move #N.26 cross-page-intelligence:
+          TOC anchors resolve via the new `scroll-mt-24` + `id=...`
+          on the H2/H3 elements rendered by `renderMarkdown` below. */}
+      <div className="grid grid-cols-1 md:grid-cols-[220px_minmax(0,1fr)] gap-6">
+        <div className="order-1 md:order-1">
+          <DocumentOutline markdown={body} sticky={true} />
+        </div>
+        <div className="order-2 md:order-2 flex flex-col gap-6 max-w-3xl">
+          {/* Rendered markdown body. The `data-document-body="true"`
+              attribute scopes the DocumentOutline's IntersectionObserver
+              so it only picks up H2/H3 from THIS article (not sibling
+              cards above). */}
+          <article data-document-body="true" className="prose prose-sm max-w-none">
+            {renderMarkdown(body)}
+          </article>
 
-      <Separator />
+          <Separator />
 
-      {/* Sources */}
-      {Array.isArray(meta.sources) && meta.sources.length > 0 && (
-        <section className="flex flex-col gap-2">
-          <h2 className="text-sm font-semibold uppercase tracking-widest text-foreground">
-            Sources ({meta.sources.length})
-          </h2>
-          <ul className="text-xs text-muted-foreground space-y-0.5">
-            {meta.sources.map((s: string, j: number) => (
-              <li key={j}>· {s}</li>
-            ))}
-          </ul>
-        </section>
-      )}
+          {/* Sources */}
+          {Array.isArray(meta.sources) && meta.sources.length > 0 && (
+            <section className="flex flex-col gap-2">
+              <h2 className="text-sm font-semibold uppercase tracking-widest text-foreground">
+                Sources ({meta.sources.length})
+              </h2>
+              <ul className="text-xs text-muted-foreground space-y-0.5">
+                {meta.sources.map((s: string, j: number) => (
+                  <li key={j}>· {s}</li>
+                ))}
+              </ul>
+            </section>
+          )}
 
-      <Separator />
+          <Separator />
 
-      {/* Footer */}
-      <div className="flex items-center justify-between text-xs text-muted-foreground">
-        <Link href="/skills" className="hover:text-foreground">
-          ← Back to all skills
-        </Link>
-        <span className="font-mono">
-          {skill.size}b · {skill.sectionCount} sections · {skill.pitfallCount}{" "}
-          pitfalls
-        </span>
+          {/* Footer */}
+          <div className="flex items-center justify-between text-xs text-muted-foreground">
+            <Link href="/skills" className="hover:text-foreground">
+              ← Back to all skills
+            </Link>
+            <span className="font-mono">
+              {skill.size}b · {skill.sectionCount} sections · {skill.pitfallCount}{" "}
+              pitfalls
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   );
