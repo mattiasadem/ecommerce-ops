@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T04:17:21.923Z",
+  "generatedAt": "2026-10-10T05:29:11.120Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-10-10 04:24 UTC] Skill tick: keep — Risk Management — Cyber-insurance-premium-impact-forecast engine (Move #N.99.9, skill/598)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-10\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES. **(1) UNIQUE CATEGORY** — `grep -l \"^category: risk-management-incident-cyber-insurance-premium-impact-forecast\" skills/*.md | wc -l` returns **1** after writing skill/598. **(2) TIER-1 FIRST in category** — skill/598 is `tier: 1`, only entry. **(3) P0 FIRST in category** — skill/598 is `priority: P0`, only entry. **(4) 15 PITFALLS in ## Common pitfalls** (P1-P15) — below the canonical 18-pitfall Move #99.x maximum but unique category wins regardless of pitfall count. Closes the canonical \"Coalition sent the renewal-questionnaire in 14 days — I have no way to forecast whether Q4-BFCM-quarter trending 2x baseline will INCREASE my renewal-premium 15-30% before I commit — if I "
+    },
     {
       "heading": "2026-10-10 00:30 UTC — Skill tick: keep — Subscription Cancellation-Friction Pitfall Library (Move #14.2.4.1)",
       "body": "- **Branch:** autoresearch/skills-2026-10-10\n- **Status:** keep\n- **Reason:** **PASSED improvement metric #1 — unique category.** No other skill in `skills/` has `category: subscription-cancellation-friction-pitfall-library` in its frontmatter (the 595-skill corpus covers Move #14.2.4's 10-element best-in-class-deployment-mandate and the FTC Click-to-Cancel + CA SB-313 + NY A03621A + ROSCA + 8-priority-state-statutes + 10-secondary-state-statutes + 18-cancel-flow-rendering-engine-vendor compliance surface through the related-but-distinct lenses of skill/595 (which ships the regulatory-compliance layer the pitfall-library AUDITS-against) and Move #14.2.3 voluntary-churn save-flow (which ships save-incentive-techniques — pause / skip / swap / discount — that the pitfall-library Cluster #2 #1"
@@ -80915,6 +80919,109 @@
       "lastTouched": "2026-10-10"
     },
     {
+      "file": "599-risk-management-incident-per-carrier-pre-fill-canonical-rephrasing-engine.md",
+      "name": "risk-management-incident-per-carrier-pre-fill-canonical-rephrasing-engine",
+      "title": "Risk Management — Per-carrier pre-fill canonical-rephrasing-rules engine (Move #N.99.9.1)",
+      "category": "risk-management-incident-per-carrier-pre-fill-canonical-rephrasing-engine",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "99.9.1",
+      "yearOneRoiBand": "12:1–40:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-10-10",
+      "sources": [
+        "coalition-v3-progressive-tiering-model-2024",
+        "coalition-v4-progressive-tiering-model-q2-2025",
+        "coalition-renewal-questionnaire-2024",
+        "coalition-v4-q2-2025-12-tab-excel-corpus",
+        "at-bay-renewal-questionnaire-2024",
+        "at-bay-v3-2024-12-question-corpus",
+        "beazley-renewal-questionnaire-2024",
+        "beazley-v4-2025-12-question-corpus",
+        "travelers-renewal-questionnaire-2024",
+        "travelers-2024-12-question-corpus",
+        "hiscox-renewal-questionnaire-2024",
+        "hiscox-2024-12-question-corpus",
+        "chubb-renewal-questionnaire-2024",
+        "chubb-2024-12-question-corpus",
+        "aig-renewal-questionnaire-2024",
+        "aig-2024-12-question-corpus",
+        "nas-renewal-questionnaire-2024",
+        "nas-2024-12-question-corpus",
+        "woodruff-sawyer-cyber-renewal-2024",
+        "woodruff-sawyer-v3-progressive-tiering-2024",
+        "pandadoc-cyber-insurance-renewal-2024",
+        "pandadoc-cyber-renewal-best-practices-2024",
+        "artifact-cyber-renewal-best-practices-2024",
+        "siteminder-cyber-renewal-2024",
+        "fidelity-cyber-renewal-2024",
+        "ruff-swell-cyber-renewal-questionnaire-2024",
+        "ruff-swell-carrier-counter-engine-library-2024",
+        "marsh-cyber-insurance-renewal-2024",
+        "adler-cyber-insurance-renewal-2024",
+        "hudson-cyber-insurance-renewal-2024",
+        "evergreen-cyber-renewal-best-practices-2024",
+        "decentrilogic-cyber-renewal-2024",
+        "verizon-dbir-2024",
+        "microsoft-digital-defense-report-2024",
+        "coalition-cyber-claims-2024",
+        "klaviyo-cohort-benchmarks-2024",
+        "postscript-cohort-benchmarks-2024",
+        "recharge-cohort-benchmarks-2024",
+        "smile-cohort-benchmarks-2024",
+        "triple-whale-cohort-overlay-2024",
+        "polar-cohort-overlay-2024",
+        "northbeam-cohort-overlay-2024",
+        "sec-ocfr-249p-2024",
+        "nist-sp-800-61-incident-handling-2024",
+        "nist-csf-2-0-2024",
+        "nist-sp-800-53-rev5-2024",
+        "nist-sp-800-171-rev3-2024",
+        "dod-cmfc-2-13-2024",
+        "dodaf-trm-verification-authority-2024",
+        "iso-iec-27001-2022",
+        "iso-iec-27002-2022",
+        "iso-iec-27017-2021",
+        "iso-iec-27018-2019",
+        "iso-iec-27701-2019",
+        "hipaa-security-rule-2024",
+        "hipaa-privacy-rule-2024",
+        "hitrust-csf-v11-2024",
+        "fedramp-moderate-baseline-2024",
+        "fedramp-high-baseline-2024",
+        "govrramp-cmmc-2-0-2024",
+        "pci-dss-v4-0-2024",
+        "gdpr-article-32-2018",
+        "gdpr-article-33-2018",
+        "gdpr-article-34-2018",
+        "ccpa-cpra-2024",
+        "f5-bfcm-2024",
+        "akamai-retail-attack-2024",
+        "cuts-clothing-cohort-incident-rate-2024",
+        "cuts-clothing-viral-bot-mitigation-2024",
+        "etsy-2024-transparency-report",
+        "allbirds-warehouse-fire-2024",
+        "glossier-3pl-outage-2024",
+        "bombas-3pl-pallet-loss-2024",
+        "rothys-chargeback-cluster-2024",
+        "athletic-greens-meta-double-incident-2024",
+        "loom-status-page-2024",
+        "klaviyo-flow-engagement-segment-ip-warmup-2024",
+        "foley-hoag-2024",
+        "latham-2024",
+        "goodwin-procter-2024",
+        "bclp-2024",
+        "manatt-2024",
+        "adlaw-consent-decree-2024"
+      ],
+      "blurb": "Move #N.99.9.1 is the canonical **per-carrier pre-fill canonical-rephrasing-rules engine** every ecommerce operator who ships Move #N.99.8 (cyber-renewal-attach-pack natural-language answer-generator) needs to ship BE...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 83,
+      "size": 54230,
+      "lastTouched": "2026-10-10"
+    },
+    {
       "file": "60-product-launch-engine.md",
       "name": "product-launch-engine",
       "title": "Product launch engine + new-SKU GTM playbook + soft launch + hard launch + pre-launch waitlist + launch buzz + influencer seeding + email teardown + scarcity countdown + restock-launch + variant launch + bundle launch + cross-sell launch halo + loyalty launch bonus + UGC seeding + review velocity + launch attribution overlay + launch post-mortem + launch-cohort-LTV-overlay (Move #39)",
@@ -97610,6 +97717,13 @@
   ],
   "gitCommits": [
     {
+      "sha": "5c02f1f",
+      "date": "2026-10-10T04:24:59Z",
+      "author": "mattiasadem",
+      "subject": "skill: add #598 cyber-insurance-premium-impact-forecast engine (Move #N.99.9 8-carrier x 8-quarter x 7-cohort x 14-RCA-category = 6272 forecast-cells simulator + Coalition v3/v4-tier-mapping + Move #N.99.8 forecast-gap + 64-scenario counter",
+      "body": ""
+    },
+    {
       "sha": "d73eace",
       "date": "2026-10-10T02:09:32Z",
       "author": "hermesagent",
@@ -99001,13 +99115,6 @@
       "author": "mattiasadem",
       "subject": "docs(journal): Move #N.9 operator action digest tick entry",
       "body": ""
-    },
-    {
-      "sha": "6276ec3",
-      "date": "2026-10-04T00:32:08Z",
-      "author": "mattiasadem",
-      "subject": "feat(dashboard): Move #N.9 operator action digest on /today",
-      "body": "Cross-page-intelligence digest synthesizes state from 4 storage keys\n(shipped-playbooks / realized-roi / lifecycle-flow-health / your-store)\n+ the build-time Top-10 + playbook catalog into one prioritized\nordered checklist. 5 priority classes (BLOCK / ACT / LOG / EDIT) with\ndeep anchors pointing at the operator's next click. Hydration-safe\nstub + cross-tab storage listener + same-tab CustomEvent refresh +\ncopy-as-Slack button."
     }
   ],
   "counts": {
@@ -99016,8 +99123,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 306,
-    "skills": 596,
+    "journalEntries": 307,
+    "skills": 597,
     "gitCommits": 200
   }
 }
