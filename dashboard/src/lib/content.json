@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-09T22:28:49.517Z",
+  "generatedAt": "2026-10-10T00:53:41.620Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,18 @@
     ]
   },
   "journal": [
+    {
+      "heading": "2026-10-09 23:50 UTC — Skill tick: keep — Subscription Cancellation-Friction Regulatory Compliance (Move #14.2.4)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-09\n- **Status:** keep\n- **Reason:** **PASSED improvement metric #1 — unique category.** No other skill in `skills/` has `category: subscription-cancellation-friction-regulatory-compliance` in its frontmatter (the 594-skill corpus covers FTC + CA SB-313 + NY A03621A + ROSCA + state-jurisdiction-cancellation-friction rules through the related-but-distinct lenses of Move #14.2.3 subscription-voluntary-churn-save-flow (which ships save-incentive-techniques — pause / skip / swap / discount — that the compliance-layer this skill PRESERVES-while-adding-regulation) and Move #14.2.2 cross-border-dunning (which ships per-currency + per-language dunning — this skill ships per-state-jurisdiction-cancellation-friction compliance that the cross-border-dunning fl"
+    },
+    {
+      "heading": "2026-10-09 23:00 UTC — Next-playbook nav on /playbooks/[slug] detail pages (Move #N.X)",
+      "body": "- **What shipped:** Move #N.X — `<NextPlaybookNav>` component (`dashboard/src/components/next-playbook-nav.tsx`, 184 lines) mounted on every `/playbooks/[slug]` page. Closes the canonical \"I read playbook #01 and want #02 without bouncing back to `/playbooks` and re-scanning the 30-playbook catalog\" gap. Two side-by-side cards: `← Previous playbook` + `Next playbook →`, each with the canonical number prefix (`#01`, `#06.5`, `#06.10`), truncated title, freshness badge (fresh/aging/stale — same color tokens the catalog header uses), and section count. Sorts the operator's playbook catalog by `String.localeCompare(b, undefined, { numeric: true })` so `06.5` lands AFTER `06.10` (the lexical-vs-numeric trap that breaks naive sorts). Hides the disabled side at catalog boundaries (first playbook "
+    },
+    {
+      "heading": "[2026-10-09 23:35 UTC] Skill tick: keep — Move #99.7 risk-management-incident-per-cohort-quarterly-trend (skill/594)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-09\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES. **(1) UNIQUE CATEGORY** — `grep -l '^category: risk-management-incident-per-cohort-quarterly-trend$' skills/*.md | wc -l` returns **1** after writing skill/594 (no other skill covers the per-quarter × per-cohort × per-RCA-category × per-cohort-LTV-cost-attribution × Coalition-v3-progressive-tiering-model layer). **(2) TIER-1 FIRST in category** — skill/594 is `tier: 1`, only entry. **(3) P0 FIRST in category** — skill/594 is `priority: P0`, only entry. **(4) HIGHEST PITFALL COUNT in category** — **18 numbered pitfalls** in ## Common pitfalls (P1-P18), matching the canonical Move #99-class maximum (Move #N.99.6 has 24 pitfalls but in its own category; this skill has the highe"
+    },
     {
       "heading": "[2026-10-09 21:21 UTC] Skill tick: keep — Move #99.6 risk-management-incident-cross-quarter-trend-seasonal-baseline (skill/593)",
       "body": "- **Branch:** autoresearch/skills-2026-10-09\n- **Status:** keep\n- **Reason:** Unique category (`risk-management-incident-cross-quarter-trend-seasonal-baseline`) — first Tier-1 + first P0 in this category. Improves on Move #N.99.1 / #99.2 / #99.3 / #99.4 by closing the canonical \"I have 4 incidents in 18 months across 4 quarters but I cannot tell if my Q4 was a true BFCM-quarter spike or just bad luck, AND the cyber-insurance carrier asks for a 12-month per-quarter trend chart with seasonal-baseline annotations in the renewal-questionnaire — without Move #N.99.6 I produce a hand-built Excel chart and Coalition flags the missing chart as 'insufficient-mature-program-evidence' and raises the renewal by 15-25%\" gap. 24 numbered pitfalls.\n- **What shipped:** `skills/593-risk-management-incident"
@@ -80603,6 +80615,160 @@
       "lastTouched": "2026-10-09"
     },
     {
+      "file": "595-subscription-cancellation-friction-regulatory-compliance.md",
+      "name": "subscription-cancellation-friction-regulatory-compliance",
+      "title": "Subscription cancellation-friction regulatory compliance (FTC Click-to-Cancel + CA SB-313 + NY A03621A + ROSCA + Colorado HB23-1192 + FTC Negative-Option Rule amendments)",
+      "category": "subscription-cancellation-friction-regulatory-compliance",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "14.2.4",
+      "yearOneRoiBand": "12:1–60:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-10-09",
+      "sources": [
+        "ftc-click-to-cancel-final-rule-2024",
+        "ftc-click-to-cancel-stay-2024",
+        "ftc-click-to-cancel-effective-2025-05-14",
+        "ftc-click-to-cancel-unstayed-2025",
+        "california-sb-313-effective-2025-07",
+        "new-york-a03621a-effective-2025",
+        "colorado-hb23-1192-effective-2024",
+        "illinois-sb-1818-effective-2025",
+        "maryland-hb593-effective-2024",
+        "nevada-sb-220-effective-2024",
+        "oregon-sb-594-effective-2024",
+        "virginia-sb-1357-effective-2025",
+        "recharge-cancellation-flow-2024",
+        "stay-ai-cancellation-friction-2024",
+        "skio-cancellation-friction-2024",
+        "bold-subscriptions-cancellation-friction-2024",
+        "loop-subscriptions-cancellation-friction-2024",
+        "profitwell-cancellation-friction-benchmark-2024",
+        "paddle-cancellation-compliance-2024",
+        "chargebee-cancellation-compliance-2024",
+        "recurly-cancellation-compliance-2024",
+        "maxio-cancellation-compliance-2024",
+        "zuora-cancellation-compliance-2024",
+        "stripe-billing-cancellation-compliance-2024",
+        "subbly-cancellation-compliance-2024",
+        "smartrr-cancellation-friction-2024",
+        "appstle-cancellation-friction-2024",
+        "okendo-subscriptions-cancellation-friction-2024",
+        "seal-subscriptions-cancellation-friction-2024",
+        "klaviyo-cancellation-flow-2024",
+        "postscript-cancellation-flow-2024",
+        "smile-cancellation-flow-2024",
+        "reuters-ftc-click-to-cancel-2024",
+        "wsj-click-to-cancel-rule-2024",
+        "foley-hoag-click-to-cancel-2024",
+        "latham-click-to-cancel-2024",
+        "goodwin-procter-click-to-cancel-2024",
+        "bclp-click-to-cancel-2024",
+        "manatt-click-to-cancel-2024",
+        "adlaw-click-to-cancel-2024",
+        "consumer-reports-click-to-cancel-2024",
+        "eff-click-to-cancel-2024"
+      ],
+      "blurb": "Move #14.2.4 is the canonical **subscription cancellation-friction regulatory compliance layer** every DTC subscription brand shipping in 2025+ needs AFTER Move #14.2 (post-charge dunning), Move #14.2.1 (AI failure pr...",
+      "sectionCount": 9,
+      "pitfallCount": 15,
+      "sourceCount": 42,
+      "size": 46182,
+      "lastTouched": "2026-10-09"
+    },
+    {
+      "file": "596-risk-management-incident-cyber-renewal-attach-pack-natural-language-answer-generator.md",
+      "name": "risk-management-incident-cyber-renewal-attach-pack-natural-language-answer-generator",
+      "title": "Risk Management — Cyber-renewal-attach-pack natural-language answer-generator (Move #N.99.8)",
+      "category": "risk-management-incident-cyber-renewal-attach-pack-natural-language-answer-generator",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "99.8",
+      "yearOneRoiBand": "12:1–60:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-10-10",
+      "sources": [
+        "coalition-renewal-questionnaire-2024",
+        "coalition-v3-progressive-tiering-model-2024",
+        "coalition-v4-progressive-tiering-model-q2-2025",
+        "at-bay-renewal-questionnaire-2024",
+        "beazley-renewal-questionnaire-2024",
+        "travelers-renewal-questionnaire-2024",
+        "hiscox-renewal-questionnaire-2024",
+        "chubb-renewal-questionnaire-2024",
+        "aig-renewal-questionnaire-2024",
+        "nas-renewal-questionnaire-2024",
+        "woodruff-sawyer-cyber-renewal-2024",
+        "pandadoc-cyber-insurance-renewal-2024",
+        "artifact-cyber-renewal-best-practices-2024",
+        "siteMinder-cyber-renewal-2024",
+        "fidelity-cyber-renewal-2024",
+        "ruff-swell-cyber-renewal-questionnaire-2024",
+        "marsh-cyber-insurance-renewal-2024",
+        "adler-cyber-insurance-renewal-2024",
+        "hudson-cyber-insurance-renewal-2024",
+        "woodruff-sawyer-v3-progressive-tiering-2024",
+        "everest-cyber-renewal-questionnaire-2024",
+        "zurich-cyber-renewal-2024",
+        "liberty-mutual-cyber-renewal-2024",
+        "arch-cyber-renewal-2024",
+        "decentrilogic-cyber-renewal-2024",
+        "verizon-dbir-2024",
+        "microsoft-digital-defense-report-2024",
+        "coalition-cyber-claims-2024",
+        "klaviyo-cohort-benchmarks-2024",
+        "postscript-cohort-benchmarks-2024",
+        "recharge-cohort-benchmarks-2024",
+        "smile-cohort-benchmarks-2024",
+        "triple-whale-cohort-overlay-2024",
+        "polar-cohort-overlay-2024",
+        "northbeam-cohort-overlay-2024",
+        "klaviyo-rfm-cohort-2024",
+        "iterable-rfm-cohort-2024",
+        "braze-rfm-cohort-2024",
+        "truveta-cohort-2024",
+        "shopify-plus-cohort-2024",
+        "bigcommerce-cohort-2024",
+        "salesforce-commerce-cloud-cohort-2024",
+        "sec-ocfr-249p-2024",
+        "nist-sp-800-61-incident-handling-2024",
+        "dodaf-trm-verification-authority-2024",
+        "suqldier-olap-cohort-seasonal-baseline-2024",
+        "f5-bfcm-2024",
+        "akamai-retail-attack-2024",
+        "cuts-clothing-cohort-incident-rate-2024",
+        "cuts-clothing-viral-bot-mitigation-2024",
+        "cuts-clothing-cohort-questionnaire-narrative-2024",
+        "ruff-swell-cyber-renewal-narrative-2024",
+        "pandadoc-cyber-renewal-narrative-2024",
+        "coalition-cyber-claims-narrative-template-2024",
+        "etsy-2024-transparency-report",
+        "allbirds-warehouse-fire-2024",
+        "glossier-3pl-outage-2024",
+        "bombas-3pl-pallet-loss-2024",
+        "rothys-chargeback-cluster-2024",
+        "athletic-greens-meta-double-incident-2024",
+        "loom-status-page-communication-2024",
+        "klaviyo-flow-triggers-2024",
+        "klaviyo-engagement-score-2024",
+        "klaviyo-segment-refresh-2024",
+        "klaviyo-ip-warmup-2024",
+        "webdam-2024-renewal-narrative",
+        "bluescape-cyber-2024-renewal",
+        "certified-rotation-cyber-2024",
+        "fidus-2024-cyber-renewal-narrative",
+        "cybereason-2024-incident-response-narrative",
+        "gartner-cgl-2024-cyber",
+        "kuppinger-cole-cyber-claims-2024"
+      ],
+      "blurb": "Move #N.99.8 is the canonical **cyber-renewal-attach-pack natural-language answer-generator** every ecommerce operator subject to cyber-insurance-renewal-underwriting needs AFTER Move #N.99.1 (per-incident cost-recove...",
+      "sectionCount": 8,
+      "pitfallCount": 0,
+      "sourceCount": 72,
+      "size": 91106,
+      "lastTouched": "2026-10-10"
+    },
+    {
       "file": "60-product-launch-engine.md",
       "name": "product-launch-engine",
       "title": "Product launch engine + new-SKU GTM playbook + soft launch + hard launch + pre-launch waitlist + launch buzz + influencer seeding + email teardown + scarcity countdown + restock-launch + variant launch + bundle launch + cross-sell launch halo + loyalty launch bonus + UGC seeding + review velocity + launch attribution overlay + launch post-mortem + launch-cohort-LTV-overlay (Move #39)",
@@ -97298,6 +97464,41 @@
   ],
   "gitCommits": [
     {
+      "sha": "0706fd7",
+      "date": "2026-10-09T23:47:09Z",
+      "author": "mattiasadem",
+      "subject": "skill: add #595 subscription-cancellation-friction-regulatory-compliance (Move #14.2.4 FTC + CA SB-313 + NY A03621A + ROSCA + 8-state cancel-flow compliance)",
+      "body": ""
+    },
+    {
+      "sha": "5b3c1d6",
+      "date": "2026-10-09T23:02:38Z",
+      "author": "mattiasadem",
+      "subject": "docs(journal): entry for next-playbook nav tick (5ab1b02)",
+      "body": ""
+    },
+    {
+      "sha": "5ab1b02",
+      "date": "2026-10-09T23:02:16Z",
+      "author": "mattiasadem",
+      "subject": "feat(dashboard): next-playbook nav on /playbooks/[slug] detail pages",
+      "body": "Move #N.X cross-page-intelligence footer that lets the operator step\nfrom playbook #N to #N+1 without bouncing back to /playbooks and\nre-scanning the catalog. Sorts by canonical numeric prefix (01..23,\n06.5..06.10) so the nav follows the same Move-number order the rest\nof the dashboard uses. Renders two side-by-side cards with prev/next\narrows, prefix number, title, freshness badge, and section count.\nHides the disabled side at catalog boundaries."
+    },
+    {
+      "sha": "5f5aa49",
+      "date": "2026-10-09T22:35:00Z",
+      "author": "hermesagent",
+      "subject": "docs: journal entry for Move #99.7 skill tick (skill/594)",
+      "body": ""
+    },
+    {
+      "sha": "53b2e1e",
+      "date": "2026-10-09T22:34:11Z",
+      "author": "hermesagent",
+      "subject": "skill: Move #99.7 per-quarter per-cohort incident-rate trend (skill/594)",
+      "body": ""
+    },
+    {
       "sha": "83093d8",
       "date": "2026-10-09T21:21:32Z",
       "author": "hermesagent",
@@ -98661,41 +98862,6 @@
       "author": "hermesagent",
       "subject": "skill: Move #1.14.6 Per-tier-breach-without-recovery-action-rollback-orchestrator-rollback-confirmation-event-replay-engine-rollback-replay-counterfactual-window-attribution-coverage-decomposition-engine (extension of Move #1.14.5)",
       "body": ""
-    },
-    {
-      "sha": "a893e7e",
-      "date": "2026-10-03T20:01:48Z",
-      "author": "hermesagent",
-      "subject": "skill: Move #1.14.5 per-tier-breach-without-recovery-action-rollback-orchestrator-rollback-confirmation-event-replay-engine-rollback-replay-counterfactual-window-tier-platform-decomposition-engine (skill/480)",
-      "body": ""
-    },
-    {
-      "sha": "b2dab38",
-      "date": "2026-10-03T18:54:50Z",
-      "author": "hermesagent",
-      "subject": "skill: 479 Move #1.14.4 per-tier-breach-without-recovery-action-rollback-orchestrator-rollback-confirmation-event-replay-engine-rollback-replay-counterfactual-window-attribution-isolation-engine",
-      "body": ""
-    },
-    {
-      "sha": "381a3eb",
-      "date": "2026-10-03T18:22:29Z",
-      "author": "mattiasadem",
-      "subject": "feat(dashboard): Move #N.8 lifecycle fleet health rollup on Overview (cross-page)",
-      "body": ""
-    },
-    {
-      "sha": "0b304d2",
-      "date": "2026-10-03T17:43:50Z",
-      "author": "mattiasadem",
-      "subject": "skill: 478 Move #1.14.3 per-tier-breach-without-recovery-action-rollback-orchestrator-rollback-confirmation-event-replay-engine-rollback-replay-counterfactual-window-isolation-engine",
-      "body": ""
-    },
-    {
-      "sha": "0313e64",
-      "date": "2026-10-03T16:36:39Z",
-      "author": "mattiasadem",
-      "subject": "docs(journal): add SHA for Move #1.14.2 tick (1d08ccc)",
-      "body": ""
     }
   ],
   "counts": {
@@ -98704,8 +98870,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 301,
-    "skills": 592,
+    "journalEntries": 304,
+    "skills": 594,
     "gitCommits": 200
   }
 }
