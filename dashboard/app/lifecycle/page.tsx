@@ -8,6 +8,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { ResearchTable } from "@/components/research-table";
 import { LifecycleFlowAuditWithExport } from "@/components/lifecycle-flow-audit-with-export";
+import { LifecyclePillarScoreboard } from "@/components/lifecycle-pillar-scoreboard";
 import { FlowFixRecipeCard } from "@/components/flow-fix-recipe";
 import { content, findDoc, findTable } from "@/lib/content";
 
@@ -318,6 +319,19 @@ export default function LifecyclePage() {
       {/* === INTERACTIVE LIFECYCLE FLOW HEALTH AUDIT === */}
       <div className="border-t border-border/60 pt-6">
         <LifecycleFlowAuditWithExport />
+      </div>
+
+      {/* === PER-PILLAR SCOREBOARD (Move #N.13) === */}
+      {/* Reads the same storage key as the audit above — fills in
+          when the operator has audited at least 1 flow. Groups the
+          13 Path-B flows into the 5 canonical pillars (P1 Browse-
+          abandon / P2 Winback / P3 Post-purchase-loyalty / P4
+          Replenishment / P5 Celebratory) and surfaces per-pillar
+          avg, worst flow, worst gate, and at-risk revenue/mo band.
+          One-click "Copy scoreboard" exports a paste-ready markdown
+          digest for Slack/Discord/email handoff. */}
+      <div className="border-t border-border/60 pt-6">
+        <LifecyclePillarScoreboard />
       </div>
 
       {/* === PER-FLOW FIX RECIPE (Move #N.12) === */}
