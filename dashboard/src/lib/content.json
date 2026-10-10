@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T09:13:19.130Z",
+  "generatedAt": "2026-10-10T10:26:23.033Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13223,6 +13223,10 @@
     ]
   },
   "journal": [
+    {
+      "heading": "[2026-10-10 09:15 UTC] Skill tick: keep — Calculator ROI per-pillar portfolio — cohort-aware projection + cross-pillar dependency cascade simulator + portfolio-drift detector + 3-year lifetime-value projection (Move #N.26, skill/602)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-10\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES. **(1) UNIQUE CATEGORY** — `grep -l \"^category: calculator-roi-portfolio\" skills/*.md | wc -l` returns **1** after writing skill/602 (no prior skill covered the **per-pillar 4-pillar Acquisition / Conversion / Retention / Attribution portfolio split with cohort-LTV-adjustment + cross-pillar-cascade simulator + portfolio-drift detector + 3-year-lifetime-value projection** — Move #N.23 calculator-ROI-rank is a flat cross-calculator-rank with no pillar-breakdown, Move #N.24 catalog-spotlight is a Top-3 with no pillar-portfolio view, Move #N.25 per-page chip is single-playbook with no pillar-rollup, Move #N.23.1 cohort-aware-projection is single-move-cohort-level with no per-pill"
+    },
     {
       "heading": "[2026-10-10 08:03 UTC] Skill tick: keep — AI Ad Creative — Per-creative × per-cohort × per-daypart LTV auto-kill engine (Move #10.5, skill/601)",
       "body": "- **Branch:** autoresearch/skills-2026-10-10\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES. **(1) UNIQUE CATEGORY** — `grep -l \"^category: ai-creative-attribution-auto-kill\" skills/*.md | wc -l` returns **1** after writing skill/601 (no prior skill covers the per-creative × per-cohort × per-daypart × 7d+30d+90d LTV-overlay auto-kill-criteria + auto-scale auto-fire timer layer with canonical LTV-illusion-trap detection — surface-level-ROAS-illusion exposed by cohort-LTV-overlay per iOS-14.5+ + cookie-deprecation 2024 + Move #6.5 attribution-quality benchmarks; skill/07 is Move #10 foundation only, skill/456 is on-site-behavior-analytics, skill/442 is the auto-real-time-webhook substrate Move #10.5 reads from — none covers the per-creative × per-cohort × per-daypart "
@@ -81540,6 +81544,99 @@
       "lastTouched": "2026-10-10"
     },
     {
+      "file": "603-risk-management-incident-coalition-v3-5-progressive-tiering-model-24-tab-excel-auto-generator.md",
+      "name": "risk-management-incident-coalition-v3-5-progressive-tiering-model-24-tab-excel-auto-generator",
+      "title": "Risk Management — Coalition v3.5 progressive-tiering-model 24-tab Excel auto-generator (Move #N.99.9.3)",
+      "category": "risk-management-incident-coalition-v3-5-progressive-tiering-model-24-tab-excel-auto-generator",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "99.9.3",
+      "yearOneRoiBand": "16:1–72:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-10-10",
+      "sources": [
+        "coalition-v3-progressive-tiering-model-2024",
+        "coalition-v3-5-progressive-tiering-model-2025",
+        "coalition-v4-progressive-tiering-model-q2-2025",
+        "coalition-renewal-questionnaire-2024",
+        "coalition-2024-tender-filing-schema",
+        "coalition-2025-tender-filing-schema",
+        "coalition-2025-control-maturity-graded-schema",
+        "coalition-2025-per-cohort-tier-mapping-schema",
+        "coalition-cyber-claims-2024",
+        "coalition-cyber-claims-2025",
+        "at-bay-renewal-questionnaire-2024",
+        "beazley-renewal-questionnaire-2024",
+        "travelers-renewal-questionnaire-2024",
+        "hiscox-renewal-questionnaire-2024",
+        "chubb-renewal-questionnaire-2024",
+        "aig-renewal-questionnaire-2024",
+        "nas-renewal-questionnaire-2024",
+        "woodruff-sawyer-cyber-renewal-2024",
+        "woodruff-sawyer-v3-progressive-tiering-2024",
+        "pandadoc-cyber-insurance-renewal-2024",
+        "artifact-cyber-renewal-best-practices-2024",
+        "siteminder-cyber-renewal-2024",
+        "fidelity-cyber-renewal-2024",
+        "ruff-swell-cyber-renewal-questionnaire-2024",
+        "marsh-cyber-insurance-renewal-2024",
+        "adler-cyber-insurance-renewal-2024",
+        "hudson-cyber-insurance-renewal-2024",
+        "everest-cyber-renewal-2024",
+        "decentrilogic-cyber-renewal-2024",
+        "verizon-dbir-2024",
+        "microsoft-digital-defense-report-2024",
+        "nist-sp-800-61-incident-handling-2024",
+        "nist-csf-2-0-2024",
+        "nist-sp-800-53-rev5-2024",
+        "nist-sp-800-171-rev3-2024",
+        "dodaf-trm-2024",
+        "iso-iec-27001-2022",
+        "iso-iec-27002-2022",
+        "soc-2-2024",
+        "pci-dss-v4-0-2024",
+        "gdpr-article-32-2018",
+        "hipaa-security-rule-2024",
+        "hitrust-csf-v11-2024",
+        "fedramp-moderate-baseline-2024",
+        "sec-ocfr-249p-2024",
+        "klaviyo-cohort-benchmarks-2024",
+        "postscript-cohort-benchmarks-2024",
+        "recharge-cohort-benchmarks-2024",
+        "smile-cohort-benchmarks-2024",
+        "triple-whale-cohort-overlay-2024",
+        "polar-cohort-overlay-2024",
+        "northbeam-cohort-overlay-2024",
+        "f5-bfcm-2024",
+        "akamai-retail-attack-2024",
+        "cuts-clothing-cohort-incident-rate-2024",
+        "cuts-clothing-viral-bot-mitigation-2024",
+        "etsy-2024-transparency-report",
+        "allbirds-warehouse-fire-2024",
+        "glossier-3pl-outage-2024",
+        "bombas-3pl-pallet-loss-2024",
+        "rothys-chargeback-cluster-2024",
+        "athletic-greens-meta-double-incident-2024",
+        "loom-status-page-2024",
+        "klaviyo-flow-engagement-segment-ip-warmup-2024",
+        "foley-hoag-cyber-renewal-counter-engine-2024",
+        "latham-cyber-renewal-counter-engine-2024",
+        "goodwin-procter-cyber-renewal-counter-engine-2024",
+        "bclp-cyber-renewal-counter-engine-2024",
+        "manatt-cyber-renewal-counter-engine-2024",
+        "adlaw-cyber-renewal-counter-engine-2024",
+        "exceljs-2024",
+        "sheetjs-2024",
+        "blacksmith-excel-2024"
+      ],
+      "blurb": "Move #N.99.9.3 is the canonical **Coalition v3.5 progressive-tiering-model 24-tab Excel auto-generator** every ecommerce operator who has shipped Move #N.99.8 (cyber-renewal-attach-pack natural-language answer-generat...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 73,
+      "size": 63800,
+      "lastTouched": "2026-10-10"
+    },
+    {
       "file": "61-ai-personalization-engine.md",
       "name": "ai-personalization-engine",
       "title": "AI 1:1 personalization engine + AI-LTV-prediction + AI-content-personalization + AI-offer-personalization + AI-journey-orchestration + RFM + zero-party-data-capture (Move #20.7)",
@@ -97997,6 +98094,20 @@
   ],
   "gitCommits": [
     {
+      "sha": "31fd5a9",
+      "date": "2026-10-10T09:21:25Z",
+      "author": "hermesagent",
+      "subject": "docs(journal): entry for #602 skill tick Move #N.26",
+      "body": ""
+    },
+    {
+      "sha": "b031e01",
+      "date": "2026-10-10T09:20:05Z",
+      "author": "hermesagent",
+      "subject": "skill: 602 calculator-roi per-pillar portfolio cohort-aware projection (Move #N.26 — per-pillar portfolio split + cohort-LTV-adjustment + cross-pillar-cascade simulator + portfolio-drift-detector + 3-year-lifetime-value projection, FIRST Ti",
+      "body": ""
+    },
+    {
       "sha": "773fcf5",
       "date": "2026-10-10T08:04:12Z",
       "author": "mattiasadem",
@@ -99381,20 +99492,6 @@
       "author": "mattiasadem",
       "subject": "skill: 487 per-platform-per-tier-cohort-time-window-decomposition-coverage-isolation-engine-companion-per-cell-coverage-class-decomposition-orchestrator (Move #1.10.3.1.1.1.1)",
       "body": ""
-    },
-    {
-      "sha": "b6e6873",
-      "date": "2026-10-04T04:00:31Z",
-      "author": "mattiasadem",
-      "subject": "docs(journal): add SHA for Move #1.10.3.1.1.1 tick (8423478)",
-      "body": ""
-    },
-    {
-      "sha": "8423478",
-      "date": "2026-10-04T02:59:19Z",
-      "author": "hermesagent",
-      "subject": "skill: 486 per-platform-per-tier-cohort-time-window-decomposition-coverage-isolation-engine-companion-per-cell-coverage-class-decomposition (Move #1.10.3.1.1.1)",
-      "body": ""
     }
   ],
   "counts": {
@@ -99403,8 +99500,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 310,
-    "skills": 600,
+    "journalEntries": 311,
+    "skills": 601,
     "gitCommits": 200
   }
 }
