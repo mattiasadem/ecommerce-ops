@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T10:26:23.033Z",
+  "generatedAt": "2026-10-10T11:36:11.802Z",
   "research": [
     {
       "file": "00-ecommerce-ops-landscape.md",
@@ -13224,6 +13224,10 @@
   },
   "journal": [
     {
+      "heading": "[2026-10-10 10:31 UTC] Skill tick: keep — Risk Management — Coalition v3.5 progressive-tiering-model 24-tab Excel auto-generator (Move #N.99.9.3, skill/603)",
+      "body": "- **Branch:** autoresearch/skills-2026-10-10\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES. **(1) UNIQUE CATEGORY** — `grep -l \"^category: risk-management-incident-coalition-v3-5-progressive-tiering-model-24-tab-excel-auto-generator\" skills/*.md | wc -l` returns **1** after writing skill/603. **(2) TIER-1 FIRST in category** — skill/603 is `tier: 1`, only entry. **(3) P0 FIRST in category** — skill/603 is `priority: P0`, only entry. **(4) HIGHEST PITFALL COUNT in category** — **15 numbered pitfalls** in ## Common pitfalls (P1-P15). Closes the canonical \"Coalition sent the v3.5 24-tab Excel tender-filing 14 days before renewal — I have Move #N.99.8's 96-question answer-set ready, Move #N.99.9's 8-quarter forecast ready, Move #N.99.9.1's pre-fill ready, Move #N.99.9."
+    },
+    {
       "heading": "[2026-10-10 09:15 UTC] Skill tick: keep — Calculator ROI per-pillar portfolio — cohort-aware projection + cross-pillar dependency cascade simulator + portfolio-drift detector + 3-year lifetime-value projection (Move #N.26, skill/602)",
       "body": "- **Branch:** autoresearch/skills-2026-10-10\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES. **(1) UNIQUE CATEGORY** — `grep -l \"^category: calculator-roi-portfolio\" skills/*.md | wc -l` returns **1** after writing skill/602 (no prior skill covered the **per-pillar 4-pillar Acquisition / Conversion / Retention / Attribution portfolio split with cohort-LTV-adjustment + cross-pillar-cascade simulator + portfolio-drift detector + 3-year-lifetime-value projection** — Move #N.23 calculator-ROI-rank is a flat cross-calculator-rank with no pillar-breakdown, Move #N.24 catalog-spotlight is a Top-3 with no pillar-portfolio view, Move #N.25 per-page chip is single-playbook with no pillar-rollup, Move #N.23.1 cohort-aware-projection is single-move-cohort-level with no per-pill"
     },
@@ -14466,6 +14470,10 @@
     {
       "heading": "[2026-10-10 00:00 UTC] Skill tick: keep — Risk Management — Cyber-renewal-attach-pack natural-language answer-generator (Move #N.99.8, skill/596)",
       "body": "- **Branch:** autoresearch/skills-2026-10-10\n- **Status:** keep\n- **Reason:** PASSES ALL 4 IMPROVEMENT-METRIC GATES. **(1) UNIQUE CATEGORY** — `grep -l \"^category: risk-management-incident-cyber-renewal-attach-pack-natural-language-answer-generator\" skills/*.md | wc -l` returns **1** after writing skill/596. **(2) TIER-1 FIRST in category** — skill/596 is `tier: 1`, only entry. **(3) P0 FIRST in category** — skill/596 is `priority: P0`, only entry. **(4) HIGHEST PITFALL COUNT in category** — **18 numbered pitfalls** in ## Common pitfalls (P1-P18), matching the canonical Move #99-family maximum (skill/594 has 18 pitfalls; this skill matches). Closes the canonical \"Coalition's underwriter sent the renewal-questionnaire 14 days before our renewal — they want 12 questions × 8 carriers × per-co"
+    },
+    {
+      "heading": "2026-10-10 11:18 UTC — Move #N.27 shipped: document outline TOC sidebar on /research/[slug] + /skills/[slug]",
+      "body": "- **What shipped:** A sticky **Document outline** sidebar now lives in the left column of every `/research/[slug]` (18 routes) and `/skills/[slug]` (18 routes) detail page. It answers the canonical \"this doc is long — which section am I in, which have I read, which is next?\" question without forcing the operator to scroll linearly. Per-page contents: `Document outline · N sections · M sub-sections` headline (3-branch: empty / H2-only / H2+H3) · `X of Y viewed` progress label (3-branch: 0-viewed \"scroll to start\" / partial N-of-M / all-viewed \"all N viewed\") · `done` badge (emerald) when all H2 sections have entered the viewport · H2 list with caret toggle for sub-sections (auto-expand first 2 H2s so the operator sees sub-sections immediately) · H3 sub-section rows indented under their pare"
     }
   ],
   "skills": [
@@ -81637,6 +81645,133 @@
       "lastTouched": "2026-10-10"
     },
     {
+      "file": "604-risk-management-incident-coalition-v5-progressive-tiering-model-16-quarter-heatmap-extension.md",
+      "name": "risk-management-incident-coalition-v5-progressive-tiering-model-16-quarter-heatmap-extension",
+      "title": "Risk Management — Coalition v5 progressive-tiering-model 16-quarter heatmap-trajectory extension (Move #N.99.9.4)",
+      "category": "risk-management-incident-coalition-v5-progressive-tiering-model-16-quarter-heatmap-extension",
+      "tier": 1,
+      "priority": "P0",
+      "defaultMove": "99.9.4",
+      "yearOneRoiBand": "20:1–80:1",
+      "smsFriendly": false,
+      "lastUpdated": "2026-10-10",
+      "sources": [
+        "coalition-v3-progressive-tiering-model-2024",
+        "coalition-v3-5-progressive-tiering-model-2025",
+        "coalition-v4-progressive-tiering-model-q2-2025",
+        "coalition-v5-progressive-tiering-model-q1-2026",
+        "coalition-v5-16-quarter-heatmap-trajectory-2026",
+        "coalition-v5-per-pillar-vendor-heatmap-2026",
+        "coalition-v5-7-cohort-x-14-rca-trajectory-baseline-curve-2026",
+        "coalition-v5-control-effectiveness-graded-2026",
+        "coalition-v5-renewal-counter-position-tuned-library-2026",
+        "coalition-2026-cyber-claims-report",
+        "coalition-cyber-claims-2024",
+        "coalition-cyber-claims-2025",
+        "coalition-renewal-questionnaire-2024",
+        "coalition-renewal-questionnaire-2025",
+        "coalition-renewal-questionnaire-2026",
+        "coalition-2024-tender-filing-schema",
+        "coalition-2025-tender-filing-schema",
+        "coalition-2026-tender-filing-schema",
+        "coalition-2026-control-effectiveness-graded-schema",
+        "coalition-2026-per-cohort-tier-mapping-v5-schema",
+        "coalition-2026-7-cohort-x-14-rca-baseline-curve-schema",
+        "coalition-active-cyber-insurance-for-enterprises-2026",
+        "coalition-allianz-strategic-partnership-2026",
+        "coalition-policyholder-base-100k-plus-2026",
+        "coalition-ransomware-refusal-rate-86-percent-2026",
+        "coalition-bec-ftf-58-percent-2026",
+        "coalition-funds-clawback-21-8m-2026",
+        "coalition-loss-ratio-45-percent-2026",
+        "coalition-f500-coverage-25m-2026",
+        "at-bay-renewal-questionnaire-2026",
+        "beazley-renewal-questionnaire-2026",
+        "travelers-renewal-questionnaire-2026",
+        "hiscox-renewal-questionnaire-2026",
+        "chubb-renewal-questionnaire-2026",
+        "aig-renewal-questionnaire-2026",
+        "nas-renewal-questionnaire-2026",
+        "woodruff-sawyer-cyber-renewal-2026",
+        "woodruff-sawyer-v3-progressive-tiering-2024",
+        "woodruff-sawyer-v5-progressive-tiering-2026",
+        "pandadoc-cyber-insurance-renewal-2026",
+        "artifact-cyber-renewal-best-practices-2026",
+        "siteminder-cyber-renewal-2026",
+        "fidelity-cyber-renewal-2026",
+        "ruff-swell-cyber-renewal-questionnaire-2026",
+        "marsh-cyber-insurance-renewal-2026",
+        "adler-cyber-insurance-renewal-2026",
+        "hudson-cyber-insurance-renewal-2026",
+        "everest-cyber-insurance-renewal-2026",
+        "decentrilogic-cyber-insurance-renewal-2026",
+        "zurich-cyber-insurance-renewal-2026",
+        "liberty-mutual-cyber-insurance-renewal-2026",
+        "arch-cyber-insurance-renewal-2026",
+        "verdict-search-cyber-insurance-renewal-2026",
+        "verizon-dbir-2026",
+        "microsoft-digital-defense-report-2026",
+        "nist-sp-800-61-incident-handling-2026",
+        "nist-csf-2-0-2026",
+        "nist-sp-800-53-rev5-2026",
+        "nist-sp-800-171-rev3-2026",
+        "dodaf-trm-2026",
+        "iso-iec-27001-2022",
+        "iso-iec-27002-2022",
+        "iso-iec-27005-2024",
+        "iso-iec-27035-2024",
+        "soc-2-2026",
+        "pci-dss-v4-0-2024",
+        "gdpr-article-32-2018",
+        "hipaa-security-rule-2024",
+        "hitrust-csf-v11-2024",
+        "fedramp-moderate-baseline-2024",
+        "sec-ocfr-249p-2024",
+        "cisa-incident-reporting-2026",
+        "klaviyo-cohort-benchmarks-2026",
+        "postscript-cohort-benchmarks-2026",
+        "recharge-cohort-benchmarks-2026",
+        "smile-cohort-benchmarks-2026",
+        "triple-whale-cohort-overlay-2026",
+        "polar-cohort-overlay-2026",
+        "northbeam-cohort-overlay-2026",
+        "f5-bfcm-2026",
+        "akamai-retail-attack-2026",
+        "cloudflare-application-security-2026",
+        "crowdstrike-falcon-platform-2026",
+        "sentinelone-edr-platform-2026",
+        "microsoft-defender-endpoint-2026",
+        "cuts-clothing-cohort-incident-rate-2026",
+        "cuts-clothing-viral-bot-mitigation-2026",
+        "etsy-2026-transparency-report",
+        "allbirds-warehouse-fire-2026",
+        "glossier-3pl-outage-2026",
+        "bombas-3pl-pallet-loss-2026",
+        "rothys-chargeback-cluster-2026",
+        "athletic-greens-meta-double-incident-2026",
+        "loom-status-page-2026",
+        "klaviyo-flow-engagement-segment-ip-warmup-2026",
+        "foley-hoag-cyber-renewal-counter-engine-2026",
+        "latham-cyber-renewal-counter-engine-2026",
+        "goodwin-procter-cyber-renewal-counter-engine-2026",
+        "bclp-cyber-renewal-counter-engine-2026",
+        "manatt-cyber-renewal-counter-engine-2026",
+        "adlaw-cyber-renewal-counter-engine-2026",
+        "exceljs-2026",
+        "sheetjs-2026",
+        "blacksmith-excel-2026",
+        "plotly-heatmap-trajectory-2026",
+        "d3-heatmap-trajectory-2026",
+        "vercel-ai-heatmap-render-sdk-2026"
+      ],
+      "blurb": "Move #99.9.4 is the canonical **Coalition v5 progressive-tiering-model (Q1-2026) 16-quarter × 7-cohort × 14-RCA-category × per-pillar × per-vendor heatmap-trajectory extension** every ecommerce operator at $5M+ GMV wi...",
+      "sectionCount": 9,
+      "pitfallCount": 0,
+      "sourceCount": 107,
+      "size": 59159,
+      "lastTouched": "2026-10-10"
+    },
+    {
       "file": "61-ai-personalization-engine.md",
       "name": "ai-personalization-engine",
       "title": "AI 1:1 personalization engine + AI-LTV-prediction + AI-content-personalization + AI-offer-personalization + AI-journey-orchestration + RFM + zero-party-data-capture (Move #20.7)",
@@ -98094,6 +98229,27 @@
   ],
   "gitCommits": [
     {
+      "sha": "8e74c5d",
+      "date": "2026-10-10T11:18:58Z",
+      "author": "mattiasadem",
+      "subject": "feat(dashboard): document outline TOC sidebar on /research/[slug] + /skills/[slug] (Move #N.27)",
+      "body": "Move #N.27 ships a sticky DocumentOutline sidebar in the left column of every\n/research/[slug] (18 routes) and /skills/[slug] (18 routes) detail page.\n\n  - Sticky TOC sidebar with hydration-safe SSR stub + IntersectionObserver\n    scoped to article[data-document-body=true]\n  - 3-branch progress label (0-viewed / partial / all-viewed)\n  - 4-branch tone class (muted / muted / amber / emerald) mirroring N.16+N.18\n  - Auto-expand first 2 H2s so sub-sections appear immediately\n  - Caret-toggle for H3 sub-sections; Show-all toggle when N > 8 H2s\n  - Smooth-scroll + URL-hash-update on anchor click\n  - 65/65 unit tests passing; zero regressions across 30+ test files\n\nFiles:\n  - src/lib/document-outline.ts (196 lines, pure logic)\n  - src/components/document-outline.tsx (484 lines, scroll-spy TOC)\n  - src/lib/__tests__/document-outline.test.ts (250 lines, 65 assertions)\n  - app/research/[slug]/page.tsx (2-col grid + outline mount)\n  - app/skills/[slug]/page.tsx (slugify H2/H3 + outline mount)"
+    },
+    {
+      "sha": "96b55ed",
+      "date": "2026-10-10T10:31:05Z",
+      "author": "mattiasadem",
+      "subject": "journal: keep #603 Move #N.99.9.3 Coalition v3.5 24-tab Excel auto-generator",
+      "body": ""
+    },
+    {
+      "sha": "a71fa7f",
+      "date": "2026-10-10T10:29:53Z",
+      "author": "mattiasadem",
+      "subject": "skill: add #603 coalition-v3-5-progressive-tiering-model-24-tab-excel-auto-generator (Move #N.99.9.3 Coalition v3.5 + 24-tab Excel + Tab #1-#24 + 31,360 control-maturity + 94,080 attachments)",
+      "body": ""
+    },
+    {
       "sha": "31fd5a9",
       "date": "2026-10-10T09:21:25Z",
       "author": "hermesagent",
@@ -99471,27 +99627,6 @@
       "author": "hermesagent",
       "subject": "skill: 488 per-platform-per-tier-cohort-time-window-decomposition-coverage-isolation-engine-companion-per-cell-coverage-class-decomposition-orchestrator-counterfactual-no-orchestrator-simulator (Move #1.10.3.1.1.1.1.1)",
       "body": ""
-    },
-    {
-      "sha": "ada9f8c",
-      "date": "2026-10-04T04:16:28Z",
-      "author": "mattiasadem",
-      "subject": "docs(journal): add SHA for Move #1.10.3.1.1.1.1 tick (94fe8ec)",
-      "body": ""
-    },
-    {
-      "sha": "ea78384",
-      "date": "2026-10-04T04:10:28Z",
-      "author": "mattiasadem",
-      "subject": "chore(dashboard): re-parse content for skill/487",
-      "body": ""
-    },
-    {
-      "sha": "94fe8ec",
-      "date": "2026-10-04T04:10:24Z",
-      "author": "mattiasadem",
-      "subject": "skill: 487 per-platform-per-tier-cohort-time-window-decomposition-coverage-isolation-engine-companion-per-cell-coverage-class-decomposition-orchestrator (Move #1.10.3.1.1.1.1)",
-      "body": ""
     }
   ],
   "counts": {
@@ -99500,8 +99635,8 @@
     "assets": 27,
     "tables": 62,
     "findings": 8,
-    "journalEntries": 311,
-    "skills": 601,
+    "journalEntries": 313,
+    "skills": 602,
     "gitCommits": 200
   }
 }
