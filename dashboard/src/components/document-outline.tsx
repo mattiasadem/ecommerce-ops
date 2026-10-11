@@ -79,11 +79,22 @@ interface DocumentOutlineProps {
   /** When true, mount the sticky sidebar variant (desktop ≥md). When
    *  false, mount the in-flow collapsible variant (mobile <md). */
   sticky?: boolean;
+  /** Optional override for the headline prefix. Defaults to
+   *  "Document outline" — playbook pages pass `"Playbook outline"`
+   *  so the operator sees "Playbook outline · N sections" instead of
+   *  "Document outline · N sections" without forking the component. */
+  headlinePrefix?: string;
 }
 
 /** Stub rendered during SSR + until hydration completes. Same shape as
  *  the post-hydration outline card so the layout doesn't shift. */
-function DocumentOutlineStub({ sticky }: { sticky: boolean }) {
+function DocumentOutlineStub({
+  sticky,
+  headlinePrefix = "Document outline",
+}: {
+  sticky: boolean;
+  headlinePrefix?: string;
+}) {
   return (
     <aside
       data-testid="document-outline-stub"
@@ -94,7 +105,7 @@ function DocumentOutlineStub({ sticky }: { sticky: boolean }) {
     >
       <div className="p-3">
         <div className="text-[10px] uppercase tracking-widest text-muted-foreground">
-          Document outline
+          {headlinePrefix}
         </div>
         <div className="mt-1 text-xs text-muted-foreground">
           {CANONICAL_DOCUMENT_OUTLINE.stubLabel}
@@ -111,6 +122,7 @@ export function DocumentOutline({
   markdown,
   className,
   sticky = true,
+  headlinePrefix = "Document outline",
 }: DocumentOutlineProps) {
   // SSR + first paint: render the stub. We avoid calling
   // buildDocumentOutline during SSR (it's a pure function on a string,
@@ -308,7 +320,7 @@ export function DocumentOutline({
   if (!hydrated) {
     return (
       <div className={cn(className, "")}>
-        <DocumentOutlineStub sticky={sticky} />
+        <DocumentOutlineStub sticky={sticky} headlinePrefix={headlinePrefix} />
       </div>
     );
   }
@@ -347,7 +359,7 @@ export function DocumentOutline({
     >
       <div className="p-3">
         <div className="text-[10px] uppercase tracking-widest text-muted-foreground">
-          {outlineHeadline(summary)}
+          {outlineHeadline(summary).replace(/^Document outline/, headlinePrefix)}
         </div>
         <div className="mt-1 flex items-center gap-2 text-[11px]">
           <span

@@ -11,6 +11,12 @@ import { PlaybookShippedToggle } from "@/components/playbook-shipped-toggle";
 import { NextPlaybookNav } from "@/components/next-playbook-nav";
 import { RealizedRoiLedgerPanel } from "@/components/realized-roi-ledger";
 import { CalculatorRoiChip } from "@/components/calculator-roi-chip";
+import { DocumentOutline } from "@/components/document-outline";
+import {
+  PLAYBOOK_OUTLINE_WIRING,
+  playbookOutlineIsWorthMounting,
+} from "@/lib/playbook-outline-wiring";
+import { buildDocumentOutline } from "@/lib/document-outline";
 import { AbandonedCartROICalculator } from "@/components/abandoned-cart-roi";
 import { PostPurchaseUpsellROICalculator } from "@/components/post-purchase-upsell-roi";
 import { WelcomeSeriesROICalculator } from "@/components/welcome-series-roi";
@@ -488,7 +494,7 @@ export default async function PlaybookDetailPage({
       : "border-border bg-muted text-muted-foreground";
 
   return (
-    <div className="flex flex-col gap-6 max-w-3xl">
+    <div className={`flex flex-col gap-6 ${PLAYBOOK_OUTLINE_WIRING.outerMaxWidthClass}`}>
       {/* Header */}
       <header className="flex flex-col gap-3">
         <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-muted-foreground">
@@ -570,28 +576,61 @@ export default async function PlaybookDetailPage({
 
       <Separator />
 
-      {/* Rendered markdown body */}
-      <article className="prose prose-sm max-w-none">
-        {renderMarkdown(body)}
-      </article>
+      {/* Body — 2-column grid: sticky DocumentOutline sidebar on the
+          left at md+ breakpoint, content column on the right. On mobile
+          (<md) the layout collapses to a single column with the
+          outline at the top. Move #N.27.1 cross-page-intelligence:
+          same sticky outline treatment the research + skill pages got
+          in Move #N.26, but with a Playbook-specific headline prefix.
+          The outline is gated by `playbookOutlineIsWorthMounting` so
+          very short playbooks (0-1 H2s) skip the sidebar entirely
+          instead of showing a one-row outline that takes more space
+          than it saves. The `data-document-body="true"` attribute
+          scopes the IntersectionObserver so it only picks up H2/H3
+          from THIS article (not sibling cards above). */}
+      <div className={`grid grid-cols-1 ${PLAYBOOK_OUTLINE_WIRING.gridTemplateClass} ${PLAYBOOK_OUTLINE_WIRING.gridGapClass}`}>
+        {playbookOutlineIsWorthMounting(buildDocumentOutline(body)) ? (
+          <div className={PLAYBOOK_OUTLINE_WIRING.sidebarOrderClass}>
+            <DocumentOutline
+              markdown={body}
+              sticky={true}
+              headlinePrefix={PLAYBOOK_OUTLINE_WIRING.headlinePrefix}
+            />
+          </div>
+        ) : null}
+        <div
+          className={`${PLAYBOOK_OUTLINE_WIRING.contentOrderClass} flex flex-col gap-6 ${PLAYBOOK_OUTLINE_WIRING.contentMaxWidthClass}`}
+        >
+          {/* Rendered markdown body. The `data-document-body="true"`
+              attribute scopes the DocumentOutline's IntersectionObserver
+              so it only picks up H2/H3 from THIS article (not sibling
+              cards above). */}
+          <article
+            data-document-body="true"
+            className="prose prose-sm max-w-none"
+          >
+            {renderMarkdown(body)}
+          </article>
 
-      <Separator />
+          <Separator />
 
-      {/* Next playbook nav — Move #N.X cross-page-intelligence footer
-          that lets the operator step from playbook #N to #N+1 without
-          bouncing back to /playbooks and re-scanning the catalog. */}
-      <NextPlaybookNav playbooks={content.playbooks} currentSlug={slug} />
+          {/* Next playbook nav — Move #N.X cross-page-intelligence footer
+              that lets the operator step from playbook #N to #N+1 without
+              bouncing back to /playbooks and re-scanning the catalog. */}
+          <NextPlaybookNav playbooks={content.playbooks} currentSlug={slug} />
 
-      <Separator />
+          <Separator />
 
-      {/* Footer */}
-      <div className="flex items-center justify-between text-xs text-muted-foreground">
-        <Link href="/playbooks" className="hover:text-foreground">
-          ← Back to all playbooks
-        </Link>
-        <span className="font-mono">
-          {playbook.sectionCount} sections · {(playbook.size / 1024).toFixed(1)}kb
-        </span>
+          {/* Footer */}
+          <div className="flex items-center justify-between text-xs text-muted-foreground">
+            <Link href="/playbooks" className="hover:text-foreground">
+              ← Back to all playbooks
+            </Link>
+            <span className="font-mono">
+              {playbook.sectionCount} sections · {(playbook.size / 1024).toFixed(1)}kb
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   );
