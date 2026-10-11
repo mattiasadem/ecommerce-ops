@@ -22,6 +22,7 @@ import { ProgressImportMarkdownButton } from "@/components/progress-import-markd
 import { TrajectoryPanel } from "@/components/trajectory-projection-panel";
 import { TrajectoryCheckinBanner } from "@/components/trajectory-checkin-banner";
 import { TrajectoryScenarioComparatorCompact } from "@/components/trajectory-scenario-comparator-compact";
+import { CohortLtvSimulator } from "@/components/cohort-ltv-simulator";
 import Link from "next/link";
 
 export const dynamic = "force-static";
@@ -295,6 +296,18 @@ export default function TodayPage() {
           reset / deep-edit via the "Open on /" link. */}
       <section>
         <TrajectoryScenarioComparatorCompact />
+      </section>
+
+      {/* === 5-Cohort LTV Simulator — Move #N.62 ===
+          Cross-tool interactive widget that splits monthly orders into
+          5 canonical cohorts (VIP / Loyal / First-time / Mobile-browse
+          / Dormant) and projects each cohort's 12-month LTV × repeat ×
+          revenue. Reads Your-store for AOV / orders / margin defaults;
+          5 sliders + 3 preset "shift" buttons let the operator model
+          real lifecycle interventions (browse-abandon → first-time,
+          winback → loyal, VIP tier-up). */}
+      <section>
+        <CohortLtvSimulator />
       </section>
 
       {/* === Today's focus + what shipped === */}
